@@ -1,21 +1,23 @@
-/* Scoped to the admin shell. The public site keeps its own stylesheet. */
+/* Scoped to Dive OS. The public site keeps its own stylesheet. */
 .dive-os-root {
   color-scheme: dark;
-  background: #04101f;
-  color: #e8f1fb;
+  background: #090909;
+  color: #f3efe6;
   min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.5;
 }
 
 .dive-os-root select,
-.dive-os-root input[type="date"],
-.dive-os-root input[type="month"],
-.dive-os-root input[type="time"],
-.dive-os-root input[type="datetime-local"] {
+.dive-os-root input,
+.dive-os-root textarea {
   color-scheme: dark;
+  font-size: 15px;
+  line-height: 1.45;
 }
 
 .dive-os-root select option,
 .dive-os-root select optgroup {
-  background-color: #0b1b33;
-  color: #e8f1fb;
+  background-color: #121210;
+  color: #f3efe6;
 }
