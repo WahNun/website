@@ -1,0 +1,976 @@
+<title>Ticket Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+  :root {
+    --bg: #111318;
+    --surface: #1a1d27;
+    --surface2: #20232f;
+    --surface3: #252837;
+    --border: rgba(255,255,255,.1);
+    --border2: rgba(255,255,255,.06);
+    --text: rgba(255,255,255,.9);
+    --muted: rgba(255,255,255,.45);
+    --subtle: rgba(255,255,255,.22);
+    --open: #ffa040;
+    --open-dim: rgba(255,160,64,.12);
+    --open-border: rgba(255,160,64,.2);
+    --claimed: #ff5050;
+    --claimed-dim: rgba(255,80,80,.12);
+    --claimed-border: rgba(255,80,80,.3);
+    --teal: #4fe3c8;
+    --teal-dim: rgba(79,227,200,.12);
+    --teal-border: rgba(79,227,200,.3);
+    --accent: #35d0ff;
+    --accent-dim: rgba(53,208,255,.12);
+    --accent-border: rgba(53,208,255,.22);
+    --age1: rgba(255,160,64,.08);
+    --age1-border: rgba(255,160,64,.15);
+    --age2: rgba(255,100,40,.18);
+    --age2-border: rgba(255,100,40,.35);
+    --age3: rgba(255,50,50,.22);
+    --age3-border: rgba(255,50,50,.45);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 32px 24px;
+  }
+
+  .wrapper { max-width: 900px; margin: 0 auto; }
+
+  header { margin-bottom: 32px; }
+  .eyebrow {
+    font-size: 10.5px; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--subtle); margin-bottom: 8px;
+  }
+  h1 { font-size: 21px; font-weight: 800; color: var(--text); }
+  .subtitle { margin-top: 5px; font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  .section { margin-bottom: 28px; }
+  .section-title {
+    font-size: 10.5px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--subtle);
+    margin-bottom: 12px;
+  }
+
+  /* ── Mine/All toggle ── */
+  .list-header {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px 12px 0 0;
+    border-bottom: none;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .tab {
+    font-size: 12px; font-weight: 600;
+    padding: 5px 14px; border-radius: 7px;
+    cursor: default; color: var(--muted);
+  }
+  .tab.active {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .tab-count {
+    font-size: 11px; font-weight: 700;
+    background: var(--claimed-dim);
+    border: 1px solid var(--claimed-border);
+    color: var(--claimed);
+    padding: 1px 7px; border-radius: 99px; margin-left: 4px;
+  }
+
+  /* ── Ticket rows ── */
+  .ticket-list {
+    border: 1px solid var(--border);
+    border-radius: 0 0 12px 12px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .ticket-row {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border2);
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .ticket-row:last-child { border-bottom: none; }
+  .ticket-row.age1 { background: var(--age1); border-left: 3px solid rgba(255,160,64,.3); }
+  .ticket-row.age2 { background: var(--age2); border-left: 3px solid rgba(255,100,40,.5); }
+  .ticket-row.age3 { background: var(--age3); border-left: 3px solid rgba(255,50,50,.6); }
+
+  .avatar {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+
+  .ticket-info { flex: 1; min-width: 0; }
+  .ticket-name-row {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 5px; flex-wrap: wrap;
+  }
+  .ticket-name { font-size: 14px; font-weight: 700; }
+
+  .badge {
+    font-size: 11px; font-weight: 700;
+    padding: 2px 8px; border-radius: 99px;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .badge-open { background: var(--open-dim); border: 1px solid var(--open-border); color: var(--open); }
+  .badge-claimed { background: var(--claimed-dim); border: 1px solid var(--claimed-border); color: var(--claimed); }
+  .badge-source { background: rgba(255,255,255,.05); border: 1px solid var(--border); color: var(--muted); }
+  .badge-owner {
+    background: rgba(255,80,80,.08);
+    border: 1px solid rgba(255,80,80,.2);
+    color: rgba(255,120,120,.9);
+    font-size: 11px; font-weight: 600;
+    padding: 2px 8px; border-radius: 99px;
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .owner-dot {
+    width: 6px; height: 6px; border-radius: 99px;
+    background: #ff5050; flex-shrink: 0;
+  }
+
+  .ticket-meta { font-size: 11.5px; color: var(--muted); }
+  .age-label { font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-left: 6px; }
+  .age-label.a1 { color: rgba(255,160,64,.7); }
+  .age-label.a2 { color: rgba(255,110,50,.9); }
+  .age-label.a3 { color: rgba(255,70,70,.95); }
+
+  .ticket-actions {
+    display: flex; align-items: center; gap: 6px;
+    flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end;
+  }
+  .btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 11.5px; font-weight: 600;
+    padding: 6px 12px; border-radius: 7px;
+    border: 1px solid; cursor: default;
+    white-space: nowrap; background: transparent;
+  }
+  .btn-claim { border-color: var(--open-border); color: var(--open); }
+  .btn-unclaim { border-color: rgba(255,80,80,.25); color: rgba(255,100,100,.8); }
+  .btn-takeover { border-color: rgba(255,160,64,.25); color: var(--open); }
+  .btn-resolve { border-color: var(--teal-border); color: var(--teal); }
+  .btn-archive { border-color: var(--border); color: var(--muted); }
+
+  /* ── State table ── */
+  .state-table {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 16px;
+  }
+  .st-row {
+    display: grid;
+    grid-template-columns: 170px 1fr 1fr;
+    border-bottom: 1px solid var(--border2);
+    align-items: center;
+  }
+  .st-row:last-child { border-bottom: none; }
+  .st-row.header { background: var(--surface2); }
+  .st-cell {
+    padding: 11px 16px;
+    font-size: 12px;
+    border-right: 1px solid var(--border2);
+  }
+  .st-cell:last-child { border-right: none; }
+  .st-row.header .st-cell { font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--subtle); }
+  .btn-row { display: flex; gap: 5px; flex-wrap: wrap; }
+
+  /* ── When grid ── */
+  .when-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  @media (max-width: 600px) { .when-grid { grid-template-columns: 1fr; } .st-row { grid-template-columns: 1fr; } }
+  .when-card {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .when-card.claim { border-color: var(--open-border); background: var(--open-dim); }
+  .when-card.resolve { border-color: var(--teal-border); background: var(--teal-dim); }
+  .when-card-header { margin-bottom: 14px; }
+  .when-card-title { font-size: 12px; font-weight: 700; }
+  .when-card.claim .when-card-title { color: var(--open); }
+  .when-card.resolve .when-card-title { color: var(--teal); }
+  .item-list { display: flex; flex-direction: column; gap: 9px; }
+  .item {
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 9px 12px;
+  }
+  .item-label { font-size: 12.5px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .item-note { font-size: 11.5px; color: var(--muted); line-height: 1.4; }
+
+  /* ── Rule ── */
+  .rule {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-top: 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  .rule strong { color: var(--text); }
+
+  /* ── Aging ── */
+  .aging-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 16px;
+  }
+  @media (max-width: 600px) { .aging-grid { grid-template-columns: 1fr 1fr; } }
+  .aging-card {
+    border-radius: 10px;
+    padding: 14px 14px;
+    border: 1px solid;
+  }
+  .aging-card.fresh { background: var(--surface); border-color: var(--border); }
+  .aging-card.a1 { background: var(--age1); border-color: var(--age1-border); }
+  .aging-card.a2 { background: var(--age2); border-color: var(--age2-border); }
+  .aging-card.a3 { background: var(--age3); border-color: var(--age3-border); }
+  .aging-label { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
+  .aging-card.fresh .aging-label { color: var(--subtle); }
+  .aging-card.a1 .aging-label { color: rgba(255,160,64,.8); }
+  .aging-card.a2 .aging-label { color: rgba(255,110,50,.95); }
+  .aging-card.a3 .aging-label { color: rgba(255,70,70,1); }
+  .aging-time { font-size: 18px; font-weight: 800; margin-bottom: 3px; }
+  .aging-card.fresh .aging-time { color: var(--muted); }
+  .aging-card.a1 .aging-time { color: rgba(255,160,64,.9); }
+  .aging-card.a2 .aging-time { color: rgba(255,110,50,1); }
+  .aging-card.a3 .aging-time { color: rgba(255,70,70,1); }
+  .aging-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+  .aging-card.a3 .aging-desc { color: rgba(255,130,130,.8); }
+  .aging-bar {
+    width: 100%; height: 3px; border-radius: 99px;
+    margin-top: 10px; background: rgba(255,255,255,.06);
+    overflow: hidden;
+  }
+  .aging-fill { height: 100%; border-radius: 99px; }
+  .aging-card.fresh .aging-fill { width: 10%; background: rgba(255,255,255,.15); }
+  .aging-card.a1 .aging-fill { width: 40%; background: rgba(255,160,64,.6); }
+  .aging-card.a2 .aging-fill { width: 70%; background: rgba(255,110,50,.8); }
+  .aging-card.a3 .aging-fill { width: 100%; background: rgba(255,60,60,.9); }
+
+  /* ── Notes & History sidebar ── */
+  .notes-section {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 0;
+    margin-top: 0;
+    overflow: hidden;
+  }
+  .notes-header {
+    padding: 14px 18px 0;
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .notes-title { font-size: 13px; font-weight: 700; }
+  .live-badge {
+    font-size: 10px; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; padding: 2px 8px; border-radius: 99px;
+    background: rgba(79,227,200,.1); border: 1px solid rgba(79,227,200,.25);
+    color: var(--teal);
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .live-dot {
+    width: 5px; height: 5px; border-radius: 99px;
+    background: var(--teal); display: inline-block;
+  }
+
+  /* sidebar mock */
+  .sidebar-mock {
+    display: flex;
+    gap: 0;
+    padding: 0 18px 18px;
+  }
+  .sidebar-panel {
+    width: 240px;
+    flex-shrink: 0;
+  }
+
+  /* toggle pills */
+  .pill-toggle {
+    display: flex;
+    gap: 4px;
+    background: rgba(255,255,255,.04);
+    border-radius: 8px;
+    padding: 3px;
+    margin-bottom: 14px;
+  }
+  .pill {
+    flex: 1; text-align: center;
+    font-size: 11.5px; font-weight: 600;
+    padding: 5px 8px; border-radius: 6px;
+    cursor: default; border: none;
+    font-family: 'Inter', sans-serif;
+    transition: none;
+  }
+  .pill.active {
+    background: rgba(53,208,255,.14);
+    color: var(--accent);
+    border: 1px solid rgba(53,208,255,.2);
+  }
+  .pill.inactive {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid transparent;
+  }
+
+  /* note thread */
+  .note-thread {
+    display: flex; flex-direction: column; gap: 7px;
+    margin-bottom: 12px;
+    max-height: 200px; overflow-y: auto;
+  }
+  .note-entry {
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 9px 11px;
+  }
+  .note-meta {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 5px; gap: 6px;
+  }
+  .note-author { font-size: 10.5px; font-weight: 700; color: var(--accent); }
+  .note-time { font-size: 9.5px; color: var(--muted); white-space: nowrap; }
+  .note-body { font-size: 12px; color: rgba(255,255,255,.72); line-height: 1.45; }
+
+  /* chips */
+  .chip-row { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 9px; }
+  .chip {
+    font-size: 10px; font-weight: 500;
+    padding: 3px 9px; border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.03);
+    color: rgba(255,255,255,.55);
+    cursor: default;
+    font-family: 'Inter', sans-serif;
+  }
+  .chip.selected {
+    background: rgba(53,208,255,.1);
+    border-color: rgba(53,208,255,.25);
+    color: var(--accent);
+  }
+
+  /* textarea mock */
+  .note-textarea {
+    width: 100%;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 7px;
+    padding: 8px 10px;
+    font-size: 12px;
+    color: rgba(255,255,255,.75);
+    font-family: 'Inter', sans-serif;
+    resize: none;
+    display: block;
+    margin-bottom: 7px;
+    line-height: 1.45;
+  }
+  .note-add-btn {
+    width: 100%;
+    background: rgba(53,208,255,.1);
+    border: 1px solid rgba(53,208,255,.25);
+    border-radius: 7px;
+    color: var(--accent);
+    font-size: 12px; font-weight: 600;
+    padding: 7px;
+    cursor: default;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+  }
+
+  /* history panel preview */
+  .history-panel-preview {
+    font-size: 11px; color: var(--muted); font-style: italic;
+    padding: 12px 0 6px;
+  }
+  .history-entry-mock {
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--border2);
+    border-radius: 7px;
+    padding: 8px 11px;
+    margin-bottom: 6px;
+  }
+  .history-action { font-size: 11px; color: rgba(255,255,255,.6); }
+  .history-ts { font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+  /* explainer panel */
+  .notes-explainer {
+    flex: 1;
+    padding-left: 24px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .exp-block { }
+  .exp-label {
+    font-size: 10.5px; font-weight: 700; letter-spacing: .09em;
+    text-transform: uppercase; color: var(--subtle); margin-bottom: 8px;
+  }
+  .exp-chips-preview { display: flex; flex-wrap: wrap; gap: 5px; }
+  .exp-rule {
+    font-size: 12px; color: var(--muted); line-height: 1.55;
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 10px 13px;
+  }
+  .exp-rule strong { color: var(--text); }
+
+  footer {
+    margin-top: 28px; font-size: 11px;
+    color: var(--subtle); text-align: center;
+  }
+</style>
+
+<div class="wrapper">
+  <header>
+    <div class="eyebrow">Front Office Staff · Azores Diving</div>
+    <h1>Ticket Workflow Guide</h1>
+    <p class="subtitle">How to claim, handle, and resolve tickets — and what each state means.</p>
+  </header>
+
+
+  <!-- 0. Ticket sources -->
+  <div class="section">
+    <div class="section-title">Where tickets come from</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
+
+      <!-- Chatbot source -->
+      <div style="background:var(--surface);border:1.5px solid var(--accent-border);border-radius:12px;padding:18px 20px;">
+        <div style="font-size:18px;margin-bottom:8px;">🤖</div>
+        <div style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:6px;">AI Chatbot</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.55;">
+          A guest starts a conversation with the chatbot on the website. When they leave an email address or the chatbot can't fully help, the conversation becomes a ticket automatically.
+          <br><br>
+          The first message in the ticket shows the full chatbot transcript so you have full context before you reply.
+        </div>
+      </div>
+
+      <!-- Contact form source -->
+      <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:18px 20px;">
+        <div style="font-size:18px;margin-bottom:8px;">📋</div>
+        <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">Contact Form</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.55;">
+          A guest fills out the contact form on the website or an incoming email is received. A ticket is created instantly with their name, email, phone number, and message.
+          <br><br>
+          The source badge on each ticket row shows which channel the inquiry came through.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Unified reply flow -->
+    <div style="background:rgba(53,208,255,.06);border:1.5px solid var(--accent-border);border-radius:12px;padding:18px 20px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">How you reply — same in both cases</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <div style="width:24px;height:24px;border-radius:6px;background:rgba(53,208,255,.15);border:1px solid var(--accent-border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--accent);flex-shrink:0;">1</div>
+          <div style="font-size:12.5px;color:var(--muted);line-height:1.5;"><strong style="color:var(--text);">Open the ticket</strong> — click the row to expand the message thread.</div>
+        </div>
+
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <div style="width:24px;height:24px;border-radius:6px;background:rgba(53,208,255,.15);border:1px solid var(--accent-border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--accent);flex-shrink:0;">2</div>
+          <div style="font-size:12.5px;color:var(--muted);line-height:1.5;"><strong style="color:var(--text);">Type your reply</strong> in the reply box at the bottom of the thread — regardless of whether the ticket came from the chatbot or the contact form.</div>
+        </div>
+
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <div style="width:24px;height:24px;border-radius:6px;background:rgba(53,208,255,.15);border:1px solid var(--accent-border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--accent);flex-shrink:0;">3</div>
+          <div style="font-size:12.5px;color:var(--muted);line-height:1.5;"><strong style="color:var(--text);">Hit Send</strong> — your reply is delivered automatically. Where it goes depends on the source (see below).</div>
+        </div>
+
+      </div>
+
+      <!-- Source-specific reply behaviour -->
+      <div style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(53,208,255,.12);display:flex;flex-direction:column;gap:10px;">
+
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <span style="font-size:14px;flex-shrink:0;">📋</span>
+          <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.55;">
+            <strong style="color:rgba(255,255,255,.75);">Contact Form</strong> — reply goes as an email. The guest's reply comes back into the same ticket thread automatically.
+          </div>
+        </div>
+
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <span style="font-size:14px;flex-shrink:0;">🤖</span>
+          <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.55;">
+            <strong style="color:rgba(255,255,255,.75);">Chatbot — under 10 min old</strong> — reply appears directly in the guest's open chatbot window. They see it in real time.
+          </div>
+        </div>
+
+        <div style="display:flex;gap:10px;align-items:flex-start;background:rgba(255,160,64,.06);border:1px solid rgba(255,160,64,.15);border-radius:8px;padding:9px 12px;">
+          <span style="font-size:14px;flex-shrink:0;">⚠️</span>
+          <div style="font-size:12px;color:rgba(255,200,100,.7);line-height:1.55;">
+            <strong style="color:rgba(255,200,100,.9);">Chatbot — over 10 min old</strong> — the guest has likely left the chatbot window. Instead of replying in the ticket, reach out directly via <strong style="color:rgba(255,200,100,.9);">WhatsApp</strong>. Nobody waits 10+ minutes in a chat window.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 0b. Tickets created by bookings -->
+  <div class="section">
+    <div class="section-title">Tickets created by bookings</div>
+    <div style="font-size:12.5px;color:var(--muted);line-height:1.6;margin-bottom:12px;">
+      Some tickets are not messages from guests. The booking system opens them by itself when a person has to decide something. They carry the badge <strong style="color:var(--text);">Internal</strong> and are closed once the decision is made. In the sandbox they are test tickets and only admins see them.
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px;">
+      <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:16px 18px;">
+        <div style="font-size:16px;margin-bottom:6px;">⏱</div>
+        <div style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:6px;">Assign time slots</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.55;"><strong style="color:var(--text);">When:</strong> a course or a Scuba Skills Update is booked and some days have no time yet ("to be set").<br><br><strong style="color:var(--text);">What you do:</strong> expand the ticket, choose AM, PM or full day and the start time for each open day, save. The student gets a mail with the plan. The ticket closes when no open day is left.</div>
+      </div>
+      <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:16px 18px;">
+        <div style="font-size:16px;margin-bottom:6px;">✅</div>
+        <div style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:6px;">Attendance check</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.55;"><strong style="color:var(--text);">When:</strong> after a dive day, for every booking without a completed check-in.<br><br><strong style="color:var(--text);">What you do:</strong> press <em>Was there</em> (booking completed, thank-you mail goes out), <em>Trip cancelled</em> (we cancelled the day, the booking stays) or <em>No-show</em> (seats released, no refund). The system never guesses, so a forgotten check-in cannot create a no-show.</div>
+      </div>
+      <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:16px 18px;">
+        <div style="font-size:16px;margin-bottom:6px;">🛟</div>
+        <div style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:6px;">DAN correction</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.55;"><strong style="color:var(--text);">When:</strong> a dive day that was already submitted to DAN is moved or cancelled.<br><br><strong style="color:var(--text);">What you do:</strong> correct or withdraw the entry in the DAN portal by hand (DAN has no API), then resolve the ticket.</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:flex-start;background:rgba(53,208,255,.06);border:1px solid var(--accent-border);border-radius:8px;padding:9px 12px;">
+      <span style="font-size:14px;flex-shrink:0;">💡</span>
+      <div style="font-size:12px;color:var(--muted);line-height:1.55;">
+        Time slot tickets have a button that opens the full booking (payments, sessions, change log).
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 1. Ticket list with Mine/All toggle -->
+  <div class="section">
+    <div class="section-title">What you see in the ticket list</div>
+
+    <div class="list-header">
+      <div class="tab active">Mine <span class="tab-count">2</span></div>
+      <div class="tab">All</div>
+    </div>
+
+    <div class="ticket-list">
+
+      <!-- Open, nobody has claimed it -->
+      <div class="ticket-row">
+        <div class="avatar">🧑</div>
+        <div class="ticket-info">
+          <div class="ticket-name-row">
+            <span class="ticket-name">Mary Anne Krone</span>
+            <span class="badge badge-open">🟠 Open</span>
+            <span class="badge badge-source">📋 Contact Form</span>
+          </div>
+          <div class="ticket-meta">homeontherange910@gmail.com · +17074904594 · 2026-09-01 · 06:31</div>
+        </div>
+        <div class="ticket-actions">
+          <button class="btn btn-claim">Claim</button>
+          <button class="btn btn-resolve">Mark as Resolved</button>
+          <button class="btn btn-archive">Archive ▾</button>
+        </div>
+      </div>
+
+      <!-- Claimed by you (Laura) -->
+      <div class="ticket-row">
+        <div class="avatar">🧑</div>
+        <div class="ticket-info">
+          <div class="ticket-name-row">
+            <span class="ticket-name">Judit Szántó</span>
+            <span class="badge badge-claimed">⚡ Claimed</span>
+            <span class="badge badge-source">📋 Contact Form</span>
+            <span class="badge-owner"><span class="owner-dot"></span> You (Laura)</span>
+          </div>
+          <div class="ticket-meta">szanto.judittt@gmail.com · +36204847909 · 2026-08-31 · 14:46</div>
+        </div>
+        <div class="ticket-actions">
+          <button class="btn btn-unclaim">Unclaim</button>
+          <button class="btn btn-resolve">Mark as Resolved</button>
+          <button class="btn btn-archive">Archive ▾</button>
+        </div>
+      </div>
+
+      <!-- Claimed by someone else -->
+      <div class="ticket-row" style="background: var(--surface2);">
+        <div class="avatar">🧑</div>
+        <div class="ticket-info">
+          <div class="ticket-name-row">
+            <span class="ticket-name">François Dupont</span>
+            <span class="badge badge-claimed">⚡ Claimed</span>
+            <span class="badge badge-source">📧 Email</span>
+            <span class="badge-owner"><span class="owner-dot"></span> Sofia</span>
+          </div>
+          <div class="ticket-meta">f.dupont@gmail.com · +33612345678 · 2026-08-30 · 11:12</div>
+        </div>
+        <div class="ticket-actions">
+          <button class="btn btn-takeover">Take Over</button>
+          <button class="btn btn-resolve">Mark as Resolved</button>
+          <button class="btn btn-archive">Archive ▾</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Aging tickets example -->
+    <div class="section-title" style="margin-top: 18px;">Unclaimed tickets: aging indicator</div>
+    <div class="ticket-list">
+
+      <div class="ticket-row age1">
+        <div class="avatar">🧑</div>
+        <div class="ticket-info">
+          <div class="ticket-name-row">
+            <span class="ticket-name">Helena Brandt</span>
+            <span class="badge badge-open">🟠 Open</span>
+            <span class="age-label a1">· 4 h unclaimed</span>
+          </div>
+          <div class="ticket-meta">helena.b@web.de · +4915201234567 · 2026-09-01 · 02:15</div>
+        </div>
+        <div class="ticket-actions">
+          <button class="btn btn-claim">Claim</button>
+          <button class="btn btn-resolve">Mark as Resolved</button>
+          <button class="btn btn-archive">Archive ▾</button>
+        </div>
+      </div>
+
+      <div class="ticket-row age2">
+        <div class="avatar">🧑</div>
+        <div class="ticket-info">
+          <div class="ticket-name-row">
+            <span class="ticket-name">Takashi Mori</span>
+            <span class="badge badge-open">🟠 Open</span>
+            <span class="age-label a2">· 1 day unclaimed</span>
+          </div>
+          <div class="ticket-meta">t.mori@gmail.com · +819012345678 · 2026-08-31 · 09:40</div>
+        </div>
+        <div class="ticket-actions">
+          <button class="btn btn-claim">Claim</button>
+          <button class="btn btn-resolve">Mark as Resolved</button>
+          <button class="btn btn-archive">Archive ▾</button>
+        </div>
+      </div>
+
+      <div class="ticket-row age3">
+        <div class="avatar">🧑</div>
+        <div class="ticket-info">
+          <div class="ticket-name-row">
+            <span class="ticket-name">Priya Nair</span>
+            <span class="badge badge-open">🟠 Open</span>
+            <span class="age-label a3">⚠ 3 days unclaimed</span>
+          </div>
+          <div class="ticket-meta">priya.nair@outlook.com · +919876543210 · 2026-08-29 · 16:05</div>
+        </div>
+        <div class="ticket-actions">
+          <button class="btn btn-claim">Claim</button>
+          <button class="btn btn-resolve">Mark as Resolved</button>
+          <button class="btn btn-archive">Archive ▾</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- NEW: Red badge section -->
+  <div class="section">
+    <div class="section-title">Red number badge — new incoming messages</div>
+
+    <div class="ticket-list" style="margin-bottom:12px;">
+      <div class="ticket-row">
+        <div class="avatar">🧑</div>
+        <div class="ticket-info">
+          <div class="ticket-name-row">
+            <span class="ticket-name">Mary Anne Krone</span>
+            <span class="badge badge-open">🟠 Open</span>
+            <span class="badge badge-source">📧 Email</span>
+            <span style="font-size:10px;font-weight:800;color:#fff;background:#e53e3e;border-radius:999px;padding:1px 7px;min-width:18px;text-align:center;line-height:16px;display:inline-block;">2</span>
+          </div>
+          <div class="ticket-meta">homeontherange910@gmail.com · 2026-09-01 · 09:12</div>
+        </div>
+        <div class="ticket-actions">
+          <button class="btn btn-claim">Claim</button>
+          <button class="btn btn-resolve">Mark as Resolved</button>
+          <button class="btn btn-archive">Archive ▾</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule">
+      A <strong>red number</strong> on a ticket row means the customer sent new inbound messages that you haven't read yet — specifically, messages received <em>after your last outbound reply</em>.<br><br>
+      <strong>To clear the badge:</strong> open the ticket and scroll down to the last message. Once it's in view, the badge disappears automatically — no button needed.<br><br>
+      <strong style="color:rgba(255,255,255,.6);">No badge = no new messages</strong> since your last reply. If you just sent a reply, the badge won't appear until the customer writes back.
+    </div>
+  </div>
+
+  <!-- 2. Button logic by state -->
+  <div class="section">
+    <div class="section-title">Which buttons appear — by ticket state</div>
+    <div class="state-table">
+      <div class="st-row header">
+        <div class="st-cell">Ticket state</div>
+        <div class="st-cell">Buttons shown</div>
+        <div class="st-cell">What to do</div>
+      </div>
+      <div class="st-row">
+        <div class="st-cell">
+          <span class="badge badge-open" style="font-size:11.5px;">🟠 Open — nobody claimed</span>
+        </div>
+        <div class="st-cell">
+          <div class="btn-row">
+            <button class="btn btn-claim" style="font-size:11px;padding:4px 10px;">Claim</button>
+            <button class="btn btn-resolve" style="font-size:11px;padding:4px 10px;">Mark as Resolved</button>
+            <button class="btn btn-archive" style="font-size:11px;padding:4px 10px;">Archive</button>
+          </div>
+        </div>
+        <div class="st-cell" style="font-size:12px;color:var(--muted);line-height:1.45;">Click <strong style="color:var(--text);">Claim</strong> to put your name on it. Removes it from the "All unclaimed" view.</div>
+      </div>
+      <div class="st-row">
+        <div class="st-cell">
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <span class="badge badge-claimed" style="font-size:11.5px;">⚡ Claimed — by <strong>you</strong></span>
+          </div>
+        </div>
+        <div class="st-cell">
+          <div class="btn-row">
+            <button class="btn btn-unclaim" style="font-size:11px;padding:4px 10px;">Unclaim</button>
+            <button class="btn btn-resolve" style="font-size:11px;padding:4px 10px;">Mark as Resolved</button>
+            <button class="btn btn-archive" style="font-size:11px;padding:4px 10px;">Archive</button>
+          </div>
+        </div>
+        <div class="st-cell" style="font-size:12px;color:var(--muted);line-height:1.45;"><strong style="color:var(--text);">Unclaim</strong> puts it back into the pool — e.g. before your shift ends. Any colleague can then take it.</div>
+      </div>
+      <div class="st-row">
+        <div class="st-cell">
+          <span class="badge badge-claimed" style="font-size:11.5px;">⚡ Claimed — by <strong>colleague</strong></span>
+        </div>
+        <div class="st-cell">
+          <div class="btn-row">
+            <button class="btn btn-takeover" style="font-size:11px;padding:4px 10px;">Take Over</button>
+            <button class="btn btn-resolve" style="font-size:11px;padding:4px 10px;">Mark as Resolved</button>
+            <button class="btn btn-archive" style="font-size:11px;padding:4px 10px;">Archive</button>
+          </div>
+        </div>
+        <div class="st-cell" style="font-size:12px;color:var(--muted);line-height:1.45;">Click <strong style="color:var(--text);">Take Over</strong> if a colleague is off and the ticket needs handling now. Name switches to you.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. When to claim / when to resolve -->
+  <div class="section">
+    <div class="section-title">When to use each action</div>
+    <div class="when-grid">
+
+      <div class="when-card claim">
+        <div class="when-card-header">
+          <div class="when-card-title">🟠 Claim this ticket when…</div>
+        </div>
+        <div class="item-list">
+          <div class="item">
+            <div class="item-label">You replied and are waiting for the guest</div>
+            <div class="item-note">Travel dates, group size, certification level still missing</div>
+          </div>
+          <div class="item">
+            <div class="item-label">Payment or deposit outstanding</div>
+            <div class="item-note">Booking started but not yet complete</div>
+          </div>
+          <div class="item">
+            <div class="item-label">You're checking availability</div>
+            <div class="item-note">Waiting on an internal confirmation before replying</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="when-card resolve">
+        <div class="when-card-header">
+          <div class="when-card-title">✅ Mark as Resolved when…</div>
+        </div>
+        <div class="item-list">
+          <div class="item">
+            <div class="item-label">Question answered</div>
+            <div class="item-note">No further action needed — no reply expected</div>
+          </div>
+          <div class="item">
+            <div class="item-label">Booking confirmed & paid</div>
+            <div class="item-note">Booking is complete in the system</div>
+          </div>
+          <div class="item">
+            <div class="item-label">Complaint handled</div>
+            <div class="item-note">Solution communicated to the guest</div>
+          </div>
+          <div class="item">
+            <div class="item-label">Cancelled or no response</div>
+            <div class="item-note">After follow-up with no reply</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="rule">
+      <strong>The rule:</strong> Resolved means <em>we've done our part</em>. No guest confirmation needed — what counts is whether anything is still outstanding <strong>on our end</strong>.<br>
+      <strong style="color:rgba(255,255,255,.6);">Ownership:</strong> Before you go off shift, either <strong>Resolve</strong> or <strong>Unclaim</strong> any open ticket you hold. Don't leave it claimed with no one watching.
+    </div>
+  </div>
+
+  <!-- 4. Aging guide -->
+  <div class="section">
+    <div class="section-title">Aging — unclaimed tickets only</div>
+    <div class="aging-grid">
+      <div class="aging-card fresh">
+        <div class="aging-label">Fresh</div>
+        <div class="aging-time">&lt; 2 h</div>
+        <div class="aging-desc">Normal. Claim when you pick it up.</div>
+        <div class="aging-bar"><div class="aging-fill"></div></div>
+      </div>
+      <div class="aging-card a1">
+        <div class="aging-label">Watch</div>
+        <div class="aging-time">2 – 24 h</div>
+        <div class="aging-desc">Needs attention today. Claim it or resolve directly.</div>
+        <div class="aging-bar"><div class="aging-fill"></div></div>
+      </div>
+      <div class="aging-card a2">
+        <div class="aging-label">Overdue</div>
+        <div class="aging-time">1 – 3 d</div>
+        <div class="aging-desc">Guest waiting too long. Claim and reply today.</div>
+        <div class="aging-bar"><div class="aging-fill"></div></div>
+      </div>
+      <div class="aging-card a3">
+        <div class="aging-label">Urgent</div>
+        <div class="aging-time">&gt; 3 d</div>
+        <div class="aging-desc">Drop everything. Claim and handle immediately.</div>
+        <div class="aging-bar"><div class="aging-fill"></div></div>
+      </div>
+    </div>
+    <div class="rule" style="margin-top:12px;">Aging only shows on <strong>unclaimed</strong> tickets. Once you claim a ticket, the timer is on you — you own it.</div>
+  </div>
+
+  <!-- 5. Notes & History sidebar -->
+  <div class="section">
+    <div class="section-title">Notes &amp; History — inside an expanded ticket</div>
+    <div class="notes-section">
+
+      <div class="notes-header">
+        <div class="notes-title">Ticket sidebar — Notes &amp; History</div>
+        <div class="live-badge"><span class="live-dot"></span> Live</div>
+      </div>
+
+      <div class="sidebar-mock">
+
+        <!-- left: actual sidebar mockup -->
+        <div class="sidebar-panel">
+
+          <!-- Toggle pills — Notes first, History second -->
+          <div class="pill-toggle">
+            <button class="pill active">Notes (2)</button>
+            <button class="pill inactive">History</button>
+          </div>
+
+          <!-- Notes panel (active) -->
+          <div class="note-thread">
+            <div class="note-entry">
+              <div class="note-meta">
+                <span class="note-author">Laura</span>
+                <span class="note-time">01/09/2026 09:14</span>
+              </div>
+              <div class="note-body">Contacted via WhatsApp — guest confirmed they're still interested, waiting for group size.</div>
+            </div>
+            <div class="note-entry">
+              <div class="note-meta">
+                <span class="note-author">Sofia</span>
+                <span class="note-time">31/08/2026 17:42</span>
+              </div>
+              <div class="note-body">Email sent with full price list. No reply yet.</div>
+            </div>
+          </div>
+
+          <!-- Quick note chips -->
+          <div class="chip-row">
+            <span class="chip">Waiting for reply</span>
+            <span class="chip">Contacted via WhatsApp</span>
+            <span class="chip">Email sent</span>
+            <span class="chip">Follow-up needed</span>
+            <span class="chip selected">Waiting for booking confirmation</span>
+            <span class="chip">Escalated</span>
+          </div>
+
+          <!-- Textarea mock -->
+          <textarea class="note-textarea" rows="3" readonly>Waiting for booking confirmation</textarea>
+
+          <!-- Add Note button -->
+          <div class="note-add-btn">+ Add Note</div>
+        </div>
+
+        <!-- right: explainer -->
+        <div class="notes-explainer">
+
+          <div class="exp-block">
+            <div class="exp-label">Notes tab</div>
+            <div class="exp-rule">
+              A <strong>shared thread</strong> — every staff member's notes appear here in reverse chronological order, with their name and timestamp. Use it to hand off context when you unclaim or go off shift.
+              <br><br>
+              <strong>Tap a chip</strong> to pre-fill the textarea, then edit if needed and click <strong>+ Add Note</strong>.
+            </div>
+          </div>
+
+          <div class="exp-block">
+            <div class="exp-label">Quick note chips</div>
+            <div class="exp-chips-preview">
+              <span class="chip">Waiting for reply</span>
+              <span class="chip">Contacted via WhatsApp</span>
+              <span class="chip">Email sent</span>
+              <span class="chip">Follow-up needed</span>
+              <span class="chip">Waiting for booking confirmation</span>
+              <span class="chip">Escalated</span>
+            </div>
+          </div>
+
+          <div class="exp-block">
+            <div class="exp-label">History tab</div>
+            <div class="exp-rule">
+              Shows the <strong>audit trail</strong> — every status change, claim, takeover, and resolution with who did it and when. Read-only. Switch with the pill toggle.
+            </div>
+            <!-- history tab preview (dimmed) -->
+            <div style="margin-top:10px;opacity:.6;">
+              <div class="history-entry-mock">
+                <div class="history-action">🔄 Status changed · open → in_progress · Claimed by Laura</div>
+                <div class="history-ts">01/09/2026 · 08:55</div>
+              </div>
+              <div class="history-entry-mock">
+                <div class="history-action">🟢 Ticket created</div>
+                <div class="history-ts">31/08/2026 · 14:46</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>Azores Diving · Internal Document · September 2026</footer>
+</div>
