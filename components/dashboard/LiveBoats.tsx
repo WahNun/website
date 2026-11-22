@@ -1465,9 +1465,9 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  <svg viewBox="0 0 560 218" width="100%" style={{ display: 'block', overflow: 'visible' }} xmlns="http://www.w3.org/2000/svg">
  <defs>
  <linearGradient id={`hull-${boat.id}-${session}`} x1="0" y1="0" x2="1" y2="1">
- <stop offset="0%" stopColor="#3a3936" />
- <stop offset="46%" stopColor="#1a1a18" />
- <stop offset="100%" stopColor="#0c0c0b" />
+ <stop offset="0%" stopColor="#3a3a3e" />
+ <stop offset="46%" stopColor="#1c1c1f" />
+ <stop offset="100%" stopColor="#101012" />
  </linearGradient>
  </defs>
  <rect x="0" y="0" width="560" height="218" rx="12" fill="var(--surface)" opacity="0.4" />
@@ -1476,10 +1476,10 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  @keyframes boat_bob_fast { 0%,100%{transform:translateY(0) rotate(0)} 30%{transform:translateY(-5px) rotate(.6deg)} 70%{transform:translateY(3px) rotate(-.4deg)} }
  @keyframes boat_bob_slow { 0%,100%{transform:translateY(0) rotate(0)} 30%{transform:translateY(-2px) rotate(.2deg)} 70%{transform:translateY(1px) rotate(-.1deg)} }
  `}</style>
- <path d="M 50 100 Q 50 30 105 18 L 455 18 Q 510 18 510 60 Q 522 100 510 140 Q 510 182 455 182 L 105 182 Q 50 170 50 100 Z" fill={`url(#hull-${boat.id}-${session})`} stroke="var(--text)" strokeWidth="2" />
+ <path d="M 50 100 Q 50 30 105 18 L 455 18 Q 510 18 510 60 Q 522 100 510 140 Q 510 182 455 182 L 105 182 Q 50 170 50 100 Z" fill={`url(#hull-${boat.id}-${session})`} stroke="rgba(255,255,255,0.82)" strokeWidth="1.25" />
  <path d="M 118 28 L 442 28" fill="none" stroke="rgba(255,255,255,0.22)" strokeWidth="1" pointerEvents="none" />
- <path d="M 80 100 Q 80 47 115 42 L 445 42 Q 490 42 490 80 Q 495 100 490 120 Q 490 158 445 158 L 115 158 Q 80 153 80 100 Z" fill="#181816" opacity="0.8" />
- <rect x="450" y="76" width="42" height="48" rx="6" fill="#181816" opacity="0.9" />
+ <path d="M 80 100 Q 80 47 115 42 L 445 42 Q 490 42 490 80 Q 495 100 490 120 Q 490 158 445 158 L 115 158 Q 80 153 80 100 Z" fill="#121214" opacity="0.85" />
+ <rect x="450" y="76" width="42" height="48" rx="6" fill="#121214" opacity="0.9" />
  <circle cx="471" cy="114" r="8" fill="none" stroke="var(--text)" strokeWidth="1.8" opacity="0.8" />
 
  {/* Sitzplätze */}

@@ -43,7 +43,7 @@ export default async function HomePage({
             get found and make it easier for customers to book or request a quote.
           </p>
           <div className="hero__actions">
-            <Link className="button" href="/dive-centres">
+            <Link className="button button--solid" href="/dive-centres">
               For Dive Centres
             </Link>
             <Link className="button" href="/local-services">

@@ -1,8 +1,9 @@
-/* Scoped to Dive OS. The public site keeps its own stylesheet.
-   Glass stays quiet: one hairline, one top highlight, a light blur. */
+/* Dive OS shares the monochrome system: black, graphite, silver, white. */
 .dive-os-root {
   color-scheme: dark;
-  background: var(--bg);
+  background:
+    radial-gradient(820px 420px at 50% -120px, rgba(255, 255, 255, 0.08), transparent 62%),
+    #000;
   color: var(--text);
   min-height: 100vh;
   font-family: var(--font-geist-sans), sans-serif;
@@ -12,11 +13,41 @@
   letter-spacing: 0;
 }
 
+.dive-os-root::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.16;
+  mix-blend-mode: overlay;
+  background-image: var(--noise);
+}
+
+.dive-os-root > * {
+  position: relative;
+  z-index: 1;
+}
+
 .dive-os-root h1,
 .dive-os-root h2,
-.dive-os-root h3 {
-  font-weight: 500;
-  letter-spacing: -0.02em;
+.dive-os-root h3,
+.dive-os-root [style*="fontSize: '2"],
+.dive-os-root [style*="fontSize: '3"],
+.dive-os-root [style*="fontSize: '4"],
+.dive-os-root [style*='fontSize: "2'],
+.dive-os-root [style*='fontSize: "3'],
+.dive-os-root [style*="clamp("] {
+  font-weight: 300 !important;
+  letter-spacing: -0.045em !important;
+}
+
+.dive-os-root h1,
+.dive-os-root h2 {
+  background: linear-gradient(180deg, #ffffff 20%, #b5b5ba 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .dive-os-root b,
@@ -24,14 +55,35 @@
   font-weight: 500;
 }
 
-.dive-os-root [style*="var(--glass)"] {
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+.dive-os-root [style*="var(--glass)"],
+.dive-os-root [style*="1px solid var(--line)"] {
+  border-radius: 20px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-.dive-os-root button:not(:disabled):hover {
-  filter: brightness(1.05);
+.dive-os-root [style*="var(--glass)"] {
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.dive-os-root button[style],
+.dive-os-root input[style],
+.dive-os-root select[style],
+.dive-os-root textarea[style],
+.dive-os-root a[style*="padding"] {
+  border-radius: 4px !important;
+}
+
+.dive-os-root :not(button):not(a)[style*="letterSpacing: '.08em'"],
+.dive-os-root :not(button):not(a)[style*='letterSpacing: ".08em"'] {
+  font-size: 12px !important;
+  letter-spacing: 0.12em !important;
+  font-weight: 400 !important;
+}
+
+.dive-os-root span[style*="border"],
+.dive-os-root span[style*="background: 'transparent'"] {
+  border-radius: 4px !important;
 }
 
 .dive-os-root select,

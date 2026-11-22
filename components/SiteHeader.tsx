@@ -3,13 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ThemeToggle } from "@/components/ThemeToggle";
 
 const links = [
   { href: "/dive-centres", label: "Dive Centres" },
   { href: "/local-services", label: "Local Services" },
   { href: "/#projects", label: "Projects" },
-  { href: "/#contact", label: "Contact" },
 ];
 
 export function SiteHeader() {
@@ -31,7 +29,6 @@ export function SiteHeader() {
         Lucas Wahnon
       </Link>
       <div className="header-tools">
-      <ThemeToggle />
       <button
         type="button"
         className="menu-button"
@@ -64,6 +61,9 @@ export function SiteHeader() {
           );
         })}
       </nav>
+      <Link href="/#contact" className="button button--solid" onClick={() => setOpenedAt(null)}>
+        Contact
+      </Link>
       </div>
     </header>
   );

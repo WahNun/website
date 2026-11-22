@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import "./dive-os.css";
 
 export const metadata: Metadata = {
@@ -19,10 +18,5 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default function DiveOsLayout({ children }: { children: React.ReactNode }) {
- return (
- <div className="dive-os-root">
- {children}
- <ThemeToggle className="theme-dock" />
- </div>
- );
+ return <div className="dive-os-root">{children}</div>;
 }

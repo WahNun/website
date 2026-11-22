@@ -26,16 +26,11 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-const themeInit = `(function(){try{var t=localStorage.getItem("wahnon-theme");if(t!=="reinweiss"&&t!=="graphit")t="graphit";document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","graphit");}})();`;
-
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-GB" data-theme="graphit" suppressHydrationWarning className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
-      </head>
+    <html lang="en-GB" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body className={GeistSans.className}>{children}</body>
     </html>
   );
