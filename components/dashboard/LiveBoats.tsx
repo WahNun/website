@@ -117,7 +117,7 @@ const STATUS_META: Record<string, { label: string; color: string; bg: string }> 
  boarding: { label: ' BOARDING', color: 'var(--text)', bg: 'var(--text)' },
  out: { label: ' OUT', color: 'var(--text)', bg: 'var(--text)' },
  returned: { label: ' DOCKED', color: 'var(--text)', bg: 'var(--text)' },
- cancelled: { label: ' CANCELLED', color: '#a39e94', bg: 'color-mix(in srgb, var(--text) 15%, transparent)' },
+ cancelled: { label: ' CANCELLED', color: 'var(--muted)', bg: 'color-mix(in srgb, var(--text) 15%, transparent)' },
 }
 
 function shortName(full: string | null | undefined): string {
@@ -1411,7 +1411,7 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
 
  const seatColor = (seat: Seat | undefined) => {
  if (!seat) return null
- if (seat.bookingStatus === 'no_show') return '#8a8f99'
+ if (seat.bookingStatus === 'no_show') return 'var(--muted)'
  if (seat.bookingStatus === 'pending') return 'var(--text)'
  if (seat.medicalFlag) return 'var(--text)'
  if (seat.insuranceSource === 'none') return 'var(--text)'
@@ -1583,11 +1583,11 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  color: seat.medicalFlag ? 'var(--text)' : ((seat.insuranceFlag && !seat.insurancePolicyOnFile) || seat.insuranceSource === 'none' || seat.danPolicyOpen || seat.refresherOpen || seat.minorOpen) ? 'var(--text)' : seat.insuranceFlag ? 'var(--muted)' : seat.checkedIn ? 'var(--text)' : 'var(--text)',
  padding: '3px 10px', borderRadius: 'var(--radius-control)',
  background: 'color-mix(in srgb, var(--text) 6%, transparent)',
- border: `1px solid ${seat.medicalFlag ? 'var(--line)' : ((seat.insuranceFlag && !seat.insurancePolicyOnFile) || seat.insuranceSource === 'none' || seat.danPolicyOpen || seat.refresherOpen || seat.minorOpen) ? 'var(--line)' : seat.insuranceFlag ? 'rgba(201,194,182,.35)' : seat.checkedIn ? 'var(--text)' : 'var(--text)'}`,
+ border: `1px solid ${seat.medicalFlag ? 'var(--line)' : ((seat.insuranceFlag && !seat.insurancePolicyOnFile) || seat.insuranceSource === 'none' || seat.danPolicyOpen || seat.refresherOpen || seat.minorOpen) ? 'var(--line)' : 'var(--line)'}`,
  }}>
  {seat.checkedIn ? 'In' : 'Due'} {shortName(seat.name)}
  {seat.bookingStatus === 'pending' && <span title="Booking not paid yet (pending)" style={{ marginLeft: '5px', fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-control)', padding: '0 4px' }}>UNPAID</span>}
- {seat.bookingStatus === 'no_show' && <span title="Marked as no-show" style={{ marginLeft: '5px', fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: '#8a8f99', borderRadius: 'var(--radius-control)', padding: '0 4px' }}>NO-SHOW</span>}
+ {seat.bookingStatus === 'no_show' && <span title="Marked as no-show" style={{ marginLeft: '5px', fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-control)', padding: '0 4px' }}>NO-SHOW</span>}
  {seat.placeholder && <span title="Seat reserved, guest details not entered yet" style={{ marginLeft: '5px', fontSize: '14px', color: 'var(--muted)' }}>(reserved)</span>}
  {/* Versicherung: = Nachweis noch zu sichten, = gar keine.
  Beides muss der Empfang sehen, bevor der Gast an Bord geht. */}

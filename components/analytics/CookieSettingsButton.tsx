@@ -11,7 +11,7 @@ export default function CookieSettingsButton({ lang }: { lang: string }) {
       type="button"
       className="azd-footer-privacy"
       onClick={() => window.dispatchEvent(new Event('azd:open-consent'))}
-      style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', fontSize: '12px' }}
+      style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', fontSize: '14px', color: 'var(--muted)' }}
     >
       {LABEL[lang] ?? LABEL.EN}
     </button>

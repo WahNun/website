@@ -63,7 +63,7 @@ export function CentreBrandForm() {
  </p>
  <div style={{ display: "grid", gap: "10px", maxWidth: "36rem" }}>
  {FIELDS.map((field) => (
- <label key={field.key} style={{ display: "grid", gap: "4px", fontSize: "13px", color: s.muted }}>
+ <label key={field.key} style={{ display: "grid", gap: "4px", fontSize: "14px", color: s.muted }}>
  {field.label}
  {field.key === "intro" ? (
  <textarea value={form.intro} onChange={(event) => setForm((current) => ({ ...current, intro: event.target.value }))} rows={3} style={input} />
@@ -75,7 +75,7 @@ export function CentreBrandForm() {
  <button type="button" className="button" disabled={saving} onClick={() => void save()} style={{ justifySelf: "start" }}>
  {saving ? "Saving" : "Save booking page"}
  </button>
- {msg ? <p style={{ margin: 0, color: s.text, fontSize: "13px" }}>{msg}</p> : null}
+ {msg ? <p style={{ margin: 0, color: s.text, fontSize: "14px" }}>{msg}</p> : null}
  </div>
  </section>
  );

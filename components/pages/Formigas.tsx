@@ -166,7 +166,7 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
  <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', marginBottom: '6px' }}>{t('formigas_join')}</div>
  <p style={{ color: s.muted, fontSize: '14px', lineHeight: 1.6, marginBottom: '14px' }}>{t('formigas_waitlist_sub')}</p>
  {waitDone ? (
- <div style={{ background: 'rgba(45,212,160,.08)', border: '1px solid rgba(45,212,160,.3)', borderRadius: 'var(--radius-card)', padding: '12px 14px', color: 'var(--text)', fontSize: '14px', fontWeight: 500 }}>
+ <div style={{ background: 'var(--surface)', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '12px 14px', color: 'var(--text)', fontSize: '14px', fontWeight: 500 }}>
  You&rsquo;re on the list — we&rsquo;ll notify you when a window opens.
  </div>
  ) : (

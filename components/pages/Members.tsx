@@ -364,7 +364,7 @@ function PageDashboard({ nav, dayOffset, setDayOffset, userRole }: { nav: (p: Me
 
  const condItem = (icon: string, label: string, val: string) => (
  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
- <span style={{ fontSize: '14px', lineHeight: 1 }}>{icon}</span>
+ {icon ? <span style={{ fontSize: '14px', lineHeight: 1 }}>{icon}</span> : null}
  <div style={{ lineHeight: 1.1 }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, opacity: .8 }}>{label}</div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{val}</div>
@@ -2253,14 +2253,14 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  </div>
  <div style={{ marginBottom: '8px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '7px' }}>Email</div>
- <input value={foEmail} onChange={e => setFoEmail(e.target.value)} type="email" placeholder="for check-in link and receipt" style={{ width: '100%', background: 'var(--surface)', border: `1px solid ${!foEmail.trim() ? 'rgba(255,180,0,.4)' : 'rgba(255,255,255,.12)'}`, borderRadius: 'var(--radius-control)', padding: '11px 13px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
+ <input value={foEmail} onChange={e => setFoEmail(e.target.value)} type="email" placeholder="for check-in link and receipt" style={{ width: '100%', background: 'var(--surface)', border: `1px solid ${!foEmail.trim() ? 'var(--line-strong)' : 'rgba(255,255,255,.12)'}`, borderRadius: 'var(--radius-control)', padding: '11px 13px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
  {!foEmail.trim() && (
  <div style={{ fontSize: '14px', color: 'var(--text)', marginTop: '4px' }}> Email required to create booking</div>
  )}
  </div>
  <div style={{ marginBottom: '16px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '7px' }}>Phone</div>
- <input value={foPhone} onChange={e => setFoPhone(e.target.value)} type="tel" placeholder="+351 912 345 678" style={{ width: '100%', background: 'var(--surface)', border: `1px solid ${!foPhone.trim() ? 'rgba(255,180,0,.4)' : 'rgba(255,255,255,.12)'}`, borderRadius: 'var(--radius-control)', padding: '11px 13px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
+ <input value={foPhone} onChange={e => setFoPhone(e.target.value)} type="tel" placeholder="+351 912 345 678" style={{ width: '100%', background: 'var(--surface)', border: `1px solid ${!foPhone.trim() ? 'var(--line-strong)' : 'rgba(255,255,255,.12)'}`, borderRadius: 'var(--radius-control)', padding: '11px 13px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
  {!foPhone.trim() && (
  <div style={{ fontSize: '14px', color: 'var(--text)', marginTop: '4px' }}> Phone required to create booking</div>
  )}
@@ -6179,7 +6179,7 @@ function PageSchedule({ nav, session, readonly }: { nav: (p: MemberPage) => void
  <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
  <button onClick={() => nav('dashboard')} style={{ padding: '6px 14px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>&#8592; Dashboard</button>
- <h1 style={{ fontSize: '26px', fontWeight: 500, color: s.text, margin: 0 }}>&#a39e94; Schedule</h1>
+ <h1 style={{ fontSize: '26px', fontWeight: 500, color: s.text, margin: 0 }}>Schedule</h1>
  {schedTest && <span style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)', border: '1px solid var(--line)', background: 'transparent', borderRadius: 'var(--radius-control)', padding: '4px 10px' }}> Sandbox schedule</span>}
  </div>
  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginLeft: 'auto', flexWrap: 'wrap' }}>
@@ -6201,7 +6201,7 @@ function PageSchedule({ nav, session, readonly }: { nav: (p: MemberPage) => void
  </div>
  </div>
  {readonly
- ? <p style={{ fontSize: '14px', color: 'rgba(255,180,60,.75)', marginTop: '6px' }}>&#128274; Read-only — contact an admin to make changes.</p>
+ ? <p style={{ fontSize: '14px', color: 'var(--muted)', marginTop: '6px' }}>Read-only. Contact an admin to make changes.</p>
  : <p style={{ fontSize: '14px', color: s.muted, marginTop: '6px' }}>Click any cell to assign staff and their role for that shift.</p>
  }
  </div>
@@ -8793,7 +8793,7 @@ export function PageMembers({ lang, nav, initialSlug }: { lang: Lang; nav: (p: s
  if (p === 'frontoffice' || p === 'aisupport') return userRole === 'admin' || userRole === 'front_office'
  return true
  })
- .map(([icon, label, p]) => (
+ .map(([, label, p]) => (
  <button key={p} onClick={() => { if (p === 'profiles' && page === 'profiles') setProfilesKey(k => k + 1); else if (p === 'profiles' && (page === 'boatmanagement' || page === 'diagnostics' || page === 'marketing' || page === 'settings')) memberNav('profiles'); else memberNav(p) }} style={{
  padding: isMobile ? '10px 18px' : '10px 14px', fontSize: '14px', fontWeight: 500, whiteSpace: 'nowrap', flexShrink: 0,
  border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: s.font,
@@ -8802,7 +8802,6 @@ export function PageMembers({ lang, nav, initialSlug }: { lang: Lang; nav: (p: s
  borderBottom: (p === 'profiles' ? (page === 'profiles' || page === 'boatmanagement' || page === 'diagnostics' || page === 'marketing' || page === 'settings') : page === p) ? `2px solid ${s.accent}` : '2px solid transparent',
  transition: 'color .15s',
  }}>
- <span style={{ fontSize: '14px' }}>{icon}</span>
  {label}
  </button>
  ))}
@@ -8831,10 +8830,9 @@ export function PageMembers({ lang, nav, initialSlug }: { lang: Lang; nav: (p: s
  </button>
  </>
  )}
- <span style={{ fontSize: '14px', color: s.muted, opacity: .4 }}></span>
- <button onClick={() => supabase.auth.signOut()} style={{ padding: '5px 12px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.1)', background: 'transparent', color: 'rgba(255,255,255,.35)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap', transition: 'all .15s' }}
+ <button onClick={() => supabase.auth.signOut()} style={{ padding: '5px 12px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.1)', background: 'transparent', color: 'var(--muted)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap', transition: 'all .15s' }}
  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'transparent'; (e.currentTarget as HTMLElement).style.color = 'var(--text)'; (e.currentTarget as HTMLElement).style.borderColor = 'var(--text)' }}
- onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent'; (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,.35)'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,.1)' }}>
+ onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent'; (e.currentTarget as HTMLElement).style.color = 'var(--muted)'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,.1)' }}>
  Sign out
  </button>
  </div>
@@ -8850,11 +8848,11 @@ export function PageMembers({ lang, nav, initialSlug }: { lang: Lang; nav: (p: s
  ['', 'Marketing', 'marketing'],
  ['', 'Diagnostics', 'diagnostics'],
  ['', 'Settings', 'settings'],
- ] as [string, string, MemberPage][]).map(([icon, label, p]) => (
+ ] as [string, string, MemberPage][]).map(([, label, p]) => (
  <button key={p}
  onClick={() => memberNav(p)}
  style={{ padding: '5px 14px', fontSize: '14px', fontWeight: 500, border: 'none', borderRadius: 'var(--radius-control)', cursor: 'pointer', fontFamily: s.font, background: page === p ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'transparent', color: page === p ? s.accent : s.muted, transition: 'all .15s' }}>
- {icon} {label}
+ {label}
  </button>
  ))}
  </div>

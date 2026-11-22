@@ -716,20 +716,20 @@ export default function ChatWidget() {
  {!open && !bubbleDismissed && !inMembers && !isMobile && (
  <div style={{
  position: 'fixed', bottom: '92px', right: '20px', zIndex: 9997,
- background: '#ffffff', borderRadius: '14px 14px 4px 14px',
+ background: 'var(--surface)', border: '1px solid var(--line)', borderRadius: '14px 14px 4px 14px',
  padding: '10px 14px', boxShadow: 'none',
  maxWidth: '200px', fontFamily: font,
  }}>
- <div style={{ fontSize: '14px', color: bgMain, fontWeight: 500, lineHeight: 1.4 }}>
+ <div style={{ fontSize: '14px', color: 'var(--text)', fontWeight: 500, lineHeight: 1.4 }}>
  Questions about diving?<br />
- <span style={{ fontWeight: 400, color: '#a39e94', fontSize: '14px' }}>We&apos;re here to help!</span>
+ <span style={{ fontWeight: 400, color: 'var(--muted)', fontSize: '14px' }}>We&apos;re here to help!</span>
  </div>
  <button
  onClick={e => { e.stopPropagation(); setBubbleDismissed(true) }}
  style={{
  position: 'absolute', top: '6px', right: '8px',
  background: 'transparent', border: 'none',
- color: '#9ab', fontSize: '14px', cursor: 'pointer', lineHeight: 1, padding: 0,
+ color: 'var(--muted)', fontSize: '14px', cursor: 'pointer', lineHeight: 1, padding: 0,
  }}
  aria-label="Dismiss"
  >

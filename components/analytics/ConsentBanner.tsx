@@ -121,7 +121,7 @@ export default function ConsentBanner() {
         <span style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: 1.55 }}>{t.desc} </span>
         <a href="/privacy" style={{ color: 'var(--text)', fontSize: '14px', textDecoration: 'underline' }}>{t.more}</a>
         {current && (
-          <div style={{ color: 'var(--muted)', fontSize: '13px', marginTop: '6px' }}>
+          <div style={{ color: 'var(--muted)', fontSize: '14px', marginTop: '6px' }}>
             {t.current} <strong style={{ color: 'var(--text)' }}>{current === 'accepted' ? t.on : t.off}</strong>
           </div>
         )}

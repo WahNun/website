@@ -50,7 +50,7 @@ function LoginForm() {
  const field = {
  width: "100%",
  padding: "12px 14px",
- borderRadius: 0,
+ borderRadius: 'var(--radius-card)',
  fontSize: "15px",
  background: "rgba(255,255,255,.06)",
  border: "1px solid rgba(255,255,255,.12)",
@@ -82,11 +82,11 @@ function LoginForm() {
  <input type="email" autoComplete="username" placeholder="Email address" value={email} onChange={(event) => setEmail(event.target.value)} style={field} />
  <input type="password" autoComplete="current-password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} style={field} />
  {error ? (
- <div role="alert" style={{ background: "transparent", border: "1px solid var(--line)", borderRadius: 0, padding: "12px 14px", fontSize: "14px", color: "var(--text)", lineHeight: 1.45 }}>
+ <div role="alert" style={{ background: "transparent", border: "1px solid var(--line)", borderRadius: 'var(--radius-control)', padding: "12px 14px", fontSize: "14px", color: "var(--text)", lineHeight: 1.45 }}>
  {error}
  </div>
  ) : null}
- <button type="submit" disabled={loading} style={{ width: "100%", padding: "14px", borderRadius: 0, border: "1px solid var(--accent)", background: loading ? "transparent" : "var(--accent)", color: "var(--on-accent)", fontWeight: 500, letterSpacing: ".08em", textTransform: "uppercase", fontSize: "13px", cursor: loading ? "default" : "pointer", fontFamily: "inherit", marginTop: "6px" }}>
+ <button type="submit" disabled={loading} style={{ width: "100%", padding: "14px", borderRadius: 'var(--radius-control)', border: "1px solid var(--accent)", background: loading ? "transparent" : "var(--accent)", color: "var(--on-accent)", fontWeight: 500, letterSpacing: ".08em", textTransform: "uppercase", fontSize: "14px", cursor: loading ? "default" : "pointer", fontFamily: "inherit", marginTop: "6px" }}>
  {loading ? "Signing in…" : "Sign in"}
  </button>
  </form>

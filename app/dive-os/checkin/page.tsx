@@ -152,7 +152,7 @@ const inputStyle: React.CSSProperties = {
  width: '100%',
  background: 'rgba(255,255,255,.04)',
  border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)',
- borderRadius: 0,
+ borderRadius: 'var(--radius-card)',
  padding: '13px 14px',
  fontSize: '16px',
  color: c.text,
@@ -175,7 +175,7 @@ const labelStyle: React.CSSProperties = {
 const primaryBtn: React.CSSProperties = {
  width: '100%',
  padding: '15px',
- borderRadius: 0,
+ borderRadius: 'var(--radius-control)',
  border: 'none',
  background: `linear-gradient(135deg, ${c.accent}, var(--text))`,
  color: 'var(--on-accent)',
@@ -188,7 +188,7 @@ const primaryBtn: React.CSSProperties = {
 
 const ghostBtn: React.CSSProperties = {
  padding: '11px 20px',
- borderRadius: 0,
+ borderRadius: 'var(--radius-control)',
  border: `1px solid ${c.accentBorder}`,
  background: 'transparent',
  color: c.accent,
@@ -264,7 +264,7 @@ function GroupOthersCard({ others }: { others: GroupOther[] }) {
  if (!others.length) return null
  const open = others.filter(o => !o.done).length
  return (
- <div style={{ background: 'color-mix(in srgb, var(--text) 5%, transparent)', border: `1px solid ${c.accentBorder}`, borderRadius: 0, padding: '14px 16px', marginBottom: '20px', textAlign: 'left' }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 5%, transparent)', border: `1px solid ${c.accentBorder}`, borderRadius: 'var(--radius-card)', padding: '14px 16px', marginBottom: '20px', textAlign: 'left' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: c.text, marginBottom: '4px' }}>
  {open > 0 ? 'Your booking has more guests — each one checks in separately' : 'All other guests of this booking are checked in'}
  </div>
@@ -277,7 +277,7 @@ function GroupOthersCard({ others }: { others: GroupOther[] }) {
  </div>
  {o.done
  ? <span style={{ fontSize: '14px', fontWeight: 500, color: c.success, whiteSpace: 'nowrap' }}> Checked in</span>
- : <a href={`/dive-os/checkin?token=${o.token}`} style={{ padding: '9px 14px', borderRadius: 0, background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', textDecoration: 'none', whiteSpace: 'nowrap' }}>Check in {o.label.replace(/ — .*/, '')} </a>}
+ : <a href={`/dive-os/checkin?token=${o.token}`} style={{ padding: '9px 14px', borderRadius: 'var(--radius-control)', background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', textDecoration: 'none', whiteSpace: 'nowrap' }}>Check in {o.label.replace(/ — .*/, '')} </a>}
  </div>
  ))}
  </div>
@@ -304,7 +304,6 @@ function ErrorCard({ reason, others }: { reason: 'expired' | 'not_found' | 'all_
  return (
  <Card>
  <div style={{ textAlign: 'center', padding: '24px 0' }}>
- <div style={{ fontSize: '48px', marginBottom: '16px' }}></div>
  <div style={{ fontSize: '20px', fontWeight: 500, color: c.text, marginBottom: '10px' }}>{title}</div>
  <div style={{ fontSize: '14px', color: c.muted, lineHeight: 1.6, marginBottom: '28px' }}>{body}</div>
  {others && others.length > 0 && <GroupOthersCard others={others} />}
@@ -313,17 +312,17 @@ function ErrorCard({ reason, others }: { reason: 'expired' | 'not_found' | 'all_
  style={{
  display: 'inline-flex',
  alignItems: 'center',
- gap: '8px',
+ justifyContent: 'center',
  padding: '13px 24px',
- borderRadius: 0,
- background: 'var(--muted)',
- color: 'var(--text)',
+ borderRadius: 'var(--radius-control)',
+ background: 'var(--accent)',
+ color: 'var(--on-accent)',
  fontWeight: 500,
  fontSize: '15px',
  textDecoration: 'none',
  }}
  >
- <span></span> Contact us on WhatsApp
+ Contact us on WhatsApp
  </a>
  </div>
  </Card>
@@ -337,7 +336,7 @@ function Card({ children, style = {} }: { children: React.ReactNode; style?: Rea
  <div style={{
  background: c.navyMid,
  border: '1px solid rgba(255,255,255,.08)',
- borderRadius: 0,
+ borderRadius: 'var(--radius-control)',
  padding: '28px 24px',
  ...style,
  }}>
@@ -378,7 +377,7 @@ function ProgressBar({ step, total = STEPS.length }: { step: number; total?: num
  style={{
  flex: 1,
  height: '3px',
- borderRadius: 0,
+ borderRadius: 'var(--radius-card)',
  background: i < step ? c.accent : i === step ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.08)',
  transition: 'background .3s',
  }}
@@ -416,7 +415,7 @@ function GuestProgress({ slots, currentSlot }: { slots: SlotInfo[]; currentSlot:
  alignItems: 'center',
  gap: '5px',
  padding: '5px 10px',
- borderRadius: 0,
+ borderRadius: 'var(--radius-card)',
  background: bg,
  border: `1px solid ${border}`,
  fontSize: '14px',
@@ -1156,7 +1155,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
 
  {/* Globaler Fehler (Netzwerk o.ä.) */}
  {inviteResults?.some(r => r.slot_index < 0) && (
- <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '10px 14px', marginBottom: '16px', fontSize: '14px', color: c.error }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-control)', padding: '10px 14px', marginBottom: '16px', fontSize: '14px', color: c.error }}>
  {inviteResults.find(r => r.slot_index < 0)?.error}
  </div>
  )}
@@ -1259,13 +1258,13 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  {(tokenData.group_others ?? []).length > 0 && <GroupOthersCard others={tokenData.group_others ?? []} />}
 
  {medicalFlagged && (
- <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '12px 16px', marginBottom: '20px', textAlign: 'left' }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '12px 16px', marginBottom: '20px', textAlign: 'left' }}>
  <div style={{ fontSize: '14px', color: c.warning, fontWeight: 500, marginBottom: '4px' }}>Medical follow-up</div>
  <div style={{ fontSize: '14px', color: c.muted, lineHeight: 1.5 }}>Our team will contact you before your activity to discuss your health declaration.</div>
  </div>
  )}
 
- <div style={{ background: 'rgba(255,255,255,.03)', borderRadius: 0, padding: '16px', marginBottom: '24px', textAlign: 'left' }}>
+ <div style={{ background: 'rgba(255,255,255,.03)', borderRadius: 'var(--radius-card)', padding: '16px', marginBottom: '24px', textAlign: 'left' }}>
  <InfoRow label="Activity" value={booking.product_name} />
  <InfoRow label="Date" value={formatDate(booking.booking_date)} />
  <InfoRow label="Session" value={booking.session.toUpperCase()} />
@@ -1281,7 +1280,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  const resendResult = inviteResults?.find(r => r.slot_index === slot.slot_index)
  const currentResendEmail = resendEmails[slot.slot_index] ?? slot.invite_email ?? ''
  return (
- <div key={slot.slot_index} style={{ marginBottom: '10px', padding: '10px 14px', background: 'color-mix(in srgb, var(--text) 4%, transparent)', border: `1px solid ${c.accentBorder}`, borderRadius: 0 }}>
+ <div key={slot.slot_index} style={{ marginBottom: '10px', padding: '10px 14px', background: 'color-mix(in srgb, var(--text) 4%, transparent)', border: `1px solid ${c.accentBorder}`, borderRadius: 'var(--radius-card)' }}>
  <div style={{ fontSize: '14px', color: c.text, fontWeight: 500, marginBottom: '6px' }}>
  Guest {slot.slot_index + 1}
  {(slot.guest_name ?? slot.customer?.name) ? ` — ${slot.guest_name ?? slot.customer?.name}` : ''}
@@ -1345,7 +1344,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <div style={{ fontSize: '15px', color: c.muted }}>{formatDate(booking.booking_date)} · {booking.session.toUpperCase()}</div>
  </div>
 
- <div style={{ background: c.accentDim, border: `1px solid ${c.accentBorder}`, borderRadius: 0, padding: '16px', marginBottom: '24px' }}>
+ <div style={{ background: c.accentDim, border: `1px solid ${c.accentBorder}`, borderRadius: 'var(--radius-card)', padding: '16px', marginBottom: '24px' }}>
  <div style={{ fontSize: '14px', color: c.text, lineHeight: 1.6 }}>
  {completedCount > 0
  ? `${completedCount} of ${booking.group_size} guest${booking.group_size > 1 ? 's' : ''} have checked in.`
@@ -1389,12 +1388,12 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <Card>
  <SectionTitle>Personal Details</SectionTitle>
  {welcomeBack && (
- <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '10px 14px', marginBottom: '20px', fontSize: '14px', color: c.success }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '10px 14px', marginBottom: '20px', fontSize: '14px', color: c.success }}>
  Welcome back! We&apos;ve pre-filled your details.
  </div>
  )}
  {lookupError && (
- <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '10px 14px', marginBottom: '20px', fontSize: '14px', color: c.error }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '10px 14px', marginBottom: '20px', fontSize: '14px', color: c.error }}>
  Could not load your saved details — please fill in the form manually. ({lookupError})
  </div>
  )}
@@ -1427,7 +1426,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  type="button"
  onClick={() => { touchedRef.current.add('gender'); setForm(f => ({ ...f, gender: g })) }}
  style={{
- flex: 1, padding: '13px', borderRadius: 0,
+ flex: 1, padding: '13px', borderRadius: 'var(--radius-control)',
  border: `1px solid ${form.gender === g ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'color-mix(in srgb, var(--text) 20%, transparent)'}`,
  background: form.gender === g ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'rgba(255,255,255,.04)',
  color: form.gender === g ? 'var(--text)' : 'var(--muted)',
@@ -1582,7 +1581,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  </div>
 
  {isMinorGuest && (
- <div style={{ marginTop: '24px', background: 'color-mix(in srgb, var(--text) 8%, transparent)', border: '1px solid var(--line)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ marginTop: '24px', background: 'color-mix(in srgb, var(--text) 8%, transparent)', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '16px' }}>
  Parental / Guardian Consent
  </div>
@@ -1595,14 +1594,14 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  value={form.guardian_name}
  onChange={e => setForm(f => ({ ...f, guardian_name: e.target.value }))}
  placeholder="Full name of parent or legal guardian"
- style={{ width: '100%', background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.15)', borderRadius: 0, color: c.text, fontSize: '14px', padding: '10px 14px', boxSizing: 'border-box', fontFamily: 'inherit', outline: 'none' }}
+ style={{ width: '100%', background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.15)', borderRadius: 'var(--radius-control)', color: c.text, fontSize: '14px', padding: '10px 14px', boxSizing: 'border-box', fontFamily: 'inherit', outline: 'none' }}
  />
  </Field>
  <Field label="Relationship to Minor *">
  <select
  value={form.guardian_relationship}
  onChange={e => setForm(f => ({ ...f, guardian_relationship: e.target.value }))}
- style={{ width: '100%', background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.15)', borderRadius: 0, color: c.text, fontSize: '14px', padding: '10px 14px', boxSizing: 'border-box', fontFamily: 'inherit', outline: 'none', appearance: 'none' }}
+ style={{ width: '100%', background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.15)', borderRadius: 'var(--radius-control)', color: c.text, fontSize: '14px', padding: '10px 14px', boxSizing: 'border-box', fontFamily: 'inherit', outline: 'none', appearance: 'none' }}
  >
  <option value="">Select relationship…</option>
  <option value="parent">Parent</option>
@@ -1646,7 +1645,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <Card>
  <SectionTitle>Medical Self-Declaration</SectionTitle>
 
- <div style={{ fontSize: '14px', color: c.muted, fontStyle: 'italic', lineHeight: 1.55, marginBottom: '16px', padding: '10px 14px', background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.07)', borderRadius: 0 }}>
+ <div style={{ fontSize: '14px', color: c.muted, fontStyle: 'italic', lineHeight: 1.55, marginBottom: '16px', padding: '10px 14px', background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.07)', borderRadius: 'var(--radius-card)' }}>
  Note to women: If you are pregnant, or attempting to become pregnant, do not dive.
  </div>
 
@@ -1685,7 +1684,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  key={answer}
  onClick={() => handleMainQuestion(q.key, isYesBtn, q.boxKey)}
  style={{
- flex: 1, padding: '8px', borderRadius: 0,
+ flex: 1, padding: '8px', borderRadius: 'var(--radius-control)',
  border: `1px solid ${selected ? (isYesBtn ? 'var(--line)' : c.accentBorder) : 'rgba(255,255,255,.1)'}`,
  background: selected ? (isYesBtn ? 'transparent' : c.accentDim) : 'transparent',
  color: selected ? (isYesBtn ? c.warning : c.accent) : c.muted,
@@ -1718,7 +1717,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <div key={item.key} style={{
  background: boxIsYes ? 'transparent' : 'rgba(255,255,255,.02)',
  border: `1px solid ${boxIsYes ? 'var(--line)' : 'rgba(255,255,255,.08)'}`,
- borderRadius: 0, padding: '10px 12px',
+ borderRadius: 'var(--radius-card)', padding: '10px 12px',
  }}>
  <div style={{ fontSize: '14px', color: c.text, lineHeight: 1.5, marginBottom: '8px' }}>
  {item.label}
@@ -1732,7 +1731,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  key={answer}
  onClick={() => handleBoxQuestion(item.key, isYesBtn)}
  style={{
- flex: 1, padding: '6px', borderRadius: 0,
+ flex: 1, padding: '6px', borderRadius: 'var(--radius-control)',
  border: `1px solid ${selected ? (isYesBtn ? 'var(--line)' : c.accentBorder) : 'rgba(255,255,255,.1)'}`,
  background: selected ? (isYesBtn ? 'transparent' : c.accentDim) : 'transparent',
  color: selected ? (isYesBtn ? c.error : c.accent) : c.muted,
@@ -1755,7 +1754,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  </div>
 
  {medicalFlagged && (
- <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '12px 16px', marginTop: '20px', fontSize: '14px', color: c.warning, lineHeight: 1.5 }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '12px 16px', marginTop: '20px', fontSize: '14px', color: c.warning, lineHeight: 1.5 }}>
  Based on your answers, written medical clearance from a physician is required before this dive.
  Bring it with you — we will email you the details.
  {medicalAckAt
@@ -1800,7 +1799,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <div style={{
  background: 'rgba(255,255,255,.02)',
  border: '1px solid rgba(255,255,255,.08)',
- borderRadius: 0,
+ borderRadius: 'var(--radius-card)',
  padding: '16px',
  maxHeight: '240px',
  overflowY: 'auto',
@@ -1820,7 +1819,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  {/* GDPR medical consent checkbox — explicit, non-pre-ticked (Art. 9 GDPR) */}
  <label style={{
  display: 'flex', gap: '12px', alignItems: 'flex-start',
- padding: '14px', borderRadius: 0, cursor: 'pointer',
+ padding: '14px', borderRadius: 'var(--radius-control)', cursor: 'pointer',
  background: gdprConsent ? 'color-mix(in srgb, var(--text) 6%, transparent)' : 'rgba(255,255,255,.02)',
  border: `1px solid ${gdprConsent ? 'color-mix(in srgb, var(--text) 30%, transparent)' : 'rgba(255,255,255,.08)'}`,
  marginBottom: '20px',
@@ -1843,7 +1842,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <div style={{
  background: 'rgba(255,255,255,.02)',
  border: '1px solid rgba(255,255,255,.08)',
- borderRadius: 0,
+ borderRadius: 'var(--radius-card)',
  padding: '16px',
  maxHeight: '220px',
  overflowY: 'auto',
@@ -1867,7 +1866,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  </div>
  <label style={{
  display: 'flex', gap: '12px', alignItems: 'flex-start',
- padding: '14px', borderRadius: 0, cursor: 'pointer',
+ padding: '14px', borderRadius: 'var(--radius-control)', cursor: 'pointer',
  background: diverCodeConsent ? 'color-mix(in srgb, var(--text) 6%, transparent)' : 'rgba(255,255,255,.02)',
  border: `1px solid ${diverCodeConsent ? 'color-mix(in srgb, var(--text) 30%, transparent)' : 'rgba(255,255,255,.08)'}`,
  marginBottom: '20px',
@@ -1929,7 +1928,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <SectionTitle>Diving Experience</SectionTitle>
 
  {isEntryCourse && (
- <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '12px 14px', marginBottom: '16px', fontSize: '14px', color: 'var(--text)', lineHeight: 1.55 }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '12px 14px', marginBottom: '16px', fontSize: '14px', color: 'var(--text)', lineHeight: 1.55 }}>
  No certificate required — this is your first course. Just tell us what you have done so far.
  </div>
  )}
@@ -1942,7 +1941,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  style={{
  textAlign: 'left',
  padding: '12px 14px',
- borderRadius: 0,
+ borderRadius: 'var(--radius-control)',
  border: `1px solid ${form.experience_level === lv.value ? c.accentBorder : 'rgba(255,255,255,.08)'}`,
  background: form.experience_level === lv.value ? c.accentDim : 'transparent',
  color: form.experience_level === lv.value ? c.accent : c.text,
@@ -2011,7 +2010,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: c.sub, marginBottom: '12px' }}>Dive Insurance</div>
 
  {dayInsuranceIncluded() ? (
- <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '12px 14px', fontSize: '14px', color: 'var(--text)', lineHeight: 1.55 }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '12px 14px', fontSize: '14px', color: 'var(--text)', lineHeight: 1.55 }}>
  {tokenData?.insurance_ssi_included ? 'SSI dive insurance is included in your course — nothing to do here.' : 'DAN day insurance is included in your booking — nothing to do here.'}
  </div>
  ) : (
@@ -2071,7 +2070,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <div style={{ marginTop: '14px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
  <div style={{ fontSize: '14px', color: c.sub }}>Policy not at hand? Pick one:</div>
  <button type="button" onClick={() => setForm(f => ({ ...f, insurance_mode: 'show', buy_day_cover: false }))}
- style={{ textAlign: 'left', padding: '11px 14px', borderRadius: 0, border: `1px solid ${form.insurance_mode === 'show' && !form.buy_day_cover ? c.accentBorder : 'rgba(255,255,255,.08)'}`, background: form.insurance_mode === 'show' && !form.buy_day_cover ? c.accentDim : 'transparent', color: c.text, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>
+ style={{ textAlign: 'left', padding: '11px 14px', borderRadius: 'var(--radius-control)', border: `1px solid ${form.insurance_mode === 'show' && !form.buy_day_cover ? c.accentBorder : 'rgba(255,255,255,.08)'}`, background: form.insurance_mode === 'show' && !form.buy_day_cover ? c.accentDim : 'transparent', color: c.text, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>
  I'll show my policy at the dive centre
  <div style={{ fontSize: '14px', color: c.sub, marginTop: '3px' }}>Our team enters the policy number for you before you board.</div>
  </button>
@@ -2121,7 +2120,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  </div>
 
  {needsRefresher(form.last_dive_date) && (
- <div style={{ marginTop: '12px', background: 'rgba(255,165,0,.09)', border: '1px solid rgba(255,165,0,.28)', borderRadius: 0, padding: '12px 14px', fontSize: '14px', color: 'var(--text)', lineHeight: 1.6 }}>
+ <div style={{ marginTop: '12px', background: 'var(--surface)', border: '1px solid var(--line)', borderRadius: 'var(--radius-control)', padding: '12px 14px', fontSize: '14px', color: 'var(--text)', lineHeight: 1.6 }}>
  It has been over a year since your last dive, so your first session with us is a
  Scuba Skills Update: a short pool-and-shallow-water session with an instructor to bring
  buoyancy, mask and regulator skills back to automatic. We ask this of every diver after
@@ -2166,7 +2165,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  {primaryEmergency && primaryEmergency.name && (
  <label style={{
  display: 'flex', alignItems: 'flex-start', gap: '12px', cursor: 'pointer',
- marginBottom: '18px', padding: '12px 14px', borderRadius: 0,
+ marginBottom: '18px', padding: '12px 14px', borderRadius: 'var(--radius-control)',
  border: `1px solid ${sameAsPrimary ? c.accentBorder : 'rgba(255,255,255,.08)'}`,
  background: sameAsPrimary ? c.accentDim : 'transparent',
  }}>
@@ -2314,7 +2313,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  Ein Haken auf etwas, das der Gast erst noch aufrufen muesste, ist
  keine Zustimmung, sondern eine Behauptung. */}
  <div style={{
- border: '1px solid rgba(255,255,255,.1)', borderRadius: 0,
+ border: '1px solid rgba(255,255,255,.1)', borderRadius: 'var(--radius-card)',
  padding: '16px 18px', marginBottom: '18px', background: 'rgba(255,255,255,.02)',
  }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: c.sub, marginBottom: '12px' }}>
@@ -2363,7 +2362,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  </label>
 
  {submitError && (
- <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '12px 14px', marginBottom: '20px', fontSize: '14px', color: c.error }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-control)', padding: '12px 14px', marginBottom: '20px', fontSize: '14px', color: c.error }}>
  <div>{submitError}</div>
  {submitRef && (
  <div style={{ fontSize: '14px', color: c.muted, marginTop: '6px', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace' }}>
@@ -2444,7 +2443,7 @@ function MedicalAckDialog({ onConfirm, onCancel, medicalAnswers }: { onConfirm: 
  <div style={{
  maxWidth: '520px', width: '100%', maxHeight: '88vh', overflowY: 'auto',
  background: 'var(--surface)', border: '1px solid var(--line)',
- borderRadius: 0, padding: '26px 26px 22px',
+ borderRadius: 'var(--radius-card)', padding: '26px 26px 22px',
  }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: c.warning, marginBottom: '10px' }}>
  Medical clearance required
@@ -2469,7 +2468,7 @@ function MedicalAckDialog({ onConfirm, onCancel, medicalAnswers }: { onConfirm: 
  body, so the decision belongs to a physician, not to us and not to you.
  </div>
 
- <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '14px 16px', marginBottom: '18px' }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '14px 16px', marginBottom: '18px' }}>
  <div style={{ fontSize: '14px', color: c.warning, fontWeight: 500, marginBottom: '8px' }}>What you need to bring</div>
  <div style={{ fontSize: '14px', color: 'var(--text)', lineHeight: 1.7 }}>
  A written statement from a physician confirming you are fit to dive, dated within the
@@ -2502,7 +2501,7 @@ function MedicalAckDialog({ onConfirm, onCancel, medicalAnswers }: { onConfirm: 
  onClick={onConfirm}
  disabled={!checked}
  style={{
- width: '100%', padding: '14px', borderRadius: 0, border: 'none',
+ width: '100%', padding: '14px', borderRadius: 'var(--radius-control)', border: 'none',
  fontSize: '15px', fontWeight: 500, fontFamily: c.font,
  background: checked ? c.accent : 'rgba(255,255,255,.08)',
  color: checked ? 'var(--on-accent)' : c.muted,
@@ -2513,7 +2512,7 @@ function MedicalAckDialog({ onConfirm, onCancel, medicalAnswers }: { onConfirm: 
  <button
  onClick={onCancel}
  style={{
- width: '100%', padding: '12px', marginTop: '10px', borderRadius: 0,
+ width: '100%', padding: '12px', marginTop: '10px', borderRadius: 'var(--radius-control)',
  border: '1px solid rgba(255,255,255,.12)', background: 'transparent',
  color: c.muted, fontSize: '14px', fontFamily: c.font, cursor: 'pointer',
  }}
@@ -2630,7 +2629,7 @@ function SignaturePad({ onSignature }: { onSignature: (dataUrl: string | null) =
 
  return (
  <div style={{ marginBottom: '24px' }}>
- <div style={{ position: 'relative', background: '#fff', borderRadius: 0, overflow: 'hidden', border: `2px solid ${hasSig ? c.accentBorder : 'rgba(255,255,255,.15)'}` }}>
+ <div style={{ position: 'relative', background: '#fff', borderRadius: 'var(--radius-card)', overflow: 'hidden', border: `2px solid ${hasSig ? c.accentBorder : 'rgba(255,255,255,.15)'}` }}>
  <canvas
  ref={canvasRef}
  style={{ display: 'block', width: '100%', height: '140px', touchAction: 'none' }}
@@ -2659,8 +2658,8 @@ function DayCoverOption({ form, setForm, offer, c }: { form: { buy_day_cover: bo
  const on = form.buy_day_cover
  return (
  <button type="button" onClick={() => setForm((f: any) => ({ ...f, buy_day_cover: !f.buy_day_cover, insurance_mode: !f.buy_day_cover ? '' : f.insurance_mode }))}
- style={{ textAlign: 'left', padding: '11px 14px', borderRadius: 0, border: `1px solid ${on ? c.accentBorder : 'rgba(255,255,255,.08)'}`, background: on ? c.accentDim : 'transparent', color: c.text, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit', display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
- <span style={{ width: '18px', height: '18px', borderRadius: 0, border: `2px solid ${on ? c.accent : 'rgba(255,255,255,.3)'}`, background: on ? c.accent : 'transparent', flexShrink: 0, marginTop: '2px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: 'var(--on-accent)', fontSize: '14px', fontWeight: 500 }}>{on ? '' : ''}</span>
+ style={{ textAlign: 'left', padding: '11px 14px', borderRadius: 'var(--radius-control)', border: `1px solid ${on ? c.accentBorder : 'rgba(255,255,255,.08)'}`, background: on ? c.accentDim : 'transparent', color: c.text, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit', display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+ <span style={{ width: '18px', height: '18px', borderRadius: 'var(--radius-control)', border: `2px solid ${on ? c.accent : 'rgba(255,255,255,.3)'}`, background: on ? c.accent : 'transparent', flexShrink: 0, marginTop: '2px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: 'var(--on-accent)', fontSize: '14px', fontWeight: 500 }}>{on ? '' : ''}</span>
  <span>
  Buy DAN day cover from your dive centre{offer ? ` — €${(offer.cents / 100).toFixed(2)} for ${offer.days} dive day${offer.days === 1 ? '' : 's'}` : ''}
  <div style={{ fontSize: '14px', color: c.sub, marginTop: '3px' }}>Added to your booking, pay at the centre (cash, card or Revolut). Covers every dive day of this booking.</div>
@@ -2704,7 +2703,7 @@ function ReviewSection({ title, children }: { title: string; children: React.Rea
  return (
  <div style={{ marginBottom: '8px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: c.sub, marginBottom: '6px', marginTop: '12px' }}>{title}</div>
- <div style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.06)', borderRadius: 0, padding: '4px 0' }}>
+ <div style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.06)', borderRadius: 'var(--radius-card)', padding: '4px 0' }}>
  {children}
  </div>
  </div>
