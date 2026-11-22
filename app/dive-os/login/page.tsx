@@ -1,73 +1,104 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { redirect } from "next/navigation";
-import { auth } from "@/auth";
-import { LoginForm } from "@/components/dive-os/LoginForm";
-import { adminStatus } from "@/lib/admin";
+"use client";
 
-export const metadata: Metadata = {
-  title: { absolute: "Sign in — Dive OS" },
-  robots: { index: false, follow: false },
-};
+import { Suspense, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { createClient } from "@/utils/supabase/client";
 
-export const dynamic = "force-dynamic";
+function LoginForm() {
+  const router = useRouter();
+  const params = useSearchParams();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(
+    params.get("error") === "forbidden" ? "This area is for admin accounts only." : null,
+  );
 
-export default async function LoginPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ error?: string | string[] }>;
-}) {
-  const status = adminStatus();
-  if (status.secret) {
-    try {
-      const session = await auth();
-      if (session?.user?.role === "admin") redirect("/dive-os");
-    } catch {
-      /* configuration problems are explained on this page */
+  async function handleLogin() {
+    if (!email || !password) {
+      setError("Enter your email and password.");
+      return;
     }
+    setLoading(true);
+    setError(null);
+    const supabase = createClient();
+    const { data, error: signError } = await supabase.auth.signInWithPassword({ email, password });
+    if (signError || !data.user) {
+      setLoading(false);
+      setError(
+        signError?.message === "Invalid login credentials"
+          ? "Incorrect email or password."
+          : signError?.message ?? "Sign-in failed.",
+      );
+      return;
+    }
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("role")
+      .eq("id", data.user.id)
+      .maybeSingle();
+    if (profile?.role !== "admin") {
+      await supabase.auth.signOut();
+      setLoading(false);
+      setError("This area is for admin accounts only.");
+      return;
+    }
+    router.replace("/dive-os/overview");
+    router.refresh();
   }
 
-  const params = await searchParams;
-  const queryError = Array.isArray(params.error) ? params.error[0] : params.error;
+  const field = {
+    width: "100%",
+    padding: "12px 14px",
+    borderRadius: "10px",
+    fontSize: "15px",
+    background: "rgba(255,255,255,.06)",
+    border: "1px solid rgba(255,255,255,.12)",
+    color: "#fff",
+    fontFamily: "inherit",
+    outline: "none",
+    boxSizing: "border-box" as const,
+  };
 
   return (
-    <main className="login">
-      <p className="kicker">Private</p>
-      <h1>Dive OS</h1>
-      <p className="lede">
-        Admin sign-in for dive centre software. This area is not part of the public
-        site.
-      </p>
-      {!status.secret ? (
-        <p className="field-error" role="status">
-          AUTH_SECRET is not set, so sign-in is switched off. Add it in the Vercel
-          project, then set either a password or GitHub allowlist. The README lists
-          the variables.
-        </p>
-      ) : null}
-      {status.secret && status.hashBroken ? (
-        <p className="field-error" role="status">
-          ADMIN_PASSWORD_HASH is set, but it is not a bcrypt hash. In a .env file,
-          wrap the hash in single quotes so the dollar signs are kept. The Vercel
-          dashboard stores the value as typed, without quotes.
-        </p>
-      ) : null}
-      {status.secret && !status.anyProvider && !status.hashBroken ? (
-        <p role="status">
-          No sign-in method is configured. Set ADMIN_EMAIL and ADMIN_PASSWORD_HASH,
-          or the GitHub allowlist variables. There is no default password.
-        </p>
-      ) : null}
-      {status.secret && status.anyProvider ? (
-        <LoginForm
-          credentials={status.credentials}
-          github={status.github}
-          queryError={queryError}
-        />
-      ) : null}
-      <p style={{ marginTop: "1.5rem" }}>
-        <Link href="/">Back to the site</Link>
-      </p>
+    <main style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", padding: "24px" }}>
+      <div style={{ width: "100%", maxWidth: "400px" }}>
+        <div style={{ textAlign: "center", marginBottom: "40px" }}>
+          <div style={{ fontSize: "13px", fontWeight: 700, letterSpacing: ".2em", textTransform: "uppercase", color: "#35d0ff", marginBottom: "10px" }}>
+            Dive OS
+          </div>
+          <h1 style={{ fontSize: "28px", fontWeight: 900, margin: 0, letterSpacing: "-.02em" }}>Admin</h1>
+          <p style={{ color: "rgba(232,241,251,.62)", fontSize: "14px", marginTop: "8px" }}>
+            Sign in with an admin account
+          </p>
+        </div>
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            void handleLogin();
+          }}
+          style={{ display: "flex", flexDirection: "column", gap: "12px" }}
+        >
+          <input type="email" autoComplete="username" placeholder="Email address" value={email} onChange={(event) => setEmail(event.target.value)} style={field} />
+          <input type="password" autoComplete="current-password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} style={field} />
+          {error ? (
+            <div role="alert" style={{ background: "rgba(255,80,80,.1)", border: "1px solid rgba(255,80,80,.25)", borderRadius: "8px", padding: "10px 14px", fontSize: "13px", color: "#ff9090" }}>
+              {error}
+            </div>
+          ) : null}
+          <button type="submit" disabled={loading} style={{ width: "100%", padding: "13px", borderRadius: "999px", border: "none", background: loading ? "rgba(53,208,255,.4)" : "#35d0ff", color: "#04101f", fontWeight: 800, fontSize: "15px", cursor: loading ? "default" : "pointer", fontFamily: "inherit", marginTop: "4px" }}>
+            {loading ? "Signing in…" : "Sign in"}
+          </button>
+        </form>
+      </div>
     </main>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={null}>
+      <LoginForm />
+    </Suspense>
   );
 }

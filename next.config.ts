@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  outputFileTracingIncludes: {
+    "/api/staff/brandbook": ["./private/**"],
+  },
   images: {
     formats: ["image/avif", "image/webp"],
   },

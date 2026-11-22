@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import "./dive-os.css";
 
 export const metadata: Metadata = {
   title: {
     default: "Dive OS",
     template: "%s — Dive OS",
   },
-  description: "Private admin for dive centre software. Not for public use.",
+  description: "Private dive centre admin. Not for public use.",
   robots: {
     index: false,
     follow: false,
@@ -17,5 +18,5 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default function DiveOsLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  return <div className="dive-os-root">{children}</div>;
 }

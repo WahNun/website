@@ -12,7 +12,7 @@ Dive OS lives at `/dive-os`. It is not linked from the public navigation, it is 
 
 ## Stack
 
-[Next.js](https://nextjs.org/) (App Router) on Node.js, with React and Auth.js (`next-auth` v5). The public pages are mostly static. The contact route and Dive OS need a server, so the app is **not** a static export (`output: "export"` is not set). Deploy it on Vercel. The Vercel project for this repository is **wahnon-website**.
+[Next.js](https://nextjs.org/) (App Router) on Node.js, with React. Dive OS is the Azores Diving admin (bookings, customers, schedule, boats, crew, tickets, finances and settings) and signs in with Supabase Auth. The public pages are mostly static. The contact route and Dive OS need a server, so the app is not a static export. Deploy it on Vercel. The Vercel project for this repository is **wahnon-website**.
 
 ## Run locally
 
@@ -30,7 +30,7 @@ npm run build
 npm start
 ```
 
-The public site runs without any environment variables. `/dive-os` stays closed until the variables below are set. There is no default password.
+The public site runs without any environment variables. `/dive-os` uses the Dive OS sandbox in Supabase. Sign-in needs an Auth user whose `profiles.role` is `admin`.
 
 ## Deploy
 
@@ -38,50 +38,55 @@ Push the repository. Vercel builds a Next.js app from the root (`npm run build`)
 
 `NEXT_PUBLIC_SITE_URL` should be the canonical origin, for example `https://example.com`. If it is unset, metadata uses `VERCEL_PROJECT_PRODUCTION_URL` when Vercel provides it.
 
-## Dive OS environment variables
+## Dive OS
 
-Set these on the Vercel project. Do not commit real values. `.env.example` lists the same keys.
+`/dive-os` is the dive centre admin. It is not in the public navigation, it is `noindex`, and `robots.txt` disallows it. Only a Supabase user with `profiles.role = admin` can pass the server check. Create that user in the Dive OS sandbox (Authentication) and a matching `profiles` row. The seed profiles have no login.
 
-| Variable | Required | Purpose |
-| --- | --- | --- |
-| `AUTH_SECRET` | Yes, before anyone can sign in | Signs the session cookie. Generate with `openssl rand -base64 32`. |
-| `ADMIN_EMAIL` | For password sign-in | The only email that can sign in with a password. |
-| `ADMIN_PASSWORD_HASH` | For password sign-in | bcrypt hash of the password. Not the password itself. |
-| `AUTH_GITHUB_ID` | For GitHub sign-in | GitHub OAuth app client ID. |
-| `AUTH_GITHUB_SECRET` | For GitHub sign-in | GitHub OAuth app client secret. |
-| `ADMIN_GITHUB_LOGINS` | For GitHub sign-in | Comma-separated GitHub usernames. Anyone else is rejected. |
-| `AUTH_URL` | No | Fixed site URL if Auth.js should not trust the request host. Trusting the host is already enabled. |
-| `NEXT_PUBLIC_SITE_URL` | No | Canonical URL for titles, Open Graph and the sitemap. |
+The admin reads and writes the sandbox database with the signed-in session. Routes that need the service role return a clear error until that key is set. They do not fall back to another project.
 
-Password sign-in is enabled only when **both** `ADMIN_EMAIL` and `ADMIN_PASSWORD_HASH` are set. GitHub sign-in is enabled only when **all three** GitHub variables are set. You can use either method, or both. If neither is set, the login page explains that and no one can enter.
+External services stay off until their variables are set:
 
-Create the password hash from the project directory. This reads the password from stdin so it is less likely to land in shell history:
+- Email does not send without `RESEND_API_KEY` or `GMAIL_REFRESH_TOKEN`.
+- Stripe refuses a live secret unless `STRIPE_ALLOW_LIVE` is `true`, and does nothing if no secret is set.
+- Keyinvoice does not call its API unless `KEYINVOICE_ENABLED` is `true` and `KEYINVOICE_API_KEY` is set.
+- Mistral chat returns “not configured” without `MISTRAL_API_KEY`. Classification does not call Mistral either.
+- Gmail polling returns without calling Google when the Gmail variables are missing.
+- There is no Vercel cron. The cron routes stay in the app and refuse requests that do not present `CRON_SECRET`.
 
-```bash
-node --input-type=module -e "import { hash } from 'bcryptjs'; let s=''; process.stdin.setEncoding('utf8'); process.stdin.on('data', d => s += d); process.stdin.on('end', async () => console.log(await hash(s.replace(/\n$/,''), 12)))"
-```
+### Environment variables
 
-Type the password, press Enter, then Ctrl-D. Paste the printed hash into `ADMIN_PASSWORD_HASH`.
+Names only. Set them on **wahnon-website**. Do not commit values.
 
-In a `.env` file, escape every `$` with a backslash. Next.js expands dollar signs, and quotes do not stop that:
-
-```bash
-ADMIN_PASSWORD_HASH=\$2b\$12\$...
-```
-
-In the Vercel dashboard, paste the hash on its own, with the dollar signs and without backslashes or quotes. Vercel stores the characters as typed. If sign-in says the hash is not a bcrypt hash, the dollar signs were lost.
-
-For GitHub, create an OAuth app and set the callback URL to:
-
-```text
-https://<your-domain>/api/auth/callback/github
-```
-
-For local development use `http://localhost:3000/api/auth/callback/github`.
-
-Sessions last 12 hours, are stored in an httpOnly cookie, and repeated failures from one address are slowed on that server instance. Use a long password anyway. That limit does not replace it.
-
-Dive OS sections — Overview, Releases, Customers and Settings — are placeholders. They do not read or write centre data.
+| Name | When |
+| --- | --- |
+| `NEXT_PUBLIC_SUPABASE_URL` | Sandbox project URL. The app rejects any other host. |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Publishable key for that project. `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` is accepted as an alias. |
+| `SUPABASE_SERVICE_ROLE_KEY` | Server routes (staff checks, invoices, mail logs). Set this in Vercel. Not required to open the admin UI. |
+| `NEXT_PUBLIC_SITE_URL` | Optional canonical origin for metadata and links inside emails. |
+| `CONTACT_WEBHOOK_URL` | Optional HTTPS endpoint for the public contact form. |
+| `CONTACT_WEBHOOK_TOKEN` | Optional bearer token for that webhook. |
+| `STRIPE_SECRET_KEY` | Optional. Use a test key. |
+| `STRIPE_TEST_SECRET_KEY` | Optional test key for sandbox bookings. |
+| `STRIPE_WEBHOOK_SECRET` | Optional. |
+| `STRIPE_ALLOW_LIVE` | Optional. Must be `true` before a live secret is accepted. |
+| `RESEND_API_KEY` | Optional email via Resend. |
+| `RESEND_FROM` | Optional from-address. |
+| `GMAIL_CLIENT_ID` | Optional. All three Gmail values are required before Gmail is used. |
+| `GMAIL_CLIENT_SECRET` | Optional. |
+| `GMAIL_REFRESH_TOKEN` | Optional. |
+| `REPLY_TO_EMAIL` | Optional. |
+| `KEYINVOICE_API_KEY` | Optional. |
+| `KEYINVOICE_ENABLED` | Optional. Set to `true` together with the API key. |
+| `KEYINVOICE_BASE_URL` | Optional. |
+| `MISTRAL_API_KEY` | Optional. |
+| `CRON_SECRET` | Optional. Cron routes reject calls without it. Do not add Vercel crons until the services above are intentionally configured. |
+| `BANK_IBAN` | Optional text shown on payment instructions. |
+| `BANK_ACCOUNT_NAME` | Optional. |
+| `BANK_BIC` | Optional. |
+| `REVOLUT_LINK` | Optional. |
+| `ADMIN_ALERT_EMAIL` | Optional inbox for unpaid-booking notes. |
+| `PAYOUT_ENC_KEY` | Optional. Refund payout details stay unreadable without it. |
+| `NEXT_PUBLIC_GOOGLE_REVIEW_URL` | Optional link in follow-up mail. |
 
 ## Contact form
 
