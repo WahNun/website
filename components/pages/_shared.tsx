@@ -408,18 +408,18 @@ export const T = {
 } as const
 
 export const s = {
- accent: '#f3efe6',
-  bg: '#000000',
-  bgDark: '#000000',
- text: '#f3efe6',
- muted: '#c9c2b6',
- sub: '#c9c2b6',
+ accent: 'var(--accent)',
+  bg: 'var(--bg)',
+  bgDark: 'var(--bg)',
+ text: 'var(--text)',
+ muted: 'var(--muted)',
+ sub: 'var(--muted)',
  font: `var(--font-geist-sans), sans-serif`,
 }
 
 export const inputStyle: React.CSSProperties = {
- width: '100%', background: 'transparent', color: '#f3efe6',
- border: '1px solid rgba(243,239,230,.45)', borderRadius: 0,
+ width: '100%', background: 'transparent', color: 'var(--text)',
+ border: '1px solid color-mix(in srgb, var(--text) 45%, transparent)', borderRadius: 0,
  padding: '12px', fontSize: '14px', fontFamily: s.font,
  outline: 'none', boxSizing: 'border-box',
 }
@@ -429,7 +429,7 @@ export const bookBtnStyle: React.CSSProperties = {
  alignItems: 'center',
  justifyContent: 'center',
  background: 'transparent',
- color: '#f3efe6',
+ color: 'var(--text)',
  fontWeight: 500,
  fontSize: '14px',
  letterSpacing: '0.08em',
@@ -439,7 +439,7 @@ export const bookBtnStyle: React.CSSProperties = {
  boxShadow: 'none',
  textDecoration: 'none',
  cursor: 'pointer',
- border: '1px solid rgba(243,239,230,.55)',
+ border: '1px solid color-mix(in srgb, var(--text) 55%, transparent)',
  fontFamily: s.font,
 }
 

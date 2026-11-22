@@ -14,7 +14,7 @@ const shortLabel = (key: string) => (key.length === 10 ? key.slice(8, 10) : key.
 // `empty` = Text, wenn es im Zeitraum nichts zu zeichnen gibt; `hint` = Hinweiszeile unter dem Diagramm (nur wenn es sichtbar ist)
 // `legend` = Namen fuer [Vergleichsbalken, Hauptbalken], nur bei Diagrammen mit `value2`
 // `tone` = Farbe der Balken: nur Markenfarben: Electric Ocean fuer gebuchte Werte (Standard), Reef Teal fuer eingegangenes Geld
-const TONES = { blue: { full: '#f3efe6', soft: 'rgba(243,239,230,.5)' }, teal: { full: '#b7c4b0', soft: 'rgba(183,196,176,.5)' } } as const
+const TONES = { blue: { full: 'var(--accent)', soft: 'color-mix(in srgb, var(--text) 50%, transparent)' }, teal: { full: '#b7c4b0', soft: 'rgba(183,196,176,.5)' } } as const
 export default function BarChart({ series, height = 88, empty, hint, legend, tone = 'blue' }: { series: BarPoint[]; height?: number; empty?: string; hint?: string; legend?: [string, string]; tone?: keyof typeof TONES }) {
  const [hover, setHover] = useState<number | null>(null)
  // x = Mitte der Balkenspalte, w = Breite der Balkenreihe (beides in Pixeln, beim Zeigen gemessen)
@@ -37,7 +37,7 @@ export default function BarChart({ series, height = 88, empty, hint, legend, ton
  <div style={{ position: 'relative', marginBottom: '14px' }} onMouseLeave={() => setHover(null)}>
  <div style={{ position: 'relative', display: 'flex', alignItems: 'flex-end', gap: n > 62 ? '1px' : '3px', height: `${height + (labels ? 22 : 4)}px` }}>
  {at && (
- <div role="status" style={{ position: 'absolute', bottom: `${top + (labels ? 18 : 0) + 8}px`, left: `${cx}px`, transform: 'translateX(-50%)', zIndex: 20, minWidth: '178px', background: '#121210', border: '1px solid rgba(243,239,230,.35)', borderRadius: 0, padding: '9px 12px', boxShadow: 'none', pointerEvents: 'none' }}>
+ <div role="status" style={{ position: 'absolute', bottom: `${top + (labels ? 18 : 0) + 8}px`, left: `${cx}px`, transform: 'translateX(-50%)', zIndex: 20, minWidth: '178px', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', borderRadius: 0, padding: '9px 12px', boxShadow: 'none', pointerEvents: 'none' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text, marginBottom: '6px', whiteSpace: 'nowrap' }}>{at.label}</div>
  {at.tip.map(([l, v]) => (
  <div key={l} style={{ display: 'flex', justifyContent: 'space-between', gap: '18px', fontSize: '14px', lineHeight: '19px', whiteSpace: 'nowrap' }}>

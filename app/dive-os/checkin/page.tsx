@@ -133,15 +133,15 @@ interface FormData {
 // ─── Styles ───────────────────────────────────────────────────────────────────
 
 const c = {
- navy: '#121210',
- navyDark: '#121210',
- navyMid: '#121210',
- accent: '#f3efe6',
- accentDim: 'rgba(243,239,230,.15)',
- accentBorder: 'rgba(243,239,230,.25)',
- text: '#f3efe6',
- muted: '#c9c2b6',
- sub: '#c9c2b6',
+ navy: 'var(--surface)',
+ navyDark: 'var(--bg)',
+ navyMid: 'var(--surface)',
+ accent: 'var(--accent)',
+ accentDim: 'color-mix(in srgb, var(--accent) 15%, transparent)',
+ accentBorder: 'color-mix(in srgb, var(--accent) 25%, transparent)',
+ text: 'var(--text)',
+ muted: 'var(--muted)',
+ sub: 'var(--muted)',
  success: '#b7c4b0',
  warning: '#d4a07a',
  error: '#c9928c',
@@ -151,7 +151,7 @@ const c = {
 const inputStyle: React.CSSProperties = {
  width: '100%',
  background: 'rgba(255,255,255,.04)',
- border: '1px solid rgba(243,239,230,.2)',
+ border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)',
  borderRadius: 0,
  padding: '13px 14px',
  fontSize: '16px',
@@ -177,8 +177,8 @@ const primaryBtn: React.CSSProperties = {
  padding: '15px',
  borderRadius: 0,
  border: 'none',
- background: `linear-gradient(135deg, ${c.accent}, #f3efe6)`,
- color: '#000',
+ background: `linear-gradient(135deg, ${c.accent}, var(--text))`,
+ color: 'var(--on-accent)',
  fontWeight: 500,
  fontSize: '16px',
  cursor: 'pointer',
@@ -264,7 +264,7 @@ function GroupOthersCard({ others }: { others: GroupOther[] }) {
  if (!others.length) return null
  const open = others.filter(o => !o.done).length
  return (
- <div style={{ background: 'rgba(243,239,230,.05)', border: `1px solid ${c.accentBorder}`, borderRadius: 0, padding: '14px 16px', marginBottom: '20px', textAlign: 'left' }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 5%, transparent)', border: `1px solid ${c.accentBorder}`, borderRadius: 0, padding: '14px 16px', marginBottom: '20px', textAlign: 'left' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: c.text, marginBottom: '4px' }}>
  {open > 0 ? 'Your booking has more guests — each one checks in separately' : 'All other guests of this booking are checked in'}
  </div>
@@ -277,7 +277,7 @@ function GroupOthersCard({ others }: { others: GroupOther[] }) {
  </div>
  {o.done
  ? <span style={{ fontSize: '14px', fontWeight: 500, color: c.success, whiteSpace: 'nowrap' }}> Checked in</span>
- : <a href={`/dive-os/checkin?token=${o.token}`} style={{ padding: '9px 14px', borderRadius: 0, background: '#f3efe6', color: '#000', fontWeight: 500, fontSize: '14px', textDecoration: 'none', whiteSpace: 'nowrap' }}>Check in {o.label.replace(/ — .*/, '')} </a>}
+ : <a href={`/dive-os/checkin?token=${o.token}`} style={{ padding: '9px 14px', borderRadius: 0, background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', textDecoration: 'none', whiteSpace: 'nowrap' }}>Check in {o.label.replace(/ — .*/, '')} </a>}
  </div>
  ))}
  </div>
@@ -316,8 +316,8 @@ function ErrorCard({ reason, others }: { reason: 'expired' | 'not_found' | 'all_
  gap: '8px',
  padding: '13px 24px',
  borderRadius: 0,
- background: '#c9c2b6',
- color: '#f3efe6',
+ background: 'var(--muted)',
+ color: 'var(--text)',
  fontWeight: 500,
  fontSize: '15px',
  textDecoration: 'none',
@@ -379,7 +379,7 @@ function ProgressBar({ step, total = STEPS.length }: { step: number; total?: num
  flex: 1,
  height: '3px',
  borderRadius: 0,
- background: i < step ? c.accent : i === step ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.08)',
+ background: i < step ? c.accent : i === step ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.08)',
  transition: 'background .3s',
  }}
  />
@@ -407,7 +407,7 @@ function GuestProgress({ slots, currentSlot }: { slots: SlotInfo[]; currentSlot:
  const done = slot.checkin_completed_at !== null
  const invited = !done && Boolean(slot.invite_sent_at)
  const isCurrent = i === currentSlot
- const bg = done ? 'rgba(183,196,176,.12)' : invited ? 'rgba(243,239,230,.06)' : isCurrent ? c.accentDim : 'rgba(255,255,255,.04)'
+ const bg = done ? 'rgba(183,196,176,.12)' : invited ? 'color-mix(in srgb, var(--text) 6%, transparent)' : isCurrent ? c.accentDim : 'rgba(255,255,255,.04)'
  const border = done ? 'rgba(183,196,176,.3)' : invited ? c.accentBorder : isCurrent ? c.accentBorder : 'rgba(255,255,255,.08)'
  const color = done ? c.success : invited ? c.muted : isCurrent ? c.accent : c.muted
  return (
@@ -1281,7 +1281,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  const resendResult = inviteResults?.find(r => r.slot_index === slot.slot_index)
  const currentResendEmail = resendEmails[slot.slot_index] ?? slot.invite_email ?? ''
  return (
- <div key={slot.slot_index} style={{ marginBottom: '10px', padding: '10px 14px', background: 'rgba(243,239,230,.04)', border: `1px solid ${c.accentBorder}`, borderRadius: 0 }}>
+ <div key={slot.slot_index} style={{ marginBottom: '10px', padding: '10px 14px', background: 'color-mix(in srgb, var(--text) 4%, transparent)', border: `1px solid ${c.accentBorder}`, borderRadius: 0 }}>
  <div style={{ fontSize: '14px', color: c.text, fontWeight: 500, marginBottom: '6px' }}>
  Guest {slot.slot_index + 1}
  {(slot.guest_name ?? slot.customer?.name) ? ` — ${slot.guest_name ?? slot.customer?.name}` : ''}
@@ -1428,9 +1428,9 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  onClick={() => { touchedRef.current.add('gender'); setForm(f => ({ ...f, gender: g })) }}
  style={{
  flex: 1, padding: '13px', borderRadius: 0,
- border: `1px solid ${form.gender === g ? 'rgba(243,239,230,.5)' : 'rgba(243,239,230,.2)'}`,
- background: form.gender === g ? 'rgba(243,239,230,.15)' : 'rgba(255,255,255,.04)',
- color: form.gender === g ? '#f3efe6' : '#c9c2b6',
+ border: `1px solid ${form.gender === g ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'color-mix(in srgb, var(--text) 20%, transparent)'}`,
+ background: form.gender === g ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'rgba(255,255,255,.04)',
+ color: form.gender === g ? 'var(--text)' : 'var(--muted)',
  fontWeight: 500,
  fontSize: '15px', cursor: 'pointer', fontFamily: 'inherit',
  }}
@@ -1821,8 +1821,8 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <label style={{
  display: 'flex', gap: '12px', alignItems: 'flex-start',
  padding: '14px', borderRadius: 0, cursor: 'pointer',
- background: gdprConsent ? 'rgba(243,239,230,.06)' : 'rgba(255,255,255,.02)',
- border: `1px solid ${gdprConsent ? 'rgba(243,239,230,.3)' : 'rgba(255,255,255,.08)'}`,
+ background: gdprConsent ? 'color-mix(in srgb, var(--text) 6%, transparent)' : 'rgba(255,255,255,.02)',
+ border: `1px solid ${gdprConsent ? 'color-mix(in srgb, var(--text) 30%, transparent)' : 'rgba(255,255,255,.08)'}`,
  marginBottom: '20px',
  }}>
  <input
@@ -1868,8 +1868,8 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <label style={{
  display: 'flex', gap: '12px', alignItems: 'flex-start',
  padding: '14px', borderRadius: 0, cursor: 'pointer',
- background: diverCodeConsent ? 'rgba(243,239,230,.06)' : 'rgba(255,255,255,.02)',
- border: `1px solid ${diverCodeConsent ? 'rgba(243,239,230,.3)' : 'rgba(255,255,255,.08)'}`,
+ background: diverCodeConsent ? 'color-mix(in srgb, var(--text) 6%, transparent)' : 'rgba(255,255,255,.02)',
+ border: `1px solid ${diverCodeConsent ? 'color-mix(in srgb, var(--text) 30%, transparent)' : 'rgba(255,255,255,.08)'}`,
  marginBottom: '20px',
  }}>
  <input
@@ -2443,7 +2443,7 @@ function MedicalAckDialog({ onConfirm, onCancel, medicalAnswers }: { onConfirm: 
  >
  <div style={{
  maxWidth: '520px', width: '100%', maxHeight: '88vh', overflowY: 'auto',
- background: '#121210', border: '1px solid rgba(212,160,122,.35)',
+ background: 'var(--surface)', border: '1px solid rgba(212,160,122,.35)',
  borderRadius: 0, padding: '26px 26px 22px',
  }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: c.warning, marginBottom: '10px' }}>
@@ -2453,17 +2453,17 @@ function MedicalAckDialog({ onConfirm, onCancel, medicalAnswers }: { onConfirm: 
  You will need a doctor&apos;s sign-off before this dive.
  </h2>
 
- <div style={{ fontSize: '14.5px', color: '#f3efe6', lineHeight: 1.7, marginBottom: topics.length ? '10px' : '18px' }}>
+ <div style={{ fontSize: '14.5px', color: 'var(--text)', lineHeight: 1.7, marginBottom: topics.length ? '10px' : '18px' }}>
  Your health declaration flagged the following:
  </div>
  {topics.length > 0 && (
  <ul style={{ margin: '0 0 18px 20px', padding: 0 }}>
  {topics.map(t => (
- <li key={t} style={{ fontSize: '14px', color: '#f3efe6', lineHeight: 1.7, marginBottom: '4px' }}>{t}</li>
+ <li key={t} style={{ fontSize: '14px', color: 'var(--text)', lineHeight: 1.7, marginBottom: '4px' }}>{t}</li>
  ))}
  </ul>
  )}
- <div style={{ fontSize: '14.5px', color: '#f3efe6', lineHeight: 1.7, marginBottom: '18px' }}>
+ <div style={{ fontSize: '14.5px', color: 'var(--text)', lineHeight: 1.7, marginBottom: '18px' }}>
  That is not a problem and it does not exclude you from diving — most conditions are
  cleared without difficulty. But diving with compressed air puts a specific load on the
  body, so the decision belongs to a physician, not to us and not to you.
@@ -2471,7 +2471,7 @@ function MedicalAckDialog({ onConfirm, onCancel, medicalAnswers }: { onConfirm: 
 
  <div style={{ background: 'rgba(212,160,122,.08)', border: '1px solid rgba(212,160,122,.22)', borderRadius: 0, padding: '14px 16px', marginBottom: '18px' }}>
  <div style={{ fontSize: '14px', color: c.warning, fontWeight: 500, marginBottom: '8px' }}>What you need to bring</div>
- <div style={{ fontSize: '14px', color: '#f3efe6', lineHeight: 1.7 }}>
+ <div style={{ fontSize: '14px', color: 'var(--text)', lineHeight: 1.7 }}>
  A written statement from a physician confirming you are fit to dive, dated within the
  last 12 months. A diving medical (SSI, PADI or the standard European form) is ideal;
  a signed letter from your own doctor referring to recreational scuba diving also works.
@@ -2505,7 +2505,7 @@ function MedicalAckDialog({ onConfirm, onCancel, medicalAnswers }: { onConfirm: 
  width: '100%', padding: '14px', borderRadius: 0, border: 'none',
  fontSize: '15px', fontWeight: 500, fontFamily: c.font,
  background: checked ? c.accent : 'rgba(255,255,255,.08)',
- color: checked ? '#090909' : c.muted,
+ color: checked ? 'var(--on-accent)' : c.muted,
  cursor: checked ? 'pointer' : 'not-allowed',
  }}
  >Understood</button>
@@ -2660,7 +2660,7 @@ function DayCoverOption({ form, setForm, offer, c }: { form: { buy_day_cover: bo
  return (
  <button type="button" onClick={() => setForm((f: any) => ({ ...f, buy_day_cover: !f.buy_day_cover, insurance_mode: !f.buy_day_cover ? '' : f.insurance_mode }))}
  style={{ textAlign: 'left', padding: '11px 14px', borderRadius: 0, border: `1px solid ${on ? c.accentBorder : 'rgba(255,255,255,.08)'}`, background: on ? c.accentDim : 'transparent', color: c.text, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit', display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
- <span style={{ width: '18px', height: '18px', borderRadius: 0, border: `2px solid ${on ? c.accent : 'rgba(255,255,255,.3)'}`, background: on ? c.accent : 'transparent', flexShrink: 0, marginTop: '2px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#000', fontSize: '14px', fontWeight: 500 }}>{on ? '' : ''}</span>
+ <span style={{ width: '18px', height: '18px', borderRadius: 0, border: `2px solid ${on ? c.accent : 'rgba(255,255,255,.3)'}`, background: on ? c.accent : 'transparent', flexShrink: 0, marginTop: '2px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: 'var(--on-accent)', fontSize: '14px', fontWeight: 500 }}>{on ? '' : ''}</span>
  <span>
  Buy DAN day cover from your dive centre{offer ? ` — €${(offer.cents / 100).toFixed(2)} for ${offer.days} dive day${offer.days === 1 ? '' : 's'}` : ''}
  <div style={{ fontSize: '14px', color: c.sub, marginTop: '3px' }}>Added to your booking, pay at the centre (cash, card or Revolut). Covers every dive day of this booking.</div>
@@ -2725,7 +2725,7 @@ function LoadingSpinner() {
  return (
  <div style={{
  width: '36px', height: '36px', margin: '0 auto',
- border: `3px solid rgba(243,239,230,.2)`,
+ border: `3px solid color-mix(in srgb, var(--text) 20%, transparent)`,
  borderTopColor: c.accent,
  borderRadius: '50%',
  animation: 'spin 0.8s linear infinite',

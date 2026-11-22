@@ -10,7 +10,7 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
  {/* Hero with image */}
  <div style={{
  minHeight: '260px', position: 'relative', overflow: 'hidden',
- background: 'linear-gradient(180deg,rgba(9,9,9,.25) 0%,rgba(9,9,9,.82) 65%,#090909 100%), url(\'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/try-scuba-hero.webp\') center 15%/cover',
+ background: 'linear-gradient(180deg,color-mix(in srgb, var(--bg) 25%, transparent) 0%,color-mix(in srgb, var(--bg) 82%, transparent) 65%,var(--bg) 100%), url(\'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/try-scuba-hero.webp\') center 15%/cover',
  display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
  padding: isMobile ? '32px 20px 28px' : '48px 48px 40px',
  }}>
@@ -23,7 +23,7 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
  <h1 style={{ fontSize: 'clamp(32px,5vw,56px)', fontWeight: 500, letterSpacing: '-.02em', marginBottom: '10px', lineHeight: 1.05 }}>
  Basic Diver<span style={{ color: '#b7c4b0' }}>.</span>
  </h1>
- <p style={{ fontSize: '19px', fontWeight: 500, color: '#f3efe6', margin: 0, maxWidth: '540px', lineHeight: 1.4 }}>
+ <p style={{ fontSize: '19px', fontWeight: 500, color: 'var(--text)', margin: 0, maxWidth: '540px', lineHeight: 1.4 }}>
  {t('bd_hero_sub')}
  </p>
  </div>
@@ -41,13 +41,13 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
 
  <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 320px', gap: isMobile ? '32px' : '48px', alignItems: 'start' }}>
  <div>
- <p style={{ fontSize: '17px', color: '#f3efe6', lineHeight: 1.7, marginBottom: '20px', fontWeight: 500 }}>
+ <p style={{ fontSize: '17px', color: 'var(--text)', lineHeight: 1.7, marginBottom: '20px', fontWeight: 500 }}>
  {t('bd_intro_p1')}
  </p>
- <p style={{ fontSize: '15px', color: '#c9c2b6', lineHeight: 1.75, marginBottom: '16px' }}>
+ <p style={{ fontSize: '15px', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '16px' }}>
  {t('bd_p2')}
  </p>
- <p style={{ fontSize: '15px', color: '#c9c2b6', lineHeight: 1.75, marginBottom: '32px' }}>
+ <p style={{ fontSize: '15px', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '32px' }}>
  {t('bd_p3')}
  </p>
 
@@ -87,7 +87,7 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
  {(['bd_incl1', 'bd_incl2', 'bd_incl3', 'bd_incl4', 'bd_incl5', 'bd_incl6'] as const).map(key => (
  <div key={key} style={{ display: 'flex', gap: '10px', marginBottom: '8px', alignItems: 'flex-start' }}>
  <span style={{ color: '#b7c4b0', fontSize: '14px', lineHeight: 1.4, flexShrink: 0 }}>—</span>
- <span style={{ fontSize: '14px', color: '#c9c2b6', lineHeight: 1.45 }}>{t(key)}</span>
+ <span style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.45 }}>{t(key)}</span>
  </div>
  ))}
  </div>
@@ -101,15 +101,15 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
  ] as [string, string, string|null][]).map(([label, price, note], i, arr) => (
  <div key={label as string} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 0', borderBottom: i < arr.length - 1 ? '1px solid rgba(255,255,255,.06)' : 'none' }}>
  <div>
- <div style={{ fontSize: '14px', color: '#f3efe6' }}>{label}</div>
+ <div style={{ fontSize: '14px', color: 'var(--text)' }}>{label}</div>
  {note && <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>{note}</div>}
  </div>
- <div style={{ fontSize: '16px', fontWeight: 500, color: '#f3efe6', marginLeft: '12px', flexShrink: 0 }}>{price}</div>
+ <div style={{ fontSize: '16px', fontWeight: 500, color: 'var(--text)', marginLeft: '12px', flexShrink: 0 }}>{price}</div>
  </div>
  ))}
  </div>
 
- <div style={{ background: 'rgba(243,239,230,.06)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 0, padding: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.accent, marginBottom: '8px' }}>{t('bd_go_further_title')}</div>
  <p style={{ fontSize: '14px', color: s.text, margin: '0 0 12px', lineHeight: 1.5 }}>{t('bd_go_further_body')}</p>
  <button type="button" onClick={() => nav('courses')} style={{ fontSize: '14px', color: s.accent, cursor: 'pointer', fontWeight: 500, background: 'none', border: 'none', padding: 0, fontFamily: s.font }}>{t('bd_see_courses')}</button>

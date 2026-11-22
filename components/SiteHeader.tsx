@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const links = [
   { href: "/dive-centres", label: "Dive Centres" },
@@ -29,6 +30,8 @@ export function SiteHeader() {
       <Link href="/" className="wordmark">
         Lucas Wahnon
       </Link>
+      <div className="header-tools">
+      <ThemeToggle />
       <button
         type="button"
         className="menu-button"
@@ -61,6 +64,7 @@ export function SiteHeader() {
           );
         })}
       </nav>
+      </div>
     </header>
   );
 }

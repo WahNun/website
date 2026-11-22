@@ -86,9 +86,9 @@ export default function CashRefunds({ sandbox, onChanged }: { sandbox: boolean |
  </div>
  <div style={{ fontSize: '14px', color: s.text, padding: '8px 10px', background: 'rgba(255,255,255,.03)', borderRadius: 0, borderLeft: '3px solid #d4a07a' }}>{r.description}</div>
  <input type="text" placeholder="Note (optional) — e.g. handed over to guest at the centre" value={note[r.id] ?? ''} onChange={e => setNote(prev => ({ ...prev, [r.id]: e.target.value }))}
- style={{ width: '100%', boxSizing: 'border-box', background: '#000', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, color: s.text, fontSize: '14px', padding: '7px 10px', fontFamily: s.font, outline: 'none' }} />
+ style={{ width: '100%', boxSizing: 'border-box', background: 'var(--bg)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, color: s.text, fontSize: '14px', padding: '7px 10px', fontFamily: s.font, outline: 'none' }} />
  <button type="button" disabled={busy === r.id} onClick={() => confirm(r)}
- style={{ padding: '10px', borderRadius: 0, border: 'none', background: 'rgba(183,196,176,.85)', color: '#000', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: busy === r.id ? .6 : 1 }}>
+ style={{ padding: '10px', borderRadius: 0, border: 'none', background: 'rgba(183,196,176,.85)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: busy === r.id ? .6 : 1 }}>
  {busy === r.id ? 'Confirming…' : ` Cash handed over — ${eur(r.amount)}`}
  </button>
  </div>

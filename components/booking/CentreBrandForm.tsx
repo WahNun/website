@@ -47,14 +47,14 @@ export function CentreBrandForm() {
  boxSizing: "border-box" as const,
  background: "transparent",
  color: s.text,
- border: "1px solid rgba(243,239,230,.45)",
+ border: "1px solid color-mix(in srgb, var(--text) 45%, transparent)",
  padding: "10px 12px",
  fontFamily: s.font,
  fontSize: "14px",
  };
 
  return (
- <section style={{ marginBottom: "28px", borderTop: "1px solid rgba(243,239,230,.16)", paddingTop: "18px" }}>
+ <section style={{ marginBottom: "28px", borderTop: "1px solid color-mix(in srgb, var(--text) 16%, transparent)", paddingTop: "18px" }}>
  <h3 style={{ margin: "0 0 8px", fontSize: "13px", letterSpacing: ".08em", textTransform: "uppercase", fontWeight: 500, color: s.muted }}>
  Booking page
  </h3>

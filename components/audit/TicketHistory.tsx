@@ -71,7 +71,7 @@ export default function TicketHistory({ ticketId }: { ticketId: string }) {
  <div key={entry.id as string} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
  {/* Timeline spine */}
  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
- <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'rgba(243,239,230,.1)', border: '1px solid rgba(243,239,230,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px' }}>
+ <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'color-mix(in srgb, var(--text) 10%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px' }}>
  {icon}
  </div>
  {!isLast && <div style={{ width: '1px', flex: 1, minHeight: '16px', background: 'rgba(255,255,255,.08)', margin: '3px 0' }} />}

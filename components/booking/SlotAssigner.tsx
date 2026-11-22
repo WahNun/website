@@ -66,7 +66,7 @@ export default function SlotAssigner({ bookingId, onChanged }: { bookingId: stri
  }
 
  const open = rows.filter(x => x.session === 'tbd').length
- const fieldBg = '#090909'
+ const fieldBg = 'var(--bg)'
  return (
  <div style={{ marginBottom: '14px', padding: '14px', borderRadius: 0, border: '1px solid rgba(201,180,138,.3)', background: 'rgba(201,180,138,.06)' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c9b48a', marginBottom: '6px' }}> Set time slots (same as instructor ticket)</div>
@@ -94,7 +94,7 @@ export default function SlotAssigner({ bookingId, onChanged }: { bookingId: stri
  const on = curPick === tt
  return (
  <button key={tt} type="button" title={tt === 'full' ? 'Course takes the whole day — AM and PM session' : undefined} onClick={() => setPicks(p => ({ ...p, [x.id]: tt }))}
- style={{ padding: '5px 14px', borderRadius: 0, border: `1px solid ${on ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.12)'}`, background: on ? 'rgba(243,239,230,.16)' : 'transparent', color: on ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ padding: '5px 14px', borderRadius: 0, border: `1px solid ${on ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.12)'}`, background: on ? 'color-mix(in srgb, var(--text) 16%, transparent)' : 'transparent', color: on ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  {label}
  </button>
  )

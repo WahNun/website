@@ -4,11 +4,11 @@ import { useState } from 'react'
 /* Knowledge Base Bookings. Sub-tabs: Online (/book) and Front Office. Every block = what / where / why. */
 
 const FONT = 'var(--font-geist-sans), sans-serif'
-const ACCENT = '#f3efe6'
-const MUTED = '#c9c2b6'
-const TEXT = '#f3efe6'
-const SURFACE = '#121210'
-const BORDER = 'rgba(243,239,230,.12)'
+const ACCENT = 'var(--text)'
+const MUTED = 'var(--muted)'
+const TEXT = 'var(--text)'
+const SURFACE = 'var(--surface)'
+const BORDER = 'color-mix(in srgb, var(--text) 12%, transparent)'
 const AMBER = '#c9b48a'
 
 type Shot = { src: string; caption: string; phone?: boolean }
@@ -498,7 +498,7 @@ export default function BookingTools() {
 
  const subStyle = (a: boolean): React.CSSProperties => ({
  padding: '8px 18px', fontSize: '14px', fontWeight: 500, border: 'none', cursor: 'pointer', fontFamily: FONT,
- borderRadius: 8, background: a ? 'rgba(243,239,230,.1)' : 'transparent', color: a ? ACCENT : MUTED,
+ borderRadius: 8, background: a ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'transparent', color: a ? ACCENT : MUTED,
  })
 
  return (
@@ -517,7 +517,7 @@ export default function BookingTools() {
  </p>
  {groups.map(g => (
  <div key={g.heading} style={{ marginBottom: 28 }}>
- <h2 style={{ fontSize: 15, fontWeight: 500, color: '#f3efe6', margin: '0 0 12px' }}>{g.heading}</h2>
+ <h2 style={{ fontSize: 15, fontWeight: 500, color: 'var(--text)', margin: '0 0 12px' }}>{g.heading}</h2>
  <div style={{ display: 'grid', gap: 10 }}>
  {g.items.map(it => (
  <div key={it.title} style={{ background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: 12, padding: '14px 16px' }}>

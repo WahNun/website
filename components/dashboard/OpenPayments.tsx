@@ -98,12 +98,12 @@ export default function OpenPayments({ rollDateStr, isToday, simulationMode, rel
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', color: '#c9928c' }}>{r.state === 'deposit' ? 'BALANCE DUE' : 'UNPAID'}</div>
  <div style={{ fontSize: '17px', fontWeight: 500, color: '#c9928c' }}>{eur(r.due)}</div>
  </div>
- <button type="button" onClick={() => onOpen(r.bookingId)} style={{ background: 'rgba(243,239,230,.12)', border: '1px solid rgba(243,239,230,.4)', color: s.accent, borderRadius: 0, padding: '6px 12px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', whiteSpace: 'nowrap', fontFamily: s.font }}>Take payment </button>
+ <button type="button" onClick={() => onOpen(r.bookingId)} style={{ background: 'color-mix(in srgb, var(--text) 12%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 40%, transparent)', color: s.accent, borderRadius: 0, padding: '6px 12px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', whiteSpace: 'nowrap', fontFamily: s.font }}>Take payment </button>
  </div>
  )
 
  return (
- <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: `1px solid ${rows.length > 0 ? 'rgba(201,146,140,.4)' : 'rgba(243,239,230,.15)'}`, borderRadius: 0, padding: '20px', marginBottom: '20px' }}>
+ <div style={{ background: 'var(--glass)', border: `1px solid ${rows.length > 0 ? 'rgba(201,146,140,.4)' : 'color-mix(in srgb, var(--text) 15%, transparent)'}`, borderRadius: 0, padding: '20px', marginBottom: '20px' }}>
  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px', gap: '10px', flexWrap: 'wrap' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.accent }}>Open payments · {fmtDay(rollDateStr)}</div>
  {rows.length > 0 && <span style={{ fontSize: '14px', fontWeight: 500, color: '#c9928c', background: 'rgba(201,146,140,.12)', padding: '3px 9px', borderRadius: 0 }}>{rows.length} open · {eur(totalDue)}</span>}

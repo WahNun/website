@@ -10,9 +10,9 @@ const supabase = createClient(
 type ShiftType = 'am' | 'pm' | 'full' | 'folga' | 'urlaub' | 'krank' | null
 
 const SHIFT_COLORS: Record<string, string> = {
- am: '#f3efe6', // hellblau — Morgenschicht
+ am: 'var(--accent)', // hellblau — Morgenschicht
  pm: '#d4eabc', // hellgrün — Abendschicht
- full: '#f3efe6', // blau — Ganztag
+ full: 'var(--accent)', // blau — Ganztag
  folga: '#f5c59a', // orange — Folga
  urlaub: '#f5c59a', // orange — Urlaub
  krank: '#e87a7a', // rot — Krank
@@ -164,7 +164,7 @@ export function MonthlyRosterGrid({ year, month, company = 'azd' }: {
  disabled={drafting}
  style={{
  background: drafting ? '#555' : '#b7c4b0',
- color: '#000',
+ color: 'var(--on-accent)',
  border: 'none',
  borderRadius: 6,
  padding: '5px 14px',
@@ -246,7 +246,7 @@ export function MonthlyRosterGrid({ year, month, company = 'azd' }: {
  cursor: 'pointer',
  textAlign: 'center',
  fontSize: 9,
- color: '#000',
+ color: 'var(--on-accent)',
  opacity: isSaving ? 0.5 : 1,
  transition: 'background 0.1s',
  userSelect: 'none',

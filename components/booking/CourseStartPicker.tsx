@@ -179,7 +179,7 @@ export default function CourseStartPicker({ productId, days, guests, boatDays, v
  {loading && !loadError && (
  <div role="status" aria-label="Loading availability" style={{ minHeight: '190px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
  <style>{'@keyframes azdSpin{to{transform:rotate(360deg)}}'}</style>
- <div style={{ width: '34px', height: '34px', borderRadius: '50%', border: '3px solid rgba(243,239,230,.18)', borderTopColor: '#f3efe6', animation: 'azdSpin .8s linear infinite' }} />
+ <div style={{ width: '34px', height: '34px', borderRadius: '50%', border: '3px solid color-mix(in srgb, var(--text) 18%, transparent)', borderTopColor: 'var(--accent)', animation: 'azdSpin .8s linear infinite' }} />
  </div>
  )}
  <div style={{ display: loading && !loadError ? 'none' : 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '4px', opacity: loading ? .5 : 1 }}>
@@ -203,8 +203,8 @@ export default function CourseStartPicker({ productId, days, guests, boatDays, v
  onClick={() => { if (selectable) { setHintDate(null); onChange(isSel ? null : d) } else setHintDate(isHint ? null : d) }}
  style={{
  padding: '9px 0', borderRadius: 0, fontFamily: 'inherit', fontSize: '14px', fontWeight: 500,
- border: `1px solid ${isSel ? 'rgba(243,239,230,.7)' : inRange ? 'rgba(243,239,230,.35)' : isHint ? 'rgba(212,160,122,.85)' : ev?.requestOnly ? 'rgba(212,160,122,.35)' : 'rgba(255,255,255,.08)'}`,
- background: isSel ? 'rgba(243,239,230,.25)' : inRange ? 'rgba(243,239,230,.1)' : isHint ? 'rgba(212,160,122,.2)' : ev?.requestOnly ? 'rgba(212,160,122,.08)' : 'transparent',
+ border: `1px solid ${isSel ? 'color-mix(in srgb, var(--text) 70%, transparent)' : inRange ? 'color-mix(in srgb, var(--text) 35%, transparent)' : isHint ? 'rgba(212,160,122,.85)' : ev?.requestOnly ? 'rgba(212,160,122,.35)' : 'rgba(255,255,255,.08)'}`,
+ background: isSel ? 'color-mix(in srgb, var(--text) 25%, transparent)' : inRange ? 'color-mix(in srgb, var(--text) 10%, transparent)' : isHint ? 'rgba(212,160,122,.2)' : ev?.requestOnly ? 'rgba(212,160,122,.08)' : 'transparent',
  color: past || tooLate || wrongYear ? 'rgba(255,255,255,.18)' : selectable ? s.text : ev?.requestOnly ? '#d4a07a' : 'rgba(255,255,255,.3)',
  cursor: tappable ? 'pointer' : 'not-allowed',
  }}>
@@ -245,5 +245,5 @@ export default function CourseStartPicker({ productId, days, guests, boatDays, v
 
 const navBtn: React.CSSProperties = {
  width: '32px', height: '32px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'transparent',
- color: '#f3efe6', fontSize: '18px', cursor: 'pointer', fontFamily: 'inherit',
+ color: 'var(--text)', fontSize: '18px', cursor: 'pointer', fontFamily: 'inherit',
 }

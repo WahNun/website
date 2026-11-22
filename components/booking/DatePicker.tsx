@@ -52,8 +52,8 @@ export default function DatePicker({ value, onChange, min, max }: {
  {years.map(y => (
  <button key={y} type="button" onClick={() => { setCursor(new Date(y, cursor.getMonth(), 1)); setYearOpen(false) }}
  style={{ padding: '6px 0', borderRadius: 0, fontSize: '14px', fontFamily: 'inherit', cursor: 'pointer',
- border: `1px solid ${y === cursor.getFullYear() ? 'rgba(243,239,230,.6)' : 'rgba(255,255,255,.08)'}`,
- background: y === cursor.getFullYear() ? 'rgba(243,239,230,.2)' : 'transparent', color: s.text }}>{y}</button>
+ border: `1px solid ${y === cursor.getFullYear() ? 'color-mix(in srgb, var(--text) 60%, transparent)' : 'rgba(255,255,255,.08)'}`,
+ background: y === cursor.getFullYear() ? 'color-mix(in srgb, var(--text) 20%, transparent)' : 'transparent', color: s.text }}>{y}</button>
  ))}
  </div>
  )}
@@ -71,8 +71,8 @@ export default function DatePicker({ value, onChange, min, max }: {
  <button key={d} type="button" disabled={disabled && !isSel} title={disabled && isSel ? 'Click to clear' : undefined} onClick={() => onChange(isSel ? null : d)}
  style={{
  padding: '9px 0', borderRadius: 0, fontFamily: 'inherit', fontSize: '14px', fontWeight: 500,
- border: `1px solid ${isSel ? 'rgba(243,239,230,.7)' : 'rgba(255,255,255,.08)'}`,
- background: isSel ? 'rgba(243,239,230,.25)' : 'transparent',
+ border: `1px solid ${isSel ? 'color-mix(in srgb, var(--text) 70%, transparent)' : 'rgba(255,255,255,.08)'}`,
+ background: isSel ? 'color-mix(in srgb, var(--text) 25%, transparent)' : 'transparent',
  color: disabled ? 'rgba(255,255,255,.18)' : s.text, cursor: disabled ? 'not-allowed' : 'pointer',
  }}>{i + 1}</button>
  )
@@ -84,5 +84,5 @@ export default function DatePicker({ value, onChange, min, max }: {
 
 const navBtn: React.CSSProperties = {
  width: '32px', height: '32px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'transparent',
- color: '#f3efe6', fontSize: '18px', cursor: 'pointer', fontFamily: 'inherit',
+ color: 'var(--text)', fontSize: '18px', cursor: 'pointer', fontFamily: 'inherit',
 }

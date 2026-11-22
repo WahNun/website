@@ -204,8 +204,8 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
 
  return (
  <div style={{
- background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)',
- border: `1px solid ${warningDays.length > 0 ? 'rgba(212,160,122,.4)' : 'rgba(243,239,230,.15)'}`,
+ background: 'var(--glass)',
+ border: `1px solid ${warningDays.length > 0 ? 'rgba(212,160,122,.4)' : 'color-mix(in srgb, var(--text) 15%, transparent)'}`,
  borderRadius: 0,
  padding: '20px',
  overflow: 'hidden',
@@ -237,8 +237,8 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
  const isWarning = pct >= 0.8 && pct < 1
  const isFull = pct >= 1
  const isToday = day.date === rollDateStr
- const barColor = isFull ? '#c9928c' : isWarning ? '#d4a07a' : '#f3efe6'
- const bgBase = isToday ? 'rgba(243,239,230,.1)' : hasStudents ? 'rgba(243,239,230,.05)' : 'transparent'
+ const barColor = isFull ? '#c9928c' : isWarning ? '#d4a07a' : 'var(--accent)'
+ const bgBase = isToday ? 'color-mix(in srgb, var(--text) 10%, transparent)' : hasStudents ? 'color-mix(in srgb, var(--text) 5%, transparent)' : 'transparent'
 
  return (
  <div key={day.date} onClick={hasStudents ? () => openDay(day.date) : undefined}
@@ -248,7 +248,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
  padding: '8px 10px', borderRadius: 0,
  cursor: hasStudents ? 'pointer' : 'default',
  background: bgBase,
- border: isToday ? '1px solid rgba(243,239,230,.3)' : '1px solid transparent',
+ border: isToday ? '1px solid color-mix(in srgb, var(--text) 30%, transparent)' : '1px solid transparent',
  }}>
  <div style={{
  fontSize: '14px', minWidth: '80px', flexShrink: 0,
@@ -280,7 +280,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
  <div key={day.date} style={{ display: 'flex', flexWrap: 'wrap', gap: '5px', alignItems: 'center' }}>
  <span style={{ fontSize: '14px', color: s.muted, minWidth: '72px', flexShrink: 0 }}>{fmt(day.date)}</span>
  {day.courses.map(c => (
- <span key={c.name} style={{ fontSize: '14px', padding: '2px 8px', borderRadius: 0, background: 'rgba(243,239,230,.1)', color: '#f3efe6', fontWeight: 500, whiteSpace: 'nowrap' }}>
+ <span key={c.name} style={{ fontSize: '14px', padding: '2px 8px', borderRadius: 0, background: 'color-mix(in srgb, var(--text) 10%, transparent)', color: 'var(--text)', fontWeight: 500, whiteSpace: 'nowrap' }}>
  {c.name} · {c.students}
  </span>
  ))}
@@ -308,7 +308,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
 
  {openDate && (
  <div onClick={() => setOpenDate(null)} style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '40px 16px', overflowY: 'auto' }}>
- <div onClick={e => e.stopPropagation()} style={{ width: 'min(760px, 100%)', background: '#121210', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, boxShadow: 'none' }}>
+ <div onClick={e => e.stopPropagation()} style={{ width: 'min(760px, 100%)', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 0, boxShadow: 'none' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  <span style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>Courses · {fmt(openDate)}</span>
  <button type="button" onClick={() => setOpenDate(null)} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.text, borderRadius: 0, padding: '6px 12px', fontSize: '14px', cursor: 'pointer' }}>Close </button>
@@ -321,12 +321,12 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
  const tbd = r.session === 'tbd'
  const where = r.isBoatDay === false ? 'Pool / harbour' : r.boatName ? `Boat: ${r.boatName}` : tbd ? 'Not planned yet' : 'Boat (not assigned)'
  return (
- <div key={r.key} style={{ padding: '12px 14px', borderRadius: 0, background: 'rgba(243,239,230,.05)', border: `1px solid ${tbd ? 'rgba(201,180,138,.4)' : 'rgba(243,239,230,.15)'}` }}>
+ <div key={r.key} style={{ padding: '12px 14px', borderRadius: 0, background: 'color-mix(in srgb, var(--text) 5%, transparent)', border: `1px solid ${tbd ? 'rgba(201,180,138,.4)' : 'color-mix(in srgb, var(--text) 15%, transparent)'}` }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>
  {r.product}{r.isTest && <span style={{ marginLeft: '8px', fontSize: '14px', color: '#c9b48a', fontWeight: 500 }}>TEST</span>}
  </div>
- <span style={{ fontSize: '14px', fontWeight: 500, padding: '2px 9px', borderRadius: 0, background: tbd ? 'rgba(201,180,138,.15)' : 'rgba(243,239,230,.12)', color: tbd ? '#c9b48a' : '#f3efe6' }}>
+ <span style={{ fontSize: '14px', fontWeight: 500, padding: '2px 9px', borderRadius: 0, background: tbd ? 'rgba(201,180,138,.15)' : 'color-mix(in srgb, var(--text) 12%, transparent)', color: tbd ? '#c9b48a' : 'var(--accent)' }}>
  {tbd ? 'Time to be set' : r.session.toUpperCase()}{r.startTime ? ` · ${String(r.startTime).slice(0, 5)}` : ''}
  </span>
  </div>
@@ -338,7 +338,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
  {r.notes && <div> {r.notes}</div>}
  </div>
  <div style={{ marginTop: '8px' }}>
- <button type="button" onClick={() => setBookingPopup(r.bookingId)} style={{ background: 'rgba(243,239,230,.12)', border: '1px solid rgba(243,239,230,.35)', color: '#f3efe6', borderRadius: 0, padding: '5px 12px', fontSize: '14px', fontWeight: 500, cursor: 'pointer' }}>
+ <button type="button" onClick={() => setBookingPopup(r.bookingId)} style={{ background: 'color-mix(in srgb, var(--text) 12%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', color: 'var(--text)', borderRadius: 0, padding: '5px 12px', fontSize: '14px', fontWeight: 500, cursor: 'pointer' }}>
  Open booking {r.bookingId.slice(0, 8).toUpperCase()} 
  </button>
  </div>
@@ -352,7 +352,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
 
  {bookingPopup && (
  <div onClick={() => setBookingPopup(null)} style={{ position: 'fixed', inset: 0, zIndex: 1100, background: 'rgba(0,0,0,0.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '40px 16px', overflowY: 'auto' }}>
- <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: '#121210', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, boxShadow: 'none' }}>
+ <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 0, boxShadow: 'none' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>Booking <span style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: s.text, fontWeight: 500 }}>{bookingPopup.slice(0, 8).toUpperCase()}</span></span>
  <button type="button" onClick={() => setBookingPopup(null)} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.text, borderRadius: 0, padding: '6px 12px', fontSize: '14px', cursor: 'pointer' }}>Close </button>

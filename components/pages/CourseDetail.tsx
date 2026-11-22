@@ -338,7 +338,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  testimonial: { quote: 'It was a very nice experience and we got to see many different fish. Among which 3 octopus, 2 pregnant rays, a striped barracuda and different kind of fish. Great to do the refresher on the shore here! Thank you Vasco!', author: 'Cansu A.', source: 'Google Reviews' },
  },
  'perfect-buoyancy': {
- id: 'perfect-buoyancy', name: 'Perfect Buoyancy', price: '€200', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/perfect-buoyancy.webp', accentColor: '#f3efe6',
+ id: 'perfect-buoyancy', name: 'Perfect Buoyancy', price: '€200', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/perfect-buoyancy.webp', accentColor: 'var(--accent)',
  tagline: {
  EN: 'Float like you were born underwater.',
  PT: 'Flutue como se tivesse nascido debaixo de água.',
@@ -392,7 +392,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  testimonial: { quote: '2 great dives. Our dive master was excellent — best dive brief I\'ve been given. First dive to an interesting volcanic reef structure. Second dive on a wreck, plenty to see on both dives.', author: 'David R.', source: 'TripAdvisor' },
  },
  'waves-tides-currents': {
- id: 'waves-tides-currents', name: 'Waves, Tides & Currents', price: '€250', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/waves-tides-currents.webp', accentColor: '#f3efe6',
+ id: 'waves-tides-currents', name: 'Waves, Tides & Currents', price: '€250', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/waves-tides-currents.webp', accentColor: 'var(--accent)',
  tagline: {
  EN: 'Own the conditions — whatever the Atlantic throws.',
  PT: 'Domine as condições — o que quer que o Atlântico traga.',
@@ -445,7 +445,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  testimonial: { quote: 'Thorough instructions before we got into the water — plenty of prep time to get acquainted with the gear. We saw octopus, two types of rays, wrasse, grouper, damsel fish, parrot fish and more. The team was patient, encouraging and kind.', author: 'Nicole S.', source: 'TripAdvisor' },
  },
  'wreck-diving': {
- id: 'wreck-diving', name: 'Wreck Diving', price: '€250', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/wreck-diving.webp', accentColor: '#f3efe6',
+ id: 'wreck-diving', name: 'Wreck Diving', price: '€250', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/wreck-diving.webp', accentColor: 'var(--accent)',
  tagline: {
  EN: 'The Dori is waiting. Come find her.',
  PT: 'A Dori está à sua espera. Venha encontrá-la.',
@@ -498,7 +498,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  testimonial: { quote: 'If you have the opportunity to visit the Dori Shipwreck, I definitely recommend. It was a highlight for sure. I even was lucky enough to see a Mola Mola!! The team is extremely professional, with thorough briefings on dive spots and safety measures.', author: 'Amanda', source: 'Google Reviews' },
  },
  'night-diving': {
- id: 'night-diving', name: 'Night & Limited Visibility', price: '€350', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/night-diving.webp', accentColor: '#f3efe6',
+ id: 'night-diving', name: 'Night & Limited Visibility', price: '€350', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/night-diving.webp', accentColor: 'var(--accent)',
  tagline: {
  EN: 'The ocean you know disappears. Another one takes its place.',
  PT: 'O oceano que conhece desaparece. Outro toma o seu lugar.',
@@ -552,7 +552,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  testimonial: { quote: 'We dived with them for 3 days, really professionals and all the equipment is perfect. The Dori Wreck dive is amazing and we even did a night dive there. They were incredible and super reliable. I would highly recommend this diving center!', author: 'Sara G.', source: 'Google Reviews' },
  },
  'navigation': {
- id: 'navigation', name: 'Navigation', price: '€260', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/navigation.webp', accentColor: '#f3efe6',
+ id: 'navigation', name: 'Navigation', price: '€260', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/navigation.webp', accentColor: 'var(--accent)',
  tagline: {
  EN: 'Know exactly where you are, 25 m underwater.',
  PT: 'Saiba exatamente onde está, a 25 m de profundidade.',
@@ -606,7 +606,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  testimonial: { quote: 'Great dives around the Arca and Dori wreck with Celia and Martin. Guys make it all very easy. Boat skippers are the best, thanks all ', author: 'Adventure64449448558', source: 'TripAdvisor' },
  },
  'deep-diving': {
- id: 'deep-diving', name: 'Deep Diving', price: '€350', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/deep-diving.webp', accentColor: '#f3efe6',
+ id: 'deep-diving', name: 'Deep Diving', price: '€350', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/deep-diving.webp', accentColor: 'var(--accent)',
  tagline: {
  EN: "The real depth starts at 20 m. Let's go further.",
  PT: 'A profundidade real começa nos 20 m. Vamos mais fundo.',
@@ -717,7 +717,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  },
  },
  'react-right': {
- id: 'react-right', name: 'React Right', price: '€180', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/react-right.webp', accentColor: '#c9c2b6',
+ id: 'react-right', name: 'React Right', price: '€180', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/react-right.webp', accentColor: 'var(--muted)',
  tagline: {
  EN: 'The course everyone hopes never to use.',
  PT: 'O curso que todos esperam nunca ter de usar.',
@@ -768,7 +768,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  testimonial: { quote: 'The training was well structured and extremely informative. Every part was explained clearly, making the learning experience both enjoyable and confidence-building. The instructor made me feel comfortable and supported throughout — highly recommend.', author: 'Júlia Carolina M.', source: 'TripAdvisor' },
  },
  'stress-rescue': {
- id: 'stress-rescue', name: 'Stress & Rescue', price: '€360', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/stress-rescue.webp', accentColor: '#c9c2b6',
+ id: 'stress-rescue', name: 'Stress & Rescue', price: '€360', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/stress-rescue.webp', accentColor: 'var(--muted)',
  tagline: {
  EN: 'The best course most divers ever take.',
  PT: 'O melhor curso que a maioria dos mergulhadores alguma vez faz.',
@@ -828,7 +828,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  testimonial: { quote: 'The final rescue scenario is intense in the best way. By the end you are pulling an unconscious diver from 6 metres, getting them to the surface and onto the boat in under two minutes. This course made me a better diver and a better person to be underwater with.', author: 'Hannah O., Vienna', source: 'TripAdvisor' },
  },
  'science-diving': {
- id: 'science-diving', name: 'Science of Diving', price: '€250', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/science-diving.webp', accentColor: '#c9c2b6',
+ id: 'science-diving', name: 'Science of Diving', price: '€250', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/science-diving.webp', accentColor: 'var(--muted)',
  tagline: {
  EN: 'Understand every breath you take.',
  PT: 'Compreenda cada respiração que dá.',
@@ -879,7 +879,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  testimonial: { quote: 'I took this because it is required for Divemaster. Did not expect to love it. Now I understand why my ears always equalised easier going up than down, why I get a headache after a long day of dives, and how my computer actually thinks. Worth it for any serious diver.', author: 'Paulo A., Lisbon', source: 'Google Reviews' },
  },
  'dive-guide': {
- id: 'dive-guide', name: 'Dive Guide', price: '€680', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/dive-guide.webp', accentColor: '#c9c2b6',
+ id: 'dive-guide', name: 'Dive Guide', price: '€680', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/dive-guide.webp', accentColor: 'var(--muted)',
  tagline: {
  EN: 'Time to lead. Your first professional rating.',
  PT: 'Hora de liderar. A sua primeira classificação profissional.',
@@ -934,7 +934,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  testimonial: { quote: 'I spent a summer at AZD doing my Dive Guide as a working internship. Real guests, real dives, real feedback. By the end I was running briefings and leading groups myself. There is no better place in Europe to do this.', author: 'Clara M., Madrid', source: 'Google Reviews' },
  },
  'divemaster': {
- id: 'divemaster', name: 'Divemaster', price: '€950', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/divemaster.webp', accentColor: '#c9c2b6',
+ id: 'divemaster', name: 'Divemaster', price: '€950', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/divemaster.webp', accentColor: 'var(--muted)',
  tagline: {
  EN: 'Your career in the ocean starts here.',
  PT: 'A sua carreira no oceano começa aqui.',
@@ -989,7 +989,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  testimonial: { quote: 'Two months in the Azores, 60 training dives, and I left as a Divemaster. The AZD internship model means you are doing real dives from week one. Nothing beats learning by actually doing it every single day.', author: 'Rafael T., São Paulo', source: 'TripAdvisor' },
  },
  'ssi-explorers': {
- id: 'ssi-explorers', name: 'SSI Explorers', price: 'Upon Request', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/ssi-explorers.webp', accentColor: '#f3efe6',
+ id: 'ssi-explorers', name: 'SSI Explorers', price: 'Upon Request', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/ssi-explorers.webp', accentColor: 'var(--accent)',
  noBook: true,
  tagline: {
  EN: 'Aquatic adventures designed for young ocean explorers — from age 6.',
@@ -1048,7 +1048,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  },
  },
  'photo-video': {
- id: 'photo-video', name: 'Photo & Video', price: '€200', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/photo-video.webp', accentColor: '#f3efe6',
+ id: 'photo-video', name: 'Photo & Video', price: '€200', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/photo-video.webp', accentColor: 'var(--accent)',
  tagline: {
  EN: 'Bring the ocean home.',
  PT: 'Leve o oceano para casa.',
@@ -1099,7 +1099,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  certifies: { EN: 'SSI Photography & Videography Specialty', PT: 'SSI Photography & Videography Specialty', DE: 'SSI Photography & Videography Specialty', ES: 'SSI Photography & Videography Specialty' },
  },
  'computer-diving': {
- id: 'computer-diving', name: 'Computer Diving', price: '€170', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/computer-diving.webp', accentColor: '#f3efe6',
+ id: 'computer-diving', name: 'Computer Diving', price: '€170', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/computer-diving.webp', accentColor: 'var(--accent)',
  tagline: {
  EN: 'Know what your computer is telling you.',
  PT: 'Saiba o que o seu computador lhe está a dizer.',
@@ -1150,7 +1150,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  certifies: { EN: 'SSI Computer Diving Specialty', PT: 'SSI Computer Diving Specialty', DE: 'SSI Computer Diving Specialty', ES: 'SSI Computer Diving Specialty' },
  },
  'boat-diving': {
- id: 'boat-diving', name: 'Boat Diving', price: '€250', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/boat-diving.webp', accentColor: '#f3efe6',
+ id: 'boat-diving', name: 'Boat Diving', price: '€250', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/boat-diving.webp', accentColor: 'var(--accent)',
  tagline: {
  EN: 'Get the most out of every boat trip.',
  PT: 'Tire o máximo de cada saída de barco.',
@@ -1201,7 +1201,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  certifies: { EN: 'SSI Boat Diving Specialty', PT: 'SSI Boat Diving Specialty', DE: 'SSI Boat Diving Specialty', ES: 'SSI Boat Diving Specialty' },
  },
  'fish-identification': {
- id: 'fish-identification', name: 'Fish Identification', price: '€170', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/fish-identification.webp', accentColor: '#f3efe6',
+ id: 'fish-identification', name: 'Fish Identification', price: '€170', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/fish-identification.webp', accentColor: 'var(--accent)',
  tagline: {
  EN: 'Name what you are looking at.',
  PT: 'Nomeie o que está a ver.',
@@ -1252,7 +1252,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  certifies: { EN: 'SSI Fish Identification Specialty', PT: 'SSI Fish Identification Specialty', DE: 'SSI Fish Identification Specialty', ES: 'SSI Fish Identification Specialty' },
  },
  'coral-identification': {
- id: 'coral-identification', name: 'Coral Identification', price: '€150', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/coral-identification.webp', accentColor: '#f3efe6',
+ id: 'coral-identification', name: 'Coral Identification', price: '€150', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/coral-identification.webp', accentColor: 'var(--accent)',
  tagline: {
  EN: 'Read the reef — understand what you are kneeling on.',
  PT: 'Leia o recife — compreenda no que está ajoelhado.',
@@ -1746,8 +1746,8 @@ export function PageCourseDetail({ nav, slug, lang }: { nav: (p: string) => void
  <div style={{
  minHeight: '300px', position: 'relative', overflow: 'hidden',
  background: d.img
- ? `linear-gradient(180deg,rgba(9,9,9,.3) 0%,rgba(9,9,9,.85) 70%,#090909 100%), url('${d.img}') center/cover`
- : 'linear-gradient(180deg,#121210,#090909)',
+ ? `linear-gradient(180deg,color-mix(in srgb, var(--bg) 30%, transparent) 0%,color-mix(in srgb, var(--bg) 85%, transparent) 70%,var(--bg) 100%), url('${d.img}') center/cover`
+ : 'linear-gradient(180deg,var(--surface),var(--bg))',
  display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
  padding: isMobile ? '32px 20px 28px' : '48px 48px 40px',
  }}>
@@ -1763,7 +1763,7 @@ export function PageCourseDetail({ nav, slug, lang }: { nav: (p: string) => void
  <h1 style={{ fontSize: 'clamp(28px,5vw,52px)', fontWeight: 500, letterSpacing: '-.02em', marginBottom: '10px', lineHeight: 1.05 }}>
  {d.name}<span style={{ color: d.accentColor }}>.</span>
  </h1>
- <p style={{ fontSize: '19px', fontWeight: 500, color: '#f3efe6', margin: '0 0 0', maxWidth: '540px', lineHeight: 1.4 }}>{d.tagline[lang]}</p>
+ <p style={{ fontSize: '19px', fontWeight: 500, color: 'var(--text)', margin: '0 0 0', maxWidth: '540px', lineHeight: 1.4 }}>{d.tagline[lang]}</p>
  </div>
 
  <div style={{ padding: isMobile ? '0 20px 48px' : '0 48px 60px' }}>
@@ -1778,9 +1778,9 @@ export function PageCourseDetail({ nav, slug, lang }: { nav: (p: string) => void
  <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 340px', gap: isMobile ? '32px' : '48px', alignItems: 'start' }}>
  {/* Left: copy */}
  <div>
- <p style={{ fontSize: '17px', color: '#f3efe6', lineHeight: 1.7, marginBottom: '20px', fontWeight: 500 }}>{d.intro[lang]}</p>
+ <p style={{ fontSize: '17px', color: 'var(--text)', lineHeight: 1.7, marginBottom: '20px', fontWeight: 500 }}>{d.intro[lang]}</p>
  {d.body.map((para, i) => (
- <p key={i} style={{ fontSize: '15px', color: '#c9c2b6', lineHeight: 1.75, marginBottom: '16px' }}>{para[lang]}</p>
+ <p key={i} style={{ fontSize: '15px', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '16px' }}>{para[lang]}</p>
  ))}
 
  {/* Highlights */}
@@ -1790,7 +1790,7 @@ export function PageCourseDetail({ nav, slug, lang }: { nav: (p: string) => void
  {d.highlights.map((h, hi) => (
  <div key={hi} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
  <span style={{ color: d.accentColor, fontWeight: 500, fontSize: '16px', lineHeight: 1, flexShrink: 0, marginTop: '1px' }}></span>
- <span style={{ fontSize: '14.5px', color: '#f3efe6', lineHeight: 1.5 }}>{h[lang]}</span>
+ <span style={{ fontSize: '14.5px', color: 'var(--text)', lineHeight: 1.5 }}>{h[lang]}</span>
  </div>
  ))}
  </div>
@@ -1798,8 +1798,8 @@ export function PageCourseDetail({ nav, slug, lang }: { nav: (p: string) => void
 
  {/* Testimonial */}
  {d.testimonial && (
- <div style={{ marginTop: '36px', background: 'rgba(243,239,230,.07)', border: '1px solid rgba(243,239,230,.16)', borderLeft: `3px solid ${d.accentColor}`, borderRadius: 0, padding: '20px 22px' }}>
- <p style={{ fontSize: '15px', color: '#f3efe6', lineHeight: 1.7, margin: '0 0 10px', fontStyle: 'italic' }}>
+ <div style={{ marginTop: '36px', background: 'color-mix(in srgb, var(--text) 7%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 16%, transparent)', borderLeft: `3px solid ${d.accentColor}`, borderRadius: 0, padding: '20px 22px' }}>
+ <p style={{ fontSize: '15px', color: 'var(--text)', lineHeight: 1.7, margin: '0 0 10px', fontStyle: 'italic' }}>
  &ldquo;{d.testimonial.quote}&rdquo;
  </p>
  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -1813,13 +1813,13 @@ export function PageCourseDetail({ nav, slug, lang }: { nav: (p: string) => void
 
  {/* Careers box — only for dive-guide and divemaster */}
  {(slug === 'dive-guide' || slug === 'divemaster') && (
- <div style={{ marginTop: '36px', background: 'rgba(243,239,230,.06)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '20px 22px' }}>
- <b style={{ color: '#f3efe6', fontSize: '15px', display: 'block', marginBottom: '14px' }}>
+ <div style={{ marginTop: '36px', background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 0, padding: '20px 22px' }}>
+ <b style={{ color: 'var(--text)', fontSize: '15px', display: 'block', marginBottom: '14px' }}>
  {CAREERS_BOX.title[lang]}
  </b>
  <a
  href={`mailto:admin.azoresdiving@gmail.com?subject=Careers%20%E2%80%94%20Dive%20Guide%20%2F%20Divemaster%20internship`}
- style={{ display: 'inline-block', background: 'linear-gradient(135deg,#f3efe6,#f3efe6)', color: '#000', fontWeight: 500, fontSize: '14px', padding: '10px 20px', borderRadius: 0, boxShadow: 'none', textDecoration: 'none', fontFamily: s.font }}
+ style={{ display: 'inline-block', background: 'linear-gradient(135deg,var(--text),var(--text))', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', padding: '10px 20px', borderRadius: 0, boxShadow: 'none', textDecoration: 'none', fontFamily: s.font }}
  >
  {CAREERS_BOX.btn[lang]}
  </a>
@@ -1847,14 +1847,14 @@ export function PageCourseDetail({ nav, slug, lang }: { nav: (p: string) => void
  {d.includes.map((item, ii) => (
  <div key={ii} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
  <span style={{ color: d.accentColor, fontSize: '14px', lineHeight: 1.4, flexShrink: 0 }}>—</span>
- <span style={{ fontSize: '14px', color: '#c9c2b6', lineHeight: 1.45 }}>{item[lang]}</span>
+ <span style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.45 }}>{item[lang]}</span>
  </div>
  ))}
  </div>
  </div>
 
  {/* Certifies */}
- <div style={{ background: 'rgba(243,239,230,.06)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 0, padding: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.accent, marginBottom: '8px' }}>{t('cd_youll_earn')}</div>
  <p style={{ fontSize: '14px', color: s.text, fontWeight: 500, margin: 0, lineHeight: 1.4 }}>{d.certifies[lang]}</p>
  </div>

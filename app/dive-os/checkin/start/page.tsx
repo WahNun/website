@@ -64,7 +64,7 @@ function StartInner() {
 
  return (
  <div style={{
- minHeight: '100vh', background: '#000', color: '#f3efe6',
+ minHeight: '100vh', background: 'var(--bg)', color: 'var(--text)',
  display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
  gap: '18px', padding: '40px', textAlign: 'center',
  fontFamily: 'var(--font-geist-sans), sans-serif',
@@ -78,9 +78,9 @@ function StartInner() {
  </p>
  <div style={{ width: '100%', maxWidth: '420px', display: 'flex', flexDirection: 'column', gap: '10px', textAlign: 'left' }}>
  {guests.map(g => (
- <div key={g.token} style={{ background: 'rgba(243,239,230,.05)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '14px 16px' }}>
- <div style={{ fontSize: '14px', fontWeight: 500, color: '#f3efe6' }}>{g.label}</div>
- <div style={{ fontSize: '14px', color: '#f3efe6', marginTop: '2px' }}>{g.product_name ?? 'Booking'}</div>
+ <div key={g.token} style={{ background: 'color-mix(in srgb, var(--text) 5%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 0, padding: '14px 16px' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)' }}>{g.label}</div>
+ <div style={{ fontSize: '14px', color: 'var(--text)', marginTop: '2px' }}>{g.product_name ?? 'Booking'}</div>
  <div style={{ fontSize: '14px', color: 'rgba(255,255,255,.55)', marginTop: '2px' }}>
  {g.booking_date ?? ''}{g.session ? ` · ${g.session.toUpperCase()}` : ''}
  </div>
@@ -89,9 +89,9 @@ function StartInner() {
  ? <div style={{ marginTop: '10px', fontSize: '14px', fontWeight: 500, color: '#b7c4b0' }}> Checked in</div>
  : (
  <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginTop: '10px', flexWrap: 'wrap' }}>
- <a href={`/dive-os/checkin?token=${g.token}`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', padding: '9px 16px', borderRadius: 0, background: '#f3efe6', color: '#000', fontWeight: 500, fontSize: '14px', textDecoration: 'none' }}>Check in {g.label.replace(/ — .*/, '')} </a>
+ <a href={`/dive-os/checkin?token=${g.token}`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', padding: '9px 16px', borderRadius: 0, background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', textDecoration: 'none' }}>Check in {g.label.replace(/ — .*/, '')} </a>
  <button type="button" onClick={() => void copyLink(g.token, g.label.replace(/ — .*/, ''))} title="Copy this guest's check-in link"
- style={{ padding: '9px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.35)', background: 'transparent', color: '#f3efe6', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>
+ style={{ padding: '9px 14px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', background: 'transparent', color: 'var(--text)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>
  Copy check-in link
  </button>
  </div>
@@ -104,7 +104,7 @@ function StartInner() {
  <>
  <div style={{
  width: '38px', height: '38px', borderRadius: '50%',
- border: '3px solid rgba(243,239,230,.2)', borderTopColor: '#f3efe6',
+ border: '3px solid color-mix(in srgb, var(--text) 20%, transparent)', borderTopColor: 'var(--accent)',
  animation: 'spin 0.9s linear infinite',
  }} />
  <style>{'@keyframes spin{to{transform:rotate(360deg)}}'}</style>
@@ -129,11 +129,11 @@ function StartInner() {
  If you completed a payment, your booking is safe. Please use the
  check-in link from your confirmation email, or contact us.
  </p>
- <Link href="/dive-os/book" style={{ color: '#f3efe6', fontSize: '14px', fontWeight: 500, textDecoration: 'none' }}>Back to booking</Link>
+ <Link href="/dive-os/book" style={{ color: 'var(--text)', fontSize: '14px', fontWeight: 500, textDecoration: 'none' }}>Back to booking</Link>
  </>
  )}
  {toast && (
- <div role="status" style={{ position: 'fixed', left: '50%', bottom: '28px', transform: 'translateX(-50%)', padding: '11px 18px', borderRadius: 0, background: toast.error ? '#3a1410' : '#121210', border: `1px solid ${toast.error ? '#c9928c' : 'rgba(183,196,176,.5)'}`, color: toast.error ? '#ff9a85' : '#b7c4b0', fontSize: '14px', fontWeight: 500, maxWidth: '90vw', boxShadow: 'none', zIndex: 50 }}>
+ <div role="status" style={{ position: 'fixed', left: '50%', bottom: '28px', transform: 'translateX(-50%)', padding: '11px 18px', borderRadius: 0, background: toast.error ? '#3a1410' : 'var(--surface)', border: `1px solid ${toast.error ? '#c9928c' : 'rgba(183,196,176,.5)'}`, color: toast.error ? '#ff9a85' : '#b7c4b0', fontSize: '14px', fontWeight: 500, maxWidth: '90vw', boxShadow: 'none', zIndex: 50 }}>
  {toast.error ? ' ' : ' '}{toast.text}
  </div>
  )}
@@ -143,7 +143,7 @@ function StartInner() {
 
 export default function Page() {
  return (
- <Suspense fallback={<div style={{ minHeight: '100vh', background: '#000' }} />}>
+ <Suspense fallback={<div style={{ minHeight: '100vh', background: 'var(--bg)' }} />}>
  <StartInner />
  </Suspense>
  )

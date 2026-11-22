@@ -18,14 +18,14 @@ const T = {
  nav_member_area: { EN: 'Member Area', PT: 'Área Privada', DE: 'Mitgliederbereich', ES: 'Área de miembros' },
 }
 
-const accent = '#f3efe6'
-const mutedColor = '#c9c2b6'
+const accent = 'var(--text)'
+const mutedColor = 'var(--muted)'
 const font = `var(--font-geist-sans), sans-serif`
 
 const bookBtnStyle: React.CSSProperties = {
  display: 'inline-block',
- background: 'linear-gradient(135deg,#f3efe6,#f3efe6)',
- color: '#000',
+ background: 'linear-gradient(135deg,var(--text),var(--text))',
+ color: 'var(--on-accent)',
  fontWeight: 500,
  fontSize: '14px',
  padding: '12px 24px',
@@ -94,7 +94,7 @@ export default function NavBar({ lang: initialLang }: NavBarProps) {
  href="#main-content"
  style={{
  position: 'absolute', top: '-120px', left: 0, zIndex: 9999,
- background: accent, color: '#000', padding: '8px 16px',
+ background: accent, color: 'var(--on-accent)', padding: '8px 16px',
  fontWeight: 500, fontFamily: font, textDecoration: 'none',
  transition: 'top .15s',
  }}
@@ -113,7 +113,7 @@ export default function NavBar({ lang: initialLang }: NavBarProps) {
  ...(collapsed
  ? { position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, transform: peek ? 'translateY(0)' : 'translateY(-100%)', transition: 'transform .18s ease', boxShadow: peek ? '0 8px 30px rgba(0,0,0,.45)' : 'none' }
  : { position: 'sticky', top: 0, zIndex: 100 }),
- background: 'rgba(9,9,9,.92)', backdropFilter: 'blur(12px)',
+ background: 'color-mix(in srgb, var(--bg) 92%, transparent)', backdropFilter: 'blur(12px)',
  borderBottom: '1px solid rgba(255,255,255,.06)',
  }}
  >
@@ -153,7 +153,7 @@ export default function NavBar({ lang: initialLang }: NavBarProps) {
  onClick={() => setMenuOpen(o => !o)}
  style={{
  background: 'transparent', border: '1px solid rgba(255,255,255,.15)',
- borderRadius: 0, color: '#f3efe6', fontSize: '20px',
+ borderRadius: 0, color: 'var(--text)', fontSize: '20px',
  cursor: 'pointer', padding: '6px 10px', lineHeight: 1, flexShrink: 0,
  }}
  aria-label={menuOpen ? 'Close menu' : 'Open menu'}
@@ -170,7 +170,7 @@ export default function NavBar({ lang: initialLang }: NavBarProps) {
  key={href}
  href={href}
  style={{
- color: isActive(href) ? accent : '#f3efe6',
+ color: isActive(href) ? accent : 'var(--accent)',
  fontSize: '14px',
  fontWeight: 500,
  cursor: 'pointer',
@@ -190,8 +190,8 @@ export default function NavBar({ lang: initialLang }: NavBarProps) {
  value={lang}
  onChange={e => handleLangChange(e.target.value as Lang)}
  style={{
- background: '#121210', color: accent,
- border: '1px solid rgba(243,239,230,.25)',
+ background: 'var(--surface)', color: accent,
+ border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)',
  borderRadius: 0, padding: '6px 10px',
  fontSize: '14px', fontWeight: 500,
  cursor: 'pointer', fontFamily: font, outline: 'none',
@@ -216,8 +216,8 @@ export default function NavBar({ lang: initialLang }: NavBarProps) {
  fontSize: '14px', fontWeight: 500, padding: '8px 14px',
  borderRadius: 0, cursor: 'pointer',
  color: isMembersActive ? accent : mutedColor,
- background: isMembersActive ? 'rgba(243,239,230,.1)' : 'rgba(255,255,255,.04)',
- border: `1px solid ${isMembersActive ? 'rgba(243,239,230,.35)' : 'rgba(255,255,255,.08)'}`,
+ background: isMembersActive ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'rgba(255,255,255,.04)',
+ border: `1px solid ${isMembersActive ? 'color-mix(in srgb, var(--text) 35%, transparent)' : 'rgba(255,255,255,.08)'}`,
  flexShrink: 0, whiteSpace: 'nowrap',
  textDecoration: 'none', fontFamily: font,
  display: 'inline-block',
@@ -233,7 +233,7 @@ export default function NavBar({ lang: initialLang }: NavBarProps) {
  {isMobile && menuOpen && (
  <div style={{
  position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 200,
- background: 'rgba(9,9,9,.97)', backdropFilter: 'blur(14px)',
+ background: 'color-mix(in srgb, var(--bg) 97%, transparent)', backdropFilter: 'blur(14px)',
  display: 'flex', flexDirection: 'column', padding: '20px 24px 40px',
  overflowY: 'auto',
  }}>
@@ -245,7 +245,7 @@ export default function NavBar({ lang: initialLang }: NavBarProps) {
  </a>
  <button
  onClick={() => setMenuOpen(false)}
- style={{ background: 'transparent', border: 'none', color: '#f3efe6', fontSize: '26px', cursor: 'pointer', lineHeight: 1 }}
+ style={{ background: 'transparent', border: 'none', color: 'var(--text)', fontSize: '26px', cursor: 'pointer', lineHeight: 1 }}
  aria-label="Close menu"
  >
  
@@ -260,7 +260,7 @@ export default function NavBar({ lang: initialLang }: NavBarProps) {
  onClick={() => setMenuOpen(false)}
  style={{
  fontSize: '26px', fontWeight: 500, letterSpacing: '-0.02em',
- padding: '16px 0', color: isActive(href) ? accent : '#f3efe6',
+ padding: '16px 0', color: isActive(href) ? accent : 'var(--accent)',
  textDecoration: 'none', borderBottom: '1px solid rgba(255,255,255,.06)',
  width: '100%', display: 'block', fontFamily: font,
  }}
@@ -278,8 +278,8 @@ export default function NavBar({ lang: initialLang }: NavBarProps) {
  style={{
  padding: '8px 18px', borderRadius: 0,
  border: `1px solid ${lang === l ? accent : 'rgba(255,255,255,.15)'}`,
- background: lang === l ? 'rgba(243,239,230,.15)' : 'transparent',
- color: lang === l ? accent : '#f3efe6',
+ background: lang === l ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'transparent',
+ color: lang === l ? accent : 'var(--accent)',
  fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: font,
  }}
  >

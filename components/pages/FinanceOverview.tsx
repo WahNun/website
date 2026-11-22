@@ -147,7 +147,7 @@ export function FinanceHeadline({ simulationMode }: { simulationMode: boolean | 
  )
 }
 
-const tile = { background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '16px 16px' } as const
+const tile = { background: 'var(--glass)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '16px 16px' } as const
 const lbl = { fontSize: '14px', color: s.muted, textTransform: 'uppercase', letterSpacing: '.08em' } as const
 const row = { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px', padding: '9px 0', borderBottom: '1px solid rgba(255,255,255,.07)' } as const
 const btn = { background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, borderRadius: 0, padding: '6px 12px', cursor: 'pointer', fontSize: '14px', fontFamily: 'inherit' } as const
@@ -179,7 +179,7 @@ function Section({ title, children, action }: { title: string; children: ReactNo
 }
 
 function BookingNo({ id, onOpen }: { id: string; onOpen: (id: string) => void }) {
- return <button type="button" onClick={() => onOpen(id)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: '#f3efe6', fontWeight: 500, background: 'transparent', border: '1px solid rgba(243,239,230,.35)', borderRadius: 0, padding: '0 6px', cursor: 'pointer', fontSize: '14px' }}>{id.slice(0, 8).toUpperCase()}</button>
+ return <button type="button" onClick={() => onOpen(id)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: 'var(--text)', fontWeight: 500, background: 'transparent', border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', borderRadius: 0, padding: '0 6px', cursor: 'pointer', fontSize: '14px' }}>{id.slice(0, 8).toUpperCase()}</button>
 }
 
 function byMethod(pays: Pay[]) {
@@ -284,7 +284,7 @@ function Overview({ simulationMode, who, onOpenBooking, isMobile }: { simulation
  <label style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: s.muted }}>
  View
  <select value={mode} aria-label="View" onChange={e => pickMode(e.target.value as Mode)}
- style={{ background: '#000', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, color: s.text, fontSize: '14px', fontWeight: 500, fontFamily: 'inherit', padding: '7px 10px', cursor: 'pointer', colorScheme: 'dark' }}>
+ style={{ background: 'var(--bg)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, color: s.text, fontSize: '14px', fontWeight: 500, fontFamily: 'inherit', padding: '7px 10px', cursor: 'pointer', colorScheme: 'dark' }}>
  {MODES.map(([m, l]) => <option key={m} value={m}>{l}</option>)}
  </select>
  </label>

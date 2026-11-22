@@ -119,11 +119,11 @@ const SSI_COL_LABELS: Record<string,string> = {
 
 function PageAccessDenied({ nav }: { nav: (p: MemberPage) => void }) {
  return (
- <div style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '16px', padding: '40px', background: '#000' }}>
+ <div style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '16px', padding: '40px', background: 'var(--bg)' }}>
  <div style={{ fontSize: '36px' }}></div>
- <h2 style={{ fontSize: '22px', fontWeight: 500, margin: 0, color: '#f3efe6' }}>Access restricted</h2>
+ <h2 style={{ fontSize: '22px', fontWeight: 500, margin: 0, color: 'var(--text)' }}>Access restricted</h2>
  <p style={{ fontSize: '14px', color: 'rgba(255,255,255,.45)', margin: 0, textAlign: 'center', maxWidth: '320px', lineHeight: 1.6 }}>Your account does not have permission to view this page. Contact your admin if you think this is a mistake.</p>
- <button onClick={() => nav('dashboard')} style={{ marginTop: '8px', padding: '10px 24px', borderRadius: 0, border: 'none', background: 'rgba(243,239,230,.15)', color: '#f3efe6', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}> Back to Dashboard</button>
+ <button onClick={() => nav('dashboard')} style={{ marginTop: '8px', padding: '10px 24px', borderRadius: 0, border: 'none', background: 'color-mix(in srgb, var(--text) 15%, transparent)', color: 'var(--text)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}> Back to Dashboard</button>
  </div>
  )
 }
@@ -154,7 +154,7 @@ function PageLogin({ onLogin }: { onLogin: () => void }) {
  const inp: React.CSSProperties = {
  width: '100%', padding: '12px 14px', borderRadius: 0, fontSize: '15px',
  background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.12)',
- color: '#f3efe6', fontFamily: s.font, outline: 'none', boxSizing: 'border-box',
+ color: 'var(--text)', fontFamily: s.font, outline: 'none', boxSizing: 'border-box',
  }
 
  return (
@@ -189,7 +189,7 @@ function PageLogin({ onLogin }: { onLogin: () => void }) {
  <button
  onClick={handleLogin}
  disabled={loading}
- style={{ width: '100%', padding: '13px', borderRadius: 0, border: 'none', background: loading ? 'rgba(243,239,230,.4)' : s.accent, color: '#000', fontWeight: 500, fontSize: '15px', cursor: loading ? 'default' : 'pointer', fontFamily: s.font, marginTop: '4px' }}
+ style={{ width: '100%', padding: '13px', borderRadius: 0, border: 'none', background: loading ? 'color-mix(in srgb, var(--text) 40%, transparent)' : s.accent, color: 'var(--on-accent)', fontWeight: 500, fontSize: '15px', cursor: loading ? 'default' : 'pointer', fontFamily: s.font, marginTop: '4px' }}
  >
  {loading ? 'Signing in…' : 'Sign in'}
  </button>
@@ -226,7 +226,7 @@ function DayPickerLabel({ dayOffset, setDayOffset, label, style }: { dayOffset: 
  return (
  <>
  <button ref={btnRef} type="button" onClick={openPicker} title="Pick a date"
- style={{ ...style, background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: s.font, textDecoration: 'underline dotted', textUnderlineOffset: '4px', textDecorationColor: 'rgba(243,239,230,.4)' }}>{label}</button>
+ style={{ ...style, background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: s.font, textDecoration: 'underline dotted', textUnderlineOffset: '4px', textDecorationColor: 'color-mix(in srgb, var(--text) 40%, transparent)' }}>{label}</button>
  {open && typeof document !== 'undefined' && createPortal(
  <>
  <div onClick={() => setOpen(false)} style={{ position: 'fixed', inset: 0, zIndex: 9998 }} />
@@ -360,7 +360,7 @@ function PageDashboard({ nav, dayOffset, setDayOffset, userRole }: { nav: (p: Me
  return () => clearInterval(id)
  }, [])
 
- const divider = <div style={{ width: '1px', height: '20px', background: 'rgba(243,239,230,.15)', opacity: .7, flexShrink: 0 }} />
+ const divider = <div style={{ width: '1px', height: '20px', background: 'color-mix(in srgb, var(--text) 15%, transparent)', opacity: .7, flexShrink: 0 }} />
 
  const condItem = (icon: string, label: string, val: string) => (
  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
@@ -373,7 +373,7 @@ function PageDashboard({ nav, dayOffset, setDayOffset, userRole }: { nav: (p: Me
  )
 
  return (
- <div style={{ background: '#000', minHeight: '100vh' }}>
+ <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
 
  {/* ── LIVE OPS BAR ── */}
  <div style={{
@@ -397,7 +397,7 @@ function PageDashboard({ nav, dayOffset, setDayOffset, userRole }: { nav: (p: Me
  {/* Wind with compass SVG */}
  <div style={{ display: 'flex', alignItems: 'center', gap: '5px', flexShrink: 0 }}>
  <svg width="18" height="18" viewBox="0 0 18 18" style={{ flexShrink: 0 }}>
- <circle cx="9" cy="9" r="8" fill="none" stroke="rgba(243,239,230,.15)" strokeWidth="1.2"/>
+ <circle cx="9" cy="9" r="8" fill="none" stroke="color-mix(in srgb, var(--text) 15%, transparent)" strokeWidth="1.2"/>
  <g transform={`rotate(${wxData?.windDeg ?? 45},9,9)`}>
  <line x1="9" y1="3" x2="9" y2="15" stroke="#b7c4b0" strokeWidth="1.8" strokeLinecap="round"/>
  <polygon points="9,2 7,7 11,7" fill="#b7c4b0"/>
@@ -419,16 +419,16 @@ function PageDashboard({ nav, dayOffset, setDayOffset, userRole }: { nav: (p: Me
  <div style={{ marginLeft: 'auto', flexShrink: 0 }}>
  {dayOffset !== 0 && (
  <button type="button" onClick={() => setDayOffset(0)} title="Back to today"
- style={{ padding: '4px 12px', borderRadius: 0, border: '1px solid rgba(243,239,230,.4)', background: 'rgba(243,239,230,.12)', color: s.accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap', letterSpacing: '.04em' }}> Today</button>
+ style={{ padding: '4px 12px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 40%, transparent)', background: 'color-mix(in srgb, var(--text) 12%, transparent)', color: s.accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap', letterSpacing: '.04em' }}> Today</button>
  )}
  </div>
- <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: '10px', paddingLeft: '10px', borderLeft: '1px solid rgba(243,239,230,.15)' }}>
+ <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: '10px', paddingLeft: '10px', borderLeft: '1px solid color-mix(in srgb, var(--text) 15%, transparent)' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
- <button type="button" onClick={() => setDayOffset(o => o - 1)} style={{ background: 'none', border: 'none', color: 'rgba(243,239,230,.5)', cursor: 'pointer', fontSize: '14px', padding: '0 3px', lineHeight: 1, fontFamily: s.font }}>‹</button>
+ <button type="button" onClick={() => setDayOffset(o => o - 1)} style={{ background: 'none', border: 'none', color: 'color-mix(in srgb, var(--text) 50%, transparent)', cursor: 'pointer', fontSize: '14px', padding: '0 3px', lineHeight: 1, fontFamily: s.font }}>‹</button>
  <DayPickerLabel dayOffset={dayOffset} setDayOffset={setDayOffset} label={rollDateLabel} style={{ fontSize: '14px', fontWeight: 500, color: dayOffset === 0 ? s.accent : '#c9b48a', whiteSpace: 'nowrap', minWidth: '58px', textAlign: 'center', letterSpacing: '.04em' }} />
- <button type="button" onClick={() => setDayOffset(o => o + 1)} style={{ background: 'none', border: 'none', color: 'rgba(243,239,230,.5)', cursor: 'pointer', fontSize: '14px', padding: '0 3px', lineHeight: 1, fontFamily: s.font }}>›</button>
+ <button type="button" onClick={() => setDayOffset(o => o + 1)} style={{ background: 'none', border: 'none', color: 'color-mix(in srgb, var(--text) 50%, transparent)', cursor: 'pointer', fontSize: '14px', padding: '0 3px', lineHeight: 1, fontFamily: s.font }}>›</button>
  </div>
- <span style={{ width: '1px', height: '16px', background: 'rgba(243,239,230,.15)', display: 'inline-block' }} />
+ <span style={{ width: '1px', height: '16px', background: 'color-mix(in srgb, var(--text) 15%, transparent)', display: 'inline-block' }} />
  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#b7c4b0', display: 'inline-block', boxShadow: 'none' }} />
  <span style={{ fontSize: '14px', fontWeight: 500, color: s.text, fontFamily: 'var(--font-geist-mono), ui-monospace, monospace' }}>{clock}</span>
  </div>
@@ -471,7 +471,7 @@ function PageDashboard({ nav, dayOffset, setDayOffset, userRole }: { nav: (p: Me
 
  {tbdBookingPopup && (
  <div onClick={() => setTbdBookingPopup(null)} style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '40px 16px', overflowY: 'auto' }}>
- <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: '#121210', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, boxShadow: 'none' }}>
+ <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 0, boxShadow: 'none' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>Booking <span style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: s.text, fontWeight: 500 }}>{tbdBookingPopup.slice(0, 8).toUpperCase()}</span> · Sessions tab</span>
  <button type="button" onClick={() => setTbdBookingPopup(null)} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.text, borderRadius: 0, padding: '6px 12px', fontSize: '14px', cursor: 'pointer' }}>Close </button>
@@ -494,7 +494,7 @@ function PageDashboard({ nav, dayOffset, setDayOffset, userRole }: { nav: (p: Me
 
  {payBookingPopup && (
  <div onClick={() => setPayBookingPopup(null)} style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '40px 16px', overflowY: 'auto' }}>
- <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: '#121210', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, boxShadow: 'none' }}>
+ <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 0, boxShadow: 'none' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>Booking <span style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: s.text, fontWeight: 500 }}>{payBookingPopup.slice(0, 8).toUpperCase()}</span> · Payments tab</span>
  <button type="button" onClick={() => { setPayBookingPopup(null); setDashReloadKey(k => k + 1) }} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.text, borderRadius: 0, padding: '6px 12px', fontSize: '14px', cursor: 'pointer' }}>Close </button>
@@ -511,9 +511,9 @@ function PageDashboard({ nav, dayOffset, setDayOffset, userRole }: { nav: (p: Me
 
  {/* Active Courses — B-5 CourseLoad Widget */}
  <CourseLoad rollDateStr={rollDateStr} isAdmin={userRole === 'admin' || simulationMode} simulationMode={simulationMode} reloadKey={dashReloadKey} />
- {false && <div style={{ position: 'relative', background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '20px', overflow: 'hidden' }}>
- <div style={{ position: 'absolute', inset: 0, background: 'rgba(9,9,9,.6)', backdropFilter: 'blur(4px)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '6px', zIndex: 10 }}>
- <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'rgba(243,239,230,.8)' }}>Coming Soon</div>
+ {false && <div style={{ position: 'relative', background: 'var(--glass)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 0, padding: '20px', overflow: 'hidden' }}>
+ <div style={{ position: 'absolute', inset: 0, background: 'color-mix(in srgb, var(--bg) 60%, transparent)', backdropFilter: 'blur(4px)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '6px', zIndex: 10 }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'color-mix(in srgb, var(--text) 80%, transparent)' }}>Coming Soon</div>
  <div style={{ fontSize: '14px', color: 'rgba(255,255,255,.3)', textAlign: 'center', lineHeight: 1.5 }}>Course tracking coming soon</div>
  </div>
  <div style={{ filter: 'blur(1px)', opacity: .5, pointerEvents: 'none', userSelect: 'none' }}>
@@ -522,13 +522,13 @@ function PageDashboard({ nav, dayOffset, setDayOffset, userRole }: { nav: (p: Me
  { name: 'Open Water Diver', sub: 'Gruppe Müller · 2 students', tag: 'Day 2/4', next: ' Ocean dives today 14:00' },
  { name: 'Advanced Open Water Diver', sub: 'Solo · R. Ferreira', tag: 'Day 1/2', next: ' Deep dive + navigation' },
  ].map(c => (
- <div key={c.name} style={{ background: 'rgba(243,239,230,.06)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '14px', marginBottom: '10px' }}>
+ <div key={c.name} style={{ background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 0, padding: '14px', marginBottom: '10px' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{c.name}</div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '3px' }}>{c.sub}</div>
  </div>
- <span style={{ fontSize: '14px', fontWeight: 500, color: s.accent, background: 'rgba(243,239,230,.1)', padding: '3px 9px', borderRadius: 0 }}>{c.tag}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: s.accent, background: 'color-mix(in srgb, var(--text) 10%, transparent)', padding: '3px 9px', borderRadius: 0 }}>{c.tag}</span>
  </div>
  <div style={{ marginTop: '10px', fontSize: '14px', color: '#b7c4b0', fontWeight: 500 }}>{c.next}</div>
  </div>
@@ -540,7 +540,7 @@ function PageDashboard({ nav, dayOffset, setDayOffset, userRole }: { nav: (p: Me
  </div>}
 
  {/* Needs attention — ersetzt den Platzhalter „Booking Requests“; Hinweis „ohne Zeitfenster“ wohnt hier statt über den Booten */}
- <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: `1px solid ${tbdItems.length > 0 ? 'rgba(201,180,138,.4)' : 'rgba(243,239,230,.15)'}`, borderRadius: 0, padding: '20px' }}>
+ <div style={{ background: 'var(--glass)', border: `1px solid ${tbdItems.length > 0 ? 'rgba(201,180,138,.4)' : 'color-mix(in srgb, var(--text) 15%, transparent)'}`, borderRadius: 0, padding: '20px' }}>
  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.accent }}>Needs attention</div>
  {tbdItems.length > 0 && <span style={{ fontSize: '14px', fontWeight: 500, color: '#d4a07a', background: 'rgba(212,160,122,.12)', padding: '3px 9px', borderRadius: 0 }}>{tbdItems.length} open</span>}
@@ -559,16 +559,16 @@ function PageDashboard({ nav, dayOffset, setDayOffset, userRole }: { nav: (p: Me
  </div>
 
  {/* Staff on Roll */}
- <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ background: 'var(--glass)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 0, padding: '20px' }}>
  <div style={{ marginBottom: '16px' }}>
  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.accent }}>Staff on Roll</div>
  <button type="button" onClick={() => nav('schedule')} style={{ fontSize: '14px', color: s.muted, cursor: 'pointer', fontWeight: 500, background: 'none', border: 'none', padding: 0, fontFamily: s.font }}>Edit ›</button>
  </div>
  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
- <button type="button" onClick={() => setDayOffset(o => o - 1)} style={{ background: 'rgba(243,239,230,.08)', border: '1px solid rgba(243,239,230,.18)', borderRadius: 0, color: s.accent, fontSize: '15px', width: '30px', height: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontFamily: s.font, flexShrink: 0 }}>‹</button>
+ <button type="button" onClick={() => setDayOffset(o => o - 1)} style={{ background: 'color-mix(in srgb, var(--text) 8%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 18%, transparent)', borderRadius: 0, color: s.accent, fontSize: '15px', width: '30px', height: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontFamily: s.font, flexShrink: 0 }}>‹</button>
  <DayPickerLabel dayOffset={dayOffset} setDayOffset={setDayOffset} label={rollDateLabel} style={{ fontSize: '14px', fontWeight: 500, color: dayOffset === 0 ? s.text : '#c9b48a', minWidth: '90px', textAlign: 'center', letterSpacing: '.02em' }} />
- <button type="button" onClick={() => setDayOffset(o => o + 1)} style={{ background: 'rgba(243,239,230,.08)', border: '1px solid rgba(243,239,230,.18)', borderRadius: 0, color: s.accent, fontSize: '15px', width: '30px', height: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontFamily: s.font, flexShrink: 0 }}>›</button>
+ <button type="button" onClick={() => setDayOffset(o => o + 1)} style={{ background: 'color-mix(in srgb, var(--text) 8%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 18%, transparent)', borderRadius: 0, color: s.accent, fontSize: '15px', width: '30px', height: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontFamily: s.font, flexShrink: 0 }}>›</button>
  </div>
  </div>
  {rollAM.length === 0 && rollPM.length === 0 ? (
@@ -626,9 +626,9 @@ function PageDashboard({ nav, dayOffset, setDayOffset, userRole }: { nav: (p: Me
  </div>
 
  {/* ── COURSE CAPACITY ── */}
- <div style={{ position: 'relative', background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '22px', marginBottom: '20px', overflow: 'hidden' }}>
- <div style={{ position: 'absolute', inset: 0, background: 'rgba(9,9,9,.6)', backdropFilter: 'blur(4px)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '6px', zIndex: 10 }}>
- <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'rgba(243,239,230,.8)' }}>Coming Soon</div>
+ <div style={{ position: 'relative', background: 'var(--glass)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 0, padding: '22px', marginBottom: '20px', overflow: 'hidden' }}>
+ <div style={{ position: 'absolute', inset: 0, background: 'color-mix(in srgb, var(--bg) 60%, transparent)', backdropFilter: 'blur(4px)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '6px', zIndex: 10 }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'color-mix(in srgb, var(--text) 80%, transparent)' }}>Coming Soon</div>
  <div style={{ fontSize: '14px', color: 'rgba(255,255,255,.3)', textAlign: 'center', lineHeight: 1.5 }}>Capacity planning coming soon</div>
  </div>
  <div style={{ filter: 'blur(1px)', opacity: .5, pointerEvents: 'none', userSelect: 'none' }}>
@@ -654,7 +654,7 @@ function PageDashboard({ nav, dayOffset, setDayOffset, userRole }: { nav: (p: Me
  { name: 'Lucas W.', role: 'Instructor', dot: '#d4a07a', avail: ' Half-day available', active: 'Active: Adv. Adventurer · 1 student', load: 25, slots: '1/4 students · OWD · Advanced · Specialties' },
  { name: 'Vasco Rebordão', role: 'Guide / Lead', dot: s.muted, avail: ' Guiding PM', active: 'Active: Guiding PM boat', load: null, slots: 'Dive Guide programs' },
  ].map(inst => (
- <div key={inst.name} style={{ background: 'rgba(243,239,230,.06)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '13px 15px' }}>
+ <div key={inst.name} style={{ background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 0, padding: '13px 15px' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
  <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: inst.dot, flexShrink: 0 }} />
  <div style={{ flex: 1 }}>
@@ -736,7 +736,7 @@ function BookingModeSwitch({ isAdmin }: { isAdmin: boolean }) {
  cursor: isAdmin && !saving ? 'pointer' : 'default', opacity: saving ? .6 : 1,
  })
  return (
- <div style={{ margin: '0 0 14px', padding: '12px 16px', borderRadius: 0, background: mode === 'request' ? 'rgba(201,180,138,.05)' : 'rgba(243,239,230,.04)', border: `1px solid ${mode === 'request' ? 'rgba(201,180,138,.3)' : 'rgba(243,239,230,.14)'}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '14px', flexWrap: 'wrap' }}>
+ <div style={{ margin: '0 0 14px', padding: '12px 16px', borderRadius: 0, background: mode === 'request' ? 'rgba(201,180,138,.05)' : 'color-mix(in srgb, var(--text) 4%, transparent)', border: `1px solid ${mode === 'request' ? 'rgba(201,180,138,.3)' : 'color-mix(in srgb, var(--text) 14%, transparent)'}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '14px', flexWrap: 'wrap' }}>
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text, marginBottom: '2px' }}>Default booking mode{mode === 'request' ? ' — REQUEST (low season)' : mode === 'open' ? ' — OPEN' : ''} <span style={{ fontWeight: 400, color: s.muted }}>· applies to every date not covered by a window below</span></div>
  <div style={{ fontSize: '14px', color: s.muted, lineHeight: 1.5 }}>
@@ -787,13 +787,13 @@ function OnlineDepositSwitch({ isAdmin }: { isAdmin: boolean }) {
  }
  }
  const pill = (active: boolean) => ({
- padding: '6px 14px', borderRadius: 0, border: `1px solid ${active ? 'rgba(243,239,230,.6)' : 'rgba(255,255,255,.15)'}`,
- background: active ? 'rgba(243,239,230,.12)' : 'transparent',
+ padding: '6px 14px', borderRadius: 0, border: `1px solid ${active ? 'color-mix(in srgb, var(--text) 60%, transparent)' : 'rgba(255,255,255,.15)'}`,
+ background: active ? 'color-mix(in srgb, var(--text) 12%, transparent)' : 'transparent',
  color: active ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, fontFamily: s.font,
  cursor: isAdmin && !saving ? 'pointer' : 'default', opacity: saving ? .6 : 1,
  })
  return (
- <div style={{ margin: '0 0 14px', padding: '12px 16px', borderRadius: 0, background: 'rgba(243,239,230,.04)', border: '1px solid rgba(243,239,230,.14)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '14px', flexWrap: 'wrap' }}>
+ <div style={{ margin: '0 0 14px', padding: '12px 16px', borderRadius: 0, background: 'color-mix(in srgb, var(--text) 4%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 14%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '14px', flexWrap: 'wrap' }}>
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text, marginBottom: '2px' }}>Online 50% deposit{mode ? ` — ${label[mode]}` : ''}</div>
  <div style={{ fontSize: '14px', color: s.muted, lineHeight: 1.5 }}>
@@ -1516,7 +1516,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  {/* Kein Seitenkopf (Lucas 30.10.): Überschrift, Untertitel und „ Dashboard" entfallen, die Navigation steht oben */}
 
  {/* ── Section tabs ── */}
- <div style={{ display: 'flex', borderBottom: '1px solid rgba(243,239,230,.2)', marginBottom: '12px', flexWrap: 'wrap' }}>
+ <div style={{ display: 'flex', borderBottom: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', marginBottom: '12px', flexWrap: 'wrap' }}>
  {([['new', ' New Booking'], ['history', ' Booking History'], ['requests', ` Booking Requests${foOpenRequests ? ` (${foOpenRequests})` : ''}`], ['cash', ` Cash refunds${foCashRefunds ? ` (${foCashRefunds})` : ''}`], ['dan', ' DAN Export']] as const).map(([key, label]) => (
  <button key={key} type="button" onClick={() => { setFoOpenBookingId(null); setFoSection(key); localStorage.setItem('azd_foTab', key) }} style={{
  padding: '9px 20px', fontSize: '14px', fontWeight: 500, border: 'none', background: 'transparent', cursor: 'pointer', letterSpacing: '.06em', fontFamily: s.font,
@@ -1578,7 +1578,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 320px', gap: isMobile ? '16px' : '20px', alignItems: 'start' }}>
 
  {/* Left: Form */}
- <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '28px' }}>
+ <div style={{ background: 'var(--glass)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 0, padding: '28px' }}>
  {foSubmitted ? (
  <div style={{ padding: '8px 0' }}>
  <div style={{ textAlign: 'center', marginBottom: '28px' }}>
@@ -1592,7 +1592,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  {!foPayDecide && (<>
  {foCreatedBookingId && (
  <button type="button" onClick={() => { setFoOpenBookingId(foCreatedBookingId); setFoSection('history'); try { localStorage.setItem('azd_foTab', 'history') } catch {} }}
- style={{ display: 'block', width: '100%', marginBottom: '16px', padding: '10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.4)', background: 'rgba(243,239,230,.08)', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>
+ style={{ display: 'block', width: '100%', marginBottom: '16px', padding: '10px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 40%, transparent)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>
  Open this booking in Booking History 
  </button>
  )}
@@ -1600,20 +1600,20 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  {foLinkUrl && (() => {
  const waLinkStripe = `https://wa.me/?text=${encodeURIComponent(`Here is your payment link for ${foProduct} on ${foDate}: ${foLinkUrl}`)}`
  return (
- <div style={{ background: 'rgba(243,239,230,.06)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '18px', marginBottom: '20px' }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 0, padding: '18px', marginBottom: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '10px' }}> Payment Link</div>
- <div style={{ background: '#000', borderRadius: 0, padding: '10px 12px', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', fontSize: '14px', color: s.accent, wordBreak: 'break-all', marginBottom: '12px', userSelect: 'all' }}>
+ <div style={{ background: 'var(--bg)', borderRadius: 0, padding: '10px 12px', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', fontSize: '14px', color: s.accent, wordBreak: 'break-all', marginBottom: '12px', userSelect: 'all' }}>
  {foLinkUrl}
  </div>
  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
  <button
  onClick={() => { navigator.clipboard.writeText(foLinkUrl!).then(() => { setFoLinkCopied(true); setTimeout(() => setFoLinkCopied(false), 2000) }) }}
- style={{ padding: '8px 14px', borderRadius: 0, border: `1px solid ${foLinkCopied ? 'rgba(183,196,176,.5)' : 'rgba(243,239,230,.3)'}`, background: foLinkCopied ? 'rgba(183,196,176,.12)' : 'rgba(243,239,230,.1)', color: foLinkCopied ? '#b7c4b0' : s.accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}
+ style={{ padding: '8px 14px', borderRadius: 0, border: `1px solid ${foLinkCopied ? 'rgba(183,196,176,.5)' : 'color-mix(in srgb, var(--text) 30%, transparent)'}`, background: foLinkCopied ? 'rgba(183,196,176,.12)' : 'color-mix(in srgb, var(--text) 10%, transparent)', color: foLinkCopied ? '#b7c4b0' : s.accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}
  >{foLinkCopied ? ' Copied' : ' Copy'}</button>
- <a href={waLinkStripe} target="_blank" rel="noopener noreferrer" style={{ padding: '8px 14px', borderRadius: 0, border: '1px solid rgba(183,196,176,.4)', background: 'rgba(183,196,176,.1)', color: '#c9c2b6', fontSize: '14px', fontWeight: 500, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '5px' }}>
+ <a href={waLinkStripe} target="_blank" rel="noopener noreferrer" style={{ padding: '8px 14px', borderRadius: 0, border: '1px solid rgba(183,196,176,.4)', background: 'rgba(183,196,176,.1)', color: 'var(--muted)', fontSize: '14px', fontWeight: 500, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '5px' }}>
  <span></span> Send via WhatsApp
  </a>
- <button onClick={() => { setFoSubmitted(false); setFoCreatedBookingId(null); setFoLinkUrl(null); setFoLinkCopied(false) }} style={{ padding: '8px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.3)', background: 'transparent', color: s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ <button onClick={() => { setFoSubmitted(false); setFoCreatedBookingId(null); setFoLinkUrl(null); setFoLinkCopied(false) }} style={{ padding: '8px 14px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', background: 'transparent', color: s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  New booking
  </button>
  </div>
@@ -1638,9 +1638,9 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  const checkinUrl = `https://azoresdiving.com/checkin?token=${foCheckinToken}`
  const waLink = `https://wa.me/?text=${encodeURIComponent(`Here is your check-in link for ${foProduct} on ${foDate}: ${checkinUrl}`)}`
  return (
- <div style={{ background: 'rgba(243,239,230,.06)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '18px', marginBottom: '20px' }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 0, padding: '18px', marginBottom: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '10px' }}>Check-in Link</div>
- <div style={{ background: '#000', borderRadius: 0, padding: '10px 12px', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', fontSize: '14px', color: s.accent, wordBreak: 'break-all', marginBottom: '12px', userSelect: 'all' }}>
+ <div style={{ background: 'var(--bg)', borderRadius: 0, padding: '10px 12px', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', fontSize: '14px', color: s.accent, wordBreak: 'break-all', marginBottom: '12px', userSelect: 'all' }}>
  {checkinUrl}
  </div>
  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
@@ -1651,7 +1651,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  setTimeout(() => setFoCopied(false), 2000)
  })
  }}
- style={{ padding: '9px 16px', borderRadius: 0, border: `1px solid rgba(243,239,230,.3)`, background: foCopied ? 'rgba(243,239,230,.15)' : 'transparent', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}
+ style={{ padding: '9px 16px', borderRadius: 0, border: `1px solid color-mix(in srgb, var(--text) 30%, transparent)`, background: foCopied ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'transparent', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}
  >
  {foCopied ? ' Copied!' : ' Copy link'}
  </button>
@@ -1659,7 +1659,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  href={waLink}
  target="_blank"
  rel="noopener noreferrer"
- style={{ padding: '9px 16px', borderRadius: 0, border: '1px solid rgba(183,196,176,.3)', background: 'transparent', color: '#c9c2b6', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '5px' }}
+ style={{ padding: '9px 16px', borderRadius: 0, border: '1px solid rgba(183,196,176,.3)', background: 'transparent', color: 'var(--muted)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '5px' }}
  >
  Send via WhatsApp
  </a>
@@ -1670,7 +1670,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
 
 
  <button onClick={() => { setFoSubmitted(false); setFoCreatedBookingId(null); setFoPayment(''); setFoPayDecide(null); setFoPayNote(null); setFoPayReqFailed([]); setFoLinkUrl(null); setFoLinkCopied(false); setFoName(''); setFoNotes(''); setFoNif(''); setFoSessionsPicked([]); setFoGuests(1); setFoCheckinToken(null); setFoCopied(false); setFoLastDive(''); setFoLastDiveOpen(false); setFoSplit(false); setFoGuestEntries([]); setFoGuestNames([]); setFoGroupInsurance(null); setFoGroupFullEquipment(false); setFoGroupEquipmentItems([]); setFoGroupAddonItems([]); setFoGroupAddonDays({}); setFoAddonPickerOpen(null); setFoGuestAddonPickerOpen(null); setFoCustomLines([]); setFoExtraLines([]); setFoResidential(false); setFoEmailStatus(null) }}
- style={{ width: '100%', padding: '12px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ width: '100%', padding: '12px', borderRadius: 0, border: 'none', background: s.accent, color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  + New booking
  </button>
  </>)}
@@ -1686,7 +1686,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  const willNight = isNightProduct(foProductsList.find(p => p.name === nextName))
  if (wasNight !== willNight) setFoSessionsPicked([])
  setFoProduct(nextName)
- }} style={{ width: '100%', background: '#121210', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '11px 13px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none' }}>
+ }} style={{ width: '100%', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 0, padding: '11px 13px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none' }}>
  {['dives','entry','specialty','pro','ecology','equipment','extras','insurance'].map(cat => {
  const rawCatItems = foProductsList.filter(p => p.category === cat)
  if (!rawCatItems.length) return null
@@ -1758,14 +1758,14 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  </div>
  <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
  <input placeholder="First name" value={entry.firstName} onChange={e => updateEntry({ firstName: e.target.value })}
- style={{ flex: 1, background: '#121210', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0, padding: '8px 10px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none' }} />
+ style={{ flex: 1, background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', borderRadius: 0, padding: '8px 10px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none' }} />
  <input placeholder="Last name" value={entry.lastName} onChange={e => updateEntry({ lastName: e.target.value })}
- style={{ flex: 1, background: '#121210', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0, padding: '8px 10px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none' }} />
+ style={{ flex: 1, background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', borderRadius: 0, padding: '8px 10px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none' }} />
  </div>
  <input placeholder="Email" type="email" value={entry.email} onChange={e => updateEntry({ email: e.target.value })}
- style={{ width: '100%', boxSizing: 'border-box', background: '#121210', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0, padding: '8px 10px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none', marginBottom: '8px' }} />
+ style={{ width: '100%', boxSizing: 'border-box', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', borderRadius: 0, padding: '8px 10px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none', marginBottom: '8px' }} />
  <select value={entry.product} onChange={e => updateEntry({ product: e.target.value, sessions: [] })}
- style={{ width: '100%', background: '#121210', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '8px 10px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none', marginBottom: '8px' }}>
+ style={{ width: '100%', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 0, padding: '8px 10px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none', marginBottom: '8px' }}>
  {['dives','entry','specialty','pro','ecology','equipment','extras','insurance'].map(cat => {
  const catItems = foProductsList.filter(p => p.category === cat)
  if (!catItems.length) return null
@@ -1775,12 +1775,12 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  </select>
  <div style={{ position: 'relative' }}>
  <button type="button" onClick={() => setFoDatePickerOpen(prev => prev === (gi as unknown as boolean) ? false : (gi as unknown as boolean))}
- style={{ width: '100%', background: '#121210', border: `1px solid ${gOpen ? 'rgba(243,239,230,.4)' : gComplete ? 'rgba(243,239,230,.25)' : 'rgba(255,255,255,.12)'}`, borderRadius: 0, padding: '8px 10px', fontSize: '14px', color: entry.sessions.length > 0 ? s.text : s.muted, fontFamily: s.font, outline: 'none', textAlign: 'left', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxSizing: 'border-box' }}>
+ style={{ width: '100%', background: 'var(--surface)', border: `1px solid ${gOpen ? 'color-mix(in srgb, var(--text) 40%, transparent)' : gComplete ? 'color-mix(in srgb, var(--text) 25%, transparent)' : 'rgba(255,255,255,.12)'}`, borderRadius: 0, padding: '8px 10px', fontSize: '14px', color: entry.sessions.length > 0 ? s.text : s.muted, fontFamily: s.font, outline: 'none', textAlign: 'left', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxSizing: 'border-box' }}>
  <span style={{ flex: 1 }}>{entry.sessions.length > 0 ? entry.sessions.map(p => `${p.date} · ${p.session.toUpperCase()}`).join(' · ') : 'Select date and session…'}</span>
  <span style={{ fontSize: '14px', opacity: 0.5 }}></span>
  </button>
  {gOpen && (
- <div style={{ position: 'absolute', top: 'calc(100% + 6px)', left: 0, zIndex: 200, background: '#000', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0, padding: '18px', minWidth: '640px', maxWidth: '780px', boxShadow: 'none' }} ref={foPickerRef}>
+ <div style={{ position: 'absolute', top: 'calc(100% + 6px)', left: 0, zIndex: 200, background: 'var(--bg)', border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', borderRadius: 0, padding: '18px', minWidth: '640px', maxWidth: '780px', boxShadow: 'none' }} ref={foPickerRef}>
  <SessionPicker staffMode required={entryRequired} seats={1} picked={entry.sessions}
  mode={isNightProduct(foProductsList.find(p => p.name === entry.product)) ? 'night' : 'boat'}
  allowTbd={['entry','specialty','ecology','pro'].includes(foProductsList.find(p => p.name === entry.product)?.category ?? '')}
@@ -1790,9 +1790,9 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  updateEntry({ sessions: prog ? next.map(x => ({ ...x, session: 'tbd' as const })) : next })
  }}
  />
- <div style={{ marginTop: '12px', display: 'flex', justifyContent: 'flex-end', position: 'sticky', bottom: 0, paddingTop: '10px', background: 'linear-gradient(to top, #090909 70%, rgba(255,255,255,.045))' }}>
+ <div style={{ marginTop: '12px', display: 'flex', justifyContent: 'flex-end', position: 'sticky', bottom: 0, paddingTop: '10px', background: 'linear-gradient(to top, var(--bg) 70%, rgba(255,255,255,.045))' }}>
  <button type="button" onClick={() => setFoDatePickerOpen(false)}
- style={{ padding: '11px 56px', borderRadius: 0, border: '1px solid rgba(243,239,230,.5)', background: 'rgba(243,239,230,.15)', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ padding: '11px 56px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 50%, transparent)', background: 'color-mix(in srgb, var(--text) 15%, transparent)', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Confirm
  </button>
  </div>
@@ -1802,7 +1802,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  {/* ── Insurance (required, unless included in product) ── */}
  <div style={{ marginTop: '8px' }}>
  {insuranceIncludedFor(entry.product) ? (
- <div style={{ padding: '7px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.3)', background: 'rgba(243,239,230,.08)', color: s.accent, fontSize: '14px', fontWeight: 500 }}>
+ <div style={{ padding: '7px 10px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', color: s.accent, fontSize: '14px', fontWeight: 500 }}>
  Insurance included in {entry.product}
  </div>
  ) : insuranceNotNeededFor(entry.product) ? null : (
@@ -1813,7 +1813,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  <div style={{ display: 'flex', gap: '6px' }}>
  {(['own', 'add'] as const).map(val => (
  <button key={val} type="button" onClick={() => updateEntry({ insurance: val })}
- style={{ flex: 1, padding: '7px 10px', borderRadius: 0, border: `1px solid ${entry.insurance === val ? s.accent : 'rgba(255,255,255,.12)'}`, background: entry.insurance === val ? 'rgba(243,239,230,.12)' : 'transparent', color: entry.insurance === val ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '7px 10px', borderRadius: 0, border: `1px solid ${entry.insurance === val ? s.accent : 'rgba(255,255,255,.12)'}`, background: entry.insurance === val ? 'color-mix(in srgb, var(--text) 12%, transparent)' : 'transparent', color: entry.insurance === val ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  {val === 'own' ? ' Own insurance' : ` Add DAN${entry.sessions.length > 0 ? ` (€${computeGuestInsuranceCost(entry.sessions)})` : ''}`}
  </button>
  ))}
@@ -1838,7 +1838,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  const next = !entry.fullEquipment
  updateEntry({ fullEquipment: next, equipmentItems: next ? entry.equipmentItems.filter(x => FULL_EQUIP_EXTRAS.includes(x)) : [] })
  }}
- style={{ padding: '6px 10px', borderRadius: 0, border: `1px solid ${entry.fullEquipment ? s.accent : 'rgba(255,255,255,.12)'}`, background: entry.fullEquipment ? 'rgba(243,239,230,.12)' : 'transparent', color: entry.fullEquipment ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ padding: '6px 10px', borderRadius: 0, border: `1px solid ${entry.fullEquipment ? s.accent : 'rgba(255,255,255,.12)'}`, background: entry.fullEquipment ? 'color-mix(in srgb, var(--text) 12%, transparent)' : 'transparent', color: entry.fullEquipment ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  Full Equipment (€{fullEquipProduct.price})
  </button>
  )}
@@ -1850,7 +1850,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  if (isIncluded) return
  updateEntry({ equipmentItems: isSelected ? entry.equipmentItems.filter(x => x !== ep.name) : [...entry.equipmentItems, ep.name] })
  }}
- style={{ padding: '6px 10px', borderRadius: 0, border: `1px solid ${isIncluded ? 'rgba(255,255,255,.06)' : isSelected ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.1)'}`, background: isIncluded ? 'transparent' : isSelected ? 'rgba(243,239,230,.1)' : 'transparent', color: isIncluded ? 'rgba(255,255,255,.2)' : isSelected ? s.accent : s.muted, fontSize: '14px', cursor: isIncluded ? 'not-allowed' : 'pointer', fontFamily: s.font, textDecoration: isIncluded ? 'line-through' : 'none' }}>
+ style={{ padding: '6px 10px', borderRadius: 0, border: `1px solid ${isIncluded ? 'rgba(255,255,255,.06)' : isSelected ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.1)'}`, background: isIncluded ? 'transparent' : isSelected ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'transparent', color: isIncluded ? 'rgba(255,255,255,.2)' : isSelected ? s.accent : s.muted, fontSize: '14px', cursor: isIncluded ? 'not-allowed' : 'pointer', fontFamily: s.font, textDecoration: isIncluded ? 'line-through' : 'none' }}>
  {ep.name} €{ep.price}{isIncluded ? ' ' : ''}
  </button>
  )
@@ -1895,7 +1895,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  {(entry.extraItems ?? []).map((name, xi) => (
  <div key={xi} style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
  <select value={name} onChange={e => updateEntry({ extraItems: entry.extraItems.map((x, i) => i === xi ? e.target.value : x) })}
- style={{ flex: 1, background: '#121210', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '6px 9px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none' }}>
+ style={{ flex: 1, background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 0, padding: '6px 9px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none' }}>
  {['dives','entry','specialty','pro','ecology','equipment','extras','insurance'].map(cat => {
  const catItems = foProductsList.filter(p => p.category === cat)
  if (!catItems.length) return null
@@ -1910,7 +1910,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  </div>
  )}
  <button type="button" onClick={() => updateEntry({ extraItems: [...(entry.extraItems ?? []), foProductsList.find(p => ['dives','entry','specialty','pro','ecology','equipment','extras','insurance'].includes(p.category))?.name ?? ''] })}
- style={{ marginTop: '8px', padding: '5px 11px', borderRadius: 0, border: '1px dashed rgba(243,239,230,.3)', background: 'transparent', color: s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ marginTop: '8px', padding: '5px 11px', borderRadius: 0, border: '1px dashed color-mix(in srgb, var(--text) 30%, transparent)', background: 'transparent', color: s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  + Add item for this guest
  </button>
  {/* ── Per-guest Last Dive + Residential ── */}
@@ -1919,7 +1919,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  <div style={{ flex: '1 1 160px', position: 'relative' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '4px' }}>Last dive</div>
  <button type="button" onClick={e => { const opening = foGuestLastDiveOpen !== gi; setFoGuestLastDiveOpen(prev => prev === gi ? null : gi); if (opening) foRevealPicker(e.currentTarget.parentElement) }}
- style={{ width: '100%', background: '#121210', border: `1px solid ${foGuestLastDiveOpen === gi ? 'rgba(243,239,230,.4)' : entry.lastDive && (Date.now() - new Date(entry.lastDive).getTime()) > 365*24*60*60*1000 ? 'rgba(212,160,122,.5)' : 'rgba(255,255,255,.1)'}`, borderRadius: 0, padding: '7px 10px', fontSize: '14px', color: entry.lastDive ? s.text : s.muted, fontFamily: s.font, outline: 'none', textAlign: 'left', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxSizing: 'border-box' }}>
+ style={{ width: '100%', background: 'var(--surface)', border: `1px solid ${foGuestLastDiveOpen === gi ? 'color-mix(in srgb, var(--text) 40%, transparent)' : entry.lastDive && (Date.now() - new Date(entry.lastDive).getTime()) > 365*24*60*60*1000 ? 'rgba(212,160,122,.5)' : 'rgba(255,255,255,.1)'}`, borderRadius: 0, padding: '7px 10px', fontSize: '14px', color: entry.lastDive ? s.text : s.muted, fontFamily: s.font, outline: 'none', textAlign: 'left', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxSizing: 'border-box' }}>
  <span>{entry.lastDive ? new Date(entry.lastDive + 'T12:00:00').toLocaleDateString('de-DE', { day: '2-digit', month: 'short', year: 'numeric' }) : 'Date…'}</span>
  <span style={{ opacity: 0.5 }}></span>
  </button>
@@ -1954,12 +1954,12 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  return (
  <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.78)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
  onClick={() => setFoGuestAddonPickerOpen(null)}>
- <div style={{ background: '#121210', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, padding: '20px 22px', minWidth: '260px', maxWidth: '340px', width: '90%' }}
+ <div style={{ background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 0, padding: '20px 22px', minWidth: '260px', maxWidth: '340px', width: '90%' }}
  onClick={e => e.stopPropagation()}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text, marginBottom: '3px' }}>Apply add-on to which days?</div>
  <div style={{ fontSize: '14px', color: '#c9b48a', marginBottom: '14px', fontStyle: 'italic' }}>{apName}</div>
  <button type="button" onClick={() => updateEntry({ addonDays: { ...entry.addonDays, [apName]: [] } })}
- style={{ width: '100%', padding: '8px', borderRadius: 0, border: `1px solid ${selDays.length === 0 ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.15)'}`, background: selDays.length === 0 ? 'rgba(243,239,230,.12)' : 'transparent', color: selDays.length === 0 ? s.accent : s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, marginBottom: '8px', fontWeight: 500 }}>
+ style={{ width: '100%', padding: '8px', borderRadius: 0, border: `1px solid ${selDays.length === 0 ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.15)'}`, background: selDays.length === 0 ? 'color-mix(in srgb, var(--text) 12%, transparent)' : 'transparent', color: selDays.length === 0 ? s.accent : s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, marginBottom: '8px', fontWeight: 500 }}>
  All days ({uniqueDates.length}d)
  </button>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', marginBottom: '14px' }}>
@@ -1977,7 +1977,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  })}
  </div>
  <button type="button" onClick={() => setFoGuestAddonPickerOpen(null)}
- style={{ width: '100%', padding: '10px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ width: '100%', padding: '10px', borderRadius: 0, border: 'none', background: s.accent, color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Confirm
  </button>
  </div>
@@ -1996,7 +1996,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  type="button"
  onClick={() => setFoDatePickerOpen(o => !o)}
  style={{
- width: '100%', background: '#121210', border: `1px solid ${foDatePickerOpen === true ? 'rgba(243,239,230,.4)' : 'rgba(255,255,255,.12)'}`,
+ width: '100%', background: 'var(--surface)', border: `1px solid ${foDatePickerOpen === true ? 'color-mix(in srgb, var(--text) 40%, transparent)' : 'rgba(255,255,255,.12)'}`,
  borderRadius: 0, padding: '11px 13px', fontSize: '16px', color: foDate ? s.text : s.muted,
  fontFamily: s.font, outline: 'none', textAlign: 'left', cursor: 'pointer',
  display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxSizing: 'border-box',
@@ -2008,7 +2008,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  {foDatePickerOpen === true && (
  <div style={{
  position: 'absolute', top: 'calc(100% + 6px)', left: 0, zIndex: 200,
- background: '#000', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0,
+ background: 'var(--bg)', border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', borderRadius: 0,
  padding: '18px', minWidth: '640px', maxWidth: '780px', boxShadow: 'none',
  }} ref={foPickerRef}>
  {needsRefresher && !foSplit && (
@@ -2036,9 +2036,9 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  setFoSessionsPicked(isProgramProduct(selectedProduct?.id) ? next.map((x, i) => i >= ssuOffset ? { ...x, session: 'tbd' as const } : x) : next)
  }}
  />
- <div style={{ marginTop: '12px', display: 'flex', justifyContent: 'flex-end', position: 'sticky', bottom: 0, paddingTop: '10px', background: 'linear-gradient(to top, #090909 70%, rgba(255,255,255,.045))' }}>
+ <div style={{ marginTop: '12px', display: 'flex', justifyContent: 'flex-end', position: 'sticky', bottom: 0, paddingTop: '10px', background: 'linear-gradient(to top, var(--bg) 70%, rgba(255,255,255,.045))' }}>
  <button type="button" onClick={() => setFoDatePickerOpen(false)}
- style={{ padding: '11px 56px', borderRadius: 0, border: '1px solid rgba(243,239,230,.5)', background: 'rgba(243,239,230,.15)', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ padding: '11px 56px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 50%, transparent)', background: 'color-mix(in srgb, var(--text) 15%, transparent)', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Confirm
  </button>
  </div>
@@ -2049,7 +2049,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  {/* ── Group Insurance (required, unless included in product) ── */}
  <div style={{ marginTop: '10px' }}>
  {insuranceIncluded ? (
- <div style={{ padding: '8px 12px', borderRadius: 0, border: '1px solid rgba(243,239,230,.3)', background: 'rgba(243,239,230,.08)', color: s.accent, fontSize: '14px', fontWeight: 500 }}>
+ <div style={{ padding: '8px 12px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', color: s.accent, fontSize: '14px', fontWeight: 500 }}>
  Insurance included in {foProduct}
  </div>
  ) : insuranceNotNeeded ? null : (
@@ -2060,7 +2060,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  <div style={{ display: 'flex', gap: '6px' }}>
  {(['own', 'add'] as const).map(val => (
  <button key={val} type="button" onClick={() => setFoGroupInsurance(val)}
- style={{ flex: 1, padding: '8px 12px', borderRadius: 0, border: `1px solid ${foGroupInsurance === val ? s.accent : 'rgba(255,255,255,.12)'}`, background: foGroupInsurance === val ? 'rgba(243,239,230,.12)' : 'transparent', color: foGroupInsurance === val ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '8px 12px', borderRadius: 0, border: `1px solid ${foGroupInsurance === val ? s.accent : 'rgba(255,255,255,.12)'}`, background: foGroupInsurance === val ? 'color-mix(in srgb, var(--text) 12%, transparent)' : 'transparent', color: foGroupInsurance === val ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  {val === 'own' ? ' Own insurance' : ` Add DAN${foSessionsPicked.length > 0 ? ` (€${computeGuestInsuranceCost(foSessionsPicked)} × ${foGuests})` : ` × ${foGuests}`}`}
  </button>
  ))}
@@ -2088,7 +2088,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  // keep only extras when turning full equip on; clear all when turning off
  setFoGroupEquipmentItems(next ? foGroupEquipmentItems.filter(x => FULL_EQUIP_EXTRAS.includes(x)) : [])
  }}
- style={{ padding: '7px 12px', borderRadius: 0, border: `1px solid ${foGroupFullEquipment ? s.accent : 'rgba(255,255,255,.12)'}`, background: foGroupFullEquipment ? 'rgba(243,239,230,.12)' : 'transparent', color: foGroupFullEquipment ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ padding: '7px 12px', borderRadius: 0, border: `1px solid ${foGroupFullEquipment ? s.accent : 'rgba(255,255,255,.12)'}`, background: foGroupFullEquipment ? 'color-mix(in srgb, var(--text) 12%, transparent)' : 'transparent', color: foGroupFullEquipment ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  Full Equipment (€{fullEquipProduct.price} × {foGuests})
  </button>
  )}
@@ -2100,7 +2100,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  if (isIncluded) return
  setFoGroupEquipmentItems(isSelected ? foGroupEquipmentItems.filter(x => x !== ep.name) : [...foGroupEquipmentItems, ep.name])
  }}
- style={{ padding: '7px 12px', borderRadius: 0, border: `1px solid ${isIncluded ? 'rgba(255,255,255,.06)' : isSelected ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.1)'}`, background: isIncluded ? 'transparent' : isSelected ? 'rgba(243,239,230,.1)' : 'transparent', color: isIncluded ? 'rgba(255,255,255,.2)' : isSelected ? s.accent : s.muted, fontSize: '14px', cursor: isIncluded ? 'not-allowed' : 'pointer', fontFamily: s.font, textDecoration: isIncluded ? 'line-through' : 'none' }}>
+ style={{ padding: '7px 12px', borderRadius: 0, border: `1px solid ${isIncluded ? 'rgba(255,255,255,.06)' : isSelected ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.1)'}`, background: isIncluded ? 'transparent' : isSelected ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'transparent', color: isIncluded ? 'rgba(255,255,255,.2)' : isSelected ? s.accent : s.muted, fontSize: '14px', cursor: isIncluded ? 'not-allowed' : 'pointer', fontFamily: s.font, textDecoration: isIncluded ? 'line-through' : 'none' }}>
  {ep.name} €{ep.price}{isIncluded ? ' ' : ''}
  </button>
  )
@@ -2147,12 +2147,12 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  return (
  <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.78)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
  onClick={() => setFoAddonPickerOpen(null)}>
- <div style={{ background: '#121210', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, padding: '20px 22px', minWidth: '260px', maxWidth: '340px', width: '90%' }}
+ <div style={{ background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 0, padding: '20px 22px', minWidth: '260px', maxWidth: '340px', width: '90%' }}
  onClick={e => e.stopPropagation()}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text, marginBottom: '3px' }}>Apply add-on to which days?</div>
  <div style={{ fontSize: '14px', color: '#c9b48a', marginBottom: '14px', fontStyle: 'italic' }}>{apName}</div>
  <button type="button" onClick={() => setFoGroupAddonDays(prev => { const n = { ...prev }; delete n[apName]; return n })}
- style={{ width: '100%', padding: '8px', borderRadius: 0, border: `1px solid ${selDays.length === 0 ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.15)'}`, background: selDays.length === 0 ? 'rgba(243,239,230,.12)' : 'transparent', color: selDays.length === 0 ? s.accent : s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, marginBottom: '8px', fontWeight: 500 }}>
+ style={{ width: '100%', padding: '8px', borderRadius: 0, border: `1px solid ${selDays.length === 0 ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.15)'}`, background: selDays.length === 0 ? 'color-mix(in srgb, var(--text) 12%, transparent)' : 'transparent', color: selDays.length === 0 ? s.accent : s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, marginBottom: '8px', fontWeight: 500 }}>
  All days ({foGroupNumDays}d)
  </button>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', marginBottom: '14px' }}>
@@ -2172,7 +2172,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  })}
  </div>
  <button type="button" onClick={() => setFoAddonPickerOpen(null)}
- style={{ width: '100%', padding: '10px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ width: '100%', padding: '10px', borderRadius: 0, border: 'none', background: s.accent, color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Confirm
  </button>
  </div>
@@ -2190,7 +2190,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  {foExtraLines.map((line, li) => (
  <div key={li} style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
  <select value={line.product} onChange={e => setFoExtraLines(prev => prev.map((x, i) => i === li ? { product: e.target.value } : x))}
- style={{ flex: 1, background: '#121210', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '7px 10px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none' }}>
+ style={{ flex: 1, background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 0, padding: '7px 10px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none' }}>
  {['dives','entry','specialty','pro','ecology','equipment','extras','insurance'].map(cat => {
  const catItems = foProductsList.filter(p => p.category === cat)
  if (!catItems.length) return null
@@ -2208,7 +2208,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  </div>
  )}
  <button type="button" onClick={() => setFoExtraLines(prev => [...prev, { product: foProductsList.find(p => ['dives','entry','specialty','pro','ecology','equipment','extras','insurance'].includes(p.category))?.name ?? '' }])}
- style={{ marginTop: '8px', padding: '6px 12px', borderRadius: 0, border: '1px dashed rgba(243,239,230,.3)', background: 'transparent', color: s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ marginTop: '8px', padding: '6px 12px', borderRadius: 0, border: '1px dashed color-mix(in srgb, var(--text) 30%, transparent)', background: 'transparent', color: s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  + Add item
  </button>
  {/* ── Custom line items (free text + amount) ── */}
@@ -2218,12 +2218,12 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  <div key={ci} style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
  <input value={cl.label} placeholder="Custom item name"
  onChange={e => setFoCustomLines(prev => prev.map((x, i) => i === ci ? { ...x, label: e.target.value } : x))}
- style={{ flex: 1, background: '#121210', border: '1px solid rgba(251,191,36,.25)', borderRadius: 0, padding: '7px 10px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none' }} />
+ style={{ flex: 1, background: 'var(--surface)', border: '1px solid rgba(251,191,36,.25)', borderRadius: 0, padding: '7px 10px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none' }} />
  <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>€</span>
  <input type="number" min="0" step="0.01" value={cl.amount || ''} placeholder="0"
  onChange={e => setFoCustomLines(prev => prev.map((x, i) => i === ci ? { ...x, amount: parseFloat(e.target.value) || 0 } : x))}
- style={{ width: '70px', background: '#121210', border: '1px solid rgba(251,191,36,.25)', borderRadius: 0, padding: '7px 8px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none' }} />
+ style={{ width: '70px', background: 'var(--surface)', border: '1px solid rgba(251,191,36,.25)', borderRadius: 0, padding: '7px 8px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none' }} />
  </div>
  <button type="button" onClick={() => setFoCustomLines(prev => prev.filter((_, i) => i !== ci))}
  style={{ padding: '6px 10px', borderRadius: 0, border: '1px solid rgba(201,146,140,.3)', background: 'transparent', color: 'rgba(201,146,140,.8)', fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}></button>
@@ -2242,25 +2242,25 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '8px' }}>Guests</div>
  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
- <button onClick={() => setFoGuests(g => Math.max(1, g - 1))} style={{ width: '34px', height: '34px', borderRadius: 0, border: '1px solid rgba(243,239,230,.3)', background: 'transparent', color: s.text, fontSize: '20px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: s.font }}>−</button>
+ <button onClick={() => setFoGuests(g => Math.max(1, g - 1))} style={{ width: '34px', height: '34px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', background: 'transparent', color: s.text, fontSize: '20px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: s.font }}>−</button>
  <span style={{ fontSize: '20px', fontWeight: 500, color: s.text, minWidth: '24px', textAlign: 'center' }}>{foGuests}</span>
- <button onClick={() => setFoGuests(g => g + 1)} style={{ width: '34px', height: '34px', borderRadius: 0, border: '1px solid rgba(243,239,230,.3)', background: 'transparent', color: s.text, fontSize: '20px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: s.font }}>+</button>
+ <button onClick={() => setFoGuests(g => g + 1)} style={{ width: '34px', height: '34px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', background: 'transparent', color: s.text, fontSize: '20px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: s.font }}>+</button>
  </div>
  </div>
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '8px' }}>Guest name / group</div>
- <input value={foName} onChange={e => setFoName(e.target.value)} placeholder="e.g. Müller Group" style={{ width: '100%', background: '#121210', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0, padding: '11px 13px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
+ <input value={foName} onChange={e => setFoName(e.target.value)} placeholder="e.g. Müller Group" style={{ width: '100%', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', borderRadius: 0, padding: '11px 13px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
  </div>
  <div style={{ marginBottom: '8px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '7px' }}>Email</div>
- <input value={foEmail} onChange={e => setFoEmail(e.target.value)} type="email" placeholder="for check-in link and receipt" style={{ width: '100%', background: '#121210', border: `1px solid ${!foEmail.trim() ? 'rgba(255,180,0,.4)' : 'rgba(255,255,255,.12)'}`, borderRadius: 0, padding: '11px 13px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
+ <input value={foEmail} onChange={e => setFoEmail(e.target.value)} type="email" placeholder="for check-in link and receipt" style={{ width: '100%', background: 'var(--surface)', border: `1px solid ${!foEmail.trim() ? 'rgba(255,180,0,.4)' : 'rgba(255,255,255,.12)'}`, borderRadius: 0, padding: '11px 13px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
  {!foEmail.trim() && (
  <div style={{ fontSize: '14px', color: '#c9b48a', marginTop: '4px' }}> Email required to create booking</div>
  )}
  </div>
  <div style={{ marginBottom: '16px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '7px' }}>Phone</div>
- <input value={foPhone} onChange={e => setFoPhone(e.target.value)} type="tel" placeholder="+351 912 345 678" style={{ width: '100%', background: '#121210', border: `1px solid ${!foPhone.trim() ? 'rgba(255,180,0,.4)' : 'rgba(255,255,255,.12)'}`, borderRadius: 0, padding: '11px 13px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
+ <input value={foPhone} onChange={e => setFoPhone(e.target.value)} type="tel" placeholder="+351 912 345 678" style={{ width: '100%', background: 'var(--surface)', border: `1px solid ${!foPhone.trim() ? 'rgba(255,180,0,.4)' : 'rgba(255,255,255,.12)'}`, borderRadius: 0, padding: '11px 13px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
  {!foPhone.trim() && (
  <div style={{ fontSize: '14px', color: '#c9b48a', marginTop: '4px' }}> Phone required to create booking</div>
  )}
@@ -2281,8 +2281,8 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  type="button"
  onClick={e => { const opening = !foLastDiveOpen; setFoLastDiveOpen(o => !o); if (opening) foRevealPicker(e.currentTarget.parentElement) }}
  style={{
- width: '100%', background: '#121210',
- border: `1px solid ${foLastDiveOpen ? 'rgba(243,239,230,.4)' : needsRefresher ? 'rgba(212,160,122,.5)' : 'rgba(255,255,255,.12)'}`,
+ width: '100%', background: 'var(--surface)',
+ border: `1px solid ${foLastDiveOpen ? 'color-mix(in srgb, var(--text) 40%, transparent)' : needsRefresher ? 'rgba(212,160,122,.5)' : 'rgba(255,255,255,.12)'}`,
  borderRadius: 0, padding: '11px 13px', fontSize: '15px',
  color: foLastDive ? s.text : s.muted, fontFamily: s.font, outline: 'none',
  textAlign: 'left', cursor: 'pointer',
@@ -2324,7 +2324,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  setFoGuestNames(prev => Array.from({ length: foGuests }, (_, i) => i === gi ? v : (prev[i] ?? '')))
  }}
  style={{
- flex: 1.4, background: '#121210',
+ flex: 1.4, background: 'var(--surface)',
  border: `1px solid ${(gi === 0 ? (foGuestNames[0] || foName) : foGuestNames[gi])?.trim() ? 'rgba(255,255,255,.12)' : 'rgba(201,146,140,.55)'}`,
  borderRadius: 0, padding: '8px 11px', fontSize: '14px',
  color: s.text, fontFamily: s.font, outline: 'none', boxSizing: 'border-box',
@@ -2335,8 +2335,8 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  type="button"
  onClick={e => { const opening = foGuestLastDiveOpenSingle !== gi; setFoGuestLastDiveOpenSingle(prev => prev === gi ? null : gi); if (opening) foRevealPicker(e.currentTarget.parentElement) }}
  style={{
- width: '100%', background: '#121210',
- border: `1px solid ${foGuestLastDiveOpenSingle === gi ? 'rgba(243,239,230,.4)' : gldOld ? 'rgba(212,160,122,.5)' : 'rgba(255,255,255,.12)'}`,
+ width: '100%', background: 'var(--surface)',
+ border: `1px solid ${foGuestLastDiveOpenSingle === gi ? 'color-mix(in srgb, var(--text) 40%, transparent)' : gldOld ? 'rgba(212,160,122,.5)' : 'rgba(255,255,255,.12)'}`,
  borderRadius: 0, padding: '8px 11px', fontSize: '14px',
  color: gld ? s.text : s.muted, fontFamily: s.font, outline: 'none',
  textAlign: 'left', cursor: 'pointer',
@@ -2430,7 +2430,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '8px' }}>Payment method{!foPayment && <span style={{ color: '#d4a07a', marginLeft: '10px', letterSpacing: 0, textTransform: 'none', fontWeight: 500 }}>Please choose one</span>}</div>
  <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
  {(['cash', 'bank', 'revolut', 'card', 'link'] as const).map(pm => (
- <button key={pm} disabled={pm === 'card'} title={pm === 'card' ? 'Not available yet — no card terminal. Use Stripe Payment Link for card payments.' : undefined} onClick={() => setFoPayment(pm)} style={{ opacity: pm === 'card' ? 0.4 : 1, padding: '8px 14px', borderRadius: 0, border: `1px solid ${foPayment === pm ? s.accent : 'rgba(255,255,255,.12)'}`, background: foPayment === pm ? 'rgba(243,239,230,.12)' : 'transparent', color: foPayment === pm ? s.accent : s.muted, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font , ...(pm === 'card' ? { cursor: 'not-allowed' } : {})}}>
+ <button key={pm} disabled={pm === 'card'} title={pm === 'card' ? 'Not available yet — no card terminal. Use Stripe Payment Link for card payments.' : undefined} onClick={() => setFoPayment(pm)} style={{ opacity: pm === 'card' ? 0.4 : 1, padding: '8px 14px', borderRadius: 0, border: `1px solid ${foPayment === pm ? s.accent : 'rgba(255,255,255,.12)'}`, background: foPayment === pm ? 'color-mix(in srgb, var(--text) 12%, transparent)' : 'transparent', color: foPayment === pm ? s.accent : s.muted, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font , ...(pm === 'card' ? { cursor: 'not-allowed' } : {})}}>
  {pm === 'cash' ? ' Cash' : pm === 'bank' ? ' Transfer' : pm === 'revolut' ? ' Revolut' : pm === 'card' ? ' Card (not available yet)' : ' Stripe Payment Link'}
  </button>
  ))}
@@ -2450,12 +2450,12 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
 
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '8px' }}>Notes (optional)</div>
- <textarea value={foNotes} onChange={e => setFoNotes(e.target.value)} placeholder="Equipment sizes, cert level, special requests…" rows={2} style={{ width: '100%', background: '#121210', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0, padding: '11px 13px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none', resize: 'vertical', boxSizing: 'border-box' }} />
+ <textarea value={foNotes} onChange={e => setFoNotes(e.target.value)} placeholder="Equipment sizes, cert level, special requests…" rows={2} style={{ width: '100%', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', borderRadius: 0, padding: '11px 13px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none', resize: 'vertical', boxSizing: 'border-box' }} />
  </div>
 
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '8px' }}>Tax number / NIF (optional — for a named invoice)</div>
- <input value={foNif} onChange={e => setFoNif(e.target.value)} onBlur={() => setFoNifTouched(true)} placeholder="e.g. 123456789 or DE123456789" inputMode="text" autoComplete="off" style={{ width: '100%', background: '#121210', border: `1px solid ${!foNifShowErr ? 'rgba(255,255,255,.12)' : '#c9928c'}`, borderRadius: 0, padding: '11px 13px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
+ <input value={foNif} onChange={e => setFoNif(e.target.value)} onBlur={() => setFoNifTouched(true)} placeholder="e.g. 123456789 or DE123456789" inputMode="text" autoComplete="off" style={{ width: '100%', background: 'var(--surface)', border: `1px solid ${!foNifShowErr ? 'rgba(255,255,255,.12)' : '#c9928c'}`, borderRadius: 0, padding: '11px 13px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
  <div style={{ fontSize: '14px', color: !foNifShowErr ? s.muted : '#c9928c', marginTop: '6px' }}>{!foNifShowErr ? 'Leave empty for "Consumidor Final". Portuguese NIF: 9 digits; EU VAT: country code + number.' : 'Not a valid NIF/VAT format — 9 digits (PT) or country code + number (EU).'}</div>
  </div>
  </div>
@@ -2464,7 +2464,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
 
  {/* Right: Summary */}
  {!foSubmitted && (
- <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '22px', position: 'sticky', top: '100px' }}>
+ <div style={{ background: 'var(--glass)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 0, padding: '22px', position: 'sticky', top: '100px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '16px' }}>Summary</div>
  <div style={{ marginBottom: '16px' }}>
  <div style={{ fontSize: '16px', fontWeight: 500, color: s.text, marginBottom: '4px' }}>{foProduct}{insuranceIncluded ? <span style={{ fontSize: '14px', fontWeight: 500, color: s.accent, marginLeft: '6px', opacity: 0.8 }}>(inkl. Insurance)</span> : null}</div>
@@ -2494,7 +2494,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  const geName = [ge.firstName, ge.lastName].filter(Boolean).join(' ')
  return (
  <div key={gi} style={{ marginBottom: gi < foGuestEntries.length - 1 ? '12px' : 0 }}>
- <div style={{ fontSize: '14px', fontWeight: 500, color: s.accent, letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '5px', paddingBottom: '4px', borderBottom: '1px solid rgba(243,239,230,.18)' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: s.accent, letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '5px', paddingBottom: '4px', borderBottom: '1px solid color-mix(in srgb, var(--text) 18%, transparent)' }}>
  Guest {gi + 1}{geName ? `: ${geName}` : ''}
  </div>
  {ge.residential && (
@@ -2616,7 +2616,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginTop: '5px' }}>
  {chips.map((c, ci) => (
  <span key={ci} style={{ fontSize: '14px', fontWeight: 500, padding: '2px 8px', borderRadius: 0, fontVariantNumeric: 'tabular-nums',
- background: c.kind === 'ssu' ? 'rgba(212,160,122,.12)' : 'rgba(243,239,230,.1)', border: `1px solid ${c.kind === 'ssu' ? 'rgba(212,160,122,.35)' : 'rgba(243,239,230,.3)'}`, color: c.kind === 'ssu' ? '#d4a07a' : s.accent }}>
+ background: c.kind === 'ssu' ? 'rgba(212,160,122,.12)' : 'color-mix(in srgb, var(--text) 10%, transparent)', border: `1px solid ${c.kind === 'ssu' ? 'rgba(212,160,122,.35)' : 'color-mix(in srgb, var(--text) 30%, transparent)'}`, color: c.kind === 'ssu' ? '#d4a07a' : s.accent }}>
  {c.kind === 'ssu' ? ' ' : ' '}{c.text}
  </span>
  ))}
@@ -3193,7 +3193,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  setFoLoading(false)
  }
  }}
- style={{ width: '100%', padding: '13px', borderRadius: 0, border: 'none', background: allPicked && !foLoading && !!foEmail.trim() && !!foPhone.trim() && !!foPayment ? s.accent : 'rgba(255,255,255,.08)', color: allPicked && !foLoading && !!foEmail.trim() && !!foPhone.trim() && !!foPayment ? '#090909' : s.muted, fontWeight: 500, fontSize: '15px', cursor: allPicked && !foLoading && !!foEmail.trim() && !!foPhone.trim() && !!foPayment ? 'pointer' : 'default', fontFamily: s.font }}
+ style={{ width: '100%', padding: '13px', borderRadius: 0, border: 'none', background: allPicked && !foLoading && !!foEmail.trim() && !!foPhone.trim() && !!foPayment ? s.accent : 'rgba(255,255,255,.08)', color: allPicked && !foLoading && !!foEmail.trim() && !!foPhone.trim() && !!foPayment ? 'var(--bg)' : s.muted, fontWeight: 500, fontSize: '15px', cursor: allPicked && !foLoading && !!foEmail.trim() && !!foPhone.trim() && !!foPayment ? 'pointer' : 'default', fontFamily: s.font }}
  >
  {foLoading ? (foPayment === 'link' ? 'Generating…' : 'Creating…') : foMissing.length > 0 ? `Missing: ${foMissing.join(' · ')}` : foPayment === 'link' ? ' Generate Payment Link' : 'Create booking & send check-in link'}
  </button>
@@ -3220,7 +3220,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  </div>
  <button type="button" onClick={openGuestView} style={{
  padding: '13px 32px', borderRadius: 0, border: 'none', cursor: 'pointer',
- background: 'linear-gradient(135deg, #f3efe6, #c9c2b6)', color: '#000',
+ background: 'linear-gradient(135deg, var(--text), var(--muted))', color: 'var(--on-accent)',
  fontWeight: 500, fontSize: '15px', fontFamily: s.font,
  boxShadow: 'none', whiteSpace: 'nowrap',
  }}>Book now</button>
@@ -3249,7 +3249,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  {foSection === 'dan' && (
  <div style={{ padding: isMobile ? '14px' : '24px' }}>
  {/* Info banner */}
- <div style={{ background: 'rgba(243,239,230,.06)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '14px 18px', marginBottom: '16px', display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 0, padding: '14px 18px', marginBottom: '16px', display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
  <span style={{ fontSize: '18px', flexShrink: 0 }}></span>
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.accent, marginBottom: '4px' }}>DAN Batch-Export</div>
@@ -3292,7 +3292,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  const needsRecalc = b.charged_cents > 0
  return (
  <div key={b.booking_customer_id} style={{ display: 'flex', gap: '10px', alignItems: 'center', fontSize: '14px', color: s.text, padding: '6px 0', flexWrap: 'wrap', borderTop: '1px solid rgba(255,255,255,.06)' }}>
- <button type="button" onClick={() => setDanPopupBookingId(b.booking_id)} style={{ padding: '1px 8px', borderRadius: 0, border: '1px solid rgba(243,239,230,.35)', background: 'rgba(243,239,230,.08)', color: s.accent, fontSize: '14px', fontWeight: 500, fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', cursor: 'pointer' }}>{b.booking_id.slice(0, 8).toUpperCase()} </button>
+ <button type="button" onClick={() => setDanPopupBookingId(b.booking_id)} style={{ padding: '1px 8px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', color: s.accent, fontSize: '14px', fontWeight: 500, fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', cursor: 'pointer' }}>{b.booking_id.slice(0, 8).toUpperCase()} </button>
  <span style={{ fontWeight: 500 }}>{b.name}</span>
  <span style={{ color: s.muted, flex: '1 1 260px' }}>
  {needsRecalc
@@ -3328,7 +3328,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '8px' }}>Dive days in export</div>
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
  {danInfo.session_dates.map(d => (
- <span key={d} style={{ fontSize: '14px', padding: '3px 10px', borderRadius: 0, background: 'rgba(243,239,230,.1)', border: '1px solid rgba(243,239,230,.2)', color: s.accent }}>{d}</span>
+ <span key={d} style={{ fontSize: '14px', padding: '3px 10px', borderRadius: 0, background: 'color-mix(in srgb, var(--text) 10%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', color: s.accent }}>{d}</span>
  ))}
  </div>
  </div>
@@ -3365,7 +3365,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  setDanDownloading(false)
  }
  }}
- style={{ padding: '12px 24px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontSize: '14px', fontWeight: 500, cursor: danDownloading ? 'not-allowed' : 'pointer', opacity: danDownloading ? 0.6 : 1 }}
+ style={{ padding: '12px 24px', borderRadius: 0, border: 'none', background: s.accent, color: 'var(--on-accent)', fontSize: '14px', fontWeight: 500, cursor: danDownloading ? 'not-allowed' : 'pointer', opacity: danDownloading ? 0.6 : 1 }}
  >
  {danDownloading ? ' Download…' : ' Download .xls'}
  </button>
@@ -3423,7 +3423,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  {/* Buchungs-Popup aus dem DAN-Export (gesperrte Taucher): volles FO-Detail */}
  {danPopupBookingId && (
  <div onClick={() => setDanPopupBookingId(null)} style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '40px 16px', overflowY: 'auto' }}>
- <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: '#121210', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, boxShadow: 'none' }}>
+ <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 0, boxShadow: 'none' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>Booking <span style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: s.text, fontWeight: 500 }}>{danPopupBookingId.slice(0, 8).toUpperCase()}</span> · changes here are live</span>
  <button type="button" onClick={() => setDanPopupBookingId(null)} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.text, borderRadius: 0, padding: '6px 12px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>Close </button>
@@ -3810,10 +3810,10 @@ function TriageLogTab({ supabase, session }: { supabase: any; session: any }) {
  const displayCorrect = fb !== undefined ? fb.correct : existingCorrect
 
  return (
- <div key={row.id} style={{ border: `1px solid ${isExpanded ? 'rgba(243,239,230,.22)' : resultColor(row.final_result) + '44'}`, borderRadius: 0, overflow: 'hidden' }}>
+ <div key={row.id} style={{ border: `1px solid ${isExpanded ? 'color-mix(in srgb, var(--text) 22%, transparent)' : resultColor(row.final_result) + '44'}`, borderRadius: 0, overflow: 'hidden' }}>
  {/* Row header */}
  <button type="button" onClick={() => setExpandedId(isExpanded ? null : row.id)}
- style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 16px', background: isExpanded ? 'rgba(243,239,230,.04)' : resultBg(row.final_result), cursor: 'pointer', width: '100%', border: 'none', fontFamily: 'inherit', textAlign: 'left' }}
+ style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 16px', background: isExpanded ? 'color-mix(in srgb, var(--text) 4%, transparent)' : resultBg(row.final_result), cursor: 'pointer', width: '100%', border: 'none', fontFamily: 'inherit', textAlign: 'left' }}
  onMouseEnter={e => { if (!isExpanded) e.currentTarget.style.background = 'rgba(255,255,255,.05)' }}
  onMouseLeave={e => { if (!isExpanded) e.currentTarget.style.background = resultBg(row.final_result) }}>
  {/* Time */}
@@ -3915,7 +3915,7 @@ function TriageLogTab({ supabase, session }: { supabase: any; session: any }) {
  style={{ width: '100%', resize: 'none', background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 0, color: 'rgba(255,255,255,.8)', fontSize: '14px', padding: '8px 10px', fontFamily: 'inherit', outline: 'none', boxSizing: 'border-box', lineHeight: 1.5 }}
  />
  <button onClick={() => saveFeedback(row.id)} disabled={savingFeedback[row.id]}
- style={{ width: '100%', marginTop: '6px', padding: '7px 0', borderRadius: 0, border: '1px solid rgba(243,239,230,.28)', background: 'rgba(243,239,230,.1)', color: '#f3efe6', fontSize: '14px', fontWeight: 500, cursor: savingFeedback[row.id] ? 'default' : 'pointer', fontFamily: 'inherit', opacity: savingFeedback[row.id] ? 0.5 : 1 }}>
+ style={{ width: '100%', marginTop: '6px', padding: '7px 0', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 28%, transparent)', background: 'color-mix(in srgb, var(--text) 10%, transparent)', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: savingFeedback[row.id] ? 'default' : 'pointer', fontFamily: 'inherit', opacity: savingFeedback[row.id] ? 0.5 : 1 }}>
  {savingFeedback[row.id] ? ' Saving…' : savedFeedback[row.id] ? ' Saved!' : ' Save'}
  </button>
  </>
@@ -4383,7 +4383,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  <div style={{ fontSize: '22px', fontWeight: 500, color: s.text, marginBottom: '4px' }}> AI Support — Chatbot Config</div>
  <div style={{ fontSize: '14px', color: s.muted }}>Powered by Mistral AI. Configure the system prompt, model, and FAQs for the customer-facing chat widget.</div>
  </div>
- <div style={{ display: 'flex', alignItems: 'center', gap: '6px', background: apiTestStatus === 'ok' ? 'rgba(183,196,176,.08)' : 'rgba(243,239,230,.06)', border: `1px solid ${apiTestStatus === 'ok' ? 'rgba(183,196,176,.3)' : 'rgba(243,239,230,.18)'}`, borderRadius: 0, padding: '7px 13px' }}>
+ <div style={{ display: 'flex', alignItems: 'center', gap: '6px', background: apiTestStatus === 'ok' ? 'rgba(183,196,176,.08)' : 'color-mix(in srgb, var(--text) 6%, transparent)', border: `1px solid ${apiTestStatus === 'ok' ? 'rgba(183,196,176,.3)' : 'color-mix(in srgb, var(--text) 18%, transparent)'}`, borderRadius: 0, padding: '7px 13px' }}>
  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: apiTestStatus === 'ok' ? '#b7c4b0' : s.accent, display: 'inline-block' }} />
  <span style={{ fontSize: '14px', color: apiTestStatus === 'ok' ? '#b7c4b0' : s.accent, fontWeight: 500 }}>{apiTestStatus === 'ok' ? 'Connected · Mistral AI' : 'Key via Vercel env var'}</span>
  </div>
@@ -4423,7 +4423,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  return (
  <button key={tab} onClick={() => { setAiTab(tab); localStorage.setItem('azd_aiTab', tab) }} style={{ flex: 1, minWidth: '80px', padding: '14px 8px', fontSize: '14px', fontWeight: 500, border: 'none', background: 'transparent', cursor: 'pointer', color: aiTab === tab ? s.accent : s.muted, borderBottom: aiTab === tab ? `2px solid ${s.accent}` : '2px solid transparent', fontFamily: s.font, transition: 'color .15s', whiteSpace: 'nowrap', position: 'relative' }}>
  {tab === 'prompt' ? ' Configuration' : tab === 'faq' ? ' FAQs' : tab === 'knowledge' ? ' Knowledge' : tab === 'history' ? ' History' : tab === 'tickets' ? ' Tickets' : tab === 'changelog' ? ' Changelog' : ' Triage'}
- {tab === 'tickets' && openCount > 0 && <span style={{ marginLeft: '5px', fontSize: '14px', fontWeight: 500, background: '#c9928c', color: '#f3efe6', borderRadius: 0, padding: '1px 5px' }}>{openCount}</span>}
+ {tab === 'tickets' && openCount > 0 && <span style={{ marginLeft: '5px', fontSize: '14px', fontWeight: 500, background: '#c9928c', color: 'var(--text)', borderRadius: 0, padding: '1px 5px' }}>{openCount}</span>}
  </button>
  )
  })}
@@ -4463,7 +4463,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  </div>
  )}
  {userRole === 'admin' && (
- <div style={{ marginBottom: '20px', background: 'rgba(243,239,230,.04)', border: '1px solid rgba(243,239,230,.14)', borderRadius: 0, padding: '16px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' }}>
+ <div style={{ marginBottom: '20px', background: 'color-mix(in srgb, var(--text) 4%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 14%, transparent)', borderRadius: 0, padding: '16px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' }}>
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text, marginBottom: '3px' }}>Chatbot Booking</div>
  <div style={{ fontSize: '14px', color: s.muted }}>Allow guests to create bookings via the chatbot</div>
@@ -4486,15 +4486,15 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  {userRole === 'admin' ? (<>
  <p style={{ fontSize: '14px', color: s.muted, lineHeight: 1.6, marginBottom: '16px' }}>The system prompt controls the chatbot&apos;s personality and behaviour. Loaded before every conversation. <span style={{ color: s.accent }}>Changes apply immediately</span> — Save stores permanently.</p>
  <textarea value={systemPrompt} onChange={e => { const v = e.target.value; setSystemPrompt(v); localStorage.setItem('azd_mistral_prompt_v2', v); setPromptSaved(false) }}
- style={{ width: '100%', minHeight: '200px', background: '#000', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '14px', fontSize: '14px', color: s.text, lineHeight: 1.65, fontFamily: 'ui-monospace,monospace', resize: 'vertical', outline: 'none', boxSizing: 'border-box' }} />
+ style={{ width: '100%', minHeight: '200px', background: 'var(--bg)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 0, padding: '14px', fontSize: '14px', color: s.text, lineHeight: 1.65, fontFamily: 'ui-monospace,monospace', resize: 'vertical', outline: 'none', boxSizing: 'border-box' }} />
  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '12px' }}>
  <div style={{ fontSize: '14px', color: s.muted }}>{systemPrompt.length} chars · ~{Math.ceil(systemPrompt.length / 4)} tokens</div>
  <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
  {promptSaved ? <span style={{ fontSize: '14px', color: '#b7c4b0' }}> Saved</span> : <span style={{ fontSize: '14px', color: '#c9b48a' }}> Unsaved</span>}
- <button onClick={() => { localStorage.setItem('azd_mistral_prompt_v2', systemPrompt); setSystemPrompt(systemPrompt); setPromptSaved(true) }} style={{ padding: '9px 20px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>Save</button>
+ <button onClick={() => { localStorage.setItem('azd_mistral_prompt_v2', systemPrompt); setSystemPrompt(systemPrompt); setPromptSaved(true) }} style={{ padding: '9px 20px', borderRadius: 0, border: 'none', background: s.accent, color: 'var(--on-accent)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>Save</button>
  </div>
  </div>
- <div style={{ marginTop: '22px', background: 'rgba(243,239,230,.04)', border: '1px solid rgba(243,239,230,.14)', borderRadius: 0, padding: '18px' }}>
+ <div style={{ marginTop: '22px', background: 'color-mix(in srgb, var(--text) 4%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 14%, transparent)', borderRadius: 0, padding: '18px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.accent, marginBottom: '4px' }}> Mistral API — Model &amp; Connection</div>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '16px', lineHeight: 1.6 }}>
  The API key is stored securely as <code style={{ background: 'rgba(255,255,255,.07)', padding: '1px 5px', borderRadius: 0, fontFamily: 'var(--font-geist-mono), ui-monospace, monospace' }}>MISTRAL_API_KEY</code> in Vercel — never exposed to the browser.
@@ -4502,7 +4502,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  </div>
  <div style={{ marginBottom: '14px' }}>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '6px' }}>Model</div>
- <select value={mistralModel} onChange={e => { setMistralModel(e.target.value); localStorage.setItem('azd_mistral_model', e.target.value) }} style={{ background: '#000', border: '1px solid rgba(255,255,255,.1)', borderRadius: 0, padding: '9px 12px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none', minWidth: '280px' }}>
+ <select value={mistralModel} onChange={e => { setMistralModel(e.target.value); localStorage.setItem('azd_mistral_model', e.target.value) }} style={{ background: 'var(--bg)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 0, padding: '9px 12px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none', minWidth: '280px' }}>
  <option value="mistral-large-latest">mistral-large-latest — Most capable</option>
  <option value="mistral-medium-latest">mistral-medium-latest — Balanced</option>
  <option value="mistral-small-latest">mistral-small-latest — Fast &amp; cheap</option>
@@ -4512,7 +4512,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  </select>
  </div>
  <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' }}>
- <button onClick={testApiConnection} disabled={apiTestStatus === 'testing'} style={{ padding: '8px 16px', borderRadius: 0, border: '1px solid rgba(243,239,230,.3)', background: 'transparent', color: s.accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ <button onClick={testApiConnection} disabled={apiTestStatus === 'testing'} style={{ padding: '8px 16px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', background: 'transparent', color: s.accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  {apiTestStatus === 'testing' ? 'Testing…' : 'Test connection'}
  </button>
  {apiTestStatus === 'ok' && <span style={{ fontSize: '14px', fontWeight: 500, padding: '4px 10px', borderRadius: 0, background: 'rgba(183,196,176,.12)', color: '#b7c4b0', border: '1px solid rgba(183,196,176,.3)' }}> Connected</span>}
@@ -4540,12 +4540,12 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  <div style={{ fontSize: '14px', color: s.muted }}>A: {faq.a}</div>
  </div>
  ))}
- <div style={{ marginTop: '20px', background: 'rgba(243,239,230,.04)', border: '1px solid rgba(243,239,230,.14)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ marginTop: '20px', background: 'color-mix(in srgb, var(--text) 4%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 14%, transparent)', borderRadius: 0, padding: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.accent, marginBottom: '12px' }}>+ Add FAQ</div>
- <input value={newFaqQ} onChange={e => setNewFaqQ(e.target.value)} placeholder="Question…" style={{ width: '100%', background: '#000', border: '1px solid rgba(255,255,255,.1)', borderRadius: 0, padding: '9px 12px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none', marginBottom: '8px', boxSizing: 'border-box' }} />
- <textarea value={newFaqA} onChange={e => setNewFaqA(e.target.value)} placeholder="Answer…" rows={2} style={{ width: '100%', background: '#000', border: '1px solid rgba(255,255,255,.1)', borderRadius: 0, padding: '9px 12px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none', resize: 'vertical', boxSizing: 'border-box' }} />
+ <input value={newFaqQ} onChange={e => setNewFaqQ(e.target.value)} placeholder="Question…" style={{ width: '100%', background: 'var(--bg)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 0, padding: '9px 12px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none', marginBottom: '8px', boxSizing: 'border-box' }} />
+ <textarea value={newFaqA} onChange={e => setNewFaqA(e.target.value)} placeholder="Answer…" rows={2} style={{ width: '100%', background: 'var(--bg)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 0, padding: '9px 12px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none', resize: 'vertical', boxSizing: 'border-box' }} />
  <button onClick={() => { if (newFaqQ.trim() && newFaqA.trim()) { setFaqs(f => [...f, { q: newFaqQ.trim(), a: newFaqA.trim() }]); setNewFaqQ(''); setNewFaqA('') } }}
- style={{ marginTop: '10px', padding: '9px 22px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>Add</button>
+ style={{ marginTop: '10px', padding: '9px 22px', borderRadius: 0, border: 'none', background: s.accent, color: 'var(--on-accent)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>Add</button>
  </div>
  </div>
  )}
@@ -4554,7 +4554,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  {aiTab === 'knowledge' && (
  <div style={{ padding: '28px' }}>
  <p style={{ fontSize: '14px', color: s.muted, lineHeight: 1.6, marginBottom: '20px' }}>Upload PDF, Markdown or TXT files — they get added to the AI's knowledge. Price lists, SSI guidelines, site descriptions, etc.</p>
- <label style={{ display: 'block', border: '2px dashed rgba(243,239,230,.25)', borderRadius: 0, padding: '28px', textAlign: 'center', cursor: 'pointer', marginBottom: '20px', background: 'rgba(243,239,230,.03)' }}>
+ <label style={{ display: 'block', border: '2px dashed color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 0, padding: '28px', textAlign: 'center', cursor: 'pointer', marginBottom: '20px', background: 'color-mix(in srgb, var(--text) 3%, transparent)' }}>
  <input type="file" accept=".md,.txt,.pdf" multiple style={{ display: 'none' }}
  onChange={e => {
  Array.from(e.target.files || []).forEach(file => {
@@ -4585,7 +4585,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  {kbFiles.map((f, i) => {
  const status = kbSaveStatus[f.name] || 'saved'
  return (
- <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '9px 12px', background: status === 'error' ? 'rgba(255,107,107,.05)' : 'rgba(255,255,255,.04)', borderRadius: 0, marginBottom: '6px', border: `1px solid ${status === 'error' ? 'rgba(255,107,107,.2)' : status === 'saving' ? 'rgba(243,239,230,.2)' : 'rgba(255,255,255,.07)'}` }}>
+ <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '9px 12px', background: status === 'error' ? 'rgba(255,107,107,.05)' : 'rgba(255,255,255,.04)', borderRadius: 0, marginBottom: '6px', border: `1px solid ${status === 'error' ? 'rgba(255,107,107,.2)' : status === 'saving' ? 'color-mix(in srgb, var(--text) 20%, transparent)' : 'rgba(255,255,255,.07)'}` }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
  <span style={{ fontSize: '14px' }}>{f.name.endsWith('.pdf') ? '' : f.name.endsWith('.md') ? '' : ''}</span>
  <span style={{ fontSize: '14px', color: s.text }}>{f.name}</span>
@@ -4618,7 +4618,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  </p>
  </div>
  <button onClick={syncWebsiteContent} disabled={websiteSyncStatus === 'syncing'}
- style={{ padding: '10px 20px', borderRadius: 0, border: `1px solid ${websiteSyncStatus === 'synced' ? 'rgba(183,196,176,.5)' : websiteSyncStatus === 'error' ? 'rgba(255,107,107,.5)' : 'rgba(243,239,230,.35)'}`, background: websiteSyncStatus === 'synced' ? 'rgba(183,196,176,.12)' : websiteSyncStatus === 'error' ? 'rgba(255,107,107,.1)' : 'rgba(243,239,230,.1)', color: websiteSyncStatus === 'synced' ? '#b7c4b0' : websiteSyncStatus === 'error' ? '#c9928c' : s.accent, fontWeight: 500, fontSize: '14px', cursor: websiteSyncStatus === 'syncing' ? 'default' : 'pointer', fontFamily: s.font, whiteSpace: 'nowrap', flexShrink: 0, transition: 'all .2s' }}>
+ style={{ padding: '10px 20px', borderRadius: 0, border: `1px solid ${websiteSyncStatus === 'synced' ? 'rgba(183,196,176,.5)' : websiteSyncStatus === 'error' ? 'rgba(255,107,107,.5)' : 'color-mix(in srgb, var(--text) 35%, transparent)'}`, background: websiteSyncStatus === 'synced' ? 'rgba(183,196,176,.12)' : websiteSyncStatus === 'error' ? 'rgba(255,107,107,.1)' : 'color-mix(in srgb, var(--text) 10%, transparent)', color: websiteSyncStatus === 'synced' ? '#b7c4b0' : websiteSyncStatus === 'error' ? '#c9928c' : s.accent, fontWeight: 500, fontSize: '14px', cursor: websiteSyncStatus === 'syncing' ? 'default' : 'pointer', fontFamily: s.font, whiteSpace: 'nowrap', flexShrink: 0, transition: 'all .2s' }}>
  {websiteSyncStatus === 'syncing' ? ' Syncing…' : websiteSyncStatus === 'synced' ? ' Synced!' : websiteSyncStatus === 'error' ? ' Error — retry' : ' Sync Website Content'}
  </button>
  </div>
@@ -4645,7 +4645,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  <div style={{ display: 'flex', gap: '4px', marginBottom: '18px', background: 'rgba(255,255,255,.04)', borderRadius: 0, padding: '3px' }}>
  {(['active', 'archived'] as const).map(tab => (
  <button key={tab} onClick={() => { setHistorySubTab(tab); localStorage.setItem('azd_historySubTab', tab); setSelectedConvId(null); setHistorySearch('') }}
- style={{ flex: 1, padding: '6px 0', borderRadius: 0, border: 'none', background: historySubTab === tab ? 'rgba(243,239,230,.15)' : 'transparent', color: historySubTab === tab ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, textTransform: 'capitalize' }}>
+ style={{ flex: 1, padding: '6px 0', borderRadius: 0, border: 'none', background: historySubTab === tab ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'transparent', color: historySubTab === tab ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, textTransform: 'capitalize' }}>
  {tab === 'active' ? `Active (${historyConvs.filter(c => !c.archived).length})` : `Archive (${historyConvs.filter(c => c.archived).length})`}
  </button>
  ))}
@@ -4678,10 +4678,10 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  const isOpen = selectedConvId === conv.session_id
  const msgs: {role: string, text: string}[] = Array.isArray(conv.messages) ? conv.messages : []
  return (
- <div key={conv.session_id} style={{ marginBottom: '8px', border: `1px solid ${isOpen ? 'rgba(243,239,230,.25)' : 'rgba(255,255,255,.07)'}`, borderRadius: 0, overflow: 'hidden' }}>
+ <div key={conv.session_id} style={{ marginBottom: '8px', border: `1px solid ${isOpen ? 'color-mix(in srgb, var(--text) 25%, transparent)' : 'rgba(255,255,255,.07)'}`, borderRadius: 0, overflow: 'hidden' }}>
  {/* Header row */}
  <button type="button" onClick={() => setSelectedConvId(isOpen ? null : conv.session_id)}
- style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '13px 16px', background: isOpen ? 'rgba(243,239,230,.05)' : 'rgba(255,255,255,.03)', cursor: 'pointer', width: '100%', border: 'none', fontFamily: s.font, textAlign: 'left' }}
+ style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '13px 16px', background: isOpen ? 'color-mix(in srgb, var(--text) 5%, transparent)' : 'rgba(255,255,255,.03)', cursor: 'pointer', width: '100%', border: 'none', fontFamily: s.font, textAlign: 'left' }}
  onMouseEnter={e => { if (!isOpen) e.currentTarget.style.background = 'rgba(255,255,255,.06)' }}
  onMouseLeave={e => { if (!isOpen) e.currentTarget.style.background = 'rgba(255,255,255,.03)' }}>
  {(() => {
@@ -4692,7 +4692,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  : (conv.first_message || '(no message)')
  return (
  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0 }}>
- <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: isLead ? 'rgba(183,196,176,.1)' : 'rgba(243,239,230,.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', flexShrink: 0 }}>{isLead ? '' : ''}</div>
+ <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: isLead ? 'rgba(183,196,176,.1)' : 'color-mix(in srgb, var(--text) 10%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', flexShrink: 0 }}>{isLead ? '' : ''}</div>
  <div style={{ minWidth: 0 }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text, marginBottom: '3px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '300px' }}>{displayMsg}</div>
  <div style={{ fontSize: '14px', color: s.muted }}>{isLead ? 'Lead capture' : `${conv.message_count} messages`} · {fmtTime(conv.created_at)}</div>
@@ -4710,7 +4710,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  {historySubTab === 'archived' && (
  <button onClick={e => { e.stopPropagation(); unarchiveConv(conv.session_id) }} style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'transparent', color: s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>Unarchive</button>
  )}
- <button onClick={e => { e.stopPropagation(); exportConvMd(conv) }} style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.35)', background: 'transparent', color: s.accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}> Export</button>
+ <button onClick={e => { e.stopPropagation(); exportConvMd(conv) }} style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', background: 'transparent', color: s.accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}> Export</button>
  <span style={{ fontSize: '14px', color: s.muted, transition: 'transform .2s', display: 'inline-block', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}></span>
  </div>
  </button>
@@ -4721,7 +4721,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  {msgs.length === 0 && <div style={{ color: s.muted, fontSize: '14px', textAlign: 'center' }}>No messages recorded.</div>}
  {msgs.map((m, i) => (
  <div key={i} style={{ display: 'flex', justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start', marginBottom: '10px' }}>
- <div style={{ maxWidth: '80%', padding: '9px 13px', borderRadius: m.role === 'user' ? '14px 14px 4px 14px' : '14px 14px 14px 4px', background: m.role === 'user' ? 'rgba(243,239,230,.15)' : m.role === 'team' ? 'rgba(183,196,176,.1)' : 'rgba(255,255,255,.06)', border: m.role === 'user' ? '1px solid rgba(243,239,230,.2)' : m.role === 'team' ? '1px solid rgba(183,196,176,.25)' : '1px solid rgba(255,255,255,.08)', fontSize: '14px', color: s.text, lineHeight: 1.5 }}>
+ <div style={{ maxWidth: '80%', padding: '9px 13px', borderRadius: m.role === 'user' ? '14px 14px 4px 14px' : '14px 14px 14px 4px', background: m.role === 'user' ? 'color-mix(in srgb, var(--text) 15%, transparent)' : m.role === 'team' ? 'rgba(183,196,176,.1)' : 'rgba(255,255,255,.06)', border: m.role === 'user' ? '1px solid color-mix(in srgb, var(--text) 20%, transparent)' : m.role === 'team' ? '1px solid rgba(183,196,176,.25)' : '1px solid rgba(255,255,255,.08)', fontSize: '14px', color: s.text, lineHeight: 1.5 }}>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '4px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '.08em' }}>{m.role === 'user' ? 'Visitor' : m.role === 'team' ? 'Team' : 'Bot'}</div>
  {m.text}
  </div>
@@ -4751,9 +4751,9 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  const cnt = st === 'open' ? tickets.filter(t => !t.archived && t.status === 'open').length : tickets.filter(t => t.archived).length
  return (
  <button key={st} onClick={() => { setTicketSubTab(st); setExpandedTicketId(null); localStorage.setItem('azd_ticketSubTab', st) }}
- style={{ padding: '7px 16px', borderRadius: 0, border: `1px solid ${ticketSubTab === st ? 'rgba(243,239,230,.3)' : 'rgba(255,255,255,.1)'}`, background: ticketSubTab === st ? 'rgba(243,239,230,.08)' : 'transparent', color: ticketSubTab === st ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ padding: '7px 16px', borderRadius: 0, border: `1px solid ${ticketSubTab === st ? 'color-mix(in srgb, var(--text) 30%, transparent)' : 'rgba(255,255,255,.1)'}`, background: ticketSubTab === st ? 'color-mix(in srgb, var(--text) 8%, transparent)' : 'transparent', color: ticketSubTab === st ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  {st === 'open' ? ' Open' : ' Archived'}
- {cnt > 0 && <span style={{ marginLeft: '6px', fontSize: '14px', fontWeight: 500, background: st === 'open' ? '#c9928c' : 'rgba(255,255,255,.15)', color: '#f3efe6', borderRadius: 0, padding: '1px 6px' }}>{cnt}</span>}
+ {cnt > 0 && <span style={{ marginLeft: '6px', fontSize: '14px', fontWeight: 500, background: st === 'open' ? '#c9928c' : 'rgba(255,255,255,.15)', color: 'var(--text)', borderRadius: 0, padding: '1px 6px' }}>{cnt}</span>}
  </button>
  )
  })}
@@ -4866,10 +4866,10 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  }
  }
  return (
- <div key={ticket.id} style={{ marginBottom: '10px', border: `1px solid ${isExpanded ? 'rgba(243,239,230,.25)' : ageBorderColor || (ticket.status === 'open' ? 'rgba(212,160,122,.2)' : ticket.status === 'in_progress' ? 'rgba(201,146,140,.25)' : 'rgba(255,255,255,.07)')}`, borderRadius: 0, overflow: 'hidden', background: ageColor || undefined }}>
+ <div key={ticket.id} style={{ marginBottom: '10px', border: `1px solid ${isExpanded ? 'color-mix(in srgb, var(--text) 25%, transparent)' : ageBorderColor || (ticket.status === 'open' ? 'rgba(212,160,122,.2)' : ticket.status === 'in_progress' ? 'rgba(201,146,140,.25)' : 'rgba(255,255,255,.07)')}`, borderRadius: 0, overflow: 'hidden', background: ageColor || undefined }}>
  {/* Header row — click to expand */}
  <button type="button" onClick={() => { const nextId = isExpanded ? null : ticket.id; setExpandedTicketId(nextId); if (nextId && (ticket.note ?? '').startsWith('booking:') && ticket.status !== 'resolved') void loadSlots(ticket); if (nextId) loadTicketNotes(nextId) }}
- style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', padding: '14px 18px', background: isExpanded ? 'rgba(243,239,230,.04)' : 'rgba(255,255,255,.025)', cursor: 'pointer', width: '100%', border: 'none', fontFamily: s.font, textAlign: 'left' }}
+ style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', padding: '14px 18px', background: isExpanded ? 'color-mix(in srgb, var(--text) 4%, transparent)' : 'rgba(255,255,255,.025)', cursor: 'pointer', width: '100%', border: 'none', fontFamily: s.font, textAlign: 'left' }}
  onMouseEnter={e => { if (!isExpanded) e.currentTarget.style.background = 'rgba(255,255,255,.05)' }}
  onMouseLeave={e => { if (!isExpanded) e.currentTarget.style.background = 'rgba(255,255,255,.025)' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0 }}>
@@ -4880,14 +4880,14 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  <span style={{ fontSize: '14px', fontWeight: 500, color: statusColor, background: statusBg, padding: '2px 7px', borderRadius: 0 }}>{ticket.status === 'open' ? ' Open' : ticket.status === 'in_progress' ? (ticket.claimedBy ? ` ${ticket.claimedBy}` : ' In Progress') : ' Resolved'}</span>
  {ticket.status === 'open' && ageLabel && <span style={{ fontSize: '14px', fontWeight: 500, color: ageLabelColor }}>{ageLabel}</span>}
  <span style={{ fontSize: '14px', fontWeight: 500, padding: '2px 7px', borderRadius: 0,
- background: ticket.preferredChannel === 'internal' ? 'rgba(201,180,138,.12)' : ticket.preferredChannel === 'form_submission' ? 'rgba(212,160,122,.1)' : ticket.preferredChannel === 'whatsapp' ? 'rgba(183,196,176,.12)' : 'rgba(243,239,230,.1)',
+ background: ticket.preferredChannel === 'internal' ? 'rgba(201,180,138,.12)' : ticket.preferredChannel === 'form_submission' ? 'rgba(212,160,122,.1)' : ticket.preferredChannel === 'whatsapp' ? 'rgba(183,196,176,.12)' : 'color-mix(in srgb, var(--text) 10%, transparent)',
  color: ticket.preferredChannel === 'internal' ? '#c9b48a' : ticket.preferredChannel === 'form_submission' ? '#d4a07a' : ticket.preferredChannel === 'whatsapp' ? '#b7c4b0' : s.accent,
- border: `1px solid ${ticket.preferredChannel === 'internal' ? 'rgba(201,180,138,.3)' : ticket.preferredChannel === 'form_submission' ? 'rgba(212,160,122,.25)' : ticket.preferredChannel === 'whatsapp' ? 'rgba(183,196,176,.25)' : 'rgba(243,239,230,.2)'}` }}>
+ border: `1px solid ${ticket.preferredChannel === 'internal' ? 'rgba(201,180,138,.3)' : ticket.preferredChannel === 'form_submission' ? 'rgba(212,160,122,.25)' : ticket.preferredChannel === 'whatsapp' ? 'rgba(183,196,176,.25)' : 'color-mix(in srgb, var(--text) 20%, transparent)'}` }}>
  {ticket.preferredChannel === 'internal' ? ' Internal · Instructor' : ticket.preferredChannel === 'form_submission' ? ' Contact Form' : ticket.preferredChannel === 'whatsapp' ? ' Bot · WhatsApp' : ' Bot · Email'}
  </span>
  {((newMsgCount ?? {})[ticket.id] ?? 0) > 0 && (
  <span style={{
- fontSize: '14px', fontWeight: 500, color: '#f3efe6',
+ fontSize: '14px', fontWeight: 500, color: 'var(--text)',
  background: '#e53e3e', borderRadius: 0,
  padding: '1px 6px', minWidth: '18px', textAlign: 'center',
  lineHeight: '16px', display: 'inline-block',
@@ -4897,7 +4897,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  )}
  </div>
  <div style={{ fontSize: '14px', color: s.muted, display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
- <button onClick={e => { e.stopPropagation(); navigator.clipboard.writeText(ticket.id).then(() => showGlobalToast('Ticket ID copied')).catch(() => showGlobalToast('Could not copy')) }} title="Copy ticket ID" style={{ fontSize: '14px', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', padding: '1px 6px', borderRadius: 0, border: '1px solid rgba(243,239,230,.18)', background: 'rgba(243,239,230,.05)', color: 'rgba(243,239,230,.6)', cursor: 'pointer', letterSpacing: '.03em' }}>#{ticket.id.slice(0, 8)}</button>
+ <button onClick={e => { e.stopPropagation(); navigator.clipboard.writeText(ticket.id).then(() => showGlobalToast('Ticket ID copied')).catch(() => showGlobalToast('Could not copy')) }} title="Copy ticket ID" style={{ fontSize: '14px', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', padding: '1px 6px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 18%, transparent)', background: 'color-mix(in srgb, var(--text) 5%, transparent)', color: 'color-mix(in srgb, var(--text) 60%, transparent)', cursor: 'pointer', letterSpacing: '.03em' }}>#{ticket.id.slice(0, 8)}</button>
  <span>{ticket.email}</span>
  <button onClick={e => { e.stopPropagation(); navigator.clipboard.writeText(ticket.email).then(() => showGlobalToast('Email copied')).catch(() => showGlobalToast('Could not copy')) }} title="Copy email" style={{ fontSize: '14px', padding: '1px 5px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'rgba(255,255,255,.05)', color: s.muted, cursor: 'pointer', fontFamily: s.font }}></button>
  {ticket.phone && (<><span>· {ticket.phone}</span><button onClick={e => { e.stopPropagation(); navigator.clipboard.writeText(ticket.phone || '').then(() => showGlobalToast('Phone copied')).catch(() => showGlobalToast('Could not copy')) }} title="Copy phone" style={{ fontSize: '14px', padding: '1px 5px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'rgba(255,255,255,.05)', color: s.muted, cursor: 'pointer', fontFamily: s.font }}></button></>)}
@@ -4956,7 +4956,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  const bid = m[1]
  return (
  <button type="button" onClick={() => { try { localStorage.setItem('azd_foTab', 'requests'); localStorage.setItem('azd_foOpenBooking', bid) } catch {} ; nav('frontoffice') }}
- style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '14px', padding: '10px 16px', borderRadius: 0, border: '1px solid rgba(243,239,230,.4)', background: 'rgba(243,239,230,.1)', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '14px', padding: '10px 16px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 40%, transparent)', background: 'color-mix(in srgb, var(--text) 10%, transparent)', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Open in Booking Requests {bid.slice(0, 8)}
  </button>
  )
@@ -4973,7 +4973,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  <span style={{ fontWeight: 500, color: s.text }}>{d.booking.product_name ?? 'Course'}</span>
  <span style={{ color: s.sub }}>{d.booking.customer_name ?? 'Guest'}{d.booking.customer_email ? ` · ${d.booking.customer_email}` : ''}</span>
  <span style={{ color: s.muted }}>{d.booking.group_size ?? 1} guest{(d.booking.group_size ?? 1) === 1 ? '' : 's'}</span>
- <button type="button" onClick={() => setTicketBookingPopup(bid)} title="Open the full booking (payments, sessions, log)" style={{ padding: '2px 9px', borderRadius: 0, border: '1px solid rgba(243,239,230,.35)', background: 'rgba(243,239,230,.08)', color: s.accent, fontSize: '14px', fontWeight: 500, fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', cursor: 'pointer' }}>{bid.slice(0, 8).toUpperCase()} </button>
+ <button type="button" onClick={() => setTicketBookingPopup(bid)} title="Open the full booking (payments, sessions, log)" style={{ padding: '2px 9px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', color: s.accent, fontSize: '14px', fontWeight: 500, fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', cursor: 'pointer' }}>{bid.slice(0, 8).toUpperCase()} </button>
  </div>
  )}
  {d?.loading && <div style={{ fontSize: '14px', color: s.muted }}>Loading sessions…</div>}
@@ -4988,7 +4988,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  return (
  <div key={x.id} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 0', flexWrap: 'wrap', opacity: 1 }}>
  <input type="date" value={dateVal} min={new Date().toISOString().slice(0, 10)} title="Move this day" onChange={e => { const v = e.target.value; setSlotData(p => ({ ...p, [ticket.id]: { ...p[ticket.id], dates: { ...p[ticket.id].dates, [x.id]: v } } })) }}
- style={{ background: '#000', border: `1px solid ${dateVal !== x.session_date ? 'rgba(201,180,138,.6)' : 'rgba(255,255,255,.12)'}`, borderRadius: 0, padding: '4px 8px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none', colorScheme: 'dark' }} />
+ style={{ background: 'var(--bg)', border: `1px solid ${dateVal !== x.session_date ? 'rgba(201,180,138,.6)' : 'rgba(255,255,255,.12)'}`, borderRadius: 0, padding: '4px 8px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none', colorScheme: 'dark' }} />
  <span style={{ fontSize: '14px', color: x.session === 'tbd' ? '#c9b48a' : s.muted, minWidth: '70px' }}>{x.session === 'tbd' ? 'open' : `set: ${x.session.toUpperCase()}`}{x.notes ? ` · ${x.notes}` : ''}</span>
  {x.session !== 'night' && ([[true, ' Boat'], [false, ' Pool']] as const).map(([bv, bl]) => (
  <button key={bl} type="button" title="Boat seat or pool/harbour day" onClick={() => setSlotData(p => ({ ...p, [ticket.id]: { ...p[ticket.id], boat: { ...p[ticket.id].boat, [x.id]: bv } } }))}
@@ -5000,14 +5000,14 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  const on = curPick === tt
  return (
  <button key={tt} type="button" title={tt === 'full' ? 'Course takes the whole day — AM and PM session' : undefined} onClick={() => setSlotData(p => ({ ...p, [ticket.id]: { ...p[ticket.id], picks: { ...p[ticket.id].picks, [x.id]: tt } } }))}
- style={{ padding: '5px 14px', borderRadius: 0, border: `1px solid ${on ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.12)'}`, background: on ? 'rgba(243,239,230,.16)' : 'transparent', color: on ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ padding: '5px 14px', borderRadius: 0, border: `1px solid ${on ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.12)'}`, background: on ? 'color-mix(in srgb, var(--text) 16%, transparent)' : 'transparent', color: on ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  {label}
  </button>
  )
  })}
  <label style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px', color: s.muted }}>Start
  <input type="time" value={timeVal} onChange={e => { const v = e.target.value; setSlotData(p => ({ ...p, [ticket.id]: { ...p[ticket.id], times: { ...p[ticket.id].times, [x.id]: v } } })) }} title="Optional: exact start time — goes into the guest email instead of the default 08:00 / 13:00"
- style={{ background: '#000', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '4px 8px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none' }} />
+ style={{ background: 'var(--bg)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '4px 8px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none' }} />
  </label>
  {dirty && <span style={{ fontSize: '14px', color: '#c9b48a' }}> changed</span>}
  </div>
@@ -5070,7 +5070,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  .filter((m: any) => m.role === 'user' || m.role === 'bot' || m.role === 'team')
  .map((m: any, i: number) => (
  <div key={i} style={{ display: 'flex', justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start' }}>
- <div style={{ maxWidth: '80%', padding: '7px 12px', borderRadius: m.role === 'user' ? '12px 12px 3px 12px' : '12px 12px 12px 3px', background: m.role === 'user' ? 'rgba(243,239,230,.12)' : m.role === 'team' ? 'rgba(183,196,176,.12)' : 'rgba(255,255,255,.06)', border: `1px solid ${m.role === 'user' ? 'rgba(243,239,230,.22)' : m.role === 'team' ? 'rgba(183,196,176,.25)' : 'rgba(255,255,255,.08)'}`, fontSize: '14px', color: s.text, lineHeight: 1.5 }}>
+ <div style={{ maxWidth: '80%', padding: '7px 12px', borderRadius: m.role === 'user' ? '12px 12px 3px 12px' : '12px 12px 12px 3px', background: m.role === 'user' ? 'color-mix(in srgb, var(--text) 12%, transparent)' : m.role === 'team' ? 'rgba(183,196,176,.12)' : 'rgba(255,255,255,.06)', border: `1px solid ${m.role === 'user' ? 'color-mix(in srgb, var(--text) 22%, transparent)' : m.role === 'team' ? 'rgba(183,196,176,.25)' : 'rgba(255,255,255,.08)'}`, fontSize: '14px', color: s.text, lineHeight: 1.5 }}>
  {m.role === 'team' && <span style={{ display: 'block', fontSize: '14px', color: '#b7c4b0', fontWeight: 500, marginBottom: '3px' }}>{m.sender || 'AZD Team'}</span>}
  {m.role === 'bot' && <span style={{ display: 'block', fontSize: '14px', color: s.muted, fontWeight: 500, marginBottom: '3px' }}>Bot</span>}
  {m.text}
@@ -5103,7 +5103,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  }} />
  </label>
  {(ticketAttachments[ticket.id] ?? []).map((f, i) => (
- <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '3px 8px', borderRadius: 0, background: 'rgba(243,239,230,.1)', border: '1px solid rgba(243,239,230,.2)', fontSize: '14px', color: s.accent, maxWidth: '160px' }}>
+ <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '3px 8px', borderRadius: 0, background: 'color-mix(in srgb, var(--text) 10%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', fontSize: '14px', color: s.accent, maxWidth: '160px' }}>
  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{f.name}</span>
  <button onClick={() => setTicketAttachments(prev => ({ ...prev, [ticket.id]: (prev[ticket.id] ?? []).filter((_, j) => j !== i) }))} style={{ background: 'none', border: 'none', color: s.muted, cursor: 'pointer', padding: '0 1px', fontSize: '14px', lineHeight: 1, fontFamily: s.font }}>×</button>
  </span>
@@ -5113,14 +5113,14 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  {ticket.sessionId && (
  <button
  onClick={sendChatReply}
- style={{ padding: '8px 20px', borderRadius: 0, border: 'none', background: reply.trim() ? '#f3efe6' : 'rgba(255,255,255,.1)', color: reply.trim() ? '#090909' : s.muted, fontSize: '14px', fontWeight: 500, cursor: reply.trim() ? 'pointer' : 'default', fontFamily: s.font, transition: 'background .2s' }}>
+ style={{ padding: '8px 20px', borderRadius: 0, border: 'none', background: reply.trim() ? 'var(--text)' : 'rgba(255,255,255,.1)', color: reply.trim() ? 'var(--bg)' : s.muted, fontSize: '14px', fontWeight: 500, cursor: reply.trim() ? 'pointer' : 'default', fontFamily: s.font, transition: 'background .2s' }}>
  {ticketReplySending[ticket.id] === 'sending' ? ' Sending…' : ticketReplySending[ticket.id] === 'sent' ? ' Sent in Chat' : ticketReplySending[ticket.id] === 'error' ? ' Error — retry' : ' Send in Chat'}
  </button>
  )}
  <button
  onClick={sendEmailReply}
  disabled={ticketEmailSending[ticket.id] === 'sending' || !reply.trim()}
- style={{ padding: '8px 20px', borderRadius: 0, border: 'none', background: reply.trim() ? 'rgba(243,239,230,.15)' : 'rgba(255,255,255,.06)', color: reply.trim() ? s.accent : 'rgba(255,255,255,.2)', fontSize: '14px', fontWeight: 500, cursor: reply.trim() && ticketEmailSending[ticket.id] !== 'sending' ? 'pointer' : 'default', fontFamily: s.font, transition: 'background .2s' }}>
+ style={{ padding: '8px 20px', borderRadius: 0, border: 'none', background: reply.trim() ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'rgba(255,255,255,.06)', color: reply.trim() ? s.accent : 'rgba(255,255,255,.2)', fontSize: '14px', fontWeight: 500, cursor: reply.trim() && ticketEmailSending[ticket.id] !== 'sending' ? 'pointer' : 'default', fontFamily: s.font, transition: 'background .2s' }}>
  {ticketEmailSending[ticket.id] === 'sending' ? ' Sending…' : ticketEmailSending[ticket.id] === 'sent' ? ' Email Sent' : ticketEmailSending[ticket.id] === 'error' ? ' Error — retry' : ' Send Email'}
  </button>
  </div>
@@ -5137,7 +5137,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  <div style={{ display: 'flex', gap: '4px', marginBottom: '14px', background: 'rgba(255,255,255,.04)', borderRadius: 0, padding: '3px' }}>
  {(['notes', 'history'] as const).map(tab => (
  <button key={tab} onClick={() => setTicketSidebarTab(prev => ({ ...prev, [ticket.id]: tab }))}
- style={{ flex: 1, padding: '5px 0', borderRadius: 0, border: 'none', background: sideTab === tab ? 'rgba(243,239,230,.14)' : 'transparent', color: sideTab === tab ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, letterSpacing: '.04em' }}>
+ style={{ flex: 1, padding: '5px 0', borderRadius: 0, border: 'none', background: sideTab === tab ? 'color-mix(in srgb, var(--text) 14%, transparent)' : 'transparent', color: sideTab === tab ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, letterSpacing: '.04em' }}>
  {tab === 'history' ? 'History' : `Notes${noteCount > 0 ? ` (${noteCount})` : ''}`}
  </button>
  ))}
@@ -5146,7 +5146,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  {/* History panel */}
  {sideTab === 'history' && (
  <div style={{ flex: 1 }}>
- <button onClick={() => navigator.clipboard.writeText(ticket.id).then(() => showGlobalToast('Ticket ID copied')).catch(() => showGlobalToast('Could not copy'))} title="Copy full ticket ID" style={{ fontSize: '14px', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', padding: '1px 6px', borderRadius: 0, border: '1px solid rgba(243,239,230,.15)', background: 'rgba(243,239,230,.04)', color: 'rgba(243,239,230,.5)', cursor: 'pointer', marginBottom: '12px', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '100%' }}>{ticket.id}</button>
+ <button onClick={() => navigator.clipboard.writeText(ticket.id).then(() => showGlobalToast('Ticket ID copied')).catch(() => showGlobalToast('Could not copy'))} title="Copy full ticket ID" style={{ fontSize: '14px', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', padding: '1px 6px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', background: 'color-mix(in srgb, var(--text) 4%, transparent)', color: 'color-mix(in srgb, var(--text) 50%, transparent)', cursor: 'pointer', marginBottom: '12px', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '100%' }}>{ticket.id}</button>
  <TicketHistory ticketId={ticket.id} />
  </div>
  )}
@@ -5189,7 +5189,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  <button
  disabled={ticketNoteAdding[ticket.id] || !(ticketNoteEdits[ticket.id] ?? '').trim()}
  onClick={() => addTicketNote(ticket.id, ticketNoteEdits[ticket.id] ?? '')}
- style={{ fontSize: '14px', padding: '5px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.3)', background: 'rgba(243,239,230,.08)', color: s.accent, cursor: (ticketNoteAdding[ticket.id] || !(ticketNoteEdits[ticket.id] ?? '').trim()) ? 'not-allowed' : 'pointer', fontFamily: s.font, opacity: !(ticketNoteEdits[ticket.id] ?? '').trim() ? 0.4 : 1 }}
+ style={{ fontSize: '14px', padding: '5px 14px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', color: s.accent, cursor: (ticketNoteAdding[ticket.id] || !(ticketNoteEdits[ticket.id] ?? '').trim()) ? 'not-allowed' : 'pointer', fontFamily: s.font, opacity: !(ticketNoteEdits[ticket.id] ?? '').trim() ? 0.4 : 1 }}
  >
  {ticketNoteAdding[ticket.id] ? 'Adding…' : '+ Add Note'}
  </button>
@@ -5228,7 +5228,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  {/* Buchungs-Popup aus dem Instructor-Ticket: volles FO-Detail (Payments, Sessions, Log) */}
  {ticketBookingPopup && (
  <div onClick={() => setTicketBookingPopup(null)} style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '40px 16px', overflowY: 'auto' }}>
- <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: '#121210', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, boxShadow: 'none' }}>
+ <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 0, boxShadow: 'none' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>Booking <span style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: s.text, fontWeight: 500 }}>{ticketBookingPopup.slice(0, 8).toUpperCase()}</span> · changes here are live</span>
  <button type="button" onClick={() => setTicketBookingPopup(null)} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.text, borderRadius: 0, padding: '6px 12px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>Close </button>
@@ -5530,19 +5530,19 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  }
 
  const categoryLabels: Record<string, string> = { dives: 'Dive Packages', entry: 'Entry & Core', specialty: 'Advanced & Specialties', ecology: 'Ecology', pro: 'Safety & Pro', equipment: 'Equipment Rental', extras: 'Extras & Sites', insurance: 'Insurance' }
- const categoryColors: Record<string, string> = { dives: '#f3efe6', entry: '#b7c4b0', specialty: '#c9c2b6', ecology: '#b7c4b0', pro: '#c9c2b6', equipment: '#d4a07a', extras: '#c9b48a', insurance: '#c9928c' }
+ const categoryColors: Record<string, string> = { dives: 'var(--accent)', entry: '#b7c4b0', specialty: 'var(--muted)', ecology: '#b7c4b0', pro: 'var(--muted)', equipment: '#d4a07a', extras: '#c9b48a', insurance: '#c9928c' }
  const ALL_CATEGORIES = ['dives', 'entry', 'specialty', 'ecology', 'pro', 'equipment', 'extras', 'insurance']
  const grouped = prices.reduce((acc, p) => { if (!acc[p.category]) acc[p.category] = []; acc[p.category].push(p); return acc }, {} as Record<string, typeof prices>)
 
  return (
- <div style={{ background: '#000', minHeight: '100vh', padding: '24px 16px' }}>
+ <div style={{ background: 'var(--bg)', minHeight: '100vh', padding: '24px 16px' }}>
 
  {/* Toast */}
  {toastMsg && (
  <div style={{
  position: 'fixed', bottom: '28px', left: '50%', transform: 'translateX(-50%)',
- background: '#121210', border: '1px solid rgba(243,239,230,.35)', borderRadius: 0,
- padding: '13px 22px', fontSize: '14px', fontWeight: 500, color: '#f3efe6',
+ background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', borderRadius: 0,
+ padding: '13px 22px', fontSize: '14px', fontWeight: 500, color: 'var(--text)',
  boxShadow: 'none', zIndex: 9999, whiteSpace: 'nowrap',
  animation: 'fadeInUp .2s ease',
  }}>
@@ -5563,11 +5563,11 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  <span style={{ fontWeight: 500 }}>{d.kind === 'credit_note' ? 'Credit note' : d.kind === 'void' ? 'Void' : 'Invoice'}{d.amount_cents != null ? ` · €${(d.amount_cents / 100).toFixed(2)}` : ''}</span>
  <span style={{ color: s.muted, flex: 1, minWidth: '220px' }}>{d.error}</span>
  {d.booking_id && (
- <button type="button" onClick={() => setRefundPopupBookingId(d.booking_id!)} title="Open booking" style={{ background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', fontSize: '14px', fontWeight: 500, color: '#f3efe6', textDecoration: 'underline' }}>
+ <button type="button" onClick={() => setRefundPopupBookingId(d.booking_id!)} title="Open booking" style={{ background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', fontSize: '14px', fontWeight: 500, color: 'var(--text)', textDecoration: 'underline' }}>
  Booking {d.booking_id.slice(0, 8).toUpperCase()} 
  </button>
  )}
- <button type="button" disabled={kiBusyId === d.id} onClick={() => retryKi(d.id)} style={{ fontSize: '14px', fontWeight: 500, padding: '5px 12px', borderRadius: 0, cursor: kiBusyId === d.id ? 'wait' : 'pointer', fontFamily: s.font, background: 'rgba(243,239,230,.12)', color: '#f3efe6', border: '1px solid rgba(243,239,230,.3)' }}>{kiBusyId === d.id ? 'Retrying…' : 'Retry'}</button>
+ <button type="button" disabled={kiBusyId === d.id} onClick={() => retryKi(d.id)} style={{ fontSize: '14px', fontWeight: 500, padding: '5px 12px', borderRadius: 0, cursor: kiBusyId === d.id ? 'wait' : 'pointer', fontFamily: s.font, background: 'color-mix(in srgb, var(--text) 12%, transparent)', color: 'var(--text)', border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)' }}>{kiBusyId === d.id ? 'Retrying…' : 'Retry'}</button>
  </div>
  ))}
  </div>
@@ -5576,9 +5576,9 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  </div>
 
  {/* Finances widget */}
- <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, overflow: 'hidden' }}>
+ <div style={{ background: 'var(--glass)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 0, overflow: 'hidden' }}>
  {/* Tab bar */}
- <div style={{ display: 'flex', borderBottom: '1px solid rgba(243,239,230,.2)', flexWrap: 'wrap' }}>
+ <div style={{ display: 'flex', borderBottom: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', flexWrap: 'wrap' }}>
  {(['overview', 'upcoming', 'refunds', 'history', 'reports', 'pricing'] as const).map(tab => (
  <button key={tab} onClick={() => { setFinTab(tab); localStorage.setItem('azd_finTab', tab) }} style={{
  padding: '14px 22px', fontSize: '14px', fontWeight: 500, border: 'none', background: 'transparent', cursor: 'pointer', letterSpacing: '.06em', fontFamily: s.font,
@@ -5587,7 +5587,7 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  }}>
  {tab === 'overview' ? 'Overview' : tab === 'upcoming' ? 'Upcoming' : tab === 'reports' ? 'Reports' : tab === 'pricing' ? 'Pricing' : tab === 'history' ? 'History' : 'Action needed'}
  {tab === 'refunds' && totalAction > 0 && (
- <span title={`${actionCount ?? 0} refund request(s), ${pendingPayCount} payment(s) waiting and ${payMissingCount} booking(s) without payment status, ${payReqFailCount} payment request(s) not sent`} style={{ marginLeft: '8px', display: 'inline-block', minWidth: '18px', padding: '1px 6px', borderRadius: 0, background: '#c9928c', color: '#000', fontSize: '14px', fontWeight: 500, lineHeight: '16px', textAlign: 'center', letterSpacing: 0 }}>{totalAction}</span>
+ <span title={`${actionCount ?? 0} refund request(s), ${pendingPayCount} payment(s) waiting and ${payMissingCount} booking(s) without payment status, ${payReqFailCount} payment request(s) not sent`} style={{ marginLeft: '8px', display: 'inline-block', minWidth: '18px', padding: '1px 6px', borderRadius: 0, background: '#c9928c', color: 'var(--on-accent)', fontSize: '14px', fontWeight: 500, lineHeight: '16px', textAlign: 'center', letterSpacing: 0 }}>{totalAction}</span>
  )}
  </button>
  ))}
@@ -5616,7 +5616,7 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  {finTab === 'pricing' && (
  <div style={{ padding: isMobile ? '14px' : '24px' }}>
  {/* Stripe sync info */}
- <div style={{ background: 'rgba(243,239,230,.06)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '14px 18px', marginBottom: '24px', display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 0, padding: '14px 18px', marginBottom: '24px', display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
  <span style={{ fontSize: '18px', flexShrink: 0 }}></span>
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.accent, marginBottom: '4px' }}>Prices auto-sync to Stripe</div>
@@ -5645,14 +5645,14 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  const rowLog = priceLog.filter(e => e.product_id === p.id)
  const isExpanded = expandedLogId === p.id
  return (
- <div key={p.id} onClick={() => { if (rowLog.length > 0 && !isEditing) setExpandedLogId(isExpanded ? null : p.id) }} style={{ borderRadius: 0, background: isEditing ? 'rgba(243,239,230,.06)' : 'rgba(255,255,255,.02)', border: isEditing ? '1px solid rgba(243,239,230,.2)' : '1px solid transparent', overflow: 'hidden', cursor: rowLog.length > 0 && !isEditing ? 'pointer' : 'default' }}>
+ <div key={p.id} onClick={() => { if (rowLog.length > 0 && !isEditing) setExpandedLogId(isExpanded ? null : p.id) }} style={{ borderRadius: 0, background: isEditing ? 'color-mix(in srgb, var(--text) 6%, transparent)' : 'rgba(255,255,255,.02)', border: isEditing ? '1px solid color-mix(in srgb, var(--text) 20%, transparent)' : '1px solid transparent', overflow: 'hidden', cursor: rowLog.length > 0 && !isEditing ? 'pointer' : 'default' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 12px' }}>
  <div style={{ flex: 1, fontSize: '14px', color: s.text }}>{p.name}</div>
  {p.is_placeholder && !isEditing && (
  <span style={{ fontSize: '14px', fontWeight: 500, padding: '2px 7px', borderRadius: 0, background: 'rgba(212,160,122,.15)', color: '#d4a07a', border: '1px solid rgba(212,160,122,.25)', whiteSpace: 'nowrap' }}>TBC</span>
  )}
  {isSaved && <span style={{ fontSize: '14px', color: '#b7c4b0', fontWeight: 500 }}> Saved</span>}
- {stripeSyncStatus[p.id] === 'syncing' && <span style={{ fontSize: '14px', color: '#f3efe6', fontWeight: 500 }}> Stripe…</span>}
+ {stripeSyncStatus[p.id] === 'syncing' && <span style={{ fontSize: '14px', color: 'var(--text)', fontWeight: 500 }}> Stripe…</span>}
  {stripeSyncStatus[p.id] === 'synced' && <span style={{ fontSize: '14px', color: '#b7c4b0', fontWeight: 500 }}> Stripe </span>}
  {stripeSyncStatus[p.id] === 'error' && <span style={{ fontSize: '14px', color: '#c9928c', fontWeight: 500 }}> Stripe failed</span>}
  {isEditing ? (
@@ -5664,9 +5664,9 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  onChange={e => setEditVal(e.target.value)}
  onClick={e => e.stopPropagation()}
  onKeyDown={e => { if (e.key === 'Enter') savePrice(p.id); if (e.key === 'Escape') setEditingId(null) }}
- style={{ width: '80px', background: 'rgba(255,255,255,.07)', border: '1px solid rgba(243,239,230,.4)', borderRadius: 0, color: s.text, fontSize: '14px', fontWeight: 500, padding: '5px 8px', fontFamily: s.font, outline: 'none' }}
+ style={{ width: '80px', background: 'rgba(255,255,255,.07)', border: '1px solid color-mix(in srgb, var(--text) 40%, transparent)', borderRadius: 0, color: s.text, fontSize: '14px', fontWeight: 500, padding: '5px 8px', fontFamily: s.font, outline: 'none' }}
  />
- <button onClick={e => { e.stopPropagation(); savePrice(p.id) }} disabled={savingId === p.id} style={{ padding: '5px 14px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ <button onClick={e => { e.stopPropagation(); savePrice(p.id) }} disabled={savingId === p.id} style={{ padding: '5px 14px', borderRadius: 0, border: 'none', background: s.accent, color: 'var(--on-accent)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  {savingId === p.id ? '…' : 'Save'}
  </button>
  <button onClick={e => { e.stopPropagation(); setEditingId(null) }} style={{ padding: '5px 10px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>Cancel</button>
@@ -5700,7 +5700,7 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  {/* Price Change Log */}
  {priceLog.length > 0 && (
  <div style={{ marginTop: '40px' }}>
- <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'rgba(243,239,230,.5)', marginBottom: '14px' }}>Price Change Log</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'color-mix(in srgb, var(--text) 50%, transparent)', marginBottom: '14px' }}>Price Change Log</div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
  {priceLog.map(entry => (
  <div key={entry.id} style={{ display: 'grid', gridTemplateColumns: '1fr auto auto auto', gap: '12px', alignItems: 'center', padding: '9px 12px', borderRadius: 0, background: 'rgba(255,255,255,.02)', fontSize: '14px' }}>
@@ -5725,8 +5725,8 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  <div role="tablist" style={{ display: finTab === 'refunds' ? 'flex' : 'none', gap: '6px', flexWrap: 'wrap', marginBottom: '22px', borderBottom: '1px solid rgba(255,255,255,.08)', paddingBottom: '12px' }}>
  {([['requests', 'Payment request not sent', payReqFailCount], ['status', 'Payment status not set', payMissingCount], ['confirm', 'Payments to confirm', pendingPayCount], ['refunds', 'Refunds to authorize', actionCount ?? 0]] as const).map(([k, l, n]) => (
  <button key={k} type="button" role="tab" aria-selected={actTab === k} onClick={() => { setActTab(k); try { localStorage.setItem('azd_finActTab', k) } catch {} }}
- style={{ padding: '8px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, border: `1px solid ${actTab === k ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.12)'}`, background: actTab === k ? 'rgba(243,239,230,.12)' : 'transparent', color: actTab === k ? s.accent : s.muted }}>
- {l}{n > 0 && <span style={{ marginLeft: '8px', display: 'inline-block', minWidth: '18px', padding: '1px 6px', borderRadius: 0, background: '#c9928c', color: '#000', fontSize: '14px', fontWeight: 500, lineHeight: '16px', textAlign: 'center' }}>{n}</span>}
+ style={{ padding: '8px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, border: `1px solid ${actTab === k ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.12)'}`, background: actTab === k ? 'color-mix(in srgb, var(--text) 12%, transparent)' : 'transparent', color: actTab === k ? s.accent : s.muted }}>
+ {l}{n > 0 && <span style={{ marginLeft: '8px', display: 'inline-block', minWidth: '18px', padding: '1px 6px', borderRadius: 0, background: '#c9928c', color: 'var(--on-accent)', fontSize: '14px', fontWeight: 500, lineHeight: '16px', textAlign: 'center' }}>{n}</span>}
  </button>
  ))}
  </div>
@@ -5775,10 +5775,10 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  <div style={{ flex: 1, minWidth: 0 }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{b.customer_name ?? '—'}{r.is_test ? <span style={{ marginLeft: '8px', fontSize: '14px', color: '#c9b48a', border: '1px solid rgba(201,180,138,.4)', borderRadius: 0, padding: '1px 5px' }}>TEST</span> : null}</div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>
- Booking <button type="button" onClick={() => setRefundPopupBookingId(r.booking_id)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: '#f3efe6', fontWeight: 500, background: 'transparent', border: '1px solid rgba(243,239,230,.35)', borderRadius: 0, padding: '1px 7px', cursor: 'pointer', fontSize: '14px' }}>{ref} </button> · {b.product_name ?? '—'}{b.booking_date ? ` · ${new Date(b.booking_date + 'T12:00:00').toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}` : ''}
+ Booking <button type="button" onClick={() => setRefundPopupBookingId(r.booking_id)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: 'var(--text)', fontWeight: 500, background: 'transparent', border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', borderRadius: 0, padding: '1px 7px', cursor: 'pointer', fontSize: '14px' }}>{ref} </button> · {b.product_name ?? '—'}{b.booking_date ? ` · ${new Date(b.booking_date + 'T12:00:00').toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}` : ''}
  </div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>
- {b.customer_email ? <a href={`mailto:${b.customer_email}`} style={{ color: '#f3efe6', textDecoration: 'none' }}>{b.customer_email}</a> : '—'}{b.phone ? <> · <a href={`tel:${b.phone.replace(/\s+/g, '')}`} style={{ color: '#f3efe6', textDecoration: 'none' }}>{b.phone}</a></> : ' · no phone on file'}
+ {b.customer_email ? <a href={`mailto:${b.customer_email}`} style={{ color: 'var(--text)', textDecoration: 'none' }}>{b.customer_email}</a> : '—'}{b.phone ? <> · <a href={`tel:${b.phone.replace(/\s+/g, '')}`} style={{ color: 'var(--text)', textDecoration: 'none' }}>{b.phone}</a></> : ' · no phone on file'}
  </div>
  <div style={{ fontSize: '14px', color: s.text, marginTop: '8px', padding: '8px 10px', background: 'rgba(255,255,255,.03)', borderRadius: 0, borderLeft: '3px solid #d4a07a' }}>
  {r.description}
@@ -5876,7 +5876,7 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  <button
  onClick={() => markRefundPaid(r.id)}
  disabled={markingRefundId === r.id}
- style={{ width: '100%', padding: '10px', borderRadius: 0, border: 'none', background: 'rgba(183,196,176,.85)', color: '#000', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: markingRefundId === r.id ? .6 : 1 }}>
+ style={{ width: '100%', padding: '10px', borderRadius: 0, border: 'none', background: 'rgba(183,196,176,.85)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: markingRefundId === r.id ? .6 : 1 }}>
  {(() => {
  const eff = refundOverride[r.id]?.on ? refundOverride[r.id].method : r.method
  const label: Record<string, string> = { cash: 'cash', bank: 'bank transfer', revolut: 'Revolut', mb_way: 'MB WAY', other: 'other' }
@@ -5897,7 +5897,7 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text, marginBottom: '10px' }}>History</div>
  <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '16px', fontSize: '14px', color: s.muted }}>
  <span>Show</span>
- <select value={histTab} aria-label="Show" onChange={e => setHistTab(e.target.value as typeof histTab)} style={{ background: '#000', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '7px 10px', color: s.text, fontSize: '14px', fontWeight: 500, fontFamily: 'inherit', cursor: 'pointer', colorScheme: 'dark' }}>
+ <select value={histTab} aria-label="Show" onChange={e => setHistTab(e.target.value as typeof histTab)} style={{ background: 'var(--bg)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '7px 10px', color: s.text, fontSize: '14px', fontWeight: 500, fontFamily: 'inherit', cursor: 'pointer', colorScheme: 'dark' }}>
  <option value="all">All movements</option><option value="payments">Payments in</option><option value="refunds">Refunds</option><option value="cash">Cash</option>
  </select>
  </div>
@@ -5916,9 +5916,9 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  </div>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '12px' }}>Authorized and paid-out refunds, newest first. Click the booking number to open the booking.{simulationMode ? ' (Test data)' : ''}</div>
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '14px' }}>
- <input value={refundSearch} onChange={e => setRefundSearch(e.target.value)} placeholder="Search name, email, product, booking no. or reason…" style={{ flex: '1 1 240px', minWidth: 0, background: '#000', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '8px 12px', color: s.text, fontSize: '14px', fontFamily: 'inherit' }} />
- <input type="month" value={refundMonth} onChange={e => setRefundMonth(e.target.value)} title="Month paid out" style={{ background: '#000', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '7px 10px', color: s.text, fontSize: '14px', fontFamily: 'inherit', colorScheme: 'dark' }} />
- <select value={refundMethod} onChange={e => setRefundMethod(e.target.value)} style={{ background: '#000', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '8px 10px', color: s.text, fontSize: '14px', fontFamily: 'inherit' }}>
+ <input value={refundSearch} onChange={e => setRefundSearch(e.target.value)} placeholder="Search name, email, product, booking no. or reason…" style={{ flex: '1 1 240px', minWidth: 0, background: 'var(--bg)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '8px 12px', color: s.text, fontSize: '14px', fontFamily: 'inherit' }} />
+ <input type="month" value={refundMonth} onChange={e => setRefundMonth(e.target.value)} title="Month paid out" style={{ background: 'var(--bg)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '7px 10px', color: s.text, fontSize: '14px', fontFamily: 'inherit', colorScheme: 'dark' }} />
+ <select value={refundMethod} onChange={e => setRefundMethod(e.target.value)} style={{ background: 'var(--bg)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '8px 10px', color: s.text, fontSize: '14px', fontFamily: 'inherit' }}>
  <option value="all">All methods</option><option value="stripe">Stripe</option><option value="cash">Cash</option><option value="bank">Bank Transfer</option><option value="revolut">Revolut</option><option value="mb_way">MB WAY</option><option value="other">Other</option>
  </select>
  {(refundSearch || refundMonth || refundMethod !== 'all') && (
@@ -5948,7 +5948,7 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  <span style={{ marginLeft: '8px', fontSize: '14px', fontWeight: 400, color: s.muted }}>{r.product_name ?? ''}</span>
  </div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>
- Booking <button type="button" onClick={() => setRefundPopupBookingId(r.booking_id)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: '#f3efe6', fontWeight: 500, background: 'transparent', border: '1px solid rgba(243,239,230,.35)', borderRadius: 0, padding: '0 6px', cursor: 'pointer' }}>{r.booking_id.slice(0, 8).toUpperCase()}</button>
+ Booking <button type="button" onClick={() => setRefundPopupBookingId(r.booking_id)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: 'var(--text)', fontWeight: 500, background: 'transparent', border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', borderRadius: 0, padding: '0 6px', cursor: 'pointer' }}>{r.booking_id.slice(0, 8).toUpperCase()}</button>
  {' · '}{RMH[r.method] ?? r.method}
  {r.stripe_refund_id ? <span style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace' }}> · {r.stripe_refund_id}</span> : null}
  </div>
@@ -5984,7 +5984,7 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  {/* Buchungs-Popup aus dem Refunds-Tab: volles FO-Detail (Payments, Refunds, Sessions, Changelog) */}
  {refundPopupBookingId && (
  <div onClick={() => setRefundPopupBookingId(null)} style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '32px 16px', overflowY: 'auto' }}>
- <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: '#121210', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, boxShadow: 'none', overflow: 'hidden' }}>
+ <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 0, boxShadow: 'none', overflow: 'hidden' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>Booking <span style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: s.text, fontWeight: 500 }}>{refundPopupBookingId.slice(0, 8).toUpperCase()}</span> · changes here are live</span>
  <button type="button" onClick={() => setRefundPopupBookingId(null)} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.text, borderRadius: 0, padding: '4px 10px', cursor: 'pointer', fontSize: '14px', fontFamily: s.font }}>Close </button>
@@ -6100,11 +6100,11 @@ function PageSchedule({ nav, session, readonly }: { nav: (p: MemberPage) => void
 
  const DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
  const ROLE_CATS = [
- { label: 'Course', color: '#f3efe6', dim: 'rgba(243,239,230,.5)', bg: 'rgba(243,239,230,.14)', border: 'rgba(243,239,230,.5)', roles: ['AOWD','Buoyancy','Deep','DSD','Navigation','Night','Offshore Prep','OWD','React Right','Refresh','Rescue','Waves & Currents','Wreck'] },
+ { label: 'Course', color: 'var(--text)', dim: 'color-mix(in srgb, var(--text) 50%, transparent)', bg: 'color-mix(in srgb, var(--text) 14%, transparent)', border: 'color-mix(in srgb, var(--text) 50%, transparent)', roles: ['AOWD','Buoyancy','Deep','DSD','Navigation','Night','Offshore Prep','OWD','React Right','Refresh','Rescue','Waves & Currents','Wreck'] },
  { label: 'Guide', color: '#b7c4b0', dim: 'rgba(183,196,176,.5)', bg: 'rgba(183,196,176,.14)', border: 'rgba(183,196,176,.5)', roles: ['Guide'] },
  { label: 'Skipper', color: '#c9b48a', dim: 'rgba(201,180,138,.5)', bg: 'rgba(201,180,138,.14)', border: 'rgba(201,180,138,.5)', roles: ['Skipper'] },
- { label: 'Office', color: '#c9c2b6', dim: 'rgba(243,239,230,0.50)', bg: 'rgba(243,239,230,0.14)', border: 'rgba(243,239,230,0.50)', roles: ['IT','Kiosk A','Kiosk C','Kubo'] },
- { label: 'Crew', color: '#c9c2b6', dim: 'rgba(243,239,230,0.40)', bg: 'rgba(243,239,230,0.10)', border: 'rgba(243,239,230,0.35)', roles: ['Crew','Tanks'] },
+ { label: 'Office', color: 'var(--muted)', dim: 'color-mix(in srgb, var(--text) 50%, transparent)', bg: 'color-mix(in srgb, var(--text) 14%, transparent)', border: 'color-mix(in srgb, var(--text) 50%, transparent)', roles: ['IT','Kiosk A','Kiosk C','Kubo'] },
+ { label: 'Crew', color: 'var(--muted)', dim: 'color-mix(in srgb, var(--text) 40%, transparent)', bg: 'color-mix(in srgb, var(--text) 10%, transparent)', border: 'color-mix(in srgb, var(--text) 35%, transparent)', roles: ['Crew','Tanks'] },
  { label: 'Folga', color: '#c9b48a', dim: 'rgba(251,146,60,.5)', bg: 'rgba(251,146,60,.14)', border: 'rgba(251,146,60,.5)', roles: ['Meia Folga','Folga'] },
  ]
  const now = new Date()
@@ -6188,7 +6188,7 @@ function PageSchedule({ nav, session, readonly }: { nav: (p: MemberPage) => void
  }
 
  return (
- <div style={{ background: '#000', minHeight: '100vh', padding: '24px 16px' }}>
+ <div style={{ background: 'var(--bg)', minHeight: '100vh', padding: '24px 16px' }}>
  <div style={{ maxWidth: '1320px', margin: '0 auto' }}>
  <div style={{ marginBottom: '24px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '8px' }}>Members Area</div>
@@ -6199,19 +6199,19 @@ function PageSchedule({ nav, session, readonly }: { nav: (p: MemberPage) => void
  {schedTest && <span style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c9b48a', border: '1px solid rgba(201,180,138,.5)', background: 'rgba(201,180,138,.12)', borderRadius: 0, padding: '4px 10px' }}> Sandbox schedule</span>}
  </div>
  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginLeft: 'auto', flexWrap: 'wrap' }}>
- <div style={{ display: 'flex', borderRadius: 0, overflow: 'hidden', border: '1px solid rgba(243,239,230,.2)' }}>
- <button onClick={() => setSchedView('week')} style={{ padding: '5px 12px', background: schedView === 'week' ? 'rgba(243,239,230,.18)' : 'transparent', color: schedView === 'week' ? s.accent : s.muted, border: 'none', cursor: 'pointer', fontSize: '14px', fontWeight: 500, fontFamily: s.font }}>Weekly</button>
- <button onClick={() => setSchedView('month')} style={{ padding: '5px 12px', background: schedView === 'month' ? 'rgba(243,239,230,.18)' : 'transparent', color: schedView === 'month' ? s.accent : s.muted, border: 'none', cursor: 'pointer', fontSize: '14px', fontWeight: 500, fontFamily: s.font }}>Monthly</button>
+ <div style={{ display: 'flex', borderRadius: 0, overflow: 'hidden', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)' }}>
+ <button onClick={() => setSchedView('week')} style={{ padding: '5px 12px', background: schedView === 'week' ? 'color-mix(in srgb, var(--text) 18%, transparent)' : 'transparent', color: schedView === 'week' ? s.accent : s.muted, border: 'none', cursor: 'pointer', fontSize: '14px', fontWeight: 500, fontFamily: s.font }}>Weekly</button>
+ <button onClick={() => setSchedView('month')} style={{ padding: '5px 12px', background: schedView === 'month' ? 'color-mix(in srgb, var(--text) 18%, transparent)' : 'transparent', color: schedView === 'month' ? s.accent : s.muted, border: 'none', cursor: 'pointer', fontSize: '14px', fontWeight: 500, fontFamily: s.font }}>Monthly</button>
  </div>
  {schedView === 'week' ? <>
- <button onClick={() => setSchedOffset(o => o - 1)} style={{ padding: '6px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.25)', background: 'transparent', color: s.accent, cursor: 'pointer', fontSize: '16px', fontFamily: s.font }}>&#8249;</button>
+ <button onClick={() => setSchedOffset(o => o - 1)} style={{ padding: '6px 14px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', background: 'transparent', color: s.accent, cursor: 'pointer', fontSize: '16px', fontFamily: s.font }}>&#8249;</button>
  <span style={{ fontSize: '14px', fontWeight: 500, color: s.text, minWidth: '130px', textAlign: 'center' }}>{weekLabel} – {sundayLabel}</span>
- <button onClick={() => setSchedOffset(o => o + 1)} style={{ padding: '6px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.25)', background: 'transparent', color: s.accent, cursor: 'pointer', fontSize: '16px', fontFamily: s.font }}>&#8250;</button>
+ <button onClick={() => setSchedOffset(o => o + 1)} style={{ padding: '6px 14px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', background: 'transparent', color: s.accent, cursor: 'pointer', fontSize: '16px', fontFamily: s.font }}>&#8250;</button>
  {schedOffset !== 0 && <button onClick={() => setSchedOffset(0)} style={{ padding: '6px 12px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, cursor: 'pointer', fontSize: '14px', fontFamily: s.font }}>Today</button>}
  </> : <>
- <button onClick={() => setMonthOffset(o => o - 1)} style={{ padding: '6px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.25)', background: 'transparent', color: s.accent, cursor: 'pointer', fontSize: '16px', fontFamily: s.font }}>&#8249;</button>
+ <button onClick={() => setMonthOffset(o => o - 1)} style={{ padding: '6px 14px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', background: 'transparent', color: s.accent, cursor: 'pointer', fontSize: '16px', fontFamily: s.font }}>&#8249;</button>
  <span style={{ fontSize: '14px', fontWeight: 500, color: s.text, minWidth: '130px', textAlign: 'center' }}>{monthLabel}</span>
- <button onClick={() => setMonthOffset(o => o + 1)} style={{ padding: '6px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.25)', background: 'transparent', color: s.accent, cursor: 'pointer', fontSize: '16px', fontFamily: s.font }}>&#8250;</button>
+ <button onClick={() => setMonthOffset(o => o + 1)} style={{ padding: '6px 14px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', background: 'transparent', color: s.accent, cursor: 'pointer', fontSize: '16px', fontFamily: s.font }}>&#8250;</button>
  {monthOffset !== 0 && <button onClick={() => setMonthOffset(0)} style={{ padding: '6px 12px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, cursor: 'pointer', fontSize: '14px', fontFamily: s.font }}>Today</button>}
  </>}
  </div>
@@ -6238,7 +6238,7 @@ function PageSchedule({ nav, session, readonly }: { nav: (p: MemberPage) => void
  const entries = schedData[key] || []
  return (
  <div key={key} onClick={() => { if (!readonly) { setSchedCell(schedCell === key ? null : key); setSelectedRole('') } }}
- style={{ minHeight: '80px', background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: schedCell === key ? '1px solid rgba(243,239,230,.6)' : '1px solid rgba(243,239,230,.12)', borderRadius: 0, padding: '6px', cursor: readonly ? 'default' : 'pointer', transition: 'border .15s' }}>
+ style={{ minHeight: '80px', background: 'var(--glass)', border: schedCell === key ? '1px solid color-mix(in srgb, var(--text) 60%, transparent)' : '1px solid color-mix(in srgb, var(--text) 12%, transparent)', borderRadius: 0, padding: '6px', cursor: readonly ? 'default' : 'pointer', transition: 'border .15s' }}>
  {entries.length === 0 && <div style={{ fontSize: '14px', color: s.muted, opacity: .4, textAlign: 'center', marginTop: '22px' }}>&#8212;</div>}
  {[...entries].sort((a,b) => {
  const aF = (a.role==='Folga'||a.role==='Meia Folga') ? 1 : 0
@@ -6265,7 +6265,7 @@ function PageSchedule({ nav, session, readonly }: { nav: (p: MemberPage) => void
  const entries = schedData[key] || []
  return (
  <div key={key} onClick={() => { if (!readonly) { setSchedCell(schedCell === key ? null : key); setSelectedRole('') } }}
- style={{ minHeight: '80px', background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: schedCell === key ? '1px solid rgba(212,160,122,.6)' : '1px solid rgba(243,239,230,.12)', borderRadius: 0, padding: '6px', cursor: readonly ? 'default' : 'pointer', transition: 'border .15s' }}>
+ style={{ minHeight: '80px', background: 'var(--glass)', border: schedCell === key ? '1px solid rgba(212,160,122,.6)' : '1px solid color-mix(in srgb, var(--text) 12%, transparent)', borderRadius: 0, padding: '6px', cursor: readonly ? 'default' : 'pointer', transition: 'border .15s' }}>
  {entries.length === 0 && <div style={{ fontSize: '14px', color: s.muted, opacity: .4, textAlign: 'center', marginTop: '22px' }}>&#8212;</div>}
  {[...entries].sort((a,b) => {
  const aF = (a.role==='Folga'||a.role==='Meia Folga') ? 1 : 0
@@ -6309,14 +6309,14 @@ function PageSchedule({ nav, session, readonly }: { nav: (p: MemberPage) => void
  <div key={d} style={{
  minHeight: '72px',
  background: isThisMonth ? 'rgba(0,0,0,0.70)' : 'rgba(255,255,255,.045)',
- border: isToday ? '1px solid rgba(243,239,230,.5)' : '1px solid rgba(243,239,230,.08)',
+ border: isToday ? '1px solid color-mix(in srgb, var(--text) 50%, transparent)' : '1px solid color-mix(in srgb, var(--text) 8%, transparent)',
  borderRadius: 0,
  padding: '6px',
  opacity: isThisMonth ? 1 : 0.4,
  }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: isToday ? s.accent : s.text, marginBottom: '3px' }}>{dayDate.getDate()}</div>
  {amE.length > 0 && (
- <div style={{ fontSize: '14px', color: '#f3efe6', marginBottom: '2px', lineHeight: 1.3 }}>
+ <div style={{ fontSize: '14px', color: 'var(--text)', marginBottom: '2px', lineHeight: 1.3 }}>
  {amE.slice(0,3).map(e => e.name.split(' ')[0]).join(', ')}{amE.length > 3 ? ` +${amE.length-3}` : ''}
  </div>
  )}
@@ -6336,7 +6336,7 @@ function PageSchedule({ nav, session, readonly }: { nav: (p: MemberPage) => void
  </div>
  )}
  {schedCell && (
- <div style={{ marginTop: '20px', background: 'rgba(255,255,255,.05)', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, padding: '18px' }}>
+ <div style={{ marginTop: '20px', background: 'rgba(255,255,255,.05)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 0, padding: '18px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.muted, letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '16px' }}>
  Assign staff — {schedCell.includes('_am') ? 'AM' : 'PM'} · {DAYS[parseInt(schedCell.split('_d')[1])]}
  </div>
@@ -6363,7 +6363,7 @@ function PageSchedule({ nav, session, readonly }: { nav: (p: MemberPage) => void
 
  {/* STEP 2: Name picker (only after role selected) */}
  {selectedRole && (
- <div style={{ marginBottom: '18px', paddingTop: '14px', borderTop: '1px solid rgba(243,239,230,.12)' }}>
+ <div style={{ marginBottom: '18px', paddingTop: '14px', borderTop: '1px solid color-mix(in srgb, var(--text) 12%, transparent)' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.muted, letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '10px' }}>
  2 · Assign <span style={{ color: (() => { const cat = ROLE_CATS.find(c => c.roles.includes(selectedRole)); return cat?.color ?? s.accent })() }}>{selectedRole}</span> to
  </div>
@@ -6385,7 +6385,7 @@ function PageSchedule({ nav, session, readonly }: { nav: (p: MemberPage) => void
 
  {/* Assigned staff — time editing */}
  {(schedData[schedCell] || []).length > 0 && (
- <div style={{ paddingTop: '14px', borderTop: '1px solid rgba(243,239,230,.12)' }}>
+ <div style={{ paddingTop: '14px', borderTop: '1px solid color-mix(in srgb, var(--text) 12%, transparent)' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.muted, letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '10px' }}>Assigned this shift</div>
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
  {(schedData[schedCell] || []).map(e => (
@@ -6397,9 +6397,9 @@ function PageSchedule({ nav, session, readonly }: { nav: (p: MemberPage) => void
  {e.role && e.role !== 'Folga' && e.role !== 'Meia Folga' && (
  editingTime?.key === schedCell && editingTime?.name === e.name ? (
  <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }} onClick={ev => ev.stopPropagation()}>
- <input type="time" value={e.start} onChange={ev => updateTime(schedCell, e.name, 'start', ev.target.value)} style={{ background: '#000', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0, color: s.text, fontSize: '14px', padding: '2px 5px', fontFamily: s.font, outline: 'none', width: '84px' }} />
+ <input type="time" value={e.start} onChange={ev => updateTime(schedCell, e.name, 'start', ev.target.value)} style={{ background: 'var(--bg)', border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', borderRadius: 0, color: s.text, fontSize: '14px', padding: '2px 5px', fontFamily: s.font, outline: 'none', width: '84px' }} />
  <span style={{ color: s.muted, fontSize: '14px' }}>–</span>
- <input type="time" value={e.end} onChange={ev => updateTime(schedCell, e.name, 'end', ev.target.value)} style={{ background: '#000', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0, color: s.text, fontSize: '14px', padding: '2px 5px', fontFamily: s.font, outline: 'none', width: '84px' }} />
+ <input type="time" value={e.end} onChange={ev => updateTime(schedCell, e.name, 'end', ev.target.value)} style={{ background: 'var(--bg)', border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', borderRadius: 0, color: s.text, fontSize: '14px', padding: '2px 5px', fontFamily: s.font, outline: 'none', width: '84px' }} />
  <button onClick={() => setEditingTime(null)} style={{ background: 'rgba(183,196,176,.12)', border: '1px solid rgba(183,196,176,.3)', borderRadius: 0, color: '#b7c4b0', fontSize: '14px', padding: '2px 8px', cursor: 'pointer', fontFamily: s.font, fontWeight: 500 }}></button>
  </div>
  ) : (
@@ -6633,7 +6633,7 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  const isInstructor = p.diveRole === 'instructor'
  const isDivemaster = p.diveRole === 'divemaster'
  return (
- <div style={{ background: '#000', minHeight: '100vh', padding: '24px 16px' }}>
+ <div style={{ background: 'var(--bg)', minHeight: '100vh', padding: '24px 16px' }}>
  <div style={{ maxWidth: '900px', margin: '0 auto' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
  <button onClick={() => { setProfileEdit(null); setLangSearch(''); setCertSearch(''); setInviteStatus('idle'); setInviteError(''); setInviteRole('') }} style={{ padding: '6px 14px', borderRadius: 0, border: '1px solid rgba(255,255,255,.2)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>&#8592; Back</button>
@@ -6644,14 +6644,14 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  {([['Name','name','text'],['Phone','phone','tel']] as [string,string,string][]).map(([label, key, type]) => (
  <div key={key}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.muted, letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '6px' }}>{label}</div>
- <input value={p[key]} onChange={e => set(key, e.target.value)} type={type} placeholder={label} style={{ width: '100%', padding: '10px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
+ <input value={p[key]} onChange={e => set(key, e.target.value)} type={type} placeholder={label} style={{ width: '100%', padding: '10px 14px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
  </div>
  ))}
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.muted, letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '8px' }}>Dive Role</div>
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '16px' }}>
  {(['other','guide','divemaster','instructor'] as const).map(dr => (
- <button key={dr} onClick={() => set('diveRole', dr)} style={{ padding: '6px 14px', borderRadius: 0, border: `1px solid ${p.diveRole === dr ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.15)'}`, background: p.diveRole === dr ? 'rgba(243,239,230,.18)' : 'transparent', color: p.diveRole === dr ? '#f3efe6' : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ <button key={dr} onClick={() => set('diveRole', dr)} style={{ padding: '6px 14px', borderRadius: 0, border: `1px solid ${p.diveRole === dr ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.15)'}`, background: p.diveRole === dr ? 'color-mix(in srgb, var(--text) 18%, transparent)' : 'transparent', color: p.diveRole === dr ? 'var(--text)' : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  {dr === 'other' ? 'Other / Staff' : dr === 'guide' ? 'Guide' : dr === 'divemaster' ? 'Divemaster' : 'Instructor'}
  </button>
  ))}
@@ -6668,10 +6668,10 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  )}
  {isDivemaster && (
  <div style={{ marginBottom: '16px' }}>
- <div style={{ fontSize: '14px', fontWeight: 500, color: '#c9c2b6', letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '8px' }}>DM Authorization (can assist)</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--muted)', letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '8px' }}>DM Authorization (can assist)</div>
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
  {ASSIST_CERTS.map(ac => (
- <button key={ac} onClick={() => toggleArr('assistCerts', ac)} style={{ padding: '4px 10px', borderRadius: 0, border: `1px solid ${(p.assistCerts||[]).includes(ac) ? 'rgba(243,239,230,0.50)' : 'rgba(255,255,255,.15)'}`, background: (p.assistCerts||[]).includes(ac) ? 'rgba(243,239,230,0.15)' : 'transparent', color: (p.assistCerts||[]).includes(ac) ? '#c9c2b6' : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>{ac}{(p.assistCerts||[]).includes(ac) ? ' ' : ''}</button>
+ <button key={ac} onClick={() => toggleArr('assistCerts', ac)} style={{ padding: '4px 10px', borderRadius: 0, border: `1px solid ${(p.assistCerts||[]).includes(ac) ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.15)'}`, background: (p.assistCerts||[]).includes(ac) ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'transparent', color: (p.assistCerts||[]).includes(ac) ? 'var(--muted)' : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>{ac}{(p.assistCerts||[]).includes(ac) ? ' ' : ''}</button>
  ))}
  </div>
  </div>
@@ -6682,37 +6682,37 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  {(p.diveCerts || []).length > 0 && (
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '10px' }}>
  {(p.diveCerts || []).map((dc: string) => (
- <button key={dc} onClick={() => toggleArr('diveCerts', dc)} style={{ padding: '5px 11px', borderRadius: 0, border: '1px solid rgba(243,239,230,.5)', background: 'rgba(243,239,230,.15)', color: '#f3efe6', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>{dc} ×</button>
+ <button key={dc} onClick={() => toggleArr('diveCerts', dc)} style={{ padding: '5px 11px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 50%, transparent)', background: 'color-mix(in srgb, var(--text) 15%, transparent)', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>{dc} ×</button>
  ))}
  </div>
  )}
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.muted, letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '6px' }}>Certification level</div>
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px', marginBottom: '10px' }}>
  {DIVE_CERTS.filter(dc => !(p.diveCerts || []).includes(dc)).map(dc => (
- <button key={dc} onClick={() => toggleArr('diveCerts', dc)} style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.25)', background: 'transparent', color: '#f3efe6', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>{dc}</button>
+ <button key={dc} onClick={() => toggleArr('diveCerts', dc)} style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', background: 'transparent', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>{dc}</button>
  ))}
  </div>
- <input value={certSearch} onChange={e => setCertSearch(e.target.value)} placeholder="Search specialties: Deep, Nitrox, Wreck…" style={{ width: '100%', padding: '8px 12px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
+ <input value={certSearch} onChange={e => setCertSearch(e.target.value)} placeholder="Search specialties: Deep, Nitrox, Wreck…" style={{ width: '100%', padding: '8px 12px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
  {certSearch && (
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px', maxHeight: '100px', overflowY: 'auto', marginTop: '8px' }}>
  {filteredCerts.filter(dc => !(p.diveCerts || []).includes(dc)).map(dc => (
- <button key={dc} onClick={() => { toggleArr('diveCerts', dc); setCertSearch('') }} style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.25)', background: 'transparent', color: '#f3efe6', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>{dc}</button>
+ <button key={dc} onClick={() => { toggleArr('diveCerts', dc); setCertSearch('') }} style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', background: 'transparent', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>{dc}</button>
  ))}
  {filteredCerts.filter(dc => !(p.diveCerts || []).includes(dc)).length === 0 && (
- <button onClick={() => { toggleArr('diveCerts', certSearch.trim()); setCertSearch('') }} style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.4)', background: 'rgba(243,239,230,.1)', color: '#f3efe6', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>+ Add &ldquo;{certSearch.trim()}&rdquo;</button>
+ <button onClick={() => { toggleArr('diveCerts', certSearch.trim()); setCertSearch('') }} style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 40%, transparent)', background: 'color-mix(in srgb, var(--text) 10%, transparent)', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>+ Add &ldquo;{certSearch.trim()}&rdquo;</button>
  )}
  </div>
  )}
  {isInstructor && (
- <div style={{ marginTop: '12px', padding: '12px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(243,239,230,.04)' }}>
+ <div style={{ marginTop: '12px', padding: '12px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', background: 'color-mix(in srgb, var(--text) 4%, transparent)' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.accent, letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '8px' }}>Authorized to teach</div>
- <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>{TEACH_CERTS.map(tc => chip(tc, p.teachCerts.includes(tc), () => toggleArr('teachCerts', tc), '#f3efe6'))}</div>
+ <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>{TEACH_CERTS.map(tc => chip(tc, p.teachCerts.includes(tc), () => toggleArr('teachCerts', tc), 'var(--text)'))}</div>
  </div>
  )}
  {isDivemaster && (
- <div style={{ marginTop: '12px', padding: '12px', borderRadius: 0, border: '1px solid rgba(243,239,230,0.20)', background: 'rgba(243,239,230,0.04)' }}>
- <div style={{ fontSize: '14px', fontWeight: 500, color: '#c9c2b6', letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '8px' }}>Can assist with</div>
- <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>{ASSIST_CERTS.map(ac => chip(ac, p.assistCerts.includes(ac), () => toggleArr('assistCerts', ac), '#c9c2b6'))}</div>
+ <div style={{ marginTop: '12px', padding: '12px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', background: 'color-mix(in srgb, var(--text) 4%, transparent)' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--muted)', letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '8px' }}>Can assist with</div>
+ <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>{ASSIST_CERTS.map(ac => chip(ac, p.assistCerts.includes(ac), () => toggleArr('assistCerts', ac), 'var(--muted)'))}</div>
  </div>
  )}
  </div>
@@ -6738,7 +6738,7 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  <button key={code} onClick={() => toggleArr('langs', code)} style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid rgba(201,180,138,.25)', background: 'transparent', color: '#c9b48a', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>{flag} {code}</button>
  ))}
  </div>
- <input value={langSearch} onChange={e => setLangSearch(e.target.value)} placeholder="Search languages..." style={{ width: '100%', padding: '8px 12px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box', marginBottom: langSearch ? '8px' : '0' }} />
+ <input value={langSearch} onChange={e => setLangSearch(e.target.value)} placeholder="Search languages..." style={{ width: '100%', padding: '8px 12px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box', marginBottom: langSearch ? '8px' : '0' }} />
  {langSearch && (
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px', maxHeight: '120px', overflowY: 'auto', marginTop: '8px' }}>
  {filteredLangs.filter(([,c]) => !p.langs.includes(c)).map(([flag,code,name]) => (
@@ -6750,8 +6750,8 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  </div>
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.muted, letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '8px' }}>Availability</div>
- <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '10px' }}>{AVAIL_DAYS.map(d => chip(d, p.availDays.includes(d), () => toggleArr('availDays', d), '#c9c2b6'))}</div>
- <input value={p.availNote} onChange={e => set('availNote', e.target.value)} placeholder="Note (e.g. mornings only, Mon-Fri, etc.)" style={{ width: '100%', padding: '10px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
+ <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '10px' }}>{AVAIL_DAYS.map(d => chip(d, p.availDays.includes(d), () => toggleArr('availDays', d), 'var(--muted)'))}</div>
+ <input value={p.availNote} onChange={e => set('availNote', e.target.value)} placeholder="Note (e.g. mornings only, Mon-Fri, etc.)" style={{ width: '100%', padding: '10px 14px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
  </div>
  </div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -6764,17 +6764,17 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  </div>
  <label style={{ display: 'block', cursor: 'pointer' }}>
  <input type="file" accept=".jpg,.jpeg,.png,.webp" onChange={e => { const f = e.target.files?.[0]; if (!f) return; const r = new FileReader(); r.onload = ev => set('photoUrl', ev.target?.result as string); r.readAsDataURL(f) }} style={{ display: 'none' }} />
- <div style={{ padding: '10px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.muted, fontSize: '14px', textAlign: 'center', cursor: 'pointer' }}>
+ <div style={{ padding: '10px 14px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', background: 'rgba(255,255,255,.04)', color: s.muted, fontSize: '14px', textAlign: 'center', cursor: 'pointer' }}>
  {p.photoUrl ? ' Change photo' : ' Upload photo (WebP / PNG / JPEG)'}
  </div>
  </label>
- {p.photoUrl && <img src={p.photoUrl} alt="" style={{ marginTop: '10px', width: '72px', height: '72px', borderRadius: '50%', objectFit: 'cover', border: '2px solid rgba(243,239,230,.3)' }} />}
+ {p.photoUrl && <img src={p.photoUrl} alt="" style={{ marginTop: '10px', width: '72px', height: '72px', borderRadius: '50%', objectFit: 'cover', border: '2px solid color-mix(in srgb, var(--text) 30%, transparent)' }} />}
  </div>
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.muted, letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '6px' }}>Contract</div>
  <label style={{ display: 'block', cursor: 'pointer' }}>
  <input type="file" accept=".pdf,.doc,.docx" onChange={e => { const f = e.target.files?.[0]; if (!f) return; set('contractFile', f.name) }} style={{ display: 'none' }} />
- <div style={{ padding: '10px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.muted, fontSize: '14px', textAlign: 'center', cursor: 'pointer' }}>
+ <div style={{ padding: '10px 14px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', background: 'rgba(255,255,255,.04)', color: s.muted, fontSize: '14px', textAlign: 'center', cursor: 'pointer' }}>
  {p.contractFile ? p.contractFile : 'Upload contract (PDF / DOC)'}
  </div>
  </label>
@@ -6782,44 +6782,44 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  </div>
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.muted, letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '6px' }}>Notes</div>
- <textarea value={p.notes} onChange={e => set('notes', e.target.value)} rows={4} placeholder="Internal notes..." style={{ width: '100%', padding: '10px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', resize: 'vertical', boxSizing: 'border-box' }} />
+ <textarea value={p.notes} onChange={e => set('notes', e.target.value)} rows={4} placeholder="Internal notes..." style={{ width: '100%', padding: '10px 14px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', resize: 'vertical', boxSizing: 'border-box' }} />
  </div>
  {/* SSI Matrix - editable by admin */}
  {(() => {
  const cols = Object.keys(SSI_COL_LABELS)
- const levelColor: Record<string,string> = { ait:'#c9b48a', dmi:'#c9c2b6', owi:'#f3efe6', dg:'#b7c4b0' }
+ const levelColor: Record<string,string> = { ait:'#c9b48a', dmi:'var(--muted)', owi:'var(--text)', dg:'#b7c4b0' }
  const matR = p.matrixR || {}
  const matA = p.matrixA || {}
  const toggleR = (k: string) => set('matrixR', { ...matR, [k]: matR[k] ? 0 : 1 })
  const toggleA = (k: string) => set('matrixA', { ...matA, [k]: matA[k] ? 0 : 1 })
  return (
- <div style={{ padding: '14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.18)', background: 'rgba(243,239,230,.03)' }}>
+ <div style={{ padding: '14px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 18%, transparent)', background: 'color-mix(in srgb, var(--text) 3%, transparent)' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.muted, letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '10px' }}>SSI Matrix</div>
  <div style={{ display: 'flex', gap: '8px', marginBottom: '10px', flexWrap: 'wrap' }}>
- <input value={p.ssiPro || ''} onChange={e => set('ssiPro', e.target.value)} placeholder="SSI Pro #" style={{ flex: 1, minWidth: '90px', padding: '6px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none' }} />
- <input value={p.ssiMid || ''} onChange={e => set('ssiMid', e.target.value)} placeholder="MID" style={{ flex: 1, minWidth: '80px', padding: '6px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none' }} />
- <input value={p.ssiPaidUntil || ''} onChange={e => set('ssiPaidUntil', e.target.value)} placeholder="Paid until" style={{ flex: 1, minWidth: '90px', padding: '6px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none' }} />
+ <input value={p.ssiPro || ''} onChange={e => set('ssiPro', e.target.value)} placeholder="SSI Pro #" style={{ flex: 1, minWidth: '90px', padding: '6px 10px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none' }} />
+ <input value={p.ssiMid || ''} onChange={e => set('ssiMid', e.target.value)} placeholder="MID" style={{ flex: 1, minWidth: '80px', padding: '6px 10px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none' }} />
+ <input value={p.ssiPaidUntil || ''} onChange={e => set('ssiPaidUntil', e.target.value)} placeholder="Paid until" style={{ flex: 1, minWidth: '90px', padding: '6px 10px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none' }} />
  </div>
  <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
- <select value={p.ssiLevel || ''} onChange={e => set('ssiLevel', e.target.value)} style={{ flex: 1, padding: '6px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: p.ssiLevel ? (levelColor[p.ssiLevel] || s.text) : s.muted, fontSize: '14px', fontFamily: s.font, outline: 'none' }}>
+ <select value={p.ssiLevel || ''} onChange={e => set('ssiLevel', e.target.value)} style={{ flex: 1, padding: '6px 10px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', background: 'rgba(255,255,255,.04)', color: p.ssiLevel ? (levelColor[p.ssiLevel] || s.text) : s.muted, fontSize: '14px', fontFamily: s.font, outline: 'none' }}>
  <option value="">— Level —</option>
  <option value="dg">Dive Guide</option>
  <option value="owi">OWI</option>
  <option value="dmi">DMI</option>
  <option value="ait">AIT</option>
  </select>
- <select value={p.ssiTeaching || ''} onChange={e => set('ssiTeaching', e.target.value)} style={{ flex: 1, padding: '6px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none' }}>
+ <select value={p.ssiTeaching || ''} onChange={e => set('ssiTeaching', e.target.value)} style={{ flex: 1, padding: '6px 10px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none' }}>
  <option value="">— Status —</option>
  <option value="active">Active Teaching</option>
  <option value="non">Non-Teaching</option>
  </select>
  </div>
- <div style={{ fontSize: '14px', fontWeight: 500, color: '#f3efe6', letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '6px' }}>Can Teach (R) — click to toggle</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '6px' }}>Can Teach (R) — click to toggle</div>
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
  {cols.map(k => {
  const on = !!matR[k]
  return (
- <button key={k} onClick={() => toggleR(k)} style={{ fontSize: '14px', padding: '3px 8px', borderRadius: 0, fontWeight: 500, cursor: 'pointer', fontFamily: s.font, border: `1px solid ${on ? 'rgba(243,239,230,.4)' : 'rgba(255,255,255,.1)'}`, background: on ? 'rgba(243,239,230,.18)' : 'rgba(255,255,255,.03)', color: on ? '#f3efe6' : 'rgba(255,255,255,.25)', transition: 'all .12s' }}>
+ <button key={k} onClick={() => toggleR(k)} style={{ fontSize: '14px', padding: '3px 8px', borderRadius: 0, fontWeight: 500, cursor: 'pointer', fontFamily: s.font, border: `1px solid ${on ? 'color-mix(in srgb, var(--text) 40%, transparent)' : 'rgba(255,255,255,.1)'}`, background: on ? 'color-mix(in srgb, var(--text) 18%, transparent)' : 'rgba(255,255,255,.03)', color: on ? 'var(--text)' : 'rgba(255,255,255,.25)', transition: 'all .12s' }}>
  {on ? ' ' : ''}{SSI_COL_LABELS[k]}
  </button>
  )
@@ -6854,8 +6854,8 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.muted, letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '6px' }}>Email</div>
  <div style={{ display: 'flex', gap: '8px' }}>
- <input value={p.email} onChange={e => set('email', e.target.value)} type="email" placeholder="Email" style={{ flex: 1, padding: '10px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
- <select value={p.company || 'azd'} onChange={e => set('company', e.target.value)} style={{ padding: '7px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none' }}>
+ <input value={p.email} onChange={e => set('email', e.target.value)} type="email" placeholder="Email" style={{ flex: 1, padding: '10px 14px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
+ <select value={p.company || 'azd'} onChange={e => set('company', e.target.value)} style={{ padding: '7px 10px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none' }}>
  <option value="azd">AZD</option>
  <option value="sc">Season Challenge</option>
  <option value="both">Both</option>
@@ -6886,18 +6886,18 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  {profileIsNew && (
  <div>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '4px' }}>Initial password <span style={{ opacity: .6 }}>(min. 8 chars — staff changes after first login)</span></div>
- <input type="password" placeholder="Set initial password (optional)" value={initPassword} onChange={e => setInitPassword(e.target.value)} style={{ width: '100%', padding: '8px 12px', borderRadius: 0, border: `1px solid ${initPassword.length > 0 && initPassword.length < 8 ? 'rgba(201,146,140,.5)' : 'rgba(243,239,230,.2)'}`, background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
+ <input type="password" placeholder="Set initial password (optional)" value={initPassword} onChange={e => setInitPassword(e.target.value)} style={{ width: '100%', padding: '8px 12px', borderRadius: 0, border: `1px solid ${initPassword.length > 0 && initPassword.length < 8 ? 'rgba(201,146,140,.5)' : 'color-mix(in srgb, var(--text) 20%, transparent)'}`, background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
  {initPassword.length > 0 && initPassword.length < 8 && <div style={{ fontSize: '14px', color: '#c9928c', marginTop: '3px' }}>Password too short</div>}
  {createStatus === 'error' && <div style={{ fontSize: '14px', color: '#c9928c', marginTop: '3px' }}> {createError}</div>}
  </div>
  )}
  </div>
  <div style={{ display: 'flex', gap: '10px', marginTop: 'auto', paddingTop: '8px' }}>
- <button onClick={() => saveProfile(p)} style={{ flex: 1, padding: '12px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>Save</button>
+ <button onClick={() => saveProfile(p)} style={{ flex: 1, padding: '12px', borderRadius: 0, border: 'none', background: s.accent, color: 'var(--on-accent)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>Save</button>
  {!profileIsNew && p.email && (
  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
  <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
- <select value={inviteRole || p.role || 'staff'} onChange={e => setInviteRole(e.target.value)} style={{ padding: '10px 8px', borderRadius: 0, border: '1px solid rgba(243,239,230,.25)', background: 'rgba(255,255,255,.05)', color: s.accent, fontSize: '14px', fontFamily: s.font, outline: 'none', cursor: 'pointer' }}>
+ <select value={inviteRole || p.role || 'staff'} onChange={e => setInviteRole(e.target.value)} style={{ padding: '10px 8px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', background: 'rgba(255,255,255,.05)', color: s.accent, fontSize: '14px', fontFamily: s.font, outline: 'none', cursor: 'pointer' }}>
  <option value="staff">Staff</option>
  <option value="front_office">Front Office</option>
  <option value="admin">Admin</option>
@@ -6907,9 +6907,9 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  value={initPassword}
  onChange={e => { setInitPassword(e.target.value); setInviteStatus('idle'); setInviteError('') }}
  placeholder="Initial password"
- style={{ padding: '10px 12px', borderRadius: 0, border: `1px solid ${inviteStatus === 'error' ? 'rgba(201,146,140,.5)' : 'rgba(243,239,230,.25)'}`, background: 'rgba(255,255,255,.05)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', width: '140px' }}
+ style={{ padding: '10px 12px', borderRadius: 0, border: `1px solid ${inviteStatus === 'error' ? 'rgba(201,146,140,.5)' : 'color-mix(in srgb, var(--text) 25%, transparent)'}`, background: 'rgba(255,255,255,.05)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', width: '140px' }}
  />
- <button onClick={() => { setInviteStatus('idle'); setInviteError(''); sendInvite({ ...p, role: inviteRole || p.role || 'staff' }) }} disabled={inviteStatus === 'sending'} style={{ padding: '12px 14px', borderRadius: 0, border: `1px solid ${inviteStatus === 'sent' ? 'rgba(183,196,176,.4)' : inviteStatus === 'error' ? 'rgba(201,146,140,.4)' : 'rgba(243,239,230,.35)'}`, background: inviteStatus === 'sent' ? 'rgba(183,196,176,.12)' : inviteStatus === 'error' ? 'rgba(201,146,140,.1)' : 'transparent', color: inviteStatus === 'sent' ? '#b7c4b0' : inviteStatus === 'error' ? '#c9928c' : s.accent, fontSize: '14px', fontWeight: 500, cursor: inviteStatus === 'sending' ? 'wait' : 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}>
+ <button onClick={() => { setInviteStatus('idle'); setInviteError(''); sendInvite({ ...p, role: inviteRole || p.role || 'staff' }) }} disabled={inviteStatus === 'sending'} style={{ padding: '12px 14px', borderRadius: 0, border: `1px solid ${inviteStatus === 'sent' ? 'rgba(183,196,176,.4)' : inviteStatus === 'error' ? 'rgba(201,146,140,.4)' : 'color-mix(in srgb, var(--text) 35%, transparent)'}`, background: inviteStatus === 'sent' ? 'rgba(183,196,176,.12)' : inviteStatus === 'error' ? 'rgba(201,146,140,.1)' : 'transparent', color: inviteStatus === 'sent' ? '#b7c4b0' : inviteStatus === 'error' ? '#c9928c' : s.accent, fontSize: '14px', fontWeight: 500, cursor: inviteStatus === 'sending' ? 'wait' : 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}>
  {inviteStatus === 'sending' ? '…' : inviteStatus === 'sent' ? ' Account + Email gesendet' : inviteStatus === 'error' ? ' Error' : ' Create & Invite'}
  </button>
  </div>
@@ -6931,7 +6931,7 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  }
 
  return (
- <div style={{ background: '#000', minHeight: '100vh', padding: '24px 16px' }}>
+ <div style={{ background: 'var(--bg)', minHeight: '100vh', padding: '24px 16px' }}>
  <div style={{ maxWidth: '1320px', margin: '0 auto' }}>
  <div style={{ marginBottom: '24px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '8px' }}>Members Area</div>
@@ -6940,32 +6940,32 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  <button onClick={() => nav('dashboard')} style={{ padding: '6px 14px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>&#8592; Dashboard</button>
  <h1 style={{ fontSize: '26px', fontWeight: 500, color: s.text, margin: 0 }}>Staff</h1>
  </div>
- <button onClick={() => { setProfileEdit(newProfile()); setProfileIsNew(true) }} style={{ marginLeft: 'auto', padding: '8px 18px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>+ New Profile</button>
+ <button onClick={() => { setProfileEdit(newProfile()); setProfileIsNew(true) }} style={{ marginLeft: 'auto', padding: '8px 18px', borderRadius: 0, border: 'none', background: s.accent, color: 'var(--on-accent)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>+ New Profile</button>
  </div>
  <p style={{ fontSize: '14px', color: s.muted, marginTop: '6px' }}>Qualifications, contact details, availability and contracts for the whole team.</p>
  </div>
  {profiles.length === 0 && (
  <div style={{ textAlign: 'center', padding: '80px 20px', color: s.muted, fontSize: '15px' }}>
  No profiles yet.<br />
- <button onClick={() => { setProfileEdit(newProfile()); setProfileIsNew(true) }} style={{ marginTop: '16px', padding: '10px 22px', borderRadius: 0, border: '1px solid rgba(243,239,230,.3)', background: 'transparent', color: s.accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>Add first profile</button>
+ <button onClick={() => { setProfileEdit(newProfile()); setProfileIsNew(true) }} style={{ marginTop: '16px', padding: '10px 22px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', background: 'transparent', color: s.accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>Add first profile</button>
  </div>
  )}
  <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fill, minmax(280px, 1fr))', gap: '16px' }}>
  {[...profiles].sort((a,b) => (a.name||'').localeCompare(b.name||'')).map((p: any) => (
- <div key={p.id} style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '18px' }}>
+ <div key={p.id} style={{ background: 'var(--glass)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 0, padding: '18px' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
- {p.photoUrl ? <img src={p.photoUrl} alt={p.name} style={{ width: '48px', height: '48px', borderRadius: '50%', objectFit: 'cover', border: '2px solid rgba(243,239,230,.3)' }} /> : <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'rgba(243,239,230,.1)', border: '2px solid rgba(243,239,230,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px' }}>?</div>}
+ {p.photoUrl ? <img src={p.photoUrl} alt={p.name} style={{ width: '48px', height: '48px', borderRadius: '50%', objectFit: 'cover', border: '2px solid color-mix(in srgb, var(--text) 30%, transparent)' }} /> : <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'color-mix(in srgb, var(--text) 10%, transparent)', border: '2px solid color-mix(in srgb, var(--text) 20%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px' }}>?</div>}
  <div>
  <div style={{ fontSize: '16px', fontWeight: 500, color: s.text }}>{p.name || '(no name)'}</div>
- <div style={{ fontSize: '14px', color: s.muted }}>{(p.diveCerts||[]).length > 0 && <span style={{ color: '#f3efe6', marginRight: '6px' }}>{p.diveCerts.join(' · ')}</span>}{p.email}</div>
+ <div style={{ fontSize: '14px', color: s.muted }}>{(p.diveCerts||[]).length > 0 && <span style={{ color: 'var(--text)', marginRight: '6px' }}>{p.diveCerts.join(' · ')}</span>}{p.email}</div>
  </div>
  <span style={{ marginLeft: 'auto', fontSize: '14px', fontWeight: 500, padding: '3px 8px', borderRadius: 0, background: p.isPublic ? 'rgba(183,196,176,.1)' : 'rgba(255,255,255,.07)', color: p.isPublic ? '#b7c4b0' : s.muted, border: `1px solid ${p.isPublic ? 'rgba(183,196,176,.3)' : 'rgba(255,255,255,.12)'}` }}>{p.isPublic ? 'Public' : 'Internal'}</span>
  </div>
- {p.quals.length > 0 && <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginBottom: '8px' }}>{p.quals.map((q: string) => <span key={q} style={{ fontSize: '14px', fontWeight: 500, padding: '2px 8px', borderRadius: 0, background: 'rgba(243,239,230,.1)', color: s.accent, border: '1px solid rgba(243,239,230,.2)' }}>{q}</span>)}</div>}
+ {p.quals.length > 0 && <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginBottom: '8px' }}>{p.quals.map((q: string) => <span key={q} style={{ fontSize: '14px', fontWeight: 500, padding: '2px 8px', borderRadius: 0, background: 'color-mix(in srgb, var(--text) 10%, transparent)', color: s.accent, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)' }}>{q}</span>)}</div>}
  {p.langs.length > 0 && <div style={{ fontSize: '14px', marginBottom: '8px' }}>{p.langs.map((l: string) => { const f = ALL_LANGS.find(([,c]) => c === l); return f ? f[0] : '' }).join(' ')}</div>}
  {p.availDays.length > 0 && <div style={{ fontSize: '14px', color: s.muted, marginBottom: '10px' }}>{p.availDays.join(', ')}{p.availNote ? ` - ${p.availNote}` : ''}</div>}
  <div style={{ display: 'flex', gap: '8px' }}>
- <button onClick={() => { setProfileEdit(p); setProfileIsNew(false); setInviteStatus('idle'); setInviteError(''); setInviteRole('') }} style={{ flex: 1, padding: '7px', borderRadius: 0, border: '1px solid rgba(243,239,230,.25)', background: 'transparent', color: s.accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>Edit</button>
+ <button onClick={() => { setProfileEdit(p); setProfileIsNew(false); setInviteStatus('idle'); setInviteError(''); setInviteRole('') }} style={{ flex: 1, padding: '7px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', background: 'transparent', color: s.accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>Edit</button>
  {delConfirm !== null && delConfirm.id === p.id ? (
  <div style={{ display: 'flex', gap: '6px' }}>
  {delConfirm.step === 1 && <button onClick={() => setDelConfirm({ id: p.id, step: 2 })} style={{ padding: '7px 12px', borderRadius: 0, border: '1px solid rgba(201,146,140,.4)', background: 'rgba(201,146,140,.1)', color: '#c9928c', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>Sure?</button>}
@@ -7038,8 +7038,8 @@ function PageMyProfile({ session, nav, isRecovery, onRecoveryDone }: { session: 
  const [zoom, setZoom] = useState<number>(() => getMembersZoom())
  const email = session?.user?.email || ''
 
- const levelColor: Record<string,string> = { ait:'#c9b48a', dmi:'#c9c2b6', owi:'#f3efe6', dg:'#b7c4b0' }
- const accent = '#f3efe6', muted = '#c9c2b6', text = '#f3efe6', bg = '#090909', font = "var(--font-geist-sans), sans-serif"
+ const levelColor: Record<string,string> = { ait:'#c9b48a', dmi:'var(--muted)', owi:'var(--text)', dg:'#b7c4b0' }
+ const accent = 'var(--text)', muted = 'var(--muted)', text = 'var(--text)', bg = 'var(--bg)', font = "var(--font-geist-sans), sans-serif"
 
  useEffect(() => {
  if (!email) { setLoading(false); return }
@@ -7113,17 +7113,17 @@ function PageMyProfile({ session, nav, isRecovery, onRecoveryDone }: { session: 
  Password updated — redirecting…
  </div>
  ) : (
- <div style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(243,239,230,.18)', borderRadius: 0, padding: '28px' }}>
+ <div style={{ background: 'rgba(255,255,255,.04)', border: '1px solid color-mix(in srgb, var(--text) 18%, transparent)', borderRadius: 0, padding: '28px' }}>
  <div style={{ marginBottom: '16px' }}>
  <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: muted, letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '6px' }}>New Password</label>
- <input type="password" value={newPassword} onChange={e => setNewPassword(e.target.value)} placeholder="min. 8 characters" style={{ width: '100%', boxSizing: 'border-box', padding: '10px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.25)', background: 'rgba(243,239,230,.04)', color: text, fontSize: '14px', fontFamily: font, outline: 'none' }} />
+ <input type="password" value={newPassword} onChange={e => setNewPassword(e.target.value)} placeholder="min. 8 characters" style={{ width: '100%', boxSizing: 'border-box', padding: '10px 14px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', background: 'color-mix(in srgb, var(--text) 4%, transparent)', color: text, fontSize: '14px', fontFamily: font, outline: 'none' }} />
  </div>
  <div style={{ marginBottom: '20px' }}>
  <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: muted, letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '6px' }}>Confirm Password</label>
- <input type="password" value={newPasswordConfirm} onChange={e => setNewPasswordConfirm(e.target.value)} placeholder="repeat password" style={{ width: '100%', boxSizing: 'border-box', padding: '10px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.25)', background: 'rgba(243,239,230,.04)', color: text, fontSize: '14px', fontFamily: font, outline: 'none' }} />
+ <input type="password" value={newPasswordConfirm} onChange={e => setNewPasswordConfirm(e.target.value)} placeholder="repeat password" style={{ width: '100%', boxSizing: 'border-box', padding: '10px 14px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', background: 'color-mix(in srgb, var(--text) 4%, transparent)', color: text, fontSize: '14px', fontFamily: font, outline: 'none' }} />
  </div>
  {pwSetError && <div style={{ color: '#c9928c', fontSize: '14px', marginBottom: '14px' }}>{pwSetError}</div>}
- <button onClick={handleSetNewPassword} disabled={pwSetStatus === 'saving'} style={{ width: '100%', padding: '12px', borderRadius: 0, border: 'none', background: accent, color: '#000', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: font, opacity: pwSetStatus === 'saving' ? 0.7 : 1 }}>
+ <button onClick={handleSetNewPassword} disabled={pwSetStatus === 'saving'} style={{ width: '100%', padding: '12px', borderRadius: 0, border: 'none', background: accent, color: 'var(--on-accent)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: font, opacity: pwSetStatus === 'saving' ? 0.7 : 1 }}>
  {pwSetStatus === 'saving' ? 'Saving…' : 'Set New Password'}
  </button>
  </div>
@@ -7140,10 +7140,10 @@ function PageMyProfile({ session, nav, isRecovery, onRecoveryDone }: { session: 
  <div style={{ fontSize: '48px', marginBottom: '16px' }}></div>
  <h2 style={{ color: text, fontSize: '20px', fontWeight: 500, marginBottom: '10px' }}>Profile not linked</h2>
  <p style={{ color: muted, fontSize: '14px', lineHeight: 1.6 }}>Your account ({email}) is not yet linked to a staff profile. Ask your admin to add your email address to your profile card.</p>
- <div style={{ marginTop: '24px', padding: '16px', borderRadius: 0, border: '1px solid rgba(243,239,230,.15)', background: 'rgba(243,239,230,.04)' }}>
+ <div style={{ marginTop: '24px', padding: '16px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', background: 'color-mix(in srgb, var(--text) 4%, transparent)' }}>
  {resetSent
  ? <div style={{ color: '#b7c4b0', fontWeight: 500 }}> Reset email sent to {email}</div>
- : <button onClick={handlePasswordReset} style={{ padding: '10px 22px', borderRadius: 0, border: '1px solid rgba(243,239,230,.3)', background: 'transparent', color: accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: font }}>Send password reset email</button>
+ : <button onClick={handlePasswordReset} style={{ padding: '10px 22px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', background: 'transparent', color: accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: font }}>Send password reset email</button>
  }
  </div>
  </div>
@@ -7163,7 +7163,7 @@ function PageMyProfile({ session, nav, isRecovery, onRecoveryDone }: { session: 
  </div>
 
  {/* Appearance — gilt für den gesamten Members-Bereich */}
- <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.18)', borderRadius: 0, padding: '18px 24px', marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', flexWrap: 'wrap' }}>
+ <div style={{ background: 'var(--glass)', border: '1px solid color-mix(in srgb, var(--text) 18%, transparent)', borderRadius: 0, padding: '18px 24px', marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', flexWrap: 'wrap' }}>
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: text }}>Appearance</div>
  <div style={{ fontSize: '14px', color: muted, marginTop: '3px' }}>Dark or light display for the whole members area. Saved on this device.</div>
@@ -7171,14 +7171,14 @@ function PageMyProfile({ session, nav, isRecovery, onRecoveryDone }: { session: 
  <div role="group" aria-label="Theme" style={{ display: 'flex', gap: '4px', background: 'rgba(255,255,255,.05)', borderRadius: 0, padding: '4px' }}>
  {(['dark', 'light'] as const).map(t => (
  <button key={t} type="button" aria-pressed={theme === t} onClick={() => { setTheme(t); setMembersTheme(t) }}
- style={{ padding: '7px 16px', borderRadius: 0, border: 'none', cursor: 'pointer', fontFamily: font, fontSize: '14px', fontWeight: 500, background: theme === t ? 'rgba(243,239,230,.18)' : 'transparent', color: theme === t ? accent : muted }}>
+ style={{ padding: '7px 16px', borderRadius: 0, border: 'none', cursor: 'pointer', fontFamily: font, fontSize: '14px', fontWeight: 500, background: theme === t ? 'color-mix(in srgb, var(--text) 18%, transparent)' : 'transparent', color: theme === t ? accent : muted }}>
  {t === 'dark' ? ' Dark' : ' Light'}
  </button>
  ))}
  </div>
  </div>
 
- <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.18)', borderRadius: 0, padding: '18px 24px', marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', flexWrap: 'wrap' }}>
+ <div style={{ background: 'var(--glass)', border: '1px solid color-mix(in srgb, var(--text) 18%, transparent)', borderRadius: 0, padding: '18px 24px', marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', flexWrap: 'wrap' }}>
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: text }}>Text size</div>
  <div style={{ fontSize: '14px', color: muted, marginTop: '3px' }}>Makes everything in the members area bigger. Saved on this device.</div>
@@ -7186,7 +7186,7 @@ function PageMyProfile({ session, nav, isRecovery, onRecoveryDone }: { session: 
  <div role="group" aria-label="Text size" style={{ display: 'flex', gap: '4px', background: 'rgba(255,255,255,.05)', borderRadius: 0, padding: '4px' }}>
  {ZOOM_CHOICES.map(c => (
  <button key={c.v} type="button" aria-pressed={zoom === c.v} onClick={() => { setZoom(c.v); setMembersZoom(c.v) }}
- style={{ padding: '7px 16px', borderRadius: 0, border: 'none', cursor: 'pointer', fontFamily: font, fontSize: '14px', fontWeight: 500, background: zoom === c.v ? 'rgba(243,239,230,.18)' : 'transparent', color: zoom === c.v ? accent : muted }}>
+ style={{ padding: '7px 16px', borderRadius: 0, border: 'none', cursor: 'pointer', fontFamily: font, fontSize: '14px', fontWeight: 500, background: zoom === c.v ? 'color-mix(in srgb, var(--text) 18%, transparent)' : 'transparent', color: zoom === c.v ? accent : muted }}>
  {c.label}
  </button>
  ))}
@@ -7194,11 +7194,11 @@ function PageMyProfile({ session, nav, isRecovery, onRecoveryDone }: { session: 
  </div>
 
  {/* Profile card */}
- <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.18)', borderRadius: 0, padding: '24px', marginBottom: '20px' }}>
+ <div style={{ background: 'var(--glass)', border: '1px solid color-mix(in srgb, var(--text) 18%, transparent)', borderRadius: 0, padding: '24px', marginBottom: '20px' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '18px', marginBottom: '20px' }}>
  {profile.photoUrl
- ? <img src={profile.photoUrl} alt={profile.name} style={{ width: '80px', height: '80px', borderRadius: '50%', objectFit: 'cover', border: '2px solid rgba(243,239,230,.4)', flexShrink: 0 }} />
- : <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'rgba(243,239,230,.08)', border: '2px solid rgba(243,239,230,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '34px', flexShrink: 0 }}></div>
+ ? <img src={profile.photoUrl} alt={profile.name} style={{ width: '80px', height: '80px', borderRadius: '50%', objectFit: 'cover', border: '2px solid color-mix(in srgb, var(--text) 40%, transparent)', flexShrink: 0 }} />
+ : <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'color-mix(in srgb, var(--text) 8%, transparent)', border: '2px solid color-mix(in srgb, var(--text) 20%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '34px', flexShrink: 0 }}></div>
  }
  <div>
  <div style={{ fontSize: '22px', fontWeight: 500, color: text }}>{profile.name}</div>
@@ -7209,7 +7209,7 @@ function PageMyProfile({ session, nav, isRecovery, onRecoveryDone }: { session: 
  </div>
  {profile.langs.length > 0 && <div style={{ fontSize: '14px', marginBottom: '8px' }}>{profile.langs.map((c: string) => (LANG_FLAGS[c] || '') + ' ' + c).join(' ')}</div>}
  {profile.availDays.length > 0 && <div style={{ fontSize: '14px', color: muted, marginBottom: '16px' }}> {profile.availDays.join(', ')}{profile.availNote ? ` — ${profile.availNote}` : ''}</div>}
- {profile.diveCerts.length > 0 && <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginBottom: '16px' }}>{profile.diveCerts.map((c: string) => <span key={c} style={{ fontSize: '14px', fontWeight: 500, padding: '2px 8px', borderRadius: 0, background: 'rgba(243,239,230,.1)', color: accent, border: '1px solid rgba(243,239,230,.2)' }}>{c}</span>)}</div>}
+ {profile.diveCerts.length > 0 && <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginBottom: '16px' }}>{profile.diveCerts.map((c: string) => <span key={c} style={{ fontSize: '14px', fontWeight: 500, padding: '2px 8px', borderRadius: 0, background: 'color-mix(in srgb, var(--text) 10%, transparent)', color: accent, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)' }}>{c}</span>)}</div>}
 
  {/* Photo upload */}
  <div style={{ paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,.08)' }}>
@@ -7219,7 +7219,7 @@ function PageMyProfile({ session, nav, isRecovery, onRecoveryDone }: { session: 
  </div>
  <label style={{ display: 'block', cursor: 'pointer' }}>
  <input type="file" accept=".jpg,.jpeg,.png,.webp" onChange={handlePhotoUpload} style={{ display: 'none' }} />
- <div style={{ padding: '10px 14px', borderRadius: 0, border: `1px solid rgba(243,239,230,.3)`, background: saving ? 'rgba(243,239,230,.04)' : saved ? 'rgba(183,196,176,.08)' : 'rgba(243,239,230,.06)', color: saved ? '#b7c4b0' : accent, fontSize: '14px', fontWeight: 500, textAlign: 'center', cursor: 'pointer', transition: 'all .2s' }}>
+ <div style={{ padding: '10px 14px', borderRadius: 0, border: `1px solid color-mix(in srgb, var(--text) 30%, transparent)`, background: saving ? 'color-mix(in srgb, var(--text) 4%, transparent)' : saved ? 'rgba(183,196,176,.08)' : 'color-mix(in srgb, var(--text) 6%, transparent)', color: saved ? '#b7c4b0' : accent, fontSize: '14px', fontWeight: 500, textAlign: 'center', cursor: 'pointer', transition: 'all .2s' }}>
  {saving ? ' Uploading…' : saved ? ' Photo saved!' : ' Upload new profile photo'}
  </div>
  </label>
@@ -7228,16 +7228,16 @@ function PageMyProfile({ session, nav, isRecovery, onRecoveryDone }: { session: 
 
  {/* SSI Matrix read-only */}
  {profile.ssiPro && (
- <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '20px', marginBottom: '20px' }}>
+ <div style={{ background: 'var(--glass)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 0, padding: '20px', marginBottom: '20px' }}>
  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px', flexWrap: 'wrap', gap: '6px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: muted, letterSpacing: '.08em', textTransform: 'uppercase' }}>SSI Professional Matrix</div>
  <div style={{ fontSize: '14px', color: muted }}>Pro #{profile.ssiPro} · MID {profile.ssiMid}{profile.ssiPaidUntil ? ` · Paid ${profile.ssiPaidUntil}` : ''}</div>
  </div>
  {profile.matrixR && (
  <>
- <div style={{ fontSize: '14px', fontWeight: 500, color: '#f3efe6', letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '6px' }}>Can Teach (R)</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '6px' }}>Can Teach (R)</div>
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginBottom: '10px' }}>
- {cols.map(k => { const on = !!(profile.matrixR||{})[k]; return <span key={k} style={{ fontSize: '14px', padding: '2px 8px', borderRadius: 0, fontWeight: 500, background: on ? 'rgba(243,239,230,.15)' : 'rgba(255,255,255,.04)', color: on ? '#f3efe6' : 'rgba(255,255,255,.18)', border: `1px solid ${on ? 'rgba(243,239,230,.35)' : 'rgba(255,255,255,.07)'}` }}>{on ? ' ' : ''}{SSI_COL_LABELS[k]}</span> })}
+ {cols.map(k => { const on = !!(profile.matrixR||{})[k]; return <span key={k} style={{ fontSize: '14px', padding: '2px 8px', borderRadius: 0, fontWeight: 500, background: on ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'rgba(255,255,255,.04)', color: on ? 'var(--text)' : 'rgba(255,255,255,.18)', border: `1px solid ${on ? 'color-mix(in srgb, var(--text) 35%, transparent)' : 'rgba(255,255,255,.07)'}` }}>{on ? ' ' : ''}{SSI_COL_LABELS[k]}</span> })}
  </div>
  </>
  )}
@@ -7253,7 +7253,7 @@ function PageMyProfile({ session, nav, isRecovery, onRecoveryDone }: { session: 
  )}
 
  {/* Password reset */}
- <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ background: 'var(--glass)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 0, padding: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: muted, letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '8px' }}>Account Security</div>
  <div style={{ fontSize: '14px', color: muted, marginBottom: '14px' }}>Request a password reset link sent to <strong style={{ color: text }}>{email}</strong></div>
  {resetSent
@@ -7274,16 +7274,16 @@ function PageKnowledgeBase() {
  const [guideHtml, setGuideHtml] = useState<string>('')
  useEffect(() => { fetch('/ticket-guide.html').then(r => r.text()).then(setGuideHtml).catch(() => {}) }, []) // eslint-disable-line react-hooks/exhaustive-deps
  const font = "var(--font-geist-sans), sans-serif"
- const accent = '#f3efe6'
- const muted = '#c9c2b6'
- const text = '#f3efe6'
- const bg = '#090909'
- const surface = '#121210'
- const border = 'rgba(243,239,230,.12)'
+ const accent = 'var(--text)'
+ const muted = 'var(--muted)'
+ const text = 'var(--text)'
+ const bg = 'var(--bg)'
+ const surface = 'var(--surface)'
+ const border = 'color-mix(in srgb, var(--text) 12%, transparent)'
 
  const tabStyle = (active: boolean): React.CSSProperties => ({
  padding: '10px 14px', fontSize: '14px', fontWeight: 500, textAlign: 'left',
- border: 'none', background: active ? 'rgba(243,239,230,.1)' : 'transparent',
+ border: 'none', background: active ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'transparent',
  cursor: 'pointer', fontFamily: font, borderRadius: 0,
  color: active ? accent : muted, transition: 'all .15s',
  })
@@ -7292,7 +7292,7 @@ function PageKnowledgeBase() {
  <div style={{ padding: '32px 48px 48px', fontFamily: font, color: text, background: bg, minHeight: '80vh', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 220px', columnGap: '28px', alignItems: 'start' }}>
  {/* Header */}
  <div style={{ marginBottom: '28px', gridColumn: '1 / -1' }}>
- <h1 style={{ fontSize: '22px', fontWeight: 500, color: '#f3efe6', margin: 0, letterSpacing: '-0.02em' }}> Knowledge Base</h1>
+ <h1 style={{ fontSize: '22px', fontWeight: 500, color: 'var(--text)', margin: 0, letterSpacing: '-0.02em' }}> Knowledge Base</h1>
  <p style={{ fontSize: '14px', color: muted, margin: '6px 0 0', lineHeight: 1.5 }}>
  Team guides, policies, and standard operating procedures.
  </p>
@@ -7330,7 +7330,7 @@ function PageKnowledgeBase() {
  {activeSection === 'cancellation' && (
  <div style={{ maxWidth: '760px' }}>
  <div style={{ background: surface, borderRadius: 0, border: `1px solid ${border}`, padding: '36px 40px' }}>
- <h2 style={{ fontSize: '18px', fontWeight: 500, color: '#f3efe6', margin: '0 0 6px', letterSpacing: '-0.02em' }}>Azores Diving — Cancellation Policy</h2>
+ <h2 style={{ fontSize: '18px', fontWeight: 500, color: 'var(--text)', margin: '0 0 6px', letterSpacing: '-0.02em' }}>Azores Diving — Cancellation Policy</h2>
  <p style={{ fontSize: '14px', color: muted, margin: '0 0 28px', textTransform: 'uppercase', letterSpacing: '.06em' }}>Effective for all bookings</p>
 
  <Section title="Cancellations by the Customer">
@@ -7366,7 +7366,7 @@ function PageKnowledgeBase() {
 
  <p style={{ fontSize: '14px', color: muted, margin: '20px 0 0', lineHeight: 1.6 }}>
  This is an internal summary. The binding cancellation terms are published in the{' '}
- <a href="/terms" style={{ color: 'rgba(243,239,230,.7)', textDecoration: 'underline' }}>General Terms &amp; Conditions</a>.
+ <a href="/terms" style={{ color: 'color-mix(in srgb, var(--text) 70%, transparent)', textDecoration: 'underline' }}>General Terms &amp; Conditions</a>.
  </p>
  </div>
  </div>
@@ -7377,12 +7377,12 @@ function PageKnowledgeBase() {
  {activeSection === 'insurance' && (
  <div style={{ maxWidth: '820px' }}>
  <div style={{ background: surface, borderRadius: 0, border: `1px solid ${border}`, padding: '36px 40px' }}>
- <h2 style={{ fontSize: '18px', fontWeight: 500, color: '#f3efe6', margin: '0 0 6px', letterSpacing: '-0.02em' }}>DAN Dive Insurance — How We Price It</h2>
+ <h2 style={{ fontSize: '18px', fontWeight: 500, color: 'var(--text)', margin: '0 0 6px', letterSpacing: '-0.02em' }}>DAN Dive Insurance — How We Price It</h2>
  <p style={{ fontSize: '14px', color: muted, margin: '0 0 28px', textTransform: 'uppercase', letterSpacing: '.06em' }}>Staff reference · September 2026</p>
 
  <Section title="Why the price isn't always &quot;days × €10&quot;">
  <p style={{ fontSize: '14px', color: text, lineHeight: 1.7, margin: 0 }}>
- Every diver needs insurance. Guests either bring their own policy or purchase a DAN Short Term policy through us at checkout. DAN offers multi-day plans (3-, 5-, 7-, 10-day) at a discount — but <strong style={{ color: '#f3efe6' }}>multi-day plans are only valid for consecutive calendar days.</strong> A 5-day plan cannot legally cover five scattered days across two weeks. Our system automatically splits the selected dive dates into consecutive blocks and picks the cheapest valid DAN plan for each block separately.
+ Every diver needs insurance. Guests either bring their own policy or purchase a DAN Short Term policy through us at checkout. DAN offers multi-day plans (3-, 5-, 7-, 10-day) at a discount — but <strong style={{ color: 'var(--text)' }}>multi-day plans are only valid for consecutive calendar days.</strong> A 5-day plan cannot legally cover five scattered days across two weeks. Our system automatically splits the selected dive dates into consecutive blocks and picks the cheapest valid DAN plan for each block separately.
  </p>
  </Section>
 
@@ -7396,8 +7396,8 @@ function PageKnowledgeBase() {
  <div key={step} style={{ display: 'flex', gap: '14px', padding: '12px 16px', background: 'rgba(255,255,255,.03)', borderRadius: 0, border: '1px solid rgba(255,255,255,.06)' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: accent, minWidth: '20px', flexShrink: 0 }}>{step}</div>
  <div>
- <div style={{ fontSize: '14px', fontWeight: 500, color: '#f3efe6', marginBottom: '3px' }}>{label}</div>
- <div style={{ fontSize: '14px', color: '#c9c2b6', lineHeight: 1.6 }}>{desc}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', marginBottom: '3px' }}>{label}</div>
+ <div style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.6 }}>{desc}</div>
  </div>
  </div>
  ))}
@@ -7407,7 +7407,7 @@ function PageKnowledgeBase() {
  <div style={{ overflowX: 'auto' }}>
  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
  <thead>
- <tr style={{ borderBottom: '1px solid rgba(243,239,230,.2)' }}>
+ <tr style={{ borderBottom: '1px solid color-mix(in srgb, var(--text) 20%, transparent)' }}>
  {['Block size', 'Plan used', 'Guest price pp'].map(h => (
  <th key={h} style={{ textAlign: 'left', padding: '8px 12px', fontWeight: 500, color: muted, fontSize: '14px', textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</th>
  ))}
@@ -7423,8 +7423,8 @@ function PageKnowledgeBase() {
  ['8–10 days', '10-Day × 1', '€48'],
  ].map(([size, plan, price]) => (
  <tr key={size} style={{ borderBottom: '1px solid rgba(255,255,255,.04)' }}>
- <td style={{ padding: '9px 12px', color: '#f3efe6', fontWeight: 500 }}>{size}</td>
- <td style={{ padding: '9px 12px', color: '#c9c2b6' }}>{plan}</td>
+ <td style={{ padding: '9px 12px', color: 'var(--text)', fontWeight: 500 }}>{size}</td>
+ <td style={{ padding: '9px 12px', color: 'var(--muted)' }}>{plan}</td>
  <td style={{ padding: '9px 12px', color: accent, fontWeight: 500 }}>{price}</td>
  </tr>
  ))}
@@ -7442,14 +7442,14 @@ function PageKnowledgeBase() {
  ].map(({ block, plan, price }) => (
  <div key={block} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', background: 'rgba(255,255,255,.03)', borderRadius: 0, border: '1px solid rgba(255,255,255,.06)', flexWrap: 'wrap', gap: '8px' }}>
  <div>
- <span style={{ fontSize: '14px', fontWeight: 500, color: '#f3efe6' }}>{block}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)' }}>{block}</span>
  <span style={{ fontSize: '14px', color: muted, marginLeft: '10px' }}>{plan}</span>
  </div>
  <span style={{ fontSize: '14px', fontWeight: 500, color: accent }}>{price}</span>
  </div>
  ))}
- <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', background: 'rgba(243,239,230,.06)', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)' }}>
- <span style={{ fontSize: '14px', fontWeight: 500, color: '#f3efe6' }}>Total per diver</span>
+ <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', background: 'color-mix(in srgb, var(--text) 6%, transparent)', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)' }}>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)' }}>Total per diver</span>
  <span style={{ fontSize: '15px', fontWeight: 500, color: accent }}>€43</span>
  </div>
  </div>
@@ -7468,7 +7468,7 @@ function PageKnowledgeBase() {
  ].map((item, i) => (
  <div key={i} style={{ display: 'flex', gap: '12px', padding: '10px 14px', background: 'rgba(255,255,255,.03)', borderRadius: 0, border: '1px solid rgba(255,255,255,.06)' }}>
  <span style={{ fontSize: '14px', color: accent, fontWeight: 500, flexShrink: 0 }}>•</span>
- <span style={{ fontSize: '14px', color: '#c9c2b6', lineHeight: 1.6 }}>{item}</span>
+ <span style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.6 }}>{item}</span>
  </div>
  ))}
  </Section>
@@ -7489,7 +7489,7 @@ function PageKnowledgeBase() {
  <div style={{ maxWidth: '760px' }}>
  <div style={{ background: surface, borderRadius: 0, border: `1px solid ${border}`, padding: '36px 40px', textAlign: 'center' }}>
  <div style={{ fontSize: '48px', marginBottom: '16px' }}></div>
- <h2 style={{ fontSize: '17px', fontWeight: 500, color: '#f3efe6', margin: '0 0 8px' }}>SOPs coming soon</h2>
+ <h2 style={{ fontSize: '17px', fontWeight: 500, color: 'var(--text)', margin: '0 0 8px' }}>SOPs coming soon</h2>
  <p style={{ fontSize: '14px', color: muted, margin: 0, lineHeight: 1.6 }}>
  Standard operating procedures for front office, dive operations, equipment, and emergency protocols will be published here.
  </p>
@@ -7503,7 +7503,7 @@ function PageKnowledgeBase() {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
  return (
  <div style={{ marginBottom: '28px' }}>
- <h3 style={{ fontSize: '14px', fontWeight: 500, color: '#f3efe6', textTransform: 'uppercase', letterSpacing: '.07em', margin: '0 0 14px' }}>{title}</h3>
+ <h3 style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', textTransform: 'uppercase', letterSpacing: '.07em', margin: '0 0 14px' }}>{title}</h3>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>{children}</div>
  </div>
  )
@@ -7547,14 +7547,14 @@ function PageErrorLog({ nav }: { nav: (p: MemberPage) => void }) {
  <div style={{ padding: isMobile ? '24px 16px' : '32px 48px', maxWidth: '1100px' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px', flexWrap: 'wrap' }}>
  <button type="button" onClick={() => nav('dashboard')} style={{ fontSize: '14px', color: s.accent, cursor: 'pointer', fontWeight: 500, background: 'none', border: 'none', padding: 0, fontFamily: s.font }}> Dashboard</button>
- <h2 style={{ margin: 0, fontSize: '20px', fontWeight: 500, color: '#f3efe6' }}>Error Log</h2>
+ <h2 style={{ margin: 0, fontSize: '20px', fontWeight: 500, color: 'var(--text)' }}>Error Log</h2>
  </div>
  <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', flexWrap: 'wrap' }}>
- <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search by ref…" style={{ flex: '1 1 180px', minWidth: '140px', padding: '7px 12px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'rgba(255,255,255,.05)', color: '#f3efe6', fontSize: '14px', fontFamily: s.font }} />
- <select value={area} onChange={e => setArea(e.target.value)} style={{ padding: '7px 10px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'rgba(9,9,9,.9)', color: '#f3efe6', fontSize: '14px', fontFamily: s.font }}>
+ <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search by ref…" style={{ flex: '1 1 180px', minWidth: '140px', padding: '7px 12px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'rgba(255,255,255,.05)', color: 'var(--text)', fontSize: '14px', fontFamily: s.font }} />
+ <select value={area} onChange={e => setArea(e.target.value)} style={{ padding: '7px 10px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'color-mix(in srgb, var(--bg) 90%, transparent)', color: 'var(--text)', fontSize: '14px', fontFamily: s.font }}>
  {AREA_OPTIONS.map(a => <option key={a} value={a}>{a || 'All areas'}</option>)}
  </select>
- <select value={timeIdx} onChange={e => setTimeIdx(Number(e.target.value))} style={{ padding: '7px 10px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'rgba(9,9,9,.9)', color: '#f3efe6', fontSize: '14px', fontFamily: s.font }}>
+ <select value={timeIdx} onChange={e => setTimeIdx(Number(e.target.value))} style={{ padding: '7px 10px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'color-mix(in srgb, var(--bg) 90%, transparent)', color: 'var(--text)', fontSize: '14px', fontFamily: s.font }}>
  {TIME_OPTIONS.map((t, i) => <option key={i} value={i}>{t.label}</option>)}
  </select>
  </div>
@@ -7569,7 +7569,7 @@ function PageErrorLog({ nav }: { nav: (p: MemberPage) => void }) {
  {r.is_test && <span style={{ fontSize: '14px', padding: '1px 6px', borderRadius: 0, background: 'rgba(201,180,138,.12)', color: '#c9b48a' }}>test</span>}
  <span style={{ fontSize: '14px', color: s.muted, marginLeft: 'auto' }}>{new Date(r.created_at).toLocaleString()}</span>
  </div>
- <div style={{ fontSize: '14px', color: '#c9c2b6', marginTop: '4px', whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>{r.message}</div>
+ <div style={{ fontSize: '14px', color: 'var(--muted)', marginTop: '4px', whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>{r.message}</div>
  {expanded === r.id && Object.keys(r.context ?? {}).length > 0 && (
  <pre style={{ margin: '8px 0 0', fontSize: '14px', color: s.muted, background: 'rgba(0,0,0,.3)', borderRadius: 0, padding: '8px', overflowX: 'auto' }}>{JSON.stringify(r.context, null, 2)}</pre>
  )}
@@ -7617,7 +7617,7 @@ function PageTesting({ session }: { session: any }) {
  ref={frameRef}
  src="/workshop.html"
  title="Workshop testing"
- style={{ display: 'block', width: '100%', height: 'calc(100vh - 150px)', minHeight: '640px', border: 'none', background: '#000' }}
+ style={{ display: 'block', width: '100%', height: 'calc(100vh - 150px)', minHeight: '640px', border: 'none', background: 'var(--bg)' }}
  />
  )
 }
@@ -7698,21 +7698,21 @@ function PageTelemetry({ nav }: { nav: (p: MemberPage) => void }) {
  <div style={{ padding: isMobile ? '24px 16px' : '32px 48px', maxWidth: '900px' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px', flexWrap: 'wrap' }}>
  <button type="button" onClick={() => nav('dashboard')} style={{ fontSize: '14px', color: s.accent, cursor: 'pointer', fontWeight: 500, background: 'none', border: 'none', padding: 0, fontFamily: s.font }}> Dashboard</button>
- <h2 style={{ margin: 0, fontSize: '20px', fontWeight: 500, color: '#f3efe6' }}>Check-in Telemetry</h2>
+ <h2 style={{ margin: 0, fontSize: '20px', fontWeight: 500, color: 'var(--text)' }}>Check-in Telemetry</h2>
  {cohorts.length > 0 && (
- <select value={cohort} onChange={e => setCohortSel(e.target.value)} style={{ marginLeft: 'auto', background: 'rgba(255,255,255,.06)', color: '#f3efe6', border: '1px solid rgba(255,255,255,.15)', borderRadius: 0, padding: '4px 8px', fontSize: '14px' }}>
+ <select value={cohort} onChange={e => setCohortSel(e.target.value)} style={{ marginLeft: 'auto', background: 'rgba(255,255,255,.06)', color: 'var(--text)', border: '1px solid rgba(255,255,255,.15)', borderRadius: 0, padding: '4px 8px', fontSize: '14px' }}>
  <option value="">Default (Sandbox/Production)</option>
  {cohorts.map(c => <option key={c} value={c}> {c}{bucket.active && c === bucket.name ? ' (active)' : ''}</option>)}
  </select>
  )}
  <span style={{ marginLeft: cohorts.length > 0 ? 0 : 'auto', fontSize: '14px', color: sandbox ? '#c9b48a' : s.muted }}>{cohort ? ` Bucket "${cohort}" — all sessions (test + real)` : sandbox === null ? '' : sandbox ? ' Sandbox — test sessions only' : ' Production — real sessions only'}</span>
  </div>
- <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px', flexWrap: 'wrap', padding: '10px 14px', background: bucket.active ? 'rgba(183,196,176,.08)' : 'rgba(255,255,255,.04)', border: `1px solid ${bucket.active ? 'rgba(183,196,176,.35)' : 'rgba(255,255,255,.1)'}`, borderRadius: 0, fontSize: '14px', color: '#f3efe6' }}>
+ <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px', flexWrap: 'wrap', padding: '10px 14px', background: bucket.active ? 'rgba(183,196,176,.08)' : 'rgba(255,255,255,.04)', border: `1px solid ${bucket.active ? 'rgba(183,196,176,.35)' : 'rgba(255,255,255,.1)'}`, borderRadius: 0, fontSize: '14px', color: 'var(--text)' }}>
  <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer', fontWeight: 500 }}>
  <input type="checkbox" checked={bucket.active} onChange={e => saveBucket({ ...bucket, active: e.target.checked })} />
  Measurement bucket active
  </label>
- <input value={bucket.name} onChange={e => setBucket({ ...bucket, name: e.target.value })} onBlur={() => { if (bucket.active) saveBucket(bucket) }} placeholder="e.g. workshop-2026-10-26" style={{ background: 'rgba(255,255,255,.06)', color: '#f3efe6', border: '1px solid rgba(255,255,255,.15)', borderRadius: 0, padding: '4px 8px', fontSize: '14px', minWidth: '200px' }} />
+ <input value={bucket.name} onChange={e => setBucket({ ...bucket, name: e.target.value })} onBlur={() => { if (bucket.active) saveBucket(bucket) }} placeholder="e.g. workshop-2026-10-26" style={{ background: 'rgba(255,255,255,.06)', color: 'var(--text)', border: '1px solid rgba(255,255,255,.15)', borderRadius: 0, padding: '4px 8px', fontSize: '14px', minWidth: '200px' }} />
  <span style={{ color: s.muted }}>{bucket.active ? 'New check-in steps are written to this bucket.' : 'Off — new steps go to Sandbox/Production as usual.'}</span>
  {bucketMsg && <span style={{ color: bucketMsg.startsWith('Error') ? '#c9928c' : '#b7c4b0', fontWeight: 500 }}>{bucketMsg}</span>}
  </div>
@@ -7728,7 +7728,7 @@ function PageTelemetry({ nav }: { nav: (p: MemberPage) => void }) {
  ].map(({ label, value }) => (
  <div key={label} style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, padding: '14px 18px', minWidth: '130px' }}>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '4px' }}>{label}</div>
- <div style={{ fontSize: '22px', fontWeight: 500, color: '#f3efe6' }}>{value}</div>
+ <div style={{ fontSize: '22px', fontWeight: 500, color: 'var(--text)' }}>{value}</div>
  </div>
  ))}
  </div>
@@ -7743,9 +7743,9 @@ function PageTelemetry({ nav }: { nav: (p: MemberPage) => void }) {
  <tbody>
  {perStep.map(({ step, enteredCount, medianSec, dropouts, dropoutRate }) => (
  <tr key={step} style={{ borderBottom: '1px solid rgba(255,255,255,.04)' }}>
- <td style={{ padding: '9px 10px', fontWeight: 500, color: '#f3efe6' }}>{step}</td>
+ <td style={{ padding: '9px 10px', fontWeight: 500, color: 'var(--text)' }}>{step}</td>
  <td style={{ padding: '9px 10px', color: s.muted }}>{enteredCount}</td>
- <td style={{ padding: '9px 10px', color: '#c9c2b6' }}>{medianSec != null ? fmtDuration(medianSec) : '—'}</td>
+ <td style={{ padding: '9px 10px', color: 'var(--muted)' }}>{medianSec != null ? fmtDuration(medianSec) : '—'}</td>
  <td style={{ padding: '9px 10px', color: dropouts > 0 ? '#c9928c' : s.muted }}>{dropouts}</td>
  <td style={{ padding: '9px 10px', color: (dropoutRate ?? 0) > 30 ? '#c9928c' : s.muted }}>{dropoutRate != null ? `${dropoutRate}%` : '—'}</td>
  </tr>
@@ -7761,8 +7761,8 @@ function PageTelemetry({ nav }: { nav: (p: MemberPage) => void }) {
 function PolicyItem({ label, children }: { label: string; children: React.ReactNode }) {
  return (
  <div style={{ display: 'flex', gap: '14px', padding: '12px 16px', background: 'rgba(255,255,255,.03)', borderRadius: 0, border: '1px solid rgba(255,255,255,.06)' }}>
- <div style={{ fontSize: '14px', fontWeight: 500, color: '#f3efe6', minWidth: '220px', flexShrink: 0, lineHeight: 1.5 }}>{label}</div>
- <div style={{ fontSize: '14px', color: '#c9c2b6', lineHeight: 1.6 }}>{children}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', minWidth: '220px', flexShrink: 0, lineHeight: 1.5 }}>{label}</div>
+ <div style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.6 }}>{children}</div>
  </div>
  )
 }
@@ -7818,7 +7818,7 @@ function PageDiagnostics({ nav }: { nav: (p: MemberPage) => void }) {
  const tabStyle = (active: boolean) => ({
  padding: '7px 18px', borderRadius: 0, border: 'none', cursor: 'pointer',
  fontSize: '14px', fontWeight: 500, fontFamily: s.font,
- background: active ? 'rgba(243,239,230,.15)' : 'transparent',
+ background: active ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'transparent',
  color: active ? s.accent : s.muted,
  transition: 'all .15s',
  })
@@ -7840,7 +7840,7 @@ function PageMarketing() {
  const tabStyle = (active: boolean) => ({
  padding: '7px 18px', borderRadius: 0, border: 'none', cursor: 'pointer',
  fontSize: '14px', fontWeight: 500, fontFamily: s.font,
- background: active ? 'rgba(243,239,230,.15)' : 'transparent',
+ background: active ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'transparent',
  color: active ? s.accent : s.muted,
  transition: 'all .15s',
  })
@@ -7883,19 +7883,19 @@ function MarketingWaitlist() {
  const visible = site === 'all' ? rows : rows.filter(r => r.site === site)
  const people = visible.reduce((n, r) => n + (r.party_size || 1), 0)
  const th = { textAlign: 'left' as const, padding: '8px 12px', fontSize: '14px', fontWeight: 500, letterSpacing: '.06em', textTransform: 'uppercase' as const, color: s.muted, borderBottom: '1px solid rgba(255,255,255,.08)', whiteSpace: 'nowrap' as const }
- const td = { padding: '9px 12px', fontSize: '14px', color: '#f3efe6', borderBottom: '1px solid rgba(255,255,255,.05)', verticalAlign: 'top' as const }
+ const td = { padding: '9px 12px', fontSize: '14px', color: 'var(--text)', borderBottom: '1px solid rgba(255,255,255,.05)', verticalAlign: 'top' as const }
  const fmt = (iso: string) => new Date(iso).toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })
 
  return (
  <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '28px 24px', fontFamily: s.font }}>
  <div style={{ display: 'flex', alignItems: 'flex-end', gap: '16px', marginBottom: '18px', flexWrap: 'wrap' }}>
  <div>
- <h2 style={{ margin: '0 0 4px 0', fontSize: '22px', fontWeight: 500, color: '#f3efe6' }}>Waitlist</h2>
+ <h2 style={{ margin: '0 0 4px 0', fontSize: '22px', fontWeight: 500, color: 'var(--text)' }}>Waitlist</h2>
  <p style={{ margin: 0, fontSize: '14px', color: s.muted }}>Guests who signed up on the Formigas page. Offshore trips need 6 divers — no deposit is taken.</p>
  </div>
  <div style={{ marginLeft: 'auto', display: 'flex', gap: '8px', alignItems: 'center' }}>
  {sites.length > 1 && (
- <select value={site} onChange={e => setSite(e.target.value)} style={{ padding: '6px 10px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'rgba(255,255,255,.05)', color: '#f3efe6', fontSize: '14px', fontFamily: s.font }}>
+ <select value={site} onChange={e => setSite(e.target.value)} style={{ padding: '6px 10px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'rgba(255,255,255,.05)', color: 'var(--text)', fontSize: '14px', fontFamily: s.font }}>
  <option value="all">All sites</option>
  {sites.map(x => <option key={x} value={x}>{x}</option>)}
  </select>
@@ -7903,7 +7903,7 @@ function MarketingWaitlist() {
  <span style={{ fontSize: '14px', color: '#a39e94', background: 'rgba(255,255,255,.05)', padding: '4px 10px', borderRadius: 0, whiteSpace: 'nowrap' }}>
  {visible.length} entries · {people} divers
  </span>
- <button onClick={load} disabled={loading} style={{ padding: '5px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.35)', background: 'rgba(243,239,230,.08)', color: '#f3efe6', fontSize: '14px', fontWeight: 500, cursor: loading ? 'not-allowed' : 'pointer', fontFamily: s.font, opacity: loading ? .5 : 1 }}>
+ <button onClick={load} disabled={loading} style={{ padding: '5px 14px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: loading ? 'not-allowed' : 'pointer', fontFamily: s.font, opacity: loading ? .5 : 1 }}>
  {loading ? 'Loading…' : 'Refresh'}
  </button>
  </div>
@@ -7915,7 +7915,7 @@ function MarketingWaitlist() {
  </div>
  )}
 
- <div style={{ border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, overflow: 'auto', background: '#000' }}>
+ <div style={{ border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, overflow: 'auto', background: 'var(--bg)' }}>
  {loading && rows.length === 0 ? (
  <div style={{ padding: '60px', textAlign: 'center', color: s.muted, fontSize: '14px' }}>Loading…</div>
  ) : visible.length === 0 ? (
@@ -7940,7 +7940,7 @@ function MarketingWaitlist() {
  <span style={{ fontSize: '14px', fontWeight: 500, padding: '2px 8px', borderRadius: 0, background: r.status === 'waiting' ? 'rgba(201,180,138,.15)' : 'rgba(183,196,176,.12)', color: r.status === 'waiting' ? '#c9b48a' : '#b7c4b0' }}>{r.status}</span>
  </td>
  <td style={{ ...td, whiteSpace: 'nowrap' }}>{r.notified_at ? fmt(r.notified_at) : <span style={{ color: '#a39e94' }}>—</span>}</td>
- <td style={{ ...td, color: '#c9c2b6' }}>{r.notes ?? ''}</td>
+ <td style={{ ...td, color: 'var(--muted)' }}>{r.notes ?? ''}</td>
  </tr>
  ))}
  </tbody>
@@ -8027,7 +8027,7 @@ function MarketingEmails() {
  return (
  <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '28px 24px', fontFamily: s.font }}>
  <div style={{ marginBottom: '24px' }}>
- <h2 style={{ margin: '0 0 4px 0', fontSize: '22px', fontWeight: 500, color: '#f3efe6' }}>Marketing Emails</h2>
+ <h2 style={{ margin: '0 0 4px 0', fontSize: '22px', fontWeight: 500, color: 'var(--text)' }}>Marketing Emails</h2>
  <p style={{ margin: 0, fontSize: '14px', color: s.muted }}>Customer-facing emails in the order they are received. Rendered with sample data.</p>
  </div>
 
@@ -8039,9 +8039,9 @@ function MarketingEmails() {
  style={{
  display: 'block', width: '100%', textAlign: 'left',
  padding: '10px 14px', marginBottom: '4px', borderRadius: 0,
- border: activeKind === kind ? '1px solid rgba(243,239,230,.4)' : '1px solid rgba(255,255,255,.06)',
- background: activeKind === kind ? 'rgba(243,239,230,.1)' : 'rgba(255,255,255,.03)',
- color: activeKind === kind ? '#f3efe6' : '#c9c2b6',
+ border: activeKind === kind ? '1px solid color-mix(in srgb, var(--text) 40%, transparent)' : '1px solid rgba(255,255,255,.06)',
+ background: activeKind === kind ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'rgba(255,255,255,.03)',
+ color: activeKind === kind ? 'var(--text)' : 'var(--muted)',
  fontSize: '14px', fontWeight: activeKind === kind ? 500 : 400,
  cursor: 'pointer', fontFamily: s.font, transition: 'all .15s',
  lineHeight: 1.4,
@@ -8055,7 +8055,7 @@ function MarketingEmails() {
  <div style={{ flex: 1, minWidth: 0 }}>
  {/* Toolbar */}
  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px', flexWrap: 'wrap' }}>
- <span style={{ fontSize: '15px', fontWeight: 500, color: '#f3efe6' }}>
+ <span style={{ fontSize: '15px', fontWeight: 500, color: 'var(--text)' }}>
  {EMAIL_KINDS.find(k => k.kind === activeKind)?.label}
  </span>
  {current && (
@@ -8086,8 +8086,8 @@ function MarketingEmails() {
  <button key={tab} onClick={() => setActiveTab(tab)} style={{
  padding: '4px 12px', borderRadius: 0, border: 'none', cursor: 'pointer',
  fontSize: '14px', fontWeight: 500, fontFamily: s.font,
- background: activeTab === tab ? 'rgba(243,239,230,.2)' : 'transparent',
- color: activeTab === tab ? '#f3efe6' : s.muted,
+ background: activeTab === tab ? 'color-mix(in srgb, var(--text) 20%, transparent)' : 'transparent',
+ color: activeTab === tab ? 'var(--text)' : s.muted,
  transition: 'all .15s',
  }}>{tab === 'preview' ? 'Preview' : 'Text'}</button>
  ))}
@@ -8095,8 +8095,8 @@ function MarketingEmails() {
  {/* Send test */}
  <button onClick={sendTest} disabled={sendingTest}
  style={{
- padding: '5px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.35)',
- background: 'rgba(243,239,230,.08)', color: '#f3efe6',
+ padding: '5px 14px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)',
+ background: 'color-mix(in srgb, var(--text) 8%, transparent)', color: 'var(--text)',
  fontSize: '14px', fontWeight: 500, cursor: sendingTest ? 'not-allowed' : 'pointer',
  fontFamily: s.font, opacity: sendingTest ? .5 : 1, whiteSpace: 'nowrap',
  }}>
@@ -8117,7 +8117,7 @@ function MarketingEmails() {
  )}
 
  {/* Email preview area */}
- <div style={{ border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, overflow: 'hidden', background: '#000' }}>
+ <div style={{ border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, overflow: 'hidden', background: 'var(--bg)' }}>
  {isLoading ? (
  <div style={{ padding: '80px', textAlign: 'center', color: s.muted, fontSize: '14px' }}>Loading preview…</div>
  ) : !current ? (
@@ -8132,7 +8132,7 @@ function MarketingEmails() {
  ) : (
  <pre style={{
  margin: 0, padding: '24px', fontSize: '14px', lineHeight: 1.7,
- color: '#c9c2b6', background: '#000', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
+ color: 'var(--muted)', background: 'var(--bg)', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
  maxHeight: '700px', overflowY: 'auto',
  }}>{current.text}</pre>
  )}
@@ -8165,7 +8165,7 @@ function slugify(str: string) {
 function PageSettings({ nav }: { nav: (p: MemberPage) => void }) {
  return (
  <div style={{ maxWidth: '900px', margin: '0 auto', padding: '28px 24px', fontFamily: s.font }}>
- <h2 style={{ margin: '0 0 4px 0', fontSize: '22px', fontWeight: 500, color: '#f3efe6' }}>Settings</h2>
+ <h2 style={{ margin: '0 0 4px 0', fontSize: '22px', fontWeight: 500, color: 'var(--text)' }}>Settings</h2>
  <p style={{ margin: '0 0 20px 0', fontSize: '14px', color: s.muted }}>Season mode for the public booking page. Requests are handled in <button type="button" onClick={() => nav('frontoffice')} style={{ background: 'none', border: 'none', padding: 0, color: s.accent, cursor: 'pointer', fontFamily: s.font, fontSize: '14px', textDecoration: 'underline' }}>Front Office Booking Requests</button>.</p>
  <CentreBrandForm />
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '8px' }}>Online booking</div>
@@ -8244,7 +8244,7 @@ function BookingWindowsAdmin() {
  })()
 
  const MODE_CLR: Record<string, string> = { open: '#b7c4b0', request: '#c9b48a', blocked: '#c9928c' }
- const inp: React.CSSProperties = { padding: '7px 10px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'rgba(255,255,255,.05)', color: '#f3efe6', fontSize: '14px', fontFamily: s.font }
+ const inp: React.CSSProperties = { padding: '7px 10px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'rgba(255,255,255,.05)', color: 'var(--text)', fontSize: '14px', fontFamily: s.font }
  const lbl: React.CSSProperties = { fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '4px', display: 'block' }
  const productName = (id: string | null) => id ? (products.find(p => p.id === id)?.name ?? id) : 'All products'
 
@@ -8283,14 +8283,14 @@ function BookingWindowsAdmin() {
  )}
  </div>
  <div style={{ display: 'flex', gap: '8px', marginTop: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
- <button type="button" disabled={saving} onClick={save} style={{ padding: '8px 16px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontSize: '14px', fontWeight: 500, cursor: saving ? 'not-allowed' : 'pointer', fontFamily: s.font, opacity: saving ? .6 : 1 }}>{saving ? 'Saving…' : form.id ? 'Save changes' : '+ Add window'}</button>
+ <button type="button" disabled={saving} onClick={save} style={{ padding: '8px 16px', borderRadius: 0, border: 'none', background: s.accent, color: 'var(--on-accent)', fontSize: '14px', fontWeight: 500, cursor: saving ? 'not-allowed' : 'pointer', fontFamily: s.font, opacity: saving ? .6 : 1 }}>{saving ? 'Saving…' : form.id ? 'Save changes' : '+ Add window'}</button>
  {form.id && <button type="button" onClick={() => setForm(empty)} style={{ padding: '8px 12px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>Cancel</button>}
  {msg && <span style={{ fontSize: '14px', fontWeight: 500, color: msg.startsWith('') ? '#b7c4b0' : '#c9928c' }}>{msg}</span>}
  </div>
  </div>
 
  {/* Liste */}
- <div style={{ border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, overflow: 'auto', background: '#000', marginBottom: '16px' }}>
+ <div style={{ border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, overflow: 'auto', background: 'var(--bg)', marginBottom: '16px' }}>
  {rows === null ? <div style={{ padding: '24px', textAlign: 'center', color: s.muted, fontSize: '14px' }}>Loading…</div>
  : rows.length === 0 ? <div style={{ padding: '24px', textAlign: 'center', color: s.muted, fontSize: '14px' }}>No windows yet — the default ({defaultMode}) applies to every date.</div>
  : (
@@ -8307,7 +8307,7 @@ function BookingWindowsAdmin() {
  <td style={{ padding: '8px 12px', color: s.muted, borderBottom: '1px solid rgba(255,255,255,.05)', maxWidth: '240px' }}>{w.guest_text ?? '—'}</td>
  <td style={{ padding: '8px 12px', borderBottom: '1px solid rgba(255,255,255,.05)' }}><button type="button" disabled={saving} onClick={() => toggleActive(w)} style={{ padding: '3px 9px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: w.active ? '#b7c4b0' : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>{w.active ? 'active' : 'off'}</button></td>
  <td style={{ padding: '8px 12px', whiteSpace: 'nowrap', borderBottom: '1px solid rgba(255,255,255,.05)' }}>
- <button type="button" onClick={() => setForm({ id: w.id, from_date: w.from_date, to_date: w.to_date, mode: w.mode, session: w.session ?? '', product_id: w.product_id ?? '', reason: w.reason ?? '', guest_text: w.guest_text ?? '' })} style={{ padding: '3px 9px', borderRadius: 0, border: 'none', background: 'rgba(243,239,230,.1)', color: s.accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, marginRight: '6px' }}>Edit</button>
+ <button type="button" onClick={() => setForm({ id: w.id, from_date: w.from_date, to_date: w.to_date, mode: w.mode, session: w.session ?? '', product_id: w.product_id ?? '', reason: w.reason ?? '', guest_text: w.guest_text ?? '' })} style={{ padding: '3px 9px', borderRadius: 0, border: 'none', background: 'color-mix(in srgb, var(--text) 10%, transparent)', color: s.accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, marginRight: '6px' }}>Edit</button>
  <button type="button" disabled={saving} onClick={() => remove(w)} style={{ padding: '3px 9px', borderRadius: 0, border: 'none', background: 'rgba(201,146,140,.12)', color: '#c9928c', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>Delete</button>
  </td>
  </tr>
@@ -8318,7 +8318,7 @@ function BookingWindowsAdmin() {
  </div>
 
  {/* Vorschau */}
- <div style={{ background: 'rgba(243,239,230,.04)', border: '1px solid rgba(243,239,230,.14)', borderRadius: 0, padding: '12px 16px', display: 'flex', gap: '10px', alignItems: 'flex-end', flexWrap: 'wrap' }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 4%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 14%, transparent)', borderRadius: 0, padding: '12px 16px', display: 'flex', gap: '10px', alignItems: 'flex-end', flexWrap: 'wrap' }}>
  <div><label style={lbl}>Preview: what does a guest see on</label><input type="date" value={preview.date} onChange={e => setPreview(p => ({ ...p, date: e.target.value }))} style={inp} /></div>
  <div><label style={lbl}>Session</label><select value={preview.session} onChange={e => setPreview(p => ({ ...p, session: e.target.value }))} style={inp}><option value="am">AM</option><option value="pm">PM</option><option value="night">Night</option></select></div>
  <div><label style={lbl}>Product</label><select value={preview.product_id} onChange={e => setPreview(p => ({ ...p, product_id: e.target.value }))} style={inp}>{products.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}{!products.some(p => p.id === preview.product_id) && <option value={preview.product_id}>{preview.product_id || '—'}</option>}</select></div>
@@ -8353,7 +8353,7 @@ function PageBoatManagement({ nav }: { nav: (p: MemberPage) => void }) {
  padding: '8px 16px', borderRadius: 0, border: 'none', cursor: 'pointer' as const,
  fontFamily: s.font, fontWeight: 500, fontSize: '14px',
  background: accent ? s.accent : 'rgba(255,255,255,.08)',
- color: accent ? '#090909' : s.text,
+ color: accent ? 'var(--on-accent)' : s.text,
  })
 
  async function load() {
@@ -8451,7 +8451,7 @@ function PageBoatManagement({ nav }: { nav: (p: MemberPage) => void }) {
  </div>
 
  {addOpen && (
- <div style={{ padding: '18px', background: 'rgba(243,239,230,.06)', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+ <div style={{ padding: '18px', background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.accent }}>New Boat</div>
  <div style={{ display: 'grid', gridTemplateColumns: '1fr 110px 120px', gap: '10px' }}>
  <div>
@@ -8493,7 +8493,7 @@ function PageBoatManagement({ nav }: { nav: (p: MemberPage) => void }) {
  <div key={boat.id} style={{
  padding: '16px 18px', borderRadius: 0,
  background: boat.active ? 'rgba(255,255,255,.04)' : 'rgba(255,255,255,.02)',
- border: `1px solid ${boat.active ? 'rgba(243,239,230,.2)' : 'rgba(255,255,255,.07)'}`,
+ border: `1px solid ${boat.active ? 'color-mix(in srgb, var(--text) 20%, transparent)' : 'rgba(255,255,255,.07)'}`,
  opacity: isSavingThis ? 0.6 : 1, transition: 'opacity .15s',
  }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
@@ -8507,7 +8507,7 @@ function PageBoatManagement({ nav }: { nav: (p: MemberPage) => void }) {
 
  <button onClick={() => toggleActive(boat)} disabled={isSavingThis} title={boat.active ? 'Deactivate' : 'Activate'}
  style={{ width: '36px', height: '20px', borderRadius: 0, border: 'none', cursor: 'pointer', padding: 0, position: 'relative', background: boat.active ? s.accent : 'rgba(255,255,255,.15)', transition: 'background .2s', flexShrink: 0 }}>
- <span style={{ position: 'absolute', top: '3px', left: boat.active ? '19px' : '3px', width: '14px', height: '14px', borderRadius: '50%', background: boat.active ? '#090909' : 'rgba(255,255,255,.6)', transition: 'left .2s' }} />
+ <span style={{ position: 'absolute', top: '3px', left: boat.active ? '19px' : '3px', width: '14px', height: '14px', borderRadius: '50%', background: boat.active ? 'var(--bg)' : 'rgba(255,255,255,.6)', transition: 'left .2s' }} />
  </button>
 
  <div style={{ flex: 1, minWidth: '140px' }}>
@@ -8556,7 +8556,7 @@ function PageBoatManagement({ nav }: { nav: (p: MemberPage) => void }) {
  {delConfirm === boat.id ? (
  <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
  <span style={{ fontSize: '14px', color: '#c9928c' }}>Wirklich löschen?</span>
- <button onClick={() => deleteBoat(boat.id)} style={{ ...bm(), background: '#c9928c', color: '#f3efe6', padding: '5px 12px', fontSize: '14px' }}>Ja</button>
+ <button onClick={() => deleteBoat(boat.id)} style={{ ...bm(), background: '#c9928c', color: 'var(--text)', padding: '5px 12px', fontSize: '14px' }}>Ja</button>
  <button onClick={() => setDelConfirm(null)} style={{ ...bm(), padding: '5px 10px', fontSize: '14px' }}>Nein</button>
  </div>
  ) : (
@@ -8787,8 +8787,8 @@ export function PageMembers({ lang, nav, initialSlug }: { lang: Lang; nav: (p: s
  set()
  }} style={{
  position: 'sticky', top: isMobile ? '64px' : 0, zIndex: 99,
- background: 'rgba(9,9,9,.97)', backdropFilter: 'blur(8px)',
- borderBottom: '1px solid rgba(243,239,230,.18)',
+ background: 'color-mix(in srgb, var(--bg) 97%, transparent)', backdropFilter: 'blur(8px)',
+ borderBottom: '1px solid color-mix(in srgb, var(--text) 18%, transparent)',
  display: 'flex', alignItems: 'stretch', padding: isMobile ? '0 8px' : '0 24px', gap: '2px',
  overflowX: 'auto', scrollbarWidth: 'none',
  }}>
@@ -8837,12 +8837,12 @@ export function PageMembers({ lang, nav, initialSlug }: { lang: Lang; nav: (p: s
  <>
  <button type="button" onClick={() => { window.location.href = '/dive-os/book' }}
  title="Open the customer booking page"
- style={{ padding: '5px 12px', borderRadius: 0, border: '1px solid rgba(243,239,230,.45)', background: 'transparent', color: s.accent, fontSize: '14px', letterSpacing: '.08em', textTransform: 'uppercase', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}>
+ style={{ padding: '5px 12px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 45%, transparent)', background: 'transparent', color: s.accent, fontSize: '14px', letterSpacing: '.08em', textTransform: 'uppercase', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}>
  Booking page
  </button>
  <button type="button" onClick={() => { window.location.href = '/' }}
  title="Open the public website"
- style={{ padding: '5px 12px', borderRadius: 0, border: '1px solid rgba(243,239,230,.45)', background: 'transparent', color: s.accent, fontSize: '14px', letterSpacing: '.08em', textTransform: 'uppercase', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}>
+ style={{ padding: '5px 12px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 45%, transparent)', background: 'transparent', color: s.accent, fontSize: '14px', letterSpacing: '.08em', textTransform: 'uppercase', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}>
  Public site
  </button>
  </>
@@ -8869,7 +8869,7 @@ export function PageMembers({ lang, nav, initialSlug }: { lang: Lang; nav: (p: s
  ] as [string, string, MemberPage][]).map(([icon, label, p]) => (
  <button key={p}
  onClick={() => memberNav(p)}
- style={{ padding: '5px 14px', fontSize: '14px', fontWeight: 500, border: 'none', borderRadius: 0, cursor: 'pointer', fontFamily: s.font, background: page === p ? 'rgba(243,239,230,.15)' : 'transparent', color: page === p ? s.accent : s.muted, transition: 'all .15s' }}>
+ style={{ padding: '5px 14px', fontSize: '14px', fontWeight: 500, border: 'none', borderRadius: 0, cursor: 'pointer', fontFamily: s.font, background: page === p ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'transparent', color: page === p ? s.accent : s.muted, transition: 'all .15s' }}>
  {icon} {label}
  </button>
  ))}

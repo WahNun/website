@@ -41,25 +41,25 @@ export default function MiniDatePicker({ value, onChange, max }: Props) {
  }
 
  const s = {
- accent: '#f3efe6',
+ accent: 'var(--accent)',
  muted: 'rgba(255,255,255,.38)',
- text: '#f3efe6',
- bg: '#000',
+ text: 'var(--accent)',
+ bg: 'var(--bg)',
  }
 
  return (
  <div style={{
  position: 'absolute', top: 'calc(100% + 6px)', left: 0, zIndex: 200,
- background: s.bg, border: '1px solid rgba(243,239,230,.3)', borderRadius: 0,
+ background: s.bg, border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', borderRadius: 0,
  padding: '18px', minWidth: '300px', boxShadow: 'none',
  }}>
  {/* Header */}
  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
  <span style={{ fontWeight: 500, color: s.text, fontSize: '14px', display: 'flex', gap: '6px' }}>
  <button type="button" onClick={() => setPick(pick === 'months' ? 'days' : 'months')}
- style={{ background: pick === 'months' ? 'rgba(243,239,230,.15)' : 'none', border: 'none', borderRadius: 0, padding: '2px 6px', color: 'inherit', font: 'inherit', cursor: 'pointer' }}>{MONTH_NAMES[view.month]}</button>
+ style={{ background: pick === 'months' ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'none', border: 'none', borderRadius: 0, padding: '2px 6px', color: 'inherit', font: 'inherit', cursor: 'pointer' }}>{MONTH_NAMES[view.month]}</button>
  <button type="button" onClick={() => setPick(pick === 'years' ? 'days' : 'years')} title="Pick a year"
- style={{ background: pick === 'years' ? 'rgba(243,239,230,.15)' : 'none', border: 'none', borderRadius: 0, padding: '2px 6px', color: s.accent, font: 'inherit', cursor: 'pointer', textDecoration: 'underline' }}>{view.year}</button>
+ style={{ background: pick === 'years' ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'none', border: 'none', borderRadius: 0, padding: '2px 6px', color: s.accent, font: 'inherit', cursor: 'pointer', textDecoration: 'underline' }}>{view.year}</button>
  </span>
  {pick === 'days' && (
  <div style={{ display: 'flex', gap: '6px' }}>
@@ -82,7 +82,7 @@ export default function MiniDatePicker({ value, onChange, max }: Props) {
  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px', maxHeight: '260px', overflowY: 'auto' }}>
  {Array.from({ length: 51 }, (_, i) => (maxDate ? maxDate.getFullYear() : today.getFullYear()) - i).map(y => (
  <button key={y} type="button" onClick={() => { setView(v => ({ ...v, year: y })); setPick('months') }}
- style={{ padding: '9px 0', borderRadius: 0, border: y === view.year ? '1px solid rgba(243,239,230,.5)' : 'none', background: y === view.year ? 'rgba(243,239,230,.18)' : 'rgba(255,255,255,.05)', color: y === view.year ? s.accent : s.text, fontSize: '14px', fontWeight: y === view.year ? 500 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>{y}</button>
+ style={{ padding: '9px 0', borderRadius: 0, border: y === view.year ? '1px solid color-mix(in srgb, var(--text) 50%, transparent)' : 'none', background: y === view.year ? 'color-mix(in srgb, var(--text) 18%, transparent)' : 'rgba(255,255,255,.05)', color: y === view.year ? s.accent : s.text, fontSize: '14px', fontWeight: y === view.year ? 500 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>{y}</button>
  ))}
  </div>
  )}
@@ -92,7 +92,7 @@ export default function MiniDatePicker({ value, onChange, max }: Props) {
  const off = maxDate ? new Date(view.year, mi, 1) > maxDate : false
  return (
  <button key={m} type="button" disabled={off} onClick={() => { setView(v => ({ ...v, month: mi })); setPick('days') }}
- style={{ padding: '10px 0', borderRadius: 0, border: mi === view.month ? '1px solid rgba(243,239,230,.5)' : 'none', background: mi === view.month ? 'rgba(243,239,230,.18)' : 'rgba(255,255,255,.05)', color: off ? 'rgba(255,255,255,.18)' : mi === view.month ? s.accent : s.text, fontSize: '14px', fontWeight: mi === view.month ? 500 : 400, cursor: off ? 'not-allowed' : 'pointer', fontFamily: 'inherit' }}>{m.slice(0, 3)}</button>
+ style={{ padding: '10px 0', borderRadius: 0, border: mi === view.month ? '1px solid color-mix(in srgb, var(--text) 50%, transparent)' : 'none', background: mi === view.month ? 'color-mix(in srgb, var(--text) 18%, transparent)' : 'rgba(255,255,255,.05)', color: off ? 'rgba(255,255,255,.18)' : mi === view.month ? s.accent : s.text, fontSize: '14px', fontWeight: mi === view.month ? 500 : 400, cursor: off ? 'not-allowed' : 'pointer', fontFamily: 'inherit' }}>{m.slice(0, 3)}</button>
  )
  })}
  </div>
@@ -121,8 +121,8 @@ export default function MiniDatePicker({ value, onChange, max }: Props) {
  disabled={disabled}
  onClick={() => { onChange(dateStr) }}
  style={{
- padding: '8px 2px', borderRadius: 0, border: isToday && !isSelected ? '1px solid rgba(243,239,230,.3)' : 'none',
- background: isSelected ? 'rgba(243,239,230,.22)' : 'transparent',
+ padding: '8px 2px', borderRadius: 0, border: isToday && !isSelected ? '1px solid color-mix(in srgb, var(--text) 30%, transparent)' : 'none',
+ background: isSelected ? 'color-mix(in srgb, var(--text) 22%, transparent)' : 'transparent',
  color: disabled ? 'rgba(255,255,255,.18)' : isSelected ? s.accent : s.text,
  fontSize: '14px', fontWeight: isSelected ? 500 : 400,
  cursor: disabled ? 'not-allowed' : 'pointer',

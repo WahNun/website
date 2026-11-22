@@ -47,7 +47,7 @@ export const FISH_DB: Record<string,{latin:string,img:string,habitat:string,diet
 
 export const FULL_SPOTS = [
  {
- id: 'dori', bg: 'linear-gradient(200deg,#121210 0%,#121210 90%)', depth: '12–20 m', level: 'OWD', type: 'Wreck',
+ id: 'dori', bg: 'linear-gradient(200deg,var(--surface) 0%,var(--surface) 90%)', depth: '12–20 m', level: 'OWD', type: 'Wreck',
  name: 'Dori Wreck',
  tagline: { EN: 'WWII Liberty ship · sunk 1964 · artificial reef', PT: 'Navio Liberty da 2ª Guerra · afundado em 1964 · recife artificial', DE: 'Liberty-Schiff aus dem 2. WK · 1964 versunken · künstliches Riff', ES: 'Barco Liberty de la 2ª GM · hundido en 1964 · arrecife artificial' },
  desc: { EN: 'WWII Liberty ship, sunk 1964. A protected artificial reef swarming with barracudas and trevallies.', PT: 'Navio Liberty da Segunda Guerra Mundial, afundado em 1964. Um recife artificial protegido repleto de barracudas e xaréus.', DE: 'Liberty-Schiff aus dem Zweiten Weltkrieg, 1964 versunken. Ein geschütztes künstliches Riff, das von Barrakudas und Stachelmakrelen wimmelt.', ES: 'Carguero Liberty de la Segunda Guerra Mundial, hundido en 1964. Un arrecife artificial protegido repleto de barracudas y jureles.' },
@@ -69,7 +69,7 @@ export const FULL_SPOTS = [
  review: { source: 'Google Reviews', quote: { EN: 'If you have the opportunity to visit the Dori Shipwreck, I definitely recommend. It was a highlight for sure. I even was lucky enough to see a Mola Mola!! The team is extremely professional, with thorough briefings on dive spots and safety measures.', PT: 'Se tiver a oportunidade de visitar o naufrágio do Dori, recomendo vivamente. Foi um ponto alto, de certeza. Tive ainda a sorte de ver um Peixe-Lua!! A equipa é extremamente profissional, com briefings detalhados sobre os pontos de mergulho e medidas de segurança.', DE: 'Wenn du die Gelegenheit hast, das Dori-Wrack zu besuchen, empfehle ich es unbedingt. Es war definitiv ein Highlight. Ich hatte sogar das Glück, einen Mondfisch zu sehen!! Das Team ist äußerst professionell, mit gründlichen Briefings zu Tauchplätzen und Sicherheitsmaßnahmen.', ES: 'Si tiene la oportunidad de visitar el naufragio del Dori, lo recomiendo sin dudarlo. Fue un punto culminante, sin duda. ¡Incluso tuve la suerte de ver un Pez Luna! El equipo es extremadamente profesional, con briefings exhaustivos sobre los puntos de buceo y medidas de seguridad.' }, author: 'Amanda · Local Guide · 14 reviews' },
  },
  {
- id: 'espelho', bg: 'linear-gradient(200deg,#121210 0%,#121210 90%)', depth: '7–25 m', level: 'OWD', type: 'Arch',
+ id: 'espelho', bg: 'linear-gradient(200deg,var(--surface) 0%,var(--surface) 90%)', depth: '7–25 m', level: 'OWD', type: 'Arch',
  name: 'Arco do Espelho',
  tagline: { EN: '"The Mirror Arch" · resident moray · all levels', PT: '"O Arco do Espelho" · moray residente · todos os níveis', DE: '"Der Spiegelbogen" · ansässige Muräne · für alle Levels', ES: '"El Arco del Espejo" · morena residente · todos los niveles' },
  desc: { EN: 'The "Mirror Arch" — trapped air turns the dome into a liquid mirror. Home of Manuela the moray.', PT: 'O "Arco do Espelho" — o ar aprisionado transforma a abóbada num espelho líquido. Casa de Manuela, a moray.', DE: 'Der "Spiegelbogen" — eingeschlossene Luft verwandelt die Kuppel in einen flüssigen Spiegel. Heimat von Manuela, der Muräne.', ES: 'El "Arco del Espejo" — el aire atrapado convierte la cúpula en un espejo líquido. Hogar de Manuela, la morena.' },
@@ -89,7 +89,7 @@ export const FULL_SPOTS = [
  images: ['https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/spots/espelho-2.webp', 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/spots/espelho-3.webp'],
  },
  {
- id: 'cavaco', bg: 'linear-gradient(200deg,#121210 0%,#121210 90%)', depth: '3–20 m', level: 'OWD', type: 'Arch',
+ id: 'cavaco', bg: 'linear-gradient(200deg,var(--surface) 0%,var(--surface) 90%)', depth: '3–20 m', level: 'OWD', type: 'Arch',
  name: 'Arco do Cavaco',
  tagline: { EN: 'Volcanic arches · lobsters & groupers', PT: 'Arcos vulcânicos · lagostas & meros', DE: 'Vulkanische Bögen · Langusten & Grouper', ES: 'Arcos volcánicos · langostas & meros' },
  desc: { EN: 'Volcanic arches full of slipper lobsters, groupers, stingrays and scorpionfish.', PT: 'Arcos vulcânicos repletos de lagostas, meros, arraias e peixes-escorpião.', DE: 'Vulkanische Bögen voller Bärenkrebs, Grouper, Stachelrochen und Drachenköpfen.', ES: 'Arcos volcánicos llenos de cigalas, meros, rayas y peces escorpión.' },
@@ -111,7 +111,7 @@ export const FULL_SPOTS = [
  imagesAlt: ['Slipper lobster (cavaco) under an overhang at Arco do Cavaco', 'Volcanic arch at Arco do Cavaco'],
  },
  {
- id: 'caloura', bg: 'linear-gradient(200deg,#121210 0%,#121210 90%)', depth: '6–17 m', level: 'OWD', type: 'Arch',
+ id: 'caloura', bg: 'linear-gradient(200deg,var(--surface) 0%,var(--surface) 90%)', depth: '6–17 m', level: 'OWD', type: 'Arch',
  name: 'Arcos da Caloura',
  tagline: { EN: 'Double arches · seahorse habitat · easy entry', PT: 'Arcos duplos · habitat de cavalos-marinhos · entrada fácil', DE: 'Doppelbögen · Seepferdchenhabitat · einfacher Einstieg', ES: 'Arcos dobles · hábitat de caballitos de mar · entrada fácil' },
  desc: { EN: 'Twin volcanic arches at Caloura harbour — calm conditions, rich sea life and regular seahorse sightings.', PT: 'Dois arcos vulcânicos junto ao porto de Caloura — condições calmas, vida marinha rica e avistamentos frequentes de cavalos-marinhos.', DE: 'Zwei vulkanische Bögen am Hafen von Caloura — ruhige Bedingungen, reiches Meeresleben und regelmäßige Seepferdchen-Sichtungen.', ES: 'Dos arcos volcánicos junto al puerto de Caloura — condiciones tranquilas, rica vida marina y frecuentes avistamientos de caballitos de mar.' },
@@ -131,7 +131,7 @@ export const FULL_SPOTS = [
  maxDepth: '17 m', avgDepth: '13 m', tempRange: '17–24 °C', beginner: true,
  },
  {
- id: 'galera', bg: 'linear-gradient(200deg,#121210 0%,#121210 90%)', depth: '11–42 m', level: 'AOW', type: 'Wall / Point',
+ id: 'galera', bg: 'linear-gradient(200deg,var(--surface) 0%,var(--surface) 90%)', depth: '11–42 m', level: 'AOW', type: 'Wall / Point',
  name: 'Ponta da Galera',
  tagline: { EN: 'Dramatic headland · deep walls · big pelagics', PT: 'Promontório dramático · paredes profundas · pelágicos', DE: 'Dramatisches Kap · tiefe Wände · Pelagische Fische', ES: 'Promontorio dramático · paredes profundas · pelágicos' },
  desc: { EN: 'A dramatic volcanic headland with steep walls dropping to 42 m and regular encounters with Atlantic amberjack.', PT: 'Um dramático promontório vulcânico com paredes íngremes descendo aos 42 m e encontros frequentes com arabaiana-do-atlântico.', DE: 'Ein dramatisches Vulkankap mit steil abfallenden Wänden bis 42 m und regelmäßigen Begegnungen mit Atlantischer Gabelmakrele.', ES: 'Un dramático promontorio volcánico con paredes escarpadas que descienden hasta 42 m y frecuentes encuentros con la serviola del Atlántico.' },
@@ -149,7 +149,7 @@ export const FULL_SPOTS = [
  images: ['https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/spots/galera-2.webp', 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/spots/galera-3.webp'],
  },
  {
- id: 'viteleiro', bg: 'linear-gradient(200deg,#121210 0%,#121210 90%)', depth: '6–20 m', level: 'OWD', type: 'Volcanic Rock',
+ id: 'viteleiro', bg: 'linear-gradient(200deg,var(--surface) 0%,var(--surface) 90%)', depth: '6–20 m', level: 'OWD', type: 'Volcanic Rock',
  name: 'Viteleiro',
  tagline: { EN: 'Submerged seamount · rays & groupers · all levels', PT: 'Monte submarino · arraias & meros · todos os níveis', DE: 'Untergetauchter Seamount · Rochen & Grouper · für alle Levels', ES: 'Monte submarino · rayas & meros · todos los niveles' },
  desc: { EN: 'A submerged volcanic seamount rising from 20 m to 6 m — an underwater mountain covered in life.', PT: 'Um monte submarino vulcânico que sobe dos 20 m para os 6 m — uma montanha subaquática coberta de vida.', DE: 'Ein versunkener vulkanischer Seamount, der von 20 m auf 6 m ansteigt — ein Unterwasserberg, bedeckt mit Leben.', ES: 'Un monte submarino volcánico que asciende de 20 m a 6 m — una montaña subacuática cubierta de vida.' },
@@ -167,7 +167,7 @@ export const FULL_SPOTS = [
  images: ['https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/spots/viteleira-2.webp'],
  },
  {
- id: 'viteleiro2', bg: 'linear-gradient(200deg,#121210 0%,#121210 90%)', depth: '11–25 m', level: 'AOW', type: 'Volcanic Rock',
+ id: 'viteleiro2', bg: 'linear-gradient(200deg,var(--surface) 0%,var(--surface) 90%)', depth: '11–25 m', level: 'AOW', type: 'Volcanic Rock',
  name: 'Viteleiro II',
  tagline: { EN: 'Deeper plateau · larger groupers · stronger current', PT: 'Planalto mais profundo · meros maiores · corrente mais forte', DE: 'Tieferes Plateau · größere Grouper · stärkere Strömung', ES: 'Meseta más profunda · meros más grandes · más corriente' },
  desc: { EN: 'The deeper, wilder continuation of Viteleiro — walls to 25 m, bigger fish and more current.', PT: 'A continuação mais profunda e selvagem da Viteleiro — paredes até 25 m, peixe maior e mais corrente.', DE: 'Der tiefere und exponiertere Teil des Viteleiro-Seamount-Komplexes — Wände bis 25 m, größere Fische und mehr Strömung.', ES: 'La continuación más profunda y salvaje de la Viteleiro — paredes hasta 25 m, peces más grandes y más corriente.' },
@@ -185,7 +185,7 @@ export const FULL_SPOTS = [
  maxDepth: '25 m', avgDepth: '16 m', tempRange: '17–24 °C', beginner: false,
  },
  {
- id: 'ancoras', bg: 'linear-gradient(200deg,#121210 0%,#121210 90%)', depth: '9–17 m', level: 'OWD', type: 'Volcanic Rock',
+ id: 'ancoras', bg: 'linear-gradient(200deg,var(--surface) 0%,var(--surface) 90%)', depth: '9–17 m', level: 'OWD', type: 'Volcanic Rock',
  name: 'Âncoras de São Roque',
  tagline: { EN: 'Historic anchors · reef & sandy channels · calm entry', PT: 'Âncoras históricas · recife e canais arenosos · entrada calma', DE: 'Historische Anker · Riff und Sandkanäle · ruhiger Einstieg', ES: 'Anclas históricas · arrecife y canales arenosos · entrada tranquila' },
  desc: { EN: 'Named after old anchors lying on the sandy bottom — a gentle reef dive with diverse Atlantic species.', PT: 'Batizado pelas velhas âncoras no fundo arenoso — um mergulho de recife suave com diversas espécies do Atlântico.', DE: 'Benannt nach alten Ankern auf dem Sandboden — ein sanfter Rifftauchgang mit vielfältigen Atlantikarten.', ES: 'Nombrado por las antiguas anclas en el fondo arenoso — un suave buceo en arrecife con diversas especies del Atlántico.' },
@@ -203,7 +203,7 @@ export const FULL_SPOTS = [
  maxDepth: '17 m', avgDepth: '12 m', tempRange: '17–24 °C', beginner: true,
  },
  {
- id: 'ilheu-cozinha', bg: 'linear-gradient(200deg,#121210 0%,#121210 90%)', depth: '12–20 m', level: 'OWD', type: 'Islet',
+ id: 'ilheu-cozinha', bg: 'linear-gradient(200deg,var(--surface) 0%,var(--surface) 90%)', depth: '12–20 m', level: 'OWD', type: 'Islet',
  name: 'Ilheu de Vila Franca — Cozinha',
  tagline: { EN: 'Marine reserve · east side · dense fish life', PT: 'Reserva marinha · face leste · vida marinha densa', DE: 'Meeresschutzgebiet · Ostseite · dichtes Fischleben', ES: 'Reserva marina · cara este · abundante vida marina' },
  desc: { EN: 'The protected eastern face of the Vila Franca Islet — calm, rich and exceptional visibility.', PT: 'A face leste protegida do Ilhéu de Vila Franca do Campo — calma, rica e com visibilidade excecional.', DE: 'Die geschützte Ostseite des Ilhéu de Vila Franca do Campo — ruhig, artenreich und mit hervorragender Sichtweite.', ES: 'La cara este protegida del Ilhéu de Vila Franca do Campo — tranquila, rica y con visibilidad excepcional.' },
@@ -221,7 +221,7 @@ export const FULL_SPOTS = [
  maxDepth: '20 m', avgDepth: '15 m', tempRange: '17–24 °C', beginner: true,
  },
  {
- id: 'ilheu-west', bg: 'linear-gradient(200deg,#121210 0%,#121210 90%)', depth: '12–20 m', level: 'OWD', type: 'Islet',
+ id: 'ilheu-west', bg: 'linear-gradient(200deg,var(--surface) 0%,var(--surface) 90%)', depth: '12–20 m', level: 'OWD', type: 'Islet',
  name: 'Ilheu de Vila Franca — West',
  tagline: { EN: 'Marine reserve · open-water face · SMB practice', PT: 'Reserva marinha · face atlântica · prática de SMB', DE: 'Meeresschutzgebiet · Atlantikseite · SMB-Übung', ES: 'Reserva marina · cara atlántica · práctica de SMB' },
  desc: { EN: 'The exposed western face of the Vila Franca Islet reserve — more current, bigger fish, SMB deployment practice.', PT: 'A face oeste exposta da reserva do Ilhéu de Vila Franca — mais corrente, peixes maiores, prática de lançamento de SMB.', DE: 'Die exponierte Westseite des Meeresschutzgebiets Ilhéu de Vila Franca — mehr Strömung, größere Fische, SMB-Einsatzübung.', ES: 'La cara oeste expuesta de la reserva del Ilhéu de Vila Franca — más corriente, peces más grandes, práctica de lanzamiento de SMB.' },
@@ -239,7 +239,7 @@ export const FULL_SPOTS = [
  maxDepth: '20 m', avgDepth: '15 m', tempRange: '17–24 °C', beginner: true,
  },
  {
- id: 'cruzeiro-18', bg: 'linear-gradient(200deg,#121210 0%,#121210 90%)', depth: '12–25 m', level: 'OWD', type: 'Arch',
+ id: 'cruzeiro-18', bg: 'linear-gradient(200deg,var(--surface) 0%,var(--surface) 90%)', depth: '12–25 m', level: 'OWD', type: 'Arch',
  name: 'Arcos do Cruzeiro — 18',
  tagline: { EN: 'Volcanic arch system · shallow profile · colourful reef', PT: 'Sistema de arcos vulcânicos · perfil raso · recife colorido', DE: 'Vulkanisches Bogensystem · flaches Profil · buntes Riff', ES: 'Sistema de arcos volcánicos · perfil somero · arrecife colorido' },
  desc: { EN: 'The shallower route through the Cruzeiro arch system — ideal for OWD divers and underwater photography.', PT: 'O percurso mais raso pelo sistema de arcos do Cruzeiro — ideal para mergulhadores OWD e fotografia subaquática.', DE: 'Die flachere Route durch das Cruzeiro-Bogensystem — ideal für OWD-Taucher und Unterwasserfotografie.', ES: 'La ruta más somera por el sistema de arcos del Cruzeiro — ideal para buceadores OWD y fotografía subacuática.' },
@@ -255,7 +255,7 @@ export const FULL_SPOTS = [
  maxDepth: '25 m', avgDepth: '15 m', tempRange: '17–24 °C', beginner: true,
  },
  {
- id: 'cruzeiro-30', bg: 'linear-gradient(200deg,#121210 0%,#121210 90%)', depth: '20–30 m', level: 'AOW', type: 'Arch',
+ id: 'cruzeiro-30', bg: 'linear-gradient(200deg,var(--surface) 0%,var(--surface) 90%)', depth: '20–30 m', level: 'AOW', type: 'Arch',
  name: 'Arcos do Cruzeiro — 30',
  tagline: { EN: 'Deeper arch system · black coral · big groupers', PT: 'Sistema de arcos mais profundo · coral negro · grandes meros', DE: 'Tieferes Bogensystem · Schwarzkoralle · große Grouper', ES: 'Sistema de arcos más profundo · coral negro · grandes meros' },
  desc: { EN: 'The deeper passage through the Cruzeiro arches — black coral fans, large groupers and more current.', PT: 'A passagem mais profunda pelos arcos do Cruzeiro — leques de coral negro, grandes meros e mais corrente.', DE: 'Der tiefere Durchgang durch die Cruzeiro-Bögen — Schwarzkorallenfächer, große Grouper und mehr Strömung.', ES: 'El paso más profundo por los arcos del Cruzeiro — abanicos de coral negro, grandes meros y más corriente.' },
@@ -271,7 +271,7 @@ export const FULL_SPOTS = [
  maxDepth: '30 m', avgDepth: '25 m', tempRange: '17–24 °C', beginner: false,
  },
  {
- id: 'baixa-ouro', bg: 'linear-gradient(200deg,#121210 0%,#121210 90%)', depth: '3–22 m', level: 'OWD', type: 'Volcanic Rock',
+ id: 'baixa-ouro', bg: 'linear-gradient(200deg,var(--surface) 0%,var(--surface) 90%)', depth: '3–22 m', level: 'OWD', type: 'Volcanic Rock',
  name: 'Baixa do Ouro',
  tagline: { EN: '"Gold Shoal" · very shallow top · diverse reef life', PT: '"Baixa do Ouro" · topo muito raso · vida de recife diversa', DE: '"Goldene Untiefe" · sehr flacher Gipfel · vielfältiges Riffleben', ES: '"Bajo Dorado" · cima muy somera · diversa vida de arrecife' },
  desc: { EN: 'A shallow volcanic reef rising to just 3 m — rich with life from surface to 22 m and ideal for all levels.', PT: 'Um recife vulcânico raso que sobe até 3 m — rico em vida da superfície aos 22 m, ideal para todos os níveis.', DE: 'Ein flaches Vulkanriff, das bis auf 3 m unter die Oberfläche reicht — von der Oberfläche bis 22 m reich an Leben und für alle Levels geeignet.', ES: 'Un bajo volcánico que sube hasta 3 m — rico en vida desde la superficie hasta los 22 m, ideal para todos los niveles.' },
@@ -289,7 +289,7 @@ export const FULL_SPOTS = [
  maxDepth: '22 m', avgDepth: '14 m', tempRange: '17–24 °C', beginner: true,
  },
  {
- id: 'formigas', bg: 'linear-gradient(200deg,#a39e94 0%,#121210 90%)', depth: '8–35 m', level: 'Advanced', type: 'Seamount', offshore: true,
+ id: 'formigas', bg: 'linear-gradient(200deg,#a39e94 0%,var(--surface) 90%)', depth: '8–35 m', level: 'Advanced', type: 'Seamount', offshore: true,
  name: 'Formigas Banks',
  tagline: { EN: 'Offshore · 42 nm east · groupers · devil rays · July–Sept', PT: 'Offshore · 42 mn a leste · meros · raias-diabólicas · jul–set', DE: 'Offshore · 42 sm östlich · Grouper · Teufelsrochen · Jul–Sep', ES: 'Offshore · 42 mn al este · meros · rayas diablo · jul–sep' },
  desc: { EN: 'A remote seamount 42 nm from São Miguel — dense grouper schools, giant devil rays, and a sheer eastern wall dropping to 80 m.', PT: 'Um monte submarino remoto a 42 mn de São Miguel — densos cardumes de meros, gigantescas raias-diabólicas e uma imponente parede leste que mergulha até 80 m.', DE: 'Ein abgelegener Seamount 42 sm von São Miguel entfernt — dichte Grouper-Schulen, riesige Teufelsrochen und eine schroffe Ostwand, die auf 80 m abfällt.', ES: 'Un monte submarino remoto a 42 mn de São Miguel — densas escuelas de meros, gigantescas rayas diablo y una imponente pared este que cae hasta 80 m.' },
@@ -308,7 +308,7 @@ export const FULL_SPOTS = [
  maxDepth: '80 m', avgDepth: '17 m', tempRange: '15–24 °C', beginner: false,
  },
  {
- id: 'dollabarat', bg: 'linear-gradient(200deg,#121210 0%,#121210 90%)', depth: '12–200 m', level: 'Advanced', type: 'Seamount', offshore: true,
+ id: 'dollabarat', bg: 'linear-gradient(200deg,var(--surface) 0%,var(--surface) 90%)', depth: '12–200 m', level: 'Advanced', type: 'Seamount', offshore: true,
  name: 'Dollabarat',
  tagline: { EN: 'Offshore · isolated pinnacle · drops to 200 m · blue water', PT: 'Offshore · pináculo isolado · mergulha a 200 m · água azul', DE: 'Offshore · isolierter Pinnacle · fällt auf 200 m ab · Freiwasser', ES: 'Offshore · pináculo aislado · cae a 200 m · agua abierta' },
  desc: { EN: 'A lone seamount pinnacle near Formigas — top at 12 m, walls plunging to 200 m into open Atlantic.', PT: 'Um solitário pináculo submarino perto das Formigas — topo a 12 m, paredes mergulhando nos 200 m do Atlântico aberto.', DE: 'Ein einsamer Seamount-Pinnacle nahe den Formigas Banks — Gipfel bei 12 m, Wände, die in 200 m offenen Atlantik abfallen.', ES: 'Un solitario pináculo submarino cerca de las Formigas — cima a 12 m, paredes que se precipitan a 200 m en el Atlántico abierto.' },
@@ -337,12 +337,12 @@ export function PageSites({ nav, lang }: { nav: (p: string) => void; lang: Lang 
  <h1 style={{ fontSize: 'clamp(28px,4vw,44px)', fontWeight: 500, letterSpacing: '-0.02em', marginBottom: '20px' }}>
  {t('sites_h1')}<span style={{ color: s.accent }}>.</span>
  </h1>
- <p style={{ color: '#f3efe6', fontSize: '17px', maxWidth: '600px', lineHeight: 1.65, marginBottom: '40px' }}>
+ <p style={{ color: 'var(--text)', fontSize: '17px', maxWidth: '600px', lineHeight: 1.65, marginBottom: '40px' }}>
  {t('sites_intro')}
  </p>
  <section aria-labelledby="sites-about" style={{ maxWidth: '760px', marginBottom: '40px' }}>
  <h2 id="sites-about" style={{ fontSize: 'clamp(20px,2.4vw,26px)', fontWeight: 500, letterSpacing: '-0.02em', marginBottom: '10px' }}>{t('sites_about_h2')}</h2>
- <p style={{ color: '#f3efe6', fontSize: '15.5px', lineHeight: 1.7, margin: 0 }}>{t('sites_about_p')}</p>
+ <p style={{ color: 'var(--text)', fontSize: '15.5px', lineHeight: 1.7, margin: 0 }}>{t('sites_about_p')}</p>
  </section>
  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(230px,1fr))', gap: '14px', marginBottom: '36px' }}>
  {FULL_SPOTS.map(spot => (
@@ -369,11 +369,11 @@ export function PageSites({ nav, lang }: { nav: (p: string) => void; lang: Lang 
  <span style={{ fontSize: '14px', fontWeight: 500, color: 'rgba(255,255,255,.55)', background: 'rgba(0,0,0,.35)', padding: '3px 8px', borderRadius: 0 }}>{spot.type}</span>
  {(spot as any).offshore && <span style={{ fontSize: '14px', fontWeight: 500, color: '#c9b48a', background: 'rgba(201,180,138,.15)', padding: '3px 8px', borderRadius: 0, border: '1px solid rgba(201,180,138,.35)' }}>{t('sites_filter_offshore')}</span>}
  </div>
- <span style={{ fontSize: '14px', fontWeight: 500, color: '#c9c2b6', background: 'rgba(0,0,0,.35)', padding: '4px 9px', borderRadius: 0 }}>{spot.depth}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--muted)', background: 'rgba(0,0,0,.35)', padding: '4px 9px', borderRadius: 0 }}>{spot.depth}</span>
  </div>
  <div style={{ flex: 1 }} />
  <h4 style={{ fontSize: '17px', margin: '0 0 5px', textShadow: '0 1px 8px rgba(0,0,0,.7)' }}>{spot.name}</h4>
- <p style={{ fontSize: '14px', color: '#f3efe6', lineHeight: 1.5, margin: '0 0 10px', textShadow: '0 1px 4px rgba(0,0,0,.6)' }}>{(spot.desc as any)[lang]}</p>
+ <p style={{ fontSize: '14px', color: 'var(--text)', lineHeight: 1.5, margin: '0 0 10px', textShadow: '0 1px 4px rgba(0,0,0,.6)' }}>{(spot.desc as any)[lang]}</p>
  <span style={{ fontSize: '14px', color: s.accent, fontWeight: 500 }}>{t('sites_details_link')}</span>
  </div>
  </div>

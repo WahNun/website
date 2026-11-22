@@ -10,7 +10,7 @@ export function PageDives({ nav, lang }: { nav: (p: string) => void; lang: Lang 
  {/* Hero */}
  <div style={{
  minHeight: '260px', position: 'relative', overflow: 'hidden',
- background: `linear-gradient(180deg,rgba(9,9,9,.35) 0%,rgba(9,9,9,.82) 65%,#090909 100%), url('/dives/dives-hero.webp') ${isMobile ? 'center center' : '30% center'}/cover`,
+ background: `linear-gradient(180deg,color-mix(in srgb, var(--bg) 35%, transparent) 0%,color-mix(in srgb, var(--bg) 82%, transparent) 65%,var(--bg) 100%), url('/dives/dives-hero.webp') ${isMobile ? 'center center' : '30% center'}/cover`,
  display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
  padding: isMobile ? '32px 20px 28px' : '48px 48px 40px',
  }}>
@@ -23,7 +23,7 @@ export function PageDives({ nav, lang }: { nav: (p: string) => void; lang: Lang 
  <h1 style={{ fontSize: 'clamp(32px,5vw,56px)', fontWeight: 500, letterSpacing: '-.02em', marginBottom: '10px', lineHeight: 1.05 }}>
  {t('dives_page_h2')}<span style={{ color: s.accent }}>.</span>
  </h1>
- <p style={{ fontSize: '19px', fontWeight: 500, color: '#f3efe6', margin: 0, maxWidth: '560px', lineHeight: 1.4 }}>
+ <p style={{ fontSize: '19px', fontWeight: 500, color: 'var(--text)', margin: 0, maxWidth: '560px', lineHeight: 1.4 }}>
  {t('dives_hero_sub')}
  </p>
  </div>
@@ -41,13 +41,13 @@ export function PageDives({ nav, lang }: { nav: (p: string) => void; lang: Lang 
 
  <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 300px', gap: isMobile ? '32px' : '48px', alignItems: 'start' }}>
  <div>
- <p style={{ fontSize: '17px', color: '#f3efe6', lineHeight: 1.7, marginBottom: '20px', fontWeight: 500 }}>
+ <p style={{ fontSize: '17px', color: 'var(--text)', lineHeight: 1.7, marginBottom: '20px', fontWeight: 500 }}>
  {t('dives_p1')}
  </p>
- <p style={{ fontSize: '15px', color: '#c9c2b6', lineHeight: 1.75, marginBottom: '16px' }}>
+ <p style={{ fontSize: '15px', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '16px' }}>
  {t('dives_p2')}
  </p>
- <p style={{ fontSize: '15px', color: '#c9c2b6', lineHeight: 1.75, marginBottom: '32px' }}>
+ <p style={{ fontSize: '15px', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '32px' }}>
  {t('dives_p3')}
  </p>
  <p style={{ marginTop: '14px' }}><a href="/sites" style={{ color: s.accent, fontWeight: 500, textDecoration: 'none' }}>{t('link_sites_sm')}</a></p>
@@ -58,7 +58,7 @@ export function PageDives({ nav, lang }: { nav: (p: string) => void; lang: Lang 
  {(['dives_incl_tank', 'dives_incl_guide', 'dives_incl_boat', 'dives_incl_interval', 'dives_incl_brief'] as const).map(key => (
  <div key={key} style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
  <span style={{ color: s.accent, fontSize: '14px', fontWeight: 500 }}></span>
- <span style={{ fontSize: '14px', color: '#c9c2b6' }}>{t(key)}</span>
+ <span style={{ fontSize: '14px', color: 'var(--muted)' }}>{t(key)}</span>
  </div>
  ))}
  </div>
@@ -84,10 +84,10 @@ export function PageDives({ nav, lang }: { nav: (p: string) => void; lang: Lang 
  ] as [string,string,string?][]).map(([label, price, perDive], i, arr) => (
  <div key={label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 0', borderBottom: i < arr.length - 1 ? '1px solid rgba(255,255,255,.06)' : 'none' }}>
  <div>
- <div style={{ fontSize: '14px', color: '#f3efe6' }}>{label}</div>
+ <div style={{ fontSize: '14px', color: 'var(--text)' }}>{label}</div>
  {perDive && <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>{perDive}</div>}
  </div>
- <div style={{ fontSize: '16px', fontWeight: 500, color: '#f3efe6' }}>{price}</div>
+ <div style={{ fontSize: '16px', fontWeight: 500, color: 'var(--text)' }}>{price}</div>
  </div>
  ))}
  </div>

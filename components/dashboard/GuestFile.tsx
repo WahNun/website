@@ -73,7 +73,7 @@ export function FileRow({ k, v, warn }: { k: string; v?: string | null; warn?: b
  return (
  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '14px', fontSize: '14px', padding: '3px 0', lineHeight: 1.6 }}>
  <span style={{ color: s.muted }}>{k}</span>
- <span style={{ color: v ? (warn ? '#c9b48a' : '#f3efe6') : 'rgba(255,255,255,.25)', fontWeight: v ? 500 : 400, textAlign: 'right', wordBreak: 'break-word' }}>
+ <span style={{ color: v ? (warn ? '#c9b48a' : 'var(--accent)') : 'rgba(255,255,255,.25)', fontWeight: v ? 500 : 400, textAlign: 'right', wordBreak: 'break-word' }}>
  {v || '—'}
  </span>
  </div>
@@ -100,7 +100,7 @@ export function GuestFile({ diver, bookingId, onSaved, booked }: { diver: GuestF
  } catch (e) { setMsg(` ${e instanceof Error ? e.message : String(e)}`) }
  finally { setSaving(false) }
  }
- const inp: React.CSSProperties = { background: '#000', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, padding: '5px 8px', fontSize: '14px', color: '#f3efe6', fontFamily: s.font, outline: 'none', width: '100%', boxSizing: 'border-box', colorScheme: 'dark' }
+ const inp: React.CSSProperties = { background: 'var(--bg)', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, padding: '5px 8px', fontSize: '14px', color: 'var(--text)', fontFamily: s.font, outline: 'none', width: '100%', boxSizing: 'border-box', colorScheme: 'dark' }
  const F = ({ k, name, type = 'text', placeholder }: { k: string; name: keyof typeof form; type?: string; placeholder?: string }) => (
  <label style={{ display: 'grid', gridTemplateColumns: '110px 1fr', alignItems: 'center', gap: '10px', fontSize: '14px', color: s.muted, padding: '2px 0' }}>{k}
  {name === 'gender'
@@ -151,7 +151,7 @@ export function GuestFile({ diver, bookingId, onSaved, booked }: { diver: GuestF
  {!cu.dob && <div style={{ fontSize: '14px', color: '#c9b48a', marginTop: '2px' }}> No date of birth — guest stays out of the DAN export until it is filled in.</div>}
  {customerId && (
  <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginTop: '6px', flexWrap: 'wrap' }}>
- <button type="button" onClick={() => { setMsg(null); setEdit(true) }} style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.35)', background: 'rgba(243,239,230,.08)', color: s.accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}> Edit personal details</button>
+ <button type="button" onClick={() => { setMsg(null); setEdit(true) }} style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', color: s.accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}> Edit personal details</button>
  {msg && <span style={{ fontSize: '14px', color: msg.startsWith('') ? '#c9928c' : '#b7c4b0' }}>{msg}</span>}
  </div>
  )}
@@ -200,7 +200,7 @@ export function GuestFile({ diver, bookingId, onSaved, booked }: { diver: GuestF
  {cu.waiver_signed_at && <FileRow k="Waiver signed" v={cu.waiver_signed_at.slice(0, 10)} />}
  {cu.waiver_pdf_url && (
  <div style={{ paddingTop: '4px' }}>
- <a href={waiverHref(cu.waiver_pdf_url) ?? undefined} target="_blank" rel="noopener noreferrer" style={{ fontSize: '14px', color: '#f3efe6' }}>Open signature </a>
+ <a href={waiverHref(cu.waiver_pdf_url) ?? undefined} target="_blank" rel="noopener noreferrer" style={{ fontSize: '14px', color: 'var(--text)' }}>Open signature </a>
  </div>
  )}
  {diver.special_notes && <FileRow k="Notes" v={diver.special_notes} />}

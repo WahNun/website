@@ -94,7 +94,7 @@ export default function FinanceMovements({ view, simulationMode, who, onOpenBook
  }),
  }
  const csvName = csvFileName(`history-${view === 'all' ? 'all-movements' : view === 'payments' ? 'payments-in' : 'cash'}${month ? `-${month}` : ''}`, null, Boolean(simulationMode))
- const inp = { background: '#000', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, color: s.text, fontSize: '14px', fontFamily: 'inherit' } as const
+ const inp = { background: 'var(--bg)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, color: s.text, fontSize: '14px', fontFamily: 'inherit' } as const
 
  return (
  <div>
@@ -132,7 +132,7 @@ export default function FinanceMovements({ view, simulationMode, who, onOpenBook
  {r.is_test && <span style={{ marginLeft: '8px', fontSize: '14px', color: '#c9b48a' }}>TEST</span>}
  </div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>
- Booking <button type="button" onClick={() => onOpenBooking(r.booking_id)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: '#f3efe6', fontWeight: 500, background: 'transparent', border: '1px solid rgba(243,239,230,.35)', borderRadius: 0, padding: '0 6px', cursor: 'pointer' }}>{r.booking_id.slice(0, 8).toUpperCase()}</button>
+ Booking <button type="button" onClick={() => onOpenBooking(r.booking_id)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: 'var(--text)', fontWeight: 500, background: 'transparent', border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', borderRadius: 0, padding: '0 6px', cursor: 'pointer' }}>{r.booking_id.slice(0, 8).toUpperCase()}</button>
  {' · '}{ML[r.method] ?? r.method}{' · '}{nm ? ` ${nm}` : ' by system (automatic)'}
  </div>
  {r.note && <div style={{ fontSize: '14px', color: s.muted, marginTop: '4px' }}>{r.note}</div>}

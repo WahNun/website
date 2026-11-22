@@ -1,17 +1,40 @@
+:root,
+[data-theme="graphit"] {
+  --bg: #0a0a0b;
+  --surface: #141416;
+  --line: #2a2a2e;
+  --accent: #c9ccd1;
+  --text: #f4f4f5;
+  --muted: #9a9ca3;
+  --on-accent: #0a0a0b;
+  color-scheme: dark;
+}
+
+[data-theme="reinweiss"] {
+  --bg: #000000;
+  --surface: #0e0e0e;
+  --line: #262626;
+  --accent: #ffffff;
+  --text: #ffffff;
+  --muted: #a3a3a3;
+  --on-accent: #000000;
+}
+
 :root {
-  --bg: #090909;
-  --bg-raise: #121210;
-  --bg-panel: #181816;
-  --line: rgba(243, 239, 230, 0.16);
-  --line-strong: rgba(243, 239, 230, 0.45);
-  --text: #f3efe6;
-  --muted: #c9c2b6;
+  --bg-raise: var(--surface);
+  --bg-panel: var(--surface);
+  --line-strong: color-mix(in srgb, var(--text) 42%, transparent);
   --header: 4.25rem;
   --max: 72rem;
-  --warn: #e6c98a;
-  --alert: #f0b2aa;
-  --ok: #d5e3cf;
-  color-scheme: dark;
+  --warn: #c9b48a;
+  --alert: #c9928c;
+  --ok: #b7c4b0;
+  --glass: linear-gradient(
+    180deg,
+    color-mix(in srgb, white 8%, var(--surface)) 0%,
+    color-mix(in srgb, white 5%, var(--surface)) 42%,
+    color-mix(in srgb, white 3%, var(--surface)) 100%
+  );
 }
 
 * { box-sizing: border-box; }
@@ -39,7 +62,7 @@ h1, h2, h3 {
   line-height: 0.98;
 }
 b, strong { font-weight: 500; }
-::selection { background: var(--text); color: #14120f; }
+::selection { background: var(--text); color: var(--on-accent); }
 :focus-visible {
   outline: 2px solid var(--text);
   outline-offset: 3px;
@@ -52,11 +75,51 @@ b, strong { font-weight: 500; }
   top: -4rem;
   z-index: 40;
   background: var(--text);
-  color: #14120f;
+  color: var(--on-accent);
   padding: 0.45rem 0.7rem;
   text-decoration: none;
 }
 .skip:focus { top: 0.6rem; }
+
+.header-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+.theme-toggle button {
+  appearance: none;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 7px 10px;
+  cursor: pointer;
+}
+
+.theme-toggle button[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.theme-dock {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 80;
+}
 
 .site-header {
   position: fixed;
@@ -67,7 +130,7 @@ b, strong { font-weight: 500; }
   justify-content: space-between;
   min-height: var(--header);
   padding: 0.75rem 1.25rem;
-  background: rgba(9, 9, 9, 0.8);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--line);
 }
@@ -94,7 +157,7 @@ b, strong { font-weight: 500; }
   top: 100%;
   left: 0;
   right: 0;
-  background: #090909;
+  background: var(--bg);
   border-bottom: 1px solid var(--line);
   padding: 0.25rem 1.25rem 0.75rem;
 }
@@ -128,11 +191,11 @@ b, strong { font-weight: 500; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(9, 9, 9, 0.88) 0%, rgba(9, 9, 9, 0.55) 48%, rgba(9, 9, 9, 0.2) 100%),
-    linear-gradient(180deg, rgba(9, 9, 9, 0.35), rgba(9, 9, 9, 0.55));
+    linear-gradient(90deg, color-mix(in srgb, var(--bg) 88%, transparent) 0%, color-mix(in srgb, var(--bg) 55%, transparent) 48%, color-mix(in srgb, var(--bg) 20%, transparent) 100%),
+    linear-gradient(180deg, color-mix(in srgb, var(--bg) 35%, transparent), color-mix(in srgb, var(--bg) 55%, transparent));
 }
 .hero--panel .hero__scrim {
-  background: linear-gradient(180deg, rgba(9, 9, 9, 0.45) 0%, rgba(9, 9, 9, 0.72) 42%, #090909 78%);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 45%, transparent) 0%, color-mix(in srgb, var(--bg) 72%, transparent) 42%, var(--bg) 78%);
 }
 .hero__content, .band__content, .wrap {
   position: relative;
@@ -187,7 +250,7 @@ b, strong { font-weight: 500; }
 }
 .button:hover, button.button:hover {
   background: var(--text);
-  color: #14120f;
+  color: var(--on-accent);
   border-color: var(--text);
 }
 .button:disabled { opacity: 0.55; cursor: default; }
@@ -288,7 +351,7 @@ textarea { min-height: 9rem; resize: vertical; }
   border: 1px solid var(--line);
 }
 .frame__shot { position: relative; aspect-ratio: 16 / 10; }
-.frame__shot img { object-fit: contain; background: #0c0c0b; }
+.frame__shot img { object-fit: contain; background: var(--surface); }
 .frame figcaption { font-size: 0.92rem; max-width: 46rem; }
 
 .ui { color: var(--text); }
@@ -327,7 +390,7 @@ textarea { min-height: 9rem; resize: vertical; }
 .boat__time, .boat__count { font-variant-numeric: tabular-nums; }
 .boat__name { font-weight: 500; }
 .boat__spaces { font-size: 0.92rem; }
-.meter { height: 0.35rem; background: rgba(243, 239, 230, 0.14); }
+.meter { height: 0.35rem; background: color-mix(in srgb, var(--text) 14%, transparent); }
 .meter > span { display: block; height: 100%; background: var(--text); }
 .flags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .flag {
@@ -357,7 +420,7 @@ textarea { min-height: 9rem; resize: vertical; }
 }
 .choice[aria-pressed="true"], .step-button[aria-current="step"], .slot[aria-pressed="true"] {
   border-color: var(--text);
-  background: rgba(243, 239, 230, 0.06);
+  background: color-mix(in srgb, var(--text) 6%, transparent);
 }
 .times { display: flex; flex-wrap: wrap; gap: 0.45rem; }
 .time-slot {
@@ -373,7 +436,7 @@ textarea { min-height: 9rem; resize: vertical; }
 .samples .shot {
   position: relative;
   aspect-ratio: 4 / 3;
-  background: #0c0c0b;
+  background: var(--surface);
   border: 1px solid var(--line);
 }
 .samples figcaption { font-size: 0.8rem; color: var(--muted); margin-top: 0.35rem; }
@@ -441,7 +504,7 @@ textarea { min-height: 9rem; resize: vertical; }
 .os-main { padding-bottom: 3rem; }
 .os-main h1 { font-size: clamp(2.2rem, 4vw, 3.4rem); margin: 0.35rem 0 0.8rem; }
 .placeholder {
-  border: 1px dashed rgba(243, 239, 230, 0.38);
+  border: 1px dashed color-mix(in srgb, var(--text) 38%, transparent);
   padding: 1.1rem;
   display: grid;
   gap: 0.45rem;

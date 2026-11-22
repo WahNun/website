@@ -82,7 +82,7 @@ export function PageCareers({ nav, lang }: { nav: (p: string) => void; lang: Lan
  }
 
  const BlockTitle = ({ children }: { children: React.ReactNode }) => (
- <h2 style={{ fontSize: 'clamp(16px,2vw,20px)', fontWeight: 500, color: '#f3efe6', margin: '0 0 12px' }}>
+ <h2 style={{ fontSize: 'clamp(16px,2vw,20px)', fontWeight: 500, color: 'var(--text)', margin: '0 0 12px' }}>
  {children}
  </h2>
  )
@@ -92,7 +92,7 @@ export function PageCareers({ nav, lang }: { nav: (p: string) => void; lang: Lan
  href={href}
  style={{
  display: 'inline-block', marginTop: '18px',
- background: 'linear-gradient(135deg,#f3efe6,#f3efe6)', color: '#000',
+ background: 'linear-gradient(135deg,var(--text),var(--text))', color: 'var(--on-accent)',
  fontWeight: 500, fontSize: '14px', padding: '11px 22px', borderRadius: 0,
  boxShadow: 'none', textDecoration: 'none', fontFamily: s.font,
  }}
@@ -108,17 +108,17 @@ export function PageCareers({ nav, lang }: { nav: (p: string) => void; lang: Lan
  <h1 style={{ fontSize: 'clamp(28px,4vw,48px)', fontWeight: 500, letterSpacing: '-0.02em', marginBottom: '14px' }}>
  {t('h1')}<span style={{ color: s.accent }}>.</span>
  </h1>
- <p style={{ color: '#f3efe6', fontSize: '16px', lineHeight: 1.8, marginBottom: '40px' }}>
+ <p style={{ color: 'var(--text)', fontSize: '16px', lineHeight: 1.8, marginBottom: '40px' }}>
  {t('intro')}
  </p>
 
  {/* Block A — Internships */}
  <div style={blockStyle}>
  <BlockTitle>{t('blockA_title')}</BlockTitle>
- <p style={{ color: '#c9c2b6', fontSize: '15px', lineHeight: 1.75, margin: '0 0 14px' }}>
+ <p style={{ color: 'var(--muted)', fontSize: '15px', lineHeight: 1.75, margin: '0 0 14px' }}>
  {t('blockA_body')}
  </p>
- <p style={{ color: '#c9c2b6', fontSize: '15px', lineHeight: 1.75, margin: '0 0 14px' }}>
+ <p style={{ color: 'var(--muted)', fontSize: '15px', lineHeight: 1.75, margin: '0 0 14px' }}>
  {t('blockA_body2')}
  </p>
  <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
@@ -135,7 +135,7 @@ export function PageCareers({ nav, lang }: { nav: (p: string) => void; lang: Lan
  {/* Block B — Placements */}
  <div style={blockStyle}>
  <BlockTitle>{t('blockB_title')}</BlockTitle>
- <p style={{ color: '#c9c2b6', fontSize: '15px', lineHeight: 1.75, margin: 0 }}>
+ <p style={{ color: 'var(--muted)', fontSize: '15px', lineHeight: 1.75, margin: 0 }}>
  {t('blockB_body')}
  </p>
  <MailBtn href={`mailto:${MAILTO}?subject=${SUBJ_PLACEMENT}`} label={t('blockB_btn')} />
@@ -144,7 +144,7 @@ export function PageCareers({ nav, lang }: { nav: (p: string) => void; lang: Lan
  {/* Block C — Season */}
  <div style={blockStyle}>
  <BlockTitle>{t('blockC_title')}</BlockTitle>
- <p style={{ color: '#c9c2b6', fontSize: '15px', lineHeight: 1.75, margin: 0 }}>
+ <p style={{ color: 'var(--muted)', fontSize: '15px', lineHeight: 1.75, margin: 0 }}>
  {t('blockC_body')}
  </p>
  <MailBtn href={`mailto:${MAILTO}?subject=${SUBJ_SEASON}`} label={t('blockC_btn')} />
@@ -152,10 +152,10 @@ export function PageCareers({ nav, lang }: { nav: (p: string) => void; lang: Lan
 
  {/* What to include */}
  <div style={{ borderTop: '1px solid rgba(255,255,255,.07)', paddingTop: '28px', marginTop: '8px' }}>
- <h2 style={{ fontSize: '15px', fontWeight: 500, color: '#f3efe6', margin: '0 0 10px' }}>
+ <h2 style={{ fontSize: '15px', fontWeight: 500, color: 'var(--text)', margin: '0 0 10px' }}>
  {t('include_title')}
  </h2>
- <p style={{ color: '#c9c2b6', fontSize: '15px', lineHeight: 1.75, marginBottom: '10px' }}>
+ <p style={{ color: 'var(--muted)', fontSize: '15px', lineHeight: 1.75, marginBottom: '10px' }}>
  {t('include_body')}
  </p>
  <p style={{ color: s.muted, fontSize: '14px', lineHeight: 1.6, margin: 0 }}>

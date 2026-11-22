@@ -36,29 +36,29 @@ export function PageTeam({ nav, lang }: { nav: (p: string) => void; lang: Lang }
  <p style={{ color: s.accent, fontSize: 'clamp(16px,2vw,20px)', fontWeight: 500, lineHeight: 1.5, marginBottom: '20px' }}>
  {t('team_intro')}
  </p>
- <p style={{ color: '#f3efe6', fontSize: '16px', lineHeight: 1.8, marginBottom: '16px' }}>
+ <p style={{ color: 'var(--text)', fontSize: '16px', lineHeight: 1.8, marginBottom: '16px' }}>
  {t('team_p1')}
  </p>
- <p style={{ color: '#f3efe6', fontSize: '16px', lineHeight: 1.8, marginBottom: '16px' }}>
+ <p style={{ color: 'var(--text)', fontSize: '16px', lineHeight: 1.8, marginBottom: '16px' }}>
  {t('team_p2')}
  </p>
- <p style={{ color: '#f3efe6', fontSize: '16px', lineHeight: 1.8, marginBottom: '28px' }}>
+ <p style={{ color: 'var(--text)', fontSize: '16px', lineHeight: 1.8, marginBottom: '28px' }}>
  {t('team_p3')}
  </p>
 
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '12px' }}>{t('team_languages')}</div>
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '40px' }}>
  {[['','English'],['','Português'],['','Deutsch'],['','Español'],['','Français'],['','Čeština']].map(([flag, spokenLang]) => (
- <div key={spokenLang} style={{ display: 'flex', alignItems: 'center', gap: '7px', background: 'rgba(243,239,230,.08)', border: '1px solid rgba(243,239,230,.18)', borderRadius: 0, padding: '6px 14px' }}>
+ <div key={spokenLang} style={{ display: 'flex', alignItems: 'center', gap: '7px', background: 'color-mix(in srgb, var(--text) 8%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 18%, transparent)', borderRadius: 0, padding: '6px 14px' }}>
  <span style={{ fontSize: '18px', lineHeight: 1 }}>{flag}</span>
- <span style={{ fontSize: '14px', fontWeight: 500, color: '#f3efe6' }}>{spokenLang}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)' }}>{spokenLang}</span>
  </div>
  ))}
  </div>
 
  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(190px,1fr))', gap: '16px' }}>
  {TEAM.map((member, i) => (
- <div key={`${member.name}-${i}`} style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, overflow: 'hidden' }}>
+ <div key={`${member.name}-${i}`} style={{ background: 'var(--glass)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, overflow: 'hidden' }}>
  <div style={{ position: 'relative', width: '100%', paddingBottom: '100%' }}>
  <img
  src={member.photo}
@@ -80,8 +80,8 @@ export function PageTeam({ nav, lang }: { nav: (p: string) => void; lang: Lang }
  </div>
 
  {/* Work with us */}
- <div style={{ marginTop: '48px', background: 'rgba(243,239,230,.06)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '24px 28px' }}>
- <b style={{ color: '#f3efe6', fontSize: '17px', display: 'block', marginBottom: '8px' }}>
+ <div style={{ marginTop: '48px', background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 0, padding: '24px 28px' }}>
+ <b style={{ color: 'var(--text)', fontSize: '17px', display: 'block', marginBottom: '8px' }}>
  {WORK_WITH_US.title[lang]}
  </b>
  <p style={{ color: s.muted, fontSize: '14px', lineHeight: 1.6, margin: '0 0 12px' }}>

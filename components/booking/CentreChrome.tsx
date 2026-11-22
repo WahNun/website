@@ -18,19 +18,19 @@ export function CentreChrome() {
  alignItems: "center",
  flexWrap: "wrap",
  padding: "18px 24px",
- borderBottom: "1px solid rgba(243,239,230,.16)",
- background: "rgba(9,9,9,.9)",
+ borderBottom: "1px solid color-mix(in srgb, var(--text) 16%, transparent)",
+ background: "color-mix(in srgb, var(--bg) 90%, transparent)",
  }}>
- <Link href="/dive-os/book" style={{ display: "flex", alignItems: "center", gap: "12px", color: "#f3efe6", textDecoration: "none" }}>
+ <Link href="/dive-os/book" style={{ display: "flex", alignItems: "center", gap: "12px", color: "var(--text)", textDecoration: "none" }}>
  {brand.logoUrl ? (
  // eslint-disable-next-line @next/next/no-img-element
  <img src={brand.logoUrl} alt="" style={{ height: "36px", width: "auto" }} />
  ) : null}
  <span style={{ fontSize: "15px", letterSpacing: "-0.03em" }}>{brand.name}</span>
  </Link>
- <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", color: "#c9c2b6", fontSize: "14px" }}>
+ <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", color: "var(--muted)", fontSize: "14px" }}>
  {brand.phone ? <span>{brand.phone}</span> : null}
- {brand.email ? <a href={`mailto:${brand.email}`} style={{ color: "#f3efe6" }}>{brand.email}</a> : null}
+ {brand.email ? <a href={`mailto:${brand.email}`} style={{ color: "var(--text)" }}>{brand.email}</a> : null}
  {brand.address ? <span>{brand.address}</span> : null}
  </div>
  </header>
@@ -42,5 +42,5 @@ export function CentreIntro() {
  useEffect(() => {
  void loadCentreBrand().then((brand) => setIntro(brand.intro));
  }, []);
- return <p style={{ maxWidth: "40rem", color: "#f3efe6", fontSize: "16px", lineHeight: 1.55 }}>{intro}</p>;
+ return <p style={{ maxWidth: "40rem", color: "var(--text)", fontSize: "16px", lineHeight: 1.55 }}>{intro}</p>;
 }

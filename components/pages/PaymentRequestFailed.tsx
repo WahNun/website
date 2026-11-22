@@ -121,10 +121,10 @@ export default function PaymentRequestFailed({ sandbox, onCount, onOpenBooking }
  </div>
  {r.error && <div style={{ fontSize: '14px', color: s.text, padding: '8px 10px', marginTop: '8px', background: 'rgba(255,255,255,.03)', borderRadius: 0, borderLeft: '3px solid #c9928c' }}>{r.error}</div>}
  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '10px' }}>
- <button type="button" disabled={busy === r.id} onClick={() => again(r)} style={{ flex: '1 1 240px', padding: '10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.4)', background: 'rgba(243,239,230,.08)', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: busy === r.id ? 'wait' : 'pointer', fontFamily: 'inherit' }}>
+ <button type="button" disabled={busy === r.id} onClick={() => again(r)} style={{ flex: '1 1 240px', padding: '10px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 40%, transparent)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: busy === r.id ? 'wait' : 'pointer', fontFamily: 'inherit' }}>
  {busy === r.id ? 'Working…' : 'Send payment request again'}
  </button>
- <button type="button" disabled={busy === r.id} onClick={() => setAlt(m => ({ ...m, [r.id]: { ...altOf(r), open: !altOf(r).open } }))} aria-expanded={altOf(r).open} style={{ padding: '10px 16px', borderRadius: 0, border: `1px solid ${altOf(r).open ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.15)'}`, background: 'transparent', color: altOf(r).open ? s.accent : s.muted, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>Other email address</button>
+ <button type="button" disabled={busy === r.id} onClick={() => setAlt(m => ({ ...m, [r.id]: { ...altOf(r), open: !altOf(r).open } }))} aria-expanded={altOf(r).open} style={{ padding: '10px 16px', borderRadius: 0, border: `1px solid ${altOf(r).open ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.15)'}`, background: 'transparent', color: altOf(r).open ? s.accent : s.muted, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>Other email address</button>
  {ask !== r.id && <button type="button" disabled={busy === r.id} onClick={() => setAsk(r.id)} style={{ padding: '10px 16px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>Dismiss</button>}
  </div>
  {altOf(r).open && (
@@ -133,9 +133,9 @@ export default function PaymentRequestFailed({ sandbox, onCount, onOpenBooking }
  <label htmlFor={`alt-${r.id}`}>Send the payment request to</label>
  <input id={`alt-${r.id}`} type="email" inputMode="email" autoComplete="off" value={altOf(r).email} placeholder="other email address of the guest"
  onChange={e => setAlt(m => ({ ...m, [r.id]: { ...altOf(r), email: e.target.value } }))}
- style={{ flex: '1 1 240px', minWidth: 0, background: '#000', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, color: s.text, fontSize: '14px', fontFamily: 'inherit', padding: '8px 10px' }} />
+ style={{ flex: '1 1 240px', minWidth: 0, background: 'var(--bg)', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, color: s.text, fontSize: '14px', fontFamily: 'inherit', padding: '8px 10px' }} />
  <button type="button" disabled={busy === r.id || !validEmail(altOf(r).email)} onClick={() => again(r, altOf(r).email, altOf(r).save)}
- style={{ padding: '8px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.4)', background: 'rgba(243,239,230,.08)', color: validEmail(altOf(r).email) ? s.accent : s.muted, fontWeight: 500, fontSize: '14px', cursor: validEmail(altOf(r).email) && busy !== r.id ? 'pointer' : 'default', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>Send to this address</button>
+ style={{ padding: '8px 14px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 40%, transparent)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', color: validEmail(altOf(r).email) ? s.accent : s.muted, fontWeight: 500, fontSize: '14px', cursor: validEmail(altOf(r).email) && busy !== r.id ? 'pointer' : 'default', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>Send to this address</button>
  </div>
  <label style={{ display: 'flex', gap: '8px', alignItems: 'center', marginTop: '10px', cursor: 'pointer' }}>
  <input type="checkbox" checked={altOf(r).save} onChange={e => setAlt(m => ({ ...m, [r.id]: { ...altOf(r), save: e.target.checked } }))} style={{ width: '15px', height: '15px', accentColor: s.accent }} />

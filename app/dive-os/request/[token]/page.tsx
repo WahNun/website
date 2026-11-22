@@ -85,7 +85,7 @@ export default function RequestPage() {
  const canConfirm = summary && summary.status === 'pending' && (summary.request_state === 'approved' || summary.request_state === 'expired')
  const amountDue = summary ? (summary.payment_mode === 'deposit' ? Math.ceil(summary.total_cents / 2) : summary.total_cents) : 0
  const untilLine = summary?.approved_until ? new Date(summary.approved_until).toLocaleString('en-GB', { weekday: 'long', day: '2-digit', month: 'long', hour: '2-digit', minute: '2-digit' }) : null
- const btnPrimary = (disabled: boolean): React.CSSProperties => ({ width: '100%', padding: '15px', borderRadius: 0, border: 'none', fontSize: '16px', fontWeight: 500, fontFamily: s.font, cursor: disabled ? 'default' : 'pointer', background: disabled ? 'rgba(255,255,255,.08)' : s.accent, color: disabled ? s.muted : '#090909' })
+ const btnPrimary = (disabled: boolean): React.CSSProperties => ({ width: '100%', padding: '15px', borderRadius: 0, border: 'none', fontSize: '16px', fontWeight: 500, fontFamily: s.font, cursor: disabled ? 'default' : 'pointer', background: disabled ? 'rgba(255,255,255,.08)' : s.accent, color: disabled ? s.muted : 'var(--bg)' })
  const box = (color: string, border: string): React.CSSProperties => ({ background: 'transparent', border: `1px solid ${border}`, borderRadius: 0, padding: '12px 14px', fontSize: '14px', color, lineHeight: 1.6 })
 
  return (
@@ -96,7 +96,7 @@ export default function RequestPage() {
  </h1>
  <p style={{ color: s.sub, fontSize: '14.5px', margin: '0 0 28px', lineHeight: 1.6 }}>Nothing is charged until you confirm. If the proposed day does not work, tell us — we will look for another one.</p>
 
- <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '26px' }}>
+ <div style={{ background: 'var(--glass)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 0, padding: '26px' }}>
  {loadError ? (
  <div style={box('#c9928c', 'rgba(201,146,140,.4)')}>{loadError}<br /><a href="/contact" style={{ color: '#ffb59f', fontWeight: 500 }}>Contact us</a> if you think this is a mistake.</div>
  ) : !summary ? (

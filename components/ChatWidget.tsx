@@ -7,9 +7,9 @@ import { createClient } from '@/utils/supabase/client'
 
 const supabase = createClient()
 
-const accent = '#f3efe6'
-const textColor = '#f3efe6'
-const mutedColor = '#c9c2b6'
+const accent = 'var(--text)'
+const textColor = 'var(--text)'
+const mutedColor = 'var(--muted)'
 const bgMain = '#000'
 const font = `var(--font-geist-sans), sans-serif`
 
@@ -47,7 +47,7 @@ function linkify(text: string): React.ReactNode {
  const tail = m ? m[2] : ''
  return (
  <span key={i}>
- <a href={url} target="_blank" rel="noopener noreferrer" style={{ color: '#f3efe6', textDecoration: 'underline', wordBreak: 'break-all' }}>{url}</a>
+ <a href={url} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text)', textDecoration: 'underline', wordBreak: 'break-all' }}>{url}</a>
  {tail}
  </span>
  )
@@ -69,7 +69,7 @@ export function renderRich(text: string): React.ReactNode {
  while ((m = re.exec(s))) {
  if (m.index > last) out.push(<span key={`${key}-t${i++}`}>{linkify(s.slice(last, m.index))}</span>)
  if (m[1] !== undefined) out.push(<strong key={`${key}-b${i++}`}>{m[1]}</strong>)
- else out.push(<a key={`${key}-a${i++}`} href={m[3]} target="_blank" rel="noopener noreferrer" style={{ color: '#f3efe6', textDecoration: 'underline', wordBreak: 'break-all' }}>{m[2]}</a>)
+ else out.push(<a key={`${key}-a${i++}`} href={m[3]} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text)', textDecoration: 'underline', wordBreak: 'break-all' }}>{m[2]}</a>)
  last = m.index + m[0].length
  }
  if (last < s.length) out.push(<span key={`${key}-t${i++}`}>{linkify(s.slice(last))}</span>)
@@ -80,7 +80,7 @@ export function renderRich(text: string): React.ReactNode {
  const body = list ? ln.slice(list[0].length) : ln
  return (
  <div key={idx} style={list ? { display: 'flex', gap: '6px', margin: '3px 0 3px 2px' } : { minHeight: ln.trim() ? undefined : '6px' }}>
- {list && <span style={{ flexShrink: 0, color: '#f3efe6' }}>{list[1] === '-' ? '•' : list[1]}</span>}
+ {list && <span style={{ flexShrink: 0, color: 'var(--text)' }}>{list[1] === '-' ? '•' : list[1]}</span>}
  <span>{inline(body, String(idx))}</span>
  </div>
  )
@@ -436,7 +436,7 @@ export default function ChatWidget() {
  height: isMobile ? '100%' : '500px',
  background: bgMain,
  borderRadius: isMobile ? 0 : '18px',
- border: isMobile ? 'none' : '1px solid rgba(243,239,230,.22)',
+ border: isMobile ? 'none' : '1px solid color-mix(in srgb, var(--text) 22%, transparent)',
  boxShadow: 'none',
  zIndex: 9999,
  display: 'flex', flexDirection: 'column', overflow: 'hidden',
@@ -445,13 +445,13 @@ export default function ChatWidget() {
  {/* Header */}
  <div style={{
  padding: '14px 18px',
- background: 'rgba(243,239,230,.07)',
- borderBottom: '1px solid rgba(243,239,230,.14)',
+ background: 'color-mix(in srgb, var(--text) 7%, transparent)',
+ borderBottom: '1px solid color-mix(in srgb, var(--text) 14%, transparent)',
  display: 'flex', alignItems: 'center', gap: '10px',
  }}>
  <div style={{
  width: '34px', height: '34px', borderRadius: '50%',
- background: 'linear-gradient(135deg,#f3efe6 0%,#a39e94 100%)',
+ background: 'linear-gradient(135deg,var(--text) 0%,#a39e94 100%)',
  display: 'flex', alignItems: 'center', justifyContent: 'center',
  fontSize: '17px', flexShrink: 0,
  }}></div>
@@ -515,7 +515,7 @@ export default function ChatWidget() {
  disabled={!leadPhone.trim()}
  style={{
  padding: '11px 16px', borderRadius: 0, border: 'none',
- background: !leadPhone.trim() ? 'rgba(243,239,230,.3)' : accent,
+ background: !leadPhone.trim() ? 'color-mix(in srgb, var(--text) 30%, transparent)' : accent,
  color: bgMain, fontSize: '14px', fontWeight: 500,
  cursor: !leadPhone.trim() ? 'default' : 'pointer',
  fontFamily: font,
@@ -546,7 +546,7 @@ export default function ChatWidget() {
  <div style={{
  maxWidth: '82%', padding: '9px 13px',
  borderRadius: msg.role === 'user' ? '14px 14px 3px 14px' : '14px 14px 14px 3px',
- background: msg.role === 'user' ? 'rgba(243,239,230,.18)' : msg.role === 'team' ? 'rgba(201,180,138,.12)' : 'rgba(255,255,255,.07)',
+ background: msg.role === 'user' ? 'color-mix(in srgb, var(--text) 18%, transparent)' : msg.role === 'team' ? 'rgba(201,180,138,.12)' : 'rgba(255,255,255,.07)',
  border: msg.role === 'team' ? '1px solid rgba(201,180,138,.25)' : 'none',
  fontSize: '14px', color: textColor, lineHeight: 1.55,
  }}>
@@ -559,8 +559,8 @@ export default function ChatWidget() {
  {/* Ticket form */}
  {showTicketForm && (
  <div style={{
- background: 'rgba(243,239,230,.08)',
- border: '1px solid rgba(243,239,230,.25)',
+ background: 'color-mix(in srgb, var(--text) 8%, transparent)',
+ border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)',
  borderRadius: '14px 14px 14px 3px',
  padding: '14px 16px',
  }}>
@@ -603,8 +603,8 @@ export default function ChatWidget() {
  {(['email', 'whatsapp'] as const).map(ch => (
  <button key={ch} onClick={() => setTicketChannel(ch)} style={{
  flex: 1, padding: '6px 10px', borderRadius: 0,
- border: `1px solid ${ticketChannel === ch ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.15)'}`,
- background: ticketChannel === ch ? 'rgba(243,239,230,.15)' : 'transparent',
+ border: `1px solid ${ticketChannel === ch ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.15)'}`,
+ background: ticketChannel === ch ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'transparent',
  color: ticketChannel === ch ? accent : mutedColor,
  fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: font,
  textTransform: 'capitalize',
@@ -631,7 +631,7 @@ export default function ChatWidget() {
  <div style={{ display: 'flex', gap: '7px' }}>
  <button onClick={submitTicket} disabled={!canSubmit} style={{
  flex: 1, padding: '8px 14px', borderRadius: 0, border: 'none',
- background: canSubmit ? accent : 'rgba(243,239,230,.3)',
+ background: canSubmit ? accent : 'color-mix(in srgb, var(--text) 30%, transparent)',
  color: bgMain, fontSize: '14px', fontWeight: 500,
  cursor: canSubmit ? 'pointer' : 'default', fontFamily: font,
  }}>
@@ -698,7 +698,7 @@ export default function ChatWidget() {
  disabled={typing}
  style={{
  width: '36px', height: '36px', borderRadius: '50%', border: 'none', flexShrink: 0,
- background: typing ? 'rgba(243,239,230,.3)' : accent,
+ background: typing ? 'color-mix(in srgb, var(--text) 30%, transparent)' : accent,
  cursor: typing ? 'default' : 'pointer',
  fontSize: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center',
  color: bgMain, fontWeight: 500,
@@ -744,15 +744,15 @@ export default function ChatWidget() {
  style={{
  position: 'fixed', bottom: '24px', right: '24px',
  width: '58px', height: '58px', borderRadius: '50%', border: 'none',
- background: 'linear-gradient(135deg,#f3efe6 0%,#a39e94 100%)',
+ background: 'linear-gradient(135deg,var(--text) 0%,#a39e94 100%)',
  boxShadow: 'none',
  cursor: 'pointer', zIndex: 9998,
  fontSize: open ? '22px' : '26px',
  display: 'flex', alignItems: 'center', justifyContent: 'center',
  transition: 'transform .2s, box-shadow .2s',
  }}
- onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 6px 32px rgba(243,239,230,.6)' }}
- onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 24px rgba(243,239,230,.45)' }}
+ onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 6px 32px color-mix(in srgb, var(--text) 60%, transparent)' }}
+ onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 24px color-mix(in srgb, var(--text) 45%, transparent)' }}
  aria-label={open ? 'Close chat' : 'Open chat'}
  >
  {open ? '×' : ''}

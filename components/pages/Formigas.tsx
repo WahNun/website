@@ -24,7 +24,7 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
  <h1 style={{ fontSize: 'clamp(28px,4vw,44px)', fontWeight: 500, letterSpacing: '-0.02em', marginBottom: '20px' }}>
  {t('formigas_h1')}<span style={{ color: s.accent }}>.</span>
  </h1>
- <p style={{ color: '#f3efe6', fontSize: '17px', maxWidth: '620px', lineHeight: 1.65, marginBottom: '28px' }}>
+ <p style={{ color: 'var(--text)', fontSize: '17px', maxWidth: '620px', lineHeight: 1.65, marginBottom: '28px' }}>
  {t('formigas_intro')}
  </p>
 
@@ -37,7 +37,7 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
  ].map(fish => (
  <div key={fish.name} style={{ backgroundImage: `url('${fish.url}')`, backgroundSize: 'cover', backgroundPosition: 'center 40%', position: 'relative', height: isMobile ? '160px' : '100%' }}>
  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 38%, rgba(0,0,0,0.82))' }} />
- <div style={{ position: 'absolute', bottom: '13px', left: '14px', right: '14px', color: '#f3efe6' }}>
+ <div style={{ position: 'absolute', bottom: '13px', left: '14px', right: '14px', color: 'var(--text)' }}>
  <div style={{ fontSize: '14px', letterSpacing: '.08em', textTransform: 'uppercase', opacity: .7, fontWeight: 500, marginBottom: '3px' }}>{fish.latin}</div>
  <div style={{ fontSize: '14px', fontWeight: 500, textShadow: '0 1px 6px rgba(0,0,0,.6)' }}>{fish.name}</div>
  </div>
@@ -54,9 +54,9 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
  { label: t('formigas_stat_season'), value: t('formigas_stat_season_val'), sub: t('formigas_stat_season_sub') },
  { label: t('formigas_stat_level'), value: t('formigas_stat_level_val'), sub: t('formigas_stat_level_sub') },
  ].map(({ label, value, sub }) => (
- <div key={label} style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '16px 14px', textAlign: 'center' }}>
+ <div key={label} style={{ background: 'var(--glass)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 0, padding: '16px 14px', textAlign: 'center' }}>
  <div style={{ fontSize: '14px', color: s.muted, textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '6px', fontWeight: 500 }}>{label}</div>
- <div style={{ fontSize: '20px', fontWeight: 500, color: '#f3efe6', lineHeight: 1 }}>{value}</div>
+ <div style={{ fontSize: '20px', fontWeight: 500, color: 'var(--text)', lineHeight: 1 }}>{value}</div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '5px' }}>{sub}</div>
  </div>
  ))}
@@ -65,7 +65,7 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
  <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 340px', gap: isMobile ? '32px' : '48px', alignItems: 'start' }}>
  {/* Left: main content */}
  <div>
- <p style={{ color: '#f3efe6', fontSize: '14.5px', lineHeight: 1.75, marginBottom: '32px' }}>
+ <p style={{ color: 'var(--text)', fontSize: '14.5px', lineHeight: 1.75, marginBottom: '32px' }}>
  {t('formigas_conditions_p')}
  </p>
 
@@ -75,7 +75,7 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
  {(['formigas_exp1', 'formigas_exp2', 'formigas_exp3', 'formigas_exp4'] as const).map(key => (
  <div key={key} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
  <span style={{ color: s.accent, fontWeight: 500, fontSize: '16px', lineHeight: 1, flexShrink: 0, marginTop: '1px' }}></span>
- <span style={{ fontSize: '14.5px', color: '#f3efe6', lineHeight: 1.5 }}>{t(key)}</span>
+ <span style={{ fontSize: '14.5px', color: 'var(--text)', lineHeight: 1.5 }}>{t(key)}</span>
  </div>
  ))}
  </div>
@@ -93,16 +93,16 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
  { step: t('formigas_path3_step'), desc: t('formigas_path3_desc'), hasLink: true },
  ].map(({ step, desc, hasLink }, i) => (
  <div key={step} style={{ display: 'flex', alignItems: isMobile ? 'flex-start' : 'center', gap: '12px', flex: 1 }}>
- <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'rgba(243,239,230,.08)', border: '1px solid rgba(243,239,230,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', fontWeight: 500, color: s.accent, flexShrink: 0, textAlign: 'center', lineHeight: 1.3, padding: '8px' }}>{step}</div>
+ <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'color-mix(in srgb, var(--text) 8%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', fontWeight: 500, color: s.accent, flexShrink: 0, textAlign: 'center', lineHeight: 1.3, padding: '8px' }}>{step}</div>
  <div style={{ flex: 1 }}>
- <div style={{ fontSize: '14px', color: '#c9c2b6', lineHeight: 1.55 }}>{desc}</div>
+ <div style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.55 }}>{desc}</div>
  {hasLink && (
  <button onClick={() => nav('courses')} style={{ marginTop: '5px', color: s.accent, background: 'none', border: 'none', fontSize: '14px', fontWeight: 500, cursor: 'pointer', padding: 0, fontFamily: s.font, textDecoration: 'underline' }}>
  Offshore Prep course details
  </button>
  )}
  </div>
- {i < 2 && !isMobile && <div style={{ fontSize: '18px', color: 'rgba(243,239,230,.2)', margin: '0 8px', flexShrink: 0 }}></div>}
+ {i < 2 && !isMobile && <div style={{ fontSize: '18px', color: 'color-mix(in srgb, var(--text) 20%, transparent)', margin: '0 8px', flexShrink: 0 }}></div>}
  </div>
  ))}
  </div>
@@ -111,8 +111,8 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
  </p>
  </div>
 
- <div style={{ marginTop: '36px', borderLeft: '3px solid rgba(243,239,230,.5)', paddingLeft: '20px' }}>
- <p style={{ fontSize: '15px', color: '#f3efe6', lineHeight: 1.7, margin: '0 0 10px', fontStyle: 'italic' }}>
+ <div style={{ marginTop: '36px', borderLeft: '3px solid color-mix(in srgb, var(--text) 50%, transparent)', paddingLeft: '20px' }}>
+ <p style={{ fontSize: '15px', color: 'var(--text)', lineHeight: 1.7, margin: '0 0 10px', fontStyle: 'italic' }}>
  &ldquo;{t('formigas_review_q')}&rdquo;
  </p>
  <div>
@@ -144,7 +144,7 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
  {(['formigas_incl1', 'formigas_incl2', 'formigas_incl3', 'formigas_incl4'] as const).map(key => (
  <div key={key} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
  <span style={{ color: s.accent, fontSize: '14px', lineHeight: 1.4, flexShrink: 0 }}>—</span>
- <span style={{ fontSize: '14px', color: '#c9c2b6', lineHeight: 1.45 }}>{t(key)}</span>
+ <span style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.45 }}>{t(key)}</span>
  </div>
  ))}
  </div>
@@ -156,14 +156,14 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
  {(['formigas_notincl1', 'formigas_notincl2'] as const).map(key => (
  <div key={key} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
  <span style={{ color: s.muted, fontSize: '14px', lineHeight: 1.4, flexShrink: 0 }}>—</span>
- <span style={{ fontSize: '14px', color: '#c9c2b6', lineHeight: 1.45 }}>{t(key)}</span>
+ <span style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.45 }}>{t(key)}</span>
  </div>
  ))}
  </div>
  </div>
 
- <div style={{ background: 'rgba(243,239,230,.04)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '20px' }}>
- <div style={{ fontSize: '14px', fontWeight: 500, color: '#f3efe6', marginBottom: '6px' }}>{t('formigas_join')}</div>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 4%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', marginBottom: '6px' }}>{t('formigas_join')}</div>
  <p style={{ color: s.muted, fontSize: '14px', lineHeight: 1.6, marginBottom: '14px' }}>{t('formigas_waitlist_sub')}</p>
  {waitDone ? (
  <div style={{ background: 'rgba(45,212,160,.08)', border: '1px solid rgba(45,212,160,.3)', borderRadius: 0, padding: '12px 14px', color: '#b7c4b0', fontSize: '14px', fontWeight: 500 }}>

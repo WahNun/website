@@ -113,11 +113,11 @@ type BookingRow = {
 }
 
 const STATUS_META: Record<string, { label: string; color: string; bg: string }> = {
- scheduled: { label: ' SCHEDULED', color: '#c9c2b6', bg: 'rgba(201,194,182,.15)' },
+ scheduled: { label: ' SCHEDULED', color: 'var(--muted)', bg: 'rgba(201,194,182,.15)' },
  boarding: { label: ' BOARDING', color: '#c9b48a', bg: 'rgba(201,180,138,.15)' },
  out: { label: ' OUT', color: '#c9928c', bg: 'rgba(201,146,140,.15)' },
  returned: { label: ' DOCKED', color: '#b7c4b0', bg: 'rgba(183,196,176,.15)' },
- cancelled: { label: ' CANCELLED', color: '#a39e94', bg: 'rgba(243,239,230,0.15)' },
+ cancelled: { label: ' CANCELLED', color: '#a39e94', bg: 'color-mix(in srgb, var(--text) 15%, transparent)' },
 }
 
 function shortName(full: string | null | undefined): string {
@@ -341,11 +341,11 @@ export default function LiveBoats({
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '14px' }}>The Boats</div>
  <div style={{
  position: 'relative', marginBottom: '28px', minHeight: '180px', borderRadius: 0,
- background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.15)',
+ background: 'var(--glass)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)',
  display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '6px',
  }}>
  <div style={{ fontSize: '20px' }}></div>
- <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'rgba(243,239,230,.8)' }}>Coming Soon</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'color-mix(in srgb, var(--text) 80%, transparent)' }}>Coming Soon</div>
  <div style={{ fontSize: '14px', color: 'rgba(255,255,255,.3)', textAlign: 'center', lineHeight: 1.5 }}>Live boat tracking is in development</div>
  </div>
  </>
@@ -453,15 +453,15 @@ export default function LiveBoats({
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted }}>The Boats</div>
  <button type="button" disabled={refreshing} title="Reload the dashboard" aria-label="Reload the dashboard"
  onClick={async () => { setRefreshing(true); try { if (onRefresh) onRefresh(); await load() } finally { setTimeout(() => setRefreshing(false), 600) } }}
- style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '4px 12px', borderRadius: 0, cursor: refreshing ? 'default' : 'pointer', fontFamily: s.font, fontSize: '14px', fontWeight: 500, letterSpacing: '.04em', background: 'rgba(243,239,230,.1)', color: s.accent, border: '1px solid rgba(243,239,230,.3)', opacity: refreshing ? .6 : 1 }}>
+ style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '4px 12px', borderRadius: 0, cursor: refreshing ? 'default' : 'pointer', fontFamily: s.font, fontSize: '14px', fontWeight: 500, letterSpacing: '.04em', background: 'color-mix(in srgb, var(--text) 10%, transparent)', color: s.accent, border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', opacity: refreshing ? .6 : 1 }}>
  <span aria-hidden="true" style={{ display: 'inline-block', transition: 'transform .6s', transform: refreshing ? 'rotate(360deg)' : 'none' }}></span>{refreshing ? 'Refreshing…' : 'Refresh'}
  </button>
  <div style={{ display: 'flex', gap: '10px', marginLeft: 'auto', fontSize: '14px', color: s.muted, flexWrap: 'wrap' }}>
  <Legend color="#b7c4b0" label="checked in" />
  <Legend color="#d4a07a" label="medical flag" glyph="!" />
  <Legend color="#c9928c" label="not checked in" />
- <Legend color="#f3efe6" label="crew" />
- <Legend color="#c9c2b6" label="policy on file, look at proof" glyph="" />
+ <Legend color="var(--text)" label="crew" />
+ <Legend color="var(--muted)" label="policy on file, look at proof" glyph="" />
  <Legend color="#c9b48a" label="insurance proof to check" glyph="" />
  <Legend color="#c9928c" label="no insurance" glyph="" />
  <Legend color="#c9b48a" label="DAN no. missing" glyph="#" />
@@ -470,9 +470,9 @@ export default function LiveBoats({
  </div>
  </div>
  {!loaded ? (
- <div style={{ marginBottom: '28px', padding: '40px', textAlign: 'center', color: s.muted, fontSize: '14px', background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', borderRadius: 0, border: '1px solid rgba(243,239,230,.1)' }}>Loading boats…</div>
+ <div style={{ marginBottom: '28px', padding: '40px', textAlign: 'center', color: s.muted, fontSize: '14px', background: 'var(--glass)', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 10%, transparent)' }}>Loading boats…</div>
  ) : boats.length === 0 ? (
- <div style={{ marginBottom: '28px', padding: '40px', textAlign: 'center', color: s.muted, fontSize: '14px', background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', borderRadius: 0, border: '1px solid rgba(243,239,230,.1)' }}>No boats configured.</div>
+ <div style={{ marginBottom: '28px', padding: '40px', textAlign: 'center', color: s.muted, fontSize: '14px', background: 'var(--glass)', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 10%, transparent)' }}>No boats configured.</div>
  ) : (
  <>
  <div style={{ display: 'flex', gap: '6px', marginBottom: '14px' }}>
@@ -484,9 +484,9 @@ export default function LiveBoats({
  <button key={sess} type="button" onClick={() => { manualView.current = rollDateStr; setView(sess) }} style={{
  padding: '8px 18px', borderRadius: 0, cursor: 'pointer', fontFamily: s.font,
  fontSize: '14px', fontWeight: 500, letterSpacing: '.06em',
- background: on ? 'rgba(243,239,230,.15)' : 'rgba(255,255,255,.04)',
+ background: on ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'rgba(255,255,255,.04)',
  color: on ? s.accent : s.muted,
- border: `1px solid ${on ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.1)'}`,
+ border: `1px solid ${on ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.1)'}`,
  }}>
  {sess === 'night' ? ' NIGHT' : sess.toUpperCase()}
  <span style={{ fontWeight: 500, opacity: .75 }}> · {guests} diver{guests === 1 ? '' : 's'}{waiting > 0 ? ` · ${waiting} waiting` : ''}</span>
@@ -528,7 +528,7 @@ export default function LiveBoats({
  style={{ display: 'flex', alignItems: 'center', gap: '8px', textAlign: 'left', width: '100%', padding: '8px 10px', borderRadius: 0, cursor: 'pointer', fontFamily: s.font, background: 'rgba(255,255,255,.03)', border: '1px solid rgba(201,180,138,.25)', color: s.text }}>
  <span style={{ fontSize: '14px', fontWeight: 500, flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{w.name}</span>
  <span style={{ fontSize: '14px', color: s.muted, whiteSpace: 'nowrap' }}>{w.productName ?? 'Booking'}</span>
- <span style={{ fontSize: '14px', fontWeight: 500, color: '#000', background: '#c9b48a', borderRadius: 0, padding: '0 4px' }}>UNPAID</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--on-accent)', background: '#c9b48a', borderRadius: 0, padding: '0 4px' }}>UNPAID</span>
  {w.isTest && <span style={{ fontSize: '14px', fontWeight: 500, color: '#c9b48a' }}>TEST</span>}
  </button>
  ))}
@@ -745,16 +745,16 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  flags.push({ tone: 'warn', glyph: '18', label: `Under 18${mAge !== null ? ` · ${mAge} years old` : ''}`, detail: `Depth limit: ${minorDepthLimit(mAge, cu?.experience_level).text}. Check the guardian's consent and brief the diver, then acknowledge.`, actionKey: 'minor' })
  }
 
- const tone = { warn: '#c9b48a', bad: '#c9928c', ok: '#b7c4b0', soft: '#c9c2b6' }
+ const tone = { warn: '#c9b48a', bad: '#c9928c', ok: '#b7c4b0', soft: 'var(--muted)' }
  const flagBtnState = { dan_policy: danState, insurance: insState, insurance_onsite: onsiteState, medical: medState, refresher: refresherState, minor: minorState }
  const flagBtnLabel = { dan_policy: 'Save DAN policy number', insurance: 'Record policy & mark as seen', insurance_onsite: 'Add day cover to booking', medical: 'Upload proof', refresher: 'Refresher completed ', minor: 'Acknowledge — consent & depth limit checked' }
 
  return (
  <div role="dialog" aria-modal="true" onClick={onClose}
- style={{ position: 'fixed', inset: 0, zIndex: 10000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', background: 'rgba(9,9,9,.82)' }}>
+ style={{ position: 'fixed', inset: 0, zIndex: 10000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', background: 'color-mix(in srgb, var(--bg) 82%, transparent)' }}>
  <div onClick={e => e.stopPropagation()} style={{
  maxWidth: '560px', width: '100%', maxHeight: '88vh', overflowY: 'auto',
- background: '#121210', border: '1px solid rgba(243,239,230,.22)', borderRadius: 0, padding: '24px',
+ background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 22%, transparent)', borderRadius: 0, padding: '24px',
  }}>
  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px', marginBottom: '4px' }}>
  <div>
@@ -765,7 +765,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  {seat.bookingId && (
  <>
  {' · '}
- <button type="button" onClick={() => setBookingPopup(true)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: '#f3efe6', fontWeight: 500, background: 'transparent', border: '1px solid rgba(243,239,230,.4)', borderRadius: 0, padding: '0 6px', cursor: 'pointer', fontSize: '14px' }}>{seat.bookingId.slice(0, 8).toUpperCase()}</button>
+ <button type="button" onClick={() => setBookingPopup(true)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: 'var(--text)', fontWeight: 500, background: 'transparent', border: '1px solid color-mix(in srgb, var(--text) 40%, transparent)', borderRadius: 0, padding: '0 6px', cursor: 'pointer', fontSize: '14px' }}>{seat.bookingId.slice(0, 8).toUpperCase()}</button>
  </>
  )}
  </div>
@@ -779,22 +779,22 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  <button key={id} onClick={() => setActiveTab(id)} style={{
  flex: 1, padding: '5px 0', fontSize: '14px', fontWeight: 500, fontFamily: 'inherit',
  borderRadius: 0, border: 'none', cursor: 'pointer',
- background: activeTab === id ? 'rgba(243,239,230,.15)' : 'transparent',
- color: activeTab === id ? '#f3efe6' : '#c9c2b6',
+ background: activeTab === id ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'transparent',
+ color: activeTab === id ? 'var(--text)' : 'var(--muted)',
  }}>{label}</button>
  ))}
  </div>
 
  {medModal && (
  <div role="dialog" aria-modal="true" onClick={() => { if (!medUp.loading) setMedModal(false) }}
- style={{ position: 'fixed', inset: 0, zIndex: 10001, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', background: 'rgba(9,9,9,.7)' }}>
- <div onClick={e => e.stopPropagation()} style={{ maxWidth: '440px', width: '100%', background: '#121210', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0, padding: '20px' }}>
+ style={{ position: 'fixed', inset: 0, zIndex: 10001, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', background: 'color-mix(in srgb, var(--bg) 70%, transparent)' }}>
+ <div onClick={e => e.stopPropagation()} style={{ maxWidth: '440px', width: '100%', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', borderRadius: 0, padding: '20px' }}>
  <div style={{ fontSize: '15px', fontWeight: 500, color: s.text, marginBottom: '6px' }}>Medical clearance — proof required</div>
  <div style={{ fontSize: '14px', color: s.muted, lineHeight: 1.6, marginBottom: '12px' }}>
  Upload the doctor’s clearance for {seat.name}: photo, PDF or document (max 15 MB). The file is stored privately and linked to this diver. Afterwards you confirm with “Mark as seen”.
  </div>
  <input type="file" accept="image/*,.heic,.heif,.pdf,.doc,.docx,.odt,.rtf,.txt" onChange={e => { setMedFile(e.target.files?.[0] ?? null); setMedUp({ loading: false, error: null }) }}
- style={{ width: '100%', boxSizing: 'border-box', fontSize: '14px', color: s.text, background: 'rgba(0,0,0,.3)', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, padding: '8px' }} />
+ style={{ width: '100%', boxSizing: 'border-box', fontSize: '14px', color: s.text, background: 'rgba(0,0,0,.3)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 0, padding: '8px' }} />
  {medFile && <div style={{ fontSize: '14px', color: s.muted, marginTop: '6px' }}>{medFile.name} · {(medFile.size / 1024 / 1024).toFixed(2)} MB</div>}
  {medUp.error && <div style={{ marginTop: '8px', fontSize: '14px', color: '#c9928c', background: 'rgba(201,146,140,.08)', border: '1px solid rgba(201,146,140,.2)', borderRadius: 0, padding: '5px 9px' }}>{medUp.error}</div>}
  {medState.error && <div style={{ marginTop: '8px', fontSize: '14px', color: '#c9928c' }}>{medState.error}</div>}
@@ -823,36 +823,36 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  <span aria-hidden="true" style={{ fontSize: '14px', minWidth: '13px', textAlign: 'center' }}>{f.glyph}</span>
  <span>{f.label}</span>
  </div>
- {f.detail && <div style={{ fontSize: '14px', color: '#f3efe6', lineHeight: 1.6, marginTop: '3px', whiteSpace: 'pre-line' }}>{f.detail}</div>}
+ {f.detail && <div style={{ fontSize: '14px', color: 'var(--text)', lineHeight: 1.6, marginTop: '3px', whiteSpace: 'pre-line' }}>{f.detail}</div>}
  {f.linkBooking && (
- <div style={{ fontSize: '14px', color: '#f3efe6', lineHeight: 1.6, marginTop: '3px' }}>
+ <div style={{ fontSize: '14px', color: 'var(--text)', lineHeight: 1.6, marginTop: '3px' }}>
  Payment is still open (booking is pending). Check the Payments tab of the booking{' '}
- <button type="button" onClick={() => setBookingPopup(true)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: '#f3efe6', fontWeight: 500, background: 'transparent', border: '1px solid rgba(243,239,230,.4)', borderRadius: 0, padding: '0 6px', cursor: 'pointer' }}>{seat.bookingId.slice(0, 8).toUpperCase()}</button>
+ <button type="button" onClick={() => setBookingPopup(true)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: 'var(--text)', fontWeight: 500, background: 'transparent', border: '1px solid color-mix(in srgb, var(--text) 40%, transparent)', borderRadius: 0, padding: '0 6px', cursor: 'pointer' }}>{seat.bookingId.slice(0, 8).toUpperCase()}</button>
  {' '}before the dive.
  </div>
  )}
  {f.actionKey === 'insurance_onsite' && (
  <div style={{ marginTop: '8px', display: 'flex', flexWrap: 'wrap', gap: '5px', alignItems: 'center' }}>
- <span style={{ fontSize: '14px', color: '#f3efe6' }}>Paid by:</span>
+ <span style={{ fontSize: '14px', color: 'var(--text)' }}>Paid by:</span>
  {([['cash', ' Cash'], ['card', ' Card (n/a)'], ['revolut', ' Revolut'], ['later', ' Pay later']] as const).map(([m, l]) => (
- <button key={m} type="button" disabled={m === 'card'} title={m === 'card' ? 'Not available yet — no card terminal' : undefined} onClick={() => setOnsiteMethod(m)} style={{ opacity: m === 'card' ? 0.4 : 1, fontSize: '14px', fontWeight: 500, padding: '3px 9px', borderRadius: 0, border: `1px solid ${onsiteMethod === m ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.12)'}`, background: onsiteMethod === m ? 'rgba(243,239,230,.15)' : 'transparent', color: onsiteMethod === m ? '#f3efe6' : '#c9c2b6', cursor: 'pointer', fontFamily: 'inherit' , ...(m === 'card' ? { cursor: 'not-allowed' } : {})}}>{l}</button>
+ <button key={m} type="button" disabled={m === 'card'} title={m === 'card' ? 'Not available yet — no card terminal' : undefined} onClick={() => setOnsiteMethod(m)} style={{ opacity: m === 'card' ? 0.4 : 1, fontSize: '14px', fontWeight: 500, padding: '3px 9px', borderRadius: 0, border: `1px solid ${onsiteMethod === m ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.12)'}`, background: onsiteMethod === m ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'transparent', color: onsiteMethod === m ? 'var(--text)' : 'var(--muted)', cursor: 'pointer', fontFamily: 'inherit' , ...(m === 'card' ? { cursor: 'not-allowed' } : {})}}>{l}</button>
  ))}
  </div>
  )}
  {f.actionKey === 'dan_policy' && (
  <div style={{ marginTop: '8px' }}>
- <input value={danPolicy} onChange={e => setDanPolicy(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && danPolicy.trim()) resolveFlag('dan_policy', true) }} placeholder="DAN policy number" style={{ width: '100%', boxSizing: 'border-box', background: '#000', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, padding: '5px 8px', fontSize: '14px', color: '#f3efe6', fontFamily: 'inherit', outline: 'none' }} />
+ <input value={danPolicy} onChange={e => setDanPolicy(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && danPolicy.trim()) resolveFlag('dan_policy', true) }} placeholder="DAN policy number" style={{ width: '100%', boxSizing: 'border-box', background: 'var(--bg)', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, padding: '5px 8px', fontSize: '14px', color: 'var(--text)', fontFamily: 'inherit', outline: 'none' }} />
  </div>
  )}
  {f.actionKey === 'insurance' && (
  <div style={{ marginTop: '8px', display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
- <input value={proofProvider} onChange={e => setProofProvider(e.target.value)} placeholder="Provider (e.g. DAN)" style={{ flex: '1 1 120px', minWidth: 0, background: '#000', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, padding: '5px 8px', fontSize: '14px', color: '#f3efe6', fontFamily: 'inherit', outline: 'none' }} />
- <input value={proofPolicy} onChange={e => setProofPolicy(e.target.value)} placeholder="Policy number" style={{ flex: '1 1 140px', minWidth: 0, background: '#000', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, padding: '5px 8px', fontSize: '14px', color: '#f3efe6', fontFamily: 'inherit', outline: 'none' }} />
+ <input value={proofProvider} onChange={e => setProofProvider(e.target.value)} placeholder="Provider (e.g. DAN)" style={{ flex: '1 1 120px', minWidth: 0, background: 'var(--bg)', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, padding: '5px 8px', fontSize: '14px', color: 'var(--text)', fontFamily: 'inherit', outline: 'none' }} />
+ <input value={proofPolicy} onChange={e => setProofPolicy(e.target.value)} placeholder="Policy number" style={{ flex: '1 1 140px', minWidth: 0, background: 'var(--bg)', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, padding: '5px 8px', fontSize: '14px', color: 'var(--text)', fontFamily: 'inherit', outline: 'none' }} />
  </div>
  )}
  {f.actionKey === 'medical' && slot?.medical_proof_path && (
  <div style={{ marginTop: '8px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px', fontSize: '14px' }}>
- <button type="button" disabled={proofView.loading} onClick={openMedicalProof} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#f3efe6', fontWeight: 500, fontFamily: 'inherit', fontSize: '14px', textDecoration: 'underline' }}>
+ <button type="button" disabled={proofView.loading} onClick={openMedicalProof} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: 'var(--text)', fontWeight: 500, fontFamily: 'inherit', fontSize: '14px', textDecoration: 'underline' }}>
  {proofView.loading ? '…' : ` ${slot.medical_proof_name ?? 'View proof'}`}
  </button>
  <button type="button" onClick={() => { setMedUp({ loading: false, error: null }); setMedFile(null); setMedModal(true) }} style={{ background: 'none', border: '1px solid rgba(255,255,255,.2)', borderRadius: 0, padding: '1px 8px', cursor: 'pointer', color: s.muted, fontFamily: 'inherit', fontSize: '14px' }}>Replace file</button>
@@ -879,12 +879,12 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  )}
 
  {activeTab === 'status' && !slot?.checkin_completed_at && (
- <div style={{ marginTop: '14px', padding: '12px 14px', background: 'rgba(243,239,230,.05)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0 }}>
+ <div style={{ marginTop: '14px', padding: '12px 14px', background: 'color-mix(in srgb, var(--text) 5%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 0 }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.accent, marginBottom: '10px' }}>Staff actions</div>
  {/* E-Mail-Eingabe: zeigen wenn keine E-Mail in der Akte */}
  {!slot?.customers?.email && !resendState.sent && (
  <div style={{ marginBottom: '8px' }}>
- <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c9c2b6', marginBottom: '4px' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '4px' }}>
  Email for check-in link
  </div>
  <input
@@ -896,7 +896,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  width: '100%', boxSizing: 'border-box',
  fontSize: '14px', padding: '6px 10px', borderRadius: 0,
  background: 'rgba(0,0,0,.3)', color: s.text,
- border: '1px solid rgba(243,239,230,.25)', fontFamily: 'inherit',
+ border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', fontFamily: 'inherit',
  }}
  />
  </div>
@@ -912,8 +912,8 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  onClick={resendCheckinLink}
  style={{
  fontSize: '14px', fontWeight: 500, padding: '6px 14px', borderRadius: 0,
- background: resendState.sent ? 'rgba(183,196,176,.12)' : 'rgba(243,239,230,.12)',
- border: `1px solid ${resendState.sent ? 'rgba(183,196,176,.35)' : 'rgba(243,239,230,.35)'}`,
+ background: resendState.sent ? 'rgba(183,196,176,.12)' : 'color-mix(in srgb, var(--text) 12%, transparent)',
+ border: `1px solid ${resendState.sent ? 'rgba(183,196,176,.35)' : 'color-mix(in srgb, var(--text) 35%, transparent)'}`,
  color: resendState.sent ? '#b7c4b0' : s.accent,
  cursor: canSend ? 'pointer' : 'default',
  fontFamily: 'inherit',
@@ -1022,8 +1022,8 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  <button key={id} onClick={() => setActiveAkteTab(id)} style={{
  flex: 1, padding: '5px 0', fontSize: '14px', fontWeight: 500, fontFamily: 'inherit',
  borderRadius: 0, border: 'none', cursor: 'pointer',
- background: activeAkteTab === id ? 'rgba(243,239,230,.12)' : 'transparent',
- color: activeAkteTab === id ? '#f3efe6' : '#c9c2b6',
+ background: activeAkteTab === id ? 'color-mix(in srgb, var(--text) 12%, transparent)' : 'transparent',
+ color: activeAkteTab === id ? 'var(--text)' : 'var(--muted)',
  }}>{label}</button>
  ))}
  </div>
@@ -1055,10 +1055,10 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  <span style={{ textAlign: 'right' }}>
  {slot?.insurance_source === 'azd_day'
  ? ((slot.dan_policy_number ?? '').trim()
- ? <span style={{ color: '#f3efe6', fontWeight: 500 }}>{slot.dan_policy_number}</span>
+ ? <span style={{ color: 'var(--text)', fontWeight: 500 }}>{slot.dan_policy_number}</span>
  : <span style={{ color: '#c9b48a', fontWeight: 500 }}>not entered yet</span>)
  : slot?.insurance_verified_at
- ? <span style={{ color: '#f3efe6', fontWeight: 500 }}>
+ ? <span style={{ color: 'var(--text)', fontWeight: 500 }}>
  {slot.insurance_verified_at.slice(0, 10)}{slot.insurance_verified_by ? ` · ${slot.insurance_verified_by}` : ''}
  </span>
  : <span style={{ color: slot?.insurance_flag ? '#c9b48a' : 'rgba(255,255,255,.25)', fontWeight: slot?.insurance_flag ? 500 : 400 }}>—</span>
@@ -1147,7 +1147,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  <span style={{ color: s.muted }}>Clearance seen</span>
  <span style={{ textAlign: 'right' }}>
  {slot.medical_flag_resolved && slot.medical_resolved_at
- ? <span style={{ color: '#f3efe6', fontWeight: 500 }}>
+ ? <span style={{ color: 'var(--text)', fontWeight: 500 }}>
  {slot.medical_resolved_at.slice(0, 10)}{slot.medical_resolved_by ? ` · ${slot.medical_resolved_by}` : ''}
  </span>
  : <span style={{ color: '#c9b48a', fontWeight: 500 }}>—</span>
@@ -1157,7 +1157,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  {slot.medical_proof_path && (
  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '14px', fontSize: '14px', lineHeight: 1.6, alignItems: 'center', marginTop: '4px' }}>
  <span style={{ color: s.muted }}>Proof</span>
- <button type="button" disabled={proofView.loading} onClick={openMedicalProof} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#f3efe6', fontWeight: 500, fontFamily: 'inherit', fontSize: '14px', textDecoration: 'underline', textAlign: 'right' }}>
+ <button type="button" disabled={proofView.loading} onClick={openMedicalProof} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: 'var(--text)', fontWeight: 500, fontFamily: 'inherit', fontSize: '14px', textDecoration: 'underline', textAlign: 'right' }}>
  {proofView.loading ? '…' : ` ${slot.medical_proof_name ?? 'View file'}`}
  </button>
  </div>
@@ -1202,12 +1202,12 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  ].map(([k, v]) => (
  <div key={k} style={{ display: 'flex', justifyContent: 'space-between', gap: '14px', fontSize: '14px', padding: '3px 0', lineHeight: 1.6 }}>
  <span style={{ color: s.muted }}>{k}</span>
- <span style={{ color: '#f3efe6', fontWeight: 500, textAlign: 'right', wordBreak: 'break-word' }}>{v}</span>
+ <span style={{ color: 'var(--text)', fontWeight: 500, textAlign: 'right', wordBreak: 'break-word' }}>{v}</span>
  </div>
  ))}
  {cu.waiver_pdf_url && (
  <div style={{ paddingTop: '4px' }}>
- <a href={waiverHref(cu.waiver_pdf_url) ?? undefined} target="_blank" rel="noopener noreferrer" style={{ fontSize: '14px', color: '#f3efe6' }}>Open signature </a>
+ <a href={waiverHref(cu.waiver_pdf_url) ?? undefined} target="_blank" rel="noopener noreferrer" style={{ fontSize: '14px', color: 'var(--text)' }}>Open signature </a>
  </div>
  )}
  </div>
@@ -1221,7 +1221,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  <div key={h.id} style={{ display: 'flex', gap: '10px', fontSize: '14px', padding: '5px 0', alignItems: 'baseline', borderBottom: '1px solid rgba(255,255,255,.04)' }}>
  <span style={{ color: s.muted, whiteSpace: 'nowrap', flexShrink: 0 }}>{formatHistoryTs(h.created_at)}</span>
  <span style={{ color: 'rgba(255,255,255,.55)', flexShrink: 0 }}>{(h.user_name ?? h.user_email ?? '').split('@')[0]}</span>
- <span style={{ color: h.source === 'booking' ? 'rgba(243,239,230,0.55)' : '#f3efe6' }}>
+ <span style={{ color: h.source === 'booking' ? 'color-mix(in srgb, var(--text) 55%, transparent)' : 'var(--accent)' }}>
  {h.source === 'booking' && <span style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', color: s.muted, marginRight: '6px' }}>BOOKING</span>}
  {DIVER_ACTION_LABELS[h.action_type] ?? h.action_type}
  </span>
@@ -1236,7 +1236,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  </div>
  {bookingPopup && (
  <div onClick={e => { e.stopPropagation(); setBookingPopup(false) }} style={{ position: 'fixed', inset: 0, zIndex: 10010, background: 'rgba(0,0,0,0.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '32px 16px', overflowY: 'auto' }}>
- <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: '#121210', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, boxShadow: 'none', overflow: 'hidden' }}>
+ <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 0, boxShadow: 'none', overflow: 'hidden' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>Booking <span style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: s.text, fontWeight: 500 }}>{seat.bookingId.slice(0, 8).toUpperCase()}</span> · changes here are live</span>
  <button type="button" onClick={() => setBookingPopup(false)} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.text, borderRadius: 0, padding: '4px 10px', cursor: 'pointer', fontSize: '14px' }}>Close</button>
@@ -1274,7 +1274,7 @@ function seatAlerts(seat: Seat): { label: string; tone: 'warn' | 'bad' | 'med' |
  if (!seat.checkedIn) out.push({ label: 'Check-in not completed', tone: 'bad', glyph: '', color: '#c9928c' })
  if (seat.medicalFlag) out.push({ label: 'Medical clearance required', tone: 'med', glyph: '!', color: '#d4a07a' })
  if (seat.insuranceSource === 'none') out.push({ label: 'No insurance — sell day cover', tone: 'bad', glyph: '', color: '#c9928c' })
- else if (seat.insuranceFlag && seat.insurancePolicyOnFile) out.push({ label: 'Policy on file — look at proof', tone: 'soft', glyph: '', color: '#c9c2b6' })
+ else if (seat.insuranceFlag && seat.insurancePolicyOnFile) out.push({ label: 'Policy on file — look at proof', tone: 'soft', glyph: '', color: 'var(--muted)' })
  else if (seat.insuranceFlag) out.push({ label: 'Insurance proof to check', tone: 'warn', glyph: '', color: '#c9b48a' })
  if (seat.danPolicyOpen) out.push({ label: 'DAN policy no. missing', tone: 'warn', glyph: '#', color: '#c9b48a' })
  if (seat.refresherOpen) out.push({ label: 'Refresher required', tone: 'warn', glyph: '', color: '#c9b48a' })
@@ -1360,7 +1360,7 @@ function InsuranceCasesCard({ label, seats, onOpen, onSaved }: {
  {w.danPolicyOpen && id && (
  <div style={{ display: 'flex', gap: '6px', marginTop: '6px' }}>
  <input value={vals[id] ?? ''} onChange={e => setVals(v => ({ ...v, [id]: e.target.value }))} onKeyDown={e => { if (e.key === 'Enter') save(id) }} placeholder="DAN policy no."
- style={{ flex: 1, minWidth: 0, padding: '5px 9px', borderRadius: 0, fontSize: '14px', fontFamily: 'inherit', background: 'rgba(0,0,0,.25)', color: '#f3efe6', border: '1px solid rgba(255,255,255,.2)' }} />
+ style={{ flex: 1, minWidth: 0, padding: '5px 9px', borderRadius: 0, fontSize: '14px', fontFamily: 'inherit', background: 'rgba(0,0,0,.25)', color: 'var(--text)', border: '1px solid rgba(255,255,255,.2)' }} />
  <button type="button" disabled={busyId === id} onClick={() => save(id)}
  style={{ padding: '5px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', background: 'rgba(183,196,176,.15)', color: '#b7c4b0', border: '1px solid rgba(183,196,176,.4)', opacity: busyId === id ? .6 : 1 }}>
  {busyId === id ? 'Saving…' : 'Save'}
@@ -1374,9 +1374,9 @@ function InsuranceCasesCard({ label, seats, onOpen, onSaved }: {
  <div style={{ marginTop: '6px' }}>
  <div style={{ display: 'flex', gap: '6px' }}>
  <input type="email" value={mails[k] ?? w.slot?.customers?.email ?? w.bookingEmail ?? ''} onChange={e => { setMails(v => ({ ...v, [k]: e.target.value })); setSendSt(x => ({ ...x, [k]: {} })) }} onKeyDown={e => { if (e.key === 'Enter') sendLink(w) }} placeholder="guest@example.com"
- style={{ flex: 1, minWidth: 0, padding: '5px 9px', borderRadius: 0, fontSize: '14px', fontFamily: 'inherit', background: 'rgba(0,0,0,.25)', color: '#f3efe6', border: '1px solid rgba(255,255,255,.2)' }} />
+ style={{ flex: 1, minWidth: 0, padding: '5px 9px', borderRadius: 0, fontSize: '14px', fontFamily: 'inherit', background: 'rgba(0,0,0,.25)', color: 'var(--text)', border: '1px solid rgba(255,255,255,.2)' }} />
  <button type="button" disabled={st.loading} onClick={() => sendLink(w)}
- style={{ padding: '5px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap', background: st.sent ? 'rgba(183,196,176,.15)' : 'rgba(243,239,230,.12)', color: st.sent ? '#b7c4b0' : '#f3efe6', border: `1px solid ${st.sent ? 'rgba(183,196,176,.4)' : 'rgba(243,239,230,.35)'}`, opacity: st.loading ? .6 : 1 }}>
+ style={{ padding: '5px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap', background: st.sent ? 'rgba(183,196,176,.15)' : 'color-mix(in srgb, var(--text) 12%, transparent)', color: st.sent ? '#b7c4b0' : 'var(--accent)', border: `1px solid ${st.sent ? 'rgba(183,196,176,.4)' : 'color-mix(in srgb, var(--text) 35%, transparent)'}`, opacity: st.loading ? .6 : 1 }}>
  {st.loading ? '…' : st.sent ? ' Link sent' : ' Send check-in link'}
  </button>
  </div>
@@ -1416,7 +1416,7 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  if (seat.medicalFlag) return '#d4a07a'
  if (seat.insuranceSource === 'none') return '#c9928c'
  if ((seat.insuranceFlag && !seat.insurancePolicyOnFile) || seat.insuranceSource === 'none' || seat.danPolicyOpen || seat.refresherOpen || seat.minorOpen) return '#c9b48a'
- if (seat.insuranceFlag) return '#c9c2b6' // Police genannt, nur Sichtpruefung offen — nicht gruen, aber kein Alarm
+ if (seat.insuranceFlag) return 'var(--muted)' // Police genannt, nur Sichtpruefung offen — nicht gruen, aber kein Alarm
  if (seat.checkedIn) return '#b7c4b0'
  return '#c9928c'
  }
@@ -1426,7 +1426,7 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  const out: { g: string; c: string }[] = []
  if (seat.medicalFlag) out.push({ g: '!', c: '#d4a07a' })
  if (seat.insuranceSource === 'none') out.push({ g: 'N', c: '#c9928c' })
- else if (seat.insuranceFlag) out.push({ g: 'P', c: seat.insurancePolicyOnFile ? '#c9c2b6' : '#c9b48a' })
+ else if (seat.insuranceFlag) out.push({ g: 'P', c: seat.insurancePolicyOnFile ? 'var(--muted)' : '#c9b48a' })
  if (seat.danPolicyOpen) out.push({ g: '#', c: '#c9b48a' })
  if (seat.refresherOpen) out.push({ g: 'R', c: '#c9b48a' })
  if (seat.minorOpen) out.push({ g: '18', c: '#c9b48a' })
@@ -1436,7 +1436,7 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  return (
  <div style={{
  background: 'rgba(18,18,16,.94)',
- border: hasTestSeat ? '1px solid rgba(201,180,138,.45)' : '1px solid rgba(243,239,230,.15)',
+ border: hasTestSeat ? '1px solid rgba(201,180,138,.45)' : '1px solid color-mix(in srgb, var(--text) 15%, transparent)',
  borderRadius: 0, overflow: 'hidden',
  }}>
  <div style={{ padding: '16px 20px', borderBottom: '1px solid rgba(255,255,255,.07)', display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
@@ -1470,24 +1470,24 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  <stop offset="100%" stopColor="#0c0c0b" />
  </linearGradient>
  </defs>
- <rect x="0" y="0" width="560" height="218" rx="12" fill="#121210" opacity="0.4" />
+ <rect x="0" y="0" width="560" height="218" rx="12" fill="var(--surface)" opacity="0.4" />
  <g style={{ animation: `boat_bob_${status?.status === 'out' ? 'fast' : 'slow'} ${status?.status === 'out' ? '3.8s' : '6s'} ease-in-out infinite`, transformOrigin: '280px 100px' }}>
  <style>{`
  @keyframes boat_bob_fast { 0%,100%{transform:translateY(0) rotate(0)} 30%{transform:translateY(-5px) rotate(.6deg)} 70%{transform:translateY(3px) rotate(-.4deg)} }
  @keyframes boat_bob_slow { 0%,100%{transform:translateY(0) rotate(0)} 30%{transform:translateY(-2px) rotate(.2deg)} 70%{transform:translateY(1px) rotate(-.1deg)} }
  `}</style>
- <path d="M 50 100 Q 50 30 105 18 L 455 18 Q 510 18 510 60 Q 522 100 510 140 Q 510 182 455 182 L 105 182 Q 50 170 50 100 Z" fill={`url(#hull-${boat.id}-${session})`} stroke="#f3efe6" strokeWidth="2" />
+ <path d="M 50 100 Q 50 30 105 18 L 455 18 Q 510 18 510 60 Q 522 100 510 140 Q 510 182 455 182 L 105 182 Q 50 170 50 100 Z" fill={`url(#hull-${boat.id}-${session})`} stroke="var(--text)" strokeWidth="2" />
  <path d="M 118 28 L 442 28" fill="none" stroke="rgba(255,255,255,0.22)" strokeWidth="1" pointerEvents="none" />
  <path d="M 80 100 Q 80 47 115 42 L 445 42 Q 490 42 490 80 Q 495 100 490 120 Q 490 158 445 158 L 115 158 Q 80 153 80 100 Z" fill="#181816" opacity="0.8" />
  <rect x="450" y="76" width="42" height="48" rx="6" fill="#181816" opacity="0.9" />
- <circle cx="471" cy="114" r="8" fill="none" stroke="#f3efe6" strokeWidth="1.8" opacity="0.8" />
+ <circle cx="471" cy="114" r="8" fill="none" stroke="var(--text)" strokeWidth="1.8" opacity="0.8" />
 
  {/* Sitzplätze */}
  {positions.map((p, i) => {
  const seat = seats[i]
  const c = seatColor(seat)
  if (!c) {
- return <circle key={i} cx={p.x} cy={p.y} r="8" fill="none" stroke="#c9c2b6" strokeWidth="1.2" strokeDasharray="3,2" opacity="0.4" />
+ return <circle key={i} cx={p.x} cy={p.y} r="8" fill="none" stroke="var(--muted)" strokeWidth="1.2" strokeDasharray="3,2" opacity="0.4" />
  }
  const labelBelow = p.y > 100
  return (
@@ -1506,16 +1506,16 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  <circle cx={p.x} cy={p.y} r="12" fill={c} opacity="0.85" />
  <ellipse cx={p.x} cy={p.y + (labelBelow ? 12 : 12)} rx="4.5" ry="4.5" fill={c} opacity="0.5" />
  <text x={p.x} y={labelBelow ? p.y + 30 : p.y - 13} textAnchor="middle" fontSize="13" fill={c} fontWeight="500" fontFamily="var(--font-geist-sans), sans-serif">{shortName(seat.name)}{seatGlyphs(seat).map((f, fi) => <tspan key={fi} dx="3" fill={f.c} fontWeight="500">{f.g}</tspan>)}</text>
- {seatGlyphs(seat)[0] && <text x={p.x} y={p.y + 4} textAnchor="middle" fontSize="12" fill="#090909" fontWeight="500" fontFamily="var(--font-geist-sans), sans-serif">{seatGlyphs(seat)[0].g}</text>}
+ {seatGlyphs(seat)[0] && <text x={p.x} y={p.y + 4} textAnchor="middle" fontSize="12" fill="var(--on-accent)" fontWeight="500" fontFamily="var(--font-geist-sans), sans-serif">{seatGlyphs(seat)[0].g}</text>}
  </g>
  )
  })}
 
  {/* Skipper */}
- <circle cx="448" cy="100" r="13" fill={skipper ? '#f3efe6' : 'none'} stroke={skipper ? 'none' : '#c9c2b6'} strokeWidth="1.2" strokeDasharray={skipper ? undefined : '3,2'} opacity={skipper ? 0.95 : 0.4} />
- {skipper && <text x="448" y="103" textAnchor="middle" fontSize="13" fill="white" fontWeight="500" fontFamily="var(--font-geist-sans), sans-serif"></text>}
- <text x="448" y="75" textAnchor="middle" fontSize="13" fill="#f3efe6" opacity="0.65" fontFamily="var(--font-geist-sans), sans-serif" letterSpacing=".08em">SKIPPER</text>
- <text x="448" y="83" textAnchor="middle" fontSize="13" fill="#f3efe6" fontWeight="500" fontFamily="var(--font-geist-sans), sans-serif">{skipper ? shortName(skipper.crew_name) : '—'}</text>
+ <circle cx="448" cy="100" r="13" fill={skipper ? 'var(--text)' : 'none'} stroke={skipper ? 'none' : 'var(--muted)'} strokeWidth="1.2" strokeDasharray={skipper ? undefined : '3,2'} opacity={skipper ? 0.95 : 0.4} />
+ {skipper && <text x="448" y="103" textAnchor="middle" fontSize="13" fill="var(--text)" fontWeight="500" fontFamily="var(--font-geist-sans), sans-serif"></text>}
+ <text x="448" y="75" textAnchor="middle" fontSize="13" fill="var(--accent)" opacity="0.65" fontFamily="var(--font-geist-sans), sans-serif" letterSpacing=".08em">SKIPPER</text>
+ <text x="448" y="83" textAnchor="middle" fontSize="13" fill="var(--accent)" fontWeight="500" fontFamily="var(--font-geist-sans), sans-serif">{skipper ? shortName(skipper.crew_name) : '—'}</text>
  </g>
  </svg>
  </div>
@@ -1525,7 +1525,7 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  <select
  value={status?.status ?? 'scheduled'} disabled={busy}
  onChange={e => onStatus({ status: e.target.value })}
- style={{ fontSize: '14px', fontWeight: 500, padding: '5px 9px', borderRadius: 0, background: 'rgba(0,0,0,.3)', color: s.text, border: '1px solid rgba(243,239,230,.2)', fontFamily: 'inherit', cursor: busy ? 'wait' : 'pointer' }}>
+ style={{ fontSize: '14px', fontWeight: 500, padding: '5px 9px', borderRadius: 0, background: 'rgba(0,0,0,.3)', color: s.text, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', fontFamily: 'inherit', cursor: busy ? 'wait' : 'pointer' }}>
  {['scheduled', 'boarding', 'out', 'returned', 'cancelled'].map(v => <option key={v} value={v}>{v}</option>)}
  </select>
  <TimeField label="Dep" value={status?.departure_time ?? ''} disabled={busy} onCommit={v => onStatus({ departure_time: v || null })} />
@@ -1533,7 +1533,7 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  <input
  defaultValue={status?.dive_site ?? ''} placeholder="dive site" disabled={busy}
  onBlur={e => { if (e.target.value !== (status?.dive_site ?? '')) onStatus({ dive_site: e.target.value || null }) }}
- style={{ fontSize: '14px', padding: '5px 9px', borderRadius: 0, background: 'rgba(0,0,0,.3)', color: s.text, border: '1px solid rgba(243,239,230,.2)', fontFamily: 'inherit', width: '130px' }} />
+ style={{ fontSize: '14px', padding: '5px 9px', borderRadius: 0, background: 'rgba(0,0,0,.3)', color: s.text, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', fontFamily: 'inherit', width: '130px' }} />
  </div>
 
  {/* ── Crew aus dem Schedule dieses Tages ── */}
@@ -1549,7 +1549,7 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  style={{
  fontSize: '14px', fontWeight: 500, padding: '3px 10px', borderRadius: 0,
  cursor: busy ? 'wait' : 'pointer', fontFamily: 'inherit',
- color: on ? '#090909' : s.muted,
+ color: on ? 'var(--on-accent)' : s.muted,
  background: on ? '#b7c4b0' : 'rgba(255,255,255,.05)',
  border: `1px solid ${on ? '#b7c4b0' : 'rgba(255,255,255,.12)'}`,
  }}>
@@ -1562,7 +1562,7 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  <div style={{ padding: '8px 20px 16px', display: 'flex', gap: '6px', flexWrap: 'wrap', alignItems: 'center' }}>
  <ChipLabel>Skipper</ChipLabel>
  {skipper
- ? <span style={{ fontSize: '14px', fontWeight: 500, color: '#f3efe6', padding: '3px 11px', borderRadius: 0, background: 'rgba(243,239,230,.13)', border: '1px solid rgba(243,239,230,.4)' }}> {skipper.crew_name}</span>
+ ? <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', padding: '3px 11px', borderRadius: 0, background: 'color-mix(in srgb, var(--text) 13%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 40%, transparent)' }}> {skipper.crew_name}</span>
  : <span style={{ fontSize: '14px', color: s.muted, opacity: .5, fontStyle: 'italic' }}>none assigned</span>}
  <ChipLabel>Crew</ChipLabel>
  {guides.length > 0
@@ -1580,19 +1580,19 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  style={{
  cursor: 'pointer', fontFamily: 'inherit',
  fontSize: '14px',
- color: seat.medicalFlag ? '#d4a07a' : ((seat.insuranceFlag && !seat.insurancePolicyOnFile) || seat.insuranceSource === 'none' || seat.danPolicyOpen || seat.refresherOpen || seat.minorOpen) ? '#c9b48a' : seat.insuranceFlag ? '#c9c2b6' : seat.checkedIn ? '#b7c4b0' : '#c9928c',
+ color: seat.medicalFlag ? '#d4a07a' : ((seat.insuranceFlag && !seat.insurancePolicyOnFile) || seat.insuranceSource === 'none' || seat.danPolicyOpen || seat.refresherOpen || seat.minorOpen) ? '#c9b48a' : seat.insuranceFlag ? 'var(--muted)' : seat.checkedIn ? '#b7c4b0' : '#c9928c',
  padding: '3px 10px', borderRadius: 0,
- background: 'rgba(243,239,230,.06)',
+ background: 'color-mix(in srgb, var(--text) 6%, transparent)',
  border: `1px solid ${seat.medicalFlag ? 'rgba(212,160,122,.35)' : ((seat.insuranceFlag && !seat.insurancePolicyOnFile) || seat.insuranceSource === 'none' || seat.danPolicyOpen || seat.refresherOpen || seat.minorOpen) ? 'rgba(201,180,138,.4)' : seat.insuranceFlag ? 'rgba(201,194,182,.35)' : seat.checkedIn ? 'rgba(183,196,176,.3)' : 'rgba(201,146,140,.3)'}`,
  }}>
  {seat.checkedIn ? 'In' : 'Due'} {shortName(seat.name)}
- {seat.bookingStatus === 'pending' && <span title="Booking not paid yet (pending)" style={{ marginLeft: '5px', fontSize: '14px', fontWeight: 500, color: '#000', background: '#c9b48a', borderRadius: 0, padding: '0 4px' }}>UNPAID</span>}
- {seat.bookingStatus === 'no_show' && <span title="Marked as no-show" style={{ marginLeft: '5px', fontSize: '14px', fontWeight: 500, color: '#f3efe6', background: '#8a8f99', borderRadius: 0, padding: '0 4px' }}>NO-SHOW</span>}
- {seat.placeholder && <span title="Seat reserved, guest details not entered yet" style={{ marginLeft: '5px', fontSize: '14px', color: '#c9c2b6' }}>(reserved)</span>}
+ {seat.bookingStatus === 'pending' && <span title="Booking not paid yet (pending)" style={{ marginLeft: '5px', fontSize: '14px', fontWeight: 500, color: 'var(--on-accent)', background: '#c9b48a', borderRadius: 0, padding: '0 4px' }}>UNPAID</span>}
+ {seat.bookingStatus === 'no_show' && <span title="Marked as no-show" style={{ marginLeft: '5px', fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: '#8a8f99', borderRadius: 0, padding: '0 4px' }}>NO-SHOW</span>}
+ {seat.placeholder && <span title="Seat reserved, guest details not entered yet" style={{ marginLeft: '5px', fontSize: '14px', color: 'var(--muted)' }}>(reserved)</span>}
  {/* Versicherung: = Nachweis noch zu sichten, = gar keine.
  Beides muss der Empfang sehen, bevor der Gast an Bord geht. */}
  {seat.insuranceSource === 'none' ? <span title="No insurance declared" style={{ marginLeft: '4px', color: '#c9928c' }}>No cover</span>
- : seat.insuranceFlag ? <span title={seat.insurancePolicyOnFile ? 'Own policy on file — look at proof' : 'Insurance proof to check — no policy number yet'} style={{ marginLeft: '4px', color: seat.insurancePolicyOnFile ? '#c9c2b6' : '#c9b48a' }}>Proof</span>
+ : seat.insuranceFlag ? <span title={seat.insurancePolicyOnFile ? 'Own policy on file — look at proof' : 'Insurance proof to check — no policy number yet'} style={{ marginLeft: '4px', color: seat.insurancePolicyOnFile ? 'var(--muted)' : '#c9b48a' }}>Proof</span>
  : seat.insuranceSource === 'azd_day' ? <span title={seat.danPolicyOpen ? 'DAN day cover bought with us — DAN policy number still to be entered' : 'DAN day cover bought with us — policy number recorded'} style={{ marginLeft: '4px', color: seat.danPolicyOpen ? '#c9b48a' : '#b7c4b0' }}>D</span>
  : seat.insuranceSource === 'ssi' ? <span title="SSI insurance included in the course — not DAN" style={{ marginLeft: '4px', color: '#b7c4b0' }}>S</span>
  : null}
@@ -1616,18 +1616,18 @@ function TimeField({ label, value, disabled, onCommit }: {
 }) {
  return (
  <label style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
- <span style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c9c2b6', opacity: .6 }}>{label}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--muted)', opacity: .6 }}>{label}</span>
  <input
  type="time" defaultValue={value ? value.slice(0, 5) : ''} disabled={disabled}
  onBlur={e => { if (e.target.value !== value.slice(0, 5)) onCommit(e.target.value) }}
- style={{ fontSize: '14px', padding: '4px 7px', borderRadius: 0, background: 'rgba(0,0,0,.3)', color: s.text, border: '1px solid rgba(243,239,230,.2)', fontFamily: 'inherit', colorScheme: 'dark' }} />
+ style={{ fontSize: '14px', padding: '4px 7px', borderRadius: 0, background: 'rgba(0,0,0,.3)', color: s.text, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', fontFamily: 'inherit', colorScheme: 'dark' }} />
  </label>
  )
 }
 
 function ChipLabel({ children }: { children: React.ReactNode }) {
  return (
- <span style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c9c2b6', opacity: 0.6, alignSelf: 'center', whiteSpace: 'nowrap', padding: '0 4px' }}>{children}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--muted)', opacity: 0.6, alignSelf: 'center', whiteSpace: 'nowrap', padding: '0 4px' }}>{children}</span>
  )
 }
 

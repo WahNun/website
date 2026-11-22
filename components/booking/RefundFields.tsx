@@ -12,7 +12,7 @@ import { CANCEL_REASONS, REFUND_REASONS, composeReason, payoutNeeded, reasonComp
  */
 
 const lbl: React.CSSProperties = { fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, display: 'block', marginBottom: '4px' }
-const inp: React.CSSProperties = { width: '100%', boxSizing: 'border-box', background: '#000', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, color: s.text, fontSize: '14px', padding: '7px 10px', fontFamily: s.font, outline: 'none', colorScheme: 'dark' }
+const inp: React.CSSProperties = { width: '100%', boxSizing: 'border-box', background: 'var(--bg)', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, color: s.text, fontSize: '14px', padding: '7px 10px', fontFamily: s.font, outline: 'none', colorScheme: 'dark' }
 
 export function ReasonField({ kind, choice, detail, onChoice, onDetail, placeholder }: {
  kind: 'cancel' | 'refund'

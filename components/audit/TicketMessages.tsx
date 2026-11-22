@@ -138,14 +138,14 @@ export default function TicketMessages({
  width: '92%',
  padding: '10px 14px 8px',
  borderRadius: isOut ? '12px 12px 3px 12px' : '12px 12px 12px 3px',
- background: isOut ? 'rgba(243,239,230,.07)' : 'rgba(212,160,122,.07)',
- border: `1px solid ${isOut ? 'rgba(243,239,230,.18)' : 'rgba(212,160,122,.18)'}`,
+ background: isOut ? 'color-mix(in srgb, var(--text) 7%, transparent)' : 'rgba(212,160,122,.07)',
+ border: `1px solid ${isOut ? 'color-mix(in srgb, var(--text) 18%, transparent)' : 'rgba(212,160,122,.18)'}`,
  }}>
  {/* Sender + time */}
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '7px', gap: '8px' }}>
  <span style={{
  fontSize: '14px', fontWeight: 500,
- color: isOut ? 'rgba(243,239,230,.75)' : 'rgba(212,160,122,.75)',
+ color: isOut ? 'color-mix(in srgb, var(--text) 75%, transparent)' : 'rgba(212,160,122,.75)',
  textTransform: 'uppercase', letterSpacing: '.06em',
  }}>
  {isOut ? '' : ''} {senderLabel}
@@ -158,7 +158,7 @@ export default function TicketMessages({
  {/* Body */}
  <div style={{
  fontSize: '14px',
- color: 'rgba(243,239,230,.92)',
+ color: 'color-mix(in srgb, var(--text) 92%, transparent)',
  lineHeight: 1.65,
  whiteSpace: 'pre-wrap',
  wordBreak: 'break-word',
@@ -172,7 +172,7 @@ export default function TicketMessages({
  onClick={() => toggleExpand(msg.id)}
  style={{
  marginTop: '7px', background: 'none', border: 'none', cursor: 'pointer',
- fontSize: '14px', color: isOut ? 'rgba(243,239,230,.55)' : 'rgba(212,160,122,.55)',
+ fontSize: '14px', color: isOut ? 'color-mix(in srgb, var(--text) 55%, transparent)' : 'rgba(212,160,122,.55)',
  padding: '0', fontFamily: 'inherit', textDecoration: 'underline',
  }}
  >
@@ -185,9 +185,9 @@ export default function TicketMessages({
  <div style={{ marginTop: '8px', display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
  {msg.attachments.map((a, i) => (
  <a key={i} href={a.url} target="_blank" rel="noreferrer" style={{
- fontSize: '14px', color: '#f3efe6', textDecoration: 'none',
+ fontSize: '14px', color: 'var(--text)', textDecoration: 'none',
  padding: '3px 8px', borderRadius: 0,
- background: 'rgba(243,239,230,.08)', border: '1px solid rgba(243,239,230,.2)',
+ background: 'color-mix(in srgb, var(--text) 8%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)',
  }}>
  {a.name}
  </a>
