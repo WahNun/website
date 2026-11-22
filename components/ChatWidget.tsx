@@ -458,7 +458,7 @@ export default function ChatWidget() {
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: textColor }}>Azores Diving Support Bot</div>
  <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
- <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#b7c4b0', display: 'inline-block', boxShadow: 'none' }} />
+ <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--text)', display: 'inline-block', boxShadow: 'none' }} />
  <span style={{ fontSize: '14px', color: mutedColor }}>Online · AI Assistant</span>
  </div>
  </div>
@@ -499,7 +499,7 @@ export default function ChatWidget() {
  placeholder="WhatsApp number (e.g. +49 170…) *"
  type="tel"
  inputMode="tel"
- style={{ ...inputBaseStyle, border: '1px solid rgba(183,196,176,.35)', fontSize: '14px', padding: '10px 12px' }}
+ style={{ ...inputBaseStyle, border: '1px solid var(--line)', fontSize: '14px', padding: '10px 12px' }}
  onKeyDown={e => e.key === 'Enter' && submitLead()}
  />
  <input
@@ -539,15 +539,15 @@ export default function ChatWidget() {
  {msgs.map((msg, i) => (
  <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: msg.role === 'user' ? 'flex-end' : 'flex-start' }}>
  {msg.role === 'team' && (
- <div style={{ fontSize: '14px', fontWeight: 500, color: '#c9b48a', marginBottom: '3px', letterSpacing: '.05em' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', marginBottom: '3px', letterSpacing: '.05em' }}>
  {msg.sender || 'AZD Team'}
  </div>
  )}
  <div style={{
  maxWidth: '82%', padding: '9px 13px',
  borderRadius: msg.role === 'user' ? '14px 14px 3px 14px' : '14px 14px 14px 3px',
- background: msg.role === 'user' ? 'color-mix(in srgb, var(--text) 18%, transparent)' : msg.role === 'team' ? 'rgba(201,180,138,.12)' : 'rgba(255,255,255,.07)',
- border: msg.role === 'team' ? '1px solid rgba(201,180,138,.25)' : 'none',
+ background: msg.role === 'user' ? 'color-mix(in srgb, var(--text) 18%, transparent)' : msg.role === 'team' ? 'var(--text)' : 'rgba(255,255,255,.07)',
+ border: msg.role === 'team' ? '1px solid var(--line)' : 'none',
  fontSize: '14px', color: textColor, lineHeight: 1.55,
  }}>
  {msg.role === 'user' ? linkify(msg.text) : renderRich(msg.text)}

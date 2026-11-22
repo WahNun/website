@@ -142,9 +142,9 @@ const c = {
  text: 'var(--text)',
  muted: 'var(--muted)',
  sub: 'var(--muted)',
- success: '#b7c4b0',
- warning: '#d4a07a',
- error: '#c9928c',
+ success: 'var(--text)',
+ warning: 'var(--text)',
+ error: 'var(--text)',
  font: `var(--font-geist-sans), sans-serif`,
 }
 
@@ -407,8 +407,8 @@ function GuestProgress({ slots, currentSlot }: { slots: SlotInfo[]; currentSlot:
  const done = slot.checkin_completed_at !== null
  const invited = !done && Boolean(slot.invite_sent_at)
  const isCurrent = i === currentSlot
- const bg = done ? 'rgba(183,196,176,.12)' : invited ? 'color-mix(in srgb, var(--text) 6%, transparent)' : isCurrent ? c.accentDim : 'rgba(255,255,255,.04)'
- const border = done ? 'rgba(183,196,176,.3)' : invited ? c.accentBorder : isCurrent ? c.accentBorder : 'rgba(255,255,255,.08)'
+ const bg = done ? 'var(--text)' : invited ? 'color-mix(in srgb, var(--text) 6%, transparent)' : isCurrent ? c.accentDim : 'rgba(255,255,255,.04)'
+ const border = done ? 'var(--line)' : invited ? c.accentBorder : isCurrent ? c.accentBorder : 'rgba(255,255,255,.08)'
  const color = done ? c.success : invited ? c.muted : isCurrent ? c.accent : c.muted
  return (
  <div key={i} style={{
@@ -1132,7 +1132,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  style={{
  ...inputStyle,
  opacity: sent ? 0.6 : 1,
- borderColor: sent ? 'rgba(183,196,176,.4)' : failed ? 'rgba(201,146,140,.4)' : undefined,
+ borderColor: sent ? 'var(--text)' : failed ? 'var(--text)' : undefined,
  }}
  inputMode="email"
  autoComplete="email"
@@ -1156,7 +1156,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
 
  {/* Globaler Fehler (Netzwerk o.ä.) */}
  {inviteResults?.some(r => r.slot_index < 0) && (
- <div style={{ background: 'rgba(201,146,140,.08)', border: '1px solid rgba(201,146,140,.2)', borderRadius: 0, padding: '10px 14px', marginBottom: '16px', fontSize: '14px', color: c.error }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '10px 14px', marginBottom: '16px', fontSize: '14px', color: c.error }}>
  {inviteResults.find(r => r.slot_index < 0)?.error}
  </div>
  )}
@@ -1259,7 +1259,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  {(tokenData.group_others ?? []).length > 0 && <GroupOthersCard others={tokenData.group_others ?? []} />}
 
  {medicalFlagged && (
- <div style={{ background: 'rgba(212,160,122,.08)', border: '1px solid rgba(212,160,122,.2)', borderRadius: 0, padding: '12px 16px', marginBottom: '20px', textAlign: 'left' }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '12px 16px', marginBottom: '20px', textAlign: 'left' }}>
  <div style={{ fontSize: '14px', color: c.warning, fontWeight: 500, marginBottom: '4px' }}>Medical follow-up</div>
  <div style={{ fontSize: '14px', color: c.muted, lineHeight: 1.5 }}>Our team will contact you before your activity to discuss your health declaration.</div>
  </div>
@@ -1389,12 +1389,12 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <Card>
  <SectionTitle>Personal Details</SectionTitle>
  {welcomeBack && (
- <div style={{ background: 'rgba(183,196,176,.08)', border: '1px solid rgba(183,196,176,.2)', borderRadius: 0, padding: '10px 14px', marginBottom: '20px', fontSize: '14px', color: c.success }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '10px 14px', marginBottom: '20px', fontSize: '14px', color: c.success }}>
  Welcome back! We&apos;ve pre-filled your details.
  </div>
  )}
  {lookupError && (
- <div style={{ background: 'rgba(201,146,140,.08)', border: '1px solid rgba(201,146,140,.2)', borderRadius: 0, padding: '10px 14px', marginBottom: '20px', fontSize: '14px', color: c.error }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '10px 14px', marginBottom: '20px', fontSize: '14px', color: c.error }}>
  Could not load your saved details — please fill in the form manually. ({lookupError})
  </div>
  )}
@@ -1508,8 +1508,8 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <input type="date" value={form.dob} min="1900-01-01" max={new Date().toISOString().slice(0, 10)}
  onChange={e => { touchedRef.current.add('dob'); setDobBad(e.target.validity.badInput); setForm(f => ({ ...f, dob: e.target.value })) }}
  onBlur={e => setDobBad(e.target.validity.badInput || e.target.validity.rangeUnderflow || e.target.validity.rangeOverflow)}
- style={{ ...inputStyle, colorScheme: 'dark', ...(dobBad ? { borderColor: '#c9928c' } : {}) }} />
- {dobBad && <div style={{ marginTop: '6px', fontSize: '14px', color: '#c9928c' }}>This date does not exist or is out of range (e.g. 29 February only exists in leap years). Please check it.</div>}
+ style={{ ...inputStyle, colorScheme: 'dark', ...(dobBad ? { borderColor: 'var(--text)' } : {}) }} />
+ {dobBad && <div style={{ marginTop: '6px', fontSize: '14px', color: 'var(--text)' }}>This date does not exist or is out of range (e.g. 29 February only exists in leap years). Please check it.</div>}
  </Field>
  <Field label="Nationality *">
  <select
@@ -1582,8 +1582,8 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  </div>
 
  {isMinorGuest && (
- <div style={{ marginTop: '24px', background: 'rgba(251,191,36,.06)', border: '1px solid rgba(251,191,36,.3)', borderRadius: 0, padding: '20px' }}>
- <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c9b48a', marginBottom: '16px' }}>
+ <div style={{ marginTop: '24px', background: 'color-mix(in srgb, var(--text) 8%, transparent)', border: '1px solid var(--line)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '16px' }}>
  Parental / Guardian Consent
  </div>
  <p style={{ fontSize: '14px', color: c.muted, lineHeight: 1.6, marginBottom: '16px' }}>
@@ -1616,7 +1616,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  type="checkbox"
  checked={form.guardian_consent}
  onChange={e => setForm(f => ({ ...f, guardian_consent: e.target.checked }))}
- style={{ marginTop: '2px', accentColor: '#c9b48a', width: '16px', height: '16px', flexShrink: 0 }}
+ style={{ marginTop: '2px', accentColor: 'var(--text)', width: '16px', height: '16px', flexShrink: 0 }}
  />
  <span style={{ fontSize: '14px', color: c.text, lineHeight: 1.6 }}>
  {GUARDIAN_CONSENT_TEXT}
@@ -1666,7 +1666,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  {/* Main question row */}
  <div style={{
  background: 'rgba(255,255,255,.02)',
- border: `1px solid ${isYes ? 'rgba(212,160,122,.25)' : 'rgba(255,255,255,.07)'}`,
+ border: `1px solid ${isYes ? 'var(--line)' : 'rgba(255,255,255,.07)'}`,
  borderRadius: isYes && box ? '10px 10px 0 0' : '10px',
  padding: '14px 16px',
  }}>
@@ -1686,8 +1686,8 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  onClick={() => handleMainQuestion(q.key, isYesBtn, q.boxKey)}
  style={{
  flex: 1, padding: '8px', borderRadius: 0,
- border: `1px solid ${selected ? (isYesBtn ? 'rgba(212,160,122,.5)' : c.accentBorder) : 'rgba(255,255,255,.1)'}`,
- background: selected ? (isYesBtn ? 'rgba(212,160,122,.12)' : c.accentDim) : 'transparent',
+ border: `1px solid ${selected ? (isYesBtn ? 'var(--line)' : c.accentBorder) : 'rgba(255,255,255,.1)'}`,
+ background: selected ? (isYesBtn ? 'transparent' : c.accentDim) : 'transparent',
  color: selected ? (isYesBtn ? c.warning : c.accent) : c.muted,
  fontWeight: 500, fontSize: '14px',
  cursor: 'pointer', fontFamily: c.font,
@@ -1701,8 +1701,8 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  {/* Box questions — appear directly below when main question is Yes */}
  {isYes && box && (
  <div style={{
- background: 'rgba(212,160,122,.03)',
- border: '1px solid rgba(212,160,122,.2)',
+ background: 'transparent',
+ border: '1px solid var(--line)',
  borderTop: 'none',
  borderRadius: '0 0 10px 10px',
  padding: '14px 16px',
@@ -1716,8 +1716,8 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  const boxIsNo = medicalAnswers[item.key] === false
  return (
  <div key={item.key} style={{
- background: boxIsYes ? 'rgba(201,146,140,.05)' : 'rgba(255,255,255,.02)',
- border: `1px solid ${boxIsYes ? 'rgba(201,146,140,.3)' : 'rgba(255,255,255,.08)'}`,
+ background: boxIsYes ? 'transparent' : 'rgba(255,255,255,.02)',
+ border: `1px solid ${boxIsYes ? 'var(--line)' : 'rgba(255,255,255,.08)'}`,
  borderRadius: 0, padding: '10px 12px',
  }}>
  <div style={{ fontSize: '14px', color: c.text, lineHeight: 1.5, marginBottom: '8px' }}>
@@ -1733,8 +1733,8 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  onClick={() => handleBoxQuestion(item.key, isYesBtn)}
  style={{
  flex: 1, padding: '6px', borderRadius: 0,
- border: `1px solid ${selected ? (isYesBtn ? 'rgba(201,146,140,.5)' : c.accentBorder) : 'rgba(255,255,255,.1)'}`,
- background: selected ? (isYesBtn ? 'rgba(201,146,140,.12)' : c.accentDim) : 'transparent',
+ border: `1px solid ${selected ? (isYesBtn ? 'var(--line)' : c.accentBorder) : 'rgba(255,255,255,.1)'}`,
+ background: selected ? (isYesBtn ? 'transparent' : c.accentDim) : 'transparent',
  color: selected ? (isYesBtn ? c.error : c.accent) : c.muted,
  fontWeight: 500, fontSize: '14px',
  cursor: 'pointer', fontFamily: c.font,
@@ -1755,7 +1755,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  </div>
 
  {medicalFlagged && (
- <div style={{ background: 'rgba(212,160,122,.08)', border: '1px solid rgba(212,160,122,.2)', borderRadius: 0, padding: '12px 16px', marginTop: '20px', fontSize: '14px', color: c.warning, lineHeight: 1.5 }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '12px 16px', marginTop: '20px', fontSize: '14px', color: c.warning, lineHeight: 1.5 }}>
  Based on your answers, written medical clearance from a physician is required before this dive.
  Bring it with you — we will email you the details.
  {medicalAckAt
@@ -1929,7 +1929,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <SectionTitle>Diving Experience</SectionTitle>
 
  {isEntryCourse && (
- <div style={{ background: 'rgba(183,196,176,.08)', border: '1px solid rgba(183,196,176,.25)', borderRadius: 0, padding: '12px 14px', marginBottom: '16px', fontSize: '14px', color: '#b7c4b0', lineHeight: 1.55 }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '12px 14px', marginBottom: '16px', fontSize: '14px', color: 'var(--text)', lineHeight: 1.55 }}>
  No certificate required — this is your first course. Just tell us what you have done so far.
  </div>
  )}
@@ -2011,7 +2011,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: c.sub, marginBottom: '12px' }}>Dive Insurance</div>
 
  {dayInsuranceIncluded() ? (
- <div style={{ background: 'rgba(183,196,176,.08)', border: '1px solid rgba(183,196,176,.25)', borderRadius: 0, padding: '12px 14px', fontSize: '14px', color: '#b7c4b0', lineHeight: 1.55 }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '12px 14px', fontSize: '14px', color: 'var(--text)', lineHeight: 1.55 }}>
  {tokenData?.insurance_ssi_included ? 'SSI dive insurance is included in your course — nothing to do here.' : 'DAN day insurance is included in your booking — nothing to do here.'}
  </div>
  ) : (
@@ -2094,7 +2094,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  value={form.logged_dives}
  onChange={e => setForm(f => ({ ...f, logged_dives: e.target.value }))}
  placeholder="e.g. 42"
- style={{ ...inputStyle, ...(form.experience_level !== 'none' && form.logged_dives === '' ? { borderColor: 'rgba(201,146,140,.55)' } : {}) }}
+ style={{ ...inputStyle, ...(form.experience_level !== 'none' && form.logged_dives === '' ? { borderColor: 'var(--text)' } : {}) }}
  inputMode="numeric"
  min="0"
  />
@@ -2121,7 +2121,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  </div>
 
  {needsRefresher(form.last_dive_date) && (
- <div style={{ marginTop: '12px', background: 'rgba(255,165,0,.09)', border: '1px solid rgba(255,165,0,.28)', borderRadius: 0, padding: '12px 14px', fontSize: '14px', color: '#c9b48a', lineHeight: 1.6 }}>
+ <div style={{ marginTop: '12px', background: 'rgba(255,165,0,.09)', border: '1px solid rgba(255,165,0,.28)', borderRadius: 0, padding: '12px 14px', fontSize: '14px', color: 'var(--text)', lineHeight: 1.6 }}>
  It has been over a year since your last dive, so your first session with us is a
  Scuba Skills Update: a short pool-and-shallow-water session with an instructor to bring
  buoyancy, mask and regulator skills back to automatic. We ask this of every diver after
@@ -2133,7 +2133,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  {/* Zertifizierte Taucher: Anzahl Tauchgänge + letzter Tauchgang Pflicht (letzterer entfällt, wenn
  er schon bei der Buchung erfasst wurde). Einsteiger ohne Erfahrung: nicht nötig. */}
  {form.experience_level !== 'none' && !(form.logged_dives !== '' && (slotLastDive || form.last_dive_date)) && (
- <div style={{ marginTop: '12px', fontSize: '14px', color: '#ff9580' }}>
+ <div style={{ marginTop: '12px', fontSize: '14px', color: 'var(--text)' }}>
  Please enter your number of logged dives{slotLastDive ? '' : ' and the date of your last dive'} to continue.
  </div>
  )}
@@ -2141,7 +2141,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <NavButtons onBack={prevStep} onNext={nextStep} nextLabel="Continue "
  nextDisabled={(!isEntryCourse && form.experience_level !== 'none' && !(form.logged_dives !== '' && (slotLastDive || form.last_dive_date))) || !insuranceDecided} />
  {!insuranceDecided && (
- <div style={{ marginTop: '10px', fontSize: '14px', color: '#ffb3ab' }}>
+ <div style={{ marginTop: '10px', fontSize: '14px', color: 'var(--text)' }}>
  Enter your provider and policy number, choose to show it at the centre, or buy DAN day cover from us — diving without insurance is not possible.
  </div>
  )}
@@ -2363,7 +2363,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  </label>
 
  {submitError && (
- <div style={{ background: 'rgba(201,146,140,.08)', border: '1px solid rgba(201,146,140,.2)', borderRadius: 0, padding: '12px 14px', marginBottom: '20px', fontSize: '14px', color: c.error }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '12px 14px', marginBottom: '20px', fontSize: '14px', color: c.error }}>
  <div>{submitError}</div>
  {submitRef && (
  <div style={{ fontSize: '14px', color: c.muted, marginTop: '6px', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace' }}>
@@ -2443,7 +2443,7 @@ function MedicalAckDialog({ onConfirm, onCancel, medicalAnswers }: { onConfirm: 
  >
  <div style={{
  maxWidth: '520px', width: '100%', maxHeight: '88vh', overflowY: 'auto',
- background: 'var(--surface)', border: '1px solid rgba(212,160,122,.35)',
+ background: 'var(--surface)', border: '1px solid var(--line)',
  borderRadius: 0, padding: '26px 26px 22px',
  }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: c.warning, marginBottom: '10px' }}>
@@ -2469,7 +2469,7 @@ function MedicalAckDialog({ onConfirm, onCancel, medicalAnswers }: { onConfirm: 
  body, so the decision belongs to a physician, not to us and not to you.
  </div>
 
- <div style={{ background: 'rgba(212,160,122,.08)', border: '1px solid rgba(212,160,122,.22)', borderRadius: 0, padding: '14px 16px', marginBottom: '18px' }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '14px 16px', marginBottom: '18px' }}>
  <div style={{ fontSize: '14px', color: c.warning, fontWeight: 500, marginBottom: '8px' }}>What you need to bring</div>
  <div style={{ fontSize: '14px', color: 'var(--text)', lineHeight: 1.7 }}>
  A written statement from a physician confirming you are fit to dive, dated within the

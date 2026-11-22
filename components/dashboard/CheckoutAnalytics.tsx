@@ -109,7 +109,7 @@ export default function CheckoutAnalytics() {
  </select>
  )}
  {cohort ? (
- <span style={{ fontSize: '14px', color: '#c9b48a' }}> Bucket &quot;{cohort}&quot; — all sessions (test + real)</span>
+ <span style={{ fontSize: '14px', color: 'var(--text)' }}> Bucket &quot;{cohort}&quot; — all sessions (test + real)</span>
  ) : (
  <label style={{ fontSize: '14px', color: s.sub, display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}>
  <input type="checkbox" checked={includeTest} onChange={e => setIncludeTest(e.target.checked)} /> Include test sessions
@@ -120,7 +120,7 @@ export default function CheckoutAnalytics() {
  {clarityId && <a href={`https://clarity.microsoft.com/projects/view/${clarityId}/heatmaps`} target="_blank" rel="noreferrer" style={{ marginLeft: 'auto', fontSize: '14px', color: s.accent, textDecoration: 'underline' }}>Heatmaps & recordings in Clarity </a>}
  </div>
 
- {error && <div style={{ ...card, border: '1px solid rgba(201,146,140,.4)', background: 'rgba(201,146,140,.12)', color: '#c9928c', fontSize: '14px' }}>Could not load checkout analytics: {error}</div>}
+ {error && <div style={{ ...card, border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontSize: '14px' }}>Could not load checkout analytics: {error}</div>}
 
  {data && started === 0 && !error && <div style={{ ...card, color: s.sub, fontSize: '14px' }}>No checkout sessions in this range yet.</div>}
 
@@ -156,11 +156,11 @@ export default function CheckoutAnalytics() {
  <div key={f.step} onClick={() => setSelectedStep(active ? null : f.step)} style={{ display: 'grid', gridTemplateColumns: '180px 1fr 170px', gap: '10px', alignItems: 'center', padding: '6px 8px', borderRadius: 0, cursor: 'pointer', background: active ? 'color-mix(in srgb, var(--text) 8%, transparent)' : 'transparent' }}>
  <div style={{ fontSize: '14px', color: active ? s.accent : s.text, fontWeight: 500 }}>{f.step_index}. {f.label}</div>
  <div style={{ background: 'rgba(255,255,255,.05)', borderRadius: 0, height: '18px', overflow: 'hidden' }}>
- <div style={{ width: `${w}%`, height: '100%', background: f.step === 'payment_succeeded' ? '#b7c4b0' : s.accent, opacity: .85 }} />
+ <div style={{ width: `${w}%`, height: '100%', background: f.step === 'payment_succeeded' ? 'var(--text)' : s.accent, opacity: .85 }} />
  </div>
  <div style={{ fontSize: '14px', color: s.sub, textAlign: 'right' }}>
  <b style={{ color: s.text }}>{f.sessions}</b> · {pct(f.sessions, started)}
- {next && drop > 0 && <span style={{ color: '#c9928c', marginLeft: '6px' }}>−{drop} ({pct(drop, f.sessions)})</span>}
+ {next && drop > 0 && <span style={{ color: 'var(--text)', marginLeft: '6px' }}>−{drop} ({pct(drop, f.sessions)})</span>}
  </div>
  </div>
  )
@@ -206,13 +206,13 @@ export default function CheckoutAnalytics() {
  <div style={{ overflowX: 'auto' }}><table style={{ width: '100%', borderCollapse: 'collapse' }}><thead><tr><th style={th}>Paid at</th><th style={th}>Booking no.</th><th style={th}>Guest</th><th style={th}>Product</th><th style={th}>Guests</th><th style={th}>Device</th><th style={th}>Open Pay</th><th style={th}>Open Paid</th><th style={th}>Errors</th><th style={th}>Booking</th></tr></thead>
  <tbody>{data.converted.map(c => (
  <tr key={c.session_id}>
- <td style={td}>{c.paid_at ? fmtTs(c.paid_at) : '–'}{c.is_test && <span style={{ marginLeft: '6px', fontSize: '14px', color: '#c9b48a', fontWeight: 500 }}>TEST</span>}</td>
- <td style={{ ...td, fontFamily: 'var(--font-geist-mono), ui-monospace, monospace' }}>{c.booking_no ? <>#{c.booking_no}<button type="button" onClick={() => { navigator.clipboard?.writeText(c.booking_id ?? '').catch(() => {}) }} style={{ marginLeft: '6px', background: 'none', border: 'none', color: s.accent, cursor: 'pointer', fontSize: '14px', fontFamily: 'inherit' }}>copy</button></> : <span style={{ color: '#c9928c' }} title="Payment succeeded but no booking linked yet — webhook may still be running">not linked</span>}</td>
+ <td style={td}>{c.paid_at ? fmtTs(c.paid_at) : '–'}{c.is_test && <span style={{ marginLeft: '6px', fontSize: '14px', color: 'var(--text)', fontWeight: 500 }}>TEST</span>}</td>
+ <td style={{ ...td, fontFamily: 'var(--font-geist-mono), ui-monospace, monospace' }}>{c.booking_no ? <>#{c.booking_no}<button type="button" onClick={() => { navigator.clipboard?.writeText(c.booking_id ?? '').catch(() => {}) }} style={{ marginLeft: '6px', background: 'none', border: 'none', color: s.accent, cursor: 'pointer', fontSize: '14px', fontFamily: 'inherit' }}>copy</button></> : <span style={{ color: 'var(--text)' }} title="Payment succeeded but no booking linked yet — webhook may still be running">not linked</span>}</td>
  <td style={{ ...td, color: s.sub }}>{c.customer_email ?? '–'}</td>
  <td style={td}>{c.product_id ?? '–'}</td><td style={td}>{c.guests ?? '–'}</td><td style={td}>{c.device ?? '–'}</td>
  <td style={td}>{c.to_pay_s == null ? '–' : fmtMs(c.to_pay_s * 1000)}</td>
  <td style={td}>{c.to_convert_s == null ? '–' : fmtMs(c.to_convert_s * 1000)}</td>
- <td style={{ ...td, color: c.error_count > 0 ? '#c9928c' : s.text }}>{c.error_count}</td>
+ <td style={{ ...td, color: c.error_count > 0 ? 'var(--text)' : s.text }}>{c.error_count}</td>
  <td style={{ ...td, color: s.sub }}>{c.booking_status ?? '–'}{c.payment_state ? ` · ${c.payment_state}` : ''}</td>
  </tr>
  ))}</tbody></table></div>
@@ -225,9 +225,9 @@ export default function CheckoutAnalytics() {
  <div style={{ overflowX: 'auto' }}><table style={{ width: '100%', borderCollapse: 'collapse' }}><thead><tr><th style={th}>Last seen</th><th style={th}>Outcome</th><th style={th}>Device</th><th style={th}>Product</th><th style={th}>Guests</th><th style={th}>Furthest step</th><th style={th}>Blocker</th><th style={th}>Errors</th><th style={th}>On page</th><th style={th}>Session</th></tr></thead>
  <tbody>{data.recent.map(r => (
  <tr key={r.session_id}>
- <td style={td}>{fmtTs(r.last_seen)}{r.is_test && <span style={{ marginLeft: '6px', fontSize: '14px', color: '#c9b48a', fontWeight: 500 }}>TEST</span>}</td>
+ <td style={td}>{fmtTs(r.last_seen)}{r.is_test && <span style={{ marginLeft: '6px', fontSize: '14px', color: 'var(--text)', fontWeight: 500 }}>TEST</span>}</td>
  <td style={td}>{r.outcome}</td><td style={td}>{r.device ?? '–'}</td><td style={td}>{r.product_id ?? '–'}</td><td style={td}>{r.guests ?? '–'}</td>
- <td style={td}>{r.furthest_step ?? '–'}</td><td style={{ ...td, color: '#c9928c' }}>{r.blocker ?? '–'}</td><td style={td}>{r.error_count}</td><td style={td}>{fmtMs(r.ms_on_page)}</td>
+ <td style={td}>{r.furthest_step ?? '–'}</td><td style={{ ...td, color: 'var(--text)' }}>{r.blocker ?? '–'}</td><td style={td}>{r.error_count}</td><td style={td}>{fmtMs(r.ms_on_page)}</td>
  <td style={{ ...td, fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', fontSize: '14px', color: s.muted }} title="Clarity: filter recordings by custom tag telemetry_session = this value">{r.session_id.slice(0, 8)}…
  <button type="button" onClick={() => { navigator.clipboard?.writeText(r.session_id).catch(() => {}) }} style={{ marginLeft: '6px', background: 'none', border: 'none', color: s.accent, cursor: 'pointer', fontSize: '14px', fontFamily: 'inherit' }}>copy</button></td>
  </tr>

@@ -73,7 +73,7 @@ export function FileRow({ k, v, warn }: { k: string; v?: string | null; warn?: b
  return (
  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '14px', fontSize: '14px', padding: '3px 0', lineHeight: 1.6 }}>
  <span style={{ color: s.muted }}>{k}</span>
- <span style={{ color: v ? (warn ? '#c9b48a' : 'var(--accent)') : 'rgba(255,255,255,.25)', fontWeight: v ? 500 : 400, textAlign: 'right', wordBreak: 'break-word' }}>
+ <span style={{ color: v ? (warn ? 'var(--text)' : 'var(--accent)') : 'rgba(255,255,255,.25)', fontWeight: v ? 500 : 400, textAlign: 'right', wordBreak: 'break-word' }}>
  {v || '—'}
  </span>
  </div>
@@ -135,9 +135,9 @@ export function GuestFile({ diver, bookingId, onSaved, booked }: { diver: GuestF
  <F k="Date of birth" name="dob" type="date" /><F k="Nationality" name="nationality" /><F k="Country" name="country_of_residence" placeholder="country of residence" />
  <F k="Phone prefix" name="phone_prefix" placeholder="+351" /><F k="Phone" name="phone_number" />
  <div style={{ display: 'flex', gap: '8px', marginTop: '6px', alignItems: 'center', flexWrap: 'wrap' }}>
- <button type="button" disabled={saving} onClick={() => void save()} style={{ padding: '5px 12px', borderRadius: 0, border: '1px solid rgba(183,196,176,.4)', background: 'rgba(183,196,176,.12)', color: '#b7c4b0', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>{saving ? 'Saving…' : 'Save'}</button>
+ <button type="button" disabled={saving} onClick={() => void save()} style={{ padding: '5px 12px', borderRadius: 0, border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>{saving ? 'Saving…' : 'Save'}</button>
  <button type="button" disabled={saving} onClick={() => { setEdit(false); setMsg(null) }} style={{ padding: '5px 12px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>Cancel</button>
- {msg && <span style={{ fontSize: '14px', color: msg.startsWith('') ? '#c9928c' : '#b7c4b0' }}>{msg}</span>}
+ {msg && <span style={{ fontSize: '14px', color: msg.startsWith('') ? 'var(--text)' : 'var(--text)' }}>{msg}</span>}
  </div>
  </div>
  ) : (
@@ -148,11 +148,11 @@ export function GuestFile({ diver, bookingId, onSaved, booked }: { diver: GuestF
  <FileRow k="Nationality" v={cu.nationality} />
  {cu.gender ? <FileRow k="Gender" v={cu.gender} /> : null}
  {cu.country_of_residence ? <FileRow k="Country" v={cu.country_of_residence} /> : null}
- {!cu.dob && <div style={{ fontSize: '14px', color: '#c9b48a', marginTop: '2px' }}> No date of birth — guest stays out of the DAN export until it is filled in.</div>}
+ {!cu.dob && <div style={{ fontSize: '14px', color: 'var(--text)', marginTop: '2px' }}> No date of birth — guest stays out of the DAN export until it is filled in.</div>}
  {customerId && (
  <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginTop: '6px', flexWrap: 'wrap' }}>
  <button type="button" onClick={() => { setMsg(null); setEdit(true) }} style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', color: s.accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}> Edit personal details</button>
- {msg && <span style={{ fontSize: '14px', color: msg.startsWith('') ? '#c9928c' : '#b7c4b0' }}>{msg}</span>}
+ {msg && <span style={{ fontSize: '14px', color: msg.startsWith('') ? 'var(--text)' : 'var(--text)' }}>{msg}</span>}
  </div>
  )}
  </>

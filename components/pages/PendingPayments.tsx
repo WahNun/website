@@ -90,7 +90,7 @@ export default function PendingPayments({ sandbox, onCount, onOpenBooking }: { s
  if (!loading && !err && rows.length === 0 && !msg) return null
  return (
  <div style={{ marginBottom: '28px' }}>
- <div style={{ fontSize: '14px', fontWeight: 500, color: '#d4a07a', marginBottom: '4px' }}>Payments to confirm on the account{rows.length ? ` (${rows.length})` : ''}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', marginBottom: '4px' }}>Payments to confirm on the account{rows.length ? ` (${rows.length})` : ''}</div>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '12px', lineHeight: 1.55 }}>
  Recorded by the team as <b style={{ color: s.text }}>pending</b> (transfer, Revolut, MB WAY). Check the bank statement, then confirm — the booking counts the money as paid and the guest gets the payment email.
  </div>
@@ -99,11 +99,11 @@ export default function PendingPayments({ sandbox, onCount, onOpenBooking }: { s
  <CsvButton fileName={csvFileName('payments-to-confirm', null, Boolean(sandbox))} table={pendingPaymentsTable(rows)} />
  </div>
  )}
- {msg && <div style={{ fontSize: '14px', marginBottom: '10px', color: msg.startsWith('') ? '#b7c4b0' : '#c9928c' }}>{msg}</div>}
+ {msg && <div style={{ fontSize: '14px', marginBottom: '10px', color: msg.startsWith('') ? 'var(--text)' : 'var(--text)' }}>{msg}</div>}
  {loading ? <div style={{ fontSize: '14px', color: s.muted }}>Loading…</div>
- : err ? <div style={{ fontSize: '14px', color: '#c9928c' }}> Could not load pending payments: {err}</div>
+ : err ? <div style={{ fontSize: '14px', color: 'var(--text)' }}> Could not load pending payments: {err}</div>
  : rows.map(r => (
- <div key={r.id} style={{ background: 'rgba(212,160,122,.04)', border: '1px solid rgba(212,160,122,.3)', borderRadius: 0, padding: '14px 18px', marginBottom: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+ <div key={r.id} style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '14px 18px', marginBottom: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', flexWrap: 'wrap' }}>
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{r.customer_name ?? '—'}</div>
@@ -118,11 +118,11 @@ export default function PendingPayments({ sandbox, onCount, onOpenBooking }: { s
  {r.due_at ? ` · due ${new Date(r.due_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' })}` : ''}
  </div>
  </div>
- <div style={{ fontSize: '20px', fontWeight: 500, color: '#d4a07a' }}>{eur(r.amount)}</div>
+ <div style={{ fontSize: '20px', fontWeight: 500, color: 'var(--text)' }}>{eur(r.amount)}</div>
  </div>
- {r.notes && <div style={{ fontSize: '14px', color: s.text, padding: '8px 10px', background: 'rgba(255,255,255,.03)', borderRadius: 0, borderLeft: '3px solid #d4a07a' }}>{r.notes}</div>}
+ {r.notes && <div style={{ fontSize: '14px', color: s.text, padding: '8px 10px', background: 'rgba(255,255,255,.03)', borderRadius: 0, borderLeft: '3px solid var(--line)' }}>{r.notes}</div>}
  <button type="button" disabled={busy === r.id} onClick={() => received(r)}
- style={{ padding: '10px', borderRadius: 0, border: 'none', background: 'rgba(183,196,176,.85)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: busy === r.id ? .6 : 1 }}>
+ style={{ padding: '10px', borderRadius: 0, border: 'none', background: 'transparent', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: busy === r.id ? .6 : 1 }}>
  {busy === r.id ? 'Saving…' : ` Received on account — ${eur(r.amount)}`}
  </button>
  </div>

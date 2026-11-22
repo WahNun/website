@@ -14,7 +14,7 @@ type CourseDetail = {
 
 const COURSE_DETAIL: Record<string, CourseDetail> = {
  'basic-diver': {
- id: 'basic-diver', name: 'Basic Diver', price: '€139', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/try-scuba-hero.webp', accentColor: '#b7c4b0',
+ id: 'basic-diver', name: 'Basic Diver', price: '€139', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/try-scuba-hero.webp', accentColor: 'var(--text)',
  tagline: {
  EN: 'Your first real dive. Your first SSI certification.',
  PT: 'O seu primeiro mergulho real. A sua primeira certificação SSI.',
@@ -68,7 +68,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  testimonial: { quote: 'We were with this dive outfit for 3 days and they are awesome. Very responsive on WhatsApp where we got to ask many questions before booking. Staff is super friendly. Amazing!', author: 'Aylin M.', source: 'Google Reviews' },
  },
  'scuba-diver': {
- id: 'scuba-diver', name: 'Scuba Diver', price: '€320', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/scuba-diver.webp', accentColor: '#b7c4b0',
+ id: 'scuba-diver', name: 'Scuba Diver', price: '€320', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/scuba-diver.webp', accentColor: 'var(--text)',
  tagline: {
  EN: 'Certified in 3 days. Dive to 12 m.',
  PT: 'Certificado em 3 dias. Mergulhe até 12 m.',
@@ -122,7 +122,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  testimonial: { quote: 'Exceptional dive centre. Knowledgeable and professional staff. Ensured our safety and comfort throughout. Could not recommend more.', author: 'Harry H.', source: 'TripAdvisor' },
  },
  'upgrade-owd': {
- id: 'upgrade-owd', name: 'Upgrade OWD', price: '€300', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/upgrade-owd.webp', accentColor: '#b7c4b0',
+ id: 'upgrade-owd', name: 'Upgrade OWD', price: '€300', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/upgrade-owd.webp', accentColor: 'var(--text)',
  tagline: {
  EN: "You're halfway there. Let's finish it.",
  PT: 'Já está a meio caminho. Vamos terminar.',
@@ -174,7 +174,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  certifies: { EN: 'SSI Open Water Diver', PT: 'SSI Open Water Diver', DE: 'SSI Open Water Diver', ES: 'SSI Open Water Diver' },
  },
  'open-water-diver': {
- id: 'open-water-diver', name: 'Open Water Diver', price: '€460', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/owd-hero.webp', accentColor: '#b7c4b0',
+ id: 'open-water-diver', name: 'Open Water Diver', price: '€460', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/owd-hero.webp', accentColor: 'var(--text)',
  tagline: {
  EN: 'The cert the whole world recognises. Yours in four days.',
  PT: 'A certificação que o mundo inteiro reconhece. Sua em quatro dias.',
@@ -228,7 +228,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  testimonial: { quote: 'I had the pleasure of completing my OWD course under the guidance of an excellent instructor, Paulo. He combines professionalism with incredible calm and a great sense of humor. The course was a perfect mix of learning and pure joy while exploring the volcanic reef. It definitely was not my last dive with this amazing team!', author: 'Agnieszka T.', source: 'Google Reviews' },
  },
  'advanced-open-water-diver': {
- id: 'advanced-open-water-diver', name: 'Advanced Open Water Diver', price: '€380', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/aowd.webp', accentColor: '#b7c4b0',
+ id: 'advanced-open-water-diver', name: 'Advanced Open Water Diver', price: '€380', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/aowd.webp', accentColor: 'var(--text)',
  tagline: {
  EN: 'Go deeper. Navigate. Push your limits.',
  PT: 'Vá mais fundo. Navegue. Supere os seus limites.',
@@ -281,7 +281,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  testimonial: { quote: 'Had nice dives, and good guides who are also enthusiastic and helpful. Paul, Martha and especially Carolina is doing very well!! Nice diving school.', author: 'D.K.', source: 'TripAdvisor' },
  },
  'skills-update': {
- id: 'skills-update', name: 'Scuba Skills Update', price: '€95', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/skills-update.webp', accentColor: '#b7c4b0',
+ id: 'skills-update', name: 'Scuba Skills Update', price: '€95', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/skills-update.webp', accentColor: 'var(--text)',
  tagline: {
  EN: "It's been a while. Let's shake the rust off.",
  PT: 'Já passou algum tempo. Vamos sacudir a ferrugem.',
@@ -659,7 +659,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  testimonial: { quote: 'The instructor was absolutely amazing and reassured me from the start. Everything was clearly explained before getting in the water and the whole team was really attentive and caring. I\'ve got my dive confidence back and will definitely be diving again in São Miguel.', author: 'Sanne F.', source: 'TripAdvisor' },
  },
  'offshore-prep': {
- id: 'offshore-prep', name: 'Offshore Prep', price: '€160', accentColor: '#c9b48a',
+ id: 'offshore-prep', name: 'Offshore Prep', price: '€160', accentColor: 'var(--text)',
  tagline: {
  EN: 'Train for the Formigas. Run it like a pro.',
  PT: 'Prepare-se para as Formigas. Execute como um profissional.',
@@ -1302,7 +1302,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  certifies: { EN: 'SSI Coral Identification Specialty', PT: 'SSI Coral Identification Specialty', DE: 'SSI Coral Identification Specialty', ES: 'SSI Coral Identification Specialty' },
  },
  'blue-oceans': {
- id: 'blue-oceans', name: 'Blue Oceans', price: '€150', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/blue-oceans.webp', accentColor: '#b7c4b0',
+ id: 'blue-oceans', name: 'Blue Oceans', price: '€150', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/blue-oceans.webp', accentColor: 'var(--text)',
  tagline: {
  EN: 'Dive with purpose. Protect what you love.',
  PT: 'Mergulhe com propósito. Proteja o que ama.',
@@ -1353,7 +1353,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  certifies: { EN: 'SSI Blue Oceans Specialty', PT: 'SSI Blue Oceans Specialty', DE: 'SSI Blue Oceans Specialty', ES: 'SSI Blue Oceans Specialty' },
  },
  'manta-ray-ecology': {
- id: 'manta-ray-ecology', name: 'Manta & Ray Ecology', price: '€150', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/manta-ray-ecology.webp', accentColor: '#b7c4b0',
+ id: 'manta-ray-ecology', name: 'Manta & Ray Ecology', price: '€150', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/manta-ray-ecology.webp', accentColor: 'var(--text)',
  tagline: {
  EN: 'Understand the flyers of the deep.',
  PT: 'Compreenda os voadores das profundezas.',
@@ -1403,7 +1403,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  certifies: { EN: 'SSI Manta & Ray Ecology Specialty', PT: 'SSI Manta & Ray Ecology Specialty', DE: 'SSI Manta & Ray Ecology Specialty', ES: 'SSI Manta & Ray Ecology Specialty' },
  },
  'marine-invertebrate-ecology': {
- id: 'marine-invertebrate-ecology', name: 'Marine Invertebrate Ecology', price: '€150', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/marine-invertebrate-ecology.webp', accentColor: '#b7c4b0',
+ id: 'marine-invertebrate-ecology', name: 'Marine Invertebrate Ecology', price: '€150', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/marine-invertebrate-ecology.webp', accentColor: 'var(--text)',
  tagline: {
  EN: 'Life without a spine — and a lot of personality.',
  PT: 'Vida sem coluna — e muita personalidade.',
@@ -1453,7 +1453,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  certifies: { EN: 'SSI Marine Invertebrate Ecology Specialty', PT: 'SSI Marine Invertebrate Ecology Specialty', DE: 'SSI Marine Invertebrate Ecology Specialty', ES: 'SSI Marine Invertebrate Ecology Specialty' },
  },
  'marine-mammal-ecology': {
- id: 'marine-mammal-ecology', name: 'Marine Mammal Ecology', price: '€150', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/marine-mammal-ecology.webp', accentColor: '#b7c4b0',
+ id: 'marine-mammal-ecology', name: 'Marine Mammal Ecology', price: '€150', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/marine-mammal-ecology.webp', accentColor: 'var(--text)',
  tagline: {
  EN: 'The Azores is one of the best places on Earth to study them.',
  PT: 'Os Açores são um dos melhores lugares do mundo para os estudar.',
@@ -1503,7 +1503,7 @@ const COURSE_DETAIL: Record<string, CourseDetail> = {
  certifies: { EN: 'SSI Marine Mammal Ecology Specialty', PT: 'SSI Marine Mammal Ecology Specialty', DE: 'SSI Marine Mammal Ecology Specialty', ES: 'SSI Marine Mammal Ecology Specialty' },
  },
  'nudibranch-ecology': {
- id: 'nudibranch-ecology', name: 'Nudibranch Ecology', price: '€150', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/nudibranch-ecology.webp', accentColor: '#b7c4b0',
+ id: 'nudibranch-ecology', name: 'Nudibranch Ecology', price: '€150', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/nudibranch-ecology.webp', accentColor: 'var(--text)',
  tagline: {
  EN: 'The most colourful animals in the ocean — and the hardest to find.',
  PT: 'Os animais mais coloridos do oceano — e os mais difíceis de encontrar.',
@@ -1835,9 +1835,9 @@ export function PageCourseDetail({ nav, slug, lang }: { nav: (p: string) => void
  {/* Right: sidebar */}
  <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
  {/* Requirements */}
- <div style={{ background: 'rgba(255,200,80,.07)', border: '1px solid rgba(255,200,80,.2)', borderRadius: 0, padding: '20px' }}>
- <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c9b48a', marginBottom: '12px' }}>{t('cd_requirements')}</div>
- <p style={{ fontSize: '14px', color: '#c9b48a', lineHeight: 1.6, margin: 0 }}>{d.prereqs[lang]}</p>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 8%, transparent)', border: '1px solid var(--line)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '12px' }}>{t('cd_requirements')}</div>
+ <p style={{ fontSize: '14px', color: 'var(--text)', lineHeight: 1.6, margin: 0 }}>{d.prereqs[lang]}</p>
  </div>
 
  {/* What's included */}

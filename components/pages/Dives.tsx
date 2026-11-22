@@ -66,9 +66,9 @@ export function PageDives({ nav, lang }: { nav: (p: string) => void; lang: Lang 
 
  {/* Pricing sidebar */}
  <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
- <div style={{ background: 'rgba(255,200,80,.07)', border: '1px solid rgba(255,200,80,.2)', borderRadius: 0, padding: '20px' }}>
- <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c9b48a', marginBottom: '12px' }}>{t('dives_requirements')}</div>
- <p style={{ fontSize: '14px', color: '#c9b48a', lineHeight: 1.6, margin: 0 }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 8%, transparent)', border: '1px solid var(--line)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '12px' }}>{t('dives_requirements')}</div>
+ <p style={{ fontSize: '14px', color: 'var(--text)', lineHeight: 1.6, margin: 0 }}>
  {t('dives_req_text')}
  </p>
  </div>

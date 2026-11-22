@@ -17,11 +17,11 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
  <div style={{ color: s.muted, marginBottom: '16px', fontSize: '14px' }}>
  <button type="button" onClick={() => nav('home')} style={{ color: s.accent, cursor: 'pointer', background: 'none', border: 'none', padding: 0, fontFamily: s.font }}>{t('bc_home')}</button> / {t('bc_basicdiver')}
  </div>
- <div style={{ color: '#b7c4b0', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', fontSize: '14px', marginBottom: '10px' }}>
+ <div style={{ color: 'var(--text)', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', fontSize: '14px', marginBottom: '10px' }}>
  {t('bd_hero_tag')}
  </div>
  <h1 style={{ fontSize: 'clamp(32px,5vw,56px)', fontWeight: 500, letterSpacing: '-.02em', marginBottom: '10px', lineHeight: 1.05 }}>
- Basic Diver<span style={{ color: '#b7c4b0' }}>.</span>
+ Basic Diver<span style={{ color: 'var(--text)' }}>.</span>
  </h1>
  <p style={{ fontSize: '19px', fontWeight: 500, color: 'var(--text)', margin: 0, maxWidth: '540px', lineHeight: 1.4 }}>
  {t('bd_hero_sub')}
@@ -52,7 +52,7 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
  </p>
 
  {/* What happens step by step */}
- <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: '#b7c4b0', marginBottom: '16px' }}>{t('bd_what_expect')}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '16px' }}>{t('bd_what_expect')}</div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '32px' }}>
  {([
  ['bd_step1_name', 'bd_step1_desc'],
@@ -63,7 +63,7 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
  ['bd_step6_name', 'bd_step6_desc'],
  ] as const).map(([stepKey, descKey], i) => (
  <div key={stepKey} style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
- <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(183,196,176,.15)', border: '1px solid rgba(183,196,176,.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: '14px', fontWeight: 500, color: '#b7c4b0' }}>{i + 1}</div>
+ <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'transparent', border: '1px solid var(--line)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: '14px', fontWeight: 500, color: 'var(--text)' }}>{i + 1}</div>
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text, marginBottom: '3px' }}>{t(stepKey)}</div>
  <div style={{ fontSize: '14px', color: s.muted, lineHeight: 1.5 }}>{t(descKey)}</div>
@@ -75,9 +75,9 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
 
  {/* Sidebar */}
  <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
- <div style={{ background: 'rgba(255,200,80,.07)', border: '1px solid rgba(255,200,80,.2)', borderRadius: 0, padding: '20px' }}>
- <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c9b48a', marginBottom: '12px' }}>{t('bd_requirements_title')}</div>
- <p style={{ fontSize: '14px', color: '#c9b48a', lineHeight: 1.6, margin: 0 }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 8%, transparent)', border: '1px solid var(--line)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '12px' }}>{t('bd_requirements_title')}</div>
+ <p style={{ fontSize: '14px', color: 'var(--text)', lineHeight: 1.6, margin: 0 }}>
  {t('bd_requirements_body')}
  </p>
  </div>
@@ -86,7 +86,7 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '12px' }}>{t('bd_included_title')}</div>
  {(['bd_incl1', 'bd_incl2', 'bd_incl3', 'bd_incl4', 'bd_incl5', 'bd_incl6'] as const).map(key => (
  <div key={key} style={{ display: 'flex', gap: '10px', marginBottom: '8px', alignItems: 'flex-start' }}>
- <span style={{ color: '#b7c4b0', fontSize: '14px', lineHeight: 1.4, flexShrink: 0 }}>—</span>
+ <span style={{ color: 'var(--text)', fontSize: '14px', lineHeight: 1.4, flexShrink: 0 }}>—</span>
  <span style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.45 }}>{t(key)}</span>
  </div>
  ))}

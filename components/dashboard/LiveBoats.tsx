@@ -114,9 +114,9 @@ type BookingRow = {
 
 const STATUS_META: Record<string, { label: string; color: string; bg: string }> = {
  scheduled: { label: ' SCHEDULED', color: 'var(--muted)', bg: 'rgba(201,194,182,.15)' },
- boarding: { label: ' BOARDING', color: '#c9b48a', bg: 'rgba(201,180,138,.15)' },
- out: { label: ' OUT', color: '#c9928c', bg: 'rgba(201,146,140,.15)' },
- returned: { label: ' DOCKED', color: '#b7c4b0', bg: 'rgba(183,196,176,.15)' },
+ boarding: { label: ' BOARDING', color: 'var(--text)', bg: 'var(--text)' },
+ out: { label: ' OUT', color: 'var(--text)', bg: 'var(--text)' },
+ returned: { label: ' DOCKED', color: 'var(--text)', bg: 'var(--text)' },
  cancelled: { label: ' CANCELLED', color: '#a39e94', bg: 'color-mix(in srgb, var(--text) 15%, transparent)' },
 }
 
@@ -457,16 +457,16 @@ export default function LiveBoats({
  <span aria-hidden="true" style={{ display: 'inline-block', transition: 'transform .6s', transform: refreshing ? 'rotate(360deg)' : 'none' }}></span>{refreshing ? 'Refreshing…' : 'Refresh'}
  </button>
  <div style={{ display: 'flex', gap: '10px', marginLeft: 'auto', fontSize: '14px', color: s.muted, flexWrap: 'wrap' }}>
- <Legend color="#b7c4b0" label="checked in" />
- <Legend color="#d4a07a" label="medical flag" glyph="!" />
- <Legend color="#c9928c" label="not checked in" />
+ <Legend color="var(--text)" label="checked in" />
+ <Legend color="var(--text)" label="medical flag" glyph="!" />
+ <Legend color="var(--text)" label="not checked in" />
  <Legend color="var(--text)" label="crew" />
  <Legend color="var(--muted)" label="policy on file, look at proof" glyph="" />
- <Legend color="#c9b48a" label="insurance proof to check" glyph="" />
- <Legend color="#c9928c" label="no insurance" glyph="" />
- <Legend color="#c9b48a" label="DAN no. missing" glyph="#" />
- <Legend color="#c9b48a" label="Refresher required" glyph="" />
- <Legend color="#c9b48a" label="under 18" glyph="18" />
+ <Legend color="var(--text)" label="insurance proof to check" glyph="" />
+ <Legend color="var(--text)" label="no insurance" glyph="" />
+ <Legend color="var(--text)" label="DAN no. missing" glyph="#" />
+ <Legend color="var(--text)" label="Refresher required" glyph="" />
+ <Legend color="var(--text)" label="under 18" glyph="18" />
  </div>
  </div>
  {!loaded ? (
@@ -516,20 +516,20 @@ export default function LiveBoats({
  const waitlist = boats.flatMap(b => seatsFor(b.id, view, true))
  if (waitlist.length === 0) return null
  return (
- <div style={{ border: '1px solid rgba(201,180,138,.3)', background: 'rgba(201,180,138,.05)', borderRadius: 0, padding: '16px 18px', alignSelf: 'start', gridColumn: '1 / -1' }}>
+ <div style={{ border: '1px solid var(--line)', background: 'var(--glass)', borderRadius: 0, padding: '16px 18px', alignSelf: 'start', gridColumn: '1 / -1' }}>
  <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '8px', marginBottom: '4px' }}>
- <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c9b48a' }}>Waiting list · {view === 'night' ? ' NIGHT' : view.toUpperCase()}</div>
- <div style={{ fontSize: '14px', fontWeight: 500, color: '#c9b48a' }}>{waitlist.length} unpaid</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)' }}>Waiting list · {view === 'night' ? ' NIGHT' : view.toUpperCase()}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)' }}>{waitlist.length} unpaid</div>
  </div>
  <div style={{ fontSize: '14px', color: s.muted, lineHeight: 1.5, marginBottom: '12px' }}>Not confirmed yet — a seat moves onto the boat as soon as the booking is paid (≥ 50 %).</div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
  {waitlist.map(w => (
  <button key={`${w.bookingId}-${w.slotIndex}`} type="button" onClick={() => setOpenSeat(w)}
- style={{ display: 'flex', alignItems: 'center', gap: '8px', textAlign: 'left', width: '100%', padding: '8px 10px', borderRadius: 0, cursor: 'pointer', fontFamily: s.font, background: 'rgba(255,255,255,.03)', border: '1px solid rgba(201,180,138,.25)', color: s.text }}>
+ style={{ display: 'flex', alignItems: 'center', gap: '8px', textAlign: 'left', width: '100%', padding: '8px 10px', borderRadius: 0, cursor: 'pointer', fontFamily: s.font, background: 'rgba(255,255,255,.03)', border: '1px solid var(--line)', color: s.text }}>
  <span style={{ fontSize: '14px', fontWeight: 500, flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{w.name}</span>
  <span style={{ fontSize: '14px', color: s.muted, whiteSpace: 'nowrap' }}>{w.productName ?? 'Booking'}</span>
- <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--on-accent)', background: '#c9b48a', borderRadius: 0, padding: '0 4px' }}>UNPAID</span>
- {w.isTest && <span style={{ fontSize: '14px', fontWeight: 500, color: '#c9b48a' }}>TEST</span>}
+ <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '0 4px' }}>UNPAID</span>
+ {w.isTest && <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)' }}>TEST</span>}
  </button>
  ))}
  </div>
@@ -745,7 +745,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  flags.push({ tone: 'warn', glyph: '18', label: `Under 18${mAge !== null ? ` · ${mAge} years old` : ''}`, detail: `Depth limit: ${minorDepthLimit(mAge, cu?.experience_level).text}. Check the guardian's consent and brief the diver, then acknowledge.`, actionKey: 'minor' })
  }
 
- const tone = { warn: '#c9b48a', bad: '#c9928c', ok: '#b7c4b0', soft: 'var(--muted)' }
+ const tone = { warn: 'var(--text)', bad: 'var(--text)', ok: 'var(--text)', soft: 'var(--muted)' }
  const flagBtnState = { dan_policy: danState, insurance: insState, insurance_onsite: onsiteState, medical: medState, refresher: refresherState, minor: minorState }
  const flagBtnLabel = { dan_policy: 'Save DAN policy number', insurance: 'Record policy & mark as seen', insurance_onsite: 'Add day cover to booking', medical: 'Upload proof', refresher: 'Refresher completed ', minor: 'Acknowledge — consent & depth limit checked' }
 
@@ -796,12 +796,12 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  <input type="file" accept="image/*,.heic,.heif,.pdf,.doc,.docx,.odt,.rtf,.txt" onChange={e => { setMedFile(e.target.files?.[0] ?? null); setMedUp({ loading: false, error: null }) }}
  style={{ width: '100%', boxSizing: 'border-box', fontSize: '14px', color: s.text, background: 'rgba(0,0,0,.3)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 0, padding: '8px' }} />
  {medFile && <div style={{ fontSize: '14px', color: s.muted, marginTop: '6px' }}>{medFile.name} · {(medFile.size / 1024 / 1024).toFixed(2)} MB</div>}
- {medUp.error && <div style={{ marginTop: '8px', fontSize: '14px', color: '#c9928c', background: 'rgba(201,146,140,.08)', border: '1px solid rgba(201,146,140,.2)', borderRadius: 0, padding: '5px 9px' }}>{medUp.error}</div>}
- {medState.error && <div style={{ marginTop: '8px', fontSize: '14px', color: '#c9928c' }}>{medState.error}</div>}
+ {medUp.error && <div style={{ marginTop: '8px', fontSize: '14px', color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '5px 9px' }}>{medUp.error}</div>}
+ {medState.error && <div style={{ marginTop: '8px', fontSize: '14px', color: 'var(--text)' }}>{medState.error}</div>}
  <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end', marginTop: '14px' }}>
  <button type="button" disabled={medUp.loading} onClick={() => setMedModal(false)} style={{ fontSize: '14px', fontWeight: 500, padding: '6px 14px', borderRadius: 0, background: 'transparent', border: '1px solid rgba(255,255,255,.2)', color: s.muted, cursor: 'pointer', fontFamily: 'inherit' }}>Cancel</button>
  <button type="button" disabled={medUp.loading || !medFile} onClick={uploadMedicalProof}
- style={{ fontSize: '14px', fontWeight: 500, padding: '6px 14px', borderRadius: 0, background: 'rgba(183,196,176,.15)', border: '1px solid rgba(183,196,176,.4)', color: '#b7c4b0', cursor: medFile && !medUp.loading ? 'pointer' : 'not-allowed', fontFamily: 'inherit', opacity: medFile && !medUp.loading ? 1 : .4, filter: medFile ? 'none' : 'grayscale(1)' }}>
+ style={{ fontSize: '14px', fontWeight: 500, padding: '6px 14px', borderRadius: 0, background: 'transparent', border: '1px solid var(--line)', color: 'var(--text)', cursor: medFile && !medUp.loading ? 'pointer' : 'not-allowed', fontFamily: 'inherit', opacity: medFile && !medUp.loading ? 1 : .4, filter: medFile ? 'none' : 'grayscale(1)' }}>
  {medUp.loading ? 'Uploading…' : 'Upload'}
  </button>
  </div>
@@ -815,8 +815,8 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  const st = f.actionKey ? flagBtnState[f.actionKey] : null
  return (
  <div key={f.label} style={{
- background: f.tone === 'bad' ? 'rgba(201,146,140,.09)' : f.tone === 'soft' ? 'rgba(201,194,182,.07)' : 'rgba(201,180,138,.09)',
- border: `1px solid ${f.tone === 'bad' ? 'rgba(201,146,140,.3)' : f.tone === 'soft' ? 'rgba(201,194,182,.3)' : 'rgba(201,180,138,.3)'}`,
+ background: f.tone === 'bad' ? 'transparent' : f.tone === 'soft' ? 'rgba(201,194,182,.07)' : 'transparent',
+ border: `1px solid ${f.tone === 'bad' ? 'var(--line)' : f.tone === 'soft' ? 'rgba(201,194,182,.3)' : 'var(--line)'}`,
  borderRadius: 0, padding: '10px 13px',
  }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: tone[f.tone], display: 'flex', alignItems: 'baseline', gap: '7px' }}>
@@ -856,17 +856,17 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  {proofView.loading ? '…' : ` ${slot.medical_proof_name ?? 'View proof'}`}
  </button>
  <button type="button" onClick={() => { setMedUp({ loading: false, error: null }); setMedFile(null); setMedModal(true) }} style={{ background: 'none', border: '1px solid rgba(255,255,255,.2)', borderRadius: 0, padding: '1px 8px', cursor: 'pointer', color: s.muted, fontFamily: 'inherit', fontSize: '14px' }}>Replace file</button>
- {proofView.error && <span style={{ color: '#c9928c' }}>{proofView.error}</span>}
+ {proofView.error && <span style={{ color: 'var(--text)' }}>{proofView.error}</span>}
  </div>
  )}
  {f.actionKey && st && (
  <div style={{ marginTop: '8px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px' }}>
  <button type="button" disabled={st.loading || (f.actionKey === 'insurance_onsite' && !onsiteMethod) || (f.actionKey === 'insurance' && !(proofProvider.trim() && proofPolicy.trim())) || (f.actionKey === 'dan_policy' && !danPolicy.trim())} onClick={() => f.actionKey === 'medical' && !slot?.medical_proof_path ? (setMedUp({ loading: false, error: null }), setMedFile(null), setMedModal(true)) : resolveFlag(f.actionKey!, true)}
- style={{ fontSize: '14px', fontWeight: 500, padding: '4px 12px', borderRadius: 0, background: 'rgba(183,196,176,.12)', border: '1px solid rgba(183,196,176,.35)', color: '#b7c4b0', cursor: st.loading ? 'wait' : ((f.actionKey === 'insurance_onsite' && !onsiteMethod) || (f.actionKey === 'insurance' && !(proofProvider.trim() && proofPolicy.trim())) || (f.actionKey === 'dan_policy' && !danPolicy.trim()) ? 'not-allowed' : 'pointer'), fontFamily: 'inherit', ...(((f.actionKey === 'insurance_onsite' && !onsiteMethod) || (f.actionKey === 'insurance' && !(proofProvider.trim() && proofPolicy.trim())) || (f.actionKey === 'dan_policy' && !danPolicy.trim())) ? { opacity: 0.4, filter: 'grayscale(1)' } : {}) }}>
+ style={{ fontSize: '14px', fontWeight: 500, padding: '4px 12px', borderRadius: 0, background: 'transparent', border: '1px solid var(--line)', color: 'var(--text)', cursor: st.loading ? 'wait' : ((f.actionKey === 'insurance_onsite' && !onsiteMethod) || (f.actionKey === 'insurance' && !(proofProvider.trim() && proofPolicy.trim())) || (f.actionKey === 'dan_policy' && !danPolicy.trim()) ? 'not-allowed' : 'pointer'), fontFamily: 'inherit', ...(((f.actionKey === 'insurance_onsite' && !onsiteMethod) || (f.actionKey === 'insurance' && !(proofProvider.trim() && proofPolicy.trim())) || (f.actionKey === 'dan_policy' && !danPolicy.trim())) ? { opacity: 0.4, filter: 'grayscale(1)' } : {}) }}>
  {st.loading ? '…' : f.actionKey === 'medical' && slot?.medical_proof_path ? 'Mark as seen' : flagBtnLabel[f.actionKey]}
  </button>
  {st.error && (
- <div style={{ width: '100%', fontSize: '14px', color: '#c9928c', background: 'rgba(201,146,140,.08)', border: '1px solid rgba(201,146,140,.2)', borderRadius: 0, padding: '5px 9px' }}>
+ <div style={{ width: '100%', fontSize: '14px', color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '5px 9px' }}>
  {st.error}
  </div>
  )}
@@ -912,9 +912,9 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  onClick={resendCheckinLink}
  style={{
  fontSize: '14px', fontWeight: 500, padding: '6px 14px', borderRadius: 0,
- background: resendState.sent ? 'rgba(183,196,176,.12)' : 'color-mix(in srgb, var(--text) 12%, transparent)',
- border: `1px solid ${resendState.sent ? 'rgba(183,196,176,.35)' : 'color-mix(in srgb, var(--text) 35%, transparent)'}`,
- color: resendState.sent ? '#b7c4b0' : s.accent,
+ background: resendState.sent ? 'transparent' : 'color-mix(in srgb, var(--text) 12%, transparent)',
+ border: `1px solid ${resendState.sent ? 'var(--line)' : 'color-mix(in srgb, var(--text) 35%, transparent)'}`,
+ color: resendState.sent ? 'var(--text)' : s.accent,
  cursor: canSend ? 'pointer' : 'default',
  fontFamily: 'inherit',
  opacity: canSend ? 1 : .45,
@@ -926,7 +926,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  })()}
  </div>
  {resendState.error && (
- <div style={{ marginTop: '7px', fontSize: '14px', color: '#c9928c', background: 'rgba(201,146,140,.08)', border: '1px solid rgba(201,146,140,.2)', borderRadius: 0, padding: '5px 9px' }}>
+ <div style={{ marginTop: '7px', fontSize: '14px', color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '5px 9px' }}>
  {resendState.error}
  </div>
  )}
@@ -974,7 +974,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  style={{ fontSize: '14px', fontWeight: 500, padding: '3px 8px', borderRadius: 0, background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, cursor: medState.loading ? 'wait' : 'pointer', fontFamily: 'inherit' }}>
  {medState.loading ? '…' : 'Undo'}
  </button>
- {medState.error && <span style={{ fontSize: '14px', color: '#c9928c' }}>{medState.error}</span>}
+ {medState.error && <span style={{ fontSize: '14px', color: 'var(--text)' }}>{medState.error}</span>}
  </div>
  )}
  {slot?.is_minor && <FileRow k="Under 18" v={`${minorShort(cu?.dob, cu?.experience_level, seat.diveDate)} · ${slot.minor_ack_at ? `acknowledged ${slot.minor_ack_at.slice(0, 10)}${slot.minor_ack_by ? ` · ${slot.minor_ack_by}` : ''}` : 'not acknowledged'}`} warn={!slot.minor_ack_at} />}
@@ -984,7 +984,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  style={{ fontSize: '14px', fontWeight: 500, padding: '3px 8px', borderRadius: 0, background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, cursor: minorState.loading ? 'wait' : 'pointer', fontFamily: 'inherit' }}>
  {minorState.loading ? '…' : 'Undo'}
  </button>
- {minorState.error && <span style={{ fontSize: '14px', color: '#c9928c' }}>{minorState.error}</span>}
+ {minorState.error && <span style={{ fontSize: '14px', color: 'var(--text)' }}>{minorState.error}</span>}
  </div>
  )}
  </FileSection>
@@ -1056,12 +1056,12 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  {slot?.insurance_source === 'azd_day'
  ? ((slot.dan_policy_number ?? '').trim()
  ? <span style={{ color: 'var(--text)', fontWeight: 500 }}>{slot.dan_policy_number}</span>
- : <span style={{ color: '#c9b48a', fontWeight: 500 }}>not entered yet</span>)
+ : <span style={{ color: 'var(--text)', fontWeight: 500 }}>not entered yet</span>)
  : slot?.insurance_verified_at
  ? <span style={{ color: 'var(--text)', fontWeight: 500 }}>
  {slot.insurance_verified_at.slice(0, 10)}{slot.insurance_verified_by ? ` · ${slot.insurance_verified_by}` : ''}
  </span>
- : <span style={{ color: slot?.insurance_flag ? '#c9b48a' : 'rgba(255,255,255,.25)', fontWeight: slot?.insurance_flag ? 500 : 400 }}>—</span>
+ : <span style={{ color: slot?.insurance_flag ? 'var(--text)' : 'rgba(255,255,255,.25)', fontWeight: slot?.insurance_flag ? 500 : 400 }}>—</span>
  }
  </span>
  </div>
@@ -1073,7 +1073,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  {danState.loading ? '…' : 'Undo'}
  </button>
  {danState.error && (
- <div style={{ width: '100%', fontSize: '14px', color: '#c9928c', background: 'rgba(201,146,140,.08)', border: '1px solid rgba(201,146,140,.2)', borderRadius: 0, padding: '5px 9px' }}>
+ <div style={{ width: '100%', fontSize: '14px', color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '5px 9px' }}>
  {danState.error}
  </div>
  )}
@@ -1086,7 +1086,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  {insState.loading ? '…' : 'Undo'}
  </button>
  {insState.error && (
- <div style={{ width: '100%', fontSize: '14px', color: '#c9928c', background: 'rgba(201,146,140,.08)', border: '1px solid rgba(201,146,140,.2)', borderRadius: 0, padding: '5px 9px' }}>
+ <div style={{ width: '100%', fontSize: '14px', color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '5px 9px' }}>
  {insState.error}
  </div>
  )}
@@ -1107,11 +1107,11 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  </button>
  ) : (
  <button type="button" disabled={refresherState.loading} onClick={() => resolveFlag('refresher', true)}
- style={{ padding: '5px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', background: 'rgba(183,196,176,.15)', color: '#b7c4b0', border: '1px solid rgba(183,196,176,.4)', opacity: refresherState.loading ? .6 : 1 }}>
+ style={{ padding: '5px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', background: 'transparent', color: 'var(--text)', border: '1px solid var(--line)', opacity: refresherState.loading ? .6 : 1 }}>
  {refresherState.loading ? 'Saving…' : 'Refresher completed '}
  </button>
  )}
- {refresherState.error && <span style={{ fontSize: '14px', color: '#c9928c' }}>{refresherState.error}</span>}
+ {refresherState.error && <span style={{ fontSize: '14px', color: 'var(--text)' }}>{refresherState.error}</span>}
  </div>
  </FileSection>
  )}
@@ -1128,11 +1128,11 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  </button>
  ) : (
  <button type="button" disabled={minorState.loading} onClick={() => resolveFlag('minor', true)}
- style={{ padding: '5px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', background: 'rgba(183,196,176,.15)', color: '#b7c4b0', border: '1px solid rgba(183,196,176,.4)', opacity: minorState.loading ? .6 : 1 }}>
+ style={{ padding: '5px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', background: 'transparent', color: 'var(--text)', border: '1px solid var(--line)', opacity: minorState.loading ? .6 : 1 }}>
  {minorState.loading ? 'Saving…' : 'Acknowledge — consent & depth limit checked'}
  </button>
  )}
- {minorState.error && <span style={{ fontSize: '14px', color: '#c9928c' }}>{minorState.error}</span>}
+ {minorState.error && <span style={{ fontSize: '14px', color: 'var(--text)' }}>{minorState.error}</span>}
  </div>
  </FileSection>
  )}
@@ -1140,7 +1140,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  {slot?.medical_flag ? (
  <FileSection title="Medical clearance">
  {slot.medical_flag_reason && (
- <div style={{ fontSize: '14px', color: '#c9b48a', lineHeight: 1.6, marginBottom: '8px' }}>{slot.medical_flag_reason}</div>
+ <div style={{ fontSize: '14px', color: 'var(--text)', lineHeight: 1.6, marginBottom: '8px' }}>{slot.medical_flag_reason}</div>
  )}
  <div style={{ padding: '4px 0' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '14px', fontSize: '14px', lineHeight: 1.6, alignItems: 'flex-start' }}>
@@ -1150,7 +1150,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  ? <span style={{ color: 'var(--text)', fontWeight: 500 }}>
  {slot.medical_resolved_at.slice(0, 10)}{slot.medical_resolved_by ? ` · ${slot.medical_resolved_by}` : ''}
  </span>
- : <span style={{ color: '#c9b48a', fontWeight: 500 }}>—</span>
+ : <span style={{ color: 'var(--text)', fontWeight: 500 }}>—</span>
  }
  </span>
  </div>
@@ -1162,7 +1162,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  </button>
  </div>
  )}
- {proofView.error && <div style={{ fontSize: '14px', color: '#c9928c', marginTop: '4px' }}>{proofView.error}</div>}
+ {proofView.error && <div style={{ fontSize: '14px', color: 'var(--text)', marginTop: '4px' }}>{proofView.error}</div>}
  {slot.medical_flag_resolved && (
  <div style={{ marginTop: '6px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px' }}>
  <button type="button" disabled={medState.loading} onClick={() => resolveFlag('medical', false)}
@@ -1170,7 +1170,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  {medState.loading ? '…' : 'Undo'}
  </button>
  {medState.error && (
- <div style={{ width: '100%', fontSize: '14px', color: '#c9928c', background: 'rgba(201,146,140,.08)', border: '1px solid rgba(201,146,140,.2)', borderRadius: 0, padding: '5px 9px' }}>
+ <div style={{ width: '100%', fontSize: '14px', color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '5px 9px' }}>
  {medState.error}
  </div>
  )}
@@ -1192,8 +1192,8 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  <div style={{ marginTop: '14px' }}>
  {/* Check-in record */}
  {slot?.checkin_completed_at && cu && (
- <div style={{ marginBottom: '16px', padding: '10px 13px', background: 'rgba(183,196,176,.06)', border: '1px solid rgba(183,196,176,.2)', borderRadius: 0 }}>
- <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: '#b7c4b0', marginBottom: '8px' }}>Check-in record</div>
+ <div style={{ marginBottom: '16px', padding: '10px 13px', background: 'transparent', border: '1px solid var(--line)', borderRadius: 0 }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '8px' }}>Check-in record</div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
  {[
  ['Completed', slot.checkin_completed_at.slice(0, 16).replace('T', ' ')],
@@ -1271,14 +1271,14 @@ function seatAlerts(seat: Seat): { label: string; tone: 'warn' | 'bad' | 'med' |
  const out: { label: string; tone: 'warn' | 'bad' | 'med' | 'soft'; glyph: string; color: string }[] = []
  if (seat.placeholder) return out
  // Zeichen und Farben wie in der Legende und auf dem Bootsplan
- if (!seat.checkedIn) out.push({ label: 'Check-in not completed', tone: 'bad', glyph: '', color: '#c9928c' })
- if (seat.medicalFlag) out.push({ label: 'Medical clearance required', tone: 'med', glyph: '!', color: '#d4a07a' })
- if (seat.insuranceSource === 'none') out.push({ label: 'No insurance — sell day cover', tone: 'bad', glyph: '', color: '#c9928c' })
+ if (!seat.checkedIn) out.push({ label: 'Check-in not completed', tone: 'bad', glyph: '', color: 'var(--text)' })
+ if (seat.medicalFlag) out.push({ label: 'Medical clearance required', tone: 'med', glyph: '!', color: 'var(--text)' })
+ if (seat.insuranceSource === 'none') out.push({ label: 'No insurance — sell day cover', tone: 'bad', glyph: '', color: 'var(--text)' })
  else if (seat.insuranceFlag && seat.insurancePolicyOnFile) out.push({ label: 'Policy on file — look at proof', tone: 'soft', glyph: '', color: 'var(--muted)' })
- else if (seat.insuranceFlag) out.push({ label: 'Insurance proof to check', tone: 'warn', glyph: '', color: '#c9b48a' })
- if (seat.danPolicyOpen) out.push({ label: 'DAN policy no. missing', tone: 'warn', glyph: '#', color: '#c9b48a' })
- if (seat.refresherOpen) out.push({ label: 'Refresher required', tone: 'warn', glyph: '', color: '#c9b48a' })
- if (seat.minorOpen) out.push({ label: `Under 18 · ${seat.minorInfo ?? ''}`.trim(), tone: 'warn', glyph: '18', color: '#c9b48a' })
+ else if (seat.insuranceFlag) out.push({ label: 'Insurance proof to check', tone: 'warn', glyph: '', color: 'var(--text)' })
+ if (seat.danPolicyOpen) out.push({ label: 'DAN policy no. missing', tone: 'warn', glyph: '#', color: 'var(--text)' })
+ if (seat.refresherOpen) out.push({ label: 'Refresher required', tone: 'warn', glyph: '', color: 'var(--text)' })
+ if (seat.minorOpen) out.push({ label: `Under 18 · ${seat.minorInfo ?? ''}`.trim(), tone: 'warn', glyph: '18', color: 'var(--text)' })
  return out
 }
 
@@ -1331,10 +1331,10 @@ function InsuranceCasesCard({ label, seats, onOpen, onSaved }: {
  finally { setBusyId(null) }
  }
  return (
- <div style={{ border: '1px solid rgba(201,180,138,.35)', background: 'rgba(201,180,138,.09)', borderRadius: 0, padding: '16px 18px', alignSelf: 'start', gridColumn: '1 / -1' }}>
+ <div style={{ border: '1px solid var(--line)', background: 'var(--glass)', borderRadius: 0, padding: '16px 18px', alignSelf: 'start', gridColumn: '1 / -1' }}>
  <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '8px', marginBottom: '4px' }}>
- <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c9b48a' }}>Alerts · {label}</div>
- <div style={{ fontSize: '14px', fontWeight: 500, color: '#c9b48a' }}>{seats.length} open</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)' }}>Alerts · {label}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)' }}>{seats.length} open</div>
  </div>
  <div style={{ fontSize: '14px', color: s.muted, lineHeight: 1.5, marginBottom: '12px' }}>Every open flag of this session's divers. Click a name for the full profile. Our DAN covers need the policy number DAN issued.</div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
@@ -1342,17 +1342,17 @@ function InsuranceCasesCard({ label, seats, onOpen, onSaved }: {
  const id = w.slot?.id as string | undefined
  const alerts = seatAlerts(w)
  return (
- <div key={`${w.bookingId}-${w.slotIndex}`} style={{ padding: '8px 10px', borderRadius: 0, background: 'rgba(18,18,16,.78)', border: '1px solid rgba(201,180,138,.3)' }}>
+ <div key={`${w.bookingId}-${w.slotIndex}`} style={{ padding: '8px 10px', borderRadius: 0, background: 'rgba(18,18,16,.78)', border: '1px solid var(--line)' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
  <button type="button" onClick={() => onOpen(w)} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: s.font, fontSize: '14px', fontWeight: 500, color: s.text, textAlign: 'left' }}>{w.name}</button>
- {alerts.map(a => <span key={a.label} style={{ fontSize: '14px', fontWeight: 500, padding: '2px 9px', borderRadius: 0, background: a.tone === 'bad' ? 'rgba(201,146,140,.2)' : a.tone === 'med' ? 'rgba(212,160,122,.2)' : 'rgba(201,180,138,.18)', color: a.tone === 'bad' ? '#c9928c' : a.tone === 'med' ? '#d4a07a' : '#c9b48a', border: `1px solid ${a.tone === 'bad' ? 'rgba(201,146,140,.4)' : a.tone === 'med' ? 'rgba(212,160,122,.4)' : 'rgba(201,180,138,.4)'}` }}><span aria-hidden="true" style={{ marginRight: '5px', color: a.color, fontWeight: 500 }}>{a.glyph}</span>{a.label}</span>)}
+ {alerts.map(a => <span key={a.label} style={{ fontSize: '14px', fontWeight: 500, padding: '2px 9px', borderRadius: 0, background: a.tone === 'bad' ? 'transparent' : a.tone === 'med' ? 'transparent' : 'transparent', color: a.tone === 'bad' ? 'var(--text)' : a.tone === 'med' ? 'var(--text)' : 'var(--text)', border: `1px solid ${a.tone === 'bad' ? 'var(--line)' : a.tone === 'med' ? 'var(--line)' : 'var(--line)'}` }}><span aria-hidden="true" style={{ marginRight: '5px', color: a.color, fontWeight: 500 }}>{a.glyph}</span>{a.label}</span>)}
  <span style={{ fontSize: '14px', color: s.muted, marginLeft: 'auto' }}>{boat} · <span style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace' }}>{w.bookingId.slice(0, 8).toUpperCase()}{w.isTest ? ' · TEST' : ''}</span></span>
  </div>
  {w.minorOpen && id && (
  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '6px', flexWrap: 'wrap' }}>
  <span style={{ fontSize: '14px', color: s.muted, flex: 1, minWidth: '180px' }}>{minorDepthLimit(ageOn(w.slot?.customers?.dob, w.diveDate), w.slot?.customers?.experience_level).text}</span>
  <button type="button" disabled={busyId === id} onClick={() => ackMinor(id)}
- style={{ padding: '5px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', background: 'rgba(183,196,176,.15)', color: '#b7c4b0', border: '1px solid rgba(183,196,176,.4)', opacity: busyId === id ? .6 : 1 }}>
+ style={{ padding: '5px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', background: 'transparent', color: 'var(--text)', border: '1px solid var(--line)', opacity: busyId === id ? .6 : 1 }}>
  {busyId === id ? 'Saving…' : 'Acknowledge'}
  </button>
  </div>
@@ -1362,7 +1362,7 @@ function InsuranceCasesCard({ label, seats, onOpen, onSaved }: {
  <input value={vals[id] ?? ''} onChange={e => setVals(v => ({ ...v, [id]: e.target.value }))} onKeyDown={e => { if (e.key === 'Enter') save(id) }} placeholder="DAN policy no."
  style={{ flex: 1, minWidth: 0, padding: '5px 9px', borderRadius: 0, fontSize: '14px', fontFamily: 'inherit', background: 'rgba(0,0,0,.25)', color: 'var(--text)', border: '1px solid rgba(255,255,255,.2)' }} />
  <button type="button" disabled={busyId === id} onClick={() => save(id)}
- style={{ padding: '5px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', background: 'rgba(183,196,176,.15)', color: '#b7c4b0', border: '1px solid rgba(183,196,176,.4)', opacity: busyId === id ? .6 : 1 }}>
+ style={{ padding: '5px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', background: 'transparent', color: 'var(--text)', border: '1px solid var(--line)', opacity: busyId === id ? .6 : 1 }}>
  {busyId === id ? 'Saving…' : 'Save'}
  </button>
  </div>
@@ -1376,15 +1376,15 @@ function InsuranceCasesCard({ label, seats, onOpen, onSaved }: {
  <input type="email" value={mails[k] ?? w.slot?.customers?.email ?? w.bookingEmail ?? ''} onChange={e => { setMails(v => ({ ...v, [k]: e.target.value })); setSendSt(x => ({ ...x, [k]: {} })) }} onKeyDown={e => { if (e.key === 'Enter') sendLink(w) }} placeholder="guest@example.com"
  style={{ flex: 1, minWidth: 0, padding: '5px 9px', borderRadius: 0, fontSize: '14px', fontFamily: 'inherit', background: 'rgba(0,0,0,.25)', color: 'var(--text)', border: '1px solid rgba(255,255,255,.2)' }} />
  <button type="button" disabled={st.loading} onClick={() => sendLink(w)}
- style={{ padding: '5px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap', background: st.sent ? 'rgba(183,196,176,.15)' : 'color-mix(in srgb, var(--text) 12%, transparent)', color: st.sent ? '#b7c4b0' : 'var(--accent)', border: `1px solid ${st.sent ? 'rgba(183,196,176,.4)' : 'color-mix(in srgb, var(--text) 35%, transparent)'}`, opacity: st.loading ? .6 : 1 }}>
+ style={{ padding: '5px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap', background: st.sent ? 'transparent' : 'color-mix(in srgb, var(--text) 12%, transparent)', color: st.sent ? 'var(--text)' : 'var(--accent)', border: `1px solid ${st.sent ? 'var(--line)' : 'color-mix(in srgb, var(--text) 35%, transparent)'}`, opacity: st.loading ? .6 : 1 }}>
  {st.loading ? '…' : st.sent ? ' Link sent' : ' Send check-in link'}
  </button>
  </div>
- {st.error && <div style={{ marginTop: '4px', fontSize: '14px', color: '#c9928c' }}>{st.error}</div>}
+ {st.error && <div style={{ marginTop: '4px', fontSize: '14px', color: 'var(--text)' }}>{st.error}</div>}
  </div>
  )
  })()}
- {id && errs[id] && <div style={{ marginTop: '4px', fontSize: '14px', color: '#c9928c' }}>{errs[id]}</div>}
+ {id && errs[id] && <div style={{ marginTop: '4px', fontSize: '14px', color: 'var(--text)' }}>{errs[id]}</div>}
  </div>
  )
  })}
@@ -1412,31 +1412,31 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  const seatColor = (seat: Seat | undefined) => {
  if (!seat) return null
  if (seat.bookingStatus === 'no_show') return '#8a8f99'
- if (seat.bookingStatus === 'pending') return '#c9b48a'
- if (seat.medicalFlag) return '#d4a07a'
- if (seat.insuranceSource === 'none') return '#c9928c'
- if ((seat.insuranceFlag && !seat.insurancePolicyOnFile) || seat.insuranceSource === 'none' || seat.danPolicyOpen || seat.refresherOpen || seat.minorOpen) return '#c9b48a'
+ if (seat.bookingStatus === 'pending') return 'var(--text)'
+ if (seat.medicalFlag) return 'var(--text)'
+ if (seat.insuranceSource === 'none') return 'var(--text)'
+ if ((seat.insuranceFlag && !seat.insurancePolicyOnFile) || seat.insuranceSource === 'none' || seat.danPolicyOpen || seat.refresherOpen || seat.minorOpen) return 'var(--text)'
  if (seat.insuranceFlag) return 'var(--muted)' // Police genannt, nur Sichtpruefung offen — nicht gruen, aber kein Alarm
- if (seat.checkedIn) return '#b7c4b0'
- return '#c9928c'
+ if (seat.checkedIn) return 'var(--text)'
+ return 'var(--text)'
  }
 
  // Gleiche Zeichen und Farben wie in der Legende; ein Platz kann mehrere Flags haben
  const seatGlyphs = (seat: Seat): { g: string; c: string }[] => {
  const out: { g: string; c: string }[] = []
- if (seat.medicalFlag) out.push({ g: '!', c: '#d4a07a' })
- if (seat.insuranceSource === 'none') out.push({ g: 'N', c: '#c9928c' })
- else if (seat.insuranceFlag) out.push({ g: 'P', c: seat.insurancePolicyOnFile ? 'var(--muted)' : '#c9b48a' })
- if (seat.danPolicyOpen) out.push({ g: '#', c: '#c9b48a' })
- if (seat.refresherOpen) out.push({ g: 'R', c: '#c9b48a' })
- if (seat.minorOpen) out.push({ g: '18', c: '#c9b48a' })
+ if (seat.medicalFlag) out.push({ g: '!', c: 'var(--text)' })
+ if (seat.insuranceSource === 'none') out.push({ g: 'N', c: 'var(--text)' })
+ else if (seat.insuranceFlag) out.push({ g: 'P', c: seat.insurancePolicyOnFile ? 'var(--muted)' : 'var(--text)' })
+ if (seat.danPolicyOpen) out.push({ g: '#', c: 'var(--text)' })
+ if (seat.refresherOpen) out.push({ g: 'R', c: 'var(--text)' })
+ if (seat.minorOpen) out.push({ g: '18', c: 'var(--text)' })
  return out
  }
 
  return (
  <div style={{
  background: 'rgba(18,18,16,.94)',
- border: hasTestSeat ? '1px solid rgba(201,180,138,.45)' : '1px solid color-mix(in srgb, var(--text) 15%, transparent)',
+ border: hasTestSeat ? '1px solid var(--line)' : '1px solid color-mix(in srgb, var(--text) 15%, transparent)',
  borderRadius: 0, overflow: 'hidden',
  }}>
  <div style={{ padding: '16px 20px', borderBottom: '1px solid rgba(255,255,255,.07)', display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
@@ -1452,10 +1452,10 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  </div>
  </div>
  <div style={{ marginLeft: 'auto', textAlign: 'right' }}>
- <div style={{ fontSize: '14px', color: seats.length > boat.seats ? '#c9928c' : s.muted, fontWeight: seats.length > boat.seats ? 500 : 400 }}>
+ <div style={{ fontSize: '14px', color: seats.length > boat.seats ? 'var(--text)' : s.muted, fontWeight: seats.length > boat.seats ? 500 : 400 }}>
  {seats.length} of {boat.seats} seats{seats.length > boat.seats ? ' — OVERBOOKED' : ''}
  </div>
- <div style={{ fontSize: '14px', color: checkedIn === seats.length && seats.length > 0 ? '#b7c4b0' : '#d4a07a', fontWeight: 500 }}>
+ <div style={{ fontSize: '14px', color: checkedIn === seats.length && seats.length > 0 ? 'var(--text)' : 'var(--text)', fontWeight: 500 }}>
  {checkedIn}/{seats.length} checked in{flags > 0 ? ` · ${flags} medical` : ''}
  </div>
  </div>
@@ -1550,8 +1550,8 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  fontSize: '14px', fontWeight: 500, padding: '3px 10px', borderRadius: 0,
  cursor: busy ? 'wait' : 'pointer', fontFamily: 'inherit',
  color: on ? 'var(--on-accent)' : s.muted,
- background: on ? '#b7c4b0' : 'rgba(255,255,255,.05)',
- border: `1px solid ${on ? '#b7c4b0' : 'rgba(255,255,255,.12)'}`,
+ background: on ? 'transparent' : 'rgba(255,255,255,.05)',
+ border: `1px solid ${on ? 'var(--line)' : 'rgba(255,255,255,.12)'}`,
  }}>
  {on ? ' ' : '+ '}{a.name}
  </button>
@@ -1567,7 +1567,7 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  <ChipLabel>Crew</ChipLabel>
  {guides.length > 0
  ? guides.map(g => (
- <span key={g.crew_name} style={{ fontSize: '14px', fontWeight: 500, color: '#b7c4b0', padding: '3px 11px', borderRadius: 0, background: 'rgba(183,196,176,.1)', border: '1px solid rgba(183,196,176,.3)' }}> {g.crew_name}</span>
+ <span key={g.crew_name} style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', padding: '3px 11px', borderRadius: 0, background: 'transparent', border: '1px solid var(--line)' }}> {g.crew_name}</span>
  ))
  : <span style={{ fontSize: '14px', color: s.muted, opacity: .5, fontStyle: 'italic' }}>none assigned</span>}
  <ChipLabel>Divers</ChipLabel>
@@ -1580,27 +1580,27 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  style={{
  cursor: 'pointer', fontFamily: 'inherit',
  fontSize: '14px',
- color: seat.medicalFlag ? '#d4a07a' : ((seat.insuranceFlag && !seat.insurancePolicyOnFile) || seat.insuranceSource === 'none' || seat.danPolicyOpen || seat.refresherOpen || seat.minorOpen) ? '#c9b48a' : seat.insuranceFlag ? 'var(--muted)' : seat.checkedIn ? '#b7c4b0' : '#c9928c',
+ color: seat.medicalFlag ? 'var(--text)' : ((seat.insuranceFlag && !seat.insurancePolicyOnFile) || seat.insuranceSource === 'none' || seat.danPolicyOpen || seat.refresherOpen || seat.minorOpen) ? 'var(--text)' : seat.insuranceFlag ? 'var(--muted)' : seat.checkedIn ? 'var(--text)' : 'var(--text)',
  padding: '3px 10px', borderRadius: 0,
  background: 'color-mix(in srgb, var(--text) 6%, transparent)',
- border: `1px solid ${seat.medicalFlag ? 'rgba(212,160,122,.35)' : ((seat.insuranceFlag && !seat.insurancePolicyOnFile) || seat.insuranceSource === 'none' || seat.danPolicyOpen || seat.refresherOpen || seat.minorOpen) ? 'rgba(201,180,138,.4)' : seat.insuranceFlag ? 'rgba(201,194,182,.35)' : seat.checkedIn ? 'rgba(183,196,176,.3)' : 'rgba(201,146,140,.3)'}`,
+ border: `1px solid ${seat.medicalFlag ? 'var(--line)' : ((seat.insuranceFlag && !seat.insurancePolicyOnFile) || seat.insuranceSource === 'none' || seat.danPolicyOpen || seat.refresherOpen || seat.minorOpen) ? 'var(--line)' : seat.insuranceFlag ? 'rgba(201,194,182,.35)' : seat.checkedIn ? 'var(--text)' : 'var(--text)'}`,
  }}>
  {seat.checkedIn ? 'In' : 'Due'} {shortName(seat.name)}
- {seat.bookingStatus === 'pending' && <span title="Booking not paid yet (pending)" style={{ marginLeft: '5px', fontSize: '14px', fontWeight: 500, color: 'var(--on-accent)', background: '#c9b48a', borderRadius: 0, padding: '0 4px' }}>UNPAID</span>}
+ {seat.bookingStatus === 'pending' && <span title="Booking not paid yet (pending)" style={{ marginLeft: '5px', fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '0 4px' }}>UNPAID</span>}
  {seat.bookingStatus === 'no_show' && <span title="Marked as no-show" style={{ marginLeft: '5px', fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: '#8a8f99', borderRadius: 0, padding: '0 4px' }}>NO-SHOW</span>}
  {seat.placeholder && <span title="Seat reserved, guest details not entered yet" style={{ marginLeft: '5px', fontSize: '14px', color: 'var(--muted)' }}>(reserved)</span>}
  {/* Versicherung: = Nachweis noch zu sichten, = gar keine.
  Beides muss der Empfang sehen, bevor der Gast an Bord geht. */}
- {seat.insuranceSource === 'none' ? <span title="No insurance declared" style={{ marginLeft: '4px', color: '#c9928c' }}>No cover</span>
- : seat.insuranceFlag ? <span title={seat.insurancePolicyOnFile ? 'Own policy on file — look at proof' : 'Insurance proof to check — no policy number yet'} style={{ marginLeft: '4px', color: seat.insurancePolicyOnFile ? 'var(--muted)' : '#c9b48a' }}>Proof</span>
- : seat.insuranceSource === 'azd_day' ? <span title={seat.danPolicyOpen ? 'DAN day cover bought with us — DAN policy number still to be entered' : 'DAN day cover bought with us — policy number recorded'} style={{ marginLeft: '4px', color: seat.danPolicyOpen ? '#c9b48a' : '#b7c4b0' }}>D</span>
- : seat.insuranceSource === 'ssi' ? <span title="SSI insurance included in the course — not DAN" style={{ marginLeft: '4px', color: '#b7c4b0' }}>S</span>
+ {seat.insuranceSource === 'none' ? <span title="No insurance declared" style={{ marginLeft: '4px', color: 'var(--text)' }}>No cover</span>
+ : seat.insuranceFlag ? <span title={seat.insurancePolicyOnFile ? 'Own policy on file — look at proof' : 'Insurance proof to check — no policy number yet'} style={{ marginLeft: '4px', color: seat.insurancePolicyOnFile ? 'var(--muted)' : 'var(--text)' }}>Proof</span>
+ : seat.insuranceSource === 'azd_day' ? <span title={seat.danPolicyOpen ? 'DAN day cover bought with us — DAN policy number still to be entered' : 'DAN day cover bought with us — policy number recorded'} style={{ marginLeft: '4px', color: seat.danPolicyOpen ? 'var(--text)' : 'var(--text)' }}>D</span>
+ : seat.insuranceSource === 'ssi' ? <span title="SSI insurance included in the course — not DAN" style={{ marginLeft: '4px', color: 'var(--text)' }}>S</span>
  : null}
  {seat.slot?.customers?.last_dive_date && needsRefresher(seat.slot.customers.last_dive_date)
- ? <span title="Over a year since last dive — refresher required" style={{ marginLeft: '4px', color: '#c9b48a' }}>Refresher</span>
+ ? <span title="Over a year since last dive — refresher required" style={{ marginLeft: '4px', color: 'var(--text)' }}>Refresher</span>
  : null}
  {seat.slot?.is_minor
- ? <span title={seat.minorOpen ? `Under 18 (${seat.minorInfo ?? ''}) — acknowledge in the profile` : `Under 18 (${seat.minorInfo ?? ''}) — acknowledged`} style={{ marginLeft: '4px', color: seat.minorOpen ? '#c9b48a' : '#b7c4b0', fontSize: '14px', fontWeight: 500 }}>18</span>
+ ? <span title={seat.minorOpen ? `Under 18 (${seat.minorInfo ?? ''}) — acknowledge in the profile` : `Under 18 (${seat.minorInfo ?? ''}) — acknowledged`} style={{ marginLeft: '4px', color: seat.minorOpen ? 'var(--text)' : 'var(--text)', fontSize: '14px', fontWeight: 500 }}>18</span>
  : null}
  {seat.isTest ? ' ·TEST' : ''}
  </button>

@@ -3,12 +3,12 @@ import React, { useState, useRef } from 'react'
 import { T, s, bookBtnStyle, fireEvent, useIsMobile, Breadcrumb, type Lang } from './_shared'
 
 const ENTRY_COURSES = [
- { id: 'basic-diver', price: '€139', bg: 'linear-gradient(210deg,var(--surface) 0%,var(--surface) 90%)', color: '#b7c4b0', name: 'Basic Diver', desc: 'Pool + harbour dive · SSI certification · no experience needed', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/basic-diver.webp' },
- { id: 'scuba-diver', price: '€320', bg: 'linear-gradient(210deg,var(--surface) 0%,var(--surface) 90%)', color: '#b7c4b0', name: 'Scuba Diver', desc: '3 days · 12 m cert · halfway to OWD', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/scuba-diver.webp' },
- { id: 'open-water-diver', price: '€460', bg: 'linear-gradient(210deg,var(--surface) 0%,var(--surface) 90%)', color: '#b7c4b0', name: 'Open Water Diver', desc: '~4 days · 18 m worldwide · equipment incl.', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/owd.webp' },
- { id: 'skills-update', price: '€95', bg: 'linear-gradient(210deg,var(--surface) 0%,var(--surface) 90%)', color: '#b7c4b0', name: 'Scuba Skills Update', desc: 'Refresher for certified divers back in the water', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/skills-update.webp' },
- { id: 'ssi-explorers', price: 'Upon Request', bg: 'linear-gradient(210deg,var(--surface) 0%,var(--surface) 90%)', color: '#b7c4b0', name: 'SSI Explorers', desc: 'Aquatic adventure program for young ocean explorers from age 6', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/ssi-explorers.webp' },
- { id: 'upgrade-owd', price: '€300', bg: 'linear-gradient(210deg,var(--surface) 0%,var(--surface) 90%)', color: '#b7c4b0', name: 'Upgrade OWD', desc: 'Already Scuba Diver? Level up', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/upgrade-owd.webp' },
+ { id: 'basic-diver', price: '€139', bg: 'linear-gradient(210deg,var(--surface) 0%,var(--surface) 90%)', color: 'var(--text)', name: 'Basic Diver', desc: 'Pool + harbour dive · SSI certification · no experience needed', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/basic-diver.webp' },
+ { id: 'scuba-diver', price: '€320', bg: 'linear-gradient(210deg,var(--surface) 0%,var(--surface) 90%)', color: 'var(--text)', name: 'Scuba Diver', desc: '3 days · 12 m cert · halfway to OWD', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/scuba-diver.webp' },
+ { id: 'open-water-diver', price: '€460', bg: 'linear-gradient(210deg,var(--surface) 0%,var(--surface) 90%)', color: 'var(--text)', name: 'Open Water Diver', desc: '~4 days · 18 m worldwide · equipment incl.', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/owd.webp' },
+ { id: 'skills-update', price: '€95', bg: 'linear-gradient(210deg,var(--surface) 0%,var(--surface) 90%)', color: 'var(--text)', name: 'Scuba Skills Update', desc: 'Refresher for certified divers back in the water', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/skills-update.webp' },
+ { id: 'ssi-explorers', price: 'Upon Request', bg: 'linear-gradient(210deg,var(--surface) 0%,var(--surface) 90%)', color: 'var(--text)', name: 'SSI Explorers', desc: 'Aquatic adventure program for young ocean explorers from age 6', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/ssi-explorers.webp' },
+ { id: 'upgrade-owd', price: '€300', bg: 'linear-gradient(210deg,var(--surface) 0%,var(--surface) 90%)', color: 'var(--text)', name: 'Upgrade OWD', desc: 'Already Scuba Diver? Level up', img: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/upgrade-owd.webp' },
 ]
 
 const SPECIALTY_COURSES = [
@@ -83,7 +83,7 @@ function translateCourseList<C extends { id?: string; price: string; bg: string;
  }))
 }
 
-function CourseCard({ course, color = '#b7c4b0', onClick, lang = 'EN' }: { course: { id?: string; price: string; bg: string; name: string; desc: string; local?: boolean | string; img?: string }; color?: string; onClick?: () => void; lang?: Lang }) {
+function CourseCard({ course, color = 'var(--text)', onClick, lang = 'EN' }: { course: { id?: string; price: string; bg: string; name: string; desc: string; local?: boolean | string; img?: string }; color?: string; onClick?: () => void; lang?: Lang }) {
  const [hovered, setHovered] = useState(false)
  return (
  <div
@@ -108,7 +108,7 @@ function CourseCard({ course, color = '#b7c4b0', onClick, lang = 'EN' }: { cours
  )}
  <span style={{ position: 'absolute', bottom: '11px', right: '11px', zIndex: 2, fontSize: '14px', fontWeight: 500, color, background: 'color-mix(in srgb, var(--bg) 72%, transparent)', padding: '4px 9px', borderRadius: 0, backdropFilter: 'blur(6px)' }}>{course.price}</span>
  {course.local && (
- <span style={{ position: 'absolute', bottom: '10px', left: '10px', zIndex: 2, fontSize: '14px', fontWeight: 500, color: '#c9b48a', background: 'rgba(255,200,80,.18)', padding: '2px 7px', borderRadius: 0, letterSpacing: '.08em', backdropFilter: 'blur(4px)' }}>{typeof course.local === 'string' ? course.local : T.badge_local_ssi[lang]}</span>
+ <span style={{ position: 'absolute', bottom: '10px', left: '10px', zIndex: 2, fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', padding: '2px 7px', borderRadius: 0, letterSpacing: '.08em', backdropFilter: 'blur(4px)' }}>{typeof course.local === 'string' ? course.local : T.badge_local_ssi[lang]}</span>
  )}
  </div>
  <div style={{ padding: '14px 16px 16px', flex: 1 }}>
@@ -187,9 +187,9 @@ export function PageCourses({ lang, nav }: { lang: Lang; nav: (p: string) => voi
  <p style={{ color: s.muted, fontSize: '14px', maxWidth: '600px', lineHeight: 1.6, marginBottom: '38px' }}>
  {t('courses_tap_hint')}
  </p>
- <CourseRow label={t('courses_entry_label')} color="#b7c4b0" subtext={t('courses_entry_sub')} courses={tEntry} cardColor="#b7c4b0" onCourseClick={handleCourseClick} lang={lang} />
+ <CourseRow label={t('courses_entry_label')} color="var(--text)" subtext={t('courses_entry_sub')} courses={tEntry} cardColor="var(--text)" onCourseClick={handleCourseClick} lang={lang} />
  <CourseRow label={t('courses_specialty_label')} color={s.accent} subtext={t('courses_specialty_sub')} courses={tSpecialty} cardColor={s.accent} onCourseClick={handleCourseClick} lang={lang} />
- <CourseRow label={t('courses_ecology_label')} color="#b7c4b0" subtext={t('courses_ecology_sub')} courses={tEcology} cardColor="#b7c4b0" onCourseClick={handleCourseClick} lang={lang} />
+ <CourseRow label={t('courses_ecology_label')} color="var(--text)" subtext={t('courses_ecology_sub')} courses={tEcology} cardColor="var(--text)" onCourseClick={handleCourseClick} lang={lang} />
  <CourseRow label={t('courses_pro_label')} color="var(--muted)" subtext={t('courses_pro_sub')} courses={tPro} cardColor="var(--muted)" onCourseClick={handleCourseClick} lang={lang} />
  <a href='/book' onClick={() => fireEvent('booking_click')} style={bookBtnStyle}>{t('nav_book_now')}</a>
  </div>

@@ -367,7 +367,7 @@ export function PageSites({ nav, lang }: { nav: (p: string) => void; lang: Lang 
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
  <div style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
  <span style={{ fontSize: '14px', fontWeight: 500, color: 'rgba(255,255,255,.55)', background: 'rgba(0,0,0,.35)', padding: '3px 8px', borderRadius: 0 }}>{spot.type}</span>
- {(spot as any).offshore && <span style={{ fontSize: '14px', fontWeight: 500, color: '#c9b48a', background: 'rgba(201,180,138,.15)', padding: '3px 8px', borderRadius: 0, border: '1px solid rgba(201,180,138,.35)' }}>{t('sites_filter_offshore')}</span>}
+ {(spot as any).offshore && <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: 'transparent', padding: '3px 8px', borderRadius: 0, border: '1px solid var(--line)' }}>{t('sites_filter_offshore')}</span>}
  </div>
  <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--muted)', background: 'rgba(0,0,0,.35)', padding: '4px 9px', borderRadius: 0 }}>{spot.depth}</span>
  </div>

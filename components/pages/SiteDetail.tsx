@@ -87,9 +87,9 @@ export function PageSiteDetail({ slug, lang, nav: _nav }: { slug: string; lang: 
  <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '24px' }}>
  <span style={{ fontSize: '14px', fontWeight: 500, color: s.accent, background: 'color-mix(in srgb, var(--text) 10%, transparent)', padding: '4px 12px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)' }}>{spot.depth}</span>
  <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--muted)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', padding: '4px 12px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)' }}>{spot.type}</span>
- <span style={{ fontSize: '14px', fontWeight: 500, color: '#b7c4b0', background: 'rgba(183,196,176,.08)', padding: '4px 12px', borderRadius: 0, border: '1px solid rgba(183,196,176,.2)' }}>{spot.level} {t('sites_level_req')}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: 'transparent', padding: '4px 12px', borderRadius: 0, border: '1px solid var(--line)' }}>{spot.level} {t('sites_level_req')}</span>
  {(spot as any).beginner && (
- <span style={{ fontSize: '14px', fontWeight: 500, color: '#c9b48a', background: 'rgba(201,180,138,.08)', padding: '4px 12px', borderRadius: 0, border: '1px solid rgba(201,180,138,.25)' }}>{t('sites_beginner_friendly')}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: 'transparent', padding: '4px 12px', borderRadius: 0, border: '1px solid var(--line)' }}>{t('sites_beginner_friendly')}</span>
  )}
  <span style={{ fontSize: '14px', color: s.muted, padding: '4px 12px' }}> {(spot.loc as any)[lang]}</span>
  </div>

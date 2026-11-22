@@ -138,14 +138,14 @@ export default function TicketMessages({
  width: '92%',
  padding: '10px 14px 8px',
  borderRadius: isOut ? '12px 12px 3px 12px' : '12px 12px 12px 3px',
- background: isOut ? 'color-mix(in srgb, var(--text) 7%, transparent)' : 'rgba(212,160,122,.07)',
- border: `1px solid ${isOut ? 'color-mix(in srgb, var(--text) 18%, transparent)' : 'rgba(212,160,122,.18)'}`,
+ background: isOut ? 'color-mix(in srgb, var(--text) 7%, transparent)' : 'var(--text)',
+ border: `1px solid ${isOut ? 'color-mix(in srgb, var(--text) 18%, transparent)' : 'var(--text)'}`,
  }}>
  {/* Sender + time */}
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '7px', gap: '8px' }}>
  <span style={{
  fontSize: '14px', fontWeight: 500,
- color: isOut ? 'color-mix(in srgb, var(--text) 75%, transparent)' : 'rgba(212,160,122,.75)',
+ color: isOut ? 'color-mix(in srgb, var(--text) 75%, transparent)' : 'var(--text)',
  textTransform: 'uppercase', letterSpacing: '.06em',
  }}>
  {isOut ? '' : ''} {senderLabel}
@@ -172,7 +172,7 @@ export default function TicketMessages({
  onClick={() => toggleExpand(msg.id)}
  style={{
  marginTop: '7px', background: 'none', border: 'none', cursor: 'pointer',
- fontSize: '14px', color: isOut ? 'color-mix(in srgb, var(--text) 55%, transparent)' : 'rgba(212,160,122,.55)',
+ fontSize: '14px', color: isOut ? 'color-mix(in srgb, var(--text) 55%, transparent)' : 'var(--text)',
  padding: '0', fontFamily: 'inherit', textDecoration: 'underline',
  }}
  >

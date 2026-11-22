@@ -14,7 +14,7 @@ const shortLabel = (key: string) => (key.length === 10 ? key.slice(8, 10) : key.
 // `empty` = Text, wenn es im Zeitraum nichts zu zeichnen gibt; `hint` = Hinweiszeile unter dem Diagramm (nur wenn es sichtbar ist)
 // `legend` = Namen fuer [Vergleichsbalken, Hauptbalken], nur bei Diagrammen mit `value2`
 // `tone` = Farbe der Balken: nur Markenfarben: Electric Ocean fuer gebuchte Werte (Standard), Reef Teal fuer eingegangenes Geld
-const TONES = { blue: { full: 'var(--accent)', soft: 'color-mix(in srgb, var(--text) 50%, transparent)' }, teal: { full: '#b7c4b0', soft: 'rgba(183,196,176,.5)' } } as const
+const TONES = { blue: { full: 'var(--accent)', soft: 'color-mix(in srgb, var(--text) 50%, transparent)' }, teal: { full: 'var(--text)', soft: 'var(--text)' } } as const
 export default function BarChart({ series, height = 88, empty, hint, legend, tone = 'blue' }: { series: BarPoint[]; height?: number; empty?: string; hint?: string; legend?: [string, string]; tone?: keyof typeof TONES }) {
  const [hover, setHover] = useState<number | null>(null)
  // x = Mitte der Balkenspalte, w = Breite der Balkenreihe (beides in Pixeln, beim Zeigen gemessen)
@@ -49,7 +49,7 @@ export default function BarChart({ series, height = 88, empty, hint, legend, ton
  )}
  {series.map((x, i) => {
  const on = hover === i
- const fill = x.value < 0 ? '#c9928c' : x.dim || x.value === 0 ? 'rgba(255,255,255,.07)' : on || x.mark ? col.full : col.soft
+ const fill = x.value < 0 ? 'var(--text)' : x.dim || x.value === 0 ? 'rgba(255,255,255,.07)' : on || x.mark ? col.full : col.soft
  return (
  <div key={x.key} tabIndex={0} aria-label={`${x.label}: ${x.tip.map(([l, v]) => `${l} ${v}`).join(', ')}`}
  onMouseEnter={e => show(i, e.currentTarget)} onFocus={e => show(i, e.currentTarget)} onBlur={() => setHover(h => (h === i ? null : h))} onClick={e => { if (hover === i) setHover(null); else show(i, e.currentTarget) }}

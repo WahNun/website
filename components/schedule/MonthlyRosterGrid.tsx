@@ -163,7 +163,7 @@ export function MonthlyRosterGrid({ year, month, company = 'azd' }: {
  onClick={generateDraft}
  disabled={drafting}
  style={{
- background: drafting ? '#555' : '#b7c4b0',
+ background: drafting ? '#555' : 'transparent',
  color: 'var(--on-accent)',
  border: 'none',
  borderRadius: 6,
@@ -176,7 +176,7 @@ export function MonthlyRosterGrid({ year, month, company = 'azd' }: {
  {drafting ? '…generiert' : ' Draft generieren'}
  </button>
  {draftResult && (
- <span style={{ color: draftResult.startsWith('') ? '#c9928c' : '#b7c4b0', fontSize: 11 }}>
+ <span style={{ color: draftResult.startsWith('') ? 'var(--text)' : 'var(--text)', fontSize: 11 }}>
  {draftResult}
  </span>
  )}
@@ -212,7 +212,7 @@ export function MonthlyRosterGrid({ year, month, company = 'azd' }: {
  width: 28,
  textAlign: 'center',
  padding: '4px 2px',
- color: isWeekend ? '#c9928c' : '#888',
+ color: isWeekend ? 'var(--text)' : '#888',
  fontWeight: isWeekend ? 500 : 400,
  fontSize: 11,
  }}

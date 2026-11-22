@@ -256,7 +256,7 @@ export default function SplitGuestCard(p: {
  const field: React.CSSProperties = { width: '100%', background: 'var(--bg)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '10px 12px', fontSize: '15px', color: s.text, fontFamily: s.font, outline: 'none', boxSizing: 'border-box', colorScheme: 'dark' }
  const small: React.CSSProperties = { fontSize: '14px', color: s.muted, marginTop: '2px', lineHeight: 1.5 }
  const pickBtn = (done: boolean): React.CSSProperties => ({ padding: '7px 12px', borderRadius: 0, fontSize: '14px', fontWeight: 500, fontFamily: 'inherit', cursor: 'pointer', border: `1px solid ${done ? 'rgba(255,255,255,.15)' : 'color-mix(in srgb, var(--text) 50%, transparent)'}`, background: done ? 'transparent' : 'color-mix(in srgb, var(--text) 15%, transparent)', color: done ? s.sub : 'var(--accent)', whiteSpace: 'nowrap' })
- const row = (open: boolean, done: boolean): React.CSSProperties => ({ border: `1px solid ${open ? 'color-mix(in srgb, var(--text) 50%, transparent)' : done ? 'rgba(183,196,176,.35)' : 'rgba(212,160,122,.45)'}`, background: open ? 'color-mix(in srgb, var(--text) 6%, transparent)' : 'rgba(255,255,255,.03)', borderRadius: 0, padding: '10px 12px', marginTop: '8px' })
+ const row = (open: boolean, done: boolean): React.CSSProperties => ({ border: `1px solid ${open ? 'color-mix(in srgb, var(--text) 50%, transparent)' : done ? 'var(--text)' : 'var(--text)'}`, background: open ? 'color-mix(in srgb, var(--text) 6%, transparent)' : 'rgba(255,255,255,.03)', borderRadius: 0, padding: '10px 12px', marginTop: '8px' })
  const opt = (active: boolean, disabled = false): React.CSSProperties => ({ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', width: '100%', textAlign: 'left', padding: '9px 11px', borderRadius: 0, border: `1px solid ${active ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.1)'}`, background: active ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'transparent', color: active ? 'var(--text)' : 'var(--accent)', fontWeight: active ? 500 : 400, fontSize: '14px', cursor: disabled ? 'default' : 'pointer', fontFamily: 'inherit', opacity: disabled ? .45 : 1 })
  const doneBtn = (ok: boolean, txt: string, next?: () => void) => (
  <button type="button" onClick={e => (ok && next) ? next() : closePicker(e, () => setOpenPicker(null))} style={{ width: '100%', marginTop: '10px', padding: '10px', borderRadius: 0, border: 'none', background: ok ? s.accent : 'rgba(255,255,255,.08)', color: ok ? 'var(--bg)' : s.muted, fontWeight: 500, fontSize: '14px', fontFamily: 'inherit', cursor: 'pointer' }}>{txt}</button>
@@ -266,7 +266,7 @@ export default function SplitGuestCard(p: {
  if (collapsed && product) {
  const dates = [refresherDate ? ` ${fmtDay(refresherDate)}` : '', ...picked.map(x => `${fmtDay(x.date)}${x.session !== 'tbd' ? ` ${x.session.toUpperCase()}` : ''}`)].filter(Boolean).join(' · ')
  return (
- <div data-guestcard data-done style={{ scrollMarginTop: '88px', border: `1px solid ${missing ? 'rgba(212,160,122,.45)' : 'rgba(183,196,176,.35)'}`, borderRadius: 0, padding: '12px 16px', marginBottom: '14px', background: 'var(--glass)' }}>
+ <div data-guestcard data-done style={{ scrollMarginTop: '88px', border: `1px solid ${missing ? 'var(--line)' : 'var(--line)'}`, borderRadius: 0, padding: '12px 16px', marginBottom: '14px', background: 'var(--glass)' }}>
  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px' }}>
  <div style={{ minWidth: 0 }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.accent }}>{titleLabel}</div>
@@ -281,7 +281,7 @@ export default function SplitGuestCard(p: {
  ))}
  {inheritIns && <div style={{ ...small, marginTop: 0 }}> Insurance as for your first product</div>}
  </div>
- {missing && <div style={{ ...small, color: '#d4a07a' }}> Still needed: {missing}</div>}
+ {missing && <div style={{ ...small, color: 'var(--text)' }}> Still needed: {missing}</div>}
  </div>
  <div style={{ textAlign: 'right', flexShrink: 0 }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.sub, fontVariantNumeric: 'tabular-nums' }}>€{(cardTotal / 100).toFixed(2)}</div>
@@ -293,7 +293,7 @@ export default function SplitGuestCard(p: {
  }
 
  const requestHint = (
- <div style={{ ...small, color: '#d4a07a', marginTop: '8px' }}>{product?.name} runs on request — <a href="/contact" style={{ color: s.accent }}>send an enquiry</a> or pick another product for this guest.</div>
+ <div style={{ ...small, color: 'var(--text)', marginTop: '8px' }}>{product?.name} runs on request — <a href="/contact" style={{ color: s.accent }}>send an enquiry</a> or pick another product for this guest.</div>
  )
 
  const productSelect = (
@@ -334,7 +334,7 @@ export default function SplitGuestCard(p: {
  <>
  {/* Letzter Tauchgang */}
  {lastDiveRequired && inherited && (
- <div style={{ ...small, color: '#b7c4b0', marginTop: '8px' }}> Last dive{p.notBeforeDate ? ' and Scuba Skills Update are' : ' is'} covered by guest {p.extraOf}’s first booking.</div>
+ <div style={{ ...small, color: 'var(--text)', marginTop: '8px' }}> Last dive{p.notBeforeDate ? ' and Scuba Skills Update are' : ' is'} covered by guest {p.extraOf}’s first booking.</div>
  )}
  {lastDiveRequired && !inherited && (
  <div data-pickrow data-open={openPicker === 'lastdive' ? '1' : undefined} style={{ scrollMarginTop: '88px', ...row(openPicker === 'lastdive', Boolean(lastDive)) }}>
@@ -358,8 +358,8 @@ export default function SplitGuestCard(p: {
  <div data-pickrow data-open={openPicker === 'refresher' ? '1' : undefined} style={{ scrollMarginTop: '88px', ...row(openPicker === 'refresher', Boolean(refresherDate)) }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
  <div style={{ flex: 1 }}>
- <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}><span style={{ color: '#d4a07a' }}>Step 1 · </span> {refresherProduct.name} · €{(refresherProduct.price_cents / 100).toFixed(0)}</div>
- <div style={small}>{refresherDate ? `${fmtDay(refresherDate)} · start time confirmed by your instructor` : 'Half-day refresher before this guest’s first dive'}<span style={{ display: 'block', color: '#b7c4b0' }}> Full equipment included for this session.</span></div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}><span style={{ color: 'var(--text)' }}>Step 1 · </span> {refresherProduct.name} · €{(refresherProduct.price_cents / 100).toFixed(0)}</div>
+ <div style={small}>{refresherDate ? `${fmtDay(refresherDate)} · start time confirmed by your instructor` : 'Half-day refresher before this guest’s first dive'}<span style={{ display: 'block', color: 'var(--text)' }}> Full equipment included for this session.</span></div>
  </div>
  <button type="button" onClick={() => setOpenPicker(openPicker === 'refresher' ? null : 'refresher')} style={pickBtn(Boolean(refresherDate))}>{refresherDate ? 'Change date' : 'Select date'}</button>
  </div>
@@ -417,10 +417,10 @@ export default function SplitGuestCard(p: {
 
  {/* Equipment: eine Umschaltzeile, Extras eingeklappt */}
  {isEntryCourse ? (
- <div style={{ ...small, color: '#b7c4b0', marginTop: '10px' }}> Full equipment is included in {product?.name}.</div>
+ <div style={{ ...small, color: 'var(--text)', marginTop: '10px' }}> Full equipment is included in {product?.name}.</div>
  ) : inheritEquip ? (
  <div data-step style={{ scrollMarginTop: '88px', marginTop: '14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
- <div style={{ ...small, color: '#b7c4b0' }}>
+ <div style={{ ...small, color: 'var(--text)' }}>
  Equipment: same as for your first product — {fullSelected ? 'full set' : selectedAddonIds.size > 0 ? `${selectedAddonIds.size} rental piece${selectedAddonIds.size === 1 ? '' : 's'}` : 'you bring your own'}
  </div>
  <button type="button" onClick={() => setEquipOverride(true)} style={{ background: 'transparent', border: 'none', color: s.accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Change</button>
@@ -430,7 +430,7 @@ export default function SplitGuestCard(p: {
  <div data-step style={{ scrollMarginTop: '88px', marginTop: '14px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '6px' }}>Equipment{equipmentIncluded ? '' : ` · per day${diveDays > 1 ? ` × ${diveDays} days` : ''}`}</div>
  {equipmentIncluded ? (
- <div style={{ ...small, color: '#b7c4b0' }}> Full equipment is included in {product?.name}.</div>
+ <div style={{ ...small, color: 'var(--text)' }}> Full equipment is included in {product?.name}.</div>
  ) : fullEquipAddon && (
  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
  <button type="button" onClick={() => { if (fullSelected) toggleAddon(fullEquipAddon.id) }} style={{ ...opt(!fullSelected), justifyContent: 'flex-start' }}>I bring my own</button>
@@ -442,8 +442,8 @@ export default function SplitGuestCard(p: {
  )}
  {/* Popular extras = Upsell sichtbar; Einzelteile eingeklappt (und weg, sobald Full Set gewählt) */}
  {popular.length > 0 && (
- <div style={{ marginTop: '10px', border: '1px solid rgba(201,180,138,.3)', borderRadius: 0, padding: '10px 12px', background: 'rgba(201,180,138,.05)' }}>
- <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c9b48a', marginBottom: '8px' }}>Popular extras</div>
+ <div style={{ marginTop: '10px', border: '1px solid var(--line)', borderRadius: 0, padding: '10px 12px', background: 'transparent' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '8px' }}>Popular extras</div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
  {popular.map(a => (
  <button key={a.id} type="button" onClick={() => toggleAddon(a.id)} style={opt(selectedAddonIds.has(a.id))}>
@@ -477,10 +477,10 @@ export default function SplitGuestCard(p: {
  <div data-step style={{ scrollMarginTop: '88px', marginTop: '14px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '6px' }}>Dive insurance</div>
  {insuranceIncluded ? (
- <div style={{ ...small, color: '#b7c4b0' }}> Included in {product?.name}.</div>
+ <div style={{ ...small, color: 'var(--text)' }}> Included in {product?.name}.</div>
  ) : inheritIns ? (
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
- <div style={{ ...small, color: '#b7c4b0' }}>
+ <div style={{ ...small, color: 'var(--text)' }}>
  Insurance: {insuranceChoice === 'own' ? 'own diving insurance, as selected in your first product' : insurancePerDiver > 0 ? `DAN as selected in your first product · €${(insurancePerDiver / 100).toFixed(0)}${(p.laterCards ?? []).some(c => c.insuranceAzd) ? ' for all your days' : ''}` : 'DAN as selected in your first product'}
  </div>
  <button type="button" onClick={() => setInsOverride(true)} style={{ background: 'transparent', border: 'none', color: s.accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Change</button>

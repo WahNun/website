@@ -124,15 +124,15 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
 
  {/* Right: sidebar */}
  <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
- <div style={{ background: 'rgba(255,200,80,.07)', border: '1px solid rgba(255,200,80,.2)', borderRadius: 0, padding: '20px' }}>
- <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c9b48a', marginBottom: '14px' }}>{t('formigas_requirements_title')}</div>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 8%, transparent)', border: '1px solid var(--line)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '14px' }}>{t('formigas_requirements_title')}</div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
  <div>
- <div style={{ fontSize: '14px', fontWeight: 500, color: '#c9b48a', marginBottom: '5px' }}>{t('formigas_req_label1')}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', marginBottom: '5px' }}>{t('formigas_req_label1')}</div>
  <p style={{ fontSize: '14px', color: '#c8b97a', lineHeight: 1.6, margin: 0 }}>{t('formigas_req_p1')}</p>
  </div>
- <div style={{ borderTop: '1px solid rgba(255,200,80,.15)', paddingTop: '14px' }}>
- <div style={{ fontSize: '14px', fontWeight: 500, color: '#c9b48a', marginBottom: '5px' }}>{t('formigas_req_label2')}</div>
+ <div style={{ borderTop: '1px solid var(--line)', paddingTop: '14px' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', marginBottom: '5px' }}>{t('formigas_req_label2')}</div>
  <p style={{ fontSize: '14px', color: '#c8b97a', lineHeight: 1.6, margin: 0 }}>{t('formigas_req_p2')}</p>
  </div>
  </div>
@@ -166,7 +166,7 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
  <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', marginBottom: '6px' }}>{t('formigas_join')}</div>
  <p style={{ color: s.muted, fontSize: '14px', lineHeight: 1.6, marginBottom: '14px' }}>{t('formigas_waitlist_sub')}</p>
  {waitDone ? (
- <div style={{ background: 'rgba(45,212,160,.08)', border: '1px solid rgba(45,212,160,.3)', borderRadius: 0, padding: '12px 14px', color: '#b7c4b0', fontSize: '14px', fontWeight: 500 }}>
+ <div style={{ background: 'rgba(45,212,160,.08)', border: '1px solid rgba(45,212,160,.3)', borderRadius: 0, padding: '12px 14px', color: 'var(--text)', fontSize: '14px', fontWeight: 500 }}>
  You&rsquo;re on the list — we&rsquo;ll notify you when a window opens.
  </div>
  ) : (
@@ -179,7 +179,7 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
  placeholder="you@email.com"
  style={{ ...inputStyle, width: '100%', boxSizing: 'border-box' }}
  />
- {waitError && <div style={{ color: '#c9928c', fontSize: '14px' }}>{waitError}</div>}
+ {waitError && <div style={{ color: 'var(--text)', fontSize: '14px' }}>{waitError}</div>}
  <button
  type="button"
  onClick={handleWaitlist}

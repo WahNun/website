@@ -205,7 +205,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
  return (
  <div style={{
  background: 'var(--glass)',
- border: `1px solid ${warningDays.length > 0 ? 'rgba(212,160,122,.4)' : 'color-mix(in srgb, var(--text) 15%, transparent)'}`,
+ border: `1px solid ${warningDays.length > 0 ? 'var(--line)' : 'color-mix(in srgb, var(--text) 15%, transparent)'}`,
  borderRadius: 0,
  padding: '20px',
  overflow: 'hidden',
@@ -226,7 +226,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
  </div>
 
  {error && (
- <div style={{ fontSize: '14px', color: '#c9928c', padding: '10px', background: 'rgba(201,146,140,.1)', borderRadius: 0 }}>{error}</div>
+ <div style={{ fontSize: '14px', color: 'var(--text)', padding: '10px', background: 'transparent', borderRadius: 0 }}>{error}</div>
  )}
 
  {!loading && !error && days.length > 0 && (
@@ -237,7 +237,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
  const isWarning = pct >= 0.8 && pct < 1
  const isFull = pct >= 1
  const isToday = day.date === rollDateStr
- const barColor = isFull ? '#c9928c' : isWarning ? '#d4a07a' : 'var(--accent)'
+ const barColor = isFull ? 'var(--text)' : isWarning ? 'var(--text)' : 'var(--accent)'
  const bgBase = isToday ? 'color-mix(in srgb, var(--text) 10%, transparent)' : hasStudents ? 'color-mix(in srgb, var(--text) 5%, transparent)' : 'transparent'
 
  return (
@@ -264,7 +264,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
  </div>
  <div style={{
  fontSize: '14px', fontWeight: 500, minWidth: '52px', textAlign: 'right', flexShrink: 0,
- color: isFull ? '#c9928c' : isWarning ? '#d4a07a' : hasStudents ? s.text : s.muted,
+ color: isFull ? 'var(--text)' : isWarning ? 'var(--text)' : hasStudents ? s.text : s.muted,
  }}>
  {hasStudents ? `${day.students}/${day.quota}` : `—/${day.quota}`}
  </div>
@@ -293,7 +293,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
  )}
 
  {!loading && warningDays.length > 0 && (
- <div style={{ marginTop: '12px', padding: '10px 12px', borderRadius: 0, background: 'rgba(212,160,122,.1)', border: '1px solid rgba(212,160,122,.3)', fontSize: '14px', color: '#d4a07a', lineHeight: 1.5 }}>
+ <div style={{ marginTop: '12px', padding: '10px 12px', borderRadius: 0, background: 'transparent', border: '1px solid var(--line)', fontSize: '14px', color: 'var(--text)', lineHeight: 1.5 }}>
  {warningDays.length} day{warningDays.length === 1 ? '' : 's'} near or at quota:
  {' '}{warningDays.map(d => fmt(d.date)).join(', ')}
  {warningDays.some(d => d.students >= d.quota) && ' — next booking triggers request-only.'}
@@ -315,18 +315,18 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
  </div>
  <div style={{ padding: '14px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
  {detailLoading && <div style={{ fontSize: '14px', color: s.muted }}>Loading…</div>}
- {detailErr && <div style={{ fontSize: '14px', color: '#c9928c', padding: '10px', background: 'rgba(201,146,140,.1)', borderRadius: 0 }}>{detailErr}</div>}
+ {detailErr && <div style={{ fontSize: '14px', color: 'var(--text)', padding: '10px', background: 'transparent', borderRadius: 0 }}>{detailErr}</div>}
  {!detailLoading && !detailErr && detail.length === 0 && <div style={{ fontSize: '14px', color: s.muted }}>No course sessions found for this day.</div>}
  {detail.map(r => {
  const tbd = r.session === 'tbd'
  const where = r.isBoatDay === false ? 'Pool / harbour' : r.boatName ? `Boat: ${r.boatName}` : tbd ? 'Not planned yet' : 'Boat (not assigned)'
  return (
- <div key={r.key} style={{ padding: '12px 14px', borderRadius: 0, background: 'color-mix(in srgb, var(--text) 5%, transparent)', border: `1px solid ${tbd ? 'rgba(201,180,138,.4)' : 'color-mix(in srgb, var(--text) 15%, transparent)'}` }}>
+ <div key={r.key} style={{ padding: '12px 14px', borderRadius: 0, background: 'color-mix(in srgb, var(--text) 5%, transparent)', border: `1px solid ${tbd ? 'var(--line)' : 'color-mix(in srgb, var(--text) 15%, transparent)'}` }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>
- {r.product}{r.isTest && <span style={{ marginLeft: '8px', fontSize: '14px', color: '#c9b48a', fontWeight: 500 }}>TEST</span>}
+ {r.product}{r.isTest && <span style={{ marginLeft: '8px', fontSize: '14px', color: 'var(--text)', fontWeight: 500 }}>TEST</span>}
  </div>
- <span style={{ fontSize: '14px', fontWeight: 500, padding: '2px 9px', borderRadius: 0, background: tbd ? 'rgba(201,180,138,.15)' : 'color-mix(in srgb, var(--text) 12%, transparent)', color: tbd ? '#c9b48a' : 'var(--accent)' }}>
+ <span style={{ fontSize: '14px', fontWeight: 500, padding: '2px 9px', borderRadius: 0, background: tbd ? 'transparent' : 'color-mix(in srgb, var(--text) 12%, transparent)', color: tbd ? 'var(--text)' : 'var(--accent)' }}>
  {tbd ? 'Time to be set' : r.session.toUpperCase()}{r.startTime ? ` · ${String(r.startTime).slice(0, 5)}` : ''}
  </span>
  </div>

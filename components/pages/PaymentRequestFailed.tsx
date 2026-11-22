@@ -94,15 +94,15 @@ export default function PaymentRequestFailed({ sandbox, onCount, onOpenBooking }
  if (!loading && !err && rows.length === 0 && !msg) return null
  return (
  <div style={{ marginBottom: '28px' }}>
- <div style={{ fontSize: '14px', fontWeight: 500, color: '#c9928c', marginBottom: '4px' }}>Payment request not sent{rows.length ? ` (${rows.length})` : ''}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', marginBottom: '4px' }}>Payment request not sent{rows.length ? ` (${rows.length})` : ''}</div>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '12px', lineHeight: 1.55 }}>
  The email with the payment details (bank transfer or Revolut) did not go out, so the guest cannot pay yet. Send it again, or open the booking and check the email address. If sending keeps failing, give the guest the details another way and dismiss the notice.
  </div>
- {msg && <div style={{ fontSize: '14px', marginBottom: '10px', color: msg.ok ? '#b7c4b0' : '#c9928c' }}>{msg.text}</div>}
+ {msg && <div style={{ fontSize: '14px', marginBottom: '10px', color: msg.ok ? 'var(--text)' : 'var(--text)' }}>{msg.text}</div>}
  {loading ? <div style={{ fontSize: '14px', color: s.muted }}>Loading…</div>
- : err ? <div style={{ fontSize: '14px', color: '#c9928c' }}>Could not load this list: {err}</div>
+ : err ? <div style={{ fontSize: '14px', color: 'var(--text)' }}>Could not load this list: {err}</div>
  : rows.map(r => (
- <div key={r.id} style={{ background: 'rgba(201,146,140,.04)', border: '1px solid rgba(201,146,140,.3)', borderRadius: 0, padding: '14px 18px', marginBottom: '10px' }}>
+ <div key={r.id} style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '14px 18px', marginBottom: '10px' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', flexWrap: 'wrap' }}>
  <div style={{ minWidth: 0 }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{r.customer_name ?? '—'}</div>
@@ -115,11 +115,11 @@ export default function PaymentRequestFailed({ sandbox, onCount, onOpenBooking }
  </div>
  </div>
  <div style={{ textAlign: 'right' }}>
- <div style={{ fontSize: '20px', fontWeight: 500, color: '#c9928c' }}>{eur(r.amount)}</div>
+ <div style={{ fontSize: '20px', fontWeight: 500, color: 'var(--text)' }}>{eur(r.amount)}</div>
  <div style={{ fontSize: '14px', color: s.muted }}>booking total</div>
  </div>
  </div>
- {r.error && <div style={{ fontSize: '14px', color: s.text, padding: '8px 10px', marginTop: '8px', background: 'rgba(255,255,255,.03)', borderRadius: 0, borderLeft: '3px solid #c9928c' }}>{r.error}</div>}
+ {r.error && <div style={{ fontSize: '14px', color: s.text, padding: '8px 10px', marginTop: '8px', background: 'rgba(255,255,255,.03)', borderRadius: 0, borderLeft: '3px solid var(--line)' }}>{r.error}</div>}
  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '10px' }}>
  <button type="button" disabled={busy === r.id} onClick={() => again(r)} style={{ flex: '1 1 240px', padding: '10px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 40%, transparent)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: busy === r.id ? 'wait' : 'pointer', fontFamily: 'inherit' }}>
  {busy === r.id ? 'Working…' : 'Send payment request again'}
@@ -141,13 +141,13 @@ export default function PaymentRequestFailed({ sandbox, onCount, onOpenBooking }
  <input type="checkbox" checked={altOf(r).save} onChange={e => setAlt(m => ({ ...m, [r.id]: { ...altOf(r), save: e.target.checked } }))} style={{ width: '15px', height: '15px', accentColor: s.accent }} />
  Also save it as the guest email on the booking, so later emails go there too (only if this email goes out)
  </label>
- {altOf(r).email.trim() !== '' && !validEmail(altOf(r).email) && <div style={{ color: '#d4a07a', marginTop: '8px' }}>This does not look like an email address yet.</div>}
+ {altOf(r).email.trim() !== '' && !validEmail(altOf(r).email) && <div style={{ color: 'var(--text)', marginTop: '8px' }}>This does not look like an email address yet.</div>}
  </div>
  )}
  {ask === r.id && (
  <div style={{ marginTop: '10px', padding: '10px 12px', borderRadius: 0, background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.12)', fontSize: '14px', color: s.text, display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
  <span style={{ flex: '1 1 260px' }}>Dismiss this notice? No email is sent. The guest still has no payment details, so give them another way. It stays in the booking log.</span>
- <button type="button" disabled={busy === r.id} onClick={() => dismiss(r)} style={{ padding: '8px 14px', borderRadius: 0, border: '1px solid rgba(212,160,122,.5)', background: 'rgba(212,160,122,.1)', color: '#d4a07a', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>Yes, dismiss</button>
+ <button type="button" disabled={busy === r.id} onClick={() => dismiss(r)} style={{ padding: '8px 14px', borderRadius: 0, border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>Yes, dismiss</button>
  <button type="button" onClick={() => setAsk(null)} style={{ padding: '8px 14px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>Cancel</button>
  </div>
  )}

@@ -9,7 +9,7 @@ const MUTED = 'var(--muted)'
 const TEXT = 'var(--text)'
 const SURFACE = 'var(--surface)'
 const BORDER = 'color-mix(in srgb, var(--text) 12%, transparent)'
-const AMBER = '#c9b48a'
+const AMBER = 'var(--text)'
 
 type Shot = { src: string; caption: string; phone?: boolean }
 type Item = { title: string; how: string[]; why: string; shots?: Shot[]; numbered?: boolean }

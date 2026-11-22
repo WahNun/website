@@ -98,18 +98,18 @@ export default function RequestPage() {
 
  <div style={{ background: 'var(--glass)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 0, padding: '26px' }}>
  {loadError ? (
- <div style={box('#c9928c', 'rgba(201,146,140,.4)')}>{loadError}<br /><a href="/contact" style={{ color: '#ffb59f', fontWeight: 500 }}>Contact us</a> if you think this is a mistake.</div>
+ <div style={box('var(--text)', 'var(--text)')}>{loadError}<br /><a href="/contact" style={{ color: 'var(--text)', fontWeight: 500 }}>Contact us</a> if you think this is a mistake.</div>
  ) : !summary ? (
  <div style={{ color: s.muted, fontSize: '14px', textAlign: 'center', padding: '20px 0' }}>Loading…</div>
  ) : (
  <>
- {summary.is_test && <div style={{ marginBottom: '14px', fontSize: '14px', fontWeight: 500, color: '#c9b48a' }}>TEST booking</div>}
+ {summary.is_test && <div style={{ marginBottom: '14px', fontSize: '14px', fontWeight: 500, color: 'var(--text)' }}>TEST booking</div>}
  {qp.get('cancelled') === '1' && !paid && !replied && (
- <div style={{ ...box('#c9b48a', 'rgba(201,180,138,.35)'), marginBottom: '14px', fontSize: '14px' }}>Payment was not completed. You can confirm again below, or tell us if the day does not work.</div>
+ <div style={{ ...box('var(--text)', 'var(--text)'), marginBottom: '14px', fontSize: '14px' }}>Payment was not completed. You can confirm again below, or tell us if the day does not work.</div>
  )}
 
  {(summary.shortened_from || summary.dates_changed) && !paid && summary.status === 'pending' && (
- <div style={{ ...box('#c9b48a', 'rgba(201,180,138,.35)'), marginBottom: '16px', fontSize: '14px' }}>
+ <div style={{ ...box('var(--text)', 'var(--text)'), marginBottom: '16px', fontSize: '14px' }}>
  {summary.shortened_from
  ? <><strong>We adjusted your booking.</strong> Not enough divers came together for all the days you asked for ({summary.shortened_from.productName}{summary.requested_sessions.length ? `, ${summary.requested_sessions.map(sessLabel).join(' · ')}` : ''}, €{(summary.shortened_from.amountCents / 100).toFixed(2)}). We can run <strong>{summary.product_name}</strong> on {summary.sessions.map(sessLabel).join(' · ')} for €{(summary.total_cents / 100).toFixed(2)}.</>
  : <><strong>We adjusted your dates.</strong> You asked for {summary.requested_sessions.map(sessLabel).join(' · ')} — the day we can run is listed below.</>}
@@ -133,13 +133,13 @@ export default function RequestPage() {
  </div>
 
  {paid ? (
- <div style={box('#b7c4b0', 'rgba(183,196,176,.35)')}>This booking is paid and confirmed. Your check-in link is in your confirmation email.</div>
+ <div style={box('var(--text)', 'var(--text)')}>This booking is paid and confirmed. Your check-in link is in your confirmation email.</div>
  ) : summary.status === 'cancelled' ? (
- <div style={box('#c9928c', 'rgba(201,146,140,.4)')}>This request was closed. <Link href="/dive-os/book" style={{ color: '#ffb59f', fontWeight: 500 }}>Book other dates</Link> or <a href="/contact" style={{ color: '#ffb59f', fontWeight: 500 }}>contact us</a>.</div>
+ <div style={box('var(--text)', 'var(--text)')}>This request was closed. <Link href="/dive-os/book" style={{ color: 'var(--text)', fontWeight: 500 }}>Book other dates</Link> or <a href="/contact" style={{ color: 'var(--text)', fontWeight: 500 }}>contact us</a>.</div>
  ) : replied ? (
- <div style={box('#b7c4b0', 'rgba(183,196,176,.35)')}>Got it — the proposed day is off the table and nothing has been charged. We will come back to you as soon as another day comes together. You also get this by email.</div>
+ <div style={box('var(--text)', 'var(--text)')}>Got it — the proposed day is off the table and nothing has been charged. We will come back to you as soon as another day comes together. You also get this by email.</div>
  ) : summary.request_state === 'requested' ? (
- <div style={box('#c9b48a', 'rgba(201,180,138,.3)')}>Your request is with the team. We collect requests for your dates and email you as soon as a dive day comes together.</div>
+ <div style={box('var(--text)', 'var(--text)')}>Your request is with the team. We collect requests for your dates and email you as soon as a dive day comes together.</div>
  ) : canConfirm ? (
  <>
  {!replyOpen && (
@@ -163,7 +163,7 @@ export default function RequestPage() {
  <p style={{ fontSize: '14px', color: s.muted, margin: 0, lineHeight: 1.5 }}>Sending this takes the proposed day off the table — nothing is charged, and we start again from your request.</p>
  </div>
  )}
- {actionError && <div style={{ ...box('#c9928c', 'rgba(201,146,140,.4)'), marginTop: '12px', fontSize: '14px' }}>{actionError}</div>}
+ {actionError && <div style={{ ...box('var(--text)', 'var(--text)'), marginTop: '12px', fontSize: '14px' }}>{actionError}</div>}
  {!replyOpen && (
  <p style={{ textAlign: 'center', fontSize: '14px', color: s.muted, marginTop: '14px', marginBottom: 0, lineHeight: 1.6 }}>
  Secure payment via Stripe · The payment page opens when you confirm{untilLine ? ` · Please decide by ${untilLine}` : ''}

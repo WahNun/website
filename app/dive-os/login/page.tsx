@@ -82,7 +82,7 @@ function LoginForm() {
  <input type="email" autoComplete="username" placeholder="Email address" value={email} onChange={(event) => setEmail(event.target.value)} style={field} />
  <input type="password" autoComplete="current-password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} style={field} />
  {error ? (
- <div role="alert" style={{ background: "rgba(201,146,140,.1)", border: "1px solid rgba(201,146,140,.28)", borderRadius: 0, padding: "12px 14px", fontSize: "14px", color: "#c9928c", lineHeight: 1.45 }}>
+ <div role="alert" style={{ background: "transparent", border: "1px solid var(--line)", borderRadius: 0, padding: "12px 14px", fontSize: "14px", color: "var(--text)", lineHeight: 1.45 }}>
  {error}
  </div>
  ) : null}

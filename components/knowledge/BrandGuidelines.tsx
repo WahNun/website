@@ -99,7 +99,7 @@ function DoDont({ doList, dontList, doTitle = 'Use', dontTitle = 'Avoid' }: { do
  {items.map(i => <div key={i} style={{ display: 'flex', gap: '10px', fontSize: '14px', color: TEXT, lineHeight: 1.6, padding: '3px 0' }}><span style={{ color, fontWeight: 500 }}>{mark}</span><span>{i}</span></div>)}
  </div>
  )
- return <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>{col(doTitle, doList, '#b7c4b0', '')}{col(dontTitle, dontList, '#c9928c', '')}</div>
+ return <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>{col(doTitle, doList, 'var(--text)', '')}{col(dontTitle, dontList, 'var(--muted)', '')}</div>
 }
 
 const tag: React.CSSProperties = { display: 'inline-block', fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', padding: '5px 12px', borderRadius: 0, border: '1px solid rgba(243,239,230,.35)', color: ACCENT, background: 'rgba(243,239,230,.08)' }
@@ -146,7 +146,7 @@ export default function BrandGuidelines() {
  <div style={{ fontSize: '14px', color: MUTED, marginTop: '6px' }}>AZD_Brand_Guide_2026.pdf · 8 pages · 0.8 MB</div>
  </div>
  </div>
- {err && <div style={{ marginTop: '12px', padding: '10px 14px', borderRadius: 0, background: 'rgba(201,146,140,.1)', border: '1px solid rgba(201,146,140,.4)', color: '#c9928c', fontSize: '14px' }}> {err}</div>}
+ {err && <div style={{ marginTop: '12px', padding: '10px 14px', borderRadius: 0, background: 'transparent', border: '1px solid var(--line)', color: 'var(--text)', fontSize: '14px' }}> {err}</div>}
 
  <H n="02 — Colors" title="Color System." intro="Our palette is built on deep Atlantic blues and a single electric accent — the colour of sunlight hitting clear water at depth. Click a swatch to copy its hex code." />
  <Sub>Core — background &amp; accent</Sub><Swatches list={CORE} />

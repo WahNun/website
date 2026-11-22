@@ -336,14 +336,14 @@ export default function FinanceReports({ simulationMode, who, isMobile, onOpenBo
  }
  const month = salesByBucket(pays, refs, period, 'month')
  const tot = month.table.total!
- const kpis: View['kpis'] = [['Received', eur2(cents(tot[2])), '#b7c4b0'], ['Refunded', eur2(cents(tot[4]))], ['Net', eur2(cents(tot[5])), s.accent], ['Payments', String(tot[1])]]
+ const kpis: View['kpis'] = [['Received', eur2(cents(tot[2])), 'var(--text)'], ['Refunded', eur2(cents(tot[4]))], ['Net', eur2(cents(tot[5])), s.accent], ['Payments', String(tot[1])]]
  const basisNote = 'Money received minus refunds paid out, by payment date. Moves between linked bookings are not counted.'
  if (report === 'daily_sales') { const d = salesByBucket(pays, refs, period, 'day'); view = { kpis, series: bars(d), detail: salesDetail('day'), intro: basisNote + hidden, blocks: [{ title: 'Sales per day', file: file('daily-sales'), ...trimDays(d.table, d.keys) }] } }
  else if (report === 'monthly_sales') view = { kpis, series: bars(month), detail: salesDetail('month'), intro: basisNote, blocks: [{ title: 'Sales per month', file: file('monthly-sales'), table: month.table, keys: month.keys }] }
  else if (report === 'yearly_sales') {
  const y = salesByBucket(pays, refs, period, 'year'); const t = trimYears(y.table, y.keys); yearKeys = t.keys
  const r = t.table.rows[t.keys.indexOf(yearPick)]
- const yk: View['kpis'] = r ? [['Received', eur2(cents(r[2])), '#b7c4b0'], ['Refunded', eur2(cents(r[4]))], ['Net', eur2(cents(r[5])), s.accent], ['Payments', String(r[1])]] : kpis
+ const yk: View['kpis'] = r ? [['Received', eur2(cents(r[2])), 'var(--text)'], ['Refunded', eur2(cents(r[4]))], ['Net', eur2(cents(r[5])), s.accent], ['Payments', String(r[1])]] : kpis
  view = { kpis: yk, series: bars(y, t.keys).map(b => ({ ...b, mark: b.key === yearPick })), detail: salesDetail('year'), intro: basisNote + yearsNote, blocks: [{ title: 'Sales per year', file: csvFileName('yearly-sales', null, Boolean(simulationMode)), ...t }] }
  }
  else if (report === 'sales_by_item') view = { kpis, intro: basisNote, blocks: [{ title: 'Sales by item', file: file('sales-by-item'), table: salesByItem(pays, refs, period), note: 'Money received per product and per extra (equipment, add-ons, insurance). A payment for a booking with several items is split in proportion to their prices, so "Payments" counts every payment that touched the item.' }] }
@@ -476,7 +476,7 @@ export default function FinanceReports({ simulationMode, who, isMobile, onOpenBo
  </select>
  </label>
  )}
- <span style={{ fontSize: '14px', color: periodOk || yearly ? s.muted : '#c9928c' }}>{yearly ? (yearKeys.includes(yearPick) ? `The figures above show ${yearPick}. The table lists every year.` : '') : periodOk ? (preset === 'custom' ? '' : `${fmtDay(period.from)} to ${fmtDay(period.to)}`) : 'Please pick a start day and an end day. The start day must not be after the end day.'}</span>
+ <span style={{ fontSize: '14px', color: periodOk || yearly ? s.muted : 'var(--text)' }}>{yearly ? (yearKeys.includes(yearPick) ? `The figures above show ${yearPick}. The table lists every year.` : '') : periodOk ? (preset === 'custom' ? '' : `${fmtDay(period.from)} to ${fmtDay(period.to)}`) : 'Please pick a start day and an end day. The start day must not be after the end day.'}</span>
  <button type="button" onClick={() => setTick(n => n + 1)} style={{ ...chip(false), marginLeft: 'auto' }}>Refresh</button>
  </div>
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center', marginBottom: kind === 'bookings' ? '16px' : '6px', fontSize: '14px', color: s.muted }}>
@@ -491,7 +491,7 @@ export default function FinanceReports({ simulationMode, who, isMobile, onOpenBo
  )}
  </div>
 
- {error && <div style={{ color: '#c9928c', fontSize: '14px', padding: '8px 0' }}>Could not load this report: {error}</div>}
+ {error && <div style={{ color: 'var(--text)', fontSize: '14px', padding: '8px 0' }}>Could not load this report: {error}</div>}
  {!error && periodOk && !view && <div style={{ color: s.muted, fontSize: '14px', padding: '8px 0' }}>Loading...</div>}
 
  {!error && periodOk && view && (

@@ -134,7 +134,7 @@ const t = (iso: string) => new Date(iso).getTime()
 /** Kopfzeile neben den Tabs: heute eingegangen + offene Betraege der naechsten 7 Tage. */
 export function FinanceHeadline({ simulationMode }: { simulationMode: boolean | null }) {
  const { data, error } = useFinanceData(simulationMode, 0)
- if (error) return <span style={{ fontSize: '14px', color: '#c9928c' }} title={error}>Could not load figures</span>
+ if (error) return <span style={{ fontSize: '14px', color: 'var(--text)' }} title={error}>Could not load figures</span>
  if (!data) return <span style={{ fontSize: '14px', color: s.muted }}>Loading…</span>
  const w = windows()
  const today = sum(data.pays.filter(p => t(p.paid_at) >= w.dayStart), p => p.amount)
@@ -142,7 +142,7 @@ export function FinanceHeadline({ simulationMode }: { simulationMode: boolean | 
  return (
  <>
  <span style={{ fontSize: '22px', fontWeight: 500, color: s.text }}>{eur0(today)}</span>
- <span style={{ fontSize: '14px', color: s.muted }}>received today{open7 > 0 && <> · <span style={{ color: '#d4a07a', fontWeight: 500 }}>{eur0(open7)} open next 7 days</span></>}{simulationMode ? ' (Test data)' : ''}</span>
+ <span style={{ fontSize: '14px', color: s.muted }}>received today{open7 > 0 && <> · <span style={{ color: 'var(--text)', fontWeight: 500 }}>{eur0(open7)} open next 7 days</span></>}{simulationMode ? ' (Test data)' : ''}</span>
  </>
  )
 }
@@ -303,7 +303,7 @@ function Overview({ simulationMode, who, onOpenBooking, isMobile }: { simulation
  )
  const head = <Head text="Money received and refunded (paid ledger entries) for the chosen day, month or year." sim={simulationMode} onRefresh={refresh} />
 
- if (error) return <div>{bar}{head}<div style={{ color: '#c9928c', fontSize: '14px' }}> Could not load figures: {error}</div></div>
+ if (error) return <div>{bar}{head}<div style={{ color: 'var(--text)', fontSize: '14px' }}> Could not load figures: {error}</div></div>
  if (!data) return <div>{bar}{head}<div style={{ color: s.muted, fontSize: '14px' }}>Loading...</div></div>
 
  const inR = <T extends { paid_at: string }>(list: T[], a: number, b: number) => list.filter(x => { const ts = t(x.paid_at); return ts >= a && ts < b })
@@ -324,10 +324,10 @@ function Overview({ simulationMode, who, onOpenBooking, isMobile }: { simulation
  const file = (name: string) => csvFileName(name, { from: ymd(new Date(p.start)), to: ymd(new Date(p.cut - DAY_MS / 2)) }, sim)
 
  const kpis: Array<[string, string, string?, string?]> = [
- ['Received', money(inn), '#b7c4b0', plural(pays.length, 'payment')],
- ['Refunded', money(out), out > 0 ? '#d4a07a' : s.text, plural(refs.length, 'refund')],
+ ['Received', money(inn), 'var(--text)', plural(pays.length, 'payment')],
+ ['Refunded', money(out), out > 0 ? 'var(--text)' : s.text, plural(refs.length, 'refund')],
  ['Net', money(net), s.accent, mode === 'day' ? undefined : `avg ${eur0(Math.round(net / p.days))} / day`],
- [vsLabel, vs === null ? '—' : `${vs > 0 ? '+' : ''}${vs} %`, vs === null ? s.muted : vs >= 0 ? '#b7c4b0' : '#c9928c', `${vsNote}: ${money(prevNet)}`],
+ [vsLabel, vs === null ? '—' : `${vs > 0 ? '+' : ''}${vs} %`, vs === null ? s.muted : vs >= 0 ? 'var(--text)' : 'var(--text)', `${vsNote}: ${money(prevNet)}`],
  ]
  if (mode !== 'year') kpis.push(['Year to date', eur0(ytd), s.text, `net, 01.01. to ${dmy(new Date(p.cut - DAY_MS / 2))}`])
 
@@ -367,7 +367,7 @@ function Overview({ simulationMode, who, onOpenBooking, isMobile }: { simulation
  // Gleiche Zaehlweise wie Reports Monthly bookings (Stornos und offene Anfragen zaehlen nicht zum Wert).
  let yoyBlock: ReactNode = null
  if (mode === 'year') {
- if (yoy.error) yoyBlock = <div style={{ color: '#c9928c', fontSize: '14px' }}> Could not load bookings: {yoy.error}</div>
+ if (yoy.error) yoyBlock = <div style={{ color: 'var(--text)', fontSize: '14px' }}> Could not load bookings: {yoy.error}</div>
  else if (!yoy.data) yoyBlock = <div style={{ color: s.muted, fontSize: '14px' }}>Loading...</div>
  else {
  const y = p.y, md = p.current ? ymd(new Date(p.now)).slice(5) : '12-31'
@@ -390,7 +390,7 @@ function Overview({ simulationMode, who, onOpenBooking, isMobile }: { simulation
  <>
  <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px', flexWrap: 'wrap', margin: '2px 0 4px' }}>
  <span style={{ fontSize: '24px', fontWeight: 500, color: s.text, fontVariantNumeric: 'tabular-nums' }}>{eur2(cur.totals.value)}</span>
- {compare && <span style={{ fontSize: '14px', fontWeight: 500, padding: '3px 9px', borderRadius: 0, color: change === null ? s.muted : change >= 0 ? '#b7c4b0' : '#c9928c', background: change === null ? 'rgba(255,255,255,.06)' : change >= 0 ? 'rgba(183,196,176,.12)' : 'rgba(201,146,140,.12)' }}>
+ {compare && <span style={{ fontSize: '14px', fontWeight: 500, padding: '3px 9px', borderRadius: 0, color: change === null ? s.muted : change >= 0 ? 'var(--text)' : 'var(--text)', background: change === null ? 'rgba(255,255,255,.06)' : change >= 0 ? 'transparent' : 'transparent' }}>
  {pctText(change)} vs {p.current ? 'same time last year' : String(y - 1)}
  </span>}
  </div>
@@ -443,7 +443,7 @@ function Overview({ simulationMode, who, onOpenBooking, isMobile }: { simulation
  {new Date(m.ts).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })} · Booking <BookingNo id={m.booking_id} onOpen={onOpenBooking} /> · {ML[m.method] ?? m.method} · {m.by ? ` ${m.by}` : ' by system'}
  </div>
  </div>
- <div style={{ fontSize: '14.5px', fontWeight: 500, color: m.kind === 'in' ? '#b7c4b0' : '#d4a07a', flexShrink: 0 }}>{m.kind === 'in' ? '+' : '−'}{eur2(m.amount)}</div>
+ <div style={{ fontSize: '14.5px', fontWeight: 500, color: m.kind === 'in' ? 'var(--text)' : 'var(--text)', flexShrink: 0 }}>{m.kind === 'in' ? '+' : '−'}{eur2(m.amount)}</div>
  </div>
  ))}
  </Section>
@@ -458,7 +458,7 @@ function Upcoming({ simulationMode, onOpenBooking, isMobile }: { simulationMode:
  const w = useMemo(() => windows(), [data]) // eslint-disable-line react-hooks/exhaustive-deps
  const refresh = () => { cache.delete(String(simulationMode)); setTick(n => n + 1) }
  const head = <Head text="Bookings in the next 14 days and what is still open." sim={simulationMode} onRefresh={refresh} />
- if (error) return <div>{head}<div style={{ color: '#c9928c', fontSize: '14px' }}> Could not load figures: {error}</div></div>
+ if (error) return <div>{head}<div style={{ color: 'var(--text)', fontSize: '14px' }}> Could not load figures: {error}</div></div>
  if (!data) return <div>{head}<div style={{ color: s.muted, fontSize: '14px' }}>Loading...</div></div>
 
  const next7 = data.upcoming.filter(u => u.date <= w.in7)
@@ -474,8 +474,8 @@ function Upcoming({ simulationMode, onOpenBooking, isMobile }: { simulationMode:
  <Kpis isMobile={isMobile} items={[
  ['Next 7 days', `${next7.length}`, s.text, `booking${next7.length === 1 ? '' : 's'} · ${sum(next7, u => u.pax)} pax`],
  ['Booked value (7 d)', eur0(sum(next7, u => u.amount))],
- ['Open (7 d)', eur0(sum(next7, u => u.open)), sum(next7, u => u.open) > 0 ? '#d4a07a' : s.text],
- ['Open (14 d)', eur0(openAll), openAll > 0 ? '#d4a07a' : s.text, `${data.upcoming.length} booking${data.upcoming.length === 1 ? '' : 's'}`],
+ ['Open (7 d)', eur0(sum(next7, u => u.open)), sum(next7, u => u.open) > 0 ? 'var(--text)' : s.text],
+ ['Open (14 d)', eur0(openAll), openAll > 0 ? 'var(--text)' : s.text, `${data.upcoming.length} booking${data.upcoming.length === 1 ? '' : 's'}`],
  ]} />
  <Section title="Bookings in the next 14 days" action={<CsvButton fileName={csvFileName('upcoming-bookings', { from: w.today, to: ymd(new Date(w.n.getFullYear(), w.n.getMonth(), w.n.getDate() + 14)) }, Boolean(simulationMode))} table={upcomingCsv} />}>
  {data.upcoming.length === 0 && <div style={{ fontSize: '14px', color: s.muted, padding: '6px 0' }}>No bookings in the next 14 days.</div>}
@@ -493,7 +493,7 @@ function Upcoming({ simulationMode, onOpenBooking, isMobile }: { simulationMode:
  </div>
  </div>
  <div style={{ textAlign: 'right', flexShrink: 0 }}>
- <div style={{ fontSize: '14px', fontWeight: 500, color: u.open > 0 ? '#d4a07a' : s.text, fontVariantNumeric: 'tabular-nums' }}>{u.open > 0 ? `${eur2(u.open)} open` : eur2(u.amount)}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: u.open > 0 ? 'var(--text)' : s.text, fontVariantNumeric: 'tabular-nums' }}>{u.open > 0 ? `${eur2(u.open)} open` : eur2(u.amount)}</div>
  <div style={{ fontSize: '14px', color: s.muted }}>paid {eur2(u.paid)} of {eur2(u.amount)}</div>
  </div>
  </div>

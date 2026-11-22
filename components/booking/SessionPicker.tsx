@@ -266,7 +266,7 @@ export default function SessionPicker({
  {MONTHS[cursor.getMonth()]} {cursor.getFullYear()}
  </div>
  <button type="button" onClick={() => { autoNav.current = false; setCursor(c => new Date(c.getFullYear(), c.getMonth() + 1, 1)) }} style={navBtn}>›</button>
- <div style={{ marginLeft: narrow ? 0 : 'auto', fontSize: '14px', fontWeight: 500, whiteSpace: 'nowrap', color: remaining === 0 ? '#b7c4b0' : s.accent }}>
+ <div style={{ marginLeft: narrow ? 0 : 'auto', fontSize: '14px', fontWeight: 500, whiteSpace: 'nowrap', color: remaining === 0 ? 'var(--text)' : s.accent }}>
  {freePick ? `${picked.length} day${picked.length === 1 ? '' : 's'} picked` : remaining === 0
  ? (narrow ? ' all picked' : ` ${required} day${required === 1 ? '' : 's'} selected`)
  : narrow ? `${remaining} to pick` : `${remaining} more day${remaining === 1 ? '' : 's'} to pick`}
@@ -385,9 +385,9 @@ export default function SessionPicker({
  style={{
  flex: 1, padding: '3px 0', borderRadius: 0, fontSize: '14px', fontWeight: 500,
  fontFamily: s.font, cursor: can ? 'pointer' : 'default',
- background: on ? (staffOver ? '#c9928c' : s.accent) : staffOver ? 'rgba(201,146,140,.14)' : can ? 'rgba(255,255,255,.06)' : 'transparent',
- color: on ? 'var(--on-accent)' : staffOver ? '#c9928c' : staffBusy ? '#d4a07a' : can ? (tight ? '#d4a07a' : s.muted) : 'rgba(255,255,255,.13)',
- border: `1px solid ${on ? (staffOver ? '#c9928c' : s.accent) : staffOver ? 'rgba(201,146,140,.55)' : can ? (staffBusy ? 'rgba(212,160,122,.35)' : 'rgba(255,255,255,.1)') : 'transparent'}`,
+ background: on ? (staffOver ? 'transparent' : s.accent) : staffOver ? 'transparent' : can ? 'rgba(255,255,255,.06)' : 'transparent',
+ color: on ? 'var(--on-accent)' : staffOver ? 'var(--text)' : staffBusy ? 'var(--text)' : can ? (tight ? 'var(--text)' : s.muted) : 'rgba(255,255,255,.13)',
+ border: `1px solid ${on ? (staffOver ? 'var(--line)' : s.accent) : staffOver ? 'var(--line)' : can ? (staffBusy ? 'var(--line)' : 'rgba(255,255,255,.1)') : 'transparent'}`,
  }}>
  {sess.toUpperCase()}{staffOver ? ' !' : ''}{showCrewWarning && can && a?.crew_missing ? '·' : ''}
  </button>
@@ -400,8 +400,8 @@ export default function SessionPicker({
  title="Instructor decides the time — session is created without AM/PM, a ticket asks the instructor to set it"
  style={{
  flex: 1, padding: '3px 0', borderRadius: 0, fontSize: '14px', fontWeight: 500, fontFamily: s.font, cursor: 'pointer',
- background: on ? '#c9b48a' : 'rgba(201,180,138,.08)', color: on ? '#1a1200' : '#c9b48a',
- border: `1px solid ${on ? '#c9b48a' : 'rgba(201,180,138,.35)'}`,
+ background: on ? 'transparent' : 'transparent', color: on ? '#1a1200' : 'var(--text)',
+ border: `1px solid ${on ? 'var(--line)' : 'var(--line)'}`,
  }}></button>
  )
  })()}
@@ -419,7 +419,7 @@ export default function SessionPicker({
  const pmPct = pmA && pmA.capacity > 0 ? pmA.booked / pmA.capacity : null
  const maxPct = Math.max(amPct ?? 0, pmPct ?? 0)
  if (maxPct < 0.3) return null
- const color = maxPct >= 0.9 ? '#c9928c' : maxPct >= 0.6 ? '#d4a07a' : '#c9b48a'
+ const color = maxPct >= 0.9 ? 'var(--text)' : maxPct >= 0.6 ? 'var(--text)' : 'var(--text)'
  return (
  <div style={{ fontSize: '14px', textAlign: 'center', color, marginTop: '2px', fontWeight: 500 }}>
  {amA ? `${amA.booked}/${amA.capacity}` : '–'} · {pmA ? `${pmA.booked}/${pmA.capacity}` : '–'}
@@ -430,7 +430,7 @@ export default function SessionPicker({
  {!staffMode && anyBookable && mode !== 'night' && (() => {
  const hint = capacityHint(am, pm, seats, tightThreshold)
  return hint ? (
- <div style={{ fontSize: '14px', textAlign: 'center', color: '#d4a07a', marginTop: '2px' }}>{hint}</div>
+ <div style={{ fontSize: '14px', textAlign: 'center', color: 'var(--text)', marginTop: '2px' }}>{hint}</div>
  ) : null
  })()}
  </div>
@@ -476,7 +476,7 @@ export default function SessionPicker({
  </button>
  ))}
  </div>
- {replaceTarget && <div style={{ fontSize: '14px', color: '#d4a07a', marginBottom: '8px' }}>This moves your latest pick ({new Date(replaceTarget.date + 'T12:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })} · {replaceTarget.session === 'tbd' ? 'TBD' : replaceTarget.session.toUpperCase()}) to {dLabel}.</div>}
+ {replaceTarget && <div style={{ fontSize: '14px', color: 'var(--text)', marginBottom: '8px' }}>This moves your latest pick ({new Date(replaceTarget.date + 'T12:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })} · {replaceTarget.session === 'tbd' ? 'TBD' : replaceTarget.session.toUpperCase()}) to {dLabel}.</div>}
  <div style={{ display: 'flex', gap: '8px' }}>
  <button type="button" disabled={!sel || (sel === current)} onClick={() => { if (sel) { toggle(detailDate, sel); setDetailDate(null) } }}
  style={{ flex: 1, padding: '12px', borderRadius: 0, border: 'none', background: s.accent, color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', fontFamily: s.font, cursor: 'pointer', opacity: !sel || sel === current ? .45 : 1 }}>
@@ -484,7 +484,7 @@ export default function SessionPicker({
  </button>
  {current && (
  <button type="button" onClick={() => { toggle(detailDate, current); setDetailDate(null) }}
- style={{ padding: '12px 14px', borderRadius: 0, border: '1px solid rgba(201,146,140,.4)', background: 'transparent', color: '#c9928c', fontWeight: 500, fontSize: '14px', fontFamily: s.font, cursor: 'pointer' }}>Remove</button>
+ style={{ padding: '12px 14px', borderRadius: 0, border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontWeight: 500, fontSize: '14px', fontFamily: s.font, cursor: 'pointer' }}>Remove</button>
  )}
  <button type="button" onClick={() => setDetailDate(null)}
  style={{ padding: '12px 14px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'transparent', color: s.muted, fontSize: '14px', fontFamily: s.font, cursor: 'pointer' }}>Close</button>
@@ -519,12 +519,12 @@ export default function SessionPicker({
  const textColor = !a
  ? 'rgba(255,255,255,.2)'
  : staffMode
- ? (a.capacity > 0 && a.booked + seats > a.capacity ? '#c9928c' : a.booked / Math.max(a.capacity, 1) >= 0.9 ? '#c9928c' : a.booked / Math.max(a.capacity, 1) >= 0.6 ? '#d4a07a' : s.muted)
+ ? (a.capacity > 0 && a.booked + seats > a.capacity ? 'var(--text)' : a.booked / Math.max(a.capacity, 1) >= 0.9 ? 'var(--text)' : a.booked / Math.max(a.capacity, 1) >= 0.6 ? 'var(--text)' : s.muted)
  : canBook
  ? s.muted
  : (a.reason === 'no_boat' || a.reason === 'past_cutoff')
  ? 'rgba(255,255,255,.3)'
- : '#d4a07a'
+ : 'var(--text)'
  return (
  <div key={sess} style={{ display: 'flex', gap: '8px', alignItems: 'baseline', flexWrap: 'wrap' }}>
  <span style={{
@@ -565,7 +565,7 @@ export default function SessionPicker({
  const over = picked.filter(p => p.session !== 'tbd').map(p => ({ p, a: byKey.get(`${p.date}_${p.session}`) })).filter(x => x.a && x.a.capacity > 0 && x.a.booked + seats > x.a.capacity)
  if (over.length === 0) return null
  return (
- <div style={{ marginTop: '10px', padding: '9px 12px', borderRadius: 0, background: 'rgba(201,146,140,.1)', border: '1px solid rgba(201,146,140,.4)', fontSize: '14px', lineHeight: 1.55, color: '#c9928c' }}>
+ <div style={{ marginTop: '10px', padding: '9px 12px', borderRadius: 0, background: 'transparent', border: '1px solid var(--line)', fontSize: '14px', lineHeight: 1.55, color: 'var(--text)' }}>
  <b>Capacity override:</b> {over.map(x => `${new Date(x.p.date + 'T12:00:00').toLocaleDateString('en-GB', { day: '2-digit', month: 'short' })} ${x.p.session.toUpperCase()} is ${x.a!.booked}/${x.a!.capacity} booked`).join(' · ')}. This booking adds {seats} more.
  </div>
  )

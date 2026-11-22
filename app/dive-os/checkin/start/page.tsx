@@ -86,7 +86,7 @@ function StartInner() {
  </div>
  {g.extras.length > 0 && <div style={{ fontSize: '14px', color: 'rgba(255,255,255,.5)', marginTop: '2px' }}>+ {g.extras.join(', ')}</div>}
  {g.done
- ? <div style={{ marginTop: '10px', fontSize: '14px', fontWeight: 500, color: '#b7c4b0' }}> Checked in</div>
+ ? <div style={{ marginTop: '10px', fontSize: '14px', fontWeight: 500, color: 'var(--text)' }}> Checked in</div>
  : (
  <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginTop: '10px', flexWrap: 'wrap' }}>
  <a href={`/dive-os/checkin?token=${g.token}`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', padding: '9px 16px', borderRadius: 0, background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', textDecoration: 'none' }}>Check in {g.label.replace(/ — .*/, '')} </a>
@@ -133,7 +133,7 @@ function StartInner() {
  </>
  )}
  {toast && (
- <div role="status" style={{ position: 'fixed', left: '50%', bottom: '28px', transform: 'translateX(-50%)', padding: '11px 18px', borderRadius: 0, background: toast.error ? '#3a1410' : 'var(--surface)', border: `1px solid ${toast.error ? '#c9928c' : 'rgba(183,196,176,.5)'}`, color: toast.error ? '#ff9a85' : '#b7c4b0', fontSize: '14px', fontWeight: 500, maxWidth: '90vw', boxShadow: 'none', zIndex: 50 }}>
+ <div role="status" style={{ position: 'fixed', left: '50%', bottom: '28px', transform: 'translateX(-50%)', padding: '11px 18px', borderRadius: 0, background: 'var(--surface)', border: '1px solid var(--line)', color: 'var(--text)', fontSize: '14px', fontWeight: 500, maxWidth: '90vw', boxShadow: 'none', zIndex: 50 }}>
  {toast.error ? ' ' : ' '}{toast.text}
  </div>
  )}

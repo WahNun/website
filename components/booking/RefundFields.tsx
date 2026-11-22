@@ -28,14 +28,14 @@ export function ReasonField({ kind, choice, detail, onChoice, onDetail, placehol
  return (
  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
  <label style={lbl}>Reason (required — Claudia sees it in Finances)</label>
- <select value={choice} onChange={e => onChoice(e.target.value)} style={{ ...inp, borderColor: !choice ? 'rgba(212,160,122,.55)' : 'rgba(255,255,255,.14)' }}>
+ <select value={choice} onChange={e => onChoice(e.target.value)} style={{ ...inp, borderColor: !choice ? 'var(--text)' : 'rgba(255,255,255,.14)' }}>
  <option value="">Select a reason…</option>
  {list.map(r => <option key={r} value={r}>{r}</option>)}
  </select>
  <input type="text" value={detail} onChange={e => onDetail(e.target.value)}
  placeholder={isOther ? 'Describe the reason (required for "Other")' : (placeholder ?? 'Note (optional) — e.g. "Day 2 cancelled, wind 30 kn"')}
- style={{ ...inp, borderColor: isOther && detail.trim().length < 3 ? 'rgba(212,160,122,.55)' : 'rgba(255,255,255,.14)' }} />
- {missing && <div style={{ fontSize: '14px', color: '#d4a07a' }}>{!choice ? 'Pick a reason.' : 'Add a short note for "Other".'}</div>}
+ style={{ ...inp, borderColor: isOther && detail.trim().length < 3 ? 'var(--text)' : 'rgba(255,255,255,.14)' }} />
+ {missing && <div style={{ fontSize: '14px', color: 'var(--text)' }}>{!choice ? 'Pick a reason.' : 'Add a short note for "Other".'}</div>}
  </div>
  )
 }
@@ -56,8 +56,8 @@ export function PayoutFields({ method, value, onChange }: { method: string; valu
  if (!payoutNeeded(method)) return null
  const set = (patch: Partial<PayoutValue>) => onChange({ ...value, ...patch })
  return (
- <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', padding: '9px 10px', borderRadius: 0, background: 'rgba(201,180,138,.06)', border: '1px solid rgba(201,180,138,.3)' }}>
- <label style={{ ...lbl, color: '#c9b48a', marginBottom: 0 }}>Where should the money go? (required)</label>
+ <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', padding: '9px 10px', borderRadius: 0, background: 'transparent', border: '1px solid var(--line)' }}>
+ <label style={{ ...lbl, color: 'var(--text)', marginBottom: 0 }}>Where should the money go? (required)</label>
  {method === 'bank' && (<>
  <input type="text" value={value.iban} onChange={e => set({ iban: e.target.value })} placeholder="IBAN, e.g. PT50 0000 0000 0000 0000 0000 0" style={inp} />
  <input type="text" value={value.bic} onChange={e => set({ bic: e.target.value })} placeholder="BIC / SWIFT (optional)" style={inp} />
@@ -99,9 +99,9 @@ export function CopyButton({ value, label = 'Copy' }: { value: string; label?: s
  return (
  <button type="button" onClick={copy}
  style={{ padding: '3px 10px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, minWidth: '74px',
- border: `1px solid ${state === 'ok' ? 'rgba(183,196,176,.6)' : state === 'fail' ? 'rgba(201,146,140,.6)' : 'rgba(201,180,138,.5)'}`,
- background: state === 'ok' ? 'rgba(183,196,176,.15)' : 'transparent',
- color: state === 'ok' ? '#b7c4b0' : state === 'fail' ? '#c9928c' : '#c9b48a' }}>
+ border: `1px solid ${state === 'ok' ? 'var(--line)' : state === 'fail' ? 'var(--line)' : 'var(--line)'}`,
+ background: state === 'ok' ? 'transparent' : 'transparent',
+ color: state === 'ok' ? 'var(--text)' : state === 'fail' ? 'var(--text)' : 'var(--text)' }}>
  {state === 'ok' ? ' Copied' : state === 'fail' ? 'Copy failed' : label}
  </button>
  )

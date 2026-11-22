@@ -61,7 +61,7 @@ export default function PaymentDecision({ bookingIds, onDone, compact, sendReque
  return () => { alive = false }
  }, [key]) // eslint-disable-line react-hooks/exhaustive-deps
 
- if (loadErr) return <div style={{ fontSize: '14px', color: '#c9928c' }}>Could not load the booking for the payment status: {loadErr}</div>
+ if (loadErr) return <div style={{ fontSize: '14px', color: 'var(--text)' }}>Could not load the booking for the payment status: {loadErr}</div>
  if (!rows) return <div style={{ fontSize: '14px', color: s.muted }}>Loading…</div>
 
  const openOf = (r: Row) => Math.max(0, r.amount - r.paid)
@@ -148,7 +148,7 @@ export default function PaymentDecision({ bookingIds, onDone, compact, sendReque
 
  const chip = (on: boolean) => ({ padding: '8px 13px', borderRadius: 0, border: `1px solid ${on ? s.accent : 'rgba(255,255,255,.14)'}`, background: on ? 'color-mix(in srgb, var(--text) 12%, transparent)' : 'transparent', color: on ? s.accent : s.muted, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' as const })
  return (
- <div style={{ background: 'rgba(212,160,122,.05)', border: '1px solid rgba(212,160,122,.35)', borderRadius: 0, padding: compact ? '14px' : '18px', textAlign: 'left' }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: compact ? '14px' : '18px', textAlign: 'left' }}>
  <div style={{ fontSize: '15px', fontWeight: 500, color: s.text, marginBottom: '4px' }}>What happened with the payment?</div>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '14px', lineHeight: 1.5 }}>
  Please answer now. Money you received is recorded as paid and the guest gets the payment email. What is still open is recorded as expected, so it can be marked as received later.
@@ -168,7 +168,7 @@ export default function PaymentDecision({ bookingIds, onDone, compact, sendReque
  <span style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{r.name}<span style={{ fontWeight: 400, color: s.muted, marginLeft: '8px', fontSize: '14px' }}>{r.product} · {LABEL[r.method] ?? r.method}</span></span>
  <span style={{ fontSize: '14px', fontWeight: 500, color: s.text, fontVariantNumeric: 'tabular-nums' }}>{eur(open)}</span>
  </div>
- {saved[r.id] ? <div style={{ fontSize: '14px', color: '#b7c4b0' }}>Saved: {saved[r.id]}</div>
+ {saved[r.id] ? <div style={{ fontSize: '14px', color: 'var(--text)' }}>Saved: {saved[r.id]}</div>
  : open === 0 ? <div style={{ fontSize: '14px', color: s.muted }}>Nothing open.</div>
  : (
  <>
@@ -180,7 +180,7 @@ export default function PaymentDecision({ bookingIds, onDone, compact, sendReque
  <label htmlFor={`pd-${r.id}`}>Received now (€)</label>
  <input id={`pd-${r.id}`} type="text" inputMode="decimal" value={p.part} placeholder="e.g. 50" onChange={e => set(r.id, { part: e.target.value })}
  style={{ width: '110px', background: 'var(--bg)', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, color: s.text, fontSize: '14px', fontFamily: 'inherit', padding: '7px 10px' }} />
- {!Number.isNaN(c) && c > 0 && c < open && <span>still open: <b style={{ color: '#d4a07a' }}>{eur(open - c)}</b></span>}
+ {!Number.isNaN(c) && c > 0 && c < open && <span>still open: <b style={{ color: 'var(--text)' }}>{eur(open - c)}</b></span>}
  </div>
  )}
  </>
@@ -195,7 +195,7 @@ export default function PaymentDecision({ bookingIds, onDone, compact, sendReque
  {due && <button type="button" onClick={() => setDue('')} style={{ background: 'none', border: 'none', color: s.muted, textDecoration: 'underline', cursor: 'pointer', fontSize: '14px', fontFamily: 'inherit', padding: 0 }}>no date</button>}
  </div>
  )}
- {err && <div style={{ fontSize: '14px', color: '#c9928c', margin: '6px 0 10px' }}>Not saved: {err}. What was saved before stays saved. Please try again.</div>}
+ {err && <div style={{ fontSize: '14px', color: 'var(--text)', margin: '6px 0 10px' }}>Not saved: {err}. What was saved before stays saved. Please try again.</div>}
  <button type="button" disabled={!ready || busy} onClick={save}
  style={{ width: '100%', marginTop: '8px', padding: '12px', borderRadius: 0, border: 'none', background: ready && !busy ? s.accent : 'rgba(255,255,255,.08)', color: ready && !busy ? 'var(--bg)' : s.muted, fontWeight: 500, fontSize: '14px', cursor: ready && !busy ? 'pointer' : 'default', fontFamily: 'inherit' }}>
  {busy ? 'Saving…' : ready ? 'Save payment status' : `Missing: ${missing.join(' · ')}`}

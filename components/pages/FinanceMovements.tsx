@@ -103,8 +103,8 @@ export default function FinanceMovements({ view, simulationMode, who, onOpenBook
  {view === 'all' ? 'All money movements: payments received, refunds paid out and moves between linked bookings.' : view === 'payments' ? 'Payments received (paid), newest first.' : 'Cash in and cash out (cash payments and cash refunds), newest first.'}{simulationMode ? ' (Test data)' : ''}
  </div>
  <div style={{ fontSize: '14px', color: s.muted }}>
- {filtered.length} item{filtered.length === 1 ? '' : 's'} · in <span style={{ color: '#b7c4b0', fontWeight: 500 }}>{eur(sumIn)}</span>
- {view !== 'payments' && <> · out <span style={{ color: '#d4a07a', fontWeight: 500 }}>{eur(sumOut)}</span></>}
+ {filtered.length} item{filtered.length === 1 ? '' : 's'} · in <span style={{ color: 'var(--text)', fontWeight: 500 }}>{eur(sumIn)}</span>
+ {view !== 'payments' && <> · out <span style={{ color: 'var(--text)', fontWeight: 500 }}>{eur(sumOut)}</span></>}
  {view === 'cash' && <> · net <span style={{ color: s.text, fontWeight: 500 }}>{sumIn - sumOut < 0 ? '−' : ''}{eur(sumIn - sumOut)}</span></>}
  </div>
  </div>
@@ -116,11 +116,11 @@ export default function FinanceMovements({ view, simulationMode, who, onOpenBook
  <CsvButton fileName={csvName} table={csv} />
  </div>
  {loading && <div style={{ color: s.muted, fontSize: '14px', padding: '10px 0' }}>Loading...</div>}
- {error && <div style={{ color: '#c9928c', fontSize: '14px', padding: '8px 0' }}> Could not load history: {error}</div>}
+ {error && <div style={{ color: 'var(--text)', fontSize: '14px', padding: '8px 0' }}> Could not load history: {error}</div>}
  {!loading && !error && filtered.length === 0 && <div style={{ fontSize: '14px', color: s.muted, padding: '14px 0' }}>{(search || month) ? 'Nothing matches these filters.' : 'No movements yet.'}</div>}
  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
  {pageRows.map(r => {
- const col = r.kind === 'in' ? '#b7c4b0' : r.kind === 'out' ? '#d4a07a' : s.muted
+ const col = r.kind === 'in' ? 'var(--text)' : r.kind === 'out' ? 'var(--text)' : s.muted
  const sign = r.kind === 'in' ? '+' : r.kind === 'out' ? '−' : (r.amount < 0 ? '−' : '+')
  const nm = r.by ? (r.byIsEmail ? who(r.by) : who.id(r.by)) : null
  return (
@@ -129,7 +129,7 @@ export default function FinanceMovements({ view, simulationMode, who, onOpenBook
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>
  {r.label}
  <span style={{ marginLeft: '8px', fontWeight: 400, color: s.muted, fontSize: '14px' }}>{r.customer ?? '—'}{r.product ? ` · ${r.product}` : ''}</span>
- {r.is_test && <span style={{ marginLeft: '8px', fontSize: '14px', color: '#c9b48a' }}>TEST</span>}
+ {r.is_test && <span style={{ marginLeft: '8px', fontSize: '14px', color: 'var(--text)' }}>TEST</span>}
  </div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>
  Booking <button type="button" onClick={() => onOpenBooking(r.booking_id)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: 'var(--text)', fontWeight: 500, background: 'transparent', border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', borderRadius: 0, padding: '0 6px', cursor: 'pointer' }}>{r.booking_id.slice(0, 8).toUpperCase()}</button>

@@ -78,30 +78,30 @@ export function PageContact({ nav, lang }: { nav: (p: string) => void; lang: Lan
  <input id="contact-name" value={cName} onChange={e => setCName(e.target.value)} placeholder={t('contact_name_placeholder')} style={{ ...inputStyle, marginBottom: '14px' }} />
  <label htmlFor="contact-email" style={{ display: 'block', color: 'var(--text)', fontSize: '14px', fontWeight: 500, marginBottom: '6px' }}>{t('contact_email')}</label>
  <input id="contact-email" value={cEmail} onChange={e => setCEmail(e.target.value)} placeholder="you@email.com"
- style={{ ...inputStyle, marginBottom: emailMissing ? '4px' : '14px', borderColor: emailMissing ? 'rgba(201,146,140,.6)' : undefined }} />
- {emailMissing && <div role="alert" style={{ color: '#c9928c', fontSize: '14px', marginBottom: '10px' }}>{t('contact_err_email')}</div>}
+ style={{ ...inputStyle, marginBottom: emailMissing ? '4px' : '14px', borderColor: emailMissing ? 'var(--text)' : undefined }} />
+ {emailMissing && <div role="alert" style={{ color: 'var(--text)', fontSize: '14px', marginBottom: '10px' }}>{t('contact_err_email')}</div>}
  <label htmlFor="contact-phone" style={{ display: 'block', color: 'var(--text)', fontSize: '14px', fontWeight: 500, marginBottom: '6px' }}>{t('contact_phone')}</label>
  <input id="contact-phone" type="tel" value={cPhone} onChange={e => setCPhone(e.target.value)} placeholder={t('contact_phone_placeholder')}
- style={{ ...inputStyle, marginBottom: phoneMissing ? '4px' : '14px', borderColor: phoneMissing ? 'rgba(201,146,140,.6)' : undefined }} />
- {phoneMissing && <div role="alert" style={{ color: '#c9928c', fontSize: '14px', marginBottom: '10px' }}>{t('contact_err_phone')}</div>}
+ style={{ ...inputStyle, marginBottom: phoneMissing ? '4px' : '14px', borderColor: phoneMissing ? 'var(--text)' : undefined }} />
+ {phoneMissing && <div role="alert" style={{ color: 'var(--text)', fontSize: '14px', marginBottom: '10px' }}>{t('contact_err_phone')}</div>}
  <label htmlFor="contact-message" style={{ display: 'block', color: 'var(--text)', fontSize: '14px', fontWeight: 500, marginBottom: '6px' }}>{t('contact_message')}</label>
  <textarea id="contact-message" rows={4} value={cMessage} onChange={e => setCMessage(e.target.value)} placeholder={t('contact_msg_placeholder')} style={{ ...inputStyle, marginBottom: '16px', resize: 'vertical' }} />
  <label style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', cursor: 'pointer', marginBottom: agreeMissing ? '4px' : '18px', userSelect: 'none' }}>
  <input type="checkbox" checked={cAgree} onChange={e => setCAgree(e.target.checked)}
  style={{ marginTop: '2px', accentColor: s.accent, width: '15px', height: '15px', flexShrink: 0, cursor: 'pointer' }} />
- <span style={{ fontSize: '14px', color: agreeMissing ? '#c9928c' : 'var(--muted)', lineHeight: 1.5 }}>
+ <span style={{ fontSize: '14px', color: agreeMissing ? 'var(--text)' : 'var(--muted)', lineHeight: 1.5 }}>
  {t('contact_agree_data')}
  <button type="button" onClick={() => nav('privacy')} style={{ color: s.accent, cursor: 'pointer', textDecoration: 'underline', background: 'none', border: 'none', padding: 0, fontFamily: s.font, fontSize: 'inherit' }}>{t('contact_data_policy')}</button>.
  </span>
  </label>
- {agreeMissing && <div style={{ color: '#c9928c', fontSize: '14px', marginBottom: '14px' }}>{t('contact_err_agree')}</div>}
+ {agreeMissing && <div style={{ color: 'var(--text)', fontSize: '14px', marginBottom: '14px' }}>{t('contact_err_agree')}</div>}
  {cDone ? (
- <div style={{ background: 'rgba(45,212,160,.08)', border: '1px solid rgba(45,212,160,.3)', borderRadius: 0, padding: '12px 14px', color: '#b7c4b0', fontSize: '14px', fontWeight: 500 }}>
+ <div style={{ background: 'rgba(45,212,160,.08)', border: '1px solid rgba(45,212,160,.3)', borderRadius: 0, padding: '12px 14px', color: 'var(--text)', fontSize: '14px', fontWeight: 500 }}>
  Message received — we&rsquo;ll get back to you shortly.
  </div>
  ) : (
  <>
- {cSendError && <div style={{ color: '#c9928c', fontSize: '14px', marginBottom: '10px' }}>{cSendError}</div>}
+ {cSendError && <div style={{ color: 'var(--text)', fontSize: '14px', marginBottom: '10px' }}>{cSendError}</div>}
  <button type="button" onClick={handleContactSend} disabled={cSending} style={{ ...bookBtnStyle, cursor: cSending ? 'wait' : 'pointer', opacity: cSending ? 0.7 : 1 }}>
  {cSending ? '…' : t('contact_send')}
  </button>

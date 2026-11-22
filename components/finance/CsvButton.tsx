@@ -42,7 +42,7 @@ export default function CsvButton({ fileName, table, load, label = 'Download CSV
  style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: off ? 'rgba(201,194,182,.45)' : s.muted, borderRadius: 0, padding: '6px 12px', cursor: off ? 'default' : 'pointer', fontSize: '14px', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>
  {busy ? 'Preparing…' : label}
  </button>
- {error && <span style={{ fontSize: '14px', color: '#c9928c' }}>Download failed: {error}</span>}
+ {error && <span style={{ fontSize: '14px', color: 'var(--text)' }}>Download failed: {error}</span>}
  </span>
  )
 }
