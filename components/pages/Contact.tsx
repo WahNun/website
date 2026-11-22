@@ -49,7 +49,7 @@ export function PageContact({ nav, lang }: { nav: (p: string) => void; lang: Lan
           +351 927 382 023
         </a>
         <a href="mailto:azoresdiving@gmail.com"
-          style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(53,208,255,.12)', border: '1px solid rgba(53,208,255,.3)', color: '#35d0ff', textDecoration: 'none', fontWeight: 700, fontSize: '14px', padding: '10px 18px', borderRadius: '10px' }}>
+          style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(243,239,230,.12)', border: '1px solid rgba(243,239,230,.3)', color: '#f3efe6', textDecoration: 'none', fontWeight: 700, fontSize: '14px', padding: '10px 18px', borderRadius: '10px' }}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           azoresdiving@gmail.com
         </a>
@@ -57,7 +57,7 @@ export function PageContact({ nav, lang }: { nav: (p: string) => void; lang: Lan
 
       <div
         role="note"
-        style={{ display: 'flex', alignItems: 'center', gap: '10px', background: 'rgba(53,208,255,.06)', border: '1px solid rgba(53,208,255,.15)', borderRadius: '12px', padding: '13px 18px', marginBottom: '20px', flexWrap: 'wrap' }}
+        style={{ display: 'flex', alignItems: 'center', gap: '10px', background: 'rgba(243,239,230,.06)', border: '1px solid rgba(243,239,230,.15)', borderRadius: '12px', padding: '13px 18px', marginBottom: '20px', flexWrap: 'wrap' }}
       >
         <span style={{ fontSize: '14px', color: '#9fc4da' }}>
           {{ EN: 'Want to work with us?', PT: 'Quer trabalhar connosco?', DE: 'Du möchtest bei uns arbeiten?', ES: '¿Quieres trabajar con nosotros?' }[lang]}
@@ -65,7 +65,7 @@ export function PageContact({ nav, lang }: { nav: (p: string) => void; lang: Lan
         <button
           type="button"
           onClick={() => nav('careers')}
-          style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: s.accent, fontSize: '14px', fontWeight: 700, fontFamily: s.font, textDecoration: 'underline', textDecorationColor: 'rgba(53,208,255,.4)' }}
+          style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: s.accent, fontSize: '14px', fontWeight: 700, fontFamily: s.font, textDecoration: 'underline', textDecorationColor: 'rgba(243,239,230,.4)' }}
         >
           {{ EN: 'Careers & Opportunities →', PT: 'Carreiras & Oportunidades →', DE: 'Karriere & Möglichkeiten →', ES: 'Carreras y Oportunidades →' }[lang]}
         </button>
@@ -73,7 +73,7 @@ export function PageContact({ nav, lang }: { nav: (p: string) => void; lang: Lan
 
       <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '24px' : '28px', alignItems: 'stretch' }}>
         {/* Contact form */}
-        <div style={{ background: 'rgba(10,33,61,.6)', border: '1px solid rgba(53,208,255,.2)', borderRadius: '16px', padding: '26px' }}>
+        <div style={{ background: 'rgba(10,33,61,.6)', border: '1px solid rgba(243,239,230,.2)', borderRadius: '16px', padding: '26px' }}>
           <label htmlFor="contact-name" style={{ display: 'block', color: '#cfe2f4', fontSize: '13px', fontWeight: 700, marginBottom: '6px' }}>{t('contact_name')}</label>
           <input id="contact-name" value={cName} onChange={e => setCName(e.target.value)} placeholder={t('contact_name_placeholder')} style={{ ...inputStyle, marginBottom: '14px' }} />
           <label htmlFor="contact-email" style={{ display: 'block', color: '#cfe2f4', fontSize: '13px', fontWeight: 700, marginBottom: '6px' }}>{t('contact_email')}</label>
@@ -132,7 +132,7 @@ export function PageContact({ nav, lang }: { nav: (p: string) => void; lang: Lan
                 <path d="M13.5 8.5H12C11.7 8.5 11.5 8.7 11.5 9V10.5H13.5L13.2 12.5H11.5V19H9.5V12.5H8V10.5H9.5V9C9.5 7.3 10.8 6 12.5 6H13.5V8.5Z" fill="white"/>
               </svg>
               <div style={{ marginLeft: '4px' }}>
-                <div style={{ fontWeight: 800, fontSize: '14px', color: '#e8f1fb', lineHeight: 1.3 }}>{t('contact_social_title')}</div>
+                <div style={{ fontWeight: 800, fontSize: '14px', color: '#f3efe6', lineHeight: 1.3 }}>{t('contact_social_title')}</div>
                 <div style={{ fontSize: '11px', color: '#7fa8c4', lineHeight: 1.5, marginTop: '2px' }}>{t('contact_social_sub')}</div>
               </div>
             </div>
@@ -150,7 +150,7 @@ export function PageContact({ nav, lang }: { nav: (p: string) => void; lang: Lan
             </div>
           </div>
 
-          <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid rgba(53,208,255,.15)', flex: 1, minHeight: isMobile ? '200px' : '0' }}>
+          <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid rgba(243,239,230,.15)', flex: 1, minHeight: isMobile ? '200px' : '0' }}>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3155.0857567446237!2d-25.662222424115402!3d37.74113231409725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xb5cd54af647f69f%3A0xc384e3c9df5f1882!2sAzoresdiving%2FA%C3%A7ordiving%20SSI%2FMares%20Dive%20Center!5e0!3m2!1sen!2spt!4v1787421883500!5m2!1sen!2spt"
               width="100%" height="100%" style={{ border: 0, display: 'block', minHeight: isMobile ? '200px' : '220px' }}

@@ -255,11 +255,11 @@ export default function SplitGuestCard(p: {
 
   const field: React.CSSProperties = { width: '100%', background: '#030d1c', border: '1px solid rgba(255,255,255,.12)', borderRadius: '10px', padding: '10px 12px', fontSize: '15px', color: s.text, fontFamily: s.font, outline: 'none', boxSizing: 'border-box', colorScheme: 'dark' }
   const small: React.CSSProperties = { fontSize: '12px', color: s.muted, marginTop: '2px', lineHeight: 1.5 }
-  const pickBtn = (done: boolean): React.CSSProperties => ({ padding: '7px 12px', borderRadius: '8px', fontSize: '12px', fontWeight: 700, fontFamily: 'inherit', cursor: 'pointer', border: `1px solid ${done ? 'rgba(255,255,255,.15)' : 'rgba(53,208,255,.5)'}`, background: done ? 'transparent' : 'rgba(53,208,255,.15)', color: done ? s.sub : '#35d0ff', whiteSpace: 'nowrap' })
-  const row = (open: boolean, done: boolean): React.CSSProperties => ({ border: `1px solid ${open ? 'rgba(53,208,255,.5)' : done ? 'rgba(79,227,200,.35)' : 'rgba(255,160,64,.45)'}`, background: open ? 'rgba(53,208,255,.06)' : 'rgba(255,255,255,.03)', borderRadius: '10px', padding: '10px 12px', marginTop: '8px' })
-  const opt = (active: boolean, disabled = false): React.CSSProperties => ({ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', width: '100%', textAlign: 'left', padding: '9px 11px', borderRadius: '9px', border: `1px solid ${active ? 'rgba(53,208,255,.5)' : 'rgba(255,255,255,.1)'}`, background: active ? 'rgba(53,208,255,.1)' : 'transparent', color: active ? '#35d0ff' : '#e8f1fb', fontWeight: active ? 700 : 400, fontSize: '13px', cursor: disabled ? 'default' : 'pointer', fontFamily: 'inherit', opacity: disabled ? .45 : 1 })
+  const pickBtn = (done: boolean): React.CSSProperties => ({ padding: '7px 12px', borderRadius: '8px', fontSize: '12px', fontWeight: 700, fontFamily: 'inherit', cursor: 'pointer', border: `1px solid ${done ? 'rgba(255,255,255,.15)' : 'rgba(243,239,230,.5)'}`, background: done ? 'transparent' : 'rgba(243,239,230,.15)', color: done ? s.sub : '#f3efe6', whiteSpace: 'nowrap' })
+  const row = (open: boolean, done: boolean): React.CSSProperties => ({ border: `1px solid ${open ? 'rgba(243,239,230,.5)' : done ? 'rgba(79,227,200,.35)' : 'rgba(255,160,64,.45)'}`, background: open ? 'rgba(243,239,230,.06)' : 'rgba(255,255,255,.03)', borderRadius: '10px', padding: '10px 12px', marginTop: '8px' })
+  const opt = (active: boolean, disabled = false): React.CSSProperties => ({ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', width: '100%', textAlign: 'left', padding: '9px 11px', borderRadius: '9px', border: `1px solid ${active ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.1)'}`, background: active ? 'rgba(243,239,230,.1)' : 'transparent', color: active ? '#f3efe6' : '#f3efe6', fontWeight: active ? 700 : 400, fontSize: '13px', cursor: disabled ? 'default' : 'pointer', fontFamily: 'inherit', opacity: disabled ? .45 : 1 })
   const doneBtn = (ok: boolean, txt: string, next?: () => void) => (
-    <button type="button" onClick={e => (ok && next) ? next() : closePicker(e, () => setOpenPicker(null))} style={{ width: '100%', marginTop: '10px', padding: '10px', borderRadius: '9px', border: 'none', background: ok ? s.accent : 'rgba(255,255,255,.08)', color: ok ? '#04101f' : s.muted, fontWeight: 800, fontSize: '13px', fontFamily: 'inherit', cursor: 'pointer' }}>{txt}</button>
+    <button type="button" onClick={e => (ok && next) ? next() : closePicker(e, () => setOpenPicker(null))} style={{ width: '100%', marginTop: '10px', padding: '10px', borderRadius: '9px', border: 'none', background: ok ? s.accent : 'rgba(255,255,255,.08)', color: ok ? '#090909' : s.muted, fontWeight: 800, fontSize: '13px', fontFamily: 'inherit', cursor: 'pointer' }}>{txt}</button>
   )
 
   const titleLabel = p.extraOf ? (p.total === 1 ? 'Additional product' : `Guest ${p.extraOf} — additional product`) : (p.total === 1 ? 'Your first product' : `Guest ${index + 1} of ${p.total}`)
@@ -311,7 +311,7 @@ export default function SplitGuestCard(p: {
   )
 
   return (
-    <div data-guestcard style={{ scrollMarginTop: '88px', border: '1px solid rgba(53,208,255,.25)', borderRadius: '14px', padding: '14px 16px', marginBottom: '14px', background: 'rgba(10,33,61,.35)' }}>
+    <div data-guestcard style={{ scrollMarginTop: '88px', border: '1px solid rgba(243,239,230,.25)', borderRadius: '14px', padding: '14px 16px', marginBottom: '14px', background: 'rgba(10,33,61,.35)' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
         <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: s.accent }}>{titleLabel}</div>
         {p.onRemove && <button type="button" onClick={p.onRemove} style={{ background: 'none', border: 'none', color: s.muted, fontSize: '12px', fontFamily: 'inherit', cursor: 'pointer', textDecoration: 'underline', marginLeft: 'auto', marginRight: '12px' }}>Remove</button>}
@@ -382,7 +382,7 @@ export default function SplitGuestCard(p: {
           <div data-pickrow data-open={openPicker === 'product' ? '1' : undefined} style={{ scrollMarginTop: '88px', ...row(openPicker === 'product', picked.length === required), ...(daysLocked ? { opacity: 0.55, borderColor: 'rgba(255,255,255,.1)' } : {}) }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: '13px', fontWeight: 700, color: s.text }}>{refresherCount > 0 && <span style={{ color: daysLocked ? s.sub : '#35d0ff' }}>Step 2 · </span>}{isCourse ? 'Course dates' : 'Dive days'}</div>
+                <div style={{ fontSize: '13px', fontWeight: 700, color: s.text }}>{refresherCount > 0 && <span style={{ color: daysLocked ? s.sub : '#f3efe6' }}>Step 2 · </span>}{isCourse ? 'Course dates' : 'Dive days'}</div>
                 <div style={small}>
                   {daysLocked
                     ? 'Pick your Skills Update date first — your dives come after it'
@@ -517,7 +517,7 @@ export default function SplitGuestCard(p: {
               } catch (err) { console.warn('[card] scroll to next guest failed', err) }
             }, 80)
           }}
-            style={{ width: '100%', marginTop: '14px', padding: '11px', borderRadius: '10px', border: 'none', background: missing ? 'rgba(255,255,255,.08)' : s.accent, color: missing ? s.muted : '#04101f', fontWeight: 800, fontSize: '13px', fontFamily: 'inherit', cursor: missing ? 'default' : 'pointer' }}>
+            style={{ width: '100%', marginTop: '14px', padding: '11px', borderRadius: '10px', border: 'none', background: missing ? 'rgba(255,255,255,.08)' : s.accent, color: missing ? s.muted : '#090909', fontWeight: 800, fontSize: '13px', fontFamily: 'inherit', cursor: missing ? 'default' : 'pointer' }}>
             {missing ? `Still needed: ${missing}` : 'Done'}
           </button>
           </>

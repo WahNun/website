@@ -82,7 +82,7 @@ export function PageCareers({ nav, lang }: { nav: (p: string) => void; lang: Lan
   }
 
   const BlockTitle = ({ children }: { children: React.ReactNode }) => (
-    <h2 style={{ fontSize: 'clamp(16px,2vw,20px)', fontWeight: 800, color: '#d7e7f7', margin: '0 0 12px' }}>
+    <h2 style={{ fontSize: 'clamp(16px,2vw,20px)', fontWeight: 800, color: '#f3efe6', margin: '0 0 12px' }}>
       {children}
     </h2>
   )
@@ -92,9 +92,9 @@ export function PageCareers({ nav, lang }: { nav: (p: string) => void; lang: Lan
       href={href}
       style={{
         display: 'inline-block', marginTop: '18px',
-        background: 'linear-gradient(135deg,#35d0ff,#1a8fe0)', color: '#04101f',
+        background: 'linear-gradient(135deg,#f3efe6,#1a8fe0)', color: '#090909',
         fontWeight: 800, fontSize: '14px', padding: '11px 22px', borderRadius: '999px',
-        boxShadow: '0 4px 18px rgba(53,208,255,.3)', textDecoration: 'none', fontFamily: s.font,
+        boxShadow: '0 4px 18px rgba(243,239,230,.3)', textDecoration: 'none', fontFamily: s.font,
       }}
     >
       {label}
@@ -152,7 +152,7 @@ export function PageCareers({ nav, lang }: { nav: (p: string) => void; lang: Lan
 
       {/* What to include */}
       <div style={{ borderTop: '1px solid rgba(255,255,255,.07)', paddingTop: '28px', marginTop: '8px' }}>
-        <h2 style={{ fontSize: '15px', fontWeight: 800, color: '#d7e7f7', margin: '0 0 10px' }}>
+        <h2 style={{ fontSize: '15px', fontWeight: 800, color: '#f3efe6', margin: '0 0 10px' }}>
           {t('include_title')}
         </h2>
         <p style={{ color: '#9fc4da', fontSize: '15px', lineHeight: 1.75, marginBottom: '10px' }}>

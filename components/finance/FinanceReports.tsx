@@ -168,7 +168,7 @@ const cents = (c: Cell | undefined) => (c && typeof c === 'object' && 'cents' in
 const isZeroRow = (r: Cell[]) => r.slice(1).every(c => c === null || c === 0 || (typeof c === 'object' && ('cents' in c ? c.cents === 0 : !c.pct)))
 
 const lbl: CSSProperties = { fontSize: '11.5px', color: s.muted, textTransform: 'uppercase', letterSpacing: '.12em' }
-const chip = (on: boolean): CSSProperties => ({ padding: '6px 12px', borderRadius: '999px', fontSize: '12.5px', fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', border: `1px solid ${on ? 'rgba(53,208,255,.5)' : 'rgba(255,255,255,.12)'}`, background: on ? 'rgba(53,208,255,.12)' : 'transparent', color: on ? s.accent : s.muted, whiteSpace: 'nowrap' })
+const chip = (on: boolean): CSSProperties => ({ padding: '6px 12px', borderRadius: '999px', fontSize: '12.5px', fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', border: `1px solid ${on ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.12)'}`, background: on ? 'rgba(243,239,230,.12)' : 'transparent', color: on ? s.accent : s.muted, whiteSpace: 'nowrap' })
 const inp: CSSProperties = { background: '#030d1c', border: '1px solid rgba(255,255,255,.12)', borderRadius: '8px', color: s.text, fontSize: '12.5px', fontFamily: 'inherit', padding: '6px 9px', colorScheme: 'dark' }
 
 type BookingLink = { col: number; ids: string[]; open: (id: string) => void }
@@ -188,7 +188,7 @@ function DataTable({ table, onRow, link }: { table: Table; onRow?: (i: number) =
               {r.map((c, i) => (
                 <td key={i} style={{ ...td(i), color: i === 0 ? (onRow ? s.accent : s.text) : s.sub, borderBottom: '1px solid rgba(255,255,255,.06)' }}>
                   {link && i === link.col && link.ids[ri]
-                    ? <button type="button" onClick={e => { e.stopPropagation(); link.open(link.ids[ri]) }} title="Open booking" style={{ fontFamily: 'monospace', color: '#35D0FF', fontWeight: 700, background: 'transparent', border: '1px solid rgba(53,208,255,.35)', borderRadius: '5px', padding: '0 6px', cursor: 'pointer', fontSize: '12px' }}>{show(c)}</button>
+                    ? <button type="button" onClick={e => { e.stopPropagation(); link.open(link.ids[ri]) }} title="Open booking" style={{ fontFamily: 'monospace', color: '#f3efe6', fontWeight: 700, background: 'transparent', border: '1px solid rgba(243,239,230,.35)', borderRadius: '5px', padding: '0 6px', cursor: 'pointer', fontSize: '12px' }}>{show(c)}</button>
                     : show(c)}
                 </td>
               ))}
@@ -214,7 +214,7 @@ function DetailPopup({ title, sub, summary, table, file, link, onClose, children
   }, [onClose])
   return (
     <div onClick={onClose} style={{ position: 'fixed', inset: 0, zIndex: 900, background: 'rgba(2,8,20,.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '32px 16px', overflowY: 'auto' }}>
-      <div role="dialog" aria-modal="true" aria-label={title} onClick={e => e.stopPropagation()} style={{ width: 'min(1040px, 100%)', background: '#07162B', border: '1px solid rgba(53,208,255,.25)', borderRadius: '16px', boxShadow: '0 20px 60px rgba(0,0,0,.6)', overflow: 'hidden' }}>
+      <div role="dialog" aria-modal="true" aria-label={title} onClick={e => e.stopPropagation()} style={{ width: 'min(1040px, 100%)', background: '#07162B', border: '1px solid rgba(243,239,230,.25)', borderRadius: '16px', boxShadow: '0 20px 60px rgba(0,0,0,.6)', overflow: 'hidden' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px', padding: '14px 20px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
           <div>
             <div style={{ fontSize: '16px', fontWeight: 800, color: s.text }}>{title}</div>
@@ -225,7 +225,7 @@ function DetailPopup({ title, sub, summary, table, file, link, onClose, children
         <div style={{ padding: '18px 20px 22px' }}>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '16px' }}>
             {summary.map(([l, v]) => (
-              <div key={l} style={{ background: 'rgba(53,208,255,.07)', borderRadius: '10px', padding: '9px 13px', minWidth: '104px' }}>
+              <div key={l} style={{ background: 'rgba(243,239,230,.07)', borderRadius: '10px', padding: '9px 13px', minWidth: '104px' }}>
                 <div style={{ ...lbl, fontSize: '10.5px' }}>{l}</div>
                 <div style={{ fontSize: '16px', fontWeight: 800, color: s.text, marginTop: '4px', fontVariantNumeric: 'tabular-nums' }}>{v}</div>
               </div>
@@ -435,7 +435,7 @@ export default function FinanceReports({ simulationMode, who, isMobile, onOpenBo
             <div key={g.group} style={{ marginBottom: '18px' }}>
               <div style={{ ...lbl, marginBottom: '6px' }}>{g.group}</div>
               {g.items.map(([id, l]) => (
-                <button key={id} type="button" onClick={() => pick(id)} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '8px 10px', borderRadius: '8px', border: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: '13px', fontWeight: report === id ? 700 : 500, background: report === id ? 'rgba(53,208,255,.12)' : 'transparent', color: report === id ? s.accent : s.sub }}>{l}</button>
+                <button key={id} type="button" onClick={() => pick(id)} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '8px 10px', borderRadius: '8px', border: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: '13px', fontWeight: report === id ? 700 : 500, background: report === id ? 'rgba(243,239,230,.12)' : 'transparent', color: report === id ? s.accent : s.sub }}>{l}</button>
               ))}
             </div>
           ))}
@@ -499,7 +499,7 @@ export default function FinanceReports({ simulationMode, who, isMobile, onOpenBo
             <div style={{ fontSize: '12.5px', color: s.muted, lineHeight: 1.55, marginBottom: '14px' }}>{view.intro}</div>
             <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : `repeat(${view.kpis.length}, 1fr)`, gap: '10px', marginBottom: '18px' }}>
               {view.kpis.map(([l, v, c]) => (
-                <div key={l} style={{ background: 'rgba(53,208,255,.07)', borderRadius: '10px', padding: '12px 14px' }}>
+                <div key={l} style={{ background: 'rgba(243,239,230,.07)', borderRadius: '10px', padding: '12px 14px' }}>
                   <div style={lbl}>{l}</div>
                   <div style={{ fontSize: '20px', fontWeight: 900, color: c ?? s.text, marginTop: '6px', fontVariantNumeric: 'tabular-nums' }}>{v}</div>
                 </div>

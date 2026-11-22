@@ -10,7 +10,7 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
       {/* Hero with image */}
       <div style={{
         minHeight: '260px', position: 'relative', overflow: 'hidden',
-        background: 'linear-gradient(180deg,rgba(4,16,31,.25) 0%,rgba(4,16,31,.82) 65%,#04101f 100%), url(\'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/try-scuba-hero.webp\') center 15%/cover',
+        background: 'linear-gradient(180deg,rgba(4,16,31,.25) 0%,rgba(4,16,31,.82) 65%,#090909 100%), url(\'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/courses/try-scuba-hero.webp\') center 15%/cover',
         display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
         padding: isMobile ? '32px 20px 28px' : '48px 48px 40px',
       }}>
@@ -109,7 +109,7 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
               ))}
             </div>
 
-            <div style={{ background: 'rgba(53,208,255,.06)', border: '1px solid rgba(53,208,255,.15)', borderRadius: '12px', padding: '20px' }}>
+            <div style={{ background: 'rgba(243,239,230,.06)', border: '1px solid rgba(243,239,230,.15)', borderRadius: '12px', padding: '20px' }}>
               <div style={{ fontSize: '10.5px', fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase', color: s.accent, marginBottom: '8px' }}>{t('bd_go_further_title')}</div>
               <p style={{ fontSize: '13.5px', color: s.text, margin: '0 0 12px', lineHeight: 1.5 }}>{t('bd_go_further_body')}</p>
               <button type="button" onClick={() => nav('courses')} style={{ fontSize: '13px', color: s.accent, cursor: 'pointer', fontWeight: 700, background: 'none', border: 'none', padding: 0, fontFamily: s.font }}>{t('bd_see_courses')}</button>

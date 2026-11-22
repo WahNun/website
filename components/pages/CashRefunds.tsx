@@ -88,7 +88,7 @@ export default function CashRefunds({ sandbox, onChanged }: { sandbox: boolean |
             <input type="text" placeholder="Note (optional) — e.g. handed over to guest at the centre" value={note[r.id] ?? ''} onChange={e => setNote(prev => ({ ...prev, [r.id]: e.target.value }))}
               style={{ width: '100%', boxSizing: 'border-box', background: '#030d1c', border: '1px solid rgba(255,255,255,.12)', borderRadius: '7px', color: s.text, fontSize: '12.5px', padding: '7px 10px', fontFamily: s.font, outline: 'none' }} />
             <button type="button" disabled={busy === r.id} onClick={() => confirm(r)}
-              style={{ padding: '10px', borderRadius: '8px', border: 'none', background: 'rgba(74,222,128,.85)', color: '#04101f', fontWeight: 700, fontSize: '13px', cursor: 'pointer', fontFamily: s.font, opacity: busy === r.id ? .6 : 1 }}>
+              style={{ padding: '10px', borderRadius: '8px', border: 'none', background: 'rgba(74,222,128,.85)', color: '#090909', fontWeight: 700, fontSize: '13px', cursor: 'pointer', fontFamily: s.font, opacity: busy === r.id ? .6 : 1 }}>
               {busy === r.id ? 'Confirming…' : `✓ Cash handed over — ${eur(r.amount)}`}
             </button>
           </div>

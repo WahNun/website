@@ -64,7 +64,7 @@ function LoginForm() {
     <main style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", padding: "24px" }}>
       <div style={{ width: "100%", maxWidth: "400px" }}>
         <div style={{ textAlign: "center", marginBottom: "40px" }}>
-          <div style={{ fontSize: "13px", fontWeight: 700, letterSpacing: ".2em", textTransform: "uppercase", color: "#35d0ff", marginBottom: "10px" }}>
+          <div style={{ fontSize: "13px", fontWeight: 700, letterSpacing: ".2em", textTransform: "uppercase", color: "#f3efe6", marginBottom: "10px" }}>
             Dive OS
           </div>
           <h1 style={{ fontSize: "28px", fontWeight: 900, margin: 0, letterSpacing: "-.02em" }}>Admin</h1>
@@ -86,7 +86,7 @@ function LoginForm() {
               {error}
             </div>
           ) : null}
-          <button type="submit" disabled={loading} style={{ width: "100%", padding: "13px", borderRadius: "999px", border: "none", background: loading ? "rgba(53,208,255,.4)" : "#35d0ff", color: "#04101f", fontWeight: 800, fontSize: "15px", cursor: loading ? "default" : "pointer", fontFamily: "inherit", marginTop: "4px" }}>
+          <button type="submit" disabled={loading} style={{ width: "100%", padding: "13px", borderRadius: 0, border: "1px solid #f3efe6", background: loading ? "transparent" : "#f3efe6", color: "#090909", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", fontSize: "12px", cursor: loading ? "default" : "pointer", fontFamily: "inherit", marginTop: "4px" }}>
             {loading ? "Signing in…" : "Sign in"}
           </button>
         </form>

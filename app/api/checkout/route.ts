@@ -472,8 +472,8 @@ export async function POST(req: NextRequest) {
             ...(bookingOrigin ? { origin: bookingOrigin } : {}),
             ...(body.draft_id ? { draft_id: body.draft_id } : {}),
           },
-      success_url: `${origin}/checkin/start?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/?checkout=cancelled`,
+      success_url: `${origin}/dive-os/checkin/start?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}/dive-os/book?checkout=cancelled`,
       expires_at: Math.floor(Date.now() / 1000) + 30 * 60,
     })
 

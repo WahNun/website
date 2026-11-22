@@ -4,11 +4,11 @@ import { useState } from 'react'
 /* Knowledge Base → Bookings. Sub-tabs: Online (/book) and Front Office. Every block = what / where / why. */
 
 const FONT = 'Inter, system-ui, sans-serif'
-const ACCENT = '#35d0ff'
+const ACCENT = '#f3efe6'
 const MUTED = '#5e80a0'
-const TEXT = '#d7e7f7'
+const TEXT = '#f3efe6'
 const SURFACE = '#0d1826'
-const BORDER = 'rgba(53,208,255,.12)'
+const BORDER = 'rgba(243,239,230,.12)'
 const AMBER = '#ffb347'
 
 type Shot = { src: string; caption: string; phone?: boolean }
@@ -498,7 +498,7 @@ export default function BookingTools() {
 
   const subStyle = (a: boolean): React.CSSProperties => ({
     padding: '8px 18px', fontSize: '12.5px', fontWeight: 700, border: 'none', cursor: 'pointer', fontFamily: FONT,
-    borderRadius: 8, background: a ? 'rgba(53,208,255,.1)' : 'transparent', color: a ? ACCENT : MUTED,
+    borderRadius: 8, background: a ? 'rgba(243,239,230,.1)' : 'transparent', color: a ? ACCENT : MUTED,
   })
 
   return (

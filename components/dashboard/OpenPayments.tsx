@@ -98,12 +98,12 @@ export default function OpenPayments({ rollDateStr, isToday, simulationMode, rel
         <div style={{ fontSize: '10.5px', fontWeight: 800, letterSpacing: '.12em', color: '#ff6464' }}>{r.state === 'deposit' ? 'BALANCE DUE' : 'UNPAID'}</div>
         <div style={{ fontSize: '17px', fontWeight: 800, color: '#ff6464' }}>{eur(r.due)}</div>
       </div>
-      <button type="button" onClick={() => onOpen(r.bookingId)} style={{ background: 'rgba(53,208,255,.12)', border: '1px solid rgba(53,208,255,.4)', color: s.accent, borderRadius: '7px', padding: '6px 12px', fontSize: '12px', fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap', fontFamily: s.font }}>Take payment →</button>
+      <button type="button" onClick={() => onOpen(r.bookingId)} style={{ background: 'rgba(243,239,230,.12)', border: '1px solid rgba(243,239,230,.4)', color: s.accent, borderRadius: '7px', padding: '6px 12px', fontSize: '12px', fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap', fontFamily: s.font }}>Take payment →</button>
     </div>
   )
 
   return (
-    <div style={{ background: 'rgba(10,28,50,.7)', border: `1px solid ${rows.length > 0 ? 'rgba(255,100,100,.4)' : 'rgba(53,208,255,.15)'}`, borderRadius: '14px', padding: '20px', marginBottom: '20px' }}>
+    <div style={{ background: 'rgba(10,28,50,.7)', border: `1px solid ${rows.length > 0 ? 'rgba(255,100,100,.4)' : 'rgba(243,239,230,.15)'}`, borderRadius: '14px', padding: '20px', marginBottom: '20px' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px', gap: '10px', flexWrap: 'wrap' }}>
         <div style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', color: s.accent }}>Open payments · {fmtDay(rollDateStr)}</div>
         {rows.length > 0 && <span style={{ fontSize: '12.5px', fontWeight: 700, color: '#ff6464', background: 'rgba(255,100,100,.12)', padding: '3px 9px', borderRadius: '999px' }}>{rows.length} open · {eur(totalDue)}</span>}

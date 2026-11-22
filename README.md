@@ -40,7 +40,9 @@ Push the repository. Vercel builds a Next.js app from the root (`npm run build`)
 
 ## Dive OS
 
-`/dive-os` is the dive centre admin. It is not in the public navigation, it is `noindex`, and `robots.txt` disallows it. Only a Supabase user with `profiles.role = admin` can pass the server check. Create that user in the Dive OS sandbox (Authentication) and a matching `profiles` row. The seed profiles have no login.
+`/dive-os` is the dive centre admin, restyled in the same dark type and palette as the public site. It is not in the public navigation, it is `noindex`, and `robots.txt` disallows it. Only a Supabase user with `profiles.role = admin` can pass the server check. Create that user in the Dive OS sandbox (Authentication) and a matching `profiles` row. The seed profiles have no login.
+
+`/dive-os/book` is the customer booking page (plus check-in at `/dive-os/checkin` and request links at `/dive-os/request/...`). It is not branded to a particular centre. Name, logo URL, email, phone, address and intro are `site_settings` keys: `centre_name`, `centre_logo_url`, `centre_email`, `centre_phone`, `centre_address`, `centre_intro`. Admins edit them under Dive OS → Settings. Saving uses `SUPABASE_SERVICE_ROLE_KEY`. Until those keys are set, the page says “Dive centre”.
 
 The admin reads and writes the sandbox database with the signed-in session. Routes that need the service role return a clear error until that key is set. They do not fall back to another project.
 

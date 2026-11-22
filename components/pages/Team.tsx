@@ -49,7 +49,7 @@ export function PageTeam({ nav, lang }: { nav: (p: string) => void; lang: Lang }
       <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase', color: s.muted, marginBottom: '12px' }}>{t('team_languages')}</div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '40px' }}>
         {[['🇬🇧','English'],['🇵🇹','Português'],['🇩🇪','Deutsch'],['🇪🇸','Español'],['🇫🇷','Français'],['🇨🇿','Čeština']].map(([flag, spokenLang]) => (
-          <div key={spokenLang} style={{ display: 'flex', alignItems: 'center', gap: '7px', background: 'rgba(53,208,255,.08)', border: '1px solid rgba(53,208,255,.18)', borderRadius: '999px', padding: '6px 14px' }}>
+          <div key={spokenLang} style={{ display: 'flex', alignItems: 'center', gap: '7px', background: 'rgba(243,239,230,.08)', border: '1px solid rgba(243,239,230,.18)', borderRadius: '999px', padding: '6px 14px' }}>
             <span style={{ fontSize: '18px', lineHeight: 1 }}>{flag}</span>
             <span style={{ fontSize: '13px', fontWeight: 600, color: '#d0eaff' }}>{spokenLang}</span>
           </div>
@@ -80,8 +80,8 @@ export function PageTeam({ nav, lang }: { nav: (p: string) => void; lang: Lang }
       </div>
 
       {/* Work with us */}
-      <div style={{ marginTop: '48px', background: 'rgba(53,208,255,.06)', border: '1px solid rgba(53,208,255,.15)', borderRadius: '14px', padding: '24px 28px' }}>
-        <b style={{ color: '#d7e7f7', fontSize: '17px', display: 'block', marginBottom: '8px' }}>
+      <div style={{ marginTop: '48px', background: 'rgba(243,239,230,.06)', border: '1px solid rgba(243,239,230,.15)', borderRadius: '14px', padding: '24px 28px' }}>
+        <b style={{ color: '#f3efe6', fontSize: '17px', display: 'block', marginBottom: '8px' }}>
           {WORK_WITH_US.title[lang]}
         </b>
         <p style={{ color: s.muted, fontSize: '14px', lineHeight: 1.6, margin: '0 0 12px' }}>

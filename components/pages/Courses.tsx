@@ -93,7 +93,7 @@ function CourseCard({ course, color = '#4fe3c8', onClick, lang = 'EN' }: { cours
       style={{
         minWidth: '220px', maxWidth: '240px', borderRadius: '14px',
         display: 'flex', flexDirection: 'column',
-        border: hovered ? '1px solid rgba(53,208,255,.45)' : '1px solid rgba(255,255,255,.07)',
+        border: hovered ? '1px solid rgba(243,239,230,.45)' : '1px solid rgba(255,255,255,.07)',
         flexShrink: 0, scrollSnapAlign: 'start', cursor: 'pointer',
         transform: hovered ? 'translateY(-3px)' : 'none',
         transition: 'transform .18s ease, border-color .18s ease, box-shadow .18s ease',
@@ -112,7 +112,7 @@ function CourseCard({ course, color = '#4fe3c8', onClick, lang = 'EN' }: { cours
         )}
       </div>
       <div style={{ padding: '14px 16px 16px', flex: 1 }}>
-        <h4 style={{ fontSize: '15px', fontWeight: 800, color: '#e8f1fb', marginBottom: '5px', lineHeight: 1.2, margin: '0 0 5px' }}>{course.name}</h4>
+        <h4 style={{ fontSize: '15px', fontWeight: 800, color: '#f3efe6', marginBottom: '5px', lineHeight: 1.2, margin: '0 0 5px' }}>{course.name}</h4>
         <p style={{ fontSize: '12px', color: '#7fa8c4', lineHeight: 1.5, margin: 0 }}>{course.desc}</p>
       </div>
     </div>

@@ -54,7 +54,7 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
           { label: t('formigas_stat_season'), value: t('formigas_stat_season_val'), sub: t('formigas_stat_season_sub') },
           { label: t('formigas_stat_level'), value: t('formigas_stat_level_val'), sub: t('formigas_stat_level_sub') },
         ].map(({ label, value, sub }) => (
-          <div key={label} style={{ background: 'rgba(10,33,61,.6)', border: '1px solid rgba(53,208,255,.15)', borderRadius: '12px', padding: '16px 14px', textAlign: 'center' }}>
+          <div key={label} style={{ background: 'rgba(10,33,61,.6)', border: '1px solid rgba(243,239,230,.15)', borderRadius: '12px', padding: '16px 14px', textAlign: 'center' }}>
             <div style={{ fontSize: '11px', color: s.muted, textTransform: 'uppercase', letterSpacing: '.12em', marginBottom: '6px', fontWeight: 600 }}>{label}</div>
             <div style={{ fontSize: '20px', fontWeight: 900, color: '#fff', lineHeight: 1 }}>{value}</div>
             <div style={{ fontSize: '11px', color: s.muted, marginTop: '5px' }}>{sub}</div>
@@ -93,7 +93,7 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
                 { step: t('formigas_path3_step'), desc: t('formigas_path3_desc'), hasLink: true },
               ].map(({ step, desc, hasLink }, i) => (
                 <div key={step} style={{ display: 'flex', alignItems: isMobile ? 'flex-start' : 'center', gap: '12px', flex: 1 }}>
-                  <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'rgba(53,208,255,.08)', border: '1px solid rgba(53,208,255,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', fontWeight: 800, color: s.accent, flexShrink: 0, textAlign: 'center', lineHeight: 1.3, padding: '8px' }}>{step}</div>
+                  <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'rgba(243,239,230,.08)', border: '1px solid rgba(243,239,230,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', fontWeight: 800, color: s.accent, flexShrink: 0, textAlign: 'center', lineHeight: 1.3, padding: '8px' }}>{step}</div>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: '13px', color: '#9fc4da', lineHeight: 1.55 }}>{desc}</div>
                     {hasLink && (
@@ -102,7 +102,7 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
                       </button>
                     )}
                   </div>
-                  {i < 2 && !isMobile && <div style={{ fontSize: '18px', color: 'rgba(53,208,255,.2)', margin: '0 8px', flexShrink: 0 }}>→</div>}
+                  {i < 2 && !isMobile && <div style={{ fontSize: '18px', color: 'rgba(243,239,230,.2)', margin: '0 8px', flexShrink: 0 }}>→</div>}
                 </div>
               ))}
             </div>
@@ -111,7 +111,7 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
             </p>
           </div>
 
-          <div style={{ marginTop: '36px', borderLeft: '3px solid rgba(53,208,255,.5)', paddingLeft: '20px' }}>
+          <div style={{ marginTop: '36px', borderLeft: '3px solid rgba(243,239,230,.5)', paddingLeft: '20px' }}>
             <p style={{ fontSize: '15px', color: '#cfe2f4', lineHeight: 1.7, margin: '0 0 10px', fontStyle: 'italic' }}>
               &ldquo;{t('formigas_review_q')}&rdquo;
             </p>
@@ -162,8 +162,8 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
             </div>
           </div>
 
-          <div style={{ background: 'rgba(53,208,255,.04)', border: '1px solid rgba(53,208,255,.15)', borderRadius: '12px', padding: '20px' }}>
-            <div style={{ fontSize: '14px', fontWeight: 700, color: '#e8f4ff', marginBottom: '6px' }}>{t('formigas_join')}</div>
+          <div style={{ background: 'rgba(243,239,230,.04)', border: '1px solid rgba(243,239,230,.15)', borderRadius: '12px', padding: '20px' }}>
+            <div style={{ fontSize: '14px', fontWeight: 700, color: '#f3efe6', marginBottom: '6px' }}>{t('formigas_join')}</div>
             <p style={{ color: s.muted, fontSize: '13px', lineHeight: 1.6, marginBottom: '14px' }}>{t('formigas_waitlist_sub')}</p>
             {waitDone ? (
               <div style={{ background: 'rgba(45,212,160,.08)', border: '1px solid rgba(45,212,160,.3)', borderRadius: '8px', padding: '12px 14px', color: '#2dd4a0', fontSize: '13.5px', fontWeight: 600 }}>

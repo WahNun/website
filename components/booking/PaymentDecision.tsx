@@ -146,7 +146,7 @@ export default function PaymentDecision({ bookingIds, onDone, compact, sendReque
     setBusy(false)
   }
 
-  const chip = (on: boolean) => ({ padding: '8px 13px', borderRadius: '8px', border: `1px solid ${on ? s.accent : 'rgba(255,255,255,.14)'}`, background: on ? 'rgba(53,208,255,.12)' : 'transparent', color: on ? s.accent : s.muted, fontWeight: 700, fontSize: '12.5px', cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' as const })
+  const chip = (on: boolean) => ({ padding: '8px 13px', borderRadius: '8px', border: `1px solid ${on ? s.accent : 'rgba(255,255,255,.14)'}`, background: on ? 'rgba(243,239,230,.12)' : 'transparent', color: on ? s.accent : s.muted, fontWeight: 700, fontSize: '12.5px', cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' as const })
   return (
     <div style={{ background: 'rgba(255,160,64,.05)', border: '1px solid rgba(255,160,64,.35)', borderRadius: '12px', padding: compact ? '14px' : '18px', textAlign: 'left' }}>
       <div style={{ fontSize: '15px', fontWeight: 800, color: s.text, marginBottom: '4px' }}>What happened with the payment?</div>
@@ -197,7 +197,7 @@ export default function PaymentDecision({ bookingIds, onDone, compact, sendReque
       )}
       {err && <div style={{ fontSize: '12.5px', color: '#ff6040', margin: '6px 0 10px' }}>Not saved: {err}. What was saved before stays saved. Please try again.</div>}
       <button type="button" disabled={!ready || busy} onClick={save}
-        style={{ width: '100%', marginTop: '8px', padding: '12px', borderRadius: '10px', border: 'none', background: ready && !busy ? s.accent : 'rgba(255,255,255,.08)', color: ready && !busy ? '#04101f' : s.muted, fontWeight: 800, fontSize: '14px', cursor: ready && !busy ? 'pointer' : 'default', fontFamily: 'inherit' }}>
+        style={{ width: '100%', marginTop: '8px', padding: '12px', borderRadius: '10px', border: 'none', background: ready && !busy ? s.accent : 'rgba(255,255,255,.08)', color: ready && !busy ? '#090909' : s.muted, fontWeight: 800, fontSize: '14px', cursor: ready && !busy ? 'pointer' : 'default', fontFamily: 'inherit' }}>
         {busy ? 'Saving…' : ready ? 'Save payment status' : `Missing: ${missing.join(' · ')}`}
       </button>
     </div>

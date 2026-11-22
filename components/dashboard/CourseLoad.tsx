@@ -205,7 +205,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
   return (
     <div style={{
       background: 'rgba(10,28,50,.7)',
-      border: `1px solid ${warningDays.length > 0 ? 'rgba(255,160,64,.4)' : 'rgba(53,208,255,.15)'}`,
+      border: `1px solid ${warningDays.length > 0 ? 'rgba(255,160,64,.4)' : 'rgba(243,239,230,.15)'}`,
       borderRadius: '14px',
       padding: '20px',
       overflow: 'hidden',
@@ -237,8 +237,8 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
             const isWarning = pct >= 0.8 && pct < 1
             const isFull = pct >= 1
             const isToday = day.date === rollDateStr
-            const barColor = isFull ? '#ff6040' : isWarning ? '#ffa040' : '#35d0ff'
-            const bgBase = isToday ? 'rgba(53,208,255,.1)' : hasStudents ? 'rgba(53,208,255,.05)' : 'transparent'
+            const barColor = isFull ? '#ff6040' : isWarning ? '#ffa040' : '#f3efe6'
+            const bgBase = isToday ? 'rgba(243,239,230,.1)' : hasStudents ? 'rgba(243,239,230,.05)' : 'transparent'
 
             return (
               <div key={day.date} onClick={hasStudents ? () => openDay(day.date) : undefined}
@@ -248,7 +248,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
                 padding: '8px 10px', borderRadius: '8px',
                 cursor: hasStudents ? 'pointer' : 'default',
                 background: bgBase,
-                border: isToday ? '1px solid rgba(53,208,255,.3)' : '1px solid transparent',
+                border: isToday ? '1px solid rgba(243,239,230,.3)' : '1px solid transparent',
               }}>
                 <div style={{
                   fontSize: '12.5px', minWidth: '80px', flexShrink: 0,
@@ -280,7 +280,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
             <div key={day.date} style={{ display: 'flex', flexWrap: 'wrap', gap: '5px', alignItems: 'center' }}>
               <span style={{ fontSize: '12.5px', color: s.muted, minWidth: '72px', flexShrink: 0 }}>{fmt(day.date)}</span>
               {day.courses.map(c => (
-                <span key={c.name} style={{ fontSize: '12px', padding: '2px 8px', borderRadius: '999px', background: 'rgba(53,208,255,.1)', color: '#35d0ff', fontWeight: 600, whiteSpace: 'nowrap' }}>
+                <span key={c.name} style={{ fontSize: '12px', padding: '2px 8px', borderRadius: '999px', background: 'rgba(243,239,230,.1)', color: '#f3efe6', fontWeight: 600, whiteSpace: 'nowrap' }}>
                   {c.name} · {c.students}
                 </span>
               ))}
@@ -308,7 +308,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
 
       {openDate && (
         <div onClick={() => setOpenDate(null)} style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(2,8,20,.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '40px 16px', overflowY: 'auto' }}>
-          <div onClick={e => e.stopPropagation()} style={{ width: 'min(760px, 100%)', background: '#07162B', border: '1px solid rgba(53,208,255,.25)', borderRadius: '16px', boxShadow: '0 20px 60px rgba(0,0,0,.6)' }}>
+          <div onClick={e => e.stopPropagation()} style={{ width: 'min(760px, 100%)', background: '#07162B', border: '1px solid rgba(243,239,230,.25)', borderRadius: '16px', boxShadow: '0 20px 60px rgba(0,0,0,.6)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
               <span style={{ fontSize: '13px', fontWeight: 800, color: s.text }}>Courses · {fmt(openDate)}</span>
               <button type="button" onClick={() => setOpenDate(null)} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.text, borderRadius: '7px', padding: '6px 12px', fontSize: '12px', cursor: 'pointer' }}>Close ✕</button>
@@ -321,12 +321,12 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
                 const tbd = r.session === 'tbd'
                 const where = r.isBoatDay === false ? 'Pool / harbour' : r.boatName ? `Boat: ${r.boatName}` : tbd ? 'Not planned yet' : 'Boat (not assigned)'
                 return (
-                  <div key={r.key} style={{ padding: '12px 14px', borderRadius: '10px', background: 'rgba(53,208,255,.05)', border: `1px solid ${tbd ? 'rgba(255,208,128,.4)' : 'rgba(53,208,255,.15)'}` }}>
+                  <div key={r.key} style={{ padding: '12px 14px', borderRadius: '10px', background: 'rgba(243,239,230,.05)', border: `1px solid ${tbd ? 'rgba(255,208,128,.4)' : 'rgba(243,239,230,.15)'}` }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
                       <div style={{ fontSize: '13.5px', fontWeight: 800, color: s.text }}>
                         {r.product}{r.isTest && <span style={{ marginLeft: '8px', fontSize: '11.5px', color: '#ffd080', fontWeight: 700 }}>TEST</span>}
                       </div>
-                      <span style={{ fontSize: '12.5px', fontWeight: 800, padding: '2px 9px', borderRadius: '999px', background: tbd ? 'rgba(255,208,128,.15)' : 'rgba(53,208,255,.12)', color: tbd ? '#ffd080' : '#35d0ff' }}>
+                      <span style={{ fontSize: '12.5px', fontWeight: 800, padding: '2px 9px', borderRadius: '999px', background: tbd ? 'rgba(255,208,128,.15)' : 'rgba(243,239,230,.12)', color: tbd ? '#ffd080' : '#f3efe6' }}>
                         {tbd ? 'Time to be set' : r.session.toUpperCase()}{r.startTime ? ` · ${String(r.startTime).slice(0, 5)}` : ''}
                       </span>
                     </div>
@@ -338,7 +338,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
                       {r.notes && <div>📝 {r.notes}</div>}
                     </div>
                     <div style={{ marginTop: '8px' }}>
-                      <button type="button" onClick={() => setBookingPopup(r.bookingId)} style={{ background: 'rgba(53,208,255,.12)', border: '1px solid rgba(53,208,255,.35)', color: '#35d0ff', borderRadius: '7px', padding: '5px 12px', fontSize: '12px', fontWeight: 700, cursor: 'pointer' }}>
+                      <button type="button" onClick={() => setBookingPopup(r.bookingId)} style={{ background: 'rgba(243,239,230,.12)', border: '1px solid rgba(243,239,230,.35)', color: '#f3efe6', borderRadius: '7px', padding: '5px 12px', fontSize: '12px', fontWeight: 700, cursor: 'pointer' }}>
                         Open booking {r.bookingId.slice(0, 8).toUpperCase()} →
                       </button>
                     </div>
@@ -352,7 +352,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
 
       {bookingPopup && (
         <div onClick={() => setBookingPopup(null)} style={{ position: 'fixed', inset: 0, zIndex: 1100, background: 'rgba(2,8,20,.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '40px 16px', overflowY: 'auto' }}>
-          <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: '#07162B', border: '1px solid rgba(53,208,255,.25)', borderRadius: '16px', boxShadow: '0 20px 60px rgba(0,0,0,.6)' }}>
+          <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: '#07162B', border: '1px solid rgba(243,239,230,.25)', borderRadius: '16px', boxShadow: '0 20px 60px rgba(0,0,0,.6)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
               <span style={{ fontSize: '12px', color: s.muted }}>Booking <span style={{ fontFamily: 'monospace', color: s.text, fontWeight: 700 }}>{bookingPopup.slice(0, 8).toUpperCase()}</span></span>
               <button type="button" onClick={() => setBookingPopup(null)} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.text, borderRadius: '7px', padding: '6px 12px', fontSize: '12px', cursor: 'pointer' }}>Close ✕</button>

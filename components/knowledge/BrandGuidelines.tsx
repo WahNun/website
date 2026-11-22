@@ -5,16 +5,16 @@ import { supabase } from '@/components/pages/_shared'
 /* Brand Guide 2026 — Inhalt aus AZD_Brandbook.pdf, plus PDF-Download (nur für eingeloggte Mitarbeiter). */
 
 const FONT = 'Inter, system-ui, sans-serif'
-const ACCENT = '#35d0ff'
+const ACCENT = '#f3efe6'
 const MUTED = '#5e80a0'
-const TEXT = '#d7e7f7'
+const TEXT = '#f3efe6'
 const SURFACE = '#0d1826'
-const BORDER = 'rgba(53,208,255,.12)'
+const BORDER = 'rgba(243,239,230,.12)'
 const STACK = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
 
 type Sw = { name: string; hex: string; use: string }
 const CORE: Sw[] = [
-  { name: 'Electric Ocean', hex: '#35D0FF', use: 'Primary accent · CTAs · links · active states · tags' },
+  { name: 'Electric Ocean', hex: '#f3efe6', use: 'Primary accent · CTAs · links · active states · tags' },
   { name: 'Deep Atlantic', hex: '#04101F', use: 'Page background · all dark surfaces' },
   { name: 'Abyss', hex: '#020A14', use: 'Darkest background · hero · CTA sections' },
   { name: 'Night Ocean', hex: '#0A1F3D', use: 'Navbar · card surfaces · raised UI elements' },
@@ -22,7 +22,7 @@ const CORE: Sw[] = [
 const TEXTC: Sw[] = [
   { name: 'Surface', hex: '#E8F1FB', use: 'Primary headings & body text' },
   { name: 'Ocean Light', hex: '#CFE2F4', use: 'Secondary body text · descriptions' },
-  { name: 'Fog Blue', hex: '#7FA6C9', use: 'Muted / metadata text' },
+  { name: 'Fog Blue', hex: '#c9c2b6', use: 'Muted / metadata text' },
   { name: 'Mist Blue', hex: '#93AECB', use: 'Subtitles · taglines' },
   { name: 'Pale Cyan', hex: '#9FD9F2', use: 'Species tags · secondary pill labels' },
 ]
@@ -42,7 +42,7 @@ const SCALE: [string, number, number, string][] = [
 ]
 const PRINCIPLES: [string, string, string][] = [
   ['01', 'Depth over noise', 'Dark backgrounds command focus. We do not compete for attention with brightness — we reward it with depth. Whitespace is not waste; it is the water between subjects.'],
-  ['02', 'One accent, used precisely', '#35D0FF appears on CTAs, active states, and punctuation marks. Its power is scarcity. When everything is electric, nothing is. Use it once per composition.'],
+  ['02', 'One accent, used precisely', '#f3efe6 appears on CTAs, active states, and punctuation marks. Its power is scarcity. When everything is electric, nothing is. Use it once per composition.'],
   ['03', 'Heavy type, light touch', 'Headlines at weight 900 create presence. Body copy stays light (400–500). The contrast between the two creates hierarchy without needing size alone to do the work.'],
   ['04', 'Honest confidence', 'Formigas is never guaranteed. Conditions are always real. Our copy is direct, specific and never oversells. The ocean decides — we facilitate the encounter.'],
 ]
@@ -51,7 +51,7 @@ const VOICE: [string, string][] = [
   ['Expert but warm', 'Marine biologists on staff — we know the science and share it without showing off. Every guest learns something.'],
   ['The ocean first', 'We are a vehicle. The stars are the Mola mola, the Dori, the Formigas banks. We step back.'],
 ]
-const BADGE_USE = ['Dark background (#04101f or darker)', 'White background for print', 'Minimum badge height: 40px screen / 14mm print', 'Always with clear space equal to badge height ÷ 4']
+const BADGE_USE = ['Dark background (#090909 or darker)', 'White background for print', 'Minimum badge height: 40px screen / 14mm print', 'Always with clear space equal to badge height ÷ 4']
 const BADGE_AVOID = ['Coloured or patterned backgrounds', 'Scaling below minimum size', 'Changing SSI red or Mares colours', 'Using badge without brand context']
 const SOCIAL_DO = ['Dark backgrounds from the brand palette', 'Real underwater or marina photography', 'White or accent-blue type on dark', 'Strong leading headline — one idea per post', 'SSI / Mares badge in corner when relevant', 'Punctuate key words with the accent dot .']
 const SOCIAL_DONT = ['Bright or white backgrounds', 'Stock photography or generic ocean shots', 'More than two colours in one graphic', 'Helvetica or bold-italic novelty fonts', 'Overcrowd with text — less is more', 'Alter SSI red or Mares brand colours']
@@ -102,7 +102,7 @@ function DoDont({ doList, dontList, doTitle = 'Use', dontTitle = 'Avoid' }: { do
   return <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>{col(doTitle, doList, '#4fe3c8', '✓')}{col(dontTitle, dontList, '#ff6040', '✕')}</div>
 }
 
-const tag: React.CSSProperties = { display: 'inline-block', fontSize: '11.5px', fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', padding: '5px 12px', borderRadius: '999px', border: '1px solid rgba(53,208,255,.35)', color: ACCENT, background: 'rgba(53,208,255,.08)' }
+const tag: React.CSSProperties = { display: 'inline-block', fontSize: '11.5px', fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', padding: '5px 12px', borderRadius: '999px', border: '1px solid rgba(243,239,230,.35)', color: ACCENT, background: 'rgba(243,239,230,.08)' }
 const mono: React.CSSProperties = { fontSize: '12.5px', color: MUTED, fontFamily: 'ui-monospace, Menlo, monospace' }
 
 export default function BrandGuidelines() {
@@ -140,7 +140,7 @@ export default function BrandGuidelines() {
         </div>
         <div style={{ flex: '0 0 auto', textAlign: 'right' }}>
           <button type="button" onClick={download} disabled={busy}
-            style={{ padding: '12px 26px', borderRadius: '999px', border: 'none', cursor: busy ? 'wait' : 'pointer', background: 'linear-gradient(135deg, #35d0ff, #1a8fe0)', color: '#04101f', fontWeight: 800, fontSize: '14px', fontFamily: FONT, opacity: busy ? 0.7 : 1 }}>
+            style={{ padding: '12px 26px', borderRadius: '999px', border: 'none', cursor: busy ? 'wait' : 'pointer', background: 'linear-gradient(135deg, #f3efe6, #1a8fe0)', color: '#090909', fontWeight: 800, fontSize: '14px', fontFamily: FONT, opacity: busy ? 0.7 : 1 }}>
             {busy ? 'Preparing…' : '⬇ Download PDF'}
           </button>
           <div style={{ fontSize: '12.5px', color: MUTED, marginTop: '6px' }}>AZD_Brand_Guide_2026.pdf · 8 pages · 0.8 MB</div>
@@ -156,11 +156,11 @@ export default function BrandGuidelines() {
       <Sub>Gradients</Sub>
       <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
         <div style={{ flex: '1 1 300px' }}>
-          <div style={{ height: '56px', borderRadius: '12px', background: 'linear-gradient(135deg, #35d0ff, #1a8fe0)' }} />
-          <div style={{ fontSize: '12px', color: MUTED, marginTop: '6px' }}>CTA button gradient — linear-gradient(135deg, #35d0ff → #1a8fe0)</div>
+          <div style={{ height: '56px', borderRadius: '12px', background: 'linear-gradient(135deg, #f3efe6, #1a8fe0)' }} />
+          <div style={{ fontSize: '12px', color: MUTED, marginTop: '6px' }}>CTA button gradient — linear-gradient(135deg, #f3efe6 → #1a8fe0)</div>
         </div>
         <div style={{ flex: '1 1 300px' }}>
-          <div style={{ height: '56px', borderRadius: '12px', background: 'radial-gradient(ellipse at 50% 0%, rgba(53,208,255,.45), rgba(53,208,255,0) 70%), #04101f', border: `1px solid ${BORDER}` }} />
+          <div style={{ height: '56px', borderRadius: '12px', background: 'radial-gradient(ellipse at 50% 0%, rgba(243,239,230,.45), rgba(243,239,230,0) 70%), #090909', border: `1px solid ${BORDER}` }} />
           <div style={{ fontSize: '12px', color: MUTED, marginTop: '6px' }}>Hero glow — radial accent from top, dissolves to transparent</div>
         </div>
       </div>
@@ -192,11 +192,11 @@ export default function BrandGuidelines() {
         ))}
         <div style={{ display: 'flex', gap: '20px', alignItems: 'baseline', padding: '12px 0', borderBottom: '1px solid rgba(255,255,255,.05)', flexWrap: 'wrap' }}>
           <div style={{ flex: '0 0 150px', ...mono }}>Label / 11px / 700</div>
-          <div style={{ flex: '1 1 300px', fontSize: '12.5px', fontWeight: 700, letterSpacing: '.28em', color: '#7FA6C9' }}>SSI · MARES DIVE CENTER · PONTA DELGADA</div>
+          <div style={{ flex: '1 1 300px', fontSize: '12.5px', fontWeight: 700, letterSpacing: '.28em', color: '#c9c2b6' }}>SSI · MARES DIVE CENTER · PONTA DELGADA</div>
         </div>
         <div style={{ display: 'flex', gap: '20px', alignItems: 'baseline', padding: '12px 0', flexWrap: 'wrap' }}>
           <div style={{ flex: '0 0 150px', ...mono }}>Micro / 10px / 700</div>
-          <div style={{ flex: '1 1 300px', fontSize: '11.5px', fontWeight: 700, letterSpacing: '.28em', color: '#7FA6C9' }}>CERTIFIED DIVERS · SSI / PADI / CMAS ACCEPTED</div>
+          <div style={{ flex: '1 1 300px', fontSize: '11.5px', fontWeight: 700, letterSpacing: '.28em', color: '#c9c2b6' }}>CERTIFIED DIVERS · SSI / PADI / CMAS ACCEPTED</div>
         </div>
       </div>
 
@@ -207,19 +207,19 @@ export default function BrandGuidelines() {
           <img src="/logo.png" alt="AZD logo on white" style={{ maxWidth: '180px', maxHeight: '90px', objectFit: 'contain' }} />
           <div style={{ fontSize: '12px', color: '#5b6b7b', marginTop: '10px', letterSpacing: '.14em', textTransform: 'uppercase', fontWeight: 700 }}>On white / light backgrounds</div>
         </div>
-        <div style={{ flex: '1 1 300px', background: '#04101f', border: `1px solid ${BORDER}`, borderRadius: '12px', padding: '28px', textAlign: 'center' }}>
+        <div style={{ flex: '1 1 300px', background: '#090909', border: `1px solid ${BORDER}`, borderRadius: '12px', padding: '28px', textAlign: 'center' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.png" alt="AZD logo on dark" style={{ maxWidth: '180px', maxHeight: '90px', objectFit: 'contain' }} />
-          <div style={{ fontSize: '11.5px', fontWeight: 700, letterSpacing: '.28em', color: '#7FA6C9', marginTop: '10px' }}>SSI · MARES DIVE CENTER · PONTA DELGADA</div>
+          <div style={{ fontSize: '11.5px', fontWeight: 700, letterSpacing: '.28em', color: '#c9c2b6', marginTop: '10px' }}>SSI · MARES DIVE CENTER · PONTA DELGADA</div>
           <div style={{ fontSize: '12px', color: MUTED, marginTop: '6px', letterSpacing: '.14em', textTransform: 'uppercase', fontWeight: 700 }}>On dark — same full-colour logo</div>
         </div>
       </div>
-      <p style={{ fontSize: '12.5px', color: MUTED, lineHeight: 1.6, margin: '10px 0 0' }}>No colour inversion or filter is applied. The tagline is set in Fog Blue (#7FA6C9) at 7pt / tracking 0.28em.</p>
+      <p style={{ fontSize: '12.5px', color: MUTED, lineHeight: 1.6, margin: '10px 0 0' }}>No colour inversion or filter is applied. The tagline is set in Fog Blue (#c9c2b6) at 7pt / tracking 0.28em.</p>
       <Sub>Logo files — download</Sub>
       <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
         {[
-          { file: '/brand/AZD_Logo_dark-background.png', name: 'AZD_Logo_dark-background.png', title: 'Logo on dark background', meta: 'PNG · 525 × 525 px · navy #04101F background', bg: '#04101f' },
-          { file: '/brand/AZD_Logo_white-lettering.png', name: 'AZD_Logo_white-lettering.png', title: 'Logo with white lettering', meta: 'PNG · 300 × 300 px · for use on dark backgrounds', bg: '#04101f' },
+          { file: '/brand/AZD_Logo_dark-background.png', name: 'AZD_Logo_dark-background.png', title: 'Logo on dark background', meta: 'PNG · 525 × 525 px · navy #04101F background', bg: '#090909' },
+          { file: '/brand/AZD_Logo_white-lettering.png', name: 'AZD_Logo_white-lettering.png', title: 'Logo with white lettering', meta: 'PNG · 300 × 300 px · for use on dark backgrounds', bg: '#090909' },
         ].map(l => (
           <div key={l.file} style={{ flex: '1 1 260px', background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: '12px', overflow: 'hidden' }}>
             <div style={{ background: l.bg, padding: '16px', textAlign: 'center' }}>
@@ -229,13 +229,13 @@ export default function BrandGuidelines() {
             <div style={{ padding: '12px 16px 14px' }}>
               <div style={{ fontSize: '13px', fontWeight: 800, color: '#fff' }}>{l.title}</div>
               <div style={{ fontSize: '12.5px', color: MUTED, margin: '2px 0 10px' }}>{l.meta}</div>
-              <a href={l.file} download={l.name} style={{ display: 'inline-block', padding: '8px 18px', borderRadius: '999px', background: 'rgba(53,208,255,.08)', border: '1px solid rgba(53,208,255,.35)', color: ACCENT, fontWeight: 700, fontSize: '12.5px', textDecoration: 'none' }}>⬇ Download PNG</a>
+              <a href={l.file} download={l.name} style={{ display: 'inline-block', padding: '8px 18px', borderRadius: '999px', background: 'rgba(243,239,230,.08)', border: '1px solid rgba(243,239,230,.35)', color: ACCENT, fontWeight: 700, fontSize: '12.5px', textDecoration: 'none' }}>⬇ Download PNG</a>
             </div>
           </div>
         ))}
       </div>
       <Sub>Partner badges</Sub>
-      <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', background: '#04101f', border: `1px solid ${BORDER}`, borderRadius: '12px', padding: '18px 22px' }}>
+      <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', background: '#090909', border: `1px solid ${BORDER}`, borderRadius: '12px', padding: '18px 22px' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/badges/ssi.png" alt="SSI Dive Center" style={{ height: '56px', objectFit: 'contain' }} />
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -246,18 +246,18 @@ export default function BrandGuidelines() {
 
       <H n="05 — Components" title="UI Elements." intro="Buttons, tags, and cards form the visual vocabulary of the interface. Each element follows the same logic: dark surfaces, electric accent, generous whitespace, and rounded corners." />
       <Sub>Buttons</Sub>
-      <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', background: '#04101f', border: `1px solid ${BORDER}`, borderRadius: '12px', padding: '22px' }}>
+      <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', background: '#090909', border: `1px solid ${BORDER}`, borderRadius: '12px', padding: '22px' }}>
         <div style={{ flex: '1 1 220px' }}>
-          <span style={{ display: 'inline-block', padding: '11px 26px', borderRadius: '999px', background: 'linear-gradient(135deg, #35d0ff, #1a8fe0)', color: '#04101f', fontWeight: 800, fontSize: '14px' }}>Book now</span>
-          <div style={{ fontSize: '12.5px', color: MUTED, lineHeight: 1.6, marginTop: '10px' }}><b style={{ color: TEXT }}>Primary</b><br />Gradient: #35D0FF → #1A8FE0<br />Text: #04101f (dark)<br />Weight: 800 · Radius: 999px</div>
+          <span style={{ display: 'inline-block', padding: '11px 26px', borderRadius: '999px', background: 'linear-gradient(135deg, #f3efe6, #1a8fe0)', color: '#090909', fontWeight: 800, fontSize: '14px' }}>Book now</span>
+          <div style={{ fontSize: '12.5px', color: MUTED, lineHeight: 1.6, marginTop: '10px' }}><b style={{ color: TEXT }}>Primary</b><br />Gradient: #f3efe6 → #1A8FE0<br />Text: #090909 (dark)<br />Weight: 800 · Radius: 999px</div>
         </div>
         <div style={{ flex: '1 1 220px' }}>
-          <span style={{ display: 'inline-block', padding: '10px 26px', borderRadius: '999px', background: 'transparent', border: '1px solid rgba(53,208,255,.35)', color: ACCENT, fontWeight: 700, fontSize: '14px' }}>Learn more</span>
-          <div style={{ fontSize: '12.5px', color: MUTED, lineHeight: 1.6, marginTop: '10px' }}><b style={{ color: TEXT }}>Secondary</b><br />Background: transparent<br />Border: rgba(#35D0FF, 35%)<br />Text: #35D0FF</div>
+          <span style={{ display: 'inline-block', padding: '10px 26px', borderRadius: '999px', background: 'transparent', border: '1px solid rgba(243,239,230,.35)', color: ACCENT, fontWeight: 700, fontSize: '14px' }}>Learn more</span>
+          <div style={{ fontSize: '12.5px', color: MUTED, lineHeight: 1.6, marginTop: '10px' }}><b style={{ color: TEXT }}>Secondary</b><br />Background: transparent<br />Border: rgba(#f3efe6, 35%)<br />Text: #f3efe6</div>
         </div>
         <div style={{ flex: '1 1 220px' }}>
-          <span style={{ display: 'inline-block', padding: '10px 26px', borderRadius: '999px', background: 'rgba(53,208,255,.08)', border: '1px solid rgba(255,255,255,.08)', color: '#e8f1fb', fontWeight: 700, fontSize: '14px' }}>View all sites</span>
-          <div style={{ fontSize: '12.5px', color: MUTED, lineHeight: 1.6, marginTop: '10px' }}><b style={{ color: TEXT }}>Ghost</b><br />Background: rgba(accent, 8%)<br />Border: rgba(white, 8%)<br />Text: #e8f1fb</div>
+          <span style={{ display: 'inline-block', padding: '10px 26px', borderRadius: '999px', background: 'rgba(243,239,230,.08)', border: '1px solid rgba(255,255,255,.08)', color: '#f3efe6', fontWeight: 700, fontSize: '14px' }}>View all sites</span>
+          <div style={{ fontSize: '12.5px', color: MUTED, lineHeight: 1.6, marginTop: '10px' }}><b style={{ color: TEXT }}>Ghost</b><br />Background: rgba(accent, 8%)<br />Border: rgba(white, 8%)<br />Text: #f3efe6</div>
         </div>
       </div>
       <Sub>Tags &amp; badges</Sub>
@@ -268,10 +268,10 @@ export default function BrandGuidelines() {
       <Sub>Cards</Sub>
       <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
         {[{ t: 'Most popular', h: 'Daily Double Dive', d: 'Two guided boat dives · morning or afternoon · refreshments included', p: '€96 / 2 dives' }, { t: 'Expedition', h: 'Formigas & Dollabarat', d: '42 nm offshore · mantas · devil rays · Advanced only', p: '€255 / 2 dives' }].map(c => (
-          <div key={c.h} style={{ flex: '1 1 300px', background: '#0a1f3d', border: `1px solid ${BORDER}`, borderRadius: '16px', padding: '20px 22px' }}>
+          <div key={c.h} style={{ flex: '1 1 300px', background: '#121210', border: `1px solid ${BORDER}`, borderRadius: '16px', padding: '20px 22px' }}>
             <span style={tag}>{c.t}</span>
             <div style={{ fontSize: '19px', fontWeight: 800, color: '#fff', margin: '12px 0 6px' }}>{c.h}</div>
-            <div style={{ fontSize: '12.5px', color: '#93aecb', lineHeight: 1.6 }}>{c.d}</div>
+            <div style={{ fontSize: '12.5px', color: '#c9c2b6', lineHeight: 1.6 }}>{c.d}</div>
             <div style={{ fontSize: '17px', fontWeight: 800, color: ACCENT, marginTop: '12px' }}>{c.p}</div>
           </div>
         ))}

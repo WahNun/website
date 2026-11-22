@@ -79,7 +79,7 @@ export default function PaymentStatusMissing({ sandbox, onCount, onOpenBooking, 
             </div>
             {open === r.id
               ? <div style={{ marginTop: '12px' }}><PaymentDecision compact bookingIds={[r.id]} onDone={note => { setOpen(null); setMsg(note); void load() }} /></div>
-              : <button type="button" onClick={() => { setMsg(null); setOpen(r.id) }} style={{ marginTop: '10px', width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid rgba(53,208,255,.4)', background: 'rgba(53,208,255,.08)', color: s.accent, fontWeight: 700, fontSize: '13px', cursor: 'pointer', fontFamily: 'inherit' }}>Set payment status</button>}
+              : <button type="button" onClick={() => { setMsg(null); setOpen(r.id) }} style={{ marginTop: '10px', width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid rgba(243,239,230,.4)', background: 'rgba(243,239,230,.08)', color: s.accent, fontWeight: 700, fontSize: '13px', cursor: 'pointer', fontFamily: 'inherit' }}>Set payment status</button>}
           </div>
         ))}
     </div>

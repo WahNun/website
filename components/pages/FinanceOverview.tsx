@@ -147,7 +147,7 @@ export function FinanceHeadline({ simulationMode }: { simulationMode: boolean | 
   )
 }
 
-const tile = { background: 'rgba(53,208,255,.07)', borderRadius: '10px', padding: '12px 14px' } as const
+const tile = { background: 'rgba(243,239,230,.07)', borderRadius: '10px', padding: '12px 14px' } as const
 const lbl = { fontSize: '11.5px', color: s.muted, textTransform: 'uppercase', letterSpacing: '.12em' } as const
 const row = { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px', padding: '9px 0', borderBottom: '1px solid rgba(255,255,255,.07)' } as const
 const btn = { background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, borderRadius: '8px', padding: '6px 12px', cursor: 'pointer', fontSize: '12px', fontFamily: 'inherit' } as const
@@ -179,7 +179,7 @@ function Section({ title, children, action }: { title: string; children: ReactNo
 }
 
 function BookingNo({ id, onOpen }: { id: string; onOpen: (id: string) => void }) {
-  return <button type="button" onClick={() => onOpen(id)} title="Open booking" style={{ fontFamily: 'monospace', color: '#35D0FF', fontWeight: 700, background: 'transparent', border: '1px solid rgba(53,208,255,.35)', borderRadius: '5px', padding: '0 6px', cursor: 'pointer', fontSize: '12px' }}>{id.slice(0, 8).toUpperCase()}</button>
+  return <button type="button" onClick={() => onOpen(id)} title="Open booking" style={{ fontFamily: 'monospace', color: '#f3efe6', fontWeight: 700, background: 'transparent', border: '1px solid rgba(243,239,230,.35)', borderRadius: '5px', padding: '0 6px', cursor: 'pointer', fontSize: '12px' }}>{id.slice(0, 8).toUpperCase()}</button>
 }
 
 function byMethod(pays: Pay[]) {

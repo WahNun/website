@@ -34,7 +34,7 @@ export function PageSiteDetail({ slug, lang, nav: _nav }: { slug: string; lang: 
                 onError={e => { const el = e.currentTarget as HTMLImageElement; el.style.display = 'none'; const p = document.createElement('div'); p.style.cssText = 'width:100%;height:200px;background:linear-gradient(160deg,#071824,#0a2a3a);display:flex;align-items:center;justify-content:center;font-size:56px'; p.textContent = '🐠'; el.parentNode?.insertBefore(p, el) }}
                 style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block', background: '#071824' }} />}
               <div style={{ padding: '22px 24px 26px' }}>
-                <div style={{ fontSize: '18px', fontWeight: 800, color: '#e8f4ff', marginBottom: '2px' }}>{fishPopup}</div>
+                <div style={{ fontSize: '18px', fontWeight: 800, color: '#f3efe6', marginBottom: '2px' }}>{fishPopup}</div>
                 {fd ? (
                   <>
                     <div style={{ fontSize: '13px', color: '#9fd9f2', fontStyle: 'italic', marginBottom: '16px' }}>{fd.latin}</div>
@@ -85,7 +85,7 @@ export function PageSiteDetail({ slug, lang, nav: _nav }: { slug: string; lang: 
         )}
 
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '24px' }}>
-          <span style={{ fontSize: '12px', fontWeight: 700, color: s.accent, background: 'rgba(53,208,255,.1)', padding: '4px 12px', borderRadius: '999px', border: '1px solid rgba(53,208,255,.25)' }}>{spot.depth}</span>
+          <span style={{ fontSize: '12px', fontWeight: 700, color: s.accent, background: 'rgba(243,239,230,.1)', padding: '4px 12px', borderRadius: '999px', border: '1px solid rgba(243,239,230,.25)' }}>{spot.depth}</span>
           <span style={{ fontSize: '12px', fontWeight: 700, color: '#9fd9f2', background: 'rgba(159,217,242,.08)', padding: '4px 12px', borderRadius: '999px', border: '1px solid rgba(159,217,242,.2)' }}>{spot.type}</span>
           <span style={{ fontSize: '12px', fontWeight: 700, color: '#4fe3c8', background: 'rgba(79,227,200,.08)', padding: '4px 12px', borderRadius: '999px', border: '1px solid rgba(79,227,200,.2)' }}>{spot.level} {t('sites_level_req')}</span>
           {(spot as any).beginner && (
@@ -114,7 +114,7 @@ export function PageSiteDetail({ slug, lang, nav: _nav }: { slug: string; lang: 
             </p>
             <p style={{ color: '#cfe2f4', fontSize: '16.5px', lineHeight: 1.75, maxWidth: '680px', marginBottom: '32px' }}>{(spot.long as any)[lang]}</p>
 
-            <div style={{ background: 'rgba(53,208,255,.06)', border: '1px solid rgba(53,208,255,.15)', borderRadius: '14px', padding: '22px 26px', maxWidth: '480px', marginBottom: '32px' }}>
+            <div style={{ background: 'rgba(243,239,230,.06)', border: '1px solid rgba(243,239,230,.15)', borderRadius: '14px', padding: '22px 26px', maxWidth: '480px', marginBottom: '32px' }}>
               <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase', color: s.muted, marginBottom: '14px' }}>{t('sites_species')}</div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                 {spot.fish.map(f => {
@@ -144,7 +144,7 @@ export function PageSiteDetail({ slug, lang, nav: _nav }: { slug: string; lang: 
               ) : (
                 <a href='/book' onClick={() => fireEvent('booking_click')} style={bookBtnStyle}>{t('sites_book')}</a>
               )}
-              <button type="button" onClick={() => { window.location.href = '/sites' }} style={{ ...bookBtnStyle, background: 'transparent', border: '1px solid rgba(53,208,255,.3)', color: s.accent }}>{t('sites_back_all')}</button>
+              <button type="button" onClick={() => { window.location.href = '/sites' }} style={{ ...bookBtnStyle, background: 'transparent', border: '1px solid rgba(243,239,230,.3)', color: s.accent }}>{t('sites_back_all')}</button>
             </div>
             <p style={{ fontSize: '12px', color: '#4a6070', fontStyle: 'italic', marginTop: '16px', maxWidth: '600px', lineHeight: 1.6 }}>
               {t('sites_dynamic_note')}

@@ -28,8 +28,8 @@ export function ToastHost() {
   return (
     <div style={{
       position: 'fixed', bottom: '28px', left: '50%', transform: 'translateX(-50%)',
-      background: '#0d2035', border: '1px solid rgba(53,208,255,.35)', borderRadius: '12px',
-      padding: '13px 22px', fontSize: '13.5px', fontWeight: 700, color: '#35d0ff',
+      background: '#0d2035', border: '1px solid rgba(243,239,230,.35)', borderRadius: '12px',
+      padding: '13px 22px', fontSize: '13.5px', fontWeight: 700, color: '#f3efe6',
       boxShadow: '0 8px 32px rgba(0,0,0,.5)', zIndex: 10000, whiteSpace: 'nowrap',
       animation: 'fadeInUp .2s ease',
     }}>

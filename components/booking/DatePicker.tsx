@@ -52,8 +52,8 @@ export default function DatePicker({ value, onChange, min, max }: {
           {years.map(y => (
             <button key={y} type="button" onClick={() => { setCursor(new Date(y, cursor.getMonth(), 1)); setYearOpen(false) }}
               style={{ padding: '6px 0', borderRadius: '6px', fontSize: '12px', fontFamily: 'inherit', cursor: 'pointer',
-                border: `1px solid ${y === cursor.getFullYear() ? 'rgba(53,208,255,.6)' : 'rgba(255,255,255,.08)'}`,
-                background: y === cursor.getFullYear() ? 'rgba(53,208,255,.2)' : 'transparent', color: s.text }}>{y}</button>
+                border: `1px solid ${y === cursor.getFullYear() ? 'rgba(243,239,230,.6)' : 'rgba(255,255,255,.08)'}`,
+                background: y === cursor.getFullYear() ? 'rgba(243,239,230,.2)' : 'transparent', color: s.text }}>{y}</button>
           ))}
         </div>
       )}
@@ -71,8 +71,8 @@ export default function DatePicker({ value, onChange, min, max }: {
             <button key={d} type="button" disabled={disabled && !isSel} title={disabled && isSel ? 'Click to clear' : undefined} onClick={() => onChange(isSel ? null : d)}
               style={{
                 padding: '9px 0', borderRadius: '8px', fontFamily: 'inherit', fontSize: '13px', fontWeight: isSel ? 800 : 600,
-                border: `1px solid ${isSel ? 'rgba(53,208,255,.7)' : 'rgba(255,255,255,.08)'}`,
-                background: isSel ? 'rgba(53,208,255,.25)' : 'transparent',
+                border: `1px solid ${isSel ? 'rgba(243,239,230,.7)' : 'rgba(255,255,255,.08)'}`,
+                background: isSel ? 'rgba(243,239,230,.25)' : 'transparent',
                 color: disabled ? 'rgba(255,255,255,.18)' : s.text, cursor: disabled ? 'not-allowed' : 'pointer',
               }}>{i + 1}</button>
           )

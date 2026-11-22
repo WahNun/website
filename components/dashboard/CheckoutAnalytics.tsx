@@ -33,8 +33,8 @@ const card: React.CSSProperties = { background: 'rgba(255,255,255,.03)', border:
 const h: React.CSSProperties = { fontSize: '12.5px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: s.muted, margin: '0 0 12px' }
 const th: React.CSSProperties = { textAlign: 'left', fontSize: '12.5px', color: s.muted, fontWeight: 700, padding: '6px 8px', borderBottom: '1px solid rgba(255,255,255,.08)', whiteSpace: 'nowrap' }
 const td: React.CSSProperties = { fontSize: '12.5px', color: s.text, padding: '6px 8px', borderBottom: '1px solid rgba(255,255,255,.04)', verticalAlign: 'top' }
-const sel: React.CSSProperties = { background: '#0a1f3d', color: '#fff', border: '1px solid rgba(53,208,255,.3)', borderRadius: '8px', padding: '7px 10px', fontSize: '12.5px', fontFamily: s.font }
-const btn = (active: boolean): React.CSSProperties => ({ padding: '6px 12px', borderRadius: '8px', fontSize: '12px', fontWeight: 700, fontFamily: s.font, cursor: 'pointer', border: `1px solid ${active ? 'rgba(53,208,255,.5)' : 'rgba(255,255,255,.12)'}`, background: active ? 'rgba(53,208,255,.15)' : 'transparent', color: active ? s.accent : s.sub })
+const sel: React.CSSProperties = { background: '#121210', color: '#fff', border: '1px solid rgba(243,239,230,.3)', borderRadius: '8px', padding: '7px 10px', fontSize: '12.5px', fontFamily: s.font }
+const btn = (active: boolean): React.CSSProperties => ({ padding: '6px 12px', borderRadius: '8px', fontSize: '12px', fontWeight: 700, fontFamily: s.font, cursor: 'pointer', border: `1px solid ${active ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.12)'}`, background: active ? 'rgba(243,239,230,.15)' : 'transparent', color: active ? s.accent : s.sub })
 
 export default function CheckoutAnalytics() {
   const [days, setDays] = useState(30)
@@ -153,7 +153,7 @@ export default function CheckoutAnalytics() {
               const w = started > 0 ? Math.max(2, (f.sessions / started) * 100) : 0
               const active = selectedStep === f.step
               return (
-                <div key={f.step} onClick={() => setSelectedStep(active ? null : f.step)} style={{ display: 'grid', gridTemplateColumns: '180px 1fr 170px', gap: '10px', alignItems: 'center', padding: '6px 8px', borderRadius: '8px', cursor: 'pointer', background: active ? 'rgba(53,208,255,.08)' : 'transparent' }}>
+                <div key={f.step} onClick={() => setSelectedStep(active ? null : f.step)} style={{ display: 'grid', gridTemplateColumns: '180px 1fr 170px', gap: '10px', alignItems: 'center', padding: '6px 8px', borderRadius: '8px', cursor: 'pointer', background: active ? 'rgba(243,239,230,.08)' : 'transparent' }}>
                   <div style={{ fontSize: '12.5px', color: active ? s.accent : s.text, fontWeight: 600 }}>{f.step_index}. {f.label}</div>
                   <div style={{ background: 'rgba(255,255,255,.05)', borderRadius: '6px', height: '18px', overflow: 'hidden' }}>
                     <div style={{ width: `${w}%`, height: '100%', background: f.step === 'payment_succeeded' ? '#4fe3c8' : s.accent, opacity: .85 }} />

@@ -23,7 +23,7 @@ export function safeBookUrl(url: unknown): string | null {
   if (typeof url !== 'string') return null
   try {
     const u = new URL(url)
-    if ((u.protocol !== 'https:' && u.protocol !== 'http:') || u.pathname !== '/book') return null
+    if ((u.protocol !== 'https:' && u.protocol !== 'http:') || u.pathname !== '/book' && u.pathname !== '/dive-os/book') return null
     const h = u.hostname
     const own = typeof window !== 'undefined' ? window.location.hostname : ''
     if (!(h === 'azoresdiving.com' || h.endsWith('.azoresdiving.com') || h === 'localhost' || (own && h === own))) return null

@@ -132,7 +132,7 @@ export default function FinanceMovements({ view, simulationMode, who, onOpenBook
                   {r.is_test && <span style={{ marginLeft: '8px', fontSize: '11.5px', color: '#FFD080' }}>TEST</span>}
                 </div>
                 <div style={{ fontSize: '12px', color: s.muted, marginTop: '2px' }}>
-                  Booking <button type="button" onClick={() => onOpenBooking(r.booking_id)} title="Open booking" style={{ fontFamily: 'monospace', color: '#35D0FF', fontWeight: 700, background: 'transparent', border: '1px solid rgba(53,208,255,.35)', borderRadius: '5px', padding: '0 6px', cursor: 'pointer' }}>{r.booking_id.slice(0, 8).toUpperCase()}</button>
+                  Booking <button type="button" onClick={() => onOpenBooking(r.booking_id)} title="Open booking" style={{ fontFamily: 'monospace', color: '#f3efe6', fontWeight: 700, background: 'transparent', border: '1px solid rgba(243,239,230,.35)', borderRadius: '5px', padding: '0 6px', cursor: 'pointer' }}>{r.booking_id.slice(0, 8).toUpperCase()}</button>
                   {' · '}{ML[r.method] ?? r.method}{' · '}{nm ? `👤 ${nm}` : '⚙️ by system (automatic)'}
                 </div>
                 {r.note && <div style={{ fontSize: '12px', color: s.muted, marginTop: '4px' }}>{r.note}</div>}

@@ -408,28 +408,39 @@ export const T = {
 } as const
 
 export const s = {
-  accent: '#35d0ff',
-  bg: '#04101f',
-  bgDark: '#020a14',
-  text: '#e8f1fb',
-  muted: '#7fa6c9',
-  sub: '#93aecb',
-  font: `-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif`,
+  accent: '#f3efe6',
+  bg: '#090909',
+  bgDark: '#090909',
+  text: '#f3efe6',
+  muted: '#c9c2b6',
+  sub: '#c9c2b6',
+  font: `Outfit, "Segoe UI", sans-serif`,
 }
 
 export const inputStyle: React.CSSProperties = {
-  width: '100%', background: '#0a1f3d', color: '#fff',
-  border: '1px solid rgba(53,208,255,.3)', borderRadius: '10px',
+  width: '100%', background: 'transparent', color: '#f3efe6',
+  border: '1px solid rgba(243,239,230,.45)', borderRadius: 0,
   padding: '12px', fontSize: '14px', fontFamily: s.font,
   outline: 'none', boxSizing: 'border-box',
 }
 
 export const bookBtnStyle: React.CSSProperties = {
-  display: 'inline-block',
-  background: 'linear-gradient(135deg,#35d0ff,#1a8fe0)', color: '#04101f',
-  fontWeight: 800, fontSize: '14px', padding: '12px 24px', borderRadius: '999px',
-  boxShadow: '0 4px 24px rgba(53,208,255,.35)', textDecoration: 'none',
-  cursor: 'pointer', border: 'none', fontFamily: s.font,
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  background: 'transparent',
+  color: '#f3efe6',
+  fontWeight: 500,
+  fontSize: '12px',
+  letterSpacing: '0.12em',
+  textTransform: 'uppercase',
+  padding: '12px 18px',
+  borderRadius: 0,
+  boxShadow: 'none',
+  textDecoration: 'none',
+  cursor: 'pointer',
+  border: '1px solid rgba(243,239,230,.55)',
+  fontFamily: s.font,
 }
 
 export function Breadcrumb({ label, homeLabel = 'Home', goHome }: { label: string; homeLabel?: string; goHome: () => void }) {

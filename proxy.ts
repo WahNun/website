@@ -48,6 +48,17 @@ export async function proxy(request: NextRequest) {
 
   if (!pathname.startsWith("/dive-os")) return NextResponse.next();
 
+  const customerFlow =
+    pathname === "/dive-os/book" ||
+    pathname.startsWith("/dive-os/book/") ||
+    pathname.startsWith("/dive-os/checkin") ||
+    pathname.startsWith("/dive-os/request");
+  if (customerFlow) {
+    const response = NextResponse.next();
+    response.headers.set("X-Robots-Tag", "noindex, nofollow");
+    return response;
+  }
+
   const gate = withSupabase(request);
   const { data: { user } } = await gate.supabase.auth.getUser();
   const onLogin = pathname === "/dive-os/login";

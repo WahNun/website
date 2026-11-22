@@ -10,7 +10,7 @@ export function PageDives({ nav, lang }: { nav: (p: string) => void; lang: Lang 
       {/* Hero */}
       <div style={{
         minHeight: '260px', position: 'relative', overflow: 'hidden',
-        background: `linear-gradient(180deg,rgba(4,16,31,.35) 0%,rgba(4,16,31,.82) 65%,#04101f 100%), url('/dives/dives-hero.webp') ${isMobile ? 'center center' : '30% center'}/cover`,
+        background: `linear-gradient(180deg,rgba(4,16,31,.35) 0%,rgba(4,16,31,.82) 65%,#090909 100%), url('/dives/dives-hero.webp') ${isMobile ? 'center center' : '30% center'}/cover`,
         display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
         padding: isMobile ? '32px 20px 28px' : '48px 48px 40px',
       }}>

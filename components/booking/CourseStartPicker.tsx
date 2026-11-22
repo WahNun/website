@@ -179,7 +179,7 @@ export default function CourseStartPicker({ productId, days, guests, boatDays, v
       {loading && !loadError && (
         <div role="status" aria-label="Loading availability" style={{ minHeight: '190px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <style>{'@keyframes azdSpin{to{transform:rotate(360deg)}}'}</style>
-          <div style={{ width: '34px', height: '34px', borderRadius: '50%', border: '3px solid rgba(53,208,255,.18)', borderTopColor: '#35d0ff', animation: 'azdSpin .8s linear infinite' }} />
+          <div style={{ width: '34px', height: '34px', borderRadius: '50%', border: '3px solid rgba(243,239,230,.18)', borderTopColor: '#f3efe6', animation: 'azdSpin .8s linear infinite' }} />
         </div>
       )}
       <div style={{ display: loading && !loadError ? 'none' : 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '4px', opacity: loading ? .5 : 1 }}>
@@ -203,8 +203,8 @@ export default function CourseStartPicker({ productId, days, guests, boatDays, v
               onClick={() => { if (selectable) { setHintDate(null); onChange(isSel ? null : d) } else setHintDate(isHint ? null : d) }}
               style={{
                 padding: '9px 0', borderRadius: '8px', fontFamily: 'inherit', fontSize: '13px', fontWeight: isSel || isHint ? 800 : 600,
-                border: `1px solid ${isSel ? 'rgba(53,208,255,.7)' : inRange ? 'rgba(53,208,255,.35)' : isHint ? 'rgba(255,160,64,.85)' : ev?.requestOnly ? 'rgba(255,160,64,.35)' : 'rgba(255,255,255,.08)'}`,
-                background: isSel ? 'rgba(53,208,255,.25)' : inRange ? 'rgba(53,208,255,.1)' : isHint ? 'rgba(255,160,64,.2)' : ev?.requestOnly ? 'rgba(255,160,64,.08)' : 'transparent',
+                border: `1px solid ${isSel ? 'rgba(243,239,230,.7)' : inRange ? 'rgba(243,239,230,.35)' : isHint ? 'rgba(255,160,64,.85)' : ev?.requestOnly ? 'rgba(255,160,64,.35)' : 'rgba(255,255,255,.08)'}`,
+                background: isSel ? 'rgba(243,239,230,.25)' : inRange ? 'rgba(243,239,230,.1)' : isHint ? 'rgba(255,160,64,.2)' : ev?.requestOnly ? 'rgba(255,160,64,.08)' : 'transparent',
                 color: past || tooLate || wrongYear ? 'rgba(255,255,255,.18)' : selectable ? s.text : ev?.requestOnly ? '#ffa040' : 'rgba(255,255,255,.3)',
                 cursor: tappable ? 'pointer' : 'not-allowed',
               }}>

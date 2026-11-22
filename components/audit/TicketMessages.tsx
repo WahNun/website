@@ -138,14 +138,14 @@ export default function TicketMessages({
                 width: '92%',
                 padding: '10px 14px 8px',
                 borderRadius: isOut ? '12px 12px 3px 12px' : '12px 12px 12px 3px',
-                background: isOut ? 'rgba(53,208,255,.07)' : 'rgba(255,160,64,.07)',
-                border: `1px solid ${isOut ? 'rgba(53,208,255,.18)' : 'rgba(255,160,64,.18)'}`,
+                background: isOut ? 'rgba(243,239,230,.07)' : 'rgba(255,160,64,.07)',
+                border: `1px solid ${isOut ? 'rgba(243,239,230,.18)' : 'rgba(255,160,64,.18)'}`,
               }}>
                 {/* Sender + time */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '7px', gap: '8px' }}>
                   <span style={{
                     fontSize: '10.5px', fontWeight: 700,
-                    color: isOut ? 'rgba(53,208,255,.75)' : 'rgba(255,160,64,.75)',
+                    color: isOut ? 'rgba(243,239,230,.75)' : 'rgba(255,160,64,.75)',
                     textTransform: 'uppercase', letterSpacing: '.06em',
                   }}>
                     {isOut ? '↑' : '↓'} {senderLabel}
@@ -172,7 +172,7 @@ export default function TicketMessages({
                     onClick={() => toggleExpand(msg.id)}
                     style={{
                       marginTop: '7px', background: 'none', border: 'none', cursor: 'pointer',
-                      fontSize: '11px', color: isOut ? 'rgba(53,208,255,.55)' : 'rgba(255,160,64,.55)',
+                      fontSize: '11px', color: isOut ? 'rgba(243,239,230,.55)' : 'rgba(255,160,64,.55)',
                       padding: '0', fontFamily: 'inherit', textDecoration: 'underline',
                     }}
                   >
@@ -185,9 +185,9 @@ export default function TicketMessages({
                   <div style={{ marginTop: '8px', display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                     {msg.attachments.map((a, i) => (
                       <a key={i} href={a.url} target="_blank" rel="noreferrer" style={{
-                        fontSize: '11px', color: '#35D0FF', textDecoration: 'none',
+                        fontSize: '11px', color: '#f3efe6', textDecoration: 'none',
                         padding: '3px 8px', borderRadius: '6px',
-                        background: 'rgba(53,208,255,.08)', border: '1px solid rgba(53,208,255,.2)',
+                        background: 'rgba(243,239,230,.08)', border: '1px solid rgba(243,239,230,.2)',
                       }}>
                         📎 {a.name}
                       </a>

@@ -94,7 +94,7 @@ export default function SlotAssigner({ bookingId, onChanged }: { bookingId: stri
               const on = curPick === tt
               return (
                 <button key={tt} type="button" title={tt === 'full' ? 'Course takes the whole day — AM and PM session' : undefined} onClick={() => setPicks(p => ({ ...p, [x.id]: tt }))}
-                  style={{ padding: '5px 14px', borderRadius: '7px', border: `1px solid ${on ? 'rgba(53,208,255,.5)' : 'rgba(255,255,255,.12)'}`, background: on ? 'rgba(53,208,255,.16)' : 'transparent', color: on ? s.accent : s.muted, fontSize: '12px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>
+                  style={{ padding: '5px 14px', borderRadius: '7px', border: `1px solid ${on ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.12)'}`, background: on ? 'rgba(243,239,230,.16)' : 'transparent', color: on ? s.accent : s.muted, fontSize: '12px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>
                   {label}
                 </button>
               )

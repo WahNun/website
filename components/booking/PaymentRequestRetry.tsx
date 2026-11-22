@@ -59,7 +59,7 @@ export default function PaymentRequestRetry({ items, isDeposit, onAllSent }: { i
               <b>{it.name}</b>
               <div style={{ color: st.ok ? '#4fe3c8' : '#ff6040', marginTop: '2px' }}>{st.text ?? it.error}</div>
             </div>
-            {!st.ok && <button type="button" disabled={st.busy} onClick={() => again(it)} style={{ padding: '8px 14px', borderRadius: '8px', border: '1px solid rgba(53,208,255,.4)', background: 'rgba(53,208,255,.08)', color: s.accent, fontWeight: 700, fontSize: '12.5px', cursor: st.busy ? 'wait' : 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>{st.busy ? 'Sending…' : 'Send again'}</button>}
+            {!st.ok && <button type="button" disabled={st.busy} onClick={() => again(it)} style={{ padding: '8px 14px', borderRadius: '8px', border: '1px solid rgba(243,239,230,.4)', background: 'rgba(243,239,230,.08)', color: s.accent, fontWeight: 700, fontSize: '12.5px', cursor: st.busy ? 'wait' : 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>{st.busy ? 'Sending…' : 'Send again'}</button>}
           </div>
         )
       })}
