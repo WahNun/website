@@ -10,6 +10,7 @@
   --on-accent: #000000;
   --bg-raise: var(--surface);
   --bg-panel: #161618;
+  --gap-stack: 20px;
   --radius-card: 18px;
   --radius-inner: 12px;
   --radius-control: 8px;
@@ -265,10 +266,16 @@ b, strong { font-weight: 500; }
 .prose { display: grid; gap: 0.85rem; }
 .prose p { color: var(--text); }
 
+.card-stack {
+  display: grid;
+  gap: var(--gap-stack);
+  margin-top: 28px;
+}
 .project {
   display: grid;
-  gap: 0.8rem;
-  padding: 1.6rem 1.5rem;
+  justify-items: start;
+  gap: 0.85rem;
+  padding: 1.75rem;
   border: 1px solid var(--line);
   border-radius: 20px;
   background: var(--glass);
@@ -354,9 +361,9 @@ textarea { min-height: 9rem; resize: vertical; }
   text-transform: uppercase;
 }
 .ui__body { padding: 1rem; display: grid; gap: 1rem; }
-.dash, .compare, .checkin, .fabricare, .offer, .os-cards {
+.dash, .compare, .checkin, .fabricare, .os-cards {
   display: grid;
-  gap: 1rem;
+  gap: var(--gap-stack);
 }
 .panel {
   border: 1px solid var(--line);
@@ -502,8 +509,8 @@ textarea { min-height: 9rem; resize: vertical; }
 .status-list li { border-top: 1px solid var(--line); padding-top: 0.55rem; }
 
 @media (min-width: 800px) {
-  .offer { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-  .project { grid-template-columns: 11rem 1fr; gap: 1.5rem; align-items: start; }
+  .offer { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap-stack); }
+  .offer li { border-top: 0; padding-top: 0; }
 }
 @media (min-width: 860px) {
   .menu-button { display: none; }

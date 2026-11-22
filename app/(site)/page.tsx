@@ -75,6 +75,7 @@ export default async function HomePage({
       <section id="projects" className="wrap">
         <p className="kicker">Selected work</p>
         <h2>Projects</h2>
+        <div className="card-stack">
         <article className="project">
           <p className="pill">Delivered</p>
           <div>
@@ -110,6 +111,7 @@ export default async function HomePage({
             </p>
           </div>
         </article>
+        </div>
       </section>
 
       <section id="about" className="wrap">

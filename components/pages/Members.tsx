@@ -507,7 +507,7 @@ function PageDashboard({ nav, dayOffset, setDayOffset, userRole }: { nav: (p: Me
  )}
 
  {/* ── INFO GRID: Courses · Bookings · Staff ── */}
- <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3,1fr)', gap: isMobile ? '12px' : '20px', marginBottom: '20px' }}>
+ <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3,1fr)', gap: 'var(--gap-stack)', marginBottom: 'var(--gap-stack)' }}>
 
  {/* Active Courses — B-5 CourseLoad Widget */}
  <CourseLoad rollDateStr={rollDateStr} isAdmin={userRole === 'admin' || simulationMode} simulationMode={simulationMode} reloadKey={dashReloadKey} />

@@ -495,7 +495,7 @@ export default function LiveBoats({
  })}
  </div>
 
- <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '12px' : '20px', marginBottom: '20px' }}>
+ <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 'var(--gap-stack)', marginBottom: 'var(--gap-stack)' }}>
  {boats.map(boat => {
  const st = statuses.find(x => x.boat_id === boat.id && x.session === view)
  const boatCrew = crew.filter(c => c.boat_id === boat.id && c.session === view)
@@ -511,7 +511,7 @@ export default function LiveBoats({
  />
  )
  })}
- <div style={boats.length === 1 ? { display: 'flex', flexDirection: 'column', gap: '12px', alignSelf: 'start' } : { display: 'contents' }}>
+ <div style={boats.length === 1 ? { display: 'flex', flexDirection: 'column', gap: 'var(--gap-stack)', alignSelf: 'start' } : { display: 'contents' }}>
  {(() => {
  const waitlist = boats.flatMap(b => seatsFor(b.id, view, true))
  if (waitlist.length === 0) return null
