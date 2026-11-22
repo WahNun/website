@@ -112,29 +112,29 @@ export default function ConsentBanner() {
   return (
     <div role="dialog" aria-label={t.title} style={{
       position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 99999,
-      background: 'rgba(4,12,26,.97)', borderTop: '1px solid rgba(53,208,255,.18)',
+      background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(0,0,0,.88) 100%)', borderTop: '1px solid rgba(255,255,255,.14)',
       backdropFilter: 'blur(16px)', padding: '18px 24px',
       display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px', fontFamily: FONT,
     }}>
       <div style={{ flex: 1, minWidth: '260px' }}>
-        <span style={{ fontWeight: 700, color: '#e8f1fb', fontSize: '14px' }}>{t.title} </span>
-        <span style={{ color: '#8fb3cc', fontSize: '13px', lineHeight: 1.55 }}>{t.desc} </span>
-        <a href="/privacy" style={{ color: '#35d0ff', fontSize: '13px', textDecoration: 'underline' }}>{t.more}</a>
+        <span style={{ fontWeight: 700, color: '#f3efe6', fontSize: '14px' }}>{t.title} </span>
+        <span style={{ color: '#c9c2b6', fontSize: '14px', lineHeight: 1.55 }}>{t.desc} </span>
+        <a href="/privacy" style={{ color: '#f3efe6', fontSize: '14px', textDecoration: 'underline' }}>{t.more}</a>
         {current && (
-          <div style={{ color: '#8fb3cc', fontSize: '12px', marginTop: '6px' }}>
-            {t.current} <strong style={{ color: '#e8f1fb' }}>{current === 'accepted' ? t.on : t.off}</strong>
+          <div style={{ color: '#c9c2b6', fontSize: '13px', marginTop: '6px' }}>
+            {t.current} <strong style={{ color: '#f3efe6' }}>{current === 'accepted' ? t.on : t.off}</strong>
           </div>
         )}
       </div>
       <div style={{ display: 'flex', gap: '10px', flexShrink: 0 }}>
         <button type="button" onClick={() => choose('rejected')} style={{
-          padding: '9px 18px', borderRadius: '999px', border: '1px solid rgba(255,255,255,.2)',
-          background: 'transparent', color: '#8fb3cc', fontSize: '13px', fontWeight: 600, cursor: 'pointer', fontFamily: FONT,
+          padding: '10px 18px', borderRadius: 0, border: '1px solid rgba(255,255,255,.2)',
+          background: 'transparent', color: '#c9c2b6', fontSize: '14px', fontWeight: 600, cursor: 'pointer', fontFamily: FONT,
         }}>{t.reject}</button>
         <button type="button" onClick={() => choose('accepted')} style={{
-          padding: '9px 20px', borderRadius: '999px', border: 'none',
-          background: 'linear-gradient(135deg,#35d0ff,#1a8fe0)', color: '#04101f',
-          fontSize: '13px', fontWeight: 800, cursor: 'pointer', fontFamily: FONT,
+          padding: '10px 20px', borderRadius: 0, border: '1px solid #f3efe6',
+          background: '#f3efe6', color: '#000',
+          fontSize: '14px', fontWeight: 600, cursor: 'pointer', fontFamily: FONT,
         }}>{t.accept}</button>
       </div>
     </div>

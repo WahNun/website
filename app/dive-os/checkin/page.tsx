@@ -142,9 +142,9 @@ const c = {
  text: '#f3efe6',
  muted: '#c9c2b6',
  sub: '#c9c2b6',
- success: '#2dd4a0',
+ success: '#b7c4b0',
  warning: '#d4a07a',
- error: '#ff5a5a',
+ error: '#c9928c',
  font: `-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif`,
 }
 
@@ -178,7 +178,7 @@ const primaryBtn: React.CSSProperties = {
  borderRadius: 0,
  border: 'none',
  background: `linear-gradient(135deg, ${c.accent}, #f3efe6)`,
- color: '#090909',
+ color: '#000',
  fontWeight: 800,
  fontSize: '16px',
  cursor: 'pointer',
@@ -277,7 +277,7 @@ function GroupOthersCard({ others }: { others: GroupOther[] }) {
  </div>
  {o.done
  ? <span style={{ fontSize: '14px', fontWeight: 700, color: c.success, whiteSpace: 'nowrap' }}> Checked in</span>
- : <a href={`/dive-os/checkin?token=${o.token}`} style={{ padding: '9px 14px', borderRadius: 0, background: '#f3efe6', color: '#090909', fontWeight: 800, fontSize: '14px', textDecoration: 'none', whiteSpace: 'nowrap' }}>Check in {o.label.replace(/ — .*/, '')} </a>}
+ : <a href={`/dive-os/checkin?token=${o.token}`} style={{ padding: '9px 14px', borderRadius: 0, background: '#f3efe6', color: '#000', fontWeight: 800, fontSize: '14px', textDecoration: 'none', whiteSpace: 'nowrap' }}>Check in {o.label.replace(/ — .*/, '')} </a>}
  </div>
  ))}
  </div>
@@ -317,7 +317,7 @@ function ErrorCard({ reason, others }: { reason: 'expired' | 'not_found' | 'all_
  padding: '13px 24px',
  borderRadius: 0,
  background: '#c9c2b6',
- color: '#fff',
+ color: '#f3efe6',
  fontWeight: 700,
  fontSize: '15px',
  textDecoration: 'none',
@@ -407,8 +407,8 @@ function GuestProgress({ slots, currentSlot }: { slots: SlotInfo[]; currentSlot:
  const done = slot.checkin_completed_at !== null
  const invited = !done && Boolean(slot.invite_sent_at)
  const isCurrent = i === currentSlot
- const bg = done ? 'rgba(45,212,160,.12)' : invited ? 'rgba(243,239,230,.06)' : isCurrent ? c.accentDim : 'rgba(255,255,255,.04)'
- const border = done ? 'rgba(45,212,160,.3)' : invited ? c.accentBorder : isCurrent ? c.accentBorder : 'rgba(255,255,255,.08)'
+ const bg = done ? 'rgba(183,196,176,.12)' : invited ? 'rgba(243,239,230,.06)' : isCurrent ? c.accentDim : 'rgba(255,255,255,.04)'
+ const border = done ? 'rgba(183,196,176,.3)' : invited ? c.accentBorder : isCurrent ? c.accentBorder : 'rgba(255,255,255,.08)'
  const color = done ? c.success : invited ? c.muted : isCurrent ? c.accent : c.muted
  return (
  <div key={i} style={{
@@ -1132,7 +1132,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  style={{
  ...inputStyle,
  opacity: sent ? 0.6 : 1,
- borderColor: sent ? 'rgba(45,212,160,.4)' : failed ? 'rgba(255,90,90,.4)' : undefined,
+ borderColor: sent ? 'rgba(183,196,176,.4)' : failed ? 'rgba(201,146,140,.4)' : undefined,
  }}
  inputMode="email"
  autoComplete="email"
@@ -1156,7 +1156,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
 
  {/* Globaler Fehler (Netzwerk o.ä.) */}
  {inviteResults?.some(r => r.slot_index < 0) && (
- <div style={{ background: 'rgba(255,90,90,.08)', border: '1px solid rgba(255,90,90,.2)', borderRadius: 0, padding: '10px 14px', marginBottom: '16px', fontSize: '14px', color: c.error }}>
+ <div style={{ background: 'rgba(201,146,140,.08)', border: '1px solid rgba(201,146,140,.2)', borderRadius: 0, padding: '10px 14px', marginBottom: '16px', fontSize: '14px', color: c.error }}>
  {inviteResults.find(r => r.slot_index < 0)?.error}
  </div>
  )}
@@ -1389,12 +1389,12 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <Card>
  <SectionTitle>Personal Details</SectionTitle>
  {welcomeBack && (
- <div style={{ background: 'rgba(45,212,160,.08)', border: '1px solid rgba(45,212,160,.2)', borderRadius: 0, padding: '10px 14px', marginBottom: '20px', fontSize: '14px', color: c.success }}>
+ <div style={{ background: 'rgba(183,196,176,.08)', border: '1px solid rgba(183,196,176,.2)', borderRadius: 0, padding: '10px 14px', marginBottom: '20px', fontSize: '14px', color: c.success }}>
  Welcome back! We&apos;ve pre-filled your details.
  </div>
  )}
  {lookupError && (
- <div style={{ background: 'rgba(255,90,90,.08)', border: '1px solid rgba(255,90,90,.2)', borderRadius: 0, padding: '10px 14px', marginBottom: '20px', fontSize: '14px', color: c.error }}>
+ <div style={{ background: 'rgba(201,146,140,.08)', border: '1px solid rgba(201,146,140,.2)', borderRadius: 0, padding: '10px 14px', marginBottom: '20px', fontSize: '14px', color: c.error }}>
  Could not load your saved details — please fill in the form manually. ({lookupError})
  </div>
  )}
@@ -1716,8 +1716,8 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  const boxIsNo = medicalAnswers[item.key] === false
  return (
  <div key={item.key} style={{
- background: boxIsYes ? 'rgba(255,90,90,.05)' : 'rgba(255,255,255,.02)',
- border: `1px solid ${boxIsYes ? 'rgba(255,90,90,.3)' : 'rgba(255,255,255,.08)'}`,
+ background: boxIsYes ? 'rgba(201,146,140,.05)' : 'rgba(255,255,255,.02)',
+ border: `1px solid ${boxIsYes ? 'rgba(201,146,140,.3)' : 'rgba(255,255,255,.08)'}`,
  borderRadius: 0, padding: '10px 12px',
  }}>
  <div style={{ fontSize: '14px', color: c.text, lineHeight: 1.5, marginBottom: '8px' }}>
@@ -1733,8 +1733,8 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  onClick={() => handleBoxQuestion(item.key, isYesBtn)}
  style={{
  flex: 1, padding: '6px', borderRadius: 0,
- border: `1px solid ${selected ? (isYesBtn ? 'rgba(255,90,90,.5)' : c.accentBorder) : 'rgba(255,255,255,.1)'}`,
- background: selected ? (isYesBtn ? 'rgba(255,90,90,.12)' : c.accentDim) : 'transparent',
+ border: `1px solid ${selected ? (isYesBtn ? 'rgba(201,146,140,.5)' : c.accentBorder) : 'rgba(255,255,255,.1)'}`,
+ background: selected ? (isYesBtn ? 'rgba(201,146,140,.12)' : c.accentDim) : 'transparent',
  color: selected ? (isYesBtn ? c.error : c.accent) : c.muted,
  fontWeight: selected ? 700 : 500, fontSize: '14px',
  cursor: 'pointer', fontFamily: c.font,
@@ -1929,7 +1929,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <SectionTitle>Diving Experience</SectionTitle>
 
  {isEntryCourse && (
- <div style={{ background: 'rgba(183,196,176,.08)', border: '1px solid rgba(183,196,176,.25)', borderRadius: 0, padding: '12px 14px', marginBottom: '16px', fontSize: '14px', color: '#8ff0dd', lineHeight: 1.55 }}>
+ <div style={{ background: 'rgba(183,196,176,.08)', border: '1px solid rgba(183,196,176,.25)', borderRadius: 0, padding: '12px 14px', marginBottom: '16px', fontSize: '14px', color: '#b7c4b0', lineHeight: 1.55 }}>
  No certificate required — this is your first course. Just tell us what you have done so far.
  </div>
  )}
@@ -2011,7 +2011,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: c.sub, marginBottom: '12px' }}>Dive Insurance</div>
 
  {dayInsuranceIncluded() ? (
- <div style={{ background: 'rgba(183,196,176,.08)', border: '1px solid rgba(183,196,176,.25)', borderRadius: 0, padding: '12px 14px', fontSize: '14px', color: '#8ff0dd', lineHeight: 1.55 }}>
+ <div style={{ background: 'rgba(183,196,176,.08)', border: '1px solid rgba(183,196,176,.25)', borderRadius: 0, padding: '12px 14px', fontSize: '14px', color: '#b7c4b0', lineHeight: 1.55 }}>
  {tokenData?.insurance_ssi_included ? 'SSI dive insurance is included in your course — nothing to do here.' : 'DAN day insurance is included in your booking — nothing to do here.'}
  </div>
  ) : (
@@ -2094,7 +2094,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  value={form.logged_dives}
  onChange={e => setForm(f => ({ ...f, logged_dives: e.target.value }))}
  placeholder="e.g. 42"
- style={{ ...inputStyle, ...(form.experience_level !== 'none' && form.logged_dives === '' ? { borderColor: 'rgba(255,120,112,.55)' } : {}) }}
+ style={{ ...inputStyle, ...(form.experience_level !== 'none' && form.logged_dives === '' ? { borderColor: 'rgba(201,146,140,.55)' } : {}) }}
  inputMode="numeric"
  min="0"
  />
@@ -2363,7 +2363,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  </label>
 
  {submitError && (
- <div style={{ background: 'rgba(255,90,90,.08)', border: '1px solid rgba(255,90,90,.2)', borderRadius: 0, padding: '12px 14px', marginBottom: '20px', fontSize: '14px', color: c.error }}>
+ <div style={{ background: 'rgba(201,146,140,.08)', border: '1px solid rgba(201,146,140,.2)', borderRadius: 0, padding: '12px 14px', marginBottom: '20px', fontSize: '14px', color: c.error }}>
  <div>{submitError}</div>
  {submitRef && (
  <div style={{ fontSize: '14px', color: c.muted, marginTop: '6px', fontFamily: 'monospace' }}>
@@ -2438,7 +2438,7 @@ function MedicalAckDialog({ onConfirm, onCancel, medicalAnswers }: { onConfirm: 
  style={{
  position: 'fixed', inset: 0, zIndex: 100, display: 'flex',
  alignItems: 'center', justifyContent: 'center', padding: '20px',
- background: 'rgba(3,10,22,.82)', backdropFilter: 'blur(3px)',
+ background: 'rgba(0,0,0,0.82)', backdropFilter: 'blur(3px)',
  }}
  >
  <div style={{
@@ -2660,7 +2660,7 @@ function DayCoverOption({ form, setForm, offer, c }: { form: { buy_day_cover: bo
  return (
  <button type="button" onClick={() => setForm((f: any) => ({ ...f, buy_day_cover: !f.buy_day_cover, insurance_mode: !f.buy_day_cover ? '' : f.insurance_mode }))}
  style={{ textAlign: 'left', padding: '11px 14px', borderRadius: 0, border: `1px solid ${on ? c.accentBorder : 'rgba(255,255,255,.08)'}`, background: on ? c.accentDim : 'transparent', color: c.text, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit', display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
- <span style={{ width: '18px', height: '18px', borderRadius: 0, border: `2px solid ${on ? c.accent : 'rgba(255,255,255,.3)'}`, background: on ? c.accent : 'transparent', flexShrink: 0, marginTop: '2px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#090909', fontSize: '14px', fontWeight: 800 }}>{on ? '' : ''}</span>
+ <span style={{ width: '18px', height: '18px', borderRadius: 0, border: `2px solid ${on ? c.accent : 'rgba(255,255,255,.3)'}`, background: on ? c.accent : 'transparent', flexShrink: 0, marginTop: '2px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#000', fontSize: '14px', fontWeight: 800 }}>{on ? '' : ''}</span>
  <span>
  Buy DAN day cover from your dive centre{offer ? ` — €${(offer.cents / 100).toFixed(2)} for ${offer.days} dive day${offer.days === 1 ? '' : 's'}` : ''}
  <div style={{ fontSize: '14px', color: c.sub, marginTop: '3px' }}>Added to your booking, pay at the centre (cash, card or Revolut). Covers every dive day of this booking.</div>

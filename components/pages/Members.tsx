@@ -119,7 +119,7 @@ const SSI_COL_LABELS: Record<string,string> = {
 
 function PageAccessDenied({ nav }: { nav: (p: MemberPage) => void }) {
  return (
- <div style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '16px', padding: '40px', background: '#090909' }}>
+ <div style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '16px', padding: '40px', background: '#000' }}>
  <div style={{ fontSize: '36px' }}></div>
  <h2 style={{ fontSize: '22px', fontWeight: 900, margin: 0, color: '#f3efe6' }}>Access restricted</h2>
  <p style={{ fontSize: '14px', color: 'rgba(255,255,255,.45)', margin: 0, textAlign: 'center', maxWidth: '320px', lineHeight: 1.6 }}>Your account does not have permission to view this page. Contact your admin if you think this is a mistake.</p>
@@ -154,7 +154,7 @@ function PageLogin({ onLogin }: { onLogin: () => void }) {
  const inp: React.CSSProperties = {
  width: '100%', padding: '12px 14px', borderRadius: 0, fontSize: '15px',
  background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.12)',
- color: '#fff', fontFamily: s.font, outline: 'none', boxSizing: 'border-box',
+ color: '#f3efe6', fontFamily: s.font, outline: 'none', boxSizing: 'border-box',
  }
 
  return (
@@ -181,7 +181,7 @@ function PageLogin({ onLogin }: { onLogin: () => void }) {
  />
 
  {error && (
- <div style={{ background: 'rgba(255,80,80,.1)', border: '1px solid rgba(255,80,80,.25)', borderRadius: 0, padding: '10px 14px', fontSize: '14px', color: '#c9928c' }}>
+ <div style={{ background: 'rgba(201,146,140,.1)', border: '1px solid rgba(201,146,140,.25)', borderRadius: 0, padding: '10px 14px', fontSize: '14px', color: '#c9928c' }}>
  {error}
  </div>
  )}
@@ -189,7 +189,7 @@ function PageLogin({ onLogin }: { onLogin: () => void }) {
  <button
  onClick={handleLogin}
  disabled={loading}
- style={{ width: '100%', padding: '13px', borderRadius: 0, border: 'none', background: loading ? 'rgba(243,239,230,.4)' : s.accent, color: '#090909', fontWeight: 800, fontSize: '15px', cursor: loading ? 'default' : 'pointer', fontFamily: s.font, marginTop: '4px' }}
+ style={{ width: '100%', padding: '13px', borderRadius: 0, border: 'none', background: loading ? 'rgba(243,239,230,.4)' : s.accent, color: '#000', fontWeight: 800, fontSize: '15px', cursor: loading ? 'default' : 'pointer', fontFamily: s.font, marginTop: '4px' }}
  >
  {loading ? 'Signing in…' : 'Sign in'}
  </button>
@@ -373,18 +373,18 @@ function PageDashboard({ nav, dayOffset, setDayOffset, userRole }: { nav: (p: Me
  )
 
  return (
- <div style={{ background: '#090909', minHeight: '100vh' }}>
+ <div style={{ background: '#000', minHeight: '100vh' }}>
 
  {/* ── LIVE OPS BAR ── */}
  <div style={{
- background: 'rgba(9,9,9,.95)', borderBottom: '1px solid rgba(243,239,230,.15)',
+ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(0,0,0,.72) 100%)', borderBottom: '1px solid rgba(255,255,255,.12)',
  padding: '11px 28px', display: 'flex', alignItems: 'center', gap: '14px',
  flexWrap: 'nowrap', overflowX: 'auto', scrollbarWidth: 'none',
  position: 'sticky', top: 'var(--member-subnav-h, 44px)', zIndex: 90, backdropFilter: 'blur(12px)',
  }}>
  <div style={{ fontSize: '14px', fontWeight: 800, color: s.accent, letterSpacing: '.16em', textTransform: 'uppercase', whiteSpace: 'nowrap', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '8px' }}
  title={wxData ? `Live weather data · ${wxData.windSource === 'windguru' ? 'Wind: Windguru · ' : ''}${wxData.source} · ${wxData.fetchTime}` : 'Demo data — live weather not available'}>
- <span aria-hidden style={{ width: '9px', height: '9px', borderRadius: '50%', display: 'inline-block', background: wxData ? '#b7c4b0' : '#c9928c', boxShadow: `0 0 7px ${wxData ? 'rgba(183,196,176,.7)' : 'rgba(248,113,113,.7)'}` }} />
+ <span aria-hidden style={{ width: '9px', height: '9px', borderRadius: '50%', display: 'inline-block', background: wxData ? '#b7c4b0' : '#c9928c', boxShadow: 'none' }} />
  Live Ops
  </div>
  {divider}
@@ -470,7 +470,7 @@ function PageDashboard({ nav, dayOffset, setDayOffset, userRole }: { nav: (p: Me
  />
 
  {tbdBookingPopup && (
- <div onClick={() => setTbdBookingPopup(null)} style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(2,8,20,.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '40px 16px', overflowY: 'auto' }}>
+ <div onClick={() => setTbdBookingPopup(null)} style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '40px 16px', overflowY: 'auto' }}>
  <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: '#121210', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, boxShadow: 'none' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>Booking <span style={{ fontFamily: 'monospace', color: s.text, fontWeight: 700 }}>{tbdBookingPopup.slice(0, 8).toUpperCase()}</span> · Sessions tab</span>
@@ -493,7 +493,7 @@ function PageDashboard({ nav, dayOffset, setDayOffset, userRole }: { nav: (p: Me
  />
 
  {payBookingPopup && (
- <div onClick={() => setPayBookingPopup(null)} style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(2,8,20,.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '40px 16px', overflowY: 'auto' }}>
+ <div onClick={() => setPayBookingPopup(null)} style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '40px 16px', overflowY: 'auto' }}>
  <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: '#121210', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, boxShadow: 'none' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>Booking <span style={{ fontFamily: 'monospace', color: s.text, fontWeight: 700 }}>{payBookingPopup.slice(0, 8).toUpperCase()}</span> · Payments tab</span>
@@ -511,7 +511,7 @@ function PageDashboard({ nav, dayOffset, setDayOffset, userRole }: { nav: (p: Me
 
  {/* Active Courses — B-5 CourseLoad Widget */}
  <CourseLoad rollDateStr={rollDateStr} isAdmin={userRole === 'admin' || simulationMode} simulationMode={simulationMode} reloadKey={dashReloadKey} />
- {false && <div style={{ position: 'relative', background: 'rgba(10,28,50,.7)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '20px', overflow: 'hidden' }}>
+ {false && <div style={{ position: 'relative', background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '20px', overflow: 'hidden' }}>
  <div style={{ position: 'absolute', inset: 0, background: 'rgba(9,9,9,.6)', backdropFilter: 'blur(4px)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '6px', zIndex: 10 }}>
  <div style={{ fontSize: '14px', fontWeight: 800, letterSpacing: '.2em', textTransform: 'uppercase', color: 'rgba(243,239,230,.8)' }}>Coming Soon</div>
  <div style={{ fontSize: '14px', color: 'rgba(255,255,255,.3)', textAlign: 'center', lineHeight: 1.5 }}>Course tracking coming soon</div>
@@ -540,7 +540,7 @@ function PageDashboard({ nav, dayOffset, setDayOffset, userRole }: { nav: (p: Me
  </div>}
 
  {/* Needs attention — ersetzt den Platzhalter „Booking Requests“; Hinweis „ohne Zeitfenster“ wohnt hier statt über den Booten */}
- <div style={{ background: 'rgba(10,28,50,.7)', border: `1px solid ${tbdItems.length > 0 ? 'rgba(201,180,138,.4)' : 'rgba(243,239,230,.15)'}`, borderRadius: 0, padding: '20px' }}>
+ <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: `1px solid ${tbdItems.length > 0 ? 'rgba(201,180,138,.4)' : 'rgba(243,239,230,.15)'}`, borderRadius: 0, padding: '20px' }}>
  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
  <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', color: s.accent }}>Needs attention</div>
  {tbdItems.length > 0 && <span style={{ fontSize: '14px', fontWeight: 700, color: '#d4a07a', background: 'rgba(212,160,122,.12)', padding: '3px 9px', borderRadius: 0 }}>{tbdItems.length} open</span>}
@@ -559,7 +559,7 @@ function PageDashboard({ nav, dayOffset, setDayOffset, userRole }: { nav: (p: Me
  </div>
 
  {/* Staff on Roll */}
- <div style={{ background: 'rgba(10,28,50,.7)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '20px' }}>
  <div style={{ marginBottom: '16px' }}>
  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
  <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', color: s.accent }}>Staff on Roll</div>
@@ -626,7 +626,7 @@ function PageDashboard({ nav, dayOffset, setDayOffset, userRole }: { nav: (p: Me
  </div>
 
  {/* ── COURSE CAPACITY ── */}
- <div style={{ position: 'relative', background: 'rgba(10,28,50,.7)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '22px', marginBottom: '20px', overflow: 'hidden' }}>
+ <div style={{ position: 'relative', background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '22px', marginBottom: '20px', overflow: 'hidden' }}>
  <div style={{ position: 'absolute', inset: 0, background: 'rgba(9,9,9,.6)', backdropFilter: 'blur(4px)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '6px', zIndex: 10 }}>
  <div style={{ fontSize: '14px', fontWeight: 800, letterSpacing: '.2em', textTransform: 'uppercase', color: 'rgba(243,239,230,.8)' }}>Coming Soon</div>
  <div style={{ fontSize: '14px', color: 'rgba(255,255,255,.3)', textAlign: 'center', lineHeight: 1.5 }}>Capacity planning coming soon</div>
@@ -1578,7 +1578,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 320px', gap: isMobile ? '16px' : '20px', alignItems: 'start' }}>
 
  {/* Left: Form */}
- <div style={{ background: 'rgba(10,33,61,.6)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '28px' }}>
+ <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '28px' }}>
  {foSubmitted ? (
  <div style={{ padding: '8px 0' }}>
  <div style={{ textAlign: 'center', marginBottom: '28px' }}>
@@ -1602,7 +1602,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  return (
  <div style={{ background: 'rgba(243,239,230,.06)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '18px', marginBottom: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.16em', textTransform: 'uppercase', color: s.muted, marginBottom: '10px' }}> Payment Link</div>
- <div style={{ background: '#090909', borderRadius: 0, padding: '10px 12px', fontFamily: 'monospace', fontSize: '14px', color: s.accent, wordBreak: 'break-all', marginBottom: '12px', userSelect: 'all' }}>
+ <div style={{ background: '#000', borderRadius: 0, padding: '10px 12px', fontFamily: 'monospace', fontSize: '14px', color: s.accent, wordBreak: 'break-all', marginBottom: '12px', userSelect: 'all' }}>
  {foLinkUrl}
  </div>
  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
@@ -1610,7 +1610,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  onClick={() => { navigator.clipboard.writeText(foLinkUrl!).then(() => { setFoLinkCopied(true); setTimeout(() => setFoLinkCopied(false), 2000) }) }}
  style={{ padding: '8px 14px', borderRadius: 0, border: `1px solid ${foLinkCopied ? 'rgba(183,196,176,.5)' : 'rgba(243,239,230,.3)'}`, background: foLinkCopied ? 'rgba(183,196,176,.12)' : 'rgba(243,239,230,.1)', color: foLinkCopied ? '#b7c4b0' : s.accent, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}
  >{foLinkCopied ? ' Copied' : ' Copy'}</button>
- <a href={waLinkStripe} target="_blank" rel="noopener noreferrer" style={{ padding: '8px 14px', borderRadius: 0, border: '1px solid rgba(37,211,102,.4)', background: 'rgba(37,211,102,.1)', color: '#c9c2b6', fontSize: '14px', fontWeight: 700, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '5px' }}>
+ <a href={waLinkStripe} target="_blank" rel="noopener noreferrer" style={{ padding: '8px 14px', borderRadius: 0, border: '1px solid rgba(183,196,176,.4)', background: 'rgba(183,196,176,.1)', color: '#c9c2b6', fontSize: '14px', fontWeight: 700, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '5px' }}>
  <span></span> Send via WhatsApp
  </a>
  <button onClick={() => { setFoSubmitted(false); setFoCreatedBookingId(null); setFoLinkUrl(null); setFoLinkCopied(false) }} style={{ padding: '8px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.3)', background: 'transparent', color: s.muted, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>
@@ -1624,9 +1624,9 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  {foEmailStatus && (
  <div style={{
  padding: '10px 14px', borderRadius: 0, marginBottom: '12px', fontSize: '14px', fontWeight: 600,
- background: foEmailStatus === 'sending' ? 'rgba(255,200,50,.08)' : foEmailStatus === 'sent' ? 'rgba(183,196,176,.1)' : 'rgba(255,100,100,.1)',
- border: `1px solid ${foEmailStatus === 'sending' ? 'rgba(255,200,50,.25)' : foEmailStatus === 'sent' ? 'rgba(183,196,176,.3)' : 'rgba(255,100,100,.3)'}`,
- color: foEmailStatus === 'sending' ? '#ffc832' : foEmailStatus === 'sent' ? '#b7c4b0' : '#c9928c',
+ background: foEmailStatus === 'sending' ? 'rgba(255,200,50,.08)' : foEmailStatus === 'sent' ? 'rgba(183,196,176,.1)' : 'rgba(201,146,140,.1)',
+ border: `1px solid ${foEmailStatus === 'sending' ? 'rgba(255,200,50,.25)' : foEmailStatus === 'sent' ? 'rgba(183,196,176,.3)' : 'rgba(201,146,140,.3)'}`,
+ color: foEmailStatus === 'sending' ? '#c9b48a' : foEmailStatus === 'sent' ? '#b7c4b0' : '#c9928c',
  }}>
  {foEmailStatus === 'sending' ? (foPayment === 'cash' ? ' Sending confirmation + check-in link…' : ' Sending payment request…') :
  foEmailStatus === 'sent' ? (foPayment === 'cash' ? ' Confirmation + check-in link sent' : ' Payment request sent') :
@@ -1640,7 +1640,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  return (
  <div style={{ background: 'rgba(243,239,230,.06)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '18px', marginBottom: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.16em', textTransform: 'uppercase', color: s.muted, marginBottom: '10px' }}>Check-in Link</div>
- <div style={{ background: '#090909', borderRadius: 0, padding: '10px 12px', fontFamily: 'monospace', fontSize: '14px', color: s.accent, wordBreak: 'break-all', marginBottom: '12px', userSelect: 'all' }}>
+ <div style={{ background: '#000', borderRadius: 0, padding: '10px 12px', fontFamily: 'monospace', fontSize: '14px', color: s.accent, wordBreak: 'break-all', marginBottom: '12px', userSelect: 'all' }}>
  {checkinUrl}
  </div>
  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
@@ -1659,7 +1659,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  href={waLink}
  target="_blank"
  rel="noopener noreferrer"
- style={{ padding: '9px 16px', borderRadius: 0, border: '1px solid rgba(37,211,102,.3)', background: 'transparent', color: '#c9c2b6', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '5px' }}
+ style={{ padding: '9px 16px', borderRadius: 0, border: '1px solid rgba(183,196,176,.3)', background: 'transparent', color: '#c9c2b6', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '5px' }}
  >
  Send via WhatsApp
  </a>
@@ -1670,7 +1670,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
 
 
  <button onClick={() => { setFoSubmitted(false); setFoCreatedBookingId(null); setFoPayment(''); setFoPayDecide(null); setFoPayNote(null); setFoPayReqFailed([]); setFoLinkUrl(null); setFoLinkCopied(false); setFoName(''); setFoNotes(''); setFoNif(''); setFoSessionsPicked([]); setFoGuests(1); setFoCheckinToken(null); setFoCopied(false); setFoLastDive(''); setFoLastDiveOpen(false); setFoSplit(false); setFoGuestEntries([]); setFoGuestNames([]); setFoGroupInsurance(null); setFoGroupFullEquipment(false); setFoGroupEquipmentItems([]); setFoGroupAddonItems([]); setFoGroupAddonDays({}); setFoAddonPickerOpen(null); setFoGuestAddonPickerOpen(null); setFoCustomLines([]); setFoExtraLines([]); setFoResidential(false); setFoEmailStatus(null) }}
- style={{ width: '100%', padding: '12px', borderRadius: 0, border: 'none', background: s.accent, color: '#090909', fontWeight: 800, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ width: '100%', padding: '12px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontWeight: 800, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  + New booking
  </button>
  </>)}
@@ -1780,7 +1780,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  <span style={{ fontSize: '14px', opacity: 0.5 }}></span>
  </button>
  {gOpen && (
- <div style={{ position: 'absolute', top: 'calc(100% + 6px)', left: 0, zIndex: 200, background: '#090909', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0, padding: '18px', minWidth: '640px', maxWidth: '780px', boxShadow: 'none' }} ref={foPickerRef}>
+ <div style={{ position: 'absolute', top: 'calc(100% + 6px)', left: 0, zIndex: 200, background: '#000', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0, padding: '18px', minWidth: '640px', maxWidth: '780px', boxShadow: 'none' }} ref={foPickerRef}>
  <SessionPicker staffMode required={entryRequired} seats={1} picked={entry.sessions}
  mode={isNightProduct(foProductsList.find(p => p.name === entry.product)) ? 'night' : 'boat'}
  allowTbd={['entry','specialty','ecology','pro'].includes(foProductsList.find(p => p.name === entry.product)?.category ?? '')}
@@ -1790,7 +1790,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  updateEntry({ sessions: prog ? next.map(x => ({ ...x, session: 'tbd' as const })) : next })
  }}
  />
- <div style={{ marginTop: '12px', display: 'flex', justifyContent: 'flex-end', position: 'sticky', bottom: 0, paddingTop: '10px', background: 'linear-gradient(to top, #090909 70%, rgba(7,21,42,0))' }}>
+ <div style={{ marginTop: '12px', display: 'flex', justifyContent: 'flex-end', position: 'sticky', bottom: 0, paddingTop: '10px', background: 'linear-gradient(to top, #090909 70%, rgba(255,255,255,.045))' }}>
  <button type="button" onClick={() => setFoDatePickerOpen(false)}
  style={{ padding: '11px 56px', borderRadius: 0, border: '1px solid rgba(243,239,230,.5)', background: 'rgba(243,239,230,.15)', color: s.accent, fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Confirm
@@ -1904,7 +1904,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  </select>
  <span style={{ fontSize: '14px', color: s.muted, minWidth: '44px' }}>€{getEP(foProductsList.find(p => p.name === name), entry.residential)}</span>
  <button type="button" onClick={() => updateEntry({ extraItems: entry.extraItems.filter((_, i) => i !== xi) })}
- style={{ padding: '5px 9px', borderRadius: 0, border: '1px solid rgba(255,80,80,.3)', background: 'transparent', color: '#c9928c', fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}></button>
+ style={{ padding: '5px 9px', borderRadius: 0, border: '1px solid rgba(201,146,140,.3)', background: 'transparent', color: '#c9928c', fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}></button>
  </div>
  ))}
  </div>
@@ -1952,7 +1952,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  const uniqueDates = [...new Set(entry.sessions.map((ss: Picked) => ss.date))].sort()
  const selDays = entry.addonDays?.[apName] ?? []
  return (
- <div style={{ position: 'fixed', inset: 0, background: 'rgba(2,10,22,.78)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+ <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.78)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
  onClick={() => setFoGuestAddonPickerOpen(null)}>
  <div style={{ background: '#121210', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, padding: '20px 22px', minWidth: '260px', maxWidth: '340px', width: '90%' }}
  onClick={e => e.stopPropagation()}>
@@ -1977,7 +1977,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  })}
  </div>
  <button type="button" onClick={() => setFoGuestAddonPickerOpen(null)}
- style={{ width: '100%', padding: '10px', borderRadius: 0, border: 'none', background: s.accent, color: '#090909', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ width: '100%', padding: '10px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Confirm
  </button>
  </div>
@@ -2008,7 +2008,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  {foDatePickerOpen === true && (
  <div style={{
  position: 'absolute', top: 'calc(100% + 6px)', left: 0, zIndex: 200,
- background: '#090909', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0,
+ background: '#000', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0,
  padding: '18px', minWidth: '640px', maxWidth: '780px', boxShadow: 'none',
  }} ref={foPickerRef}>
  {needsRefresher && !foSplit && (
@@ -2036,7 +2036,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  setFoSessionsPicked(isProgramProduct(selectedProduct?.id) ? next.map((x, i) => i >= ssuOffset ? { ...x, session: 'tbd' as const } : x) : next)
  }}
  />
- <div style={{ marginTop: '12px', display: 'flex', justifyContent: 'flex-end', position: 'sticky', bottom: 0, paddingTop: '10px', background: 'linear-gradient(to top, #090909 70%, rgba(7,21,42,0))' }}>
+ <div style={{ marginTop: '12px', display: 'flex', justifyContent: 'flex-end', position: 'sticky', bottom: 0, paddingTop: '10px', background: 'linear-gradient(to top, #090909 70%, rgba(255,255,255,.045))' }}>
  <button type="button" onClick={() => setFoDatePickerOpen(false)}
  style={{ padding: '11px 56px', borderRadius: 0, border: '1px solid rgba(243,239,230,.5)', background: 'rgba(243,239,230,.15)', color: s.accent, fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Confirm
@@ -2145,7 +2145,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  const picDates = [...new Set(foSessionsPicked.map(sv => sv.date))].sort()
  const selDays = foGroupAddonDays[apName] ?? []
  return (
- <div style={{ position: 'fixed', inset: 0, background: 'rgba(2,10,22,.78)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+ <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.78)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
  onClick={() => setFoAddonPickerOpen(null)}>
  <div style={{ background: '#121210', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, padding: '20px 22px', minWidth: '260px', maxWidth: '340px', width: '90%' }}
  onClick={e => e.stopPropagation()}>
@@ -2172,7 +2172,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  })}
  </div>
  <button type="button" onClick={() => setFoAddonPickerOpen(null)}
- style={{ width: '100%', padding: '10px', borderRadius: 0, border: 'none', background: s.accent, color: '#090909', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ width: '100%', padding: '10px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Confirm
  </button>
  </div>
@@ -2202,7 +2202,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  €{foProductsList.find(p => p.name === line.product)?.price ?? 0}
  </span>
  <button type="button" onClick={() => setFoExtraLines(prev => prev.filter((_, i) => i !== li))}
- style={{ padding: '6px 10px', borderRadius: 0, border: '1px solid rgba(255,80,80,.3)', background: 'transparent', color: 'rgba(255,100,100,.8)', fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}></button>
+ style={{ padding: '6px 10px', borderRadius: 0, border: '1px solid rgba(201,146,140,.3)', background: 'transparent', color: 'rgba(201,146,140,.8)', fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}></button>
  </div>
  ))}
  </div>
@@ -2226,7 +2226,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  style={{ width: '70px', background: '#121210', border: '1px solid rgba(251,191,36,.25)', borderRadius: 0, padding: '7px 8px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none' }} />
  </div>
  <button type="button" onClick={() => setFoCustomLines(prev => prev.filter((_, i) => i !== ci))}
- style={{ padding: '6px 10px', borderRadius: 0, border: '1px solid rgba(255,80,80,.3)', background: 'transparent', color: 'rgba(255,100,100,.8)', fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}></button>
+ style={{ padding: '6px 10px', borderRadius: 0, border: '1px solid rgba(201,146,140,.3)', background: 'transparent', color: 'rgba(201,146,140,.8)', fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}></button>
  </div>
  ))}
  </div>
@@ -2325,7 +2325,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  }}
  style={{
  flex: 1.4, background: '#121210',
- border: `1px solid ${(gi === 0 ? (foGuestNames[0] || foName) : foGuestNames[gi])?.trim() ? 'rgba(255,255,255,.12)' : 'rgba(255,120,112,.55)'}`,
+ border: `1px solid ${(gi === 0 ? (foGuestNames[0] || foName) : foGuestNames[gi])?.trim() ? 'rgba(255,255,255,.12)' : 'rgba(201,146,140,.55)'}`,
  borderRadius: 0, padding: '8px 11px', fontSize: '14px',
  color: s.text, fontFamily: s.font, outline: 'none', boxSizing: 'border-box',
  }}
@@ -2440,9 +2440,9 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  {/* 50% deposit checkbox — only for split + link/bank/revolut */}
  {true && (
  <label style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 12px', borderRadius: 0, background: foDepositOnly ? 'rgba(201,180,138,.07)' : 'rgba(255,255,255,.03)', border: `1px solid ${foDepositOnly ? 'rgba(201,180,138,.35)' : 'rgba(255,255,255,.08)'}`, cursor: 'pointer' }}>
- <input type="checkbox" checked={foDepositOnly} onChange={e => setFoDepositOnly(e.target.checked)} style={{ accentColor: '#FFD080', width: '15px', height: '15px', cursor: 'pointer' }} />
+ <input type="checkbox" checked={foDepositOnly} onChange={e => setFoDepositOnly(e.target.checked)} style={{ accentColor: '#c9b48a', width: '15px', height: '15px', cursor: 'pointer' }} />
  <div>
- <div style={{ fontSize: '14px', fontWeight: 700, color: foDepositOnly ? '#FFD080' : s.text }}>Charge 50% deposit now</div>
+ <div style={{ fontSize: '14px', fontWeight: 700, color: foDepositOnly ? '#c9b48a' : s.text }}>Charge 50% deposit now</div>
  <div style={{ fontSize: '14px', color: s.muted }}>Guest pays half upfront — remaining balance due on arrival</div>
  </div>
  </label>
@@ -2464,7 +2464,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
 
  {/* Right: Summary */}
  {!foSubmitted && (
- <div style={{ background: 'rgba(10,33,61,.6)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '22px', position: 'sticky', top: '100px' }}>
+ <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '22px', position: 'sticky', top: '100px' }}>
  <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', color: s.muted, marginBottom: '16px' }}>Summary</div>
  <div style={{ marginBottom: '16px' }}>
  <div style={{ fontSize: '16px', fontWeight: 800, color: s.text, marginBottom: '4px' }}>{foProduct}{insuranceIncluded ? <span style={{ fontSize: '14px', fontWeight: 600, color: s.accent, marginLeft: '6px', opacity: 0.8 }}>(inkl. Insurance)</span> : null}</div>
@@ -3220,7 +3220,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  </div>
  <button type="button" onClick={openGuestView} style={{
  padding: '13px 32px', borderRadius: 0, border: 'none', cursor: 'pointer',
- background: 'linear-gradient(135deg, #f3efe6, #c9c2b6)', color: '#090909',
+ background: 'linear-gradient(135deg, #f3efe6, #c9c2b6)', color: '#000',
  fontWeight: 800, fontSize: '15px', fontFamily: s.font,
  boxShadow: 'none', whiteSpace: 'nowrap',
  }}>Book now</button>
@@ -3285,7 +3285,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  </div>
 
  {(danInfo.blocked?.length ?? 0) > 0 && (
- <div style={{ marginBottom: '20px', padding: '12px 14px', borderRadius: 0, background: 'rgba(255,100,100,.07)', border: '1px solid rgba(255,100,100,.3)' }}>
+ <div style={{ marginBottom: '20px', padding: '12px 14px', borderRadius: 0, background: 'rgba(201,146,140,.07)', border: '1px solid rgba(201,146,140,.3)' }}>
  <div style={{ fontSize: '14px', fontWeight: 800, color: '#c9928c', marginBottom: '6px' }}> {danInfo.blocked!.length} diver{danInfo.blocked!.length === 1 ? '' : 's'} held back — DAN would cost more than the guest paid</div>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '8px' }}>These divers are not in the file until fixed. Each row says what to do.</div>
  {danInfo.blocked!.map(b => {
@@ -3365,7 +3365,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  setDanDownloading(false)
  }
  }}
- style={{ padding: '12px 24px', borderRadius: 0, border: 'none', background: s.accent, color: '#090909', fontSize: '14px', fontWeight: 700, cursor: danDownloading ? 'not-allowed' : 'pointer', opacity: danDownloading ? 0.6 : 1 }}
+ style={{ padding: '12px 24px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontSize: '14px', fontWeight: 700, cursor: danDownloading ? 'not-allowed' : 'pointer', opacity: danDownloading ? 0.6 : 1 }}
  >
  {danDownloading ? ' Download…' : ' Download .xls'}
  </button>
@@ -3422,7 +3422,7 @@ function PageFrontOffice({ nav, userRole }: { nav: (p: MemberPage) => void; user
  </div>
  {/* Buchungs-Popup aus dem DAN-Export (gesperrte Taucher): volles FO-Detail */}
  {danPopupBookingId && (
- <div onClick={() => setDanPopupBookingId(null)} style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(2,8,20,.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '40px 16px', overflowY: 'auto' }}>
+ <div onClick={() => setDanPopupBookingId(null)} style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '40px 16px', overflowY: 'auto' }}>
  <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: '#121210', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, boxShadow: 'none' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>Booking <span style={{ fontFamily: 'monospace', color: s.text, fontWeight: 700 }}>{danPopupBookingId.slice(0, 8).toUpperCase()}</span> · changes here are live</span>
@@ -3837,7 +3837,7 @@ function TriageLogTab({ supabase, session }: { supabase: any; session: any }) {
  {row.final_result.toUpperCase()}
  </span>
  {row.pre_filter_blocked && (
- <span style={{ fontSize: '14px', fontWeight: 700, color: '#ff9999', background: 'rgba(255,100,100,.1)', border: '1px solid rgba(255,100,100,.22)', borderRadius: 0, padding: '1px 6px' }}>PRE-FILTER</span>
+ <span style={{ fontSize: '14px', fontWeight: 700, color: '#ff9999', background: 'rgba(201,146,140,.1)', border: '1px solid rgba(201,146,140,.22)', borderRadius: 0, padding: '1px 6px' }}>PRE-FILTER</span>
  )}
  {existingCorrect === true && <span style={{ fontSize: '14px' }} title="Feedback: correct"></span>}
  {existingCorrect === false && <span style={{ fontSize: '14px' }} title="Feedback: wrong"></span>}
@@ -3857,7 +3857,7 @@ function TriageLogTab({ supabase, session }: { supabase: any; session: any }) {
  <div style={{ flex: 1, minWidth: 0, padding: '16px 18px', maxHeight: '70vh', overflowY: 'auto' }}>
  {/* Classification breakdown */}
  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '16px' }}>
- <div style={{ padding: '7px 12px', borderRadius: 0, background: row.pre_filter_blocked ? 'rgba(255,100,100,.1)' : 'rgba(255,255,255,.04)', border: `1px solid ${row.pre_filter_blocked ? 'rgba(255,100,100,.28)' : 'rgba(255,255,255,.08)'}` }}>
+ <div style={{ padding: '7px 12px', borderRadius: 0, background: row.pre_filter_blocked ? 'rgba(201,146,140,.1)' : 'rgba(255,255,255,.04)', border: `1px solid ${row.pre_filter_blocked ? 'rgba(201,146,140,.28)' : 'rgba(255,255,255,.08)'}` }}>
  <div style={{ fontSize: '14px', color: 'rgba(255,255,255,.32)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '3px' }}>Pre-filter</div>
  <div style={{ fontSize: '14px', fontWeight: 700, color: row.pre_filter_blocked ? '#ff9999' : 'rgba(255,255,255,.45)' }}>{row.pre_filter_blocked ? ' BLOCKED' : ' passed'}</div>
  </div>
@@ -3884,7 +3884,7 @@ function TriageLogTab({ supabase, session }: { supabase: any; session: any }) {
  <div style={{ fontSize: '14px', fontWeight: 700, color: 'rgba(255,255,255,.32)', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: '10px' }}>Feedback</div>
  {/* Show existing saved feedback if no local edit */}
  {existingCorrect !== null && fb === undefined && (
- <div style={{ marginBottom: '10px', padding: '7px 10px', borderRadius: 0, background: existingCorrect ? 'rgba(183,196,176,.07)' : 'rgba(255,100,100,.07)', border: `1px solid ${existingCorrect ? 'rgba(183,196,176,.18)' : 'rgba(255,100,100,.18)'}` }}>
+ <div style={{ marginBottom: '10px', padding: '7px 10px', borderRadius: 0, background: existingCorrect ? 'rgba(183,196,176,.07)' : 'rgba(201,146,140,.07)', border: `1px solid ${existingCorrect ? 'rgba(183,196,176,.18)' : 'rgba(201,146,140,.18)'}` }}>
  <div style={{ fontSize: '14px', fontWeight: 700, color: existingCorrect ? '#b7c4b0' : '#ff9999', marginBottom: row.feedback_note ? '4px' : 0 }}>
  {existingCorrect ? ' Correct' : ' Wrong'}
  </div>
@@ -3900,7 +3900,7 @@ function TriageLogTab({ supabase, session }: { supabase: any; session: any }) {
  </button>
  <button
  onClick={() => setLocalFeedback(prev => ({ ...prev, [row.id]: { correct: false, note: prev[row.id]?.note ?? row.feedback_note ?? '' } }))}
- style={{ flex: 1, padding: '7px 0', borderRadius: 0, border: `1px solid ${displayCorrect === false ? 'rgba(255,100,100,.5)' : 'rgba(255,255,255,.1)'}`, background: displayCorrect === false ? 'rgba(255,100,100,.12)' : 'transparent', color: displayCorrect === false ? '#ff9999' : 'rgba(255,255,255,.5)', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>
+ style={{ flex: 1, padding: '7px 0', borderRadius: 0, border: `1px solid ${displayCorrect === false ? 'rgba(201,146,140,.5)' : 'rgba(255,255,255,.1)'}`, background: displayCorrect === false ? 'rgba(201,146,140,.12)' : 'transparent', color: displayCorrect === false ? '#ff9999' : 'rgba(255,255,255,.5)', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>
  Wrong
  </button>
  </div>
@@ -4423,7 +4423,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  return (
  <button key={tab} onClick={() => { setAiTab(tab); localStorage.setItem('azd_aiTab', tab) }} style={{ flex: 1, minWidth: '80px', padding: '14px 8px', fontSize: '14px', fontWeight: 700, border: 'none', background: 'transparent', cursor: 'pointer', color: aiTab === tab ? s.accent : s.muted, borderBottom: aiTab === tab ? `2px solid ${s.accent}` : '2px solid transparent', fontFamily: s.font, transition: 'color .15s', whiteSpace: 'nowrap', position: 'relative' }}>
  {tab === 'prompt' ? ' Configuration' : tab === 'faq' ? ' FAQs' : tab === 'knowledge' ? ' Knowledge' : tab === 'history' ? ' History' : tab === 'tickets' ? ' Tickets' : tab === 'changelog' ? ' Changelog' : ' Triage'}
- {tab === 'tickets' && openCount > 0 && <span style={{ marginLeft: '5px', fontSize: '14px', fontWeight: 800, background: '#c9928c', color: '#fff', borderRadius: 0, padding: '1px 5px' }}>{openCount}</span>}
+ {tab === 'tickets' && openCount > 0 && <span style={{ marginLeft: '5px', fontSize: '14px', fontWeight: 800, background: '#c9928c', color: '#f3efe6', borderRadius: 0, padding: '1px 5px' }}>{openCount}</span>}
  </button>
  )
  })}
@@ -4486,12 +4486,12 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  {userRole === 'admin' ? (<>
  <p style={{ fontSize: '14px', color: s.muted, lineHeight: 1.6, marginBottom: '16px' }}>The system prompt controls the chatbot&apos;s personality and behaviour. Loaded before every conversation. <span style={{ color: s.accent }}>Changes apply immediately</span> — Save stores permanently.</p>
  <textarea value={systemPrompt} onChange={e => { const v = e.target.value; setSystemPrompt(v); localStorage.setItem('azd_mistral_prompt_v2', v); setPromptSaved(false) }}
- style={{ width: '100%', minHeight: '200px', background: '#090909', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '14px', fontSize: '14px', color: s.text, lineHeight: 1.65, fontFamily: 'ui-monospace,monospace', resize: 'vertical', outline: 'none', boxSizing: 'border-box' }} />
+ style={{ width: '100%', minHeight: '200px', background: '#000', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '14px', fontSize: '14px', color: s.text, lineHeight: 1.65, fontFamily: 'ui-monospace,monospace', resize: 'vertical', outline: 'none', boxSizing: 'border-box' }} />
  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '12px' }}>
  <div style={{ fontSize: '14px', color: s.muted }}>{systemPrompt.length} chars · ~{Math.ceil(systemPrompt.length / 4)} tokens</div>
  <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
  {promptSaved ? <span style={{ fontSize: '14px', color: '#b7c4b0' }}> Saved</span> : <span style={{ fontSize: '14px', color: '#c9b48a' }}> Unsaved</span>}
- <button onClick={() => { localStorage.setItem('azd_mistral_prompt_v2', systemPrompt); setSystemPrompt(systemPrompt); setPromptSaved(true) }} style={{ padding: '9px 20px', borderRadius: 0, border: 'none', background: s.accent, color: '#090909', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>Save</button>
+ <button onClick={() => { localStorage.setItem('azd_mistral_prompt_v2', systemPrompt); setSystemPrompt(systemPrompt); setPromptSaved(true) }} style={{ padding: '9px 20px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>Save</button>
  </div>
  </div>
  <div style={{ marginTop: '22px', background: 'rgba(243,239,230,.04)', border: '1px solid rgba(243,239,230,.14)', borderRadius: 0, padding: '18px' }}>
@@ -4502,7 +4502,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  </div>
  <div style={{ marginBottom: '14px' }}>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '6px' }}>Model</div>
- <select value={mistralModel} onChange={e => { setMistralModel(e.target.value); localStorage.setItem('azd_mistral_model', e.target.value) }} style={{ background: '#090909', border: '1px solid rgba(255,255,255,.1)', borderRadius: 0, padding: '9px 12px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none', minWidth: '280px' }}>
+ <select value={mistralModel} onChange={e => { setMistralModel(e.target.value); localStorage.setItem('azd_mistral_model', e.target.value) }} style={{ background: '#000', border: '1px solid rgba(255,255,255,.1)', borderRadius: 0, padding: '9px 12px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none', minWidth: '280px' }}>
  <option value="mistral-large-latest">mistral-large-latest — Most capable</option>
  <option value="mistral-medium-latest">mistral-medium-latest — Balanced</option>
  <option value="mistral-small-latest">mistral-small-latest — Fast &amp; cheap</option>
@@ -4517,7 +4517,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  </button>
  {apiTestStatus === 'ok' && <span style={{ fontSize: '14px', fontWeight: 700, padding: '4px 10px', borderRadius: 0, background: 'rgba(183,196,176,.12)', color: '#b7c4b0', border: '1px solid rgba(183,196,176,.3)' }}> Connected</span>}
  {apiTestStatus !== 'idle' && apiTestStatus !== 'testing' && apiTestStatus !== 'ok' && (
- <span title={apiTestStatus} style={{ fontSize: '14px', fontWeight: 700, padding: '4px 10px', borderRadius: 0, background: 'rgba(255,80,80,.12)', color: '#c9928c', border: '1px solid rgba(255,80,80,.3)', maxWidth: '300px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'inline-block' }}> {apiTestStatus}</span>
+ <span title={apiTestStatus} style={{ fontSize: '14px', fontWeight: 700, padding: '4px 10px', borderRadius: 0, background: 'rgba(201,146,140,.12)', color: '#c9928c', border: '1px solid rgba(201,146,140,.3)', maxWidth: '300px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'inline-block' }}> {apiTestStatus}</span>
  )}
  </div>
  </div>
@@ -4542,10 +4542,10 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  ))}
  <div style={{ marginTop: '20px', background: 'rgba(243,239,230,.04)', border: '1px solid rgba(243,239,230,.14)', borderRadius: 0, padding: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 700, color: s.accent, marginBottom: '12px' }}>+ Add FAQ</div>
- <input value={newFaqQ} onChange={e => setNewFaqQ(e.target.value)} placeholder="Question…" style={{ width: '100%', background: '#090909', border: '1px solid rgba(255,255,255,.1)', borderRadius: 0, padding: '9px 12px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none', marginBottom: '8px', boxSizing: 'border-box' }} />
- <textarea value={newFaqA} onChange={e => setNewFaqA(e.target.value)} placeholder="Answer…" rows={2} style={{ width: '100%', background: '#090909', border: '1px solid rgba(255,255,255,.1)', borderRadius: 0, padding: '9px 12px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none', resize: 'vertical', boxSizing: 'border-box' }} />
+ <input value={newFaqQ} onChange={e => setNewFaqQ(e.target.value)} placeholder="Question…" style={{ width: '100%', background: '#000', border: '1px solid rgba(255,255,255,.1)', borderRadius: 0, padding: '9px 12px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none', marginBottom: '8px', boxSizing: 'border-box' }} />
+ <textarea value={newFaqA} onChange={e => setNewFaqA(e.target.value)} placeholder="Answer…" rows={2} style={{ width: '100%', background: '#000', border: '1px solid rgba(255,255,255,.1)', borderRadius: 0, padding: '9px 12px', fontSize: '16px', color: s.text, fontFamily: s.font, outline: 'none', resize: 'vertical', boxSizing: 'border-box' }} />
  <button onClick={() => { if (newFaqQ.trim() && newFaqA.trim()) { setFaqs(f => [...f, { q: newFaqQ.trim(), a: newFaqA.trim() }]); setNewFaqQ(''); setNewFaqA('') } }}
- style={{ marginTop: '10px', padding: '9px 22px', borderRadius: 0, border: 'none', background: s.accent, color: '#090909', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>Add</button>
+ style={{ marginTop: '10px', padding: '9px 22px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>Add</button>
  </div>
  </div>
  )}
@@ -4753,7 +4753,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  <button key={st} onClick={() => { setTicketSubTab(st); setExpandedTicketId(null); localStorage.setItem('azd_ticketSubTab', st) }}
  style={{ padding: '7px 16px', borderRadius: 0, border: `1px solid ${ticketSubTab === st ? 'rgba(243,239,230,.3)' : 'rgba(255,255,255,.1)'}`, background: ticketSubTab === st ? 'rgba(243,239,230,.08)' : 'transparent', color: ticketSubTab === st ? s.accent : s.muted, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>
  {st === 'open' ? ' Open' : ' Archived'}
- {cnt > 0 && <span style={{ marginLeft: '6px', fontSize: '14px', fontWeight: 800, background: st === 'open' ? '#c9928c' : 'rgba(255,255,255,.15)', color: '#fff', borderRadius: 0, padding: '1px 6px' }}>{cnt}</span>}
+ {cnt > 0 && <span style={{ marginLeft: '6px', fontSize: '14px', fontWeight: 800, background: st === 'open' ? '#c9928c' : 'rgba(255,255,255,.15)', color: '#f3efe6', borderRadius: 0, padding: '1px 6px' }}>{cnt}</span>}
  </button>
  )
  })}
@@ -4762,7 +4762,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  <div style={{ display: 'flex', background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 0, overflow: 'hidden' }}>
  {(['all', 'mine'] as const).map(f => (
  <button key={f} onClick={() => { setTicketOwnerFilter(f); localStorage.setItem('azd_ticketOwnerFilter', f) }}
- style={{ padding: '6px 14px', border: 'none', background: ticketOwnerFilter === f ? 'rgba(255,80,80,.15)' : 'transparent', color: ticketOwnerFilter === f ? '#ff5050' : s.muted, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font, transition: 'background .15s' }}>
+ style={{ padding: '6px 14px', border: 'none', background: ticketOwnerFilter === f ? 'rgba(201,146,140,.15)' : 'transparent', color: ticketOwnerFilter === f ? '#ff5050' : s.muted, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font, transition: 'background .15s' }}>
  {f === 'all' ? 'All' : `Mine${staffName ? ' (' + staffName + ')' : ''}`}
  </button>
  ))}
@@ -4785,12 +4785,12 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  const isExpanded = expandedTicketId === ticket.id
  const reply = ticketReply[ticket.id] || ''
  const statusColor = ticket.status === 'open' ? '#d4a07a' : ticket.status === 'in_progress' ? '#ff5050' : '#b7c4b0'
- const statusBg = ticket.status === 'open' ? 'rgba(212,160,122,.12)' : ticket.status === 'in_progress' ? 'rgba(255,80,80,.12)' : 'rgba(183,196,176,.1)'
+ const statusBg = ticket.status === 'open' ? 'rgba(212,160,122,.12)' : ticket.status === 'in_progress' ? 'rgba(201,146,140,.12)' : 'rgba(183,196,176,.1)'
  const ageHours = ticket.status === 'open' && !ticket.claimedBy ? (Date.now() - new Date(ticket.unclaimedSince ?? ticket.timestamp.replace(' · ', 'T').replace(/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2})/, '$1T$2:00')).getTime()) / 36e5 : 0
- const ageColor = ageHours > 72 ? 'rgba(255,50,50,.22)' : ageHours > 24 ? 'rgba(255,100,40,.15)' : ageHours > 2 ? 'rgba(212,160,122,.08)' : ''
- const ageBorderColor = ageHours > 72 ? 'rgba(255,50,50,.5)' : ageHours > 24 ? 'rgba(255,100,40,.4)' : ageHours > 2 ? 'rgba(212,160,122,.25)' : ''
+ const ageColor = ageHours > 72 ? 'rgba(201,146,140,.22)' : ageHours > 24 ? 'rgba(212,160,122,.16)' : ageHours > 2 ? 'rgba(212,160,122,.08)' : ''
+ const ageBorderColor = ageHours > 72 ? 'rgba(201,146,140,.5)' : ageHours > 24 ? 'rgba(212,160,122,.4)' : ageHours > 2 ? 'rgba(212,160,122,.25)' : ''
  const ageLabel = ageHours > 72 ? ` ${Math.floor(ageHours / 24)}d unclaimed` : ageHours > 24 ? `${Math.floor(ageHours / 24)}d unclaimed` : ageHours > 2 ? `${Math.floor(ageHours)}h unclaimed` : ''
- const ageLabelColor = ageHours > 72 ? 'rgba(255,70,70,.95)' : ageHours > 24 ? 'rgba(255,110,50,.9)' : 'rgba(212,160,122,.75)'
+ const ageLabelColor = ageHours > 72 ? 'rgba(201,146,140,.95)' : ageHours > 24 ? 'rgba(212,160,122,.9)' : 'rgba(212,160,122,.75)'
  // Shared send-in-chat logic (used by button click AND Enter key)
  const sendChatReply = async () => {
  if (!reply.trim() || !ticket.sessionId) return
@@ -4866,7 +4866,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  }
  }
  return (
- <div key={ticket.id} style={{ marginBottom: '10px', border: `1px solid ${isExpanded ? 'rgba(243,239,230,.25)' : ageBorderColor || (ticket.status === 'open' ? 'rgba(212,160,122,.2)' : ticket.status === 'in_progress' ? 'rgba(255,80,80,.25)' : 'rgba(255,255,255,.07)')}`, borderRadius: 0, overflow: 'hidden', background: ageColor || undefined }}>
+ <div key={ticket.id} style={{ marginBottom: '10px', border: `1px solid ${isExpanded ? 'rgba(243,239,230,.25)' : ageBorderColor || (ticket.status === 'open' ? 'rgba(212,160,122,.2)' : ticket.status === 'in_progress' ? 'rgba(201,146,140,.25)' : 'rgba(255,255,255,.07)')}`, borderRadius: 0, overflow: 'hidden', background: ageColor || undefined }}>
  {/* Header row — click to expand */}
  <button type="button" onClick={() => { const nextId = isExpanded ? null : ticket.id; setExpandedTicketId(nextId); if (nextId && (ticket.note ?? '').startsWith('booking:') && ticket.status !== 'resolved') void loadSlots(ticket); if (nextId) loadTicketNotes(nextId) }}
  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', padding: '14px 18px', background: isExpanded ? 'rgba(243,239,230,.04)' : 'rgba(255,255,255,.025)', cursor: 'pointer', width: '100%', border: 'none', fontFamily: s.font, textAlign: 'left' }}
@@ -4880,14 +4880,14 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  <span style={{ fontSize: '14px', fontWeight: 700, color: statusColor, background: statusBg, padding: '2px 7px', borderRadius: 0 }}>{ticket.status === 'open' ? ' Open' : ticket.status === 'in_progress' ? (ticket.claimedBy ? ` ${ticket.claimedBy}` : ' In Progress') : ' Resolved'}</span>
  {ticket.status === 'open' && ageLabel && <span style={{ fontSize: '14px', fontWeight: 700, color: ageLabelColor }}>{ageLabel}</span>}
  <span style={{ fontSize: '14px', fontWeight: 700, padding: '2px 7px', borderRadius: 0,
- background: ticket.preferredChannel === 'internal' ? 'rgba(201,180,138,.12)' : ticket.preferredChannel === 'form_submission' ? 'rgba(212,160,122,.1)' : ticket.preferredChannel === 'whatsapp' ? 'rgba(79,227,138,.12)' : 'rgba(243,239,230,.1)',
- color: ticket.preferredChannel === 'internal' ? '#c9b48a' : ticket.preferredChannel === 'form_submission' ? '#d4a07a' : ticket.preferredChannel === 'whatsapp' ? '#4fe38a' : s.accent,
- border: `1px solid ${ticket.preferredChannel === 'internal' ? 'rgba(201,180,138,.3)' : ticket.preferredChannel === 'form_submission' ? 'rgba(212,160,122,.25)' : ticket.preferredChannel === 'whatsapp' ? 'rgba(79,227,138,.25)' : 'rgba(243,239,230,.2)'}` }}>
+ background: ticket.preferredChannel === 'internal' ? 'rgba(201,180,138,.12)' : ticket.preferredChannel === 'form_submission' ? 'rgba(212,160,122,.1)' : ticket.preferredChannel === 'whatsapp' ? 'rgba(183,196,176,.12)' : 'rgba(243,239,230,.1)',
+ color: ticket.preferredChannel === 'internal' ? '#c9b48a' : ticket.preferredChannel === 'form_submission' ? '#d4a07a' : ticket.preferredChannel === 'whatsapp' ? '#b7c4b0' : s.accent,
+ border: `1px solid ${ticket.preferredChannel === 'internal' ? 'rgba(201,180,138,.3)' : ticket.preferredChannel === 'form_submission' ? 'rgba(212,160,122,.25)' : ticket.preferredChannel === 'whatsapp' ? 'rgba(183,196,176,.25)' : 'rgba(243,239,230,.2)'}` }}>
  {ticket.preferredChannel === 'internal' ? ' Internal · Instructor' : ticket.preferredChannel === 'form_submission' ? ' Contact Form' : ticket.preferredChannel === 'whatsapp' ? ' Bot · WhatsApp' : ' Bot · Email'}
  </span>
  {((newMsgCount ?? {})[ticket.id] ?? 0) > 0 && (
  <span style={{
- fontSize: '14px', fontWeight: 800, color: '#fff',
+ fontSize: '14px', fontWeight: 800, color: '#f3efe6',
  background: '#e53e3e', borderRadius: 0,
  padding: '1px 6px', minWidth: '18px', textAlign: 'center',
  lineHeight: '16px', display: 'inline-block',
@@ -4916,7 +4916,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  <>
  <button disabled={attendanceBusy === ticket.id} onClick={e => { e.stopPropagation(); void decideAttendance(ticket, 'present') }} title="Guest was on the boat — mark completed, send thank-you mail" style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid rgba(183,196,176,.4)', background: 'rgba(183,196,176,.12)', color: '#b7c4b0', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}> Was there</button>
  <button disabled={attendanceBusy === ticket.id} onClick={e => { e.stopPropagation(); void decideAttendance(ticket, 'trip_cancelled') }} title="We cancelled the trip (weather, no boat) — day is cancelled, booking stays, no no-show" style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid rgba(201,180,138,.4)', background: 'rgba(201,180,138,.1)', color: '#c9b48a', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}> Trip cancelled</button>
- <button disabled={attendanceBusy === ticket.id} onClick={e => { e.stopPropagation(); if (confirm('Mark as NO-SHOW? Seats are released, no refund.')) void decideAttendance(ticket, 'no_show') }} title="Guest did not show up — status no_show, seats released, no refund" style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid rgba(255,100,100,.4)', background: 'rgba(255,100,100,.1)', color: '#c9928c', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}> No-show</button>
+ <button disabled={attendanceBusy === ticket.id} onClick={e => { e.stopPropagation(); if (confirm('Mark as NO-SHOW? Seats are released, no refund.')) void decideAttendance(ticket, 'no_show') }} title="Guest did not show up — status no_show, seats released, no refund" style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid rgba(201,146,140,.4)', background: 'rgba(201,146,140,.1)', color: '#c9928c', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}> No-show</button>
  </>
  )}
  {attendanceMsg[ticket.id] && <span style={{ fontSize: '14px', color: attendanceMsg[ticket.id].startsWith('') ? '#c9928c' : '#b7c4b0', whiteSpace: 'nowrap' }}>{attendanceMsg[ticket.id]}</span>}
@@ -4924,7 +4924,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  <button onClick={e => { e.stopPropagation(); onClaim(ticket.id, staffName || session?.user?.email || 'Staff') }} style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid rgba(212,160,122,.3)', background: 'transparent', color: '#d4a07a', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}>Claim</button>
  )}
  {!ticket.archived && ticket.status === 'in_progress' && ticket.claimedBy === staffName && (
- <button onClick={e => { e.stopPropagation(); onUnclaim(ticket.id) }} style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid rgba(255,80,80,.2)', background: 'transparent', color: 'rgba(255,100,100,.8)', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}>Unclaim</button>
+ <button onClick={e => { e.stopPropagation(); onUnclaim(ticket.id) }} style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid rgba(201,146,140,.2)', background: 'transparent', color: 'rgba(201,146,140,.8)', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}>Unclaim</button>
  )}
  {!ticket.archived && ticket.status === 'in_progress' && ticket.claimedBy && ticket.claimedBy !== staffName && (
  <button onClick={e => { e.stopPropagation(); onTakeover(ticket.id, staffName || session?.user?.email || 'Staff') }} style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid rgba(212,160,122,.25)', background: 'transparent', color: '#d4a07a', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}>Take Over</button>
@@ -4988,7 +4988,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  return (
  <div key={x.id} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 0', flexWrap: 'wrap', opacity: 1 }}>
  <input type="date" value={dateVal} min={new Date().toISOString().slice(0, 10)} title="Move this day" onChange={e => { const v = e.target.value; setSlotData(p => ({ ...p, [ticket.id]: { ...p[ticket.id], dates: { ...p[ticket.id].dates, [x.id]: v } } })) }}
- style={{ background: '#090909', border: `1px solid ${dateVal !== x.session_date ? 'rgba(201,180,138,.6)' : 'rgba(255,255,255,.12)'}`, borderRadius: 0, padding: '4px 8px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none', colorScheme: 'dark' }} />
+ style={{ background: '#000', border: `1px solid ${dateVal !== x.session_date ? 'rgba(201,180,138,.6)' : 'rgba(255,255,255,.12)'}`, borderRadius: 0, padding: '4px 8px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none', colorScheme: 'dark' }} />
  <span style={{ fontSize: '14px', color: x.session === 'tbd' ? '#c9b48a' : s.muted, minWidth: '70px' }}>{x.session === 'tbd' ? 'open' : `set: ${x.session.toUpperCase()}`}{x.notes ? ` · ${x.notes}` : ''}</span>
  {x.session !== 'night' && ([[true, ' Boat'], [false, ' Pool']] as const).map(([bv, bl]) => (
  <button key={bl} type="button" title="Boat seat or pool/harbour day" onClick={() => setSlotData(p => ({ ...p, [ticket.id]: { ...p[ticket.id], boat: { ...p[ticket.id].boat, [x.id]: bv } } }))}
@@ -5007,7 +5007,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  })}
  <label style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px', color: s.muted }}>Start
  <input type="time" value={timeVal} onChange={e => { const v = e.target.value; setSlotData(p => ({ ...p, [ticket.id]: { ...p[ticket.id], times: { ...p[ticket.id].times, [x.id]: v } } })) }} title="Optional: exact start time — goes into the guest email instead of the default 08:00 / 13:00"
- style={{ background: '#090909', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '4px 8px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none' }} />
+ style={{ background: '#000', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '4px 8px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none' }} />
  </label>
  {dirty && <span style={{ fontSize: '14px', color: '#c9b48a' }}> changed</span>}
  </div>
@@ -5227,7 +5227,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
 
  {/* Buchungs-Popup aus dem Instructor-Ticket: volles FO-Detail (Payments, Sessions, Log) */}
  {ticketBookingPopup && (
- <div onClick={() => setTicketBookingPopup(null)} style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(2,8,20,.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '40px 16px', overflowY: 'auto' }}>
+ <div onClick={() => setTicketBookingPopup(null)} style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '40px 16px', overflowY: 'auto' }}>
  <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: '#121210', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, boxShadow: 'none' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>Booking <span style={{ fontFamily: 'monospace', color: s.text, fontWeight: 700 }}>{ticketBookingPopup.slice(0, 8).toUpperCase()}</span> · changes here are live</span>
@@ -5535,7 +5535,7 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  const grouped = prices.reduce((acc, p) => { if (!acc[p.category]) acc[p.category] = []; acc[p.category].push(p); return acc }, {} as Record<string, typeof prices>)
 
  return (
- <div style={{ background: '#090909', minHeight: '100vh', padding: '24px 16px' }}>
+ <div style={{ background: '#000', minHeight: '100vh', padding: '24px 16px' }}>
 
  {/* Toast */}
  {toastMsg && (
@@ -5576,7 +5576,7 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  </div>
 
  {/* Finances widget */}
- <div style={{ background: 'rgba(10,33,61,.6)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, overflow: 'hidden' }}>
+ <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, overflow: 'hidden' }}>
  {/* Tab bar */}
  <div style={{ display: 'flex', borderBottom: '1px solid rgba(243,239,230,.2)', flexWrap: 'wrap' }}>
  {(['overview', 'upcoming', 'refunds', 'history', 'reports', 'pricing'] as const).map(tab => (
@@ -5587,7 +5587,7 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  }}>
  {tab === 'overview' ? 'Overview' : tab === 'upcoming' ? 'Upcoming' : tab === 'reports' ? 'Reports' : tab === 'pricing' ? 'Pricing' : tab === 'history' ? 'History' : 'Action needed'}
  {tab === 'refunds' && totalAction > 0 && (
- <span title={`${actionCount ?? 0} refund request(s), ${pendingPayCount} payment(s) waiting and ${payMissingCount} booking(s) without payment status, ${payReqFailCount} payment request(s) not sent`} style={{ marginLeft: '8px', display: 'inline-block', minWidth: '18px', padding: '1px 6px', borderRadius: 0, background: '#c9928c', color: '#090909', fontSize: '14px', fontWeight: 800, lineHeight: '16px', textAlign: 'center', letterSpacing: 0 }}>{totalAction}</span>
+ <span title={`${actionCount ?? 0} refund request(s), ${pendingPayCount} payment(s) waiting and ${payMissingCount} booking(s) without payment status, ${payReqFailCount} payment request(s) not sent`} style={{ marginLeft: '8px', display: 'inline-block', minWidth: '18px', padding: '1px 6px', borderRadius: 0, background: '#c9928c', color: '#000', fontSize: '14px', fontWeight: 800, lineHeight: '16px', textAlign: 'center', letterSpacing: 0 }}>{totalAction}</span>
  )}
  </button>
  ))}
@@ -5666,7 +5666,7 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  onKeyDown={e => { if (e.key === 'Enter') savePrice(p.id); if (e.key === 'Escape') setEditingId(null) }}
  style={{ width: '80px', background: 'rgba(255,255,255,.07)', border: '1px solid rgba(243,239,230,.4)', borderRadius: 0, color: s.text, fontSize: '14px', fontWeight: 700, padding: '5px 8px', fontFamily: s.font, outline: 'none' }}
  />
- <button onClick={e => { e.stopPropagation(); savePrice(p.id) }} disabled={savingId === p.id} style={{ padding: '5px 14px', borderRadius: 0, border: 'none', background: s.accent, color: '#090909', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>
+ <button onClick={e => { e.stopPropagation(); savePrice(p.id) }} disabled={savingId === p.id} style={{ padding: '5px 14px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>
  {savingId === p.id ? '…' : 'Save'}
  </button>
  <button onClick={e => { e.stopPropagation(); setEditingId(null) }} style={{ padding: '5px 10px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>Cancel</button>
@@ -5726,7 +5726,7 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  {([['requests', 'Payment request not sent', payReqFailCount], ['status', 'Payment status not set', payMissingCount], ['confirm', 'Payments to confirm', pendingPayCount], ['refunds', 'Refunds to authorize', actionCount ?? 0]] as const).map(([k, l, n]) => (
  <button key={k} type="button" role="tab" aria-selected={actTab === k} onClick={() => { setActTab(k); try { localStorage.setItem('azd_finActTab', k) } catch {} }}
  style={{ padding: '8px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font, border: `1px solid ${actTab === k ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.12)'}`, background: actTab === k ? 'rgba(243,239,230,.12)' : 'transparent', color: actTab === k ? s.accent : s.muted }}>
- {l}{n > 0 && <span style={{ marginLeft: '8px', display: 'inline-block', minWidth: '18px', padding: '1px 6px', borderRadius: 0, background: '#c9928c', color: '#090909', fontSize: '14px', fontWeight: 800, lineHeight: '16px', textAlign: 'center' }}>{n}</span>}
+ {l}{n > 0 && <span style={{ marginLeft: '8px', display: 'inline-block', minWidth: '18px', padding: '1px 6px', borderRadius: 0, background: '#c9928c', color: '#000', fontSize: '14px', fontWeight: 800, lineHeight: '16px', textAlign: 'center' }}>{n}</span>}
  </button>
  ))}
  </div>
@@ -5773,7 +5773,7 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  <div key={r.id} style={{ background: 'rgba(201,146,140,.04)', border: '1px solid rgba(201,146,140,.18)', borderRadius: 0, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
  <div style={{ flex: 1, minWidth: 0 }}>
- <div style={{ fontSize: '14px', fontWeight: 700, color: s.text }}>{b.customer_name ?? '—'}{r.is_test ? <span style={{ marginLeft: '8px', fontSize: '14px', color: '#FFD080', border: '1px solid rgba(201,180,138,.4)', borderRadius: 0, padding: '1px 5px' }}>TEST</span> : null}</div>
+ <div style={{ fontSize: '14px', fontWeight: 700, color: s.text }}>{b.customer_name ?? '—'}{r.is_test ? <span style={{ marginLeft: '8px', fontSize: '14px', color: '#c9b48a', border: '1px solid rgba(201,180,138,.4)', borderRadius: 0, padding: '1px 5px' }}>TEST</span> : null}</div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>
  Booking <button type="button" onClick={() => setRefundPopupBookingId(r.booking_id)} title="Open booking" style={{ fontFamily: 'monospace', color: '#f3efe6', fontWeight: 700, background: 'transparent', border: '1px solid rgba(243,239,230,.35)', borderRadius: 0, padding: '1px 7px', cursor: 'pointer', fontSize: '14px' }}>{ref} </button> · {b.product_name ?? '—'}{b.booking_date ? ` · ${new Date(b.booking_date + 'T12:00:00').toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}` : ''}
  </div>
@@ -5786,11 +5786,11 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  {r.payout_masked && r.method !== 'stripe' && (
  <div style={{ marginTop: '6px', padding: '8px 10px', background: 'rgba(201,180,138,.08)', border: '1px solid rgba(201,180,138,.35)', borderRadius: 0, display: 'flex', flexDirection: 'column', gap: '6px' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
- <span style={{ fontSize: '14px', fontWeight: 800, letterSpacing: '.1em', color: '#FFD080' }}>PAY TO </span>
+ <span style={{ fontSize: '14px', fontWeight: 800, letterSpacing: '.1em', color: '#c9b48a' }}>PAY TO </span>
  {!payoutShown[r.id] && <span style={{ fontFamily: 'monospace', fontSize: '14px', color: s.text }}>{r.payout_masked}</span>}
  {!payoutShown[r.id] && (
  <button type="button" disabled={payoutLoading === r.id} onClick={() => revealPayout(r.id)}
- style={{ marginLeft: 'auto', padding: '3px 10px', borderRadius: 0, border: '1px solid rgba(201,180,138,.5)', background: 'transparent', color: '#FFD080', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font, opacity: payoutLoading === r.id ? .6 : 1 }}>
+ style={{ marginLeft: 'auto', padding: '3px 10px', borderRadius: 0, border: '1px solid rgba(201,180,138,.5)', background: 'transparent', color: '#c9b48a', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font, opacity: payoutLoading === r.id ? .6 : 1 }}>
  {payoutLoading === r.id ? 'Decrypting…' : ' Reveal (logged)'}
  </button>
  )}
@@ -5876,7 +5876,7 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  <button
  onClick={() => markRefundPaid(r.id)}
  disabled={markingRefundId === r.id}
- style={{ width: '100%', padding: '10px', borderRadius: 0, border: 'none', background: 'rgba(183,196,176,.85)', color: '#090909', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: markingRefundId === r.id ? .6 : 1 }}>
+ style={{ width: '100%', padding: '10px', borderRadius: 0, border: 'none', background: 'rgba(183,196,176,.85)', color: '#000', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: markingRefundId === r.id ? .6 : 1 }}>
  {(() => {
  const eff = refundOverride[r.id]?.on ? refundOverride[r.id].method : r.method
  const label: Record<string, string> = { cash: 'cash', bank: 'bank transfer', revolut: 'Revolut', mb_way: 'MB WAY', other: 'other' }
@@ -5897,7 +5897,7 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  <div style={{ fontSize: '14px', fontWeight: 700, color: s.text, marginBottom: '10px' }}>History</div>
  <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '16px', fontSize: '14px', color: s.muted }}>
  <span>Show</span>
- <select value={histTab} aria-label="Show" onChange={e => setHistTab(e.target.value as typeof histTab)} style={{ background: '#090909', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '7px 10px', color: s.text, fontSize: '14px', fontWeight: 700, fontFamily: 'inherit', cursor: 'pointer', colorScheme: 'dark' }}>
+ <select value={histTab} aria-label="Show" onChange={e => setHistTab(e.target.value as typeof histTab)} style={{ background: '#000', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '7px 10px', color: s.text, fontSize: '14px', fontWeight: 700, fontFamily: 'inherit', cursor: 'pointer', colorScheme: 'dark' }}>
  <option value="all">All movements</option><option value="payments">Payments in</option><option value="refunds">Refunds</option><option value="cash">Cash</option>
  </select>
  </div>
@@ -5916,9 +5916,9 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  </div>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '12px' }}>Authorized and paid-out refunds, newest first. Click the booking number to open the booking.{simulationMode ? ' (Test data)' : ''}</div>
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '14px' }}>
- <input value={refundSearch} onChange={e => setRefundSearch(e.target.value)} placeholder="Search name, email, product, booking no. or reason…" style={{ flex: '1 1 240px', minWidth: 0, background: '#090909', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '8px 12px', color: s.text, fontSize: '14px', fontFamily: 'inherit' }} />
- <input type="month" value={refundMonth} onChange={e => setRefundMonth(e.target.value)} title="Month paid out" style={{ background: '#090909', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '7px 10px', color: s.text, fontSize: '14px', fontFamily: 'inherit', colorScheme: 'dark' }} />
- <select value={refundMethod} onChange={e => setRefundMethod(e.target.value)} style={{ background: '#090909', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '8px 10px', color: s.text, fontSize: '14px', fontFamily: 'inherit' }}>
+ <input value={refundSearch} onChange={e => setRefundSearch(e.target.value)} placeholder="Search name, email, product, booking no. or reason…" style={{ flex: '1 1 240px', minWidth: 0, background: '#000', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '8px 12px', color: s.text, fontSize: '14px', fontFamily: 'inherit' }} />
+ <input type="month" value={refundMonth} onChange={e => setRefundMonth(e.target.value)} title="Month paid out" style={{ background: '#000', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '7px 10px', color: s.text, fontSize: '14px', fontFamily: 'inherit', colorScheme: 'dark' }} />
+ <select value={refundMethod} onChange={e => setRefundMethod(e.target.value)} style={{ background: '#000', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '8px 10px', color: s.text, fontSize: '14px', fontFamily: 'inherit' }}>
  <option value="all">All methods</option><option value="stripe">Stripe</option><option value="cash">Cash</option><option value="bank">Bank Transfer</option><option value="revolut">Revolut</option><option value="mb_way">MB WAY</option><option value="other">Other</option>
  </select>
  {(refundSearch || refundMonth || refundMethod !== 'all') && (
@@ -5944,7 +5944,7 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
  <div style={{ minWidth: 0 }}>
  <div style={{ fontSize: '14px', fontWeight: 700, color: s.text }}>
  {r.customer_name ?? '—'}
- {r.is_test && <span style={{ marginLeft: '8px', fontSize: '14px', color: '#FFD080' }}>TEST</span>}
+ {r.is_test && <span style={{ marginLeft: '8px', fontSize: '14px', color: '#c9b48a' }}>TEST</span>}
  <span style={{ marginLeft: '8px', fontSize: '14px', fontWeight: 400, color: s.muted }}>{r.product_name ?? ''}</span>
  </div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>
@@ -5983,7 +5983,7 @@ function PageFinances({ nav }: { nav: (p: MemberPage) => void }) {
 
  {/* Buchungs-Popup aus dem Refunds-Tab: volles FO-Detail (Payments, Refunds, Sessions, Changelog) */}
  {refundPopupBookingId && (
- <div onClick={() => setRefundPopupBookingId(null)} style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(2,8,20,.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '32px 16px', overflowY: 'auto' }}>
+ <div onClick={() => setRefundPopupBookingId(null)} style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '32px 16px', overflowY: 'auto' }}>
  <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: '#121210', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, boxShadow: 'none', overflow: 'hidden' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>Booking <span style={{ fontFamily: 'monospace', color: s.text, fontWeight: 700 }}>{refundPopupBookingId.slice(0, 8).toUpperCase()}</span> · changes here are live</span>
@@ -6103,9 +6103,9 @@ function PageSchedule({ nav, session, readonly }: { nav: (p: MemberPage) => void
  { label: 'Course', color: '#f3efe6', dim: 'rgba(243,239,230,.5)', bg: 'rgba(243,239,230,.14)', border: 'rgba(243,239,230,.5)', roles: ['AOWD','Buoyancy','Deep','DSD','Navigation','Night','Offshore Prep','OWD','React Right','Refresh','Rescue','Waves & Currents','Wreck'] },
  { label: 'Guide', color: '#b7c4b0', dim: 'rgba(183,196,176,.5)', bg: 'rgba(183,196,176,.14)', border: 'rgba(183,196,176,.5)', roles: ['Guide'] },
  { label: 'Skipper', color: '#c9b48a', dim: 'rgba(201,180,138,.5)', bg: 'rgba(201,180,138,.14)', border: 'rgba(201,180,138,.5)', roles: ['Skipper'] },
- { label: 'Office', color: '#c9c2b6', dim: 'rgba(167,139,250,.5)', bg: 'rgba(167,139,250,.14)', border: 'rgba(167,139,250,.5)', roles: ['IT','Kiosk A','Kiosk C','Kubo'] },
- { label: 'Crew', color: '#c9c2b6', dim: 'rgba(148,163,184,.4)', bg: 'rgba(148,163,184,.1)', border: 'rgba(148,163,184,.35)', roles: ['Crew','Tanks'] },
- { label: 'Folga', color: '#fb923c', dim: 'rgba(251,146,60,.5)', bg: 'rgba(251,146,60,.14)', border: 'rgba(251,146,60,.5)', roles: ['Meia Folga','Folga'] },
+ { label: 'Office', color: '#c9c2b6', dim: 'rgba(243,239,230,0.50)', bg: 'rgba(243,239,230,0.14)', border: 'rgba(243,239,230,0.50)', roles: ['IT','Kiosk A','Kiosk C','Kubo'] },
+ { label: 'Crew', color: '#c9c2b6', dim: 'rgba(243,239,230,0.40)', bg: 'rgba(243,239,230,0.10)', border: 'rgba(243,239,230,0.35)', roles: ['Crew','Tanks'] },
+ { label: 'Folga', color: '#c9b48a', dim: 'rgba(251,146,60,.5)', bg: 'rgba(251,146,60,.14)', border: 'rgba(251,146,60,.5)', roles: ['Meia Folga','Folga'] },
  ]
  const now = new Date()
  const day = now.getDay()
@@ -6188,7 +6188,7 @@ function PageSchedule({ nav, session, readonly }: { nav: (p: MemberPage) => void
  }
 
  return (
- <div style={{ background: '#090909', minHeight: '100vh', padding: '24px 16px' }}>
+ <div style={{ background: '#000', minHeight: '100vh', padding: '24px 16px' }}>
  <div style={{ maxWidth: '1320px', margin: '0 auto' }}>
  <div style={{ marginBottom: '24px' }}>
  <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color: s.muted, marginBottom: '8px' }}>Members Area</div>
@@ -6238,7 +6238,7 @@ function PageSchedule({ nav, session, readonly }: { nav: (p: MemberPage) => void
  const entries = schedData[key] || []
  return (
  <div key={key} onClick={() => { if (!readonly) { setSchedCell(schedCell === key ? null : key); setSelectedRole('') } }}
- style={{ minHeight: '80px', background: 'rgba(10,28,50,.7)', border: schedCell === key ? '1px solid rgba(243,239,230,.6)' : '1px solid rgba(243,239,230,.12)', borderRadius: 0, padding: '6px', cursor: readonly ? 'default' : 'pointer', transition: 'border .15s' }}>
+ style={{ minHeight: '80px', background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: schedCell === key ? '1px solid rgba(243,239,230,.6)' : '1px solid rgba(243,239,230,.12)', borderRadius: 0, padding: '6px', cursor: readonly ? 'default' : 'pointer', transition: 'border .15s' }}>
  {entries.length === 0 && <div style={{ fontSize: '14px', color: s.muted, opacity: .4, textAlign: 'center', marginTop: '22px' }}>&#8212;</div>}
  {[...entries].sort((a,b) => {
  const aF = (a.role==='Folga'||a.role==='Meia Folga') ? 1 : 0
@@ -6265,7 +6265,7 @@ function PageSchedule({ nav, session, readonly }: { nav: (p: MemberPage) => void
  const entries = schedData[key] || []
  return (
  <div key={key} onClick={() => { if (!readonly) { setSchedCell(schedCell === key ? null : key); setSelectedRole('') } }}
- style={{ minHeight: '80px', background: 'rgba(10,28,50,.7)', border: schedCell === key ? '1px solid rgba(212,160,122,.6)' : '1px solid rgba(243,239,230,.12)', borderRadius: 0, padding: '6px', cursor: readonly ? 'default' : 'pointer', transition: 'border .15s' }}>
+ style={{ minHeight: '80px', background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: schedCell === key ? '1px solid rgba(212,160,122,.6)' : '1px solid rgba(243,239,230,.12)', borderRadius: 0, padding: '6px', cursor: readonly ? 'default' : 'pointer', transition: 'border .15s' }}>
  {entries.length === 0 && <div style={{ fontSize: '14px', color: s.muted, opacity: .4, textAlign: 'center', marginTop: '22px' }}>&#8212;</div>}
  {[...entries].sort((a,b) => {
  const aF = (a.role==='Folga'||a.role==='Meia Folga') ? 1 : 0
@@ -6308,7 +6308,7 @@ function PageSchedule({ nav, session, readonly }: { nav: (p: MemberPage) => void
  return (
  <div key={d} style={{
  minHeight: '72px',
- background: isThisMonth ? 'rgba(10,28,50,.7)' : 'rgba(4,12,26,.45)',
+ background: isThisMonth ? 'rgba(0,0,0,0.70)' : 'rgba(255,255,255,.045)',
  border: isToday ? '1px solid rgba(243,239,230,.5)' : '1px solid rgba(243,239,230,.08)',
  borderRadius: 0,
  padding: '6px',
@@ -6336,7 +6336,7 @@ function PageSchedule({ nav, session, readonly }: { nav: (p: MemberPage) => void
  </div>
  )}
  {schedCell && (
- <div style={{ marginTop: '20px', background: 'rgba(10,28,50,.9)', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, padding: '18px' }}>
+ <div style={{ marginTop: '20px', background: 'rgba(255,255,255,.05)', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, padding: '18px' }}>
  <div style={{ fontSize: '14px', fontWeight: 800, color: s.muted, letterSpacing: '.14em', textTransform: 'uppercase', marginBottom: '16px' }}>
  Assign staff — {schedCell.includes('_am') ? 'AM' : 'PM'} · {DAYS[parseInt(schedCell.split('_d')[1])]}
  </div>
@@ -6392,14 +6392,14 @@ function PageSchedule({ nav, session, readonly }: { nav: (p: MemberPage) => void
  <div key={e.name} style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
  <div style={{ fontSize: '14px', fontWeight: 700, color: '#b7c4b0' }}>{e.name}{e.role && <span style={{ fontSize: '14px', opacity: .7, marginLeft: '5px' }}>· {e.role}</span>}</div>
- <button onClick={ev => { ev.stopPropagation(); removeFromShift(schedCell, e.name) }} title="Remove from shift" style={{ background: 'none', border: 'none', color: 'rgba(255,80,80,.55)', fontSize: '14px', lineHeight: 1, cursor: 'pointer', padding: '0 2px', fontFamily: s.font, flexShrink: 0 }}>×</button>
+ <button onClick={ev => { ev.stopPropagation(); removeFromShift(schedCell, e.name) }} title="Remove from shift" style={{ background: 'none', border: 'none', color: 'rgba(201,146,140,.55)', fontSize: '14px', lineHeight: 1, cursor: 'pointer', padding: '0 2px', fontFamily: s.font, flexShrink: 0 }}>×</button>
  </div>
  {e.role && e.role !== 'Folga' && e.role !== 'Meia Folga' && (
  editingTime?.key === schedCell && editingTime?.name === e.name ? (
  <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }} onClick={ev => ev.stopPropagation()}>
- <input type="time" value={e.start} onChange={ev => updateTime(schedCell, e.name, 'start', ev.target.value)} style={{ background: '#090909', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0, color: s.text, fontSize: '14px', padding: '2px 5px', fontFamily: s.font, outline: 'none', width: '84px' }} />
+ <input type="time" value={e.start} onChange={ev => updateTime(schedCell, e.name, 'start', ev.target.value)} style={{ background: '#000', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0, color: s.text, fontSize: '14px', padding: '2px 5px', fontFamily: s.font, outline: 'none', width: '84px' }} />
  <span style={{ color: s.muted, fontSize: '14px' }}>–</span>
- <input type="time" value={e.end} onChange={ev => updateTime(schedCell, e.name, 'end', ev.target.value)} style={{ background: '#090909', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0, color: s.text, fontSize: '14px', padding: '2px 5px', fontFamily: s.font, outline: 'none', width: '84px' }} />
+ <input type="time" value={e.end} onChange={ev => updateTime(schedCell, e.name, 'end', ev.target.value)} style={{ background: '#000', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0, color: s.text, fontSize: '14px', padding: '2px 5px', fontFamily: s.font, outline: 'none', width: '84px' }} />
  <button onClick={() => setEditingTime(null)} style={{ background: 'rgba(183,196,176,.12)', border: '1px solid rgba(183,196,176,.3)', borderRadius: 0, color: '#b7c4b0', fontSize: '14px', padding: '2px 8px', cursor: 'pointer', fontFamily: s.font, fontWeight: 700 }}></button>
  </div>
  ) : (
@@ -6633,7 +6633,7 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  const isInstructor = p.diveRole === 'instructor'
  const isDivemaster = p.diveRole === 'divemaster'
  return (
- <div style={{ background: '#090909', minHeight: '100vh', padding: '24px 16px' }}>
+ <div style={{ background: '#000', minHeight: '100vh', padding: '24px 16px' }}>
  <div style={{ maxWidth: '900px', margin: '0 auto' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
  <button onClick={() => { setProfileEdit(null); setLangSearch(''); setCertSearch(''); setInviteStatus('idle'); setInviteError(''); setInviteRole('') }} style={{ padding: '6px 14px', borderRadius: 0, border: '1px solid rgba(255,255,255,.2)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>&#8592; Back</button>
@@ -6644,7 +6644,7 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  {([['Name','name','text'],['Phone','phone','tel']] as [string,string,string][]).map(([label, key, type]) => (
  <div key={key}>
  <div style={{ fontSize: '14px', fontWeight: 800, color: s.muted, letterSpacing: '.14em', textTransform: 'uppercase', marginBottom: '6px' }}>{label}</div>
- <input value={p[key]} onChange={e => set(key, e.target.value)} type={type} placeholder={label} style={{ width: '100%', padding: '10px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(10,28,50,.8)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
+ <input value={p[key]} onChange={e => set(key, e.target.value)} type={type} placeholder={label} style={{ width: '100%', padding: '10px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
  </div>
  ))}
  <div>
@@ -6671,7 +6671,7 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  <div style={{ fontSize: '14px', fontWeight: 800, color: '#c9c2b6', letterSpacing: '.14em', textTransform: 'uppercase', marginBottom: '8px' }}>DM Authorization (can assist)</div>
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
  {ASSIST_CERTS.map(ac => (
- <button key={ac} onClick={() => toggleArr('assistCerts', ac)} style={{ padding: '4px 10px', borderRadius: 0, border: `1px solid ${(p.assistCerts||[]).includes(ac) ? 'rgba(180,138,255,.5)' : 'rgba(255,255,255,.15)'}`, background: (p.assistCerts||[]).includes(ac) ? 'rgba(180,138,255,.15)' : 'transparent', color: (p.assistCerts||[]).includes(ac) ? '#c9c2b6' : s.muted, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>{ac}{(p.assistCerts||[]).includes(ac) ? ' ' : ''}</button>
+ <button key={ac} onClick={() => toggleArr('assistCerts', ac)} style={{ padding: '4px 10px', borderRadius: 0, border: `1px solid ${(p.assistCerts||[]).includes(ac) ? 'rgba(243,239,230,0.50)' : 'rgba(255,255,255,.15)'}`, background: (p.assistCerts||[]).includes(ac) ? 'rgba(243,239,230,0.15)' : 'transparent', color: (p.assistCerts||[]).includes(ac) ? '#c9c2b6' : s.muted, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>{ac}{(p.assistCerts||[]).includes(ac) ? ' ' : ''}</button>
  ))}
  </div>
  </div>
@@ -6692,7 +6692,7 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  <button key={dc} onClick={() => toggleArr('diveCerts', dc)} style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.25)', background: 'transparent', color: '#f3efe6', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>{dc}</button>
  ))}
  </div>
- <input value={certSearch} onChange={e => setCertSearch(e.target.value)} placeholder="Search specialties: Deep, Nitrox, Wreck…" style={{ width: '100%', padding: '8px 12px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(10,28,50,.8)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
+ <input value={certSearch} onChange={e => setCertSearch(e.target.value)} placeholder="Search specialties: Deep, Nitrox, Wreck…" style={{ width: '100%', padding: '8px 12px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
  {certSearch && (
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px', maxHeight: '100px', overflowY: 'auto', marginTop: '8px' }}>
  {filteredCerts.filter(dc => !(p.diveCerts || []).includes(dc)).map(dc => (
@@ -6710,7 +6710,7 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  </div>
  )}
  {isDivemaster && (
- <div style={{ marginTop: '12px', padding: '12px', borderRadius: 0, border: '1px solid rgba(167,139,250,.2)', background: 'rgba(167,139,250,.04)' }}>
+ <div style={{ marginTop: '12px', padding: '12px', borderRadius: 0, border: '1px solid rgba(243,239,230,0.20)', background: 'rgba(243,239,230,0.04)' }}>
  <div style={{ fontSize: '14px', fontWeight: 800, color: '#c9c2b6', letterSpacing: '.12em', textTransform: 'uppercase', marginBottom: '8px' }}>Can assist with</div>
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>{ASSIST_CERTS.map(ac => chip(ac, p.assistCerts.includes(ac), () => toggleArr('assistCerts', ac), '#c9c2b6'))}</div>
  </div>
@@ -6738,7 +6738,7 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  <button key={code} onClick={() => toggleArr('langs', code)} style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid rgba(201,180,138,.25)', background: 'transparent', color: '#c9b48a', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>{flag} {code}</button>
  ))}
  </div>
- <input value={langSearch} onChange={e => setLangSearch(e.target.value)} placeholder="Search languages..." style={{ width: '100%', padding: '8px 12px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(10,28,50,.8)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box', marginBottom: langSearch ? '8px' : '0' }} />
+ <input value={langSearch} onChange={e => setLangSearch(e.target.value)} placeholder="Search languages..." style={{ width: '100%', padding: '8px 12px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box', marginBottom: langSearch ? '8px' : '0' }} />
  {langSearch && (
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px', maxHeight: '120px', overflowY: 'auto', marginTop: '8px' }}>
  {filteredLangs.filter(([,c]) => !p.langs.includes(c)).map(([flag,code,name]) => (
@@ -6751,7 +6751,7 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  <div>
  <div style={{ fontSize: '14px', fontWeight: 800, color: s.muted, letterSpacing: '.14em', textTransform: 'uppercase', marginBottom: '8px' }}>Availability</div>
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '10px' }}>{AVAIL_DAYS.map(d => chip(d, p.availDays.includes(d), () => toggleArr('availDays', d), '#c9c2b6'))}</div>
- <input value={p.availNote} onChange={e => set('availNote', e.target.value)} placeholder="Note (e.g. mornings only, Mon-Fri, etc.)" style={{ width: '100%', padding: '10px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(10,28,50,.8)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
+ <input value={p.availNote} onChange={e => set('availNote', e.target.value)} placeholder="Note (e.g. mornings only, Mon-Fri, etc.)" style={{ width: '100%', padding: '10px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
  </div>
  </div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -6764,7 +6764,7 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  </div>
  <label style={{ display: 'block', cursor: 'pointer' }}>
  <input type="file" accept=".jpg,.jpeg,.png,.webp" onChange={e => { const f = e.target.files?.[0]; if (!f) return; const r = new FileReader(); r.onload = ev => set('photoUrl', ev.target?.result as string); r.readAsDataURL(f) }} style={{ display: 'none' }} />
- <div style={{ padding: '10px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(10,28,50,.8)', color: s.muted, fontSize: '14px', textAlign: 'center', cursor: 'pointer' }}>
+ <div style={{ padding: '10px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.muted, fontSize: '14px', textAlign: 'center', cursor: 'pointer' }}>
  {p.photoUrl ? ' Change photo' : ' Upload photo (WebP / PNG / JPEG)'}
  </div>
  </label>
@@ -6774,7 +6774,7 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  <div style={{ fontSize: '14px', fontWeight: 800, color: s.muted, letterSpacing: '.14em', textTransform: 'uppercase', marginBottom: '6px' }}>Contract</div>
  <label style={{ display: 'block', cursor: 'pointer' }}>
  <input type="file" accept=".pdf,.doc,.docx" onChange={e => { const f = e.target.files?.[0]; if (!f) return; set('contractFile', f.name) }} style={{ display: 'none' }} />
- <div style={{ padding: '10px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(10,28,50,.8)', color: s.muted, fontSize: '14px', textAlign: 'center', cursor: 'pointer' }}>
+ <div style={{ padding: '10px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.muted, fontSize: '14px', textAlign: 'center', cursor: 'pointer' }}>
  {p.contractFile ? p.contractFile : 'Upload contract (PDF / DOC)'}
  </div>
  </label>
@@ -6782,7 +6782,7 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  </div>
  <div>
  <div style={{ fontSize: '14px', fontWeight: 800, color: s.muted, letterSpacing: '.14em', textTransform: 'uppercase', marginBottom: '6px' }}>Notes</div>
- <textarea value={p.notes} onChange={e => set('notes', e.target.value)} rows={4} placeholder="Internal notes..." style={{ width: '100%', padding: '10px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(10,28,50,.8)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', resize: 'vertical', boxSizing: 'border-box' }} />
+ <textarea value={p.notes} onChange={e => set('notes', e.target.value)} rows={4} placeholder="Internal notes..." style={{ width: '100%', padding: '10px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', resize: 'vertical', boxSizing: 'border-box' }} />
  </div>
  {/* SSI Matrix - editable by admin */}
  {(() => {
@@ -6796,19 +6796,19 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  <div style={{ padding: '14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.18)', background: 'rgba(243,239,230,.03)' }}>
  <div style={{ fontSize: '14px', fontWeight: 800, color: s.muted, letterSpacing: '.14em', textTransform: 'uppercase', marginBottom: '10px' }}>SSI Matrix</div>
  <div style={{ display: 'flex', gap: '8px', marginBottom: '10px', flexWrap: 'wrap' }}>
- <input value={p.ssiPro || ''} onChange={e => set('ssiPro', e.target.value)} placeholder="SSI Pro #" style={{ flex: 1, minWidth: '90px', padding: '6px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(10,28,50,.8)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none' }} />
- <input value={p.ssiMid || ''} onChange={e => set('ssiMid', e.target.value)} placeholder="MID" style={{ flex: 1, minWidth: '80px', padding: '6px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(10,28,50,.8)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none' }} />
- <input value={p.ssiPaidUntil || ''} onChange={e => set('ssiPaidUntil', e.target.value)} placeholder="Paid until" style={{ flex: 1, minWidth: '90px', padding: '6px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(10,28,50,.8)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none' }} />
+ <input value={p.ssiPro || ''} onChange={e => set('ssiPro', e.target.value)} placeholder="SSI Pro #" style={{ flex: 1, minWidth: '90px', padding: '6px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none' }} />
+ <input value={p.ssiMid || ''} onChange={e => set('ssiMid', e.target.value)} placeholder="MID" style={{ flex: 1, minWidth: '80px', padding: '6px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none' }} />
+ <input value={p.ssiPaidUntil || ''} onChange={e => set('ssiPaidUntil', e.target.value)} placeholder="Paid until" style={{ flex: 1, minWidth: '90px', padding: '6px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none' }} />
  </div>
  <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
- <select value={p.ssiLevel || ''} onChange={e => set('ssiLevel', e.target.value)} style={{ flex: 1, padding: '6px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(10,28,50,.8)', color: p.ssiLevel ? (levelColor[p.ssiLevel] || s.text) : s.muted, fontSize: '14px', fontFamily: s.font, outline: 'none' }}>
+ <select value={p.ssiLevel || ''} onChange={e => set('ssiLevel', e.target.value)} style={{ flex: 1, padding: '6px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: p.ssiLevel ? (levelColor[p.ssiLevel] || s.text) : s.muted, fontSize: '14px', fontFamily: s.font, outline: 'none' }}>
  <option value="">— Level —</option>
  <option value="dg">Dive Guide</option>
  <option value="owi">OWI</option>
  <option value="dmi">DMI</option>
  <option value="ait">AIT</option>
  </select>
- <select value={p.ssiTeaching || ''} onChange={e => set('ssiTeaching', e.target.value)} style={{ flex: 1, padding: '6px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(10,28,50,.8)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none' }}>
+ <select value={p.ssiTeaching || ''} onChange={e => set('ssiTeaching', e.target.value)} style={{ flex: 1, padding: '6px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none' }}>
  <option value="">— Status —</option>
  <option value="active">Active Teaching</option>
  <option value="non">Non-Teaching</option>
@@ -6854,8 +6854,8 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  <div>
  <div style={{ fontSize: '14px', fontWeight: 800, color: s.muted, letterSpacing: '.14em', textTransform: 'uppercase', marginBottom: '6px' }}>Email</div>
  <div style={{ display: 'flex', gap: '8px' }}>
- <input value={p.email} onChange={e => set('email', e.target.value)} type="email" placeholder="Email" style={{ flex: 1, padding: '10px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(10,28,50,.8)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
- <select value={p.company || 'azd'} onChange={e => set('company', e.target.value)} style={{ padding: '7px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(10,28,50,.8)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none' }}>
+ <input value={p.email} onChange={e => set('email', e.target.value)} type="email" placeholder="Email" style={{ flex: 1, padding: '10px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
+ <select value={p.company || 'azd'} onChange={e => set('company', e.target.value)} style={{ padding: '7px 10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none' }}>
  <option value="azd">AZD</option>
  <option value="sc">Season Challenge</option>
  <option value="both">Both</option>
@@ -6886,18 +6886,18 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  {profileIsNew && (
  <div>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '4px' }}>Initial password <span style={{ opacity: .6 }}>(min. 8 chars — staff changes after first login)</span></div>
- <input type="password" placeholder="Set initial password (optional)" value={initPassword} onChange={e => setInitPassword(e.target.value)} style={{ width: '100%', padding: '8px 12px', borderRadius: 0, border: `1px solid ${initPassword.length > 0 && initPassword.length < 8 ? 'rgba(255,120,80,.5)' : 'rgba(243,239,230,.2)'}`, background: 'rgba(10,28,50,.8)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
+ <input type="password" placeholder="Set initial password (optional)" value={initPassword} onChange={e => setInitPassword(e.target.value)} style={{ width: '100%', padding: '8px 12px', borderRadius: 0, border: `1px solid ${initPassword.length > 0 && initPassword.length < 8 ? 'rgba(201,146,140,.5)' : 'rgba(243,239,230,.2)'}`, background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', boxSizing: 'border-box' }} />
  {initPassword.length > 0 && initPassword.length < 8 && <div style={{ fontSize: '14px', color: '#c9928c', marginTop: '3px' }}>Password too short</div>}
  {createStatus === 'error' && <div style={{ fontSize: '14px', color: '#c9928c', marginTop: '3px' }}> {createError}</div>}
  </div>
  )}
  </div>
  <div style={{ display: 'flex', gap: '10px', marginTop: 'auto', paddingTop: '8px' }}>
- <button onClick={() => saveProfile(p)} style={{ flex: 1, padding: '12px', borderRadius: 0, border: 'none', background: s.accent, color: '#090909', fontSize: '14px', fontWeight: 900, cursor: 'pointer', fontFamily: s.font }}>Save</button>
+ <button onClick={() => saveProfile(p)} style={{ flex: 1, padding: '12px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontSize: '14px', fontWeight: 900, cursor: 'pointer', fontFamily: s.font }}>Save</button>
  {!profileIsNew && p.email && (
  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
  <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
- <select value={inviteRole || p.role || 'staff'} onChange={e => setInviteRole(e.target.value)} style={{ padding: '10px 8px', borderRadius: 0, border: '1px solid rgba(243,239,230,.25)', background: 'rgba(10,28,50,.9)', color: s.accent, fontSize: '14px', fontFamily: s.font, outline: 'none', cursor: 'pointer' }}>
+ <select value={inviteRole || p.role || 'staff'} onChange={e => setInviteRole(e.target.value)} style={{ padding: '10px 8px', borderRadius: 0, border: '1px solid rgba(243,239,230,.25)', background: 'rgba(255,255,255,.05)', color: s.accent, fontSize: '14px', fontFamily: s.font, outline: 'none', cursor: 'pointer' }}>
  <option value="staff">Staff</option>
  <option value="front_office">Front Office</option>
  <option value="admin">Admin</option>
@@ -6907,9 +6907,9 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  value={initPassword}
  onChange={e => { setInitPassword(e.target.value); setInviteStatus('idle'); setInviteError('') }}
  placeholder="Initial password"
- style={{ padding: '10px 12px', borderRadius: 0, border: `1px solid ${inviteStatus === 'error' ? 'rgba(255,80,80,.5)' : 'rgba(243,239,230,.25)'}`, background: 'rgba(10,28,50,.9)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', width: '140px' }}
+ style={{ padding: '10px 12px', borderRadius: 0, border: `1px solid ${inviteStatus === 'error' ? 'rgba(201,146,140,.5)' : 'rgba(243,239,230,.25)'}`, background: 'rgba(255,255,255,.05)', color: s.text, fontSize: '14px', fontFamily: s.font, outline: 'none', width: '140px' }}
  />
- <button onClick={() => { setInviteStatus('idle'); setInviteError(''); sendInvite({ ...p, role: inviteRole || p.role || 'staff' }) }} disabled={inviteStatus === 'sending'} style={{ padding: '12px 14px', borderRadius: 0, border: `1px solid ${inviteStatus === 'sent' ? 'rgba(183,196,176,.4)' : inviteStatus === 'error' ? 'rgba(255,80,80,.4)' : 'rgba(243,239,230,.35)'}`, background: inviteStatus === 'sent' ? 'rgba(183,196,176,.12)' : inviteStatus === 'error' ? 'rgba(255,80,80,.1)' : 'transparent', color: inviteStatus === 'sent' ? '#b7c4b0' : inviteStatus === 'error' ? '#c9928c' : s.accent, fontSize: '14px', fontWeight: 700, cursor: inviteStatus === 'sending' ? 'wait' : 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}>
+ <button onClick={() => { setInviteStatus('idle'); setInviteError(''); sendInvite({ ...p, role: inviteRole || p.role || 'staff' }) }} disabled={inviteStatus === 'sending'} style={{ padding: '12px 14px', borderRadius: 0, border: `1px solid ${inviteStatus === 'sent' ? 'rgba(183,196,176,.4)' : inviteStatus === 'error' ? 'rgba(201,146,140,.4)' : 'rgba(243,239,230,.35)'}`, background: inviteStatus === 'sent' ? 'rgba(183,196,176,.12)' : inviteStatus === 'error' ? 'rgba(201,146,140,.1)' : 'transparent', color: inviteStatus === 'sent' ? '#b7c4b0' : inviteStatus === 'error' ? '#c9928c' : s.accent, fontSize: '14px', fontWeight: 700, cursor: inviteStatus === 'sending' ? 'wait' : 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}>
  {inviteStatus === 'sending' ? '…' : inviteStatus === 'sent' ? ' Account + Email gesendet' : inviteStatus === 'error' ? ' Error' : ' Create & Invite'}
  </button>
  </div>
@@ -6931,7 +6931,7 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  }
 
  return (
- <div style={{ background: '#090909', minHeight: '100vh', padding: '24px 16px' }}>
+ <div style={{ background: '#000', minHeight: '100vh', padding: '24px 16px' }}>
  <div style={{ maxWidth: '1320px', margin: '0 auto' }}>
  <div style={{ marginBottom: '24px' }}>
  <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color: s.muted, marginBottom: '8px' }}>Members Area</div>
@@ -6940,7 +6940,7 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  <button onClick={() => nav('dashboard')} style={{ padding: '6px 14px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>&#8592; Dashboard</button>
  <h1 style={{ fontSize: '26px', fontWeight: 900, color: s.text, margin: 0 }}>Staff</h1>
  </div>
- <button onClick={() => { setProfileEdit(newProfile()); setProfileIsNew(true) }} style={{ marginLeft: 'auto', padding: '8px 18px', borderRadius: 0, border: 'none', background: s.accent, color: '#090909', fontSize: '14px', fontWeight: 900, cursor: 'pointer', fontFamily: s.font }}>+ New Profile</button>
+ <button onClick={() => { setProfileEdit(newProfile()); setProfileIsNew(true) }} style={{ marginLeft: 'auto', padding: '8px 18px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontSize: '14px', fontWeight: 900, cursor: 'pointer', fontFamily: s.font }}>+ New Profile</button>
  </div>
  <p style={{ fontSize: '14px', color: s.muted, marginTop: '6px' }}>Qualifications, contact details, availability and contracts for the whole team.</p>
  </div>
@@ -6952,7 +6952,7 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  )}
  <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fill, minmax(280px, 1fr))', gap: '16px' }}>
  {[...profiles].sort((a,b) => (a.name||'').localeCompare(b.name||'')).map((p: any) => (
- <div key={p.id} style={{ background: 'rgba(10,28,50,.7)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '18px' }}>
+ <div key={p.id} style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '18px' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
  {p.photoUrl ? <img src={p.photoUrl} alt={p.name} style={{ width: '48px', height: '48px', borderRadius: '50%', objectFit: 'cover', border: '2px solid rgba(243,239,230,.3)' }} /> : <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'rgba(243,239,230,.1)', border: '2px solid rgba(243,239,230,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px' }}>?</div>}
  <div>
@@ -6968,12 +6968,12 @@ function PageProfiles({ nav, session }: { nav: (p: MemberPage) => void; session:
  <button onClick={() => { setProfileEdit(p); setProfileIsNew(false); setInviteStatus('idle'); setInviteError(''); setInviteRole('') }} style={{ flex: 1, padding: '7px', borderRadius: 0, border: '1px solid rgba(243,239,230,.25)', background: 'transparent', color: s.accent, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>Edit</button>
  {delConfirm !== null && delConfirm.id === p.id ? (
  <div style={{ display: 'flex', gap: '6px' }}>
- {delConfirm.step === 1 && <button onClick={() => setDelConfirm({ id: p.id, step: 2 })} style={{ padding: '7px 12px', borderRadius: 0, border: '1px solid rgba(255,80,80,.4)', background: 'rgba(255,80,80,.1)', color: '#c9928c', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>Sure?</button>}
- {delConfirm.step === 2 && <button onClick={async () => { await supabase.from('profiles').delete().eq('id', p.id); setProfiles((prev: any[]) => prev.filter((x: any) => x.id !== p.id)); setDelConfirm(null) }} style={{ padding: '7px 12px', borderRadius: 0, border: '1px solid rgba(255,80,80,.6)', background: 'rgba(255,80,80,.18)', color: '#c9928c', fontSize: '14px', fontWeight: 800, cursor: 'pointer', fontFamily: s.font }}>Delete permanently</button>}
+ {delConfirm.step === 1 && <button onClick={() => setDelConfirm({ id: p.id, step: 2 })} style={{ padding: '7px 12px', borderRadius: 0, border: '1px solid rgba(201,146,140,.4)', background: 'rgba(201,146,140,.1)', color: '#c9928c', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>Sure?</button>}
+ {delConfirm.step === 2 && <button onClick={async () => { await supabase.from('profiles').delete().eq('id', p.id); setProfiles((prev: any[]) => prev.filter((x: any) => x.id !== p.id)); setDelConfirm(null) }} style={{ padding: '7px 12px', borderRadius: 0, border: '1px solid rgba(201,146,140,.6)', background: 'rgba(201,146,140,.18)', color: '#c9928c', fontSize: '14px', fontWeight: 800, cursor: 'pointer', fontFamily: s.font }}>Delete permanently</button>}
  <button onClick={() => setDelConfirm(null)} style={{ padding: '7px 10px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>x</button>
  </div>
  ) : (
- <button onClick={() => setDelConfirm({ id: p.id, step: 1 })} style={{ padding: '7px 12px', borderRadius: 0, border: '1px solid rgba(255,80,80,.25)', background: 'transparent', color: '#c9928c', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>Del</button>
+ <button onClick={() => setDelConfirm({ id: p.id, step: 1 })} style={{ padding: '7px 12px', borderRadius: 0, border: '1px solid rgba(201,146,140,.25)', background: 'transparent', color: '#c9928c', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>Del</button>
  )}
  </div>
  </div>
@@ -7113,7 +7113,7 @@ function PageMyProfile({ session, nav, isRecovery, onRecoveryDone }: { session: 
  Password updated — redirecting…
  </div>
  ) : (
- <div style={{ background: 'rgba(10,28,50,.8)', border: '1px solid rgba(243,239,230,.18)', borderRadius: 0, padding: '28px' }}>
+ <div style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(243,239,230,.18)', borderRadius: 0, padding: '28px' }}>
  <div style={{ marginBottom: '16px' }}>
  <label style={{ display: 'block', fontSize: '14px', fontWeight: 700, color: muted, letterSpacing: '.12em', textTransform: 'uppercase', marginBottom: '6px' }}>New Password</label>
  <input type="password" value={newPassword} onChange={e => setNewPassword(e.target.value)} placeholder="min. 8 characters" style={{ width: '100%', boxSizing: 'border-box', padding: '10px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.25)', background: 'rgba(243,239,230,.04)', color: text, fontSize: '14px', fontFamily: font, outline: 'none' }} />
@@ -7123,7 +7123,7 @@ function PageMyProfile({ session, nav, isRecovery, onRecoveryDone }: { session: 
  <input type="password" value={newPasswordConfirm} onChange={e => setNewPasswordConfirm(e.target.value)} placeholder="repeat password" style={{ width: '100%', boxSizing: 'border-box', padding: '10px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.25)', background: 'rgba(243,239,230,.04)', color: text, fontSize: '14px', fontFamily: font, outline: 'none' }} />
  </div>
  {pwSetError && <div style={{ color: '#c9928c', fontSize: '14px', marginBottom: '14px' }}>{pwSetError}</div>}
- <button onClick={handleSetNewPassword} disabled={pwSetStatus === 'saving'} style={{ width: '100%', padding: '12px', borderRadius: 0, border: 'none', background: accent, color: '#090909', fontSize: '14px', fontWeight: 800, cursor: 'pointer', fontFamily: font, opacity: pwSetStatus === 'saving' ? 0.7 : 1 }}>
+ <button onClick={handleSetNewPassword} disabled={pwSetStatus === 'saving'} style={{ width: '100%', padding: '12px', borderRadius: 0, border: 'none', background: accent, color: '#000', fontSize: '14px', fontWeight: 800, cursor: 'pointer', fontFamily: font, opacity: pwSetStatus === 'saving' ? 0.7 : 1 }}>
  {pwSetStatus === 'saving' ? 'Saving…' : 'Set New Password'}
  </button>
  </div>
@@ -7163,7 +7163,7 @@ function PageMyProfile({ session, nav, isRecovery, onRecoveryDone }: { session: 
  </div>
 
  {/* Appearance — gilt für den gesamten Members-Bereich */}
- <div style={{ background: 'rgba(10,28,50,.7)', border: '1px solid rgba(243,239,230,.18)', borderRadius: 0, padding: '18px 24px', marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', flexWrap: 'wrap' }}>
+ <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.18)', borderRadius: 0, padding: '18px 24px', marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', flexWrap: 'wrap' }}>
  <div>
  <div style={{ fontSize: '14px', fontWeight: 800, color: text }}>Appearance</div>
  <div style={{ fontSize: '14px', color: muted, marginTop: '3px' }}>Dark or light display for the whole members area. Saved on this device.</div>
@@ -7178,7 +7178,7 @@ function PageMyProfile({ session, nav, isRecovery, onRecoveryDone }: { session: 
  </div>
  </div>
 
- <div style={{ background: 'rgba(10,28,50,.7)', border: '1px solid rgba(243,239,230,.18)', borderRadius: 0, padding: '18px 24px', marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', flexWrap: 'wrap' }}>
+ <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.18)', borderRadius: 0, padding: '18px 24px', marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', flexWrap: 'wrap' }}>
  <div>
  <div style={{ fontSize: '14px', fontWeight: 800, color: text }}>Text size</div>
  <div style={{ fontSize: '14px', color: muted, marginTop: '3px' }}>Makes everything in the members area bigger. Saved on this device.</div>
@@ -7194,7 +7194,7 @@ function PageMyProfile({ session, nav, isRecovery, onRecoveryDone }: { session: 
  </div>
 
  {/* Profile card */}
- <div style={{ background: 'rgba(10,28,50,.7)', border: '1px solid rgba(243,239,230,.18)', borderRadius: 0, padding: '24px', marginBottom: '20px' }}>
+ <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.18)', borderRadius: 0, padding: '24px', marginBottom: '20px' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '18px', marginBottom: '20px' }}>
  {profile.photoUrl
  ? <img src={profile.photoUrl} alt={profile.name} style={{ width: '80px', height: '80px', borderRadius: '50%', objectFit: 'cover', border: '2px solid rgba(243,239,230,.4)', flexShrink: 0 }} />
@@ -7228,7 +7228,7 @@ function PageMyProfile({ session, nav, isRecovery, onRecoveryDone }: { session: 
 
  {/* SSI Matrix read-only */}
  {profile.ssiPro && (
- <div style={{ background: 'rgba(10,28,50,.7)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '20px', marginBottom: '20px' }}>
+ <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '20px', marginBottom: '20px' }}>
  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px', flexWrap: 'wrap', gap: '6px' }}>
  <div style={{ fontSize: '14px', fontWeight: 800, color: muted, letterSpacing: '.14em', textTransform: 'uppercase' }}>SSI Professional Matrix</div>
  <div style={{ fontSize: '14px', color: muted }}>Pro #{profile.ssiPro} · MID {profile.ssiMid}{profile.ssiPaidUntil ? ` · Paid ${profile.ssiPaidUntil}` : ''}</div>
@@ -7253,7 +7253,7 @@ function PageMyProfile({ session, nav, isRecovery, onRecoveryDone }: { session: 
  )}
 
  {/* Password reset */}
- <div style={{ background: 'rgba(10,28,50,.7)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 0, padding: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 800, color: muted, letterSpacing: '.14em', textTransform: 'uppercase', marginBottom: '8px' }}>Account Security</div>
  <div style={{ fontSize: '14px', color: muted, marginBottom: '14px' }}>Request a password reset link sent to <strong style={{ color: text }}>{email}</strong></div>
  {resetSent
@@ -7292,7 +7292,7 @@ function PageKnowledgeBase() {
  <div style={{ padding: '32px 48px 48px', fontFamily: font, color: text, background: bg, minHeight: '80vh', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 220px', columnGap: '28px', alignItems: 'start' }}>
  {/* Header */}
  <div style={{ marginBottom: '28px', gridColumn: '1 / -1' }}>
- <h1 style={{ fontSize: '22px', fontWeight: 800, color: '#fff', margin: 0, letterSpacing: '-.01em' }}> Knowledge Base</h1>
+ <h1 style={{ fontSize: '22px', fontWeight: 800, color: '#f3efe6', margin: 0, letterSpacing: '-.01em' }}> Knowledge Base</h1>
  <p style={{ fontSize: '14px', color: muted, margin: '6px 0 0', lineHeight: 1.5 }}>
  Team guides, policies, and standard operating procedures.
  </p>
@@ -7330,7 +7330,7 @@ function PageKnowledgeBase() {
  {activeSection === 'cancellation' && (
  <div style={{ maxWidth: '760px' }}>
  <div style={{ background: surface, borderRadius: 0, border: `1px solid ${border}`, padding: '36px 40px' }}>
- <h2 style={{ fontSize: '18px', fontWeight: 800, color: '#fff', margin: '0 0 6px', letterSpacing: '-.01em' }}>Azores Diving — Cancellation Policy</h2>
+ <h2 style={{ fontSize: '18px', fontWeight: 800, color: '#f3efe6', margin: '0 0 6px', letterSpacing: '-.01em' }}>Azores Diving — Cancellation Policy</h2>
  <p style={{ fontSize: '14px', color: muted, margin: '0 0 28px', textTransform: 'uppercase', letterSpacing: '.06em' }}>Effective for all bookings</p>
 
  <Section title="Cancellations by the Customer">
@@ -7377,12 +7377,12 @@ function PageKnowledgeBase() {
  {activeSection === 'insurance' && (
  <div style={{ maxWidth: '820px' }}>
  <div style={{ background: surface, borderRadius: 0, border: `1px solid ${border}`, padding: '36px 40px' }}>
- <h2 style={{ fontSize: '18px', fontWeight: 800, color: '#fff', margin: '0 0 6px', letterSpacing: '-.01em' }}>DAN Dive Insurance — How We Price It</h2>
+ <h2 style={{ fontSize: '18px', fontWeight: 800, color: '#f3efe6', margin: '0 0 6px', letterSpacing: '-.01em' }}>DAN Dive Insurance — How We Price It</h2>
  <p style={{ fontSize: '14px', color: muted, margin: '0 0 28px', textTransform: 'uppercase', letterSpacing: '.06em' }}>Staff reference · September 2026</p>
 
  <Section title="Why the price isn't always &quot;days × €10&quot;">
  <p style={{ fontSize: '14px', color: text, lineHeight: 1.7, margin: 0 }}>
- Every diver needs insurance. Guests either bring their own policy or purchase a DAN Short Term policy through us at checkout. DAN offers multi-day plans (3-, 5-, 7-, 10-day) at a discount — but <strong style={{ color: '#fff' }}>multi-day plans are only valid for consecutive calendar days.</strong> A 5-day plan cannot legally cover five scattered days across two weeks. Our system automatically splits the selected dive dates into consecutive blocks and picks the cheapest valid DAN plan for each block separately.
+ Every diver needs insurance. Guests either bring their own policy or purchase a DAN Short Term policy through us at checkout. DAN offers multi-day plans (3-, 5-, 7-, 10-day) at a discount — but <strong style={{ color: '#f3efe6' }}>multi-day plans are only valid for consecutive calendar days.</strong> A 5-day plan cannot legally cover five scattered days across two weeks. Our system automatically splits the selected dive dates into consecutive blocks and picks the cheapest valid DAN plan for each block separately.
  </p>
  </Section>
 
@@ -7449,7 +7449,7 @@ function PageKnowledgeBase() {
  </div>
  ))}
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', background: 'rgba(243,239,230,.06)', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)' }}>
- <span style={{ fontSize: '14px', fontWeight: 700, color: '#fff' }}>Total per diver</span>
+ <span style={{ fontSize: '14px', fontWeight: 700, color: '#f3efe6' }}>Total per diver</span>
  <span style={{ fontSize: '15px', fontWeight: 800, color: accent }}>€43</span>
  </div>
  </div>
@@ -7489,7 +7489,7 @@ function PageKnowledgeBase() {
  <div style={{ maxWidth: '760px' }}>
  <div style={{ background: surface, borderRadius: 0, border: `1px solid ${border}`, padding: '36px 40px', textAlign: 'center' }}>
  <div style={{ fontSize: '48px', marginBottom: '16px' }}></div>
- <h2 style={{ fontSize: '17px', fontWeight: 800, color: '#fff', margin: '0 0 8px' }}>SOPs coming soon</h2>
+ <h2 style={{ fontSize: '17px', fontWeight: 800, color: '#f3efe6', margin: '0 0 8px' }}>SOPs coming soon</h2>
  <p style={{ fontSize: '14px', color: muted, margin: 0, lineHeight: 1.6 }}>
  Standard operating procedures for front office, dive operations, equipment, and emergency protocols will be published here.
  </p>
@@ -7617,7 +7617,7 @@ function PageTesting({ session }: { session: any }) {
  ref={frameRef}
  src="/workshop.html"
  title="Workshop testing"
- style={{ display: 'block', width: '100%', height: 'calc(100vh - 150px)', minHeight: '640px', border: 'none', background: '#0d1a1e' }}
+ style={{ display: 'block', width: '100%', height: 'calc(100vh - 150px)', minHeight: '640px', border: 'none', background: '#000' }}
  />
  )
 }
@@ -7707,7 +7707,7 @@ function PageTelemetry({ nav }: { nav: (p: MemberPage) => void }) {
  )}
  <span style={{ marginLeft: cohorts.length > 0 ? 0 : 'auto', fontSize: '14px', color: sandbox ? '#c9b48a' : s.muted }}>{cohort ? ` Bucket "${cohort}" — all sessions (test + real)` : sandbox === null ? '' : sandbox ? ' Sandbox — test sessions only' : ' Production — real sessions only'}</span>
  </div>
- <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px', flexWrap: 'wrap', padding: '10px 14px', background: bucket.active ? 'rgba(80,200,120,.08)' : 'rgba(255,255,255,.04)', border: `1px solid ${bucket.active ? 'rgba(80,200,120,.35)' : 'rgba(255,255,255,.1)'}`, borderRadius: 0, fontSize: '14px', color: '#f3efe6' }}>
+ <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px', flexWrap: 'wrap', padding: '10px 14px', background: bucket.active ? 'rgba(183,196,176,.08)' : 'rgba(255,255,255,.04)', border: `1px solid ${bucket.active ? 'rgba(183,196,176,.35)' : 'rgba(255,255,255,.1)'}`, borderRadius: 0, fontSize: '14px', color: '#f3efe6' }}>
  <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer', fontWeight: 700 }}>
  <input type="checkbox" checked={bucket.active} onChange={e => saveBucket({ ...bucket, active: e.target.checked })} />
  Measurement bucket active
@@ -7910,12 +7910,12 @@ function MarketingWaitlist() {
  </div>
 
  {error && (
- <div style={{ marginBottom: '12px', padding: '8px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 600, background: 'rgba(248,113,113,.1)', color: '#c9928c', border: '1px solid rgba(248,113,113,.25)' }}>
+ <div style={{ marginBottom: '12px', padding: '8px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 600, background: 'rgba(201,146,140,.1)', color: '#c9928c', border: '1px solid rgba(201,146,140,.25)' }}>
  Could not load waitlist: {error}
  </div>
  )}
 
- <div style={{ border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, overflow: 'auto', background: '#090909' }}>
+ <div style={{ border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, overflow: 'auto', background: '#000' }}>
  {loading && rows.length === 0 ? (
  <div style={{ padding: '60px', textAlign: 'center', color: s.muted, fontSize: '14px' }}>Loading…</div>
  ) : visible.length === 0 ? (
@@ -7937,7 +7937,7 @@ function MarketingWaitlist() {
  <td style={td}>{r.site}</td>
  <td style={td}>{r.lang}</td>
  <td style={td}>
- <span style={{ fontSize: '14px', fontWeight: 700, padding: '2px 8px', borderRadius: 0, background: r.status === 'waiting' ? 'rgba(201,180,138,.15)' : 'rgba(52,211,153,.12)', color: r.status === 'waiting' ? '#c9b48a' : '#34d399' }}>{r.status}</span>
+ <span style={{ fontSize: '14px', fontWeight: 700, padding: '2px 8px', borderRadius: 0, background: r.status === 'waiting' ? 'rgba(201,180,138,.15)' : 'rgba(183,196,176,.12)', color: r.status === 'waiting' ? '#c9b48a' : '#b7c4b0' }}>{r.status}</span>
  </td>
  <td style={{ ...td, whiteSpace: 'nowrap' }}>{r.notified_at ? fmt(r.notified_at) : <span style={{ color: '#a39e94' }}>—</span>}</td>
  <td style={{ ...td, color: '#c9c2b6' }}>{r.notes ?? ''}</td>
@@ -8108,16 +8108,16 @@ function MarketingEmails() {
  {/* Send confirmation */}
  {sendMsg && (
  <div style={{ marginBottom: '10px', padding: '8px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 600,
- background: sendMsg.startsWith('') ? 'rgba(52,211,153,.1)' : 'rgba(248,113,113,.1)',
- color: sendMsg.startsWith('') ? '#34d399' : '#c9928c',
- border: sendMsg.startsWith('') ? '1px solid rgba(52,211,153,.25)' : '1px solid rgba(248,113,113,.25)',
+ background: sendMsg.startsWith('') ? 'rgba(183,196,176,.1)' : 'rgba(201,146,140,.1)',
+ color: sendMsg.startsWith('') ? '#b7c4b0' : '#c9928c',
+ border: sendMsg.startsWith('') ? '1px solid rgba(183,196,176,.25)' : '1px solid rgba(201,146,140,.25)',
  }}>
  {sendMsg}
  </div>
  )}
 
  {/* Email preview area */}
- <div style={{ border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, overflow: 'hidden', background: '#090909' }}>
+ <div style={{ border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, overflow: 'hidden', background: '#000' }}>
  {isLoading ? (
  <div style={{ padding: '80px', textAlign: 'center', color: s.muted, fontSize: '14px' }}>Loading preview…</div>
  ) : !current ? (
@@ -8132,7 +8132,7 @@ function MarketingEmails() {
  ) : (
  <pre style={{
  margin: 0, padding: '24px', fontSize: '14px', lineHeight: 1.7,
- color: '#c9c2b6', background: '#090909', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
+ color: '#c9c2b6', background: '#000', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
  maxHeight: '700px', overflowY: 'auto',
  }}>{current.text}</pre>
  )}
@@ -8283,14 +8283,14 @@ function BookingWindowsAdmin() {
  )}
  </div>
  <div style={{ display: 'flex', gap: '8px', marginTop: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
- <button type="button" disabled={saving} onClick={save} style={{ padding: '8px 16px', borderRadius: 0, border: 'none', background: s.accent, color: '#090909', fontSize: '14px', fontWeight: 800, cursor: saving ? 'not-allowed' : 'pointer', fontFamily: s.font, opacity: saving ? .6 : 1 }}>{saving ? 'Saving…' : form.id ? 'Save changes' : '+ Add window'}</button>
+ <button type="button" disabled={saving} onClick={save} style={{ padding: '8px 16px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontSize: '14px', fontWeight: 800, cursor: saving ? 'not-allowed' : 'pointer', fontFamily: s.font, opacity: saving ? .6 : 1 }}>{saving ? 'Saving…' : form.id ? 'Save changes' : '+ Add window'}</button>
  {form.id && <button type="button" onClick={() => setForm(empty)} style={{ padding: '8px 12px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>Cancel</button>}
  {msg && <span style={{ fontSize: '14px', fontWeight: 700, color: msg.startsWith('') ? '#b7c4b0' : '#c9928c' }}>{msg}</span>}
  </div>
  </div>
 
  {/* Liste */}
- <div style={{ border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, overflow: 'auto', background: '#090909', marginBottom: '16px' }}>
+ <div style={{ border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, overflow: 'auto', background: '#000', marginBottom: '16px' }}>
  {rows === null ? <div style={{ padding: '24px', textAlign: 'center', color: s.muted, fontSize: '14px' }}>Loading…</div>
  : rows.length === 0 ? <div style={{ padding: '24px', textAlign: 'center', color: s.muted, fontSize: '14px' }}>No windows yet — the default ({defaultMode}) applies to every date.</div>
  : (
@@ -8556,12 +8556,12 @@ function PageBoatManagement({ nav }: { nav: (p: MemberPage) => void }) {
  {delConfirm === boat.id ? (
  <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
  <span style={{ fontSize: '14px', color: '#c9928c' }}>Wirklich löschen?</span>
- <button onClick={() => deleteBoat(boat.id)} style={{ ...bm(), background: '#c9928c', color: '#fff', padding: '5px 12px', fontSize: '14px' }}>Ja</button>
+ <button onClick={() => deleteBoat(boat.id)} style={{ ...bm(), background: '#c9928c', color: '#f3efe6', padding: '5px 12px', fontSize: '14px' }}>Ja</button>
  <button onClick={() => setDelConfirm(null)} style={{ ...bm(), padding: '5px 10px', fontSize: '14px' }}>Nein</button>
  </div>
  ) : (
  <button onClick={() => setDelConfirm(boat.id)} disabled={isSavingThis}
- style={{ background: 'transparent', border: '1px solid rgba(255,100,100,.3)', borderRadius: 0, color: '#c9928c', cursor: 'pointer', fontSize: '14px', padding: '5px 10px', fontFamily: s.font }}>
+ style={{ background: 'transparent', border: '1px solid rgba(201,146,140,.3)', borderRadius: 0, color: '#c9928c', cursor: 'pointer', fontSize: '14px', padding: '5px 10px', fontFamily: s.font }}>
  Delete
  </button>
  )}
@@ -8827,9 +8827,9 @@ export function PageMembers({ lang, nav, initialSlug }: { lang: Lang; nav: (p: s
  <button type="button" disabled={sim.busy} onClick={sim.toggle}
  title={sim.error ?? (sim.sandbox ? 'Sandbox: only test data is shown everywhere. Click to switch to Production.' : 'Production: only real data is shown everywhere. Click to switch to Sandbox.')}
  style={{ padding: '5px 12px', borderRadius: 0, fontSize: '14px', fontWeight: 800, letterSpacing: '.06em', textTransform: 'uppercase', cursor: sim.busy ? 'wait' : 'pointer', fontFamily: s.font, whiteSpace: 'nowrap', opacity: sim.busy ? .6 : 1,
- background: sim.error ? 'rgba(248,113,113,.15)' : sim.sandbox ? 'rgba(201,180,138,.18)' : 'rgba(183,196,176,.10)',
+ background: sim.error ? 'rgba(201,146,140,.15)' : sim.sandbox ? 'rgba(201,180,138,.18)' : 'rgba(183,196,176,.10)',
  color: sim.error ? '#c9928c' : sim.sandbox ? '#c9b48a' : '#b7c4b0',
- border: `1px solid ${sim.error ? 'rgba(248,113,113,.5)' : sim.sandbox ? 'rgba(201,180,138,.5)' : 'rgba(183,196,176,.35)'}` }}>
+ border: `1px solid ${sim.error ? 'rgba(201,146,140,.5)' : sim.sandbox ? 'rgba(201,180,138,.5)' : 'rgba(183,196,176,.35)'}` }}>
  {sim.busy ? 'Switching…' : sim.error ? ` ${sim.error.slice(0, 60)}` : sim.sandbox ? ' Sandbox' : ' Production'}
  </button>
  )}
@@ -8849,7 +8849,7 @@ export function PageMembers({ lang, nav, initialSlug }: { lang: Lang; nav: (p: s
  )}
  <span style={{ fontSize: '14px', color: s.muted, opacity: .4 }}></span>
  <button onClick={() => supabase.auth.signOut()} style={{ padding: '5px 12px', borderRadius: 0, border: '1px solid rgba(255,255,255,.1)', background: 'transparent', color: 'rgba(255,255,255,.35)', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap', transition: 'all .15s' }}
- onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(255,80,80,.12)'; (e.currentTarget as HTMLElement).style.color = '#c9928c'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,80,80,.3)' }}
+ onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(201,146,140,.12)'; (e.currentTarget as HTMLElement).style.color = '#c9928c'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(201,146,140,.3)' }}
  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent'; (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,.35)'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,.1)' }}>
  Sign out
  </button>

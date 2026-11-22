@@ -204,7 +204,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
 
  return (
  <div style={{
- background: 'rgba(10,28,50,.7)',
+ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)',
  border: `1px solid ${warningDays.length > 0 ? 'rgba(212,160,122,.4)' : 'rgba(243,239,230,.15)'}`,
  borderRadius: 0,
  padding: '20px',
@@ -307,7 +307,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
  )}
 
  {openDate && (
- <div onClick={() => setOpenDate(null)} style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(2,8,20,.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '40px 16px', overflowY: 'auto' }}>
+ <div onClick={() => setOpenDate(null)} style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '40px 16px', overflowY: 'auto' }}>
  <div onClick={e => e.stopPropagation()} style={{ width: 'min(760px, 100%)', background: '#121210', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, boxShadow: 'none' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  <span style={{ fontSize: '14px', fontWeight: 800, color: s.text }}>Courses · {fmt(openDate)}</span>
@@ -351,7 +351,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
  )}
 
  {bookingPopup && (
- <div onClick={() => setBookingPopup(null)} style={{ position: 'fixed', inset: 0, zIndex: 1100, background: 'rgba(2,8,20,.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '40px 16px', overflowY: 'auto' }}>
+ <div onClick={() => setBookingPopup(null)} style={{ position: 'fixed', inset: 0, zIndex: 1100, background: 'rgba(0,0,0,0.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '40px 16px', overflowY: 'auto' }}>
  <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: '#121210', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, boxShadow: 'none' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>Booking <span style={{ fontFamily: 'monospace', color: s.text, fontWeight: 700 }}>{bookingPopup.slice(0, 8).toUpperCase()}</span></span>

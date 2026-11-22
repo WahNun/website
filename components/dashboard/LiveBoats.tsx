@@ -117,7 +117,7 @@ const STATUS_META: Record<string, { label: string; color: string; bg: string }> 
  boarding: { label: ' BOARDING', color: '#c9b48a', bg: 'rgba(201,180,138,.15)' },
  out: { label: ' OUT', color: '#c9928c', bg: 'rgba(201,146,140,.15)' },
  returned: { label: ' DOCKED', color: '#b7c4b0', bg: 'rgba(183,196,176,.15)' },
- cancelled: { label: ' CANCELLED', color: '#a39e94', bg: 'rgba(136,148,164,.15)' },
+ cancelled: { label: ' CANCELLED', color: '#a39e94', bg: 'rgba(243,239,230,0.15)' },
 }
 
 function shortName(full: string | null | undefined): string {
@@ -341,7 +341,7 @@ export default function LiveBoats({
  <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color: s.muted, marginBottom: '14px' }}>The Boats</div>
  <div style={{
  position: 'relative', marginBottom: '28px', minHeight: '180px', borderRadius: 0,
- background: 'rgba(10,28,50,.7)', border: '1px solid rgba(243,239,230,.15)',
+ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.15)',
  display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '6px',
  }}>
  <div style={{ fontSize: '20px' }}></div>
@@ -470,9 +470,9 @@ export default function LiveBoats({
  </div>
  </div>
  {!loaded ? (
- <div style={{ marginBottom: '28px', padding: '40px', textAlign: 'center', color: s.muted, fontSize: '14px', background: 'rgba(10,28,50,.4)', borderRadius: 0, border: '1px solid rgba(243,239,230,.1)' }}>Loading boats…</div>
+ <div style={{ marginBottom: '28px', padding: '40px', textAlign: 'center', color: s.muted, fontSize: '14px', background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', borderRadius: 0, border: '1px solid rgba(243,239,230,.1)' }}>Loading boats…</div>
  ) : boats.length === 0 ? (
- <div style={{ marginBottom: '28px', padding: '40px', textAlign: 'center', color: s.muted, fontSize: '14px', background: 'rgba(10,28,50,.4)', borderRadius: 0, border: '1px solid rgba(243,239,230,.1)' }}>No boats configured.</div>
+ <div style={{ marginBottom: '28px', padding: '40px', textAlign: 'center', color: s.muted, fontSize: '14px', background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', borderRadius: 0, border: '1px solid rgba(243,239,230,.1)' }}>No boats configured.</div>
  ) : (
  <>
  <div style={{ display: 'flex', gap: '6px', marginBottom: '14px' }}>
@@ -528,7 +528,7 @@ export default function LiveBoats({
  style={{ display: 'flex', alignItems: 'center', gap: '8px', textAlign: 'left', width: '100%', padding: '8px 10px', borderRadius: 0, cursor: 'pointer', fontFamily: s.font, background: 'rgba(255,255,255,.03)', border: '1px solid rgba(201,180,138,.25)', color: s.text }}>
  <span style={{ fontSize: '14px', fontWeight: 700, flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{w.name}</span>
  <span style={{ fontSize: '14px', color: s.muted, whiteSpace: 'nowrap' }}>{w.productName ?? 'Booking'}</span>
- <span style={{ fontSize: '14px', fontWeight: 800, color: '#090909', background: '#c9b48a', borderRadius: 0, padding: '0 4px' }}>UNPAID</span>
+ <span style={{ fontSize: '14px', fontWeight: 800, color: '#000', background: '#c9b48a', borderRadius: 0, padding: '0 4px' }}>UNPAID</span>
  {w.isTest && <span style={{ fontSize: '14px', fontWeight: 800, color: '#c9b48a' }}>TEST</span>}
  </button>
  ))}
@@ -841,13 +841,13 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  )}
  {f.actionKey === 'dan_policy' && (
  <div style={{ marginTop: '8px' }}>
- <input value={danPolicy} onChange={e => setDanPolicy(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && danPolicy.trim()) resolveFlag('dan_policy', true) }} placeholder="DAN policy number" style={{ width: '100%', boxSizing: 'border-box', background: '#090909', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, padding: '5px 8px', fontSize: '14px', color: '#f3efe6', fontFamily: 'inherit', outline: 'none' }} />
+ <input value={danPolicy} onChange={e => setDanPolicy(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && danPolicy.trim()) resolveFlag('dan_policy', true) }} placeholder="DAN policy number" style={{ width: '100%', boxSizing: 'border-box', background: '#000', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, padding: '5px 8px', fontSize: '14px', color: '#f3efe6', fontFamily: 'inherit', outline: 'none' }} />
  </div>
  )}
  {f.actionKey === 'insurance' && (
  <div style={{ marginTop: '8px', display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
- <input value={proofProvider} onChange={e => setProofProvider(e.target.value)} placeholder="Provider (e.g. DAN)" style={{ flex: '1 1 120px', minWidth: 0, background: '#090909', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, padding: '5px 8px', fontSize: '14px', color: '#f3efe6', fontFamily: 'inherit', outline: 'none' }} />
- <input value={proofPolicy} onChange={e => setProofPolicy(e.target.value)} placeholder="Policy number" style={{ flex: '1 1 140px', minWidth: 0, background: '#090909', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, padding: '5px 8px', fontSize: '14px', color: '#f3efe6', fontFamily: 'inherit', outline: 'none' }} />
+ <input value={proofProvider} onChange={e => setProofProvider(e.target.value)} placeholder="Provider (e.g. DAN)" style={{ flex: '1 1 120px', minWidth: 0, background: '#000', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, padding: '5px 8px', fontSize: '14px', color: '#f3efe6', fontFamily: 'inherit', outline: 'none' }} />
+ <input value={proofPolicy} onChange={e => setProofPolicy(e.target.value)} placeholder="Policy number" style={{ flex: '1 1 140px', minWidth: 0, background: '#000', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, padding: '5px 8px', fontSize: '14px', color: '#f3efe6', fontFamily: 'inherit', outline: 'none' }} />
  </div>
  )}
  {f.actionKey === 'medical' && slot?.medical_proof_path && (
@@ -1221,7 +1221,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  <div key={h.id} style={{ display: 'flex', gap: '10px', fontSize: '14px', padding: '5px 0', alignItems: 'baseline', borderBottom: '1px solid rgba(255,255,255,.04)' }}>
  <span style={{ color: s.muted, whiteSpace: 'nowrap', flexShrink: 0 }}>{formatHistoryTs(h.created_at)}</span>
  <span style={{ color: 'rgba(255,255,255,.55)', flexShrink: 0 }}>{(h.user_name ?? h.user_email ?? '').split('@')[0]}</span>
- <span style={{ color: h.source === 'booking' ? 'rgba(207,226,244,.75)' : '#f3efe6' }}>
+ <span style={{ color: h.source === 'booking' ? 'rgba(243,239,230,0.55)' : '#f3efe6' }}>
  {h.source === 'booking' && <span style={{ fontSize: '14px', fontWeight: 800, letterSpacing: '.1em', color: s.muted, marginRight: '6px' }}>BOOKING</span>}
  {DIVER_ACTION_LABELS[h.action_type] ?? h.action_type}
  </span>
@@ -1235,7 +1235,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  )}
  </div>
  {bookingPopup && (
- <div onClick={e => { e.stopPropagation(); setBookingPopup(false) }} style={{ position: 'fixed', inset: 0, zIndex: 10010, background: 'rgba(2,8,20,.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '32px 16px', overflowY: 'auto' }}>
+ <div onClick={e => { e.stopPropagation(); setBookingPopup(false) }} style={{ position: 'fixed', inset: 0, zIndex: 10010, background: 'rgba(0,0,0,0.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '32px 16px', overflowY: 'auto' }}>
  <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: '#121210', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, boxShadow: 'none', overflow: 'hidden' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>Booking <span style={{ fontFamily: 'monospace', color: s.text, fontWeight: 700 }}>{seat.bookingId.slice(0, 8).toUpperCase()}</span> · changes here are live</span>
@@ -1360,7 +1360,7 @@ function InsuranceCasesCard({ label, seats, onOpen, onSaved }: {
  {w.danPolicyOpen && id && (
  <div style={{ display: 'flex', gap: '6px', marginTop: '6px' }}>
  <input value={vals[id] ?? ''} onChange={e => setVals(v => ({ ...v, [id]: e.target.value }))} onKeyDown={e => { if (e.key === 'Enter') save(id) }} placeholder="DAN policy no."
- style={{ flex: 1, minWidth: 0, padding: '5px 9px', borderRadius: 0, fontSize: '14px', fontFamily: 'inherit', background: 'rgba(0,0,0,.25)', color: '#fff', border: '1px solid rgba(255,255,255,.2)' }} />
+ style={{ flex: 1, minWidth: 0, padding: '5px 9px', borderRadius: 0, fontSize: '14px', fontFamily: 'inherit', background: 'rgba(0,0,0,.25)', color: '#f3efe6', border: '1px solid rgba(255,255,255,.2)' }} />
  <button type="button" disabled={busyId === id} onClick={() => save(id)}
  style={{ padding: '5px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 800, cursor: 'pointer', fontFamily: 'inherit', background: 'rgba(183,196,176,.15)', color: '#b7c4b0', border: '1px solid rgba(183,196,176,.4)', opacity: busyId === id ? .6 : 1 }}>
  {busyId === id ? 'Saving…' : 'Save'}
@@ -1374,7 +1374,7 @@ function InsuranceCasesCard({ label, seats, onOpen, onSaved }: {
  <div style={{ marginTop: '6px' }}>
  <div style={{ display: 'flex', gap: '6px' }}>
  <input type="email" value={mails[k] ?? w.slot?.customers?.email ?? w.bookingEmail ?? ''} onChange={e => { setMails(v => ({ ...v, [k]: e.target.value })); setSendSt(x => ({ ...x, [k]: {} })) }} onKeyDown={e => { if (e.key === 'Enter') sendLink(w) }} placeholder="guest@example.com"
- style={{ flex: 1, minWidth: 0, padding: '5px 9px', borderRadius: 0, fontSize: '14px', fontFamily: 'inherit', background: 'rgba(0,0,0,.25)', color: '#fff', border: '1px solid rgba(255,255,255,.2)' }} />
+ style={{ flex: 1, minWidth: 0, padding: '5px 9px', borderRadius: 0, fontSize: '14px', fontFamily: 'inherit', background: 'rgba(0,0,0,.25)', color: '#f3efe6', border: '1px solid rgba(255,255,255,.2)' }} />
  <button type="button" disabled={st.loading} onClick={() => sendLink(w)}
  style={{ padding: '5px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 800, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap', background: st.sent ? 'rgba(183,196,176,.15)' : 'rgba(243,239,230,.12)', color: st.sent ? '#b7c4b0' : '#f3efe6', border: `1px solid ${st.sent ? 'rgba(183,196,176,.4)' : 'rgba(243,239,230,.35)'}`, opacity: st.loading ? .6 : 1 }}>
  {st.loading ? '…' : st.sent ? ' Link sent' : ' Send check-in link'}
@@ -1465,8 +1465,9 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  <svg viewBox="0 0 560 218" width="100%" style={{ display: 'block', overflow: 'visible' }} xmlns="http://www.w3.org/2000/svg">
  <defs>
  <linearGradient id={`hull-${boat.id}-${session}`} x1="0" y1="0" x2="1" y2="1">
- <stop offset="0%" stopColor="#2a2a28" />
- <stop offset="100%" stopColor="#181816" />
+ <stop offset="0%" stopColor="#3a3936" />
+ <stop offset="46%" stopColor="#1a1a18" />
+ <stop offset="100%" stopColor="#0c0c0b" />
  </linearGradient>
  </defs>
  <rect x="0" y="0" width="560" height="218" rx="12" fill="#121210" opacity="0.4" />
@@ -1476,6 +1477,7 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  @keyframes boat_bob_slow { 0%,100%{transform:translateY(0) rotate(0)} 30%{transform:translateY(-2px) rotate(.2deg)} 70%{transform:translateY(1px) rotate(-.1deg)} }
  `}</style>
  <path d="M 50 100 Q 50 30 105 18 L 455 18 Q 510 18 510 60 Q 522 100 510 140 Q 510 182 455 182 L 105 182 Q 50 170 50 100 Z" fill={`url(#hull-${boat.id}-${session})`} stroke="#f3efe6" strokeWidth="2" />
+ <path d="M 118 28 L 442 28" fill="none" stroke="rgba(255,255,255,0.22)" strokeWidth="1" pointerEvents="none" />
  <path d="M 80 100 Q 80 47 115 42 L 445 42 Q 490 42 490 80 Q 495 100 490 120 Q 490 158 445 158 L 115 158 Q 80 153 80 100 Z" fill="#181816" opacity="0.8" />
  <rect x="450" y="76" width="42" height="48" rx="6" fill="#181816" opacity="0.9" />
  <circle cx="471" cy="114" r="8" fill="none" stroke="#f3efe6" strokeWidth="1.8" opacity="0.8" />
@@ -1584,8 +1586,8 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  border: `1px solid ${seat.medicalFlag ? 'rgba(212,160,122,.35)' : ((seat.insuranceFlag && !seat.insurancePolicyOnFile) || seat.insuranceSource === 'none' || seat.danPolicyOpen || seat.refresherOpen || seat.minorOpen) ? 'rgba(201,180,138,.4)' : seat.insuranceFlag ? 'rgba(201,194,182,.35)' : seat.checkedIn ? 'rgba(183,196,176,.3)' : 'rgba(201,146,140,.3)'}`,
  }}>
  {seat.checkedIn ? 'In' : 'Due'} {shortName(seat.name)}
- {seat.bookingStatus === 'pending' && <span title="Booking not paid yet (pending)" style={{ marginLeft: '5px', fontSize: '14px', fontWeight: 800, color: '#090909', background: '#c9b48a', borderRadius: 0, padding: '0 4px' }}>UNPAID</span>}
- {seat.bookingStatus === 'no_show' && <span title="Marked as no-show" style={{ marginLeft: '5px', fontSize: '14px', fontWeight: 800, color: '#fff', background: '#8a8f99', borderRadius: 0, padding: '0 4px' }}>NO-SHOW</span>}
+ {seat.bookingStatus === 'pending' && <span title="Booking not paid yet (pending)" style={{ marginLeft: '5px', fontSize: '14px', fontWeight: 800, color: '#000', background: '#c9b48a', borderRadius: 0, padding: '0 4px' }}>UNPAID</span>}
+ {seat.bookingStatus === 'no_show' && <span title="Marked as no-show" style={{ marginLeft: '5px', fontSize: '14px', fontWeight: 800, color: '#f3efe6', background: '#8a8f99', borderRadius: 0, padding: '0 4px' }}>NO-SHOW</span>}
  {seat.placeholder && <span title="Seat reserved, guest details not entered yet" style={{ marginLeft: '5px', fontSize: '14px', color: '#c9c2b6' }}>(reserved)</span>}
  {/* Versicherung: = Nachweis noch zu sichten, = gar keine.
  Beides muss der Empfang sehen, bevor der Gast an Bord geht. */}

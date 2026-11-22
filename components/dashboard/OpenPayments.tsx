@@ -85,7 +85,7 @@ export default function OpenPayments({ rollDateStr, isToday, simulationMode, rel
  const totalDue = rows.reduce((a, r) => a + r.due, 0)
 
  const line = (r: Row) => (
- <div key={r.bookingId} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '9px 12px', borderRadius: 0, background: 'rgba(255,100,100,.05)', border: '1px solid rgba(255,100,100,.22)', marginBottom: '6px', flexWrap: 'wrap' }}>
+ <div key={r.bookingId} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '9px 12px', borderRadius: 0, background: 'rgba(201,146,140,.05)', border: '1px solid rgba(201,146,140,.22)', marginBottom: '6px', flexWrap: 'wrap' }}>
  <div style={{ flex: 1, minWidth: '180px' }}>
  <div style={{ fontSize: '14px', fontWeight: 700, color: s.text }}>{r.name}{r.groupSize > 1 ? <span style={{ color: s.muted, fontWeight: 500 }}> · {r.groupSize} guests</span> : null}</div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>{r.product} · {fmtDay(r.date)}{r.sessions ? ` ${r.sessions}` : ''} · <span style={{ fontFamily: 'monospace' }}>{r.bookingId.slice(0, 8).toUpperCase()}</span></div>
@@ -103,10 +103,10 @@ export default function OpenPayments({ rollDateStr, isToday, simulationMode, rel
  )
 
  return (
- <div style={{ background: 'rgba(10,28,50,.7)', border: `1px solid ${rows.length > 0 ? 'rgba(255,100,100,.4)' : 'rgba(243,239,230,.15)'}`, borderRadius: 0, padding: '20px', marginBottom: '20px' }}>
+ <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: `1px solid ${rows.length > 0 ? 'rgba(201,146,140,.4)' : 'rgba(243,239,230,.15)'}`, borderRadius: 0, padding: '20px', marginBottom: '20px' }}>
  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px', gap: '10px', flexWrap: 'wrap' }}>
  <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', color: s.accent }}>Open payments · {fmtDay(rollDateStr)}</div>
- {rows.length > 0 && <span style={{ fontSize: '14px', fontWeight: 700, color: '#c9928c', background: 'rgba(255,100,100,.12)', padding: '3px 9px', borderRadius: 0 }}>{rows.length} open · {eur(totalDue)}</span>}
+ {rows.length > 0 && <span style={{ fontSize: '14px', fontWeight: 700, color: '#c9928c', background: 'rgba(201,146,140,.12)', padding: '3px 9px', borderRadius: 0 }}>{rows.length} open · {eur(totalDue)}</span>}
  </div>
  {loading ? <div style={{ fontSize: '14px', color: s.muted }}>Loading…</div>
  : err ? <div style={{ fontSize: '14px', color: '#c9928c' }}> Could not load open payments: {err}</div>

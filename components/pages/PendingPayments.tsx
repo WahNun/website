@@ -122,7 +122,7 @@ export default function PendingPayments({ sandbox, onCount, onOpenBooking }: { s
  </div>
  {r.notes && <div style={{ fontSize: '14px', color: s.text, padding: '8px 10px', background: 'rgba(255,255,255,.03)', borderRadius: 0, borderLeft: '3px solid #d4a07a' }}>{r.notes}</div>}
  <button type="button" disabled={busy === r.id} onClick={() => received(r)}
- style={{ padding: '10px', borderRadius: 0, border: 'none', background: 'rgba(183,196,176,.85)', color: '#090909', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: busy === r.id ? .6 : 1 }}>
+ style={{ padding: '10px', borderRadius: 0, border: 'none', background: 'rgba(183,196,176,.85)', color: '#000', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: busy === r.id ? .6 : 1 }}>
  {busy === r.id ? 'Saving…' : ` Received on account — ${eur(r.amount)}`}
  </button>
  </div>

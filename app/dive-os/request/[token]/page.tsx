@@ -96,7 +96,7 @@ export default function RequestPage() {
  </h1>
  <p style={{ color: s.sub, fontSize: '14.5px', margin: '0 0 28px', lineHeight: 1.6 }}>Nothing is charged until you confirm. If the proposed day does not work, tell us — we will look for another one.</p>
 
- <div style={{ background: 'rgba(10,33,61,.6)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '26px' }}>
+ <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '26px' }}>
  {loadError ? (
  <div style={box('#c9928c', 'rgba(201,146,140,.4)')}>{loadError}<br /><a href="/contact" style={{ color: '#ffb59f', fontWeight: 700 }}>Contact us</a> if you think this is a mistake.</div>
  ) : !summary ? (

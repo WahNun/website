@@ -179,7 +179,7 @@ export default function PaymentDecision({ bookingIds, onDone, compact, sendReque
  <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap', marginTop: '10px', fontSize: '14px', color: s.muted }}>
  <label htmlFor={`pd-${r.id}`}>Received now (€)</label>
  <input id={`pd-${r.id}`} type="text" inputMode="decimal" value={p.part} placeholder="e.g. 50" onChange={e => set(r.id, { part: e.target.value })}
- style={{ width: '110px', background: '#090909', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, color: s.text, fontSize: '14px', fontFamily: 'inherit', padding: '7px 10px' }} />
+ style={{ width: '110px', background: '#000', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, color: s.text, fontSize: '14px', fontFamily: 'inherit', padding: '7px 10px' }} />
  {!Number.isNaN(c) && c > 0 && c < open && <span>still open: <b style={{ color: '#d4a07a' }}>{eur(open - c)}</b></span>}
  </div>
  )}

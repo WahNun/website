@@ -68,7 +68,7 @@ function LoginForm() {
  Dive OS
  </div>
  <h1 style={{ fontSize: "28px", fontWeight: 900, margin: 0, letterSpacing: "-.02em" }}>Admin</h1>
- <p style={{ color: "rgba(232,241,251,.62)", fontSize: "14px", marginTop: "8px" }}>
+ <p style={{ color: "rgba(243,239,230,0.55)", fontSize: "14px", marginTop: "8px" }}>
  Sign in with an admin account
  </p>
  </div>
@@ -77,16 +77,16 @@ function LoginForm() {
  event.preventDefault();
  void handleLogin();
  }}
- style={{ display: "flex", flexDirection: "column", gap: "12px" }}
+ style={{ display: "flex", flexDirection: "column", gap: "14px", padding: "28px 24px", background: "linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)", border: "1px solid rgba(255,255,255,.12)" }}
  >
  <input type="email" autoComplete="username" placeholder="Email address" value={email} onChange={(event) => setEmail(event.target.value)} style={field} />
  <input type="password" autoComplete="current-password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} style={field} />
  {error ? (
- <div role="alert" style={{ background: "rgba(255,80,80,.1)", border: "1px solid rgba(255,80,80,.25)", borderRadius: 0, padding: "10px 14px", fontSize: "13px", color: "#c9928c" }}>
+ <div role="alert" style={{ background: "rgba(201,146,140,.1)", border: "1px solid rgba(201,146,140,.28)", borderRadius: 0, padding: "12px 14px", fontSize: "14px", color: "#c9928c", lineHeight: 1.45 }}>
  {error}
  </div>
  ) : null}
- <button type="submit" disabled={loading} style={{ width: "100%", padding: "13px", borderRadius: 0, border: "1px solid #f3efe6", background: loading ? "transparent" : "#f3efe6", color: "#090909", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", fontSize: "12px", cursor: loading ? "default" : "pointer", fontFamily: "inherit", marginTop: "4px" }}>
+ <button type="submit" disabled={loading} style={{ width: "100%", padding: "14px", borderRadius: 0, border: "1px solid #f3efe6", background: loading ? "transparent" : "#f3efe6", color: "#000", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", fontSize: "13px", cursor: loading ? "default" : "pointer", fontFamily: "inherit", marginTop: "6px" }}>
  {loading ? "Signing in…" : "Sign in"}
  </button>
  </form>

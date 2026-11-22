@@ -169,7 +169,7 @@ const isZeroRow = (r: Cell[]) => r.slice(1).every(c => c === null || c === 0 || 
 
 const lbl: CSSProperties = { fontSize: '14px', color: s.muted, textTransform: 'uppercase', letterSpacing: '.12em' }
 const chip = (on: boolean): CSSProperties => ({ padding: '6px 12px', borderRadius: 0, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', border: `1px solid ${on ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.12)'}`, background: on ? 'rgba(243,239,230,.12)' : 'transparent', color: on ? s.accent : s.muted, whiteSpace: 'nowrap' })
-const inp: CSSProperties = { background: '#090909', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, color: s.text, fontSize: '14px', fontFamily: 'inherit', padding: '6px 9px', colorScheme: 'dark' }
+const inp: CSSProperties = { background: '#000', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, color: s.text, fontSize: '14px', fontFamily: 'inherit', padding: '6px 9px', colorScheme: 'dark' }
 
 type BookingLink = { col: number; ids: string[]; open: (id: string) => void }
 
@@ -213,7 +213,7 @@ function DetailPopup({ title, sub, summary, table, file, link, onClose, children
  return () => window.removeEventListener('keydown', h)
  }, [onClose])
  return (
- <div onClick={onClose} style={{ position: 'fixed', inset: 0, zIndex: 900, background: 'rgba(2,8,20,.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '32px 16px', overflowY: 'auto' }}>
+ <div onClick={onClose} style={{ position: 'fixed', inset: 0, zIndex: 900, background: 'rgba(0,0,0,0.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '32px 16px', overflowY: 'auto' }}>
  <div role="dialog" aria-modal="true" aria-label={title} onClick={e => e.stopPropagation()} style={{ width: 'min(1040px, 100%)', background: '#121210', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, boxShadow: 'none', overflow: 'hidden' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px', padding: '14px 20px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  <div>

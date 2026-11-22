@@ -147,14 +147,14 @@ export function FinanceHeadline({ simulationMode }: { simulationMode: boolean | 
  )
 }
 
-const tile = { background: 'rgba(243,239,230,.07)', borderRadius: 0, padding: '12px 14px' } as const
+const tile = { background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '16px 16px' } as const
 const lbl = { fontSize: '14px', color: s.muted, textTransform: 'uppercase', letterSpacing: '.12em' } as const
 const row = { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px', padding: '9px 0', borderBottom: '1px solid rgba(255,255,255,.07)' } as const
 const btn = { background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, borderRadius: 0, padding: '6px 12px', cursor: 'pointer', fontSize: '14px', fontFamily: 'inherit' } as const
 
 function Kpis({ items, isMobile }: { items: Array<[string, string, string?, string?]>; isMobile: boolean }) {
  return (
- <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : `repeat(${items.length}, 1fr)`, gap: '10px', marginBottom: '18px' }}>
+ <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : `repeat(${items.length}, 1fr)`, gap: '16px', marginBottom: '28px' }}>
  {items.map(([l, v, c, sub]) => (
  <div key={l} style={tile}>
  <div style={lbl}>{l}</div>
@@ -168,7 +168,7 @@ function Kpis({ items, isMobile }: { items: Array<[string, string, string?, stri
 
 function Section({ title, children, action }: { title: string; children: ReactNode; action?: ReactNode }) {
  return (
- <div style={{ marginBottom: '18px' }}>
+ <div style={{ marginBottom: '32px' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', flexWrap: 'wrap', marginBottom: '6px' }}>
  <div style={lbl}>{title}</div>
  {action}
@@ -284,7 +284,7 @@ function Overview({ simulationMode, who, onOpenBooking, isMobile }: { simulation
  <label style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: s.muted }}>
  View
  <select value={mode} aria-label="View" onChange={e => pickMode(e.target.value as Mode)}
- style={{ background: '#090909', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, color: s.text, fontSize: '14px', fontWeight: 700, fontFamily: 'inherit', padding: '7px 10px', cursor: 'pointer', colorScheme: 'dark' }}>
+ style={{ background: '#000', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, color: s.text, fontSize: '14px', fontWeight: 700, fontFamily: 'inherit', padding: '7px 10px', cursor: 'pointer', colorScheme: 'dark' }}>
  {MODES.map(([m, l]) => <option key={m} value={m}>{l}</option>)}
  </select>
  </label>

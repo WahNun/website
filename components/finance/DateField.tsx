@@ -11,7 +11,7 @@ export default function DateField({ value, onChange, max, label }: { value: stri
  return (
  <span style={{ position: 'relative', display: 'inline-block' }}>
  <button type="button" onClick={() => setOpen(o => !o)} aria-label={`${label}: ${shown}`} aria-expanded={open}
- style={{ background: '#090909', border: `1px solid ${open ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.12)'}`, borderRadius: 0, color: s.text, fontSize: '14px', fontWeight: 700, fontFamily: 'inherit', padding: '7px 11px', cursor: 'pointer', fontVariantNumeric: 'tabular-nums', whiteSpace: 'nowrap' }}>
+ style={{ background: '#000', border: `1px solid ${open ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.12)'}`, borderRadius: 0, color: s.text, fontSize: '14px', fontWeight: 700, fontFamily: 'inherit', padding: '7px 11px', cursor: 'pointer', fontVariantNumeric: 'tabular-nums', whiteSpace: 'nowrap' }}>
  {shown}
  </button>
  {open && (

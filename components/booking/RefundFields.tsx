@@ -12,7 +12,7 @@ import { CANCEL_REASONS, REFUND_REASONS, composeReason, payoutNeeded, reasonComp
  */
 
 const lbl: React.CSSProperties = { fontSize: '14px', fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: s.muted, display: 'block', marginBottom: '4px' }
-const inp: React.CSSProperties = { width: '100%', boxSizing: 'border-box', background: '#090909', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, color: s.text, fontSize: '14px', padding: '7px 10px', fontFamily: s.font, outline: 'none', colorScheme: 'dark' }
+const inp: React.CSSProperties = { width: '100%', boxSizing: 'border-box', background: '#000', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, color: s.text, fontSize: '14px', padding: '7px 10px', fontFamily: s.font, outline: 'none', colorScheme: 'dark' }
 
 export function ReasonField({ kind, choice, detail, onChoice, onDetail, placeholder }: {
  kind: 'cancel' | 'refund'
@@ -57,7 +57,7 @@ export function PayoutFields({ method, value, onChange }: { method: string; valu
  const set = (patch: Partial<PayoutValue>) => onChange({ ...value, ...patch })
  return (
  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', padding: '9px 10px', borderRadius: 0, background: 'rgba(201,180,138,.06)', border: '1px solid rgba(201,180,138,.3)' }}>
- <label style={{ ...lbl, color: '#FFD080', marginBottom: 0 }}>Where should the money go? (required)</label>
+ <label style={{ ...lbl, color: '#c9b48a', marginBottom: 0 }}>Where should the money go? (required)</label>
  {method === 'bank' && (<>
  <input type="text" value={value.iban} onChange={e => set({ iban: e.target.value })} placeholder="IBAN, e.g. PT50 0000 0000 0000 0000 0000 0" style={inp} />
  <input type="text" value={value.bic} onChange={e => set({ bic: e.target.value })} placeholder="BIC / SWIFT (optional)" style={inp} />
@@ -99,9 +99,9 @@ export function CopyButton({ value, label = 'Copy' }: { value: string; label?: s
  return (
  <button type="button" onClick={copy}
  style={{ padding: '3px 10px', borderRadius: 0, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font, minWidth: '74px',
- border: `1px solid ${state === 'ok' ? 'rgba(183,196,176,.6)' : state === 'fail' ? 'rgba(255,100,100,.6)' : 'rgba(201,180,138,.5)'}`,
+ border: `1px solid ${state === 'ok' ? 'rgba(183,196,176,.6)' : state === 'fail' ? 'rgba(201,146,140,.6)' : 'rgba(201,180,138,.5)'}`,
  background: state === 'ok' ? 'rgba(183,196,176,.15)' : 'transparent',
- color: state === 'ok' ? '#b7c4b0' : state === 'fail' ? '#c9928c' : '#FFD080' }}>
+ color: state === 'ok' ? '#b7c4b0' : state === 'fail' ? '#c9928c' : '#c9b48a' }}>
  {state === 'ok' ? ' Copied' : state === 'fail' ? 'Copy failed' : label}
  </button>
  )

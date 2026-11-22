@@ -58,7 +58,7 @@ export function PageTeam({ nav, lang }: { nav: (p: string) => void; lang: Lang }
 
  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(190px,1fr))', gap: '16px' }}>
  {TEAM.map((member, i) => (
- <div key={`${member.name}-${i}`} style={{ background: 'rgba(10,33,61,.5)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, overflow: 'hidden' }}>
+ <div key={`${member.name}-${i}`} style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, overflow: 'hidden' }}>
  <div style={{ position: 'relative', width: '100%', paddingBottom: '100%' }}>
  <img
  src={member.photo}

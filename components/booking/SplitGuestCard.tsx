@@ -253,7 +253,7 @@ export default function SplitGuestCard(p: {
  })
  }
 
- const field: React.CSSProperties = { width: '100%', background: '#090909', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '10px 12px', fontSize: '15px', color: s.text, fontFamily: s.font, outline: 'none', boxSizing: 'border-box', colorScheme: 'dark' }
+ const field: React.CSSProperties = { width: '100%', background: '#000', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '10px 12px', fontSize: '15px', color: s.text, fontFamily: s.font, outline: 'none', boxSizing: 'border-box', colorScheme: 'dark' }
  const small: React.CSSProperties = { fontSize: '14px', color: s.muted, marginTop: '2px', lineHeight: 1.5 }
  const pickBtn = (done: boolean): React.CSSProperties => ({ padding: '7px 12px', borderRadius: 0, fontSize: '14px', fontWeight: 700, fontFamily: 'inherit', cursor: 'pointer', border: `1px solid ${done ? 'rgba(255,255,255,.15)' : 'rgba(243,239,230,.5)'}`, background: done ? 'transparent' : 'rgba(243,239,230,.15)', color: done ? s.sub : '#f3efe6', whiteSpace: 'nowrap' })
  const row = (open: boolean, done: boolean): React.CSSProperties => ({ border: `1px solid ${open ? 'rgba(243,239,230,.5)' : done ? 'rgba(183,196,176,.35)' : 'rgba(212,160,122,.45)'}`, background: open ? 'rgba(243,239,230,.06)' : 'rgba(255,255,255,.03)', borderRadius: 0, padding: '10px 12px', marginTop: '8px' })
@@ -266,7 +266,7 @@ export default function SplitGuestCard(p: {
  if (collapsed && product) {
  const dates = [refresherDate ? ` ${fmtDay(refresherDate)}` : '', ...picked.map(x => `${fmtDay(x.date)}${x.session !== 'tbd' ? ` ${x.session.toUpperCase()}` : ''}`)].filter(Boolean).join(' · ')
  return (
- <div data-guestcard data-done style={{ scrollMarginTop: '88px', border: `1px solid ${missing ? 'rgba(212,160,122,.45)' : 'rgba(183,196,176,.35)'}`, borderRadius: 0, padding: '12px 16px', marginBottom: '14px', background: 'rgba(10,33,61,.35)' }}>
+ <div data-guestcard data-done style={{ scrollMarginTop: '88px', border: `1px solid ${missing ? 'rgba(212,160,122,.45)' : 'rgba(183,196,176,.35)'}`, borderRadius: 0, padding: '12px 16px', marginBottom: '14px', background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)' }}>
  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px' }}>
  <div style={{ minWidth: 0 }}>
  <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: s.accent }}>{titleLabel}</div>
@@ -311,7 +311,7 @@ export default function SplitGuestCard(p: {
  )
 
  return (
- <div data-guestcard style={{ scrollMarginTop: '88px', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, padding: '14px 16px', marginBottom: '14px', background: 'rgba(10,33,61,.35)' }}>
+ <div data-guestcard style={{ scrollMarginTop: '88px', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, padding: '14px 16px', marginBottom: '14px', background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)' }}>
  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
  <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: s.accent }}>{titleLabel}</div>
  {p.onRemove && <button type="button" onClick={p.onRemove} style={{ background: 'none', border: 'none', color: s.muted, fontSize: '14px', fontFamily: 'inherit', cursor: 'pointer', textDecoration: 'underline', marginLeft: 'auto', marginRight: '12px' }}>Remove</button>}
@@ -443,7 +443,7 @@ export default function SplitGuestCard(p: {
  {/* Popular extras = Upsell sichtbar; Einzelteile eingeklappt (und weg, sobald Full Set gewählt) */}
  {popular.length > 0 && (
  <div style={{ marginTop: '10px', border: '1px solid rgba(201,180,138,.3)', borderRadius: 0, padding: '10px 12px', background: 'rgba(201,180,138,.05)' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: '#FFD080', marginBottom: '8px' }}>Popular extras</div>
+ <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: '#c9b48a', marginBottom: '8px' }}>Popular extras</div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
  {popular.map(a => (
  <button key={a.id} type="button" onClick={() => toggleAddon(a.id)} style={opt(selectedAddonIds.has(a.id))}>

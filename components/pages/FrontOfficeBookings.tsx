@@ -116,8 +116,8 @@ interface ChangelogEntry {
 const STATUS_BG: Record<string, string> = {
  confirmed: 'rgba(243,239,230,.16)',
  completed: 'rgba(183,196,176,.14)',
- no_show: 'rgba(138,143,153,.18)',
- cancelled: 'rgba(255,100,100,.16)',
+ no_show: 'rgba(243,239,230,0.18)',
+ cancelled: 'rgba(201,146,140,.16)',
  pending: 'rgba(201,180,138,.14)',
 }
 const STATUS_CLR: Record<string, string> = {
@@ -255,7 +255,7 @@ function RequestPlanner({ showTest, onChanged, onOpen, selectedId }: { showTest:
  const check: React.CSSProperties = { fontSize: '14px', color: s.muted, display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer', whiteSpace: 'nowrap' }
  // Ruhige Optik: Ghost-Buttons, nur die Hauptaktion (Approve) ist gefüllt
  const ghost = (disabled: boolean, active = false): React.CSSProperties => ({ padding: '7px 12px', borderRadius: 0, border: `1px solid ${active ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.14)'}`, background: 'transparent', color: disabled ? s.muted : s.text, fontSize: '14px', fontWeight: 700, fontFamily: s.font, cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? .5 : 1 })
- const primary = (disabled: boolean): React.CSSProperties => ({ padding: '7px 14px', borderRadius: 0, border: 'none', background: s.accent, color: '#090909', fontSize: '14px', fontWeight: 800, fontFamily: s.font, cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? .4 : 1 })
+ const primary = (disabled: boolean): React.CSSProperties => ({ padding: '7px 14px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontSize: '14px', fontWeight: 800, fontFamily: s.font, cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? .4 : 1 })
 
  const selectedRows = (rows ?? []).filter(r => sel.has(r.id))
  const selectedTotal = selectedRows.reduce((a, r) => a + (r.amount ?? 0), 0)
@@ -412,7 +412,7 @@ function RequestPlanner({ showTest, onChanged, onOpen, selectedId }: { showTest:
  })}
  </div>
  {rows && rows.length > 0 && !selectedId && (
- <div style={{ width: '440px', flexShrink: 0, position: 'sticky', top: '100px', padding: '20px 22px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'rgba(10,33,61,.6)', display: 'flex', flexDirection: 'column', gap: '14px', boxSizing: 'border-box' }}>
+ <div style={{ width: '440px', flexShrink: 0, position: 'sticky', top: '100px', padding: '20px 22px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', display: 'flex', flexDirection: 'column', gap: '14px', boxSizing: 'border-box' }}>
  <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', color: s.muted }}>Selected requests</div>
  {selectedRows.length === 0 ? (
  <div style={{ fontSize: '14px', color: s.muted, lineHeight: 1.6 }}>Tick requests on the left to plan a dive day and approve them together.</div>
@@ -483,7 +483,7 @@ function RequestPlanner({ showTest, onChanged, onOpen, selectedId }: { showTest:
  {targetSlots.length > 0 && <button type="button" onClick={() => { setTargetSlots([]); setMovePreview(null) }} style={{ background: 'none', border: 'none', padding: 0, color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, textAlign: 'left', textDecoration: 'underline' }}>Clear days</button>}
  {pickerOpen && typeof document !== 'undefined' && createPortal(
  <div onClick={() => setPickerOpen(false)} style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 10000, background: 'rgba(9,9,9,.72)', overflowY: 'auto', padding: '24px 20px', boxSizing: 'border-box' }}>
- <div onClick={e => e.stopPropagation()} style={{ margin: '0 auto', background: '#090909', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0, padding: '20px 22px', width: 'min(960px, 100%)', boxSizing: 'border-box', boxShadow: 'none' }}>
+ <div onClick={e => e.stopPropagation()} style={{ margin: '0 auto', background: '#000', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0, padding: '20px 22px', width: 'min(960px, 100%)', boxSizing: 'border-box', boxShadow: 'none' }}>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '10px', lineHeight: 1.5 }}>Pick the day(s) you will run. Each request goes to the picked day closest to its wish (packs to the closest consecutive days); packs with more days than picked are shortened — the summary shows exactly what each guest gets before you approve.{maxDaysNeeded > 1 ? ` Longest selected request: ${maxDaysNeeded} days.` : ''}</div>
  {bestDays.length > 0 && (() => {
  const key = (b: { date: string; session: string }) => `${b.date}_${b.session}`
@@ -741,7 +741,7 @@ function pmLabel(b: Booking): string {
 // ─── Shared styles ────────────────────────────────────────────────────────────
 
 const inp: React.CSSProperties = {
- background: '#090909',
+ background: '#000',
  border: '1px solid rgba(255,255,255,.12)',
  borderRadius: 0,
  padding: '8px 12px',
@@ -2681,9 +2681,9 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  return (
  <>
  {!subset && <div style={{ fontSize: '14px', padding: '6px 10px', borderRadius: 0,
- background: diff < 0 ? 'rgba(255,100,100,.08)' : diff > 0 ? 'rgba(183,196,176,.08)' : 'rgba(255,255,255,.04)',
+ background: diff < 0 ? 'rgba(201,146,140,.08)' : diff > 0 ? 'rgba(183,196,176,.08)' : 'rgba(255,255,255,.04)',
  color: diff < 0 ? '#ff9494' : diff > 0 ? '#b7c4b0' : s.muted,
- border: `1px solid ${diff < 0 ? 'rgba(255,100,100,.2)' : diff > 0 ? 'rgba(183,196,176,.2)' : 'rgba(255,255,255,.08)'}` }}>
+ border: `1px solid ${diff < 0 ? 'rgba(201,146,140,.2)' : diff > 0 ? 'rgba(183,196,176,.2)' : 'rgba(255,255,255,.08)'}` }}>
  {diff < 0
  ? `Refund €${(Math.abs(diff) / 100).toFixed(2)} to guest${selected.stripe_payment_intent ? ' via Stripe' : ' (manual)'}`
  : diff > 0
@@ -2777,11 +2777,11 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
  {!cancelConfirm ? (
  <button onClick={() => setCancelConfirm(true)}
- style={{ width: '100%', padding: '9px', borderRadius: 0, border: '1px solid rgba(255,100,100,.3)', background: 'transparent', color: '#c9928c', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ width: '100%', padding: '9px', borderRadius: 0, border: '1px solid rgba(201,146,140,.3)', background: 'transparent', color: '#c9928c', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Cancel booking
  </button>
  ) : (
- <div style={{ background: 'rgba(255,100,100,.06)', border: '1px solid rgba(255,100,100,.25)', borderRadius: 0, padding: '12px' }}>
+ <div style={{ background: 'rgba(201,146,140,.06)', border: '1px solid rgba(201,146,140,.25)', borderRadius: 0, padding: '12px' }}>
  <div style={{ fontSize: '14px', color: '#ff9494', fontWeight: 700, marginBottom: '6px' }}> Really cancel this booking?</div>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '10px', lineHeight: '1.5' }}>
  Status will be set to <strong style={{ color: '#c9928c' }}>cancelled</strong>. A cancellation email will be sent automatically.
@@ -2796,7 +2796,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  style={{ width: '14px', height: '14px', accentColor: s.accent, cursor: 'pointer' }}
  />
  <span>Full refund via Stripe</span>
- {cancelWithRefund && <span style={{ color: '#4ABC82', fontSize: '14px', fontWeight: 700 }}> Refund email will be sent</span>}
+ {cancelWithRefund && <span style={{ color: '#b7c4b0', fontSize: '14px', fontWeight: 700 }}> Refund email will be sent</span>}
  </label>
  )}
  {cancelKids.length > 0 && (
@@ -2820,7 +2820,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  Go back
  </button>
  <button onClick={cancelBooking} disabled={cancelLoading || !reasonComplete(cancelChoice, cancelDetail)}
- style={{ flex: 1, padding: '8px', borderRadius: 0, border: 'none', background: cancelWithRefund ? '#a39e94' : '#dc2626', color: '#fff', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (cancelLoading || !reasonComplete(cancelChoice, cancelDetail)) ? .45 : 1 }}>
+ style={{ flex: 1, padding: '8px', borderRadius: 0, border: 'none', background: cancelWithRefund ? '#a39e94' : '#dc2626', color: '#f3efe6', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (cancelLoading || !reasonComplete(cancelChoice, cancelDetail)) ? .45 : 1 }}>
  {cancelLoading ? (cancelWithRefund ? 'Cancelling + Refunding…' : 'Cancelling…') : (cancelWithRefund ? 'Cancel + Refund' : 'Yes, cancel')}
  </button>
  </div>
@@ -2835,19 +2835,19 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {selected?.customer_email && (
  <>
  <button onClick={() => { setPayLinkOpen(o => !o); setPayLinkMsg(null) }}
- style={{ padding: '9px', borderRadius: 0, border: `1px solid ${payLinkOpen ? 'rgba(201,180,138,.4)' : 'rgba(201,180,138,.2)'}`, background: payLinkOpen ? 'rgba(201,180,138,.08)' : 'transparent', color: '#FFD080', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font, width: '100%' }}>
+ style={{ padding: '9px', borderRadius: 0, border: `1px solid ${payLinkOpen ? 'rgba(201,180,138,.4)' : 'rgba(201,180,138,.2)'}`, background: payLinkOpen ? 'rgba(201,180,138,.08)' : 'transparent', color: '#c9b48a', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font, width: '100%' }}>
  Request Payment
  </button>
  {payLinkOpen && (
  <div style={{ background: 'rgba(255,255,255,.03)', borderRadius: 0, padding: '14px', border: '1px solid rgba(201,180,138,.15)', display: 'flex', flexDirection: 'column', gap: '10px' }}>
- <span style={{ fontSize: '14px', fontWeight: 700, color: '#FFD080' }}>Request Payment</span>
+ <span style={{ fontSize: '14px', fontWeight: 700, color: '#c9b48a' }}>Request Payment</span>
  {/* Method selector */}
  <div>
  <label style={{ ...lbl, marginBottom: '7px', display: 'block' }}>Payment method</label>
  <div style={{ display: 'flex', gap: '6px' }}>
  {(['bank', 'revolut', 'link'] as const).map(m => (
  <button key={m} type="button" onClick={() => setPayLinkMethod(m)}
- style={{ flex: 1, padding: '7px 4px', borderRadius: 0, border: `1px solid ${payLinkMethod === m ? 'rgba(201,180,138,.4)' : 'rgba(255,255,255,.1)'}`, background: payLinkMethod === m ? 'rgba(201,180,138,.1)' : 'transparent', color: payLinkMethod === m ? '#FFD080' : s.muted, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '7px 4px', borderRadius: 0, border: `1px solid ${payLinkMethod === m ? 'rgba(201,180,138,.4)' : 'rgba(255,255,255,.1)'}`, background: payLinkMethod === m ? 'rgba(201,180,138,.1)' : 'transparent', color: payLinkMethod === m ? '#c9b48a' : s.muted, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>
  {m === 'link' ? ' Stripe' : m === 'bank' ? ' Bank' : ' Revolut'}
  </button>
  ))}
@@ -2857,17 +2857,17 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
  {/* 50% deposit toggle */}
  <label style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 10px', borderRadius: 0, background: payLinkAmountType === 'deposit' ? 'rgba(201,180,138,.07)' : 'rgba(255,255,255,.02)', border: `1px solid ${payLinkAmountType === 'deposit' ? 'rgba(201,180,138,.3)' : 'rgba(255,255,255,.07)'}`, cursor: 'pointer' }}>
- <input type="checkbox" checked={payLinkAmountType === 'deposit'} onChange={e => setPayLinkAmountType(e.target.checked ? 'deposit' : 'full')} style={{ accentColor: '#FFD080', width: '14px', height: '14px' }} />
+ <input type="checkbox" checked={payLinkAmountType === 'deposit'} onChange={e => setPayLinkAmountType(e.target.checked ? 'deposit' : 'full')} style={{ accentColor: '#c9b48a', width: '14px', height: '14px' }} />
  <div>
- <div style={{ fontSize: '14px', fontWeight: 700, color: payLinkAmountType === 'deposit' ? '#FFD080' : s.text }}>50% deposit only</div>
+ <div style={{ fontSize: '14px', fontWeight: 700, color: payLinkAmountType === 'deposit' ? '#c9b48a' : s.text }}>50% deposit only</div>
  <div style={{ fontSize: '14px', color: s.muted }}>Guest pays half now, balance on arrival</div>
  </div>
  </label>
  {/* Custom amount */}
  <label style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 10px', borderRadius: 0, background: payLinkAmountType === 'custom' ? 'rgba(201,180,138,.07)' : 'rgba(255,255,255,.02)', border: `1px solid ${payLinkAmountType === 'custom' ? 'rgba(201,180,138,.3)' : 'rgba(255,255,255,.07)'}`, cursor: 'pointer' }}>
- <input type="checkbox" checked={payLinkAmountType === 'custom'} onChange={e => setPayLinkAmountType(e.target.checked ? 'custom' : 'full')} style={{ accentColor: '#FFD080', width: '14px', height: '14px' }} />
+ <input type="checkbox" checked={payLinkAmountType === 'custom'} onChange={e => setPayLinkAmountType(e.target.checked ? 'custom' : 'full')} style={{ accentColor: '#c9b48a', width: '14px', height: '14px' }} />
  <div style={{ flex: 1 }}>
- <div style={{ fontSize: '14px', fontWeight: 700, color: payLinkAmountType === 'custom' ? '#FFD080' : s.text }}>Custom amount</div>
+ <div style={{ fontSize: '14px', fontWeight: 700, color: payLinkAmountType === 'custom' ? '#c9b48a' : s.text }}>Custom amount</div>
  {payLinkAmountType === 'custom' && (
  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '6px' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>€</span>
@@ -2908,7 +2908,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  Cancel
  </button>
  <button onClick={sendPaymentLink} disabled={payLinkLoading}
- style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: '#FFD080', color: '#090909', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: payLinkLoading ? .6 : 1 }}>
+ style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: '#c9b48a', color: '#000', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: payLinkLoading ? .6 : 1 }}>
  {payLinkLoading ? 'Sending…' : 'Send Request'}
  </button>
  </div>
@@ -2951,7 +2951,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  Cancel
  </button>
  <button onClick={addPayment} disabled={payLoading}
- style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: s.accent, color: '#090909', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: payLoading ? .6 : 1 }}>
+ style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: payLoading ? .6 : 1 }}>
  {payLoading ? 'Saving…' : 'Save'}
  </button>
  </div>
@@ -2967,11 +2967,11 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <button
  onClick={() => { setFullRefundOpen(true); setFullReleaseIds(new Set(bkSessions.filter(x => x.status === 'booked').map(x => x.id))); setFullRefundMethod(selected.stripe_payment_intent ? 'stripe' : 'cash'); setRefundMsg(null) }}
  disabled={refundLoading}
- style={{ width: '100%', padding: '10px', borderRadius: 0, border: '1px solid rgba(255,100,100,.35)', background: 'rgba(255,100,100,.08)', color: '#c9928c', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ width: '100%', padding: '10px', borderRadius: 0, border: '1px solid rgba(201,146,140,.35)', background: 'rgba(201,146,140,.08)', color: '#c9928c', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Full Refund
  </button>
  ) : (
- <div style={{ background: 'rgba(255,100,100,.04)', border: '1px solid rgba(255,100,100,.25)', borderRadius: 0, padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+ <div style={{ background: 'rgba(201,146,140,.04)', border: '1px solid rgba(201,146,140,.25)', borderRadius: 0, padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
  <span style={{ fontSize: '14px', fontWeight: 700, color: '#c9928c' }}>Full Refund — {selected.product_name}</span>
  <div>
  <label style={lbl}>Payment method</label>
@@ -2996,7 +2996,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  const on = fullReleaseIds.has(x.id)
  return (
  <button key={x.id} type="button" onClick={() => { const n = new Set(fullReleaseIds); if (n.has(x.id)) n.delete(x.id); else n.add(x.id); setFullReleaseIds(n) }}
- style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: 0, border: `1px solid ${on ? 'rgba(255,100,100,.5)' : 'rgba(255,255,255,.1)'}`, background: on ? 'rgba(255,100,100,.1)' : 'transparent', cursor: 'pointer', fontFamily: s.font, fontSize: '14px', color: s.text }}>
+ style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: 0, border: `1px solid ${on ? 'rgba(201,146,140,.5)' : 'rgba(255,255,255,.1)'}`, background: on ? 'rgba(201,146,140,.1)' : 'transparent', cursor: 'pointer', fontFamily: s.font, fontSize: '14px', color: s.text }}>
  <span>{on ? '' : ''} {fmtDate(x.session_date)} · {(x.session ?? '').toUpperCase()}{x.notes ? ` · ${x.notes}` : ''}</span>
  <span style={{ fontSize: '14px', color: s.muted }}>{x.seats ?? 1} seat(s){x.is_boat_day === false ? ' · no boat' : ''}</span>
  </button>
@@ -3010,7 +3010,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ fontSize: '14px', color: '#d4a07a' }}> Refund will appear as pending in Finances for manual processing.</div>
  )}
  {ps && (
- <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '8px 10px', borderRadius: 0, background: 'rgba(255,100,100,.12)', border: '1px solid rgba(255,100,100,.35)' }}>
+ <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '8px 10px', borderRadius: 0, background: 'rgba(201,146,140,.12)', border: '1px solid rgba(201,146,140,.35)' }}>
  <span style={{ fontSize: '14px', fontWeight: 700, color: s.text }}>Total refund amount</span>
  <span style={{ fontSize: '18px', fontWeight: 800, color: '#c9928c' }}>{fmtAmount(Math.max(0, ps.grossPaid - ps.refunded), ps.currency)}</span>
  </div>
@@ -3024,12 +3024,12 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <button onClick={() => initiateRefund()} disabled={refundLoading || !fullRefundMethod || !reasonComplete(fullRefundChoice, fullRefundDesc)}
  style={fullRefundMethod === 'cash'
  ? { flex: 1, padding: '8px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(fullRefundChoice, fullRefundDesc)) ? .45 : 1 }
- : { flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: '#c9928c', color: '#090909', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !fullRefundMethod || !reasonComplete(fullRefundChoice, fullRefundDesc)) ? .45 : 1 }}>
+ : { flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: '#c9928c', color: '#000', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !fullRefundMethod || !reasonComplete(fullRefundChoice, fullRefundDesc)) ? .45 : 1 }}>
  {refundLoading ? 'Processing…' : (fullRefundMethod === 'cash' ? 'Request only (pay later)' : 'Confirm Refund')}
  </button>
  {fullRefundMethod === 'cash' && (
  <button onClick={() => initiateRefund(true)} disabled={refundLoading || !reasonComplete(fullRefundChoice, fullRefundDesc)}
- style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: '#b7c4b0', color: '#090909', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(fullRefundChoice, fullRefundDesc)) ? .45 : 1 }}>
+ style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: '#b7c4b0', color: '#000', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(fullRefundChoice, fullRefundDesc)) ? .45 : 1 }}>
  Hand out cash now
  </button>
  )}
@@ -3040,11 +3040,11 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {/* Partial refund */}
  {!partialRefundOpen ? (
  <button onClick={() => { setPartialRefundOpen(true); setRefundItemKeys(new Set()); setRefundPaymentIds(new Set()); setPartialRefundAmount(''); setPartialRefundMethod(selected.stripe_payment_intent ? 'stripe' : 'cash'); setPartialRefundMsg(null) }}
- style={{ width: '100%', padding: '9px', borderRadius: 0, border: '1px solid rgba(255,160,0,.3)', background: 'transparent', color: '#d4a07a', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ width: '100%', padding: '9px', borderRadius: 0, border: '1px solid rgba(201,180,138,.3)', background: 'transparent', color: '#d4a07a', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Partial Refund…
  </button>
  ) : (
- <div style={{ background: 'rgba(255,160,0,.04)', border: '1px solid rgba(255,160,0,.2)', borderRadius: 0, padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+ <div style={{ background: 'rgba(201,180,138,.04)', border: '1px solid rgba(201,180,138,.2)', borderRadius: 0, padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
  <span style={{ fontSize: '14px', fontWeight: 700, color: '#d4a07a' }}>Partial Refund</span>
  {ps && (
  <div style={{ fontSize: '14px', color: ps.grossPaid - ps.refunded > 0 ? s.muted : '#c9928c' }}>
@@ -3084,7 +3084,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  return (
  <button key={p.id} type="button"
  onClick={togglePayment}
- style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '7px 10px', borderRadius: 0, border: `1px solid ${isSelected ? 'rgba(255,160,0,.6)' : 'rgba(255,255,255,.08)'}`, background: isSelected ? 'rgba(255,160,0,.12)' : 'rgba(255,255,255,.02)', color: isSelected ? '#d4a07a' : s.text, fontSize: '14px', fontWeight: isSelected ? 700 : 400, cursor: 'pointer', fontFamily: s.font, textAlign: 'left', gap: '10px' }}>
+ style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '7px 10px', borderRadius: 0, border: `1px solid ${isSelected ? 'rgba(201,180,138,.6)' : 'rgba(255,255,255,.08)'}`, background: isSelected ? 'rgba(201,180,138,.12)' : 'rgba(255,255,255,.02)', color: isSelected ? '#d4a07a' : s.text, fontSize: '14px', fontWeight: isSelected ? 700 : 400, cursor: 'pointer', fontFamily: s.font, textAlign: 'left', gap: '10px' }}>
  <span style={{ color: isSelected ? '#d4a07a' : s.text, fontWeight: 600, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{lineLabel}</span>
  <span style={{ fontWeight: 700, fontVariantNumeric: 'tabular-nums', flexShrink: 0 }}>{fmtAmount(p.amount, selected.currency ?? 'eur')}</span>
  </button>
@@ -3151,7 +3151,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  const on = refundItemKeys.has(item.key)
  return (
  <button key={item.key} type="button" onClick={() => toggle(item.key)}
- style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', padding: '7px 10px', borderRadius: 0, border: `1px solid ${on ? 'rgba(255,160,0,.5)' : 'rgba(255,255,255,.1)'}`, background: on ? 'rgba(255,160,0,.12)' : 'transparent', cursor: 'pointer', fontFamily: s.font, fontSize: '14px', textAlign: 'left' }}>
+ style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', padding: '7px 10px', borderRadius: 0, border: `1px solid ${on ? 'rgba(201,180,138,.5)' : 'rgba(255,255,255,.1)'}`, background: on ? 'rgba(201,180,138,.12)' : 'transparent', cursor: 'pointer', fontFamily: s.font, fontSize: '14px', textAlign: 'left' }}>
  <span style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0 }}>
  <span style={{ width: '14px', height: '14px', borderRadius: 0, border: `1px solid ${on ? '#d4a07a' : 'rgba(255,255,255,.3)'}`, background: on ? '#d4a07a' : 'transparent', color: '#1a0f00', fontSize: '14px', fontWeight: 900, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{on ? '' : ''}</span>
  <span style={{ color: on ? '#d4a07a' : s.text, fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.label}</span>
@@ -3179,7 +3179,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  const on = refundReleaseSessionIds.has(x.id)
  return (
  <button key={x.id} type="button" onClick={() => { const n = new Set(refundReleaseSessionIds); if (n.has(x.id)) n.delete(x.id); else n.add(x.id); setRefundReleaseSessionIds(n); suggestDayRefund(n) }}
- style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: 0, border: `1px solid ${on ? 'rgba(255,100,100,.5)' : 'rgba(255,255,255,.1)'}`, background: on ? 'rgba(255,100,100,.1)' : 'transparent', cursor: 'pointer', fontFamily: s.font, fontSize: '14px', textAlign: 'left', color: on ? '#c9928c' : s.text }}>
+ style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: 0, border: `1px solid ${on ? 'rgba(201,146,140,.5)' : 'rgba(255,255,255,.1)'}`, background: on ? 'rgba(201,146,140,.1)' : 'transparent', cursor: 'pointer', fontFamily: s.font, fontSize: '14px', textAlign: 'left', color: on ? '#c9928c' : s.text }}>
  <span>{on ? '' : ''} {fmtDate(x.session_date)} · {(x.session ?? '').toUpperCase()}{x.notes ? ` · ${x.notes}` : ''}</span>
  <span style={{ fontSize: '14px', color: s.muted }}>{x.seats ?? 1} seat(s){x.is_boat_day === false ? ' · no boat' : ''}</span>
  </button>
@@ -3212,7 +3212,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {(() => {
  const c = Math.round(parseFloat(partialRefundAmount.replace(',', '.')) * 100)
  return (
- <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '8px 10px', borderRadius: 0, background: 'rgba(255,160,0,.12)', border: '1px solid rgba(255,160,0,.35)' }}>
+ <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '8px 10px', borderRadius: 0, background: 'rgba(201,180,138,.12)', border: '1px solid rgba(201,180,138,.35)' }}>
  <span style={{ fontSize: '14px', fontWeight: 700, color: s.text }}>Total refund amount</span>
  <span style={{ fontSize: '18px', fontWeight: 800, color: '#d4a07a' }}>{!isNaN(c) && c > 0 ? fmtAmount(c, ps?.currency ?? 'EUR') : '—'}</span>
  </div>
@@ -3227,12 +3227,12 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <button onClick={() => doPartialRefund()} disabled={refundLoading || !reasonComplete(partialRefundChoice, partialRefundDesc)}
  style={partialRefundMethod === 'cash'
  ? { flex: 1, padding: '8px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(partialRefundChoice, partialRefundDesc)) ? .45 : 1 }
- : { flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: '#d4a07a', color: '#090909', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(partialRefundChoice, partialRefundDesc)) ? .45 : 1 }}>
+ : { flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: '#d4a07a', color: '#000', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(partialRefundChoice, partialRefundDesc)) ? .45 : 1 }}>
  {refundLoading ? 'Processing…' : (partialRefundMethod === 'cash' ? 'Request only (pay later)' : 'Refund')}
  </button>
  {partialRefundMethod === 'cash' && (
  <button onClick={() => doPartialRefund(true)} disabled={refundLoading || !reasonComplete(partialRefundChoice, partialRefundDesc)}
- style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: '#b7c4b0', color: '#090909', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(partialRefundChoice, partialRefundDesc)) ? .45 : 1 }}>
+ style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: '#b7c4b0', color: '#000', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(partialRefundChoice, partialRefundDesc)) ? .45 : 1 }}>
  Hand out cash now
  </button>
  )}
@@ -3309,11 +3309,11 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  )
  }
  return (
- <div key={pmt.id} style={{ background: 'rgba(255,255,255,.03)', borderRadius: 0, padding: '12px 14px', border: `1px solid ${pmt.status === 'pending' ? 'rgba(255,160,0,.2)' : 'rgba(255,255,255,.07)'}` }}>
+ <div key={pmt.id} style={{ background: 'rgba(255,255,255,.03)', borderRadius: 0, padding: '12px 14px', border: `1px solid ${pmt.status === 'pending' ? 'rgba(201,180,138,.2)' : 'rgba(255,255,255,.07)'}` }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>{PM_LABELS[pmt.method] ?? pmt.method}</span>
  <div style={{ display: 'flex', gap: '7px', alignItems: 'center' }}>
- <span style={{ padding: '2px 7px', borderRadius: 0, fontSize: '14px', fontWeight: 700, background: pmt.status === 'paid' ? 'rgba(183,196,176,.14)' : pmt.status === 'pending' ? 'rgba(255,160,0,.14)' : 'rgba(255,100,100,.14)', color: pmt.status === 'paid' ? '#b7c4b0' : pmt.status === 'pending' ? '#d4a07a' : '#c9928c' }}>{pmt.status === 'pending' ? 'expected' : pmt.status}</span>
+ <span style={{ padding: '2px 7px', borderRadius: 0, fontSize: '14px', fontWeight: 700, background: pmt.status === 'paid' ? 'rgba(183,196,176,.14)' : pmt.status === 'pending' ? 'rgba(201,180,138,.14)' : 'rgba(201,146,140,.14)', color: pmt.status === 'paid' ? '#b7c4b0' : pmt.status === 'pending' ? '#d4a07a' : '#c9928c' }}>{pmt.status === 'pending' ? 'expected' : pmt.status}</span>
  <span style={{ fontSize: '14px', fontWeight: 700, color: s.text, fontVariantNumeric: 'tabular-nums' }}>{fmtAmount(pmt.amount, pmt.currency)}</span>
  </div>
  </div>
@@ -3336,7 +3336,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  const paid = r.status === 'paid'
  const RM: Record<string, string> = { stripe: 'Stripe', cash: 'Cash', bank: 'Bank Transfer', revolut: 'Revolut', mb_way: 'MB WAY', other: 'Other' }
  return (
- <div key={r.id} style={{ background: 'rgba(255,160,0,.04)', border: `1px solid ${paid ? 'rgba(255,160,48,.2)' : 'rgba(255,160,0,.45)'}`, borderRadius: 0, padding: '10px 14px', display: 'flex', justifyContent: 'space-between', gap: '10px', alignItems: 'flex-start' }}>
+ <div key={r.id} style={{ background: 'rgba(201,180,138,.04)', border: `1px solid ${paid ? 'rgba(201,180,138,.2)' : 'rgba(201,180,138,.45)'}`, borderRadius: 0, padding: '10px 14px', display: 'flex', justifyContent: 'space-between', gap: '10px', alignItems: 'flex-start' }}>
  <div style={{ minWidth: 0 }}>
  <div style={{ fontSize: '14px', color: s.text, fontWeight: 600 }}>{r.description}</div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '3px' }}>
@@ -3416,7 +3416,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', gap: '6px' }}>
  {([true, false] as const).map(isBoat => (
  <button key={String(isBoat)} type="button" onClick={() => setEditSessForm(f => ({ ...f, isBoatDay: isBoat }))}
- style={{ flex: 1, padding: '7px', borderRadius: 0, border: `1px solid ${editSessForm.isBoatDay === isBoat ? (isBoat ? 'rgba(243,239,230,.4)' : 'rgba(255,160,0,.4)') : 'rgba(255,255,255,.1)'}`, background: editSessForm.isBoatDay === isBoat ? (isBoat ? 'rgba(243,239,230,.1)' : 'rgba(255,160,0,.08)') : 'transparent', color: editSessForm.isBoatDay === isBoat ? (isBoat ? s.accent : '#d4a07a') : s.muted, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '7px', borderRadius: 0, border: `1px solid ${editSessForm.isBoatDay === isBoat ? (isBoat ? 'rgba(243,239,230,.4)' : 'rgba(201,180,138,.4)') : 'rgba(255,255,255,.1)'}`, background: editSessForm.isBoatDay === isBoat ? (isBoat ? 'rgba(243,239,230,.1)' : 'rgba(201,180,138,.08)') : 'transparent', color: editSessForm.isBoatDay === isBoat ? (isBoat ? s.accent : '#d4a07a') : s.muted, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>
  {isBoat ? ' Boat' : ' Pool'}
  </button>
  ))}
@@ -3440,7 +3440,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  </div>
  ) : sessDeleteConfirm === sess.id ? (
  /* ── Delete confirm ── */
- <div style={{ background: 'rgba(255,100,100,.06)', border: '1px solid rgba(255,100,100,.25)', borderRadius: 0, padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+ <div style={{ background: 'rgba(201,146,140,.06)', border: '1px solid rgba(201,146,140,.25)', borderRadius: 0, padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
  <span style={{ fontSize: '14px', fontWeight: 700, color: '#c9928c' }}>Remove session?</span>
  <span style={{ fontSize: '14px', color: s.muted }}>{fmtDate(sess.session_date)} · {sess.session === 'tbd' ? ' time to be set' : sess.session === 'night' ? ' NIGHT' : sess.session.toUpperCase()} · {sess.is_boat_day ? ' Boat' : ' Pool'}</span>
  {sessMsg && <div style={{ fontSize: '14px', color: sessMsg.startsWith('') ? '#b7c4b0' : '#c9928c' }}>{sessMsg}</div>}
@@ -3450,7 +3450,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  Keep
  </button>
  <button onClick={() => deleteSession(sess.id)} disabled={sessEditLoading}
- style={{ flex: 2, padding: '7px', borderRadius: 0, border: 'none', background: '#c9928c', color: '#fff', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: sessEditLoading ? .6 : 1 }}>
+ style={{ flex: 2, padding: '7px', borderRadius: 0, border: 'none', background: '#c9928c', color: '#f3efe6', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: sessEditLoading ? .6 : 1 }}>
  {sessEditLoading ? 'Removing…' : 'Remove'}
  </button>
  </div>
@@ -3470,7 +3470,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  </div>
  <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>{sess.is_boat_day ? '' : ''}</span>
- <span style={{ fontSize: '14px', padding: '2px 7px', borderRadius: 0, background: sess.status === 'confirmed' ? 'rgba(183,196,176,.12)' : 'rgba(255,160,0,.12)', color: sess.status === 'confirmed' ? '#b7c4b0' : '#d4a07a', fontWeight: 700 }}>
+ <span style={{ fontSize: '14px', padding: '2px 7px', borderRadius: 0, background: sess.status === 'confirmed' ? 'rgba(183,196,176,.12)' : 'rgba(201,180,138,.12)', color: sess.status === 'confirmed' ? '#b7c4b0' : '#d4a07a', fontWeight: 700 }}>
  {sess.status}
  </span>
  <span style={{ color: s.muted }}>×{sess.seats}</span>
@@ -3485,7 +3485,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  Edit
  </button>
  <button onClick={() => { setSessDeleteConfirm(sess.id); setEditingSessionId(null); setSessMsg(null) }}
- style={{ padding: '3px 8px', borderRadius: 0, border: '1px solid rgba(255,100,100,.2)', background: 'transparent', color: '#ff8888', fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ padding: '3px 8px', borderRadius: 0, border: '1px solid rgba(201,146,140,.2)', background: 'transparent', color: '#ff8888', fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  
  </button>
  </div>
@@ -3562,7 +3562,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', gap: '6px' }}>
  {([true, false] as const).map(isBoat => (
  <button key={String(isBoat)} type="button" onClick={() => setSessForm(f => ({ ...f, isBoatDay: isBoat }))}
- style={{ flex: 1, padding: '7px', borderRadius: 0, border: `1px solid ${sessForm.isBoatDay === isBoat ? (isBoat ? 'rgba(243,239,230,.4)' : 'rgba(255,160,0,.4)') : 'rgba(255,255,255,.1)'}`, background: sessForm.isBoatDay === isBoat ? (isBoat ? 'rgba(243,239,230,.1)' : 'rgba(255,160,0,.08)') : 'transparent', color: sessForm.isBoatDay === isBoat ? (isBoat ? s.accent : '#d4a07a') : s.muted, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '7px', borderRadius: 0, border: `1px solid ${sessForm.isBoatDay === isBoat ? (isBoat ? 'rgba(243,239,230,.4)' : 'rgba(201,180,138,.4)') : 'rgba(255,255,255,.1)'}`, background: sessForm.isBoatDay === isBoat ? (isBoat ? 'rgba(243,239,230,.1)' : 'rgba(201,180,138,.08)') : 'transparent', color: sessForm.isBoatDay === isBoat ? (isBoat ? s.accent : '#d4a07a') : s.muted, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>
  {isBoat ? ' Boat' : ' Pool'}
  </button>
  ))}

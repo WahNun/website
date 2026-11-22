@@ -44,7 +44,7 @@ export default function MiniDatePicker({ value, onChange, max }: Props) {
  accent: '#f3efe6',
  muted: 'rgba(255,255,255,.38)',
  text: '#f3efe6',
- bg: '#090909',
+ bg: '#000',
  }
 
  return (

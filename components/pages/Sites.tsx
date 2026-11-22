@@ -358,7 +358,7 @@ export function PageSites({ nav, lang }: { nav: (p: string) => void; lang: Lang 
  {(spot as any).hero ? (
  <>
  <div style={{ position: 'absolute', inset: 0, backgroundImage: `url('${(spot as any).card ?? (spot as any).hero}')`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
- <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(2,8,22,.35) 0%, rgba(2,8,22,.78) 60%, rgba(2,8,22,.95) 100%)' }} />
+ <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(255,255,255,.045) 0%, rgba(0,0,0,0.78) 60%, rgba(0,0,0,0.95) 100%)' }} />
  </>
  ) : (
  <div style={{ position: 'absolute', inset: 0, background: spot.bg }} />

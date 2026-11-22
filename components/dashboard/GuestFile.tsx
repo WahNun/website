@@ -100,7 +100,7 @@ export function GuestFile({ diver, bookingId, onSaved, booked }: { diver: GuestF
  } catch (e) { setMsg(` ${e instanceof Error ? e.message : String(e)}`) }
  finally { setSaving(false) }
  }
- const inp: React.CSSProperties = { background: '#090909', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, padding: '5px 8px', fontSize: '14px', color: '#f3efe6', fontFamily: s.font, outline: 'none', width: '100%', boxSizing: 'border-box', colorScheme: 'dark' }
+ const inp: React.CSSProperties = { background: '#000', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, padding: '5px 8px', fontSize: '14px', color: '#f3efe6', fontFamily: s.font, outline: 'none', width: '100%', boxSizing: 'border-box', colorScheme: 'dark' }
  const F = ({ k, name, type = 'text', placeholder }: { k: string; name: keyof typeof form; type?: string; placeholder?: string }) => (
  <label style={{ display: 'grid', gridTemplateColumns: '110px 1fr', alignItems: 'center', gap: '10px', fontSize: '14px', color: s.muted, padding: '2px 0' }}>{k}
  {name === 'gender'

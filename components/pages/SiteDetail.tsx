@@ -27,7 +27,7 @@ export function PageSiteDetail({ slug, lang, nav: _nav }: { slug: string; lang: 
  const fd = FISH_DB[fishPopup]
  return (
  <div onClick={() => setFishPopup(null)} role="button" tabIndex={0} onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && setFishPopup(null)} aria-label="Close dialog" style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(0,0,0,.72)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
- <div onClick={e => e.stopPropagation()} style={{ background: '#121210', border: '1px solid rgba(159,217,242,.2)', borderRadius: 0, maxWidth: '360px', width: '100%', overflow: 'hidden', boxShadow: 'none' }}>
+ <div onClick={e => e.stopPropagation()} style={{ background: '#121210', border: '1px solid rgba(243,239,230,0.20)', borderRadius: 0, maxWidth: '360px', width: '100%', overflow: 'hidden', boxShadow: 'none' }}>
  {fd?.img && <img
  src={fd.img}
  alt={fishPopup}
@@ -46,7 +46,7 @@ export function PageSiteDetail({ slug, lang, nav: _nav }: { slug: string; lang: 
  ) : (
  <p style={{ fontSize: '14px', color: '#f3efe6', margin: 0 }}>{t('sites_fish_no_details')}</p>
  )}
- <button onClick={() => setFishPopup(null)} style={{ marginTop: '20px', width: '100%', padding: '10px', borderRadius: 0, border: '1px solid rgba(159,217,242,.2)', background: 'rgba(159,217,242,.07)', color: '#c9c2b6', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>{t('sites_fish_close')}</button>
+ <button onClick={() => setFishPopup(null)} style={{ marginTop: '20px', width: '100%', padding: '10px', borderRadius: 0, border: '1px solid rgba(243,239,230,0.20)', background: 'rgba(243,239,230,0.07)', color: '#c9c2b6', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>{t('sites_fish_close')}</button>
  </div>
  </div>
  </div>
@@ -56,7 +56,7 @@ export function PageSiteDetail({ slug, lang, nav: _nav }: { slug: string; lang: 
  {(spot as any).hero && (
  <div style={{ position: 'relative', width: '100%', height: isMobile ? '220px' : '340px', overflow: 'hidden' }}>
  <img src={(spot as any).hero} alt={(spot as any).heroAlt || spot.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
- <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(2,8,22,.2) 0%, rgba(2,8,22,.65) 100%)' }} />
+ <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(255,255,255,.045) 0%, rgba(0,0,0,0.65) 100%)' }} />
  <div style={{ position: 'absolute', bottom: isMobile ? '16px' : '24px', left: isMobile ? '20px' : '48px' }}>
  <h1 style={{ fontSize: isMobile ? '26px' : '38px', fontWeight: 900, letterSpacing: '-.01em', margin: 0, textShadow: '0 2px 12px rgba(0,0,0,.7)' }}>
  {spot.name}<span style={{ color: s.accent }}>.</span>
@@ -86,7 +86,7 @@ export function PageSiteDetail({ slug, lang, nav: _nav }: { slug: string; lang: 
 
  <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '24px' }}>
  <span style={{ fontSize: '14px', fontWeight: 700, color: s.accent, background: 'rgba(243,239,230,.1)', padding: '4px 12px', borderRadius: 0, border: '1px solid rgba(243,239,230,.25)' }}>{spot.depth}</span>
- <span style={{ fontSize: '14px', fontWeight: 700, color: '#c9c2b6', background: 'rgba(159,217,242,.08)', padding: '4px 12px', borderRadius: 0, border: '1px solid rgba(159,217,242,.2)' }}>{spot.type}</span>
+ <span style={{ fontSize: '14px', fontWeight: 700, color: '#c9c2b6', background: 'rgba(243,239,230,0.08)', padding: '4px 12px', borderRadius: 0, border: '1px solid rgba(243,239,230,0.20)' }}>{spot.type}</span>
  <span style={{ fontSize: '14px', fontWeight: 700, color: '#b7c4b0', background: 'rgba(183,196,176,.08)', padding: '4px 12px', borderRadius: 0, border: '1px solid rgba(183,196,176,.2)' }}>{spot.level} {t('sites_level_req')}</span>
  {(spot as any).beginner && (
  <span style={{ fontSize: '14px', fontWeight: 700, color: '#c9b48a', background: 'rgba(201,180,138,.08)', padding: '4px 12px', borderRadius: 0, border: '1px solid rgba(201,180,138,.25)' }}>{t('sites_beginner_friendly')}</span>
@@ -121,7 +121,7 @@ export function PageSiteDetail({ slug, lang, nav: _nav }: { slug: string; lang: 
  const fishKey = typeof f === 'string' ? f : (f as any).EN
  const fishLabel = typeof f === 'string' ? f : (f as any)[lang]
  return (
- <button key={fishKey} onClick={() => setFishPopup(fishKey)} style={{ fontSize: '14px', color: '#c9c2b6', background: 'rgba(159,217,242,.08)', padding: '5px 12px', borderRadius: 0, border: '1px solid rgba(159,217,242,.25)', cursor: 'pointer', fontFamily: s.font }}>{fishLabel}</button>
+ <button key={fishKey} onClick={() => setFishPopup(fishKey)} style={{ fontSize: '14px', color: '#c9c2b6', background: 'rgba(243,239,230,0.08)', padding: '5px 12px', borderRadius: 0, border: '1px solid rgba(243,239,230,0.25)', cursor: 'pointer', fontFamily: s.font }}>{fishLabel}</button>
  )
  })}
  </div>

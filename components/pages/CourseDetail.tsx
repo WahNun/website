@@ -1819,7 +1819,7 @@ export function PageCourseDetail({ nav, slug, lang }: { nav: (p: string) => void
  </b>
  <a
  href={`mailto:admin.azoresdiving@gmail.com?subject=Careers%20%E2%80%94%20Dive%20Guide%20%2F%20Divemaster%20internship`}
- style={{ display: 'inline-block', background: 'linear-gradient(135deg,#f3efe6,#f3efe6)', color: '#090909', fontWeight: 800, fontSize: '14px', padding: '10px 20px', borderRadius: 0, boxShadow: 'none', textDecoration: 'none', fontFamily: s.font }}
+ style={{ display: 'inline-block', background: 'linear-gradient(135deg,#f3efe6,#f3efe6)', color: '#000', fontWeight: 800, fontSize: '14px', padding: '10px 20px', borderRadius: 0, boxShadow: 'none', textDecoration: 'none', fontFamily: s.font }}
  >
  {CAREERS_BOX.btn[lang]}
  </a>

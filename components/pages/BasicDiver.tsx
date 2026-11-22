@@ -104,7 +104,7 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
  <div style={{ fontSize: '14px', color: '#f3efe6' }}>{label}</div>
  {note && <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>{note}</div>}
  </div>
- <div style={{ fontSize: '16px', fontWeight: 800, color: '#fff', marginLeft: '12px', flexShrink: 0 }}>{price}</div>
+ <div style={{ fontSize: '16px', fontWeight: 800, color: '#f3efe6', marginLeft: '12px', flexShrink: 0 }}>{price}</div>
  </div>
  ))}
  </div>

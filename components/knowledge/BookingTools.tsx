@@ -9,7 +9,7 @@ const MUTED = '#c9c2b6'
 const TEXT = '#f3efe6'
 const SURFACE = '#121210'
 const BORDER = 'rgba(243,239,230,.12)'
-const AMBER = '#ffb347'
+const AMBER = '#c9b48a'
 
 type Shot = { src: string; caption: string; phone?: boolean }
 type Item = { title: string; how: string[]; why: string; shots?: Shot[]; numbered?: boolean }
@@ -517,7 +517,7 @@ export default function BookingTools() {
  </p>
  {groups.map(g => (
  <div key={g.heading} style={{ marginBottom: 28 }}>
- <h2 style={{ fontSize: 15, fontWeight: 800, color: '#fff', margin: '0 0 12px' }}>{g.heading}</h2>
+ <h2 style={{ fontSize: 15, fontWeight: 800, color: '#f3efe6', margin: '0 0 12px' }}>{g.heading}</h2>
  <div style={{ display: 'grid', gap: 10 }}>
  {g.items.map(it => (
  <div key={it.title} style={{ background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: 12, padding: '14px 16px' }}>

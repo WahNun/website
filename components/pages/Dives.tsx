@@ -87,7 +87,7 @@ export function PageDives({ nav, lang }: { nav: (p: string) => void; lang: Lang 
  <div style={{ fontSize: '14px', color: '#f3efe6' }}>{label}</div>
  {perDive && <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>{perDive}</div>}
  </div>
- <div style={{ fontSize: '16px', fontWeight: 800, color: '#fff' }}>{price}</div>
+ <div style={{ fontSize: '16px', fontWeight: 800, color: '#f3efe6' }}>{price}</div>
  </div>
  ))}
  </div>

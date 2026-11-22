@@ -25,7 +25,7 @@ const font = `-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial
 const bookBtnStyle: React.CSSProperties = {
  display: 'inline-block',
  background: 'linear-gradient(135deg,#f3efe6,#f3efe6)',
- color: '#090909',
+ color: '#000',
  fontWeight: 800,
  fontSize: '14px',
  padding: '12px 24px',
@@ -94,7 +94,7 @@ export default function NavBar({ lang: initialLang }: NavBarProps) {
  href="#main-content"
  style={{
  position: 'absolute', top: '-120px', left: 0, zIndex: 9999,
- background: accent, color: '#090909', padding: '8px 16px',
+ background: accent, color: '#000', padding: '8px 16px',
  fontWeight: 700, fontFamily: font, textDecoration: 'none',
  transition: 'top .15s',
  }}

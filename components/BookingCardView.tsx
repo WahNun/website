@@ -66,7 +66,7 @@ export default function BookingCardView({ card }: { card: BookingCardData }) {
  {rows.map(([k, v]) => (<React.Fragment key={k}><span style={{ opacity: .65 }}>{k}</span><span>{v}</span></React.Fragment>))}
  </div>
  <a href={url} target="_blank" rel="noopener noreferrer"
- style={{ display: 'inline-block', background: '#f3efe6', color: '#090909', fontWeight: 700, padding: '9px 14px', borderRadius: 10, textDecoration: 'none' }}>
+ style={{ display: 'inline-block', background: '#f3efe6', color: '#000', fontWeight: 700, padding: '9px 14px', borderRadius: 10, textDecoration: 'none' }}>
  {card.button} 
  </a>
  <div style={{ fontSize: 11.5, opacity: .65, marginTop: 8 }}>

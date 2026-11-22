@@ -346,15 +346,15 @@ export default function SessionPicker({
  style={{
  width: '100%', padding: '3px 0', borderRadius: 0, fontSize: '14px', fontWeight: 800, fontFamily: s.font,
  cursor: can ? 'pointer' : 'default',
- background: on ? '#c9c2b6' : can ? 'rgba(155,123,255,.12)' : 'transparent',
+ background: on ? '#c9c2b6' : can ? 'rgba(243,239,230,0.12)' : 'transparent',
  color: on ? '#121210' : can ? '#f3efe6' : 'rgba(255,255,255,.13)',
- border: `1px solid ${on ? '#c9c2b6' : can ? 'rgba(155,123,255,.35)' : 'transparent'}`,
+ border: `1px solid ${on ? '#c9c2b6' : can ? 'rgba(243,239,230,0.35)' : 'transparent'}`,
  }}> NIGHT{staffMode && a && a.booked > 0 ? ` ${a.booked}/${a.capacity}` : ''}</button>
  )
  })() : anyBookable && narrow ? (
  <div style={{ display: 'flex', justifyContent: 'center', gap: '3px', minHeight: compact ? '12px' : '18px' }}>
  {chosen
- ? <span style={{ fontSize: '14px', fontWeight: 800, padding: '2px 6px', borderRadius: 0, background: s.accent, color: '#090909' }}>
+ ? <span style={{ fontSize: '14px', fontWeight: 800, padding: '2px 6px', borderRadius: 0, background: s.accent, color: '#000' }}>
  {(picked.find(p => p.date === date)?.session ?? '').toUpperCase() || ''}
  </span>
  : <span style={{ fontSize: '14px', color: detailDate === date ? s.accent : 'rgba(255,255,255,.3)' }}>{detailDate === date ? '' : '•'}</span>}
@@ -385,9 +385,9 @@ export default function SessionPicker({
  style={{
  flex: 1, padding: '3px 0', borderRadius: 0, fontSize: '14px', fontWeight: 800,
  fontFamily: s.font, cursor: can ? 'pointer' : 'default',
- background: on ? (staffOver ? '#c9928c' : s.accent) : staffOver ? 'rgba(255,107,107,.14)' : can ? 'rgba(255,255,255,.06)' : 'transparent',
+ background: on ? (staffOver ? '#c9928c' : s.accent) : staffOver ? 'rgba(201,146,140,.14)' : can ? 'rgba(255,255,255,.06)' : 'transparent',
  color: on ? '#090909' : staffOver ? '#c9928c' : staffBusy ? '#d4a07a' : can ? (tight ? '#d4a07a' : s.muted) : 'rgba(255,255,255,.13)',
- border: `1px solid ${on ? (staffOver ? '#c9928c' : s.accent) : staffOver ? 'rgba(255,107,107,.55)' : can ? (staffBusy ? 'rgba(212,160,122,.35)' : 'rgba(255,255,255,.1)') : 'transparent'}`,
+ border: `1px solid ${on ? (staffOver ? '#c9928c' : s.accent) : staffOver ? 'rgba(201,146,140,.55)' : can ? (staffBusy ? 'rgba(212,160,122,.35)' : 'rgba(255,255,255,.1)') : 'transparent'}`,
  }}>
  {sess.toUpperCase()}{staffOver ? ' !' : ''}{showCrewWarning && can && a?.crew_missing ? '·' : ''}
  </button>
@@ -479,7 +479,7 @@ export default function SessionPicker({
  {replaceTarget && <div style={{ fontSize: '14px', color: '#d4a07a', marginBottom: '8px' }}>This moves your latest pick ({new Date(replaceTarget.date + 'T12:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })} · {replaceTarget.session === 'tbd' ? 'TBD' : replaceTarget.session.toUpperCase()}) to {dLabel}.</div>}
  <div style={{ display: 'flex', gap: '8px' }}>
  <button type="button" disabled={!sel || (sel === current)} onClick={() => { if (sel) { toggle(detailDate, sel); setDetailDate(null) } }}
- style={{ flex: 1, padding: '12px', borderRadius: 0, border: 'none', background: s.accent, color: '#090909', fontWeight: 800, fontSize: '14px', fontFamily: s.font, cursor: 'pointer', opacity: !sel || sel === current ? .45 : 1 }}>
+ style={{ flex: 1, padding: '12px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontWeight: 800, fontSize: '14px', fontFamily: s.font, cursor: 'pointer', opacity: !sel || sel === current ? .45 : 1 }}>
  {current ? 'Change' : 'Confirm'}
  </button>
  {current && (
@@ -565,7 +565,7 @@ export default function SessionPicker({
  const over = picked.filter(p => p.session !== 'tbd').map(p => ({ p, a: byKey.get(`${p.date}_${p.session}`) })).filter(x => x.a && x.a.capacity > 0 && x.a.booked + seats > x.a.capacity)
  if (over.length === 0) return null
  return (
- <div style={{ marginTop: '10px', padding: '9px 12px', borderRadius: 0, background: 'rgba(255,107,107,.1)', border: '1px solid rgba(255,107,107,.4)', fontSize: '14px', lineHeight: 1.55, color: '#ff9a9a' }}>
+ <div style={{ marginTop: '10px', padding: '9px 12px', borderRadius: 0, background: 'rgba(201,146,140,.1)', border: '1px solid rgba(201,146,140,.4)', fontSize: '14px', lineHeight: 1.55, color: '#c9928c' }}>
  <b>Capacity override:</b> {over.map(x => `${new Date(x.p.date + 'T12:00:00').toLocaleDateString('en-GB', { day: '2-digit', month: 'short' })} ${x.p.session.toUpperCase()} is ${x.a!.booked}/${x.a!.capacity} booked`).join(' · ')}. This booking adds {seats} more.
  </div>
  )

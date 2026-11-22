@@ -133,7 +133,7 @@ export default function PaymentRequestFailed({ sandbox, onCount, onOpenBooking }
  <label htmlFor={`alt-${r.id}`}>Send the payment request to</label>
  <input id={`alt-${r.id}`} type="email" inputMode="email" autoComplete="off" value={altOf(r).email} placeholder="other email address of the guest"
  onChange={e => setAlt(m => ({ ...m, [r.id]: { ...altOf(r), email: e.target.value } }))}
- style={{ flex: '1 1 240px', minWidth: 0, background: '#090909', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, color: s.text, fontSize: '14px', fontFamily: 'inherit', padding: '8px 10px' }} />
+ style={{ flex: '1 1 240px', minWidth: 0, background: '#000', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, color: s.text, fontSize: '14px', fontFamily: 'inherit', padding: '8px 10px' }} />
  <button type="button" disabled={busy === r.id || !validEmail(altOf(r).email)} onClick={() => again(r, altOf(r).email, altOf(r).save)}
  style={{ padding: '8px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.4)', background: 'rgba(243,239,230,.08)', color: validEmail(altOf(r).email) ? s.accent : s.muted, fontWeight: 700, fontSize: '14px', cursor: validEmail(altOf(r).email) && busy !== r.id ? 'pointer' : 'default', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>Send to this address</button>
  </div>

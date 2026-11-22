@@ -10,7 +10,7 @@ const supabase = createClient()
 const accent = '#f3efe6'
 const textColor = '#f3efe6'
 const mutedColor = '#c9c2b6'
-const bgMain = '#090909'
+const bgMain = '#000'
 const font = `-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif`
 
 type MessageRole = 'bot' | 'user' | 'team'

@@ -586,7 +586,7 @@ function BookInner() {
  })
 
  const field: React.CSSProperties = {
- width: '100%', background: '#090909', border: '1px solid rgba(255,255,255,.12)',
+ width: '100%', background: '#000', border: '1px solid rgba(255,255,255,.12)',
  borderRadius: 0, padding: '12px 14px', fontSize: '16px', color: s.text,
  fontFamily: s.font, outline: 'none', boxSizing: 'border-box', colorScheme: 'dark',
  }
@@ -698,7 +698,7 @@ function BookInner() {
  )}
 
  {requestDone ? (
- <div style={{ background: 'rgba(10,33,61,.6)', border: '1px solid rgba(183,196,176,.35)', borderRadius: 0, padding: '30px 26px', textAlign: 'center' }}>
+ <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(183,196,176,.35)', borderRadius: 0, padding: '30px 26px', textAlign: 'center' }}>
  <div style={{ fontSize: '40px', marginBottom: '10px' }}></div>
  <div style={{ fontSize: '20px', fontWeight: 900, color: '#b7c4b0', marginBottom: '10px' }}>Request received</div>
  <p style={{ color: s.sub, fontSize: '14.5px', lineHeight: 1.7, margin: '0 0 14px' }}>
@@ -706,7 +706,7 @@ function BookInner() {
  </p>
  <div style={{ display: 'inline-block', padding: '6px 14px', borderRadius: 0, background: 'rgba(255,255,255,.06)', fontFamily: 'monospace', fontSize: '14px', color: s.text, marginBottom: '14px' }}>Reference {requestDone.reference}</div>
  {requestDone.mailError && (
- <div style={{ background: 'rgba(255,160,0,.1)', border: '1px solid rgba(255,160,0,.35)', borderRadius: 0, padding: '10px 12px', fontSize: '14px', color: '#c9b48a', lineHeight: 1.5 }}>
+ <div style={{ background: 'rgba(201,180,138,.1)', border: '1px solid rgba(201,180,138,.35)', borderRadius: 0, padding: '10px 12px', fontSize: '14px', color: '#c9b48a', lineHeight: 1.5 }}>
  Your request is saved, but the confirmation email could not be sent ({requestDone.mailError}). Keep the reference above — the team will still get back to you.
  </div>
  )}
@@ -715,7 +715,7 @@ function BookInner() {
  </p>
  </div>
  ) : (
- <div style={{ background: 'rgba(10,33,61,.6)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '26px' }}>
+ <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '26px' }}>
 
  {(requestMode || todayRequest) && (
  <div style={{ marginBottom: '20px', padding: '12px 16px', borderRadius: 0, background: 'rgba(201,180,138,.08)', border: '1px solid rgba(201,180,138,.35)', color: '#c9b48a', fontSize: '14px', lineHeight: 1.55 }}>
@@ -823,7 +823,7 @@ function BookInner() {
  const old = !isSsuProduct && Boolean(d) && needsRefresher(d, refresherRef)
  const open = openLastDive === i
  return (
- <div key={i} style={{ border: `1px solid ${open ? 'rgba(243,239,230,.5)' : !d ? 'rgba(255,120,112,.55)' : old ? 'rgba(212,160,122,.6)' : 'rgba(255,255,255,.12)'}`, borderRadius: 0, padding: '10px 12px', background: open ? 'rgba(243,239,230,.06)' : 'rgba(255,255,255,.02)' }}>
+ <div key={i} style={{ border: `1px solid ${open ? 'rgba(243,239,230,.5)' : !d ? 'rgba(201,146,140,.55)' : old ? 'rgba(212,160,122,.6)' : 'rgba(255,255,255,.12)'}`, borderRadius: 0, padding: '10px 12px', background: open ? 'rgba(243,239,230,.06)' : 'rgba(255,255,255,.02)' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
  {guests > 1 && <span style={{ fontSize: '14px', color: s.muted, minWidth: '58px', flexShrink: 0 }}>Diver {i + 1}</span>}
  <span style={{ flex: 1, fontSize: '14px', color: d ? s.text : s.muted, fontWeight: d ? 600 : 400 }}>
@@ -952,7 +952,7 @@ function BookInner() {
  </div>
  <a href="/contact" style={{
  display: 'inline-block', padding: '12px 26px', borderRadius: 0,
- background: s.accent, color: '#090909', fontWeight: 800, fontSize: '14px',
+ background: s.accent, color: '#000', fontWeight: 800, fontSize: '14px',
  textDecoration: 'none',
  }}>Send an enquiry</a>
  </div>
@@ -1160,7 +1160,7 @@ function BookInner() {
  {/* Einsteigerkurse (entry): keine Extras — Torch/15L/Gloves ergeben für Schüler keinen Sinn (Lucas 24.10.) */}
  {!isEntryCourse && (torchAddon || tankAddon || glovesAddon) && (
  <div style={{ border: '1px solid rgba(201,180,138,.3)', borderRadius: 0, padding: '12px 14px', marginBottom: '10px', background: 'rgba(201,180,138,.05)' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: '#FFD080', marginBottom: '8px' }}>Popular extras</div>
+ <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: '#c9b48a', marginBottom: '8px' }}>Popular extras</div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
  {torchAddon && (
  <button type="button" onClick={() => toggleAddon(torchAddon.id)} style={addonOpt(selectedAddonIds.has(torchAddon.id))}>
@@ -1331,8 +1331,8 @@ function BookInner() {
 
  </div>
 
- <div style={{ background: 'rgba(255,165,0,.12)', border: '1px solid rgba(255,165,0,.35)', borderRadius: 0, padding: '14px 16px', marginBottom: '20px', fontSize: '14px', color: '#c9b48a', lineHeight: 1.6 }}>
- <b style={{ display: 'block', marginBottom: '6px', color: '#ffa500' }}>After payment</b>
+ <div style={{ background: 'rgba(201,180,138,.12)', border: '1px solid rgba(201,180,138,.35)', borderRadius: 0, padding: '14px 16px', marginBottom: '20px', fontSize: '14px', color: '#c9b48a', lineHeight: 1.6 }}>
+ <b style={{ display: 'block', marginBottom: '6px', color: '#c9b48a' }}>After payment</b>
  {(splitActive ? splitList.some(g => g && prices.find(x => x.id === g.product_id)?.category === 'entry') && splitList.every(g => !g || prices.find(x => x.id === g.product_id)?.category === 'entry') : isEntryCourse) ? (
  <>You go straight to the online check-in: a short medical form, your sizes and the e-signed
  waiver — no certification needed, this is your first course. <b>Your instructor confirms the start time by email.</b></>
@@ -1344,8 +1344,8 @@ function BookInner() {
 
 
  {/* Der Vertrag entsteht hier, nicht beim Check-in. */}
- <div style={{ border: '1px solid rgba(255,165,0,.3)', borderRadius: 0, padding: '14px 16px', marginBottom: '16px', background: 'rgba(255,165,0,.06)' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: '#ffa500', marginBottom: '10px' }}>
+ <div style={{ border: '1px solid rgba(201,180,138,.3)', borderRadius: 0, padding: '14px 16px', marginBottom: '16px', background: 'rgba(201,180,138,.06)' }}>
+ <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: '#c9b48a', marginBottom: '10px' }}>
  Cancellation Policy
  </div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '7px' }}>

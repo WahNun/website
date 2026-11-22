@@ -409,8 +409,8 @@ export const T = {
 
 export const s = {
  accent: '#f3efe6',
- bg: '#090909',
- bgDark: '#090909',
+  bg: '#000000',
+  bgDark: '#000000',
  text: '#f3efe6',
  muted: '#c9c2b6',
  sub: '#c9c2b6',

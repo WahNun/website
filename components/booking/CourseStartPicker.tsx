@@ -221,7 +221,7 @@ export default function CourseStartPicker({ productId, days, guests, boatDays, v
  const hEv = courseDays && !loading ? evaluate(hintDate) : null
  if (!hEv || hEv.ok || !hEv.requestOnly) return null
  return (
- <div style={{ marginTop: '10px', padding: '10px 12px', borderRadius: 0, background: 'rgba(212,160,122,.1)', border: '1px solid rgba(212,160,122,.35)', fontSize: '14px', color: '#ffc27a', lineHeight: 1.55 }}>
+ <div style={{ marginTop: '10px', padding: '10px 12px', borderRadius: 0, background: 'rgba(212,160,122,.1)', border: '1px solid rgba(212,160,122,.35)', fontSize: '14px', color: '#d4a07a', lineHeight: 1.55 }}>
  <b style={{ color: '#d4a07a' }}>A start on {fmtDay(hintDate)} can&apos;t be booked online</b> — {hEv.guestWhy ?? hEv.why}.
  {' '}Still want to do your course that week? Reach out to us directly and we&apos;ll see what&apos;s possible.{' '}
  <a href={`/contact?product=${encodeURIComponent(productId)}&date=${hintDate}`} style={{ color: '#d4a07a', fontWeight: 700 }}>Contact us </a>

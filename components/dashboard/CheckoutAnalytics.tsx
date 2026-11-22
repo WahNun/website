@@ -33,7 +33,7 @@ const card: React.CSSProperties = { background: 'rgba(255,255,255,.03)', border:
 const h: React.CSSProperties = { fontSize: '14px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: s.muted, margin: '0 0 12px' }
 const th: React.CSSProperties = { textAlign: 'left', fontSize: '14px', color: s.muted, fontWeight: 700, padding: '6px 8px', borderBottom: '1px solid rgba(255,255,255,.08)', whiteSpace: 'nowrap' }
 const td: React.CSSProperties = { fontSize: '14px', color: s.text, padding: '6px 8px', borderBottom: '1px solid rgba(255,255,255,.04)', verticalAlign: 'top' }
-const sel: React.CSSProperties = { background: '#121210', color: '#fff', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0, padding: '7px 10px', fontSize: '14px', fontFamily: s.font }
+const sel: React.CSSProperties = { background: '#121210', color: '#f3efe6', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0, padding: '7px 10px', fontSize: '14px', fontFamily: s.font }
 const btn = (active: boolean): React.CSSProperties => ({ padding: '6px 12px', borderRadius: 0, fontSize: '14px', fontWeight: 700, fontFamily: s.font, cursor: 'pointer', border: `1px solid ${active ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.12)'}`, background: active ? 'rgba(243,239,230,.15)' : 'transparent', color: active ? s.accent : s.sub })
 
 export default function CheckoutAnalytics() {
@@ -206,7 +206,7 @@ export default function CheckoutAnalytics() {
  <div style={{ overflowX: 'auto' }}><table style={{ width: '100%', borderCollapse: 'collapse' }}><thead><tr><th style={th}>Paid at</th><th style={th}>Booking no.</th><th style={th}>Guest</th><th style={th}>Product</th><th style={th}>Guests</th><th style={th}>Device</th><th style={th}>Open Pay</th><th style={th}>Open Paid</th><th style={th}>Errors</th><th style={th}>Booking</th></tr></thead>
  <tbody>{data.converted.map(c => (
  <tr key={c.session_id}>
- <td style={td}>{c.paid_at ? fmtTs(c.paid_at) : '–'}{c.is_test && <span style={{ marginLeft: '6px', fontSize: '14px', color: '#ffb347', fontWeight: 700 }}>TEST</span>}</td>
+ <td style={td}>{c.paid_at ? fmtTs(c.paid_at) : '–'}{c.is_test && <span style={{ marginLeft: '6px', fontSize: '14px', color: '#c9b48a', fontWeight: 700 }}>TEST</span>}</td>
  <td style={{ ...td, fontFamily: 'monospace' }}>{c.booking_no ? <>#{c.booking_no}<button type="button" onClick={() => { navigator.clipboard?.writeText(c.booking_id ?? '').catch(() => {}) }} style={{ marginLeft: '6px', background: 'none', border: 'none', color: s.accent, cursor: 'pointer', fontSize: '14px', fontFamily: 'inherit' }}>copy</button></> : <span style={{ color: '#c9928c' }} title="Payment succeeded but no booking linked yet — webhook may still be running">not linked</span>}</td>
  <td style={{ ...td, color: s.sub }}>{c.customer_email ?? '–'}</td>
  <td style={td}>{c.product_id ?? '–'}</td><td style={td}>{c.guests ?? '–'}</td><td style={td}>{c.device ?? '–'}</td>
@@ -225,7 +225,7 @@ export default function CheckoutAnalytics() {
  <div style={{ overflowX: 'auto' }}><table style={{ width: '100%', borderCollapse: 'collapse' }}><thead><tr><th style={th}>Last seen</th><th style={th}>Outcome</th><th style={th}>Device</th><th style={th}>Product</th><th style={th}>Guests</th><th style={th}>Furthest step</th><th style={th}>Blocker</th><th style={th}>Errors</th><th style={th}>On page</th><th style={th}>Session</th></tr></thead>
  <tbody>{data.recent.map(r => (
  <tr key={r.session_id}>
- <td style={td}>{fmtTs(r.last_seen)}{r.is_test && <span style={{ marginLeft: '6px', fontSize: '14px', color: '#ffb347', fontWeight: 700 }}>TEST</span>}</td>
+ <td style={td}>{fmtTs(r.last_seen)}{r.is_test && <span style={{ marginLeft: '6px', fontSize: '14px', color: '#c9b48a', fontWeight: 700 }}>TEST</span>}</td>
  <td style={td}>{r.outcome}</td><td style={td}>{r.device ?? '–'}</td><td style={td}>{r.product_id ?? '–'}</td><td style={td}>{r.guests ?? '–'}</td>
  <td style={td}>{r.furthest_step ?? '–'}</td><td style={{ ...td, color: '#c9928c' }}>{r.blocker ?? '–'}</td><td style={td}>{r.error_count}</td><td style={td}>{fmtMs(r.ms_on_page)}</td>
  <td style={{ ...td, fontFamily: 'monospace', fontSize: '14px', color: s.muted }} title="Clarity: filter recordings by custom tag telemetry_session = this value">{r.session_id.slice(0, 8)}…

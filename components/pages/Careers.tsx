@@ -92,7 +92,7 @@ export function PageCareers({ nav, lang }: { nav: (p: string) => void; lang: Lan
  href={href}
  style={{
  display: 'inline-block', marginTop: '18px',
- background: 'linear-gradient(135deg,#f3efe6,#f3efe6)', color: '#090909',
+ background: 'linear-gradient(135deg,#f3efe6,#f3efe6)', color: '#000',
  fontWeight: 800, fontSize: '14px', padding: '11px 22px', borderRadius: 0,
  boxShadow: 'none', textDecoration: 'none', fontFamily: s.font,
  }}

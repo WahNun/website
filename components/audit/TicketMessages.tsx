@@ -158,7 +158,7 @@ export default function TicketMessages({
  {/* Body */}
  <div style={{
  fontSize: '14px',
- color: 'rgba(232,241,251,.9)',
+ color: 'rgba(243,239,230,.92)',
  lineHeight: 1.65,
  whiteSpace: 'pre-wrap',
  wordBreak: 'break-word',

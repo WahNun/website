@@ -186,7 +186,7 @@ export default function AuditChangelog({ isAdmin, userId }: { isAdmin: boolean; 
  {(filterAction || filterStaff || filterTicket || filterFrom || filterTo) && (
  <button
  onClick={() => { setFilterAction(''); setFilterStaff(''); setFilterTicket(''); setFilterFrom(''); setFilterTo('') }}
- style={{ ...inputStyle, cursor: 'pointer', color: 'rgba(255,100,100,.8)', borderColor: 'rgba(255,100,100,.2)' }}
+ style={{ ...inputStyle, cursor: 'pointer', color: 'rgba(201,146,140,.8)', borderColor: 'rgba(201,146,140,.2)' }}
  >
  Clear filters
  </button>

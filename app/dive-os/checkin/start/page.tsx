@@ -64,7 +64,7 @@ function StartInner() {
 
  return (
  <div style={{
- minHeight: '100vh', background: '#090909', color: '#f3efe6',
+ minHeight: '100vh', background: '#000', color: '#f3efe6',
  display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
  gap: '18px', padding: '40px', textAlign: 'center',
  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
@@ -86,10 +86,10 @@ function StartInner() {
  </div>
  {g.extras.length > 0 && <div style={{ fontSize: '14px', color: 'rgba(255,255,255,.5)', marginTop: '2px' }}>+ {g.extras.join(', ')}</div>}
  {g.done
- ? <div style={{ marginTop: '10px', fontSize: '14px', fontWeight: 700, color: '#2dd4a0' }}> Checked in</div>
+ ? <div style={{ marginTop: '10px', fontSize: '14px', fontWeight: 700, color: '#b7c4b0' }}> Checked in</div>
  : (
  <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginTop: '10px', flexWrap: 'wrap' }}>
- <a href={`/dive-os/checkin?token=${g.token}`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', padding: '9px 16px', borderRadius: 0, background: '#f3efe6', color: '#090909', fontWeight: 800, fontSize: '14px', textDecoration: 'none' }}>Check in {g.label.replace(/ — .*/, '')} </a>
+ <a href={`/dive-os/checkin?token=${g.token}`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', padding: '9px 16px', borderRadius: 0, background: '#f3efe6', color: '#000', fontWeight: 800, fontSize: '14px', textDecoration: 'none' }}>Check in {g.label.replace(/ — .*/, '')} </a>
  <button type="button" onClick={() => void copyLink(g.token, g.label.replace(/ — .*/, ''))} title="Copy this guest's check-in link"
  style={{ padding: '9px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.35)', background: 'transparent', color: '#f3efe6', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>
  Copy check-in link
@@ -143,7 +143,7 @@ function StartInner() {
 
 export default function Page() {
  return (
- <Suspense fallback={<div style={{ minHeight: '100vh', background: '#090909' }} />}>
+ <Suspense fallback={<div style={{ minHeight: '100vh', background: '#000' }} />}>
  <StartInner />
  </Suspense>
  )

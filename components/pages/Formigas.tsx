@@ -36,8 +36,8 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
  { url: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/fish/greater-amberjack.webp', latin: 'Seriola dumerili', name: 'Greater Amberjack' },
  ].map(fish => (
  <div key={fish.name} style={{ backgroundImage: `url('${fish.url}')`, backgroundSize: 'cover', backgroundPosition: 'center 40%', position: 'relative', height: isMobile ? '160px' : '100%' }}>
- <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 38%, rgba(2,8,22,.82))' }} />
- <div style={{ position: 'absolute', bottom: '13px', left: '14px', right: '14px', color: '#fff' }}>
+ <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 38%, rgba(0,0,0,0.82))' }} />
+ <div style={{ position: 'absolute', bottom: '13px', left: '14px', right: '14px', color: '#f3efe6' }}>
  <div style={{ fontSize: '14px', letterSpacing: '.2em', textTransform: 'uppercase', opacity: .7, fontWeight: 600, marginBottom: '3px' }}>{fish.latin}</div>
  <div style={{ fontSize: '14px', fontWeight: 800, textShadow: '0 1px 6px rgba(0,0,0,.6)' }}>{fish.name}</div>
  </div>
@@ -54,9 +54,9 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
  { label: t('formigas_stat_season'), value: t('formigas_stat_season_val'), sub: t('formigas_stat_season_sub') },
  { label: t('formigas_stat_level'), value: t('formigas_stat_level_val'), sub: t('formigas_stat_level_sub') },
  ].map(({ label, value, sub }) => (
- <div key={label} style={{ background: 'rgba(10,33,61,.6)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '16px 14px', textAlign: 'center' }}>
+ <div key={label} style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '16px 14px', textAlign: 'center' }}>
  <div style={{ fontSize: '14px', color: s.muted, textTransform: 'uppercase', letterSpacing: '.12em', marginBottom: '6px', fontWeight: 600 }}>{label}</div>
- <div style={{ fontSize: '20px', fontWeight: 900, color: '#fff', lineHeight: 1 }}>{value}</div>
+ <div style={{ fontSize: '20px', fontWeight: 900, color: '#f3efe6', lineHeight: 1 }}>{value}</div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '5px' }}>{sub}</div>
  </div>
  ))}
@@ -166,7 +166,7 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
  <div style={{ fontSize: '14px', fontWeight: 700, color: '#f3efe6', marginBottom: '6px' }}>{t('formigas_join')}</div>
  <p style={{ color: s.muted, fontSize: '14px', lineHeight: 1.6, marginBottom: '14px' }}>{t('formigas_waitlist_sub')}</p>
  {waitDone ? (
- <div style={{ background: 'rgba(45,212,160,.08)', border: '1px solid rgba(45,212,160,.3)', borderRadius: 0, padding: '12px 14px', color: '#2dd4a0', fontSize: '14px', fontWeight: 600 }}>
+ <div style={{ background: 'rgba(45,212,160,.08)', border: '1px solid rgba(45,212,160,.3)', borderRadius: 0, padding: '12px 14px', color: '#b7c4b0', fontSize: '14px', fontWeight: 600 }}>
  You&rsquo;re on the list — we&rsquo;ll notify you when a window opens.
  </div>
  ) : (
