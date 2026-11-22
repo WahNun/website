@@ -591,7 +591,7 @@ function BookInner() {
  fontFamily: s.font, outline: 'none', boxSizing: 'border-box', colorScheme: 'dark',
  }
  const label: React.CSSProperties = {
- fontSize: '14px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase',
+ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase',
  color: s.muted, marginBottom: '8px',
  }
  const cartLine = (open: boolean, done: boolean): React.CSSProperties => ({
@@ -600,7 +600,7 @@ function BookInner() {
  borderRadius: 0, padding: '12px 14px', marginBottom: '10px',
  })
  const pickBtn = (done: boolean): React.CSSProperties => ({
- padding: '8px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 700, fontFamily: 'inherit', cursor: 'pointer',
+ padding: '8px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 500, fontFamily: 'inherit', cursor: 'pointer',
  border: `1px solid ${done ? 'rgba(255,255,255,.15)' : 'rgba(243,239,230,.5)'}`,
  background: done ? 'transparent' : 'rgba(243,239,230,.15)', color: done ? s.sub : '#f3efe6', whiteSpace: 'nowrap',
  })
@@ -627,7 +627,7 @@ function BookInner() {
  setPicked(prev => prev.length > nextRequired ? prev.slice(0, nextRequired) : prev)
  }
  }}
- style={compact ? { ...field, padding: '8px 10px', fontSize: '14px', fontWeight: 700 } : field}>
+ style={compact ? { ...field, padding: '8px 10px', fontSize: '14px', fontWeight: 500 } : field}>
  {groupedEntries.map(([cat, allRows]) => {
  // Sobald ein Refresher fällig ist (>12 Monate nicht im Wasser), gibt es nur noch Produkte für Zertifizierte —
  // ein Einsteigerprodukt (Basic Diver, Open Water …) würde Letzter-Tauchgang und Refresher stillschweigend verwerfen.
@@ -654,7 +654,7 @@ function BookInner() {
  </div>
  )}
 
- <h1 style={{ fontSize: 'clamp(28px,4vw,42px)', fontWeight: 900, color: s.text, letterSpacing: '-.01em', margin: '0 0 8px' }}>
+ <h1 style={{ fontSize: 'clamp(28px,4vw,42px)', fontWeight: 500, color: s.text, letterSpacing: '-0.02em', margin: '0 0 8px' }}>
  Book your dive<span style={{ color: s.accent }}>.</span>
  </h1>
  <p style={{ color: s.sub, fontSize: '15px', margin: '0 0 36px', lineHeight: 1.6 }}>
@@ -666,8 +666,8 @@ function BookInner() {
  {showRequestModal && (
  <div role="dialog" aria-modal="true" style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(9,9,9,.78)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
  <div style={{ maxWidth: '560px', width: '100%', maxHeight: 'calc(100vh - 40px)', overflowY: 'auto', background: '#121210', border: '1px solid rgba(201,180,138,.5)', borderRadius: 0, padding: '26px 24px', boxShadow: 'none' }}>
- <div style={{ fontSize: '14px', fontWeight: 800, letterSpacing: '.14em', textTransform: 'uppercase', color: '#c9b48a', marginBottom: '8px' }}>{capacityRequest && windowDecision.mode !== 'request' ? 'Popular day · booking on request' : productRequest ? `${product?.name} · on request` : `Low season${requestSpan ? ` (${requestSpan})` : ''} · booking on request`}</div>
- <div style={{ fontSize: '20px', fontWeight: 900, color: s.text, marginBottom: '12px', lineHeight: 1.25 }}>{capacityRequest && windowDecision.mode !== 'request' ? 'This day is currently fully booked — you can send it as a request.' : productRequest ? `${product?.name} runs on request — your date is a request, not a confirmed booking.` : 'Your dates are a request — we build dive days around the requests we get.'}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c9b48a', marginBottom: '8px' }}>{capacityRequest && windowDecision.mode !== 'request' ? 'Popular day · booking on request' : productRequest ? `${product?.name} · on request` : `Low season${requestSpan ? ` (${requestSpan})` : ''} · booking on request`}</div>
+ <div style={{ fontSize: '20px', fontWeight: 500, color: s.text, marginBottom: '12px', lineHeight: 1.25 }}>{capacityRequest && windowDecision.mode !== 'request' ? 'This day is currently fully booked — you can send it as a request.' : productRequest ? `${product?.name} runs on request — your date is a request, not a confirmed booking.` : 'Your dates are a request — we build dive days around the requests we get.'}</div>
  <p style={{ color: s.sub, fontSize: '14.5px', lineHeight: 1.7, margin: '0 0 10px' }}>
  {capacityRequest && windowDecision.mode !== 'request'
  ? 'The boat for your chosen day is fully booked at the moment, so we cannot promise this day. If you send it as a request, we check whether something frees up or works out and come back to you by email — with a confirmation or a suggestion for another day. Nothing is charged and no seat is reserved until you pay.'
@@ -685,9 +685,9 @@ function BookInner() {
  <li>{capOnly ? 'If a seat works out, we email you a payment link — for your day or a nearby one.' : programProduct ? 'Once your programme is planned, we email you the plan and a payment link.' : productRequest ? 'Once we have confirmed a seat for your date, we email you a payment link — for your date or a nearby one.' : 'Once we can organise a dive day for your week, we email you a payment link — for your date or a nearby one.'}</li>
  <li>A spot is only reserved once you pay.</li>
  </ul>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase', color: s.muted, marginBottom: '10px' }}>Who is diving?</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '10px' }}>Who is diving?</div>
  <div style={{ marginBottom: '18px' }}>{requestFields(true)}</div>
- <button type="button" disabled={!mainNameReady || !otherNamesReady} onClick={ackRequest} style={{ width: '100%', padding: '14px', borderRadius: 0, border: 'none', background: mainNameReady && otherNamesReady ? s.accent : 'rgba(255,255,255,.08)', color: mainNameReady && otherNamesReady ? '#090909' : s.muted, fontSize: '15px', fontWeight: 800, fontFamily: s.font, cursor: mainNameReady && otherNamesReady ? 'pointer' : 'default' }}>
+ <button type="button" disabled={!mainNameReady || !otherNamesReady} onClick={ackRequest} style={{ width: '100%', padding: '14px', borderRadius: 0, border: 'none', background: mainNameReady && otherNamesReady ? s.accent : 'rgba(255,255,255,.08)', color: mainNameReady && otherNamesReady ? '#090909' : s.muted, fontSize: '15px', fontWeight: 500, fontFamily: s.font, cursor: mainNameReady && otherNamesReady ? 'pointer' : 'default' }}>
  {mainNameReady && otherNamesReady ? 'Continue as a request' : guests > 1 && mainNameReady ? 'Enter the names of all guests' : 'Enter your name to continue'}
  </button>
  <button type="button" onClick={() => { setPicked([]); setCourseStart(null); if (productRequest) { setProductId('daily-double-dive'); setRequestAck(false) } }} style={{ width: '100%', marginTop: '8px', background: 'none', border: 'none', color: s.muted, fontSize: '14px', fontFamily: s.font, cursor: 'pointer', textDecoration: 'underline' }}>
@@ -700,11 +700,11 @@ function BookInner() {
  {requestDone ? (
  <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(183,196,176,.35)', borderRadius: 0, padding: '30px 26px', textAlign: 'center' }}>
  <div style={{ fontSize: '40px', marginBottom: '10px' }}></div>
- <div style={{ fontSize: '20px', fontWeight: 900, color: '#b7c4b0', marginBottom: '10px' }}>Request received</div>
+ <div style={{ fontSize: '20px', fontWeight: 500, color: '#b7c4b0', marginBottom: '10px' }}>Request received</div>
  <p style={{ color: s.sub, fontSize: '14.5px', lineHeight: 1.7, margin: '0 0 14px' }}>
  No payment has been taken. Your dates are noted as a preference. We organise dive days once enough divers have requested the same week and conditions allow, and get back to you at <strong style={{ color: s.text }}>{email.trim()}</strong> — with a payment link for your date or a nearby one, or with alternatives. A spot is only held once you pay.
  </p>
- <div style={{ display: 'inline-block', padding: '6px 14px', borderRadius: 0, background: 'rgba(255,255,255,.06)', fontFamily: 'monospace', fontSize: '14px', color: s.text, marginBottom: '14px' }}>Reference {requestDone.reference}</div>
+ <div style={{ display: 'inline-block', padding: '6px 14px', borderRadius: 0, background: 'rgba(255,255,255,.06)', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', fontSize: '14px', color: s.text, marginBottom: '14px' }}>Reference {requestDone.reference}</div>
  {requestDone.mailError && (
  <div style={{ background: 'rgba(201,180,138,.1)', border: '1px solid rgba(201,180,138,.35)', borderRadius: 0, padding: '10px 12px', fontSize: '14px', color: '#c9b48a', lineHeight: 1.5 }}>
  Your request is saved, but the confirmation email could not be sent ({requestDone.mailError}). Keep the reference above — the team will still get back to you.
@@ -781,7 +781,7 @@ function BookInner() {
  <div style={label}>Guests</div>
  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
  <button type="button" onClick={() => setGuests(g => Math.max(1, g - 1))} style={stepBtn(true)}>−</button>
- <span style={{ flex: 1, textAlign: 'center', fontSize: '18px', fontWeight: 800, color: s.text }}>{guests}</span>
+ <span style={{ flex: 1, textAlign: 'center', fontSize: '18px', fontWeight: 500, color: s.text }}>{guests}</span>
  <button
  type="button"
  disabled={guests >= guestCeiling}
@@ -826,7 +826,7 @@ function BookInner() {
  <div key={i} style={{ border: `1px solid ${open ? 'rgba(243,239,230,.5)' : !d ? 'rgba(201,146,140,.55)' : old ? 'rgba(212,160,122,.6)' : 'rgba(255,255,255,.12)'}`, borderRadius: 0, padding: '10px 12px', background: open ? 'rgba(243,239,230,.06)' : 'rgba(255,255,255,.02)' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
  {guests > 1 && <span style={{ fontSize: '14px', color: s.muted, minWidth: '58px', flexShrink: 0 }}>Diver {i + 1}</span>}
- <span style={{ flex: 1, fontSize: '14px', color: d ? s.text : s.muted, fontWeight: d ? 600 : 400 }}>
+ <span style={{ flex: 1, fontSize: '14px', color: d ? s.text : s.muted, fontWeight: d ? 500 : 400 }}>
  {d ? new Date(d + 'T12:00:00').toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : 'Not set'}
  </span>
  {old && <span style={{ fontSize: '14px', color: '#d4a07a', flexShrink: 0 }}> refresher</span>}
@@ -851,7 +851,7 @@ function BookInner() {
  )}
 
  {(!isCourse || splitActive) && !requestOnly && <details className="fav-site" style={{ marginBottom: '22px' }}>
- <summary style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6px', fontSize: '14px', color: favouriteSpot ? s.accent : s.sub, fontWeight: favouriteSpot ? 600 : 400, userSelect: 'none', listStyle: 'none' }}>
+ <summary style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6px', fontSize: '14px', color: favouriteSpot ? s.accent : s.sub, fontWeight: favouriteSpot ? 500 : 400, userSelect: 'none', listStyle: 'none' }}>
  <span>
  {favouriteSpot
  ? `Favourite site: ${SITE_META[favouriteSpot].name} · change`
@@ -880,7 +880,7 @@ function BookInner() {
  background: favouriteSpot === slug ? 'rgba(243,239,230,.15)' : 'transparent',
  color: favouriteSpot === slug ? s.accent : s.sub,
  fontSize: '14px',
- fontWeight: favouriteSpot === slug ? 700 : 400,
+ fontWeight: favouriteSpot === slug ? 500 : 400,
  cursor: 'pointer',
  transition: 'all .15s',
  }}
@@ -928,7 +928,7 @@ function BookInner() {
  />
  {positions[positions.findLastIndex(x => x.person === ps.person)].key === ps.key && positions.length < 20 && (
  <button type="button" data-addproduct onClick={() => { setExtras(prev => [...prev, { id: extraSeq, person: ps.person }]); setExtraSeq(n => n + 1) }}
- style={{ scrollMarginTop: '88px', display: 'block', width: '100%', margin: '-4px 0 14px', padding: '10px', borderRadius: 0, border: '1px dashed rgba(243,239,230,.45)', background: 'transparent', color: s.accent, fontSize: '14px', fontWeight: 700, fontFamily: 'inherit', cursor: 'pointer' }}>
+ style={{ scrollMarginTop: '88px', display: 'block', width: '100%', margin: '-4px 0 14px', padding: '10px', borderRadius: 0, border: '1px dashed rgba(243,239,230,.45)', background: 'transparent', color: s.accent, fontSize: '14px', fontWeight: 500, fontFamily: 'inherit', cursor: 'pointer' }}>
  + Add another product for guest {ps.person}
  </button>
  )}
@@ -940,7 +940,7 @@ function BookInner() {
  marginBottom: '22px', padding: '20px 22px', borderRadius: 0,
  background: 'rgba(243,239,230,.07)', border: '1px solid rgba(243,239,230,.28)',
  }}>
- <div style={{ fontSize: '15px', fontWeight: 800, color: s.text, marginBottom: '8px' }}>
+ <div style={{ fontSize: '15px', fontWeight: 500, color: s.text, marginBottom: '8px' }}>
  {product?.name} runs on request
  </div>
  <div style={{ fontSize: '14px', color: s.sub, lineHeight: 1.65, marginBottom: '16px' }}>
@@ -952,7 +952,7 @@ function BookInner() {
  </div>
  <a href="/contact" style={{
  display: 'inline-block', padding: '12px 26px', borderRadius: 0,
- background: s.accent, color: '#000', fontWeight: 800, fontSize: '14px',
+ background: s.accent, color: '#000', fontWeight: 500, fontSize: '14px',
  textDecoration: 'none',
  }}>Send an enquiry</a>
  </div>
@@ -969,7 +969,7 @@ function BookInner() {
  <div data-pickrow data-open={openPicker === 'refresher' ? '1' : undefined} style={{ scrollMarginTop: '88px', ...cartLine(openPicker === 'refresher', Boolean(refresherDate)) }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
  <div style={{ flex: 1, minWidth: '160px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, color: s.text }}> {refresherProduct.name} × {refresherCount}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}> {refresherProduct.name} × {refresherCount}</div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>
  {refresherDate
  ? `${fmtDay(refresherDate)} · start time confirmed by your instructor`
@@ -977,7 +977,7 @@ function BookInner() {
  <span style={{ display: 'block', marginTop: '3px', color: '#b7c4b0' }}> Full equipment is included for this session.</span>
  </div>
  </div>
- <div style={{ fontSize: '14px', fontWeight: 700, color: s.sub, fontVariantNumeric: 'tabular-nums' }}>€{refresherTotal.toFixed(2)}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: s.sub, fontVariantNumeric: 'tabular-nums' }}>€{refresherTotal.toFixed(2)}</div>
  <button type="button" onClick={() => setOpenPicker(openPicker === 'refresher' ? null : 'refresher')} style={pickBtn(Boolean(refresherDate))}>
  {refresherDate ? 'Change date' : 'Select date'}
  </button>
@@ -999,7 +999,7 @@ function BookInner() {
  onChange={d => setRefresherDate(d ?? '')}
  />
  <button type="button" onClick={e => closePicker(e, () => setOpenPicker(null))}
- style={{ width: '100%', marginTop: '12px', padding: '12px', borderRadius: 0, border: 'none', background: refresherDate ? s.accent : 'rgba(255,255,255,.08)', color: refresherDate ? '#090909' : s.muted, fontWeight: 800, fontSize: '14px', fontFamily: 'inherit', cursor: 'pointer' }}>
+ style={{ width: '100%', marginTop: '12px', padding: '12px', borderRadius: 0, border: 'none', background: refresherDate ? s.accent : 'rgba(255,255,255,.08)', color: refresherDate ? '#090909' : s.muted, fontWeight: 500, fontSize: '14px', fontFamily: 'inherit', cursor: 'pointer' }}>
  {refresherDate ? 'Confirm' : 'Pick a date'}
  </button>
  </div>
@@ -1014,9 +1014,9 @@ function BookInner() {
  {refresherCount > 0
  ? <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
  <div style={{ flex: 1 }}>{productSelect(true)}</div>
- <span style={{ fontSize: '14px', fontWeight: 700, color: s.text, whiteSpace: 'nowrap' }}>× {guests}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: s.text, whiteSpace: 'nowrap' }}>× {guests}</span>
  </div>
- : <div style={{ fontSize: '14px', fontWeight: 700, color: s.text }}>{product?.name ?? '—'} × {guests}</div>}
+ : <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{product?.name ?? '—'} × {guests}</div>}
  {requestOnly ? (
  <div style={{ fontSize: '14px', color: '#d4a07a', marginTop: '6px', lineHeight: 1.5 }}>{product?.name} runs on request — <a href="/contact" style={{ color: s.accent }}>send an enquiry</a> or pick another product.</div>
  ) : (
@@ -1037,7 +1037,7 @@ function BookInner() {
  </div>
  )}
  </div>
- {!requestOnly && <div style={{ fontSize: '14px', fontWeight: 700, color: s.sub, fontVariantNumeric: 'tabular-nums' }}>€{productTotal.toFixed(2)}</div>}
+ {!requestOnly && <div style={{ fontSize: '14px', fontWeight: 500, color: s.sub, fontVariantNumeric: 'tabular-nums' }}>€{productTotal.toFixed(2)}</div>}
  {!requestOnly && <button type="button" onClick={() => setOpenPicker(openPicker === 'product' ? null : 'product')} style={pickBtn(picked.length === required)}>
  {picked.length === required ? 'Change dates' : isCourse ? 'Select start date' : 'Select dates'}
  </button>}
@@ -1093,7 +1093,7 @@ function BookInner() {
  />
  )}
  <button type="button" onClick={e => closePicker(e, () => setOpenPicker(null))}
- style={{ width: '100%', marginTop: '12px', padding: '12px', borderRadius: 0, border: 'none', background: picked.length === required ? s.accent : 'rgba(255,255,255,.08)', color: picked.length === required ? '#090909' : s.muted, fontWeight: 800, fontSize: '14px', fontFamily: 'inherit', cursor: 'pointer' }}>
+ style={{ width: '100%', marginTop: '12px', padding: '12px', borderRadius: 0, border: 'none', background: picked.length === required ? s.accent : 'rgba(255,255,255,.08)', color: picked.length === required ? '#090909' : s.muted, fontWeight: 500, fontSize: '14px', fontFamily: 'inherit', cursor: 'pointer' }}>
  {picked.length === required ? (lastDayMissing ? 'Confirm — then pick your last day above' : 'Confirm') : isCourse ? 'Pick a start date' : `Pick ${required - picked.length} more day${required - picked.length === 1 ? '' : 's'}`}
  </button>
  </div>
@@ -1112,7 +1112,7 @@ function BookInner() {
  <div data-step style={{ marginBottom: '22px', scrollMarginTop: '88px' }}>
  <div style={label}>Equipment</div>
  {equipmentIncluded ? (
- <div style={{ border: '1px solid rgba(183,196,176,.3)', borderRadius: 0, padding: '12px 16px', background: 'rgba(183,196,176,.06)', fontSize: '14px', color: '#b7c4b0', fontWeight: 600, marginBottom: '10px' }}>
+ <div style={{ border: '1px solid rgba(183,196,176,.3)', borderRadius: 0, padding: '12px 16px', background: 'rgba(183,196,176,.06)', fontSize: '14px', color: '#b7c4b0', fontWeight: 500, marginBottom: '10px' }}>
  Full equipment is included in {product?.name ?? 'this course'}.
  </div>
  ) : (
@@ -1128,7 +1128,7 @@ function BookInner() {
  <span> Full equipment incl. computer</span>
  <span style={{ fontSize: '14px', color: s.muted, fontWeight: 400 }}>Wetsuit, BCD, regulator, mask, fins, boots, computer</span>
  </div>
- <span style={{ fontSize: '14px', fontWeight: selectedAddonIds.has(fullEquipAddon.id) ? 700 : 400, whiteSpace: 'nowrap' }}>
+ <span style={{ fontSize: '14px', fontWeight: selectedAddonIds.has(fullEquipAddon.id) ? 500 : 400, whiteSpace: 'nowrap' }}>
  €{(fullEquipAddon.price_cents / 100).toFixed(0)}/diver/day
  </span>
  </button>
@@ -1147,7 +1147,7 @@ function BookInner() {
  return (
  <button key={addon.id} type="button" onClick={() => toggleAddon(addon.id)} style={addonOpt(active)}>
  <span>{addon.name}</span>
- <span style={{ fontSize: '14px', fontWeight: active ? 700 : 400, whiteSpace: 'nowrap' }}>€{(addon.price_cents / 100).toFixed(0)}/diver/day</span>
+ <span style={{ fontSize: '14px', fontWeight: active ? 500 : 400, whiteSpace: 'nowrap' }}>€{(addon.price_cents / 100).toFixed(0)}/diver/day</span>
  </button>
  )
  })}
@@ -1160,18 +1160,18 @@ function BookInner() {
  {/* Einsteigerkurse (entry): keine Extras — Torch/15L/Gloves ergeben für Schüler keinen Sinn (Lucas 24.10.) */}
  {!isEntryCourse && (torchAddon || tankAddon || glovesAddon) && (
  <div style={{ border: '1px solid rgba(201,180,138,.3)', borderRadius: 0, padding: '12px 14px', marginBottom: '10px', background: 'rgba(201,180,138,.05)' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: '#c9b48a', marginBottom: '8px' }}>Popular extras</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c9b48a', marginBottom: '8px' }}>Popular extras</div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
  {torchAddon && (
  <button type="button" onClick={() => toggleAddon(torchAddon.id)} style={addonOpt(selectedAddonIds.has(torchAddon.id))}>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', textAlign: 'left' }}>
  <span style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
  <span> Torch</span>
- {isNightDive && <span style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.08em', padding: '2px 7px', borderRadius: 0, background: 'rgba(243,239,230,.2)', color: s.accent, border: '1px solid rgba(243,239,230,.4)' }}>Recommended for night dives</span>}
+ {isNightDive && <span style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', padding: '2px 7px', borderRadius: 0, background: 'rgba(243,239,230,.2)', color: s.accent, border: '1px solid rgba(243,239,230,.4)' }}>Recommended for night dives</span>}
  </span>
  <span style={{ fontSize: '14px', color: s.muted, fontWeight: 400 }}>See what others miss in cracks and caves</span>
  </div>
- <span style={{ fontSize: '14px', fontWeight: selectedAddonIds.has(torchAddon.id) ? 700 : 400, whiteSpace: 'nowrap' }}>€{(torchAddon.price_cents / 100).toFixed(0)}/diver/day</span>
+ <span style={{ fontSize: '14px', fontWeight: selectedAddonIds.has(torchAddon.id) ? 500 : 400, whiteSpace: 'nowrap' }}>€{(torchAddon.price_cents / 100).toFixed(0)}/diver/day</span>
  </button>
  )}
  {tankAddon && (
@@ -1180,7 +1180,7 @@ function BookInner() {
  <span> 15L tank</span>
  <span style={{ fontSize: '14px', color: s.muted, fontWeight: 400 }}>Extra air reserve for heavier breathers — dives end at 50 bar or 50 minutes, whichever comes first</span>
  </div>
- <span style={{ fontSize: '14px', fontWeight: selectedAddonIds.has(tankAddon.id) ? 700 : 400, whiteSpace: 'nowrap' }}>€{(tankAddon.price_cents / 100).toFixed(0)}/diver/day</span>
+ <span style={{ fontSize: '14px', fontWeight: selectedAddonIds.has(tankAddon.id) ? 500 : 400, whiteSpace: 'nowrap' }}>€{(tankAddon.price_cents / 100).toFixed(0)}/diver/day</span>
  </button>
  )}
  {glovesAddon && (
@@ -1189,7 +1189,7 @@ function BookInner() {
  <span> Gloves</span>
  <span style={{ fontSize: '14px', color: s.muted, fontWeight: 400 }}>Keep your hands warm</span>
  </div>
- <span style={{ fontSize: '14px', fontWeight: selectedAddonIds.has(glovesAddon.id) ? 700 : 400, whiteSpace: 'nowrap' }}>€{(glovesAddon.price_cents / 100).toFixed(0)}/diver/day</span>
+ <span style={{ fontSize: '14px', fontWeight: selectedAddonIds.has(glovesAddon.id) ? 500 : 400, whiteSpace: 'nowrap' }}>€{(glovesAddon.price_cents / 100).toFixed(0)}/diver/day</span>
  </button>
  )}
  </div>
@@ -1205,13 +1205,13 @@ function BookInner() {
  Dive insurance for {product?.name ?? 'the programme'} is arranged with you when we plan it — nothing to choose now.
  </div>
  ) : insuranceIncluded ? (
- <div style={{ border: '1px solid rgba(183,196,176,.3)', borderRadius: 0, padding: '12px 16px', marginBottom: '18px', background: 'rgba(183,196,176,.06)', fontSize: '14px', color: '#b7c4b0', fontWeight: 600 }}>
+ <div style={{ border: '1px solid rgba(183,196,176,.3)', borderRadius: 0, padding: '12px 16px', marginBottom: '18px', background: 'rgba(183,196,176,.06)', fontSize: '14px', color: '#b7c4b0', fontWeight: 500 }}>
  Dive insurance is included in {product?.name ?? 'this course'} — nothing to add.
  </div>
  ) : (
  /* Versicherung — 2 Optionen: eigene Police oder wir wählen automatisch. */
  <div data-step style={{ scrollMarginTop: '88px', border: '1px solid rgba(243,239,230,.3)', borderRadius: 0, padding: '14px 16px', marginBottom: '16px', background: 'rgba(243,239,230,.06)' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: s.accent, marginBottom: '6px' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.accent, marginBottom: '6px' }}>
  Dive Insurance
  </div>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '12px', lineHeight: 1.55 }}>
@@ -1223,7 +1223,7 @@ function BookInner() {
  <button type="button" onClick={() => setInsuranceChoice('auto')} style={insuranceOpt(insuranceChoice === 'auto')}>
  <span> I need diving insurance</span>
  {insuranceChoice === 'auto' && insuranceTotalPerDiver > 0
- ? <span style={{ color: s.accent, fontWeight: 700, fontSize: '14px' }}>
+ ? <span style={{ color: s.accent, fontWeight: 500, fontSize: '14px' }}>
  €{(insuranceTotalPerDiver / 100).toFixed(2)} pp
  </span>
  : <span style={{ color: s.muted, fontSize: '14px' }}>DAN day policy — best plan for your dates</span>
@@ -1252,7 +1252,7 @@ function BookInner() {
  {/* Pro-Programme (Divemaster/Dive Guide) bleiben eine eigene Anfrage — kein Kombinieren mit weiteren Produkten */}
  {guests === 1 && !splitActive && !requestOnly && !programProduct && (
  <button type="button" onClick={() => { setSplit(true); setOpenPicker(null); setExtras([{ id: extraSeq, person: 1 }]); setExtraSeq(n => n + 1) }}
- style={{ display: 'block', width: '100%', margin: '0 0 20px', padding: '11px', borderRadius: 0, border: '1px dashed rgba(243,239,230,.45)', background: 'transparent', color: s.accent, fontSize: '14px', fontWeight: 700, fontFamily: 'inherit', cursor: 'pointer' }}>
+ style={{ display: 'block', width: '100%', margin: '0 0 20px', padding: '11px', borderRadius: 0, border: '1px dashed rgba(243,239,230,.45)', background: 'transparent', color: s.accent, fontSize: '14px', fontWeight: 500, fontFamily: 'inherit', cursor: 'pointer' }}>
  + Add product <span style={{ fontWeight: 400, color: s.muted }}>{refresherCount > 0 ? '— e.g. a dive pack after your Skills Update' : '— e.g. an extra course or dive pack'}</span>
  </button>
  )}
@@ -1262,7 +1262,7 @@ function BookInner() {
  <div style={{ background: 'rgba(0,0,0,.3)', borderRadius: 0, padding: '16px 18px', marginBottom: '20px' }}>
  {splitActive ? splitList.map((g, i) => (
  <div key={i} style={{ marginBottom: '10px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase', color: s.accent, marginBottom: '4px' }}>{posLabel(i)}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.accent, marginBottom: '4px' }}>{posLabel(i)}</div>
  {(g?.lines ?? [{ label: '—', cents: 0 }]).map((l, k) => (
  <div key={k} style={{ display: 'flex', justifyContent: 'space-between', color: s.sub, fontSize: '14px', marginBottom: '4px' }}>
  <span>{l.label}</span><span>€{(l.cents / 100).toFixed(2)}</span>
@@ -1307,13 +1307,13 @@ function BookInner() {
  {picked.map(p => `${new Date(p.date + 'T12:00:00').toLocaleDateString('en-GB', { day: '2-digit', month: 'short' })} ${p.session.toUpperCase()}`).join(' · ')}
  </div>
  )}
- <div style={{ borderTop: '1px solid rgba(255,255,255,.1)', paddingTop: '10px', display: 'flex', justifyContent: 'space-between', fontSize: '19px', fontWeight: 800, color: s.text }}>
+ <div style={{ borderTop: '1px solid rgba(255,255,255,.1)', paddingTop: '10px', display: 'flex', justifyContent: 'space-between', fontSize: '19px', fontWeight: 500, color: s.text }}>
  <span>Total</span><span style={{ color: s.accent }}>€{grandTotal.toFixed(2)}</span>
  </div>
  {/* 50 %-Deposit (Lucas 30.10.): ab 350 € Warenkorb, Versicherung immer voll. Server prüft verbindlich. */}
  {depositAvailable && (
  <div style={{ marginTop: '12px', padding: '12px 14px', borderRadius: 0, border: `1px solid ${payingDeposit ? 'rgba(243,239,230,.4)' : 'rgba(255,255,255,.12)'}`, background: payingDeposit ? 'rgba(243,239,230,.06)' : 'rgba(255,255,255,.02)' }}>
- <label style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', cursor: 'pointer', fontSize: '14px', fontWeight: 700, color: s.text }}>
+ <label style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', cursor: 'pointer', fontSize: '14px', fontWeight: 500, color: s.text }}>
  <input type="checkbox" checked={depositWanted} onChange={e => setDepositWanted(e.target.checked)} style={{ accentColor: s.accent, width: '16px', height: '16px', marginTop: '2px', flexShrink: 0 }} />
  <span>{requestMode ? 'Request a 50% deposit, the rest on arrival' : 'Pay a 50% deposit now, the rest on arrival'}</span>
  </label>
@@ -1345,14 +1345,14 @@ function BookInner() {
 
  {/* Der Vertrag entsteht hier, nicht beim Check-in. */}
  <div style={{ border: '1px solid rgba(201,180,138,.3)', borderRadius: 0, padding: '14px 16px', marginBottom: '16px', background: 'rgba(201,180,138,.06)' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: '#c9b48a', marginBottom: '10px' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c9b48a', marginBottom: '10px' }}>
  Cancellation Policy
  </div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '7px' }}>
  {CANCELLATION_SUMMARY.map(row => (
  <div key={row.window} style={{ display: 'flex', justifyContent: 'space-between', gap: '14px', fontSize: '14px', lineHeight: 1.5 }}>
  <span style={{ color: s.sub }}>{row.window}</span>
- <span style={{ color: s.text, fontWeight: 600, whiteSpace: 'nowrap' }}>{row.outcome}</span>
+ <span style={{ color: s.text, fontWeight: 500, whiteSpace: 'nowrap' }}>{row.outcome}</span>
  </div>
  ))}
  </div>
@@ -1388,14 +1388,14 @@ function BookInner() {
  <div style={{ background: 'rgba(201,146,140,.12)', border: '1px solid rgba(201,146,140,.4)', borderRadius: 0, padding: '12px 14px', marginBottom: '16px', fontSize: '14px', color: '#c9928c' }}>
  {error.split(/(send us an inquiry|please get in touch)/).map((part, i) =>
  /^(send us an inquiry|please get in touch)$/.test(part)
- ? <a key={i} href="/contact" style={{ color: '#ffb59f', textDecoration: 'underline', fontWeight: 700 }}>{part}</a>
+ ? <a key={i} href="/contact" style={{ color: '#ffb59f', textDecoration: 'underline', fontWeight: 500 }}>{part}</a>
  : <span key={i}>{part}</span>)}
  </div>
  )}
 
  <button type="button" onClick={startCheckout} disabled={!canBook} style={{
  width: '100%', padding: '15px', borderRadius: 0, border: 'none',
- fontSize: '16px', fontWeight: 800, fontFamily: s.font,
+ fontSize: '16px', fontWeight: 500, fontFamily: s.font,
  cursor: canBook ? 'pointer' : 'default',
  background: canBook ? s.accent : 'rgba(255,255,255,.08)',
  color: canBook ? '#090909' : s.muted,
@@ -1430,7 +1430,7 @@ function insuranceOpt(active: boolean): React.CSSProperties {
  border: `1px solid ${active ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.1)'}`,
  background: active ? 'rgba(243,239,230,.1)' : 'transparent',
  color: active ? '#f3efe6' : '#f3efe6',
- fontWeight: active ? 700 : 400, fontSize: '14px',
+ fontWeight: active ? 500 : 400, fontSize: '14px',
  cursor: 'pointer', fontFamily: 'inherit',
  }
 }
@@ -1442,7 +1442,7 @@ function addonOpt(active: boolean): React.CSSProperties {
  border: `1px solid ${active ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.1)'}`,
  background: active ? 'rgba(243,239,230,.1)' : 'transparent',
  color: active ? '#f3efe6' : '#f3efe6',
- fontWeight: active ? 700 : 400, fontSize: '14px',
+ fontWeight: active ? 500 : 400, fontSize: '14px',
  cursor: 'pointer', fontFamily: 'inherit',
  }
 }

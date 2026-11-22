@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 /* Knowledge Base Bookings. Sub-tabs: Online (/book) and Front Office. Every block = what / where / why. */
 
-const FONT = 'Inter, system-ui, sans-serif'
+const FONT = 'var(--font-geist-sans), sans-serif'
 const ACCENT = '#f3efe6'
 const MUTED = '#c9c2b6'
 const TEXT = '#f3efe6'
@@ -497,7 +497,7 @@ export default function BookingTools() {
  const groups = sub === 'online' ? [...ONLINE_TUTORIAL, ...ONLINE, ...ONLINE_WHY] : sub === 'fo' ? [...FO_TUTORIAL, ...FO, ...FO_WHY] : [...REQ_GUEST, ...REQ_STAFF, ...REQ_WHY]
 
  const subStyle = (a: boolean): React.CSSProperties => ({
- padding: '8px 18px', fontSize: '14px', fontWeight: 700, border: 'none', cursor: 'pointer', fontFamily: FONT,
+ padding: '8px 18px', fontSize: '14px', fontWeight: 500, border: 'none', cursor: 'pointer', fontFamily: FONT,
  borderRadius: 8, background: a ? 'rgba(243,239,230,.1)' : 'transparent', color: a ? ACCENT : MUTED,
  })
 
@@ -517,11 +517,11 @@ export default function BookingTools() {
  </p>
  {groups.map(g => (
  <div key={g.heading} style={{ marginBottom: 28 }}>
- <h2 style={{ fontSize: 15, fontWeight: 800, color: '#f3efe6', margin: '0 0 12px' }}>{g.heading}</h2>
+ <h2 style={{ fontSize: 15, fontWeight: 500, color: '#f3efe6', margin: '0 0 12px' }}>{g.heading}</h2>
  <div style={{ display: 'grid', gap: 10 }}>
  {g.items.map(it => (
  <div key={it.title} style={{ background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: 12, padding: '14px 16px' }}>
- <div style={{ fontSize: 13.5, fontWeight: 700, color: ACCENT, marginBottom: 8 }}>{it.title}</div>
+ <div style={{ fontSize: 13.5, fontWeight: 500, color: ACCENT, marginBottom: 8 }}>{it.title}</div>
  {it.numbered
  ? <ol style={{ margin: '0 0 12px', paddingLeft: 20, fontSize: 13.5, lineHeight: 1.7 }}>{it.how.map((h, i) => <li key={i}>{h}</li>)}</ol>
  : <ul style={{ margin: '0 0 10px', paddingLeft: 18, fontSize: 13, lineHeight: 1.65 }}>{it.how.map((h, i) => <li key={i}>{h}</li>)}</ul>}

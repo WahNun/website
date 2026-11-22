@@ -167,8 +167,8 @@ function show(c: Cell): string {
 const cents = (c: Cell | undefined) => (c && typeof c === 'object' && 'cents' in c ? c.cents : 0)
 const isZeroRow = (r: Cell[]) => r.slice(1).every(c => c === null || c === 0 || (typeof c === 'object' && ('cents' in c ? c.cents === 0 : !c.pct)))
 
-const lbl: CSSProperties = { fontSize: '14px', color: s.muted, textTransform: 'uppercase', letterSpacing: '.12em' }
-const chip = (on: boolean): CSSProperties => ({ padding: '6px 12px', borderRadius: 0, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', border: `1px solid ${on ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.12)'}`, background: on ? 'rgba(243,239,230,.12)' : 'transparent', color: on ? s.accent : s.muted, whiteSpace: 'nowrap' })
+const lbl: CSSProperties = { fontSize: '14px', color: s.muted, textTransform: 'uppercase', letterSpacing: '.08em' }
+const chip = (on: boolean): CSSProperties => ({ padding: '6px 12px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', border: `1px solid ${on ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.12)'}`, background: on ? 'rgba(243,239,230,.12)' : 'transparent', color: on ? s.accent : s.muted, whiteSpace: 'nowrap' })
 const inp: CSSProperties = { background: '#000', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, color: s.text, fontSize: '14px', fontFamily: 'inherit', padding: '6px 9px', colorScheme: 'dark' }
 
 type BookingLink = { col: number; ids: string[]; open: (id: string) => void }
@@ -180,7 +180,7 @@ function DataTable({ table, onRow, link }: { table: Table; onRow?: (i: number) =
  <div style={{ overflowX: 'auto' }}>
  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
  <thead>
- <tr>{table.headers.map((h, i) => <th key={h} style={{ ...td(i), ...lbl, fontWeight: 600, borderBottom: '1px solid rgba(255,255,255,.14)' }}>{h}</th>)}</tr>
+ <tr>{table.headers.map((h, i) => <th key={h} style={{ ...td(i), ...lbl, fontWeight: 500, borderBottom: '1px solid rgba(255,255,255,.14)' }}>{h}</th>)}</tr>
  </thead>
  <tbody>
  {table.rows.map((r, ri) => (
@@ -188,14 +188,14 @@ function DataTable({ table, onRow, link }: { table: Table; onRow?: (i: number) =
  {r.map((c, i) => (
  <td key={i} style={{ ...td(i), color: i === 0 ? (onRow ? s.accent : s.text) : s.sub, borderBottom: '1px solid rgba(255,255,255,.06)' }}>
  {link && i === link.col && link.ids[ri]
- ? <button type="button" onClick={e => { e.stopPropagation(); link.open(link.ids[ri]) }} title="Open booking" style={{ fontFamily: 'monospace', color: '#f3efe6', fontWeight: 700, background: 'transparent', border: '1px solid rgba(243,239,230,.35)', borderRadius: 0, padding: '0 6px', cursor: 'pointer', fontSize: '14px' }}>{show(c)}</button>
+ ? <button type="button" onClick={e => { e.stopPropagation(); link.open(link.ids[ri]) }} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: '#f3efe6', fontWeight: 500, background: 'transparent', border: '1px solid rgba(243,239,230,.35)', borderRadius: 0, padding: '0 6px', cursor: 'pointer', fontSize: '14px' }}>{show(c)}</button>
  : show(c)}
  </td>
  ))}
  </tr>
  ))}
  {table.total && (
- <tr>{table.total.map((c, i) => <td key={i} style={{ ...td(i), color: s.text, fontWeight: 800, borderTop: '1px solid rgba(255,255,255,.18)' }}>{show(c)}</td>)}</tr>
+ <tr>{table.total.map((c, i) => <td key={i} style={{ ...td(i), color: s.text, fontWeight: 500, borderTop: '1px solid rgba(255,255,255,.18)' }}>{show(c)}</td>)}</tr>
  )}
  </tbody>
  </table>
@@ -217,7 +217,7 @@ function DetailPopup({ title, sub, summary, table, file, link, onClose, children
  <div role="dialog" aria-modal="true" aria-label={title} onClick={e => e.stopPropagation()} style={{ width: 'min(1040px, 100%)', background: '#121210', border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, boxShadow: 'none', overflow: 'hidden' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px', padding: '14px 20px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  <div>
- <div style={{ fontSize: '16px', fontWeight: 800, color: s.text }}>{title}</div>
+ <div style={{ fontSize: '16px', fontWeight: 500, color: s.text }}>{title}</div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>{sub}</div>
  </div>
  <button type="button" onClick={onClose} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.text, borderRadius: 0, padding: '6px 14px', cursor: 'pointer', fontSize: '14px', fontFamily: 'inherit' }}>Close</button>
@@ -227,13 +227,13 @@ function DetailPopup({ title, sub, summary, table, file, link, onClose, children
  {summary.map(([l, v]) => (
  <div key={l} style={{ background: 'rgba(243,239,230,.07)', borderRadius: 0, padding: '9px 13px', minWidth: '104px' }}>
  <div style={{ ...lbl, fontSize: '14px' }}>{l}</div>
- <div style={{ fontSize: '16px', fontWeight: 800, color: s.text, marginTop: '4px', fontVariantNumeric: 'tabular-nums' }}>{v}</div>
+ <div style={{ fontSize: '16px', fontWeight: 500, color: s.text, marginTop: '4px', fontVariantNumeric: 'tabular-nums' }}>{v}</div>
  </div>
  ))}
  </div>
  {children}
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', flexWrap: 'wrap', marginBottom: '6px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, color: s.text }}>{table.rows.length} line{table.rows.length === 1 ? '' : 's'}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{table.rows.length} line{table.rows.length === 1 ? '' : 's'}</div>
  <CsvButton fileName={file} table={table} />
  </div>
  <DataTable table={table} link={link} />
@@ -435,7 +435,7 @@ export default function FinanceReports({ simulationMode, who, isMobile, onOpenBo
  <div key={g.group} style={{ marginBottom: '18px' }}>
  <div style={{ ...lbl, marginBottom: '6px' }}>{g.group}</div>
  {g.items.map(([id, l]) => (
- <button key={id} type="button" onClick={() => pick(id)} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '8px 10px', borderRadius: 0, border: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: '14px', fontWeight: report === id ? 700 : 500, background: report === id ? 'rgba(243,239,230,.12)' : 'transparent', color: report === id ? s.accent : s.sub }}>{l}</button>
+ <button key={id} type="button" onClick={() => pick(id)} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '8px 10px', borderRadius: 0, border: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: '14px', fontWeight: 500, background: report === id ? 'rgba(243,239,230,.12)' : 'transparent', color: report === id ? s.accent : s.sub }}>{l}</button>
  ))}
  </div>
  ))}
@@ -443,7 +443,7 @@ export default function FinanceReports({ simulationMode, who, isMobile, onOpenBo
  )}
 
  <div style={{ minWidth: 0 }}>
- <div style={{ fontSize: '17px', fontWeight: 800, color: s.text, marginBottom: '10px' }}>{title}{simulationMode ? <span style={{ fontSize: '14px', fontWeight: 600, color: s.muted, marginLeft: '10px' }}>Test data</span> : null}</div>
+ <div style={{ fontSize: '17px', fontWeight: 500, color: s.text, marginBottom: '10px' }}>{title}{simulationMode ? <span style={{ fontSize: '14px', fontWeight: 500, color: s.muted, marginLeft: '10px' }}>Test data</span> : null}</div>
 
  {/* Zeitraum */}
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', alignItems: 'center', marginBottom: '10px' }}>
@@ -451,7 +451,7 @@ export default function FinanceReports({ simulationMode, who, isMobile, onOpenBo
  {!yearly && (
  <label style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: s.muted }}>
  Period
- <select value={preset} aria-label="Period" style={{ ...inp, fontWeight: 700, padding: '7px 10px', cursor: 'pointer' }}
+ <select value={preset} aria-label="Period" style={{ ...inp, fontWeight: 500, padding: '7px 10px', cursor: 'pointer' }}
  onChange={e => setPreset(e.target.value as PresetId)}>
  {PRESETS.map(([id, l]) => <option key={id} value={id}>{l}</option>)}
  <option value="custom" disabled hidden>Custom dates</option>
@@ -470,7 +470,7 @@ export default function FinanceReports({ simulationMode, who, isMobile, onOpenBo
  {yearly && (
  <label style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: s.muted }}>
  Year
- <select value={yearKeys.includes(yearPick) ? yearPick : 'all'} aria-label="Year" onChange={e => setYearPick(e.target.value)} style={{ ...inp, fontWeight: 700, padding: '7px 10px', cursor: 'pointer' }}>
+ <select value={yearKeys.includes(yearPick) ? yearPick : 'all'} aria-label="Year" onChange={e => setYearPick(e.target.value)} style={{ ...inp, fontWeight: 500, padding: '7px 10px', cursor: 'pointer' }}>
  <option value="all">All years</option>
  {[...yearKeys].reverse().map(k => <option key={k} value={k}>{k}</option>)}
  </select>
@@ -483,7 +483,7 @@ export default function FinanceReports({ simulationMode, who, isMobile, onOpenBo
  {kind === 'bookings' && (
  <span style={{ display: 'inline-flex', gap: '6px', alignItems: 'center', }}>
  <span>Count by</span>
- <select value={basis} aria-label="Count by" onChange={e => setBasis(e.target.value as Basis)} style={{ ...inp, fontWeight: 700, padding: '7px 10px', cursor: 'pointer' }}>
+ <select value={basis} aria-label="Count by" onChange={e => setBasis(e.target.value as Basis)} style={{ ...inp, fontWeight: 500, padding: '7px 10px', cursor: 'pointer' }}>
  <option value="dive">Dive day</option>
  <option value="created">Booking day</option>
  </select>
@@ -501,7 +501,7 @@ export default function FinanceReports({ simulationMode, who, isMobile, onOpenBo
  {view.kpis.map(([l, v, c]) => (
  <div key={l} style={{ background: 'rgba(243,239,230,.07)', borderRadius: 0, padding: '12px 14px' }}>
  <div style={lbl}>{l}</div>
- <div style={{ fontSize: '20px', fontWeight: 900, color: c ?? s.text, marginTop: '6px', fontVariantNumeric: 'tabular-nums' }}>{v}</div>
+ <div style={{ fontSize: '20px', fontWeight: 500, color: c ?? s.text, marginTop: '6px', fontVariantNumeric: 'tabular-nums' }}>{v}</div>
  </div>
  ))}
  </div>
@@ -509,7 +509,7 @@ export default function FinanceReports({ simulationMode, who, isMobile, onOpenBo
  {view.blocks.map(b => (
  <div key={b.title} style={{ marginBottom: '26px' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', flexWrap: 'wrap', marginBottom: '6px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, color: s.text }}>{b.title}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{b.title}</div>
  <CsvButton fileName={b.file} table={b.table} />
  </div>
  {b.note && <div style={{ fontSize: '14px', color: s.muted, lineHeight: 1.5, marginBottom: '8px' }}>{b.note}</div>}

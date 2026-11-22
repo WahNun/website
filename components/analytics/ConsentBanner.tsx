@@ -44,7 +44,7 @@ const TXT: Record<Lang, { title: string; desc: string; more: string; reject: str
   },
 }
 
-const FONT = `-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif`
+const FONT = `var(--font-geist-sans), sans-serif`
 
 function readLang(): Lang {
   const m = document.cookie.match(/(?:^|;\s*)lang=([^;]*)/)
@@ -117,7 +117,7 @@ export default function ConsentBanner() {
       display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '14px', fontFamily: FONT,
     }}>
       <div style={{ flex: 1, minWidth: '260px' }}>
-        <span style={{ fontWeight: 700, color: '#f3efe6', fontSize: '14px' }}>{t.title} </span>
+        <span style={{ fontWeight: 500, color: '#f3efe6', fontSize: '14px' }}>{t.title} </span>
         <span style={{ color: '#c9c2b6', fontSize: '14px', lineHeight: 1.55 }}>{t.desc} </span>
         <a href="/privacy" style={{ color: '#f3efe6', fontSize: '14px', textDecoration: 'underline' }}>{t.more}</a>
         {current && (
@@ -129,12 +129,12 @@ export default function ConsentBanner() {
       <div style={{ display: 'flex', gap: '10px', flexShrink: 0 }}>
         <button type="button" onClick={() => choose('rejected')} style={{
           padding: '10px 18px', borderRadius: 0, border: '1px solid rgba(255,255,255,.2)',
-          background: 'transparent', color: '#c9c2b6', fontSize: '14px', fontWeight: 600, cursor: 'pointer', fontFamily: FONT,
+          background: 'transparent', color: '#c9c2b6', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: FONT,
         }}>{t.reject}</button>
         <button type="button" onClick={() => choose('accepted')} style={{
           padding: '10px 20px', borderRadius: 0, border: '1px solid #f3efe6',
           background: '#f3efe6', color: '#000',
-          fontSize: '14px', fontWeight: 600, cursor: 'pointer', fontFamily: FONT,
+          fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: FONT,
         }}>{t.accept}</button>
       </div>
     </div>

@@ -262,11 +262,11 @@ export default function SessionPicker({
  <div ref={rootRef}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
  <button type="button" disabled={!canPrev} onClick={() => { autoNav.current = false; setCursor(c => new Date(c.getFullYear(), c.getMonth() - 1, 1)) }} style={{ ...navBtn, opacity: canPrev ? 1 : 0.3, cursor: canPrev ? 'pointer' : 'default' }}>‹</button>
- <div style={{ fontSize: '14px', fontWeight: 800, color: s.text, minWidth: narrow ? 0 : '148px', flex: narrow ? 1 : undefined, textAlign: 'center' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: s.text, minWidth: narrow ? 0 : '148px', flex: narrow ? 1 : undefined, textAlign: 'center' }}>
  {MONTHS[cursor.getMonth()]} {cursor.getFullYear()}
  </div>
  <button type="button" onClick={() => { autoNav.current = false; setCursor(c => new Date(c.getFullYear(), c.getMonth() + 1, 1)) }} style={navBtn}>›</button>
- <div style={{ marginLeft: narrow ? 0 : 'auto', fontSize: '14px', fontWeight: 700, whiteSpace: 'nowrap', color: remaining === 0 ? '#b7c4b0' : s.accent }}>
+ <div style={{ marginLeft: narrow ? 0 : 'auto', fontSize: '14px', fontWeight: 500, whiteSpace: 'nowrap', color: remaining === 0 ? '#b7c4b0' : s.accent }}>
  {freePick ? `${picked.length} day${picked.length === 1 ? '' : 's'} picked` : remaining === 0
  ? (narrow ? ' all picked' : ` ${required} day${required === 1 ? '' : 's'} selected`)
  : narrow ? `${remaining} to pick` : `${remaining} more day${remaining === 1 ? '' : 's'} to pick`}
@@ -285,10 +285,10 @@ export default function SessionPicker({
  {(mode === 'night' ? [['NIGHT', 'Night Dive', 'evening · time confirmed by the team']] as const : [['AM', 'Morning', amTimes], ['PM', 'Afternoon', pmTimes]] as const).map(([tag, word, t]) => (
  <div key={tag} style={{ display: 'flex', alignItems: 'baseline', gap: '7px' }}>
  <span style={{
- fontSize: '14px', fontWeight: 800, padding: '2px 7px', borderRadius: 0,
+ fontSize: '14px', fontWeight: 500, padding: '2px 7px', borderRadius: 0,
  background: 'rgba(243,239,230,.14)', color: s.accent, border: '1px solid rgba(243,239,230,.3)',
  }}>{tag}</span>
- <span style={{ fontSize: '14px', color: s.sub, fontWeight: 600 }}>{word}</span>
+ <span style={{ fontSize: '14px', color: s.sub, fontWeight: 500 }}>{word}</span>
  {t && <span style={{ fontSize: '14px', color: s.muted }}>{t}</span>}
  </div>
  ))}
@@ -298,7 +298,7 @@ export default function SessionPicker({
 
  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: '4px', marginBottom: '6px' }}>
  {WEEKDAYS.map(w => (
- <div key={w} style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: s.muted, textAlign: 'center', padding: '4px 0' }}>{w}</div>
+ <div key={w} style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, textAlign: 'center', padding: '4px 0' }}>{w}</div>
  ))}
  </div>
 
@@ -331,7 +331,7 @@ export default function SessionPicker({
  minHeight: compact ? '46px' : '62px', cursor: mode === 'night' && !nightCan ? 'default' : 'pointer',
  }}>
  <div style={{
- fontSize: '14px', fontWeight: chosen ? 800 : 600, textAlign: 'center', marginBottom: compact ? '1px' : '4px',
+ fontSize: '14px', fontWeight: 500, textAlign: 'center', marginBottom: compact ? '1px' : '4px',
  color: !anyBookable ? 'rgba(255,255,255,.2)' : chosen ? s.accent : s.sub,
  }}>{Number(date.slice(8, 10))}</div>
 
@@ -344,7 +344,7 @@ export default function SessionPicker({
  <button type="button" disabled={!can} onClick={e => { e.stopPropagation(); toggle(date, 'night') }}
  title={nightBlocked ?? (a ? `Night Dive: ${a.booked}/${a.capacity} booked` : 'Night Dive')}
  style={{
- width: '100%', padding: '3px 0', borderRadius: 0, fontSize: '14px', fontWeight: 800, fontFamily: s.font,
+ width: '100%', padding: '3px 0', borderRadius: 0, fontSize: '14px', fontWeight: 500, fontFamily: s.font,
  cursor: can ? 'pointer' : 'default',
  background: on ? '#c9c2b6' : can ? 'rgba(243,239,230,0.12)' : 'transparent',
  color: on ? '#121210' : can ? '#f3efe6' : 'rgba(255,255,255,.13)',
@@ -354,7 +354,7 @@ export default function SessionPicker({
  })() : anyBookable && narrow ? (
  <div style={{ display: 'flex', justifyContent: 'center', gap: '3px', minHeight: compact ? '12px' : '18px' }}>
  {chosen
- ? <span style={{ fontSize: '14px', fontWeight: 800, padding: '2px 6px', borderRadius: 0, background: s.accent, color: '#000' }}>
+ ? <span style={{ fontSize: '14px', fontWeight: 500, padding: '2px 6px', borderRadius: 0, background: s.accent, color: '#000' }}>
  {(picked.find(p => p.date === date)?.session ?? '').toUpperCase() || ''}
  </span>
  : <span style={{ fontSize: '14px', color: detailDate === date ? s.accent : 'rgba(255,255,255,.3)' }}>{detailDate === date ? '' : '•'}</span>}
@@ -383,7 +383,7 @@ export default function SessionPicker({
  <button key={sess} type="button" disabled={!can} onClick={() => toggle(date, sess)}
  title={hint ? `${hint.title}\n${titleStaff}` : titleStaff}
  style={{
- flex: 1, padding: '3px 0', borderRadius: 0, fontSize: '14px', fontWeight: 800,
+ flex: 1, padding: '3px 0', borderRadius: 0, fontSize: '14px', fontWeight: 500,
  fontFamily: s.font, cursor: can ? 'pointer' : 'default',
  background: on ? (staffOver ? '#c9928c' : s.accent) : staffOver ? 'rgba(201,146,140,.14)' : can ? 'rgba(255,255,255,.06)' : 'transparent',
  color: on ? '#090909' : staffOver ? '#c9928c' : staffBusy ? '#d4a07a' : can ? (tight ? '#d4a07a' : s.muted) : 'rgba(255,255,255,.13)',
@@ -399,7 +399,7 @@ export default function SessionPicker({
  <button key="tbd" type="button" onClick={() => toggle(date, 'tbd')}
  title="Instructor decides the time — session is created without AM/PM, a ticket asks the instructor to set it"
  style={{
- flex: 1, padding: '3px 0', borderRadius: 0, fontSize: '14px', fontWeight: 800, fontFamily: s.font, cursor: 'pointer',
+ flex: 1, padding: '3px 0', borderRadius: 0, fontSize: '14px', fontWeight: 500, fontFamily: s.font, cursor: 'pointer',
  background: on ? '#c9b48a' : 'rgba(201,180,138,.08)', color: on ? '#1a1200' : '#c9b48a',
  border: `1px solid ${on ? '#c9b48a' : 'rgba(201,180,138,.35)'}`,
  }}></button>
@@ -421,7 +421,7 @@ export default function SessionPicker({
  if (maxPct < 0.3) return null
  const color = maxPct >= 0.9 ? '#c9928c' : maxPct >= 0.6 ? '#d4a07a' : '#c9b48a'
  return (
- <div style={{ fontSize: '14px', textAlign: 'center', color, marginTop: '2px', fontWeight: 700 }}>
+ <div style={{ fontSize: '14px', textAlign: 'center', color, marginTop: '2px', fontWeight: 500 }}>
  {amA ? `${amA.booked}/${amA.capacity}` : '–'} · {pmA ? `${pmA.booked}/${pmA.capacity}` : '–'}
  </div>
  )
@@ -464,14 +464,14 @@ export default function SessionPicker({
  ? { position: 'absolute', left: 0, right: 0, bottom: 0, maxHeight: '85vh', overflowY: 'auto', padding: '14px 16px calc(16px + env(safe-area-inset-bottom))', borderRadius: '18px 18px 0 0', background: '#121210', borderTop: '1px solid rgba(243,239,230,.4)', boxShadow: 'none' }
  : { marginTop: '10px', padding: '12px 14px', borderRadius: 0, background: 'rgba(243,239,230,.06)', border: '1px solid rgba(243,239,230,.35)' }}>
  {compact && <div style={{ width: '40px', height: '4px', borderRadius: 0, background: 'rgba(255,255,255,.2)', margin: '0 auto 12px' }} />}
- <div style={{ fontSize: '14px', fontWeight: 800, color: s.text, marginBottom: '8px' }}>{dLabel}<span style={{ fontWeight: 500, color: s.muted }}> · two dives per session</span></div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: s.text, marginBottom: '8px' }}>{dLabel}<span style={{ fontWeight: 500, color: s.muted }}> · two dives per session</span></div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '10px' }}>
  {options.map(o => (
  <button key={o.key} type="button" disabled={!o.can} onClick={() => setPendingSession(o.key)}
  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', padding: '11px 12px', borderRadius: 0, textAlign: 'left', fontFamily: s.font, cursor: o.can ? 'pointer' : 'default',
  border: `1px solid ${sel === o.key ? s.accent : o.can ? 'rgba(255,255,255,.12)' : 'rgba(255,255,255,.05)'}`,
  background: sel === o.key ? 'rgba(243,239,230,.18)' : 'transparent', color: o.can ? s.text : 'rgba(255,255,255,.3)' }}>
- <span style={{ fontSize: '14px', fontWeight: 700 }}>{o.label}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500 }}>{o.label}</span>
  <span style={{ fontSize: '14px', color: s.muted, textAlign: 'right' }}>{o.sub}</span>
  </button>
  ))}
@@ -479,12 +479,12 @@ export default function SessionPicker({
  {replaceTarget && <div style={{ fontSize: '14px', color: '#d4a07a', marginBottom: '8px' }}>This moves your latest pick ({new Date(replaceTarget.date + 'T12:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })} · {replaceTarget.session === 'tbd' ? 'TBD' : replaceTarget.session.toUpperCase()}) to {dLabel}.</div>}
  <div style={{ display: 'flex', gap: '8px' }}>
  <button type="button" disabled={!sel || (sel === current)} onClick={() => { if (sel) { toggle(detailDate, sel); setDetailDate(null) } }}
- style={{ flex: 1, padding: '12px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontWeight: 800, fontSize: '14px', fontFamily: s.font, cursor: 'pointer', opacity: !sel || sel === current ? .45 : 1 }}>
+ style={{ flex: 1, padding: '12px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontWeight: 500, fontSize: '14px', fontFamily: s.font, cursor: 'pointer', opacity: !sel || sel === current ? .45 : 1 }}>
  {current ? 'Change' : 'Confirm'}
  </button>
  {current && (
  <button type="button" onClick={() => { toggle(detailDate, current); setDetailDate(null) }}
- style={{ padding: '12px 14px', borderRadius: 0, border: '1px solid rgba(201,146,140,.4)', background: 'transparent', color: '#c9928c', fontWeight: 700, fontSize: '14px', fontFamily: s.font, cursor: 'pointer' }}>Remove</button>
+ style={{ padding: '12px 14px', borderRadius: 0, border: '1px solid rgba(201,146,140,.4)', background: 'transparent', color: '#c9928c', fontWeight: 500, fontSize: '14px', fontFamily: s.font, cursor: 'pointer' }}>Remove</button>
  )}
  <button type="button" onClick={() => setDetailDate(null)}
  style={{ padding: '12px 14px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'transparent', color: s.muted, fontSize: '14px', fontFamily: s.font, cursor: 'pointer' }}>Close</button>
@@ -505,7 +505,7 @@ export default function SessionPicker({
  background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.07)',
  }}>
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px 20px', alignItems: 'flex-start' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, color: s.sub, minWidth: '80px', paddingTop: '2px', flexShrink: 0 }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: s.sub, minWidth: '80px', paddingTop: '2px', flexShrink: 0 }}>
  {dLabel}
  </div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', flex: 1, minWidth: '180px' }}>
@@ -528,13 +528,13 @@ export default function SessionPicker({
  return (
  <div key={sess} style={{ display: 'flex', gap: '8px', alignItems: 'baseline', flexWrap: 'wrap' }}>
  <span style={{
- fontSize: '14px', fontWeight: 800, padding: '2px 6px', borderRadius: 0,
+ fontSize: '14px', fontWeight: 500, padding: '2px 6px', borderRadius: 0,
  background: 'rgba(243,239,230,.14)', color: s.accent, border: '1px solid rgba(243,239,230,.3)',
  flexShrink: 0,
  }}>{sess.toUpperCase()}</span>
  <span style={{ fontSize: '14px', color: textColor, lineHeight: 1.4 }}>{detail}</span>
  {pickedKeys.has(`${detailDate}_${sess}`) && pickedExtra?.({ date: detailDate, session: sess }) && (
- <span style={{ fontSize: '14px', fontWeight: 700, color: s.accent, lineHeight: 1.4 }}> {pickedExtra({ date: detailDate, session: sess })}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: s.accent, lineHeight: 1.4 }}> {pickedExtra({ date: detailDate, session: sess })}</span>
  )}
  </div>
  )
@@ -551,7 +551,7 @@ export default function SessionPicker({
  <button key={`${p.date}_${p.session}`} type="button" onClick={() => toggle(p.date, p.session)}
  title="Remove this dive day"
  style={{
- fontSize: '14px', fontWeight: 700, padding: '5px 11px', borderRadius: 0,
+ fontSize: '14px', fontWeight: 500, padding: '5px 11px', borderRadius: 0,
  background: 'rgba(243,239,230,.12)', color: s.accent, border: '1px solid rgba(243,239,230,.35)',
  cursor: 'pointer', fontFamily: s.font,
  }}>

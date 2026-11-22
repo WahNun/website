@@ -29,7 +29,7 @@ export function ToastHost() {
  <div style={{
  position: 'fixed', bottom: '28px', left: '50%', transform: 'translateX(-50%)',
  background: '#121210', border: '1px solid rgba(243,239,230,.35)', borderRadius: 0,
- padding: '13px 22px', fontSize: '14px', fontWeight: 700, color: '#f3efe6',
+ padding: '13px 22px', fontSize: '14px', fontWeight: 500, color: '#f3efe6',
  boxShadow: 'none', zIndex: 10000, whiteSpace: 'nowrap',
  animation: 'fadeInUp .2s ease',
  }}>

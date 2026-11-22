@@ -38,11 +38,11 @@ export default function BarChart({ series, height = 88, empty, hint, legend, ton
  <div style={{ position: 'relative', display: 'flex', alignItems: 'flex-end', gap: n > 62 ? '1px' : '3px', height: `${height + (labels ? 22 : 4)}px` }}>
  {at && (
  <div role="status" style={{ position: 'absolute', bottom: `${top + (labels ? 18 : 0) + 8}px`, left: `${cx}px`, transform: 'translateX(-50%)', zIndex: 20, minWidth: '178px', background: '#121210', border: '1px solid rgba(243,239,230,.35)', borderRadius: 0, padding: '9px 12px', boxShadow: 'none', pointerEvents: 'none' }}>
- <div style={{ fontSize: '14px', fontWeight: 800, color: s.text, marginBottom: '6px', whiteSpace: 'nowrap' }}>{at.label}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: s.text, marginBottom: '6px', whiteSpace: 'nowrap' }}>{at.label}</div>
  {at.tip.map(([l, v]) => (
  <div key={l} style={{ display: 'flex', justifyContent: 'space-between', gap: '18px', fontSize: '14px', lineHeight: '19px', whiteSpace: 'nowrap' }}>
  <span style={{ color: s.muted }}>{l}</span>
- <span style={{ color: s.text, fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>{v}</span>
+ <span style={{ color: s.text, fontWeight: 500, fontVariantNumeric: 'tabular-nums' }}>{v}</span>
  </div>
  ))}
  </div>

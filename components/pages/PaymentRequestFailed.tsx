@@ -94,7 +94,7 @@ export default function PaymentRequestFailed({ sandbox, onCount, onOpenBooking }
  if (!loading && !err && rows.length === 0 && !msg) return null
  return (
  <div style={{ marginBottom: '28px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, color: '#c9928c', marginBottom: '4px' }}>Payment request not sent{rows.length ? ` (${rows.length})` : ''}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: '#c9928c', marginBottom: '4px' }}>Payment request not sent{rows.length ? ` (${rows.length})` : ''}</div>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '12px', lineHeight: 1.55 }}>
  The email with the payment details (bank transfer or Revolut) did not go out, so the guest cannot pay yet. Send it again, or open the booking and check the email address. If sending keeps failing, give the guest the details another way and dismiss the notice.
  </div>
@@ -105,27 +105,27 @@ export default function PaymentRequestFailed({ sandbox, onCount, onOpenBooking }
  <div key={r.id} style={{ background: 'rgba(201,146,140,.04)', border: '1px solid rgba(201,146,140,.3)', borderRadius: 0, padding: '14px 18px', marginBottom: '10px' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', flexWrap: 'wrap' }}>
  <div style={{ minWidth: 0 }}>
- <div style={{ fontSize: '14px', fontWeight: 700, color: s.text }}>{r.customer_name ?? '—'}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{r.customer_name ?? '—'}</div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>
  {r.product_name ?? '—'} · dive day {dmy(r.booking_date)} · {r.payment_method === 'revolut' ? 'Revolut' : 'Transfer'} · {r.customer_email ?? 'no email address'}
  </div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>
  failed {dmy(r.failedAt.slice(0, 10))} ·{' '}
- <button type="button" onClick={() => onOpenBooking(r.id)} title="Open booking" style={{ background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'monospace', fontSize: '14px', fontWeight: 700, color: s.accent, textDecoration: 'underline' }}>{r.id.slice(0, 8).toUpperCase()}</button>
+ <button type="button" onClick={() => onOpenBooking(r.id)} title="Open booking" style={{ background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', fontSize: '14px', fontWeight: 500, color: s.accent, textDecoration: 'underline' }}>{r.id.slice(0, 8).toUpperCase()}</button>
  </div>
  </div>
  <div style={{ textAlign: 'right' }}>
- <div style={{ fontSize: '20px', fontWeight: 800, color: '#c9928c' }}>{eur(r.amount)}</div>
+ <div style={{ fontSize: '20px', fontWeight: 500, color: '#c9928c' }}>{eur(r.amount)}</div>
  <div style={{ fontSize: '14px', color: s.muted }}>booking total</div>
  </div>
  </div>
  {r.error && <div style={{ fontSize: '14px', color: s.text, padding: '8px 10px', marginTop: '8px', background: 'rgba(255,255,255,.03)', borderRadius: 0, borderLeft: '3px solid #c9928c' }}>{r.error}</div>}
  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '10px' }}>
- <button type="button" disabled={busy === r.id} onClick={() => again(r)} style={{ flex: '1 1 240px', padding: '10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.4)', background: 'rgba(243,239,230,.08)', color: s.accent, fontWeight: 700, fontSize: '14px', cursor: busy === r.id ? 'wait' : 'pointer', fontFamily: 'inherit' }}>
+ <button type="button" disabled={busy === r.id} onClick={() => again(r)} style={{ flex: '1 1 240px', padding: '10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.4)', background: 'rgba(243,239,230,.08)', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: busy === r.id ? 'wait' : 'pointer', fontFamily: 'inherit' }}>
  {busy === r.id ? 'Working…' : 'Send payment request again'}
  </button>
- <button type="button" disabled={busy === r.id} onClick={() => setAlt(m => ({ ...m, [r.id]: { ...altOf(r), open: !altOf(r).open } }))} aria-expanded={altOf(r).open} style={{ padding: '10px 16px', borderRadius: 0, border: `1px solid ${altOf(r).open ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.15)'}`, background: 'transparent', color: altOf(r).open ? s.accent : s.muted, fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>Other email address</button>
- {ask !== r.id && <button type="button" disabled={busy === r.id} onClick={() => setAsk(r.id)} style={{ padding: '10px 16px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>Dismiss</button>}
+ <button type="button" disabled={busy === r.id} onClick={() => setAlt(m => ({ ...m, [r.id]: { ...altOf(r), open: !altOf(r).open } }))} aria-expanded={altOf(r).open} style={{ padding: '10px 16px', borderRadius: 0, border: `1px solid ${altOf(r).open ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.15)'}`, background: 'transparent', color: altOf(r).open ? s.accent : s.muted, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>Other email address</button>
+ {ask !== r.id && <button type="button" disabled={busy === r.id} onClick={() => setAsk(r.id)} style={{ padding: '10px 16px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>Dismiss</button>}
  </div>
  {altOf(r).open && (
  <div style={{ marginTop: '10px', padding: '12px', borderRadius: 0, background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.12)', fontSize: '14px', color: s.muted }}>
@@ -135,7 +135,7 @@ export default function PaymentRequestFailed({ sandbox, onCount, onOpenBooking }
  onChange={e => setAlt(m => ({ ...m, [r.id]: { ...altOf(r), email: e.target.value } }))}
  style={{ flex: '1 1 240px', minWidth: 0, background: '#000', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, color: s.text, fontSize: '14px', fontFamily: 'inherit', padding: '8px 10px' }} />
  <button type="button" disabled={busy === r.id || !validEmail(altOf(r).email)} onClick={() => again(r, altOf(r).email, altOf(r).save)}
- style={{ padding: '8px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.4)', background: 'rgba(243,239,230,.08)', color: validEmail(altOf(r).email) ? s.accent : s.muted, fontWeight: 700, fontSize: '14px', cursor: validEmail(altOf(r).email) && busy !== r.id ? 'pointer' : 'default', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>Send to this address</button>
+ style={{ padding: '8px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.4)', background: 'rgba(243,239,230,.08)', color: validEmail(altOf(r).email) ? s.accent : s.muted, fontWeight: 500, fontSize: '14px', cursor: validEmail(altOf(r).email) && busy !== r.id ? 'pointer' : 'default', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>Send to this address</button>
  </div>
  <label style={{ display: 'flex', gap: '8px', alignItems: 'center', marginTop: '10px', cursor: 'pointer' }}>
  <input type="checkbox" checked={altOf(r).save} onChange={e => setAlt(m => ({ ...m, [r.id]: { ...altOf(r), save: e.target.checked } }))} style={{ width: '15px', height: '15px', accentColor: s.accent }} />
@@ -147,8 +147,8 @@ export default function PaymentRequestFailed({ sandbox, onCount, onOpenBooking }
  {ask === r.id && (
  <div style={{ marginTop: '10px', padding: '10px 12px', borderRadius: 0, background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.12)', fontSize: '14px', color: s.text, display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
  <span style={{ flex: '1 1 260px' }}>Dismiss this notice? No email is sent. The guest still has no payment details, so give them another way. It stays in the booking log.</span>
- <button type="button" disabled={busy === r.id} onClick={() => dismiss(r)} style={{ padding: '8px 14px', borderRadius: 0, border: '1px solid rgba(212,160,122,.5)', background: 'rgba(212,160,122,.1)', color: '#d4a07a', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>Yes, dismiss</button>
- <button type="button" onClick={() => setAsk(null)} style={{ padding: '8px 14px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>Cancel</button>
+ <button type="button" disabled={busy === r.id} onClick={() => dismiss(r)} style={{ padding: '8px 14px', borderRadius: 0, border: '1px solid rgba(212,160,122,.5)', background: 'rgba(212,160,122,.1)', color: '#d4a07a', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>Yes, dismiss</button>
+ <button type="button" onClick={() => setAsk(null)} style={{ padding: '8px 14px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>Cancel</button>
  </div>
  )}
  </div>

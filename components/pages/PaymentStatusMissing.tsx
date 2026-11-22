@@ -55,7 +55,7 @@ export default function PaymentStatusMissing({ sandbox, onCount, onOpenBooking, 
  if (!loading && !err && rows.length === 0 && !msg) return null
  return (
  <div style={{ marginBottom: '28px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, color: '#d4a07a', marginBottom: '4px' }}>Payment status not set{rows.length ? ` (${rows.length})` : ''}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: '#d4a07a', marginBottom: '4px' }}>Payment status not set{rows.length ? ` (${rows.length})` : ''}</div>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '12px', lineHeight: 1.55 }}>
  Front Office bookings with Cash, Transfer or Revolut where nobody has said yet whether the guest paid. Set it here, or open the booking.
  </div>
@@ -66,20 +66,20 @@ export default function PaymentStatusMissing({ sandbox, onCount, onOpenBooking, 
  <div key={r.id} style={{ background: 'rgba(212,160,122,.04)', border: '1px solid rgba(212,160,122,.3)', borderRadius: 0, padding: '14px 18px', marginBottom: '10px' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', flexWrap: 'wrap' }}>
  <div>
- <div style={{ fontSize: '14px', fontWeight: 700, color: s.text }}>{r.customer_name ?? '—'}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{r.customer_name ?? '—'}</div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>
  {r.product_name ?? '—'} · dive day {dmy(r.booking_date)} · {METHOD[r.payment_method ?? ''] ?? r.payment_method}
  </div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>
  created {dmy(r.created_at.slice(0, 10))}{r.created_by_email ? ` by ${who(r.created_by_email)}` : ''} ·{' '}
- <button type="button" onClick={() => onOpenBooking(r.id)} title="Open booking" style={{ background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'monospace', fontSize: '14px', fontWeight: 700, color: s.accent, textDecoration: 'underline' }}>{r.id.slice(0, 8).toUpperCase()}</button>
+ <button type="button" onClick={() => onOpenBooking(r.id)} title="Open booking" style={{ background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', fontSize: '14px', fontWeight: 500, color: s.accent, textDecoration: 'underline' }}>{r.id.slice(0, 8).toUpperCase()}</button>
  </div>
  </div>
- <div style={{ fontSize: '20px', fontWeight: 800, color: '#d4a07a' }}>{eur(r.amount)}</div>
+ <div style={{ fontSize: '20px', fontWeight: 500, color: '#d4a07a' }}>{eur(r.amount)}</div>
  </div>
  {open === r.id
  ? <div style={{ marginTop: '12px' }}><PaymentDecision compact bookingIds={[r.id]} onDone={note => { setOpen(null); setMsg(note); void load() }} /></div>
- : <button type="button" onClick={() => { setMsg(null); setOpen(r.id) }} style={{ marginTop: '10px', width: '100%', padding: '10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.4)', background: 'rgba(243,239,230,.08)', color: s.accent, fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>Set payment status</button>}
+ : <button type="button" onClick={() => { setMsg(null); setOpen(r.id) }} style={{ marginTop: '10px', width: '100%', padding: '10px', borderRadius: 0, border: '1px solid rgba(243,239,230,.4)', background: 'rgba(243,239,230,.08)', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>Set payment status</button>}
  </div>
  ))}
  </div>

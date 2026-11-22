@@ -334,14 +334,14 @@ export function PageSites({ nav, lang }: { nav: (p: string) => void; lang: Lang 
  return (
  <div style={{ padding: isMobile ? '32px 20px' : '60px 48px' }}>
  <Breadcrumb label={t('bc_sites')} homeLabel={t('bc_home')} goHome={() => nav('home')} />
- <h1 style={{ fontSize: 'clamp(28px,4vw,44px)', fontWeight: 900, letterSpacing: '-.01em', marginBottom: '20px' }}>
+ <h1 style={{ fontSize: 'clamp(28px,4vw,44px)', fontWeight: 500, letterSpacing: '-0.02em', marginBottom: '20px' }}>
  {t('sites_h1')}<span style={{ color: s.accent }}>.</span>
  </h1>
  <p style={{ color: '#f3efe6', fontSize: '17px', maxWidth: '600px', lineHeight: 1.65, marginBottom: '40px' }}>
  {t('sites_intro')}
  </p>
  <section aria-labelledby="sites-about" style={{ maxWidth: '760px', marginBottom: '40px' }}>
- <h2 id="sites-about" style={{ fontSize: 'clamp(20px,2.4vw,26px)', fontWeight: 800, letterSpacing: '-.01em', marginBottom: '10px' }}>{t('sites_about_h2')}</h2>
+ <h2 id="sites-about" style={{ fontSize: 'clamp(20px,2.4vw,26px)', fontWeight: 500, letterSpacing: '-0.02em', marginBottom: '10px' }}>{t('sites_about_h2')}</h2>
  <p style={{ color: '#f3efe6', fontSize: '15.5px', lineHeight: 1.7, margin: 0 }}>{t('sites_about_p')}</p>
  </section>
  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(230px,1fr))', gap: '14px', marginBottom: '36px' }}>
@@ -366,15 +366,15 @@ export function PageSites({ nav, lang }: { nav: (p: string) => void; lang: Lang 
  <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', flex: 1, padding: '16px 18px 18px' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
  <div style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
- <span style={{ fontSize: '14px', fontWeight: 700, color: 'rgba(255,255,255,.55)', background: 'rgba(0,0,0,.35)', padding: '3px 8px', borderRadius: 0 }}>{spot.type}</span>
- {(spot as any).offshore && <span style={{ fontSize: '14px', fontWeight: 700, color: '#c9b48a', background: 'rgba(201,180,138,.15)', padding: '3px 8px', borderRadius: 0, border: '1px solid rgba(201,180,138,.35)' }}>{t('sites_filter_offshore')}</span>}
+ <span style={{ fontSize: '14px', fontWeight: 500, color: 'rgba(255,255,255,.55)', background: 'rgba(0,0,0,.35)', padding: '3px 8px', borderRadius: 0 }}>{spot.type}</span>
+ {(spot as any).offshore && <span style={{ fontSize: '14px', fontWeight: 500, color: '#c9b48a', background: 'rgba(201,180,138,.15)', padding: '3px 8px', borderRadius: 0, border: '1px solid rgba(201,180,138,.35)' }}>{t('sites_filter_offshore')}</span>}
  </div>
- <span style={{ fontSize: '14px', fontWeight: 700, color: '#c9c2b6', background: 'rgba(0,0,0,.35)', padding: '4px 9px', borderRadius: 0 }}>{spot.depth}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: '#c9c2b6', background: 'rgba(0,0,0,.35)', padding: '4px 9px', borderRadius: 0 }}>{spot.depth}</span>
  </div>
  <div style={{ flex: 1 }} />
  <h4 style={{ fontSize: '17px', margin: '0 0 5px', textShadow: '0 1px 8px rgba(0,0,0,.7)' }}>{spot.name}</h4>
  <p style={{ fontSize: '14px', color: '#f3efe6', lineHeight: 1.5, margin: '0 0 10px', textShadow: '0 1px 4px rgba(0,0,0,.6)' }}>{(spot.desc as any)[lang]}</p>
- <span style={{ fontSize: '14px', color: s.accent, fontWeight: 700 }}>{t('sites_details_link')}</span>
+ <span style={{ fontSize: '14px', color: s.accent, fontWeight: 500 }}>{t('sites_details_link')}</span>
  </div>
  </div>
  ))}

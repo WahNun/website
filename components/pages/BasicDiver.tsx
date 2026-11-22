@@ -17,13 +17,13 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
  <div style={{ color: s.muted, marginBottom: '16px', fontSize: '14px' }}>
  <button type="button" onClick={() => nav('home')} style={{ color: s.accent, cursor: 'pointer', background: 'none', border: 'none', padding: 0, fontFamily: s.font }}>{t('bc_home')}</button> / {t('bc_basicdiver')}
  </div>
- <div style={{ color: '#b7c4b0', fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase', fontSize: '14px', marginBottom: '10px' }}>
+ <div style={{ color: '#b7c4b0', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', fontSize: '14px', marginBottom: '10px' }}>
  {t('bd_hero_tag')}
  </div>
- <h1 style={{ fontSize: 'clamp(32px,5vw,56px)', fontWeight: 900, letterSpacing: '-.02em', marginBottom: '10px', lineHeight: 1.05 }}>
+ <h1 style={{ fontSize: 'clamp(32px,5vw,56px)', fontWeight: 500, letterSpacing: '-.02em', marginBottom: '10px', lineHeight: 1.05 }}>
  Basic Diver<span style={{ color: '#b7c4b0' }}>.</span>
  </h1>
- <p style={{ fontSize: '19px', fontWeight: 600, color: '#f3efe6', margin: 0, maxWidth: '540px', lineHeight: 1.4 }}>
+ <p style={{ fontSize: '19px', fontWeight: 500, color: '#f3efe6', margin: 0, maxWidth: '540px', lineHeight: 1.4 }}>
  {t('bd_hero_sub')}
  </p>
  </div>
@@ -33,8 +33,8 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
  <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', margin: '28px 0 36px' }}>
  {[[t('bd_duration'), t('bd_duration_val')], [t('bd_setup'), t('bd_setup_val')], [t('bd_depth'), t('bd_depth_val')], [t('bd_price_label'), '€139']].map(([label, value]) => (
  <div key={label} style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, padding: '12px 16px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', color: s.muted, marginBottom: '5px' }}>{label}</div>
- <div style={{ fontSize: '14px', fontWeight: 800, color: s.text }}>{value}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '5px' }}>{label}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{value}</div>
  </div>
  ))}
  </div>
@@ -52,7 +52,7 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
  </p>
 
  {/* What happens step by step */}
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase', color: '#b7c4b0', marginBottom: '16px' }}>{t('bd_what_expect')}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: '#b7c4b0', marginBottom: '16px' }}>{t('bd_what_expect')}</div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '32px' }}>
  {([
  ['bd_step1_name', 'bd_step1_desc'],
@@ -63,9 +63,9 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
  ['bd_step6_name', 'bd_step6_desc'],
  ] as const).map(([stepKey, descKey], i) => (
  <div key={stepKey} style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
- <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(183,196,176,.15)', border: '1px solid rgba(183,196,176,.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: '14px', fontWeight: 800, color: '#b7c4b0' }}>{i + 1}</div>
+ <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(183,196,176,.15)', border: '1px solid rgba(183,196,176,.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: '14px', fontWeight: 500, color: '#b7c4b0' }}>{i + 1}</div>
  <div>
- <div style={{ fontSize: '14px', fontWeight: 700, color: s.text, marginBottom: '3px' }}>{t(stepKey)}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: s.text, marginBottom: '3px' }}>{t(stepKey)}</div>
  <div style={{ fontSize: '14px', color: s.muted, lineHeight: 1.5 }}>{t(descKey)}</div>
  </div>
  </div>
@@ -76,14 +76,14 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
  {/* Sidebar */}
  <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
  <div style={{ background: 'rgba(255,200,80,.07)', border: '1px solid rgba(255,200,80,.2)', borderRadius: 0, padding: '20px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase', color: '#c9b48a', marginBottom: '12px' }}>{t('bd_requirements_title')}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c9b48a', marginBottom: '12px' }}>{t('bd_requirements_title')}</div>
  <p style={{ fontSize: '14px', color: '#c9b48a', lineHeight: 1.6, margin: 0 }}>
  {t('bd_requirements_body')}
  </p>
  </div>
 
  <div style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.07)', borderRadius: 0, padding: '20px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase', color: s.muted, marginBottom: '12px' }}>{t('bd_included_title')}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '12px' }}>{t('bd_included_title')}</div>
  {(['bd_incl1', 'bd_incl2', 'bd_incl3', 'bd_incl4', 'bd_incl5', 'bd_incl6'] as const).map(key => (
  <div key={key} style={{ display: 'flex', gap: '10px', marginBottom: '8px', alignItems: 'flex-start' }}>
  <span style={{ color: '#b7c4b0', fontSize: '14px', lineHeight: 1.4, flexShrink: 0 }}>—</span>
@@ -93,7 +93,7 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
  </div>
 
  <div style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.07)', borderRadius: 0, padding: '20px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase', color: s.muted, marginBottom: '16px' }}>{t('bd_pricing_title')}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '16px' }}>{t('bd_pricing_title')}</div>
  {([
  [t('bd_price_pool'), '€95', null],
  [t('bd_price_group'), '€139', t('bd_price_group_note')],
@@ -104,15 +104,15 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
  <div style={{ fontSize: '14px', color: '#f3efe6' }}>{label}</div>
  {note && <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>{note}</div>}
  </div>
- <div style={{ fontSize: '16px', fontWeight: 800, color: '#f3efe6', marginLeft: '12px', flexShrink: 0 }}>{price}</div>
+ <div style={{ fontSize: '16px', fontWeight: 500, color: '#f3efe6', marginLeft: '12px', flexShrink: 0 }}>{price}</div>
  </div>
  ))}
  </div>
 
  <div style={{ background: 'rgba(243,239,230,.06)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '20px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase', color: s.accent, marginBottom: '8px' }}>{t('bd_go_further_title')}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.accent, marginBottom: '8px' }}>{t('bd_go_further_title')}</div>
  <p style={{ fontSize: '14px', color: s.text, margin: '0 0 12px', lineHeight: 1.5 }}>{t('bd_go_further_body')}</p>
- <button type="button" onClick={() => nav('courses')} style={{ fontSize: '14px', color: s.accent, cursor: 'pointer', fontWeight: 700, background: 'none', border: 'none', padding: 0, fontFamily: s.font }}>{t('bd_see_courses')}</button>
+ <button type="button" onClick={() => nav('courses')} style={{ fontSize: '14px', color: s.accent, cursor: 'pointer', fontWeight: 500, background: 'none', border: 'none', padding: 0, fontFamily: s.font }}>{t('bd_see_courses')}</button>
  </div>
 
  <a href='/book?product=basic-diver-sea' onClick={() => fireEvent('booking_click')} style={{ ...bookBtnStyle, display: 'block', textAlign: 'center', fontSize: '15px', padding: '14px 24px' }}>

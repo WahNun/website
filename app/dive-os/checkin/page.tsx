@@ -145,7 +145,7 @@ const c = {
  success: '#b7c4b0',
  warning: '#d4a07a',
  error: '#c9928c',
- font: `-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif`,
+ font: `var(--font-geist-sans), sans-serif`,
 }
 
 const inputStyle: React.CSSProperties = {
@@ -164,8 +164,8 @@ const inputStyle: React.CSSProperties = {
 
 const labelStyle: React.CSSProperties = {
  fontSize: '14px',
- fontWeight: 700,
- letterSpacing: '.14em',
+ fontWeight: 500,
+ letterSpacing: '.08em',
  textTransform: 'uppercase' as const,
  color: c.muted,
  marginBottom: '7px',
@@ -179,7 +179,7 @@ const primaryBtn: React.CSSProperties = {
  border: 'none',
  background: `linear-gradient(135deg, ${c.accent}, #f3efe6)`,
  color: '#000',
- fontWeight: 800,
+ fontWeight: 500,
  fontSize: '16px',
  cursor: 'pointer',
  fontFamily: c.font,
@@ -192,7 +192,7 @@ const ghostBtn: React.CSSProperties = {
  border: `1px solid ${c.accentBorder}`,
  background: 'transparent',
  color: c.accent,
- fontWeight: 700,
+ fontWeight: 500,
  fontSize: '14px',
  cursor: 'pointer',
  fontFamily: c.font,
@@ -246,7 +246,7 @@ function Layout({ children }: { children: React.ReactNode }) {
  <div style={{ width: '100%', maxWidth: '520px' }}>
  {/* Logo / Brand */}
  <div style={{ textAlign: 'center', marginBottom: '28px', paddingTop: '12px' }}>
- <div style={{ fontSize: '14px', fontWeight: 800, letterSpacing: '.18em', textTransform: 'uppercase', color: c.accent }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: c.accent }}>
  AZORES DIVING
  </div>
  <div style={{ fontSize: '14px', color: c.sub, marginTop: '2px' }}>Digital Check-in</div>
@@ -265,19 +265,19 @@ function GroupOthersCard({ others }: { others: GroupOther[] }) {
  const open = others.filter(o => !o.done).length
  return (
  <div style={{ background: 'rgba(243,239,230,.05)', border: `1px solid ${c.accentBorder}`, borderRadius: 0, padding: '14px 16px', marginBottom: '20px', textAlign: 'left' }}>
- <div style={{ fontSize: '14px', fontWeight: 800, color: c.text, marginBottom: '4px' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: c.text, marginBottom: '4px' }}>
  {open > 0 ? 'Your booking has more guests — each one checks in separately' : 'All other guests of this booking are checked in'}
  </div>
  {others.map(o => (
  <div key={o.token} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px', padding: '8px 0', borderTop: '1px solid rgba(255,255,255,.06)', marginTop: '8px' }}>
  <div style={{ minWidth: 0 }}>
- <div style={{ fontSize: '14px', fontWeight: 700, color: c.text }}>{o.label}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: c.text }}>{o.label}</div>
  {(o.product_name || o.booking_date) && <div style={{ fontSize: '14px', color: c.muted }}>{o.product_name ?? ''}{o.booking_date ? ` · ${formatDate(o.booking_date)}` : ''}{o.session ? ` ${o.session.toUpperCase()}` : ''}</div>}
  {(o.extras ?? []).length > 0 && <div style={{ fontSize: '14px', color: c.muted, marginTop: '2px' }}>+ {(o.extras ?? []).join(', ')}</div>}
  </div>
  {o.done
- ? <span style={{ fontSize: '14px', fontWeight: 700, color: c.success, whiteSpace: 'nowrap' }}> Checked in</span>
- : <a href={`/dive-os/checkin?token=${o.token}`} style={{ padding: '9px 14px', borderRadius: 0, background: '#f3efe6', color: '#000', fontWeight: 800, fontSize: '14px', textDecoration: 'none', whiteSpace: 'nowrap' }}>Check in {o.label.replace(/ — .*/, '')} </a>}
+ ? <span style={{ fontSize: '14px', fontWeight: 500, color: c.success, whiteSpace: 'nowrap' }}> Checked in</span>
+ : <a href={`/dive-os/checkin?token=${o.token}`} style={{ padding: '9px 14px', borderRadius: 0, background: '#f3efe6', color: '#000', fontWeight: 500, fontSize: '14px', textDecoration: 'none', whiteSpace: 'nowrap' }}>Check in {o.label.replace(/ — .*/, '')} </a>}
  </div>
  ))}
  </div>
@@ -305,7 +305,7 @@ function ErrorCard({ reason, others }: { reason: 'expired' | 'not_found' | 'all_
  <Card>
  <div style={{ textAlign: 'center', padding: '24px 0' }}>
  <div style={{ fontSize: '48px', marginBottom: '16px' }}></div>
- <div style={{ fontSize: '20px', fontWeight: 800, color: c.text, marginBottom: '10px' }}>{title}</div>
+ <div style={{ fontSize: '20px', fontWeight: 500, color: c.text, marginBottom: '10px' }}>{title}</div>
  <div style={{ fontSize: '14px', color: c.muted, lineHeight: 1.6, marginBottom: '28px' }}>{body}</div>
  {others && others.length > 0 && <GroupOthersCard others={others} />}
  <a
@@ -318,7 +318,7 @@ function ErrorCard({ reason, others }: { reason: 'expired' | 'not_found' | 'all_
  borderRadius: 0,
  background: '#c9c2b6',
  color: '#f3efe6',
- fontWeight: 700,
+ fontWeight: 500,
  fontSize: '15px',
  textDecoration: 'none',
  }}
@@ -421,7 +421,7 @@ function GuestProgress({ slots, currentSlot }: { slots: SlotInfo[]; currentSlot:
  border: `1px solid ${border}`,
  fontSize: '14px',
  color,
- fontWeight: isCurrent ? 700 : 500,
+ fontWeight: 500,
  }}>
  {done ? '' : invited ? '' : isCurrent ? '' : ''}
  <span>
@@ -1102,10 +1102,10 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <Card>
  <div style={{ textAlign: 'center', marginBottom: '24px' }}>
  <div style={{ fontSize: '40px', marginBottom: '8px' }}></div>
- <div style={{ fontSize: '18px', fontWeight: 900, color: c.success }}>Your check-in is complete!</div>
+ <div style={{ fontSize: '18px', fontWeight: 500, color: c.success }}>Your check-in is complete!</div>
  </div>
 
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: c.accent, marginBottom: '10px' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: c.accent, marginBottom: '10px' }}>
  {openSlots.length === 1 ? '1 guest' : `${openSlots.length} guests`} still to check in
  </div>
  <div style={{ fontSize: '14px', color: c.muted, lineHeight: 1.6, marginBottom: '20px' }}>
@@ -1138,14 +1138,14 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  autoComplete="email"
  />
  {sent && (
- <span style={{ flexShrink: 0, fontSize: '14px', color: c.success, fontWeight: 700 }}></span>
+ <span style={{ flexShrink: 0, fontSize: '14px', color: c.success, fontWeight: 500 }}></span>
  )}
  </div>
  {failed && result && (
  <div style={{ marginTop: '6px', fontSize: '14px', color: c.error, lineHeight: 1.4 }}>
  {result.http_status ? `HTTP ${result.http_status} — ` : ''}{result.error}
  {result.ref && (
- <span style={{ marginLeft: '6px', fontFamily: 'monospace', color: c.muted }}>Ref: {result.ref}</span>
+ <span style={{ marginLeft: '6px', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: c.muted }}>Ref: {result.ref}</span>
  )}
  </div>
  )}
@@ -1253,14 +1253,14 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <GuestProgress slots={tokenData.slots} currentSlot={currentSlot} />
  <Card style={{ textAlign: 'center' }}>
  <div style={{ fontSize: '64px', marginBottom: '16px' }}></div>
- <div style={{ fontSize: '22px', fontWeight: 900, color: c.success, marginBottom: '8px' }}>Check-in complete!</div>
+ <div style={{ fontSize: '22px', fontWeight: 500, color: c.success, marginBottom: '8px' }}>Check-in complete!</div>
  <div style={{ fontSize: '15px', color: c.muted, marginBottom: '24px' }}>See you on the water. </div>
 
  {(tokenData.group_others ?? []).length > 0 && <GroupOthersCard others={tokenData.group_others ?? []} />}
 
  {medicalFlagged && (
  <div style={{ background: 'rgba(212,160,122,.08)', border: '1px solid rgba(212,160,122,.2)', borderRadius: 0, padding: '12px 16px', marginBottom: '20px', textAlign: 'left' }}>
- <div style={{ fontSize: '14px', color: c.warning, fontWeight: 700, marginBottom: '4px' }}>Medical follow-up</div>
+ <div style={{ fontSize: '14px', color: c.warning, fontWeight: 500, marginBottom: '4px' }}>Medical follow-up</div>
  <div style={{ fontSize: '14px', color: c.muted, lineHeight: 1.5 }}>Our team will contact you before your activity to discuss your health declaration.</div>
  </div>
  )}
@@ -1274,7 +1274,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  {/* Eingeladene Slots — mit Resend-Option */}
  {invitedSlots.length > 0 && (
  <div style={{ textAlign: 'left', marginBottom: '20px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: c.muted, marginBottom: '10px' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: c.muted, marginBottom: '10px' }}>
  Invitation{invitedSlots.length > 1 ? 's' : ''} sent
  </div>
  {invitedSlots.map(slot => {
@@ -1282,7 +1282,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  const currentResendEmail = resendEmails[slot.slot_index] ?? slot.invite_email ?? ''
  return (
  <div key={slot.slot_index} style={{ marginBottom: '10px', padding: '10px 14px', background: 'rgba(243,239,230,.04)', border: `1px solid ${c.accentBorder}`, borderRadius: 0 }}>
- <div style={{ fontSize: '14px', color: c.text, fontWeight: 600, marginBottom: '6px' }}>
+ <div style={{ fontSize: '14px', color: c.text, fontWeight: 500, marginBottom: '6px' }}>
  Guest {slot.slot_index + 1}
  {(slot.guest_name ?? slot.customer?.name) ? ` — ${slot.guest_name ?? slot.customer?.name}` : ''}
  </div>
@@ -1310,7 +1310,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  {resendResult && !resendResult.ok && (
  <div style={{ marginTop: '6px', fontSize: '14px', color: c.error, lineHeight: 1.4 }}>
  {resendResult.http_status ? `HTTP ${resendResult.http_status} — ` : ''}{resendResult.error}
- {resendResult.ref && <span style={{ marginLeft: '6px', fontFamily: 'monospace', color: c.muted }}>Ref: {resendResult.ref}</span>}
+ {resendResult.ref && <span style={{ marginLeft: '6px', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: c.muted }}>Ref: {resendResult.ref}</span>}
  </div>
  )}
  {resendResult?.ok && (
@@ -1340,8 +1340,8 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <GuestProgress slots={tokenData.slots} currentSlot={currentSlot} />
  <Card>
  <div style={{ marginBottom: '24px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: c.accent, marginBottom: '10px' }}>Your booking</div>
- <div style={{ fontSize: '22px', fontWeight: 900, color: c.text, marginBottom: '6px' }}>{booking.product_name}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: c.accent, marginBottom: '10px' }}>Your booking</div>
+ <div style={{ fontSize: '22px', fontWeight: 500, color: c.text, marginBottom: '6px' }}>{booking.product_name}</div>
  <div style={{ fontSize: '15px', color: c.muted }}>{formatDate(booking.booking_date)} · {booking.session.toUpperCase()}</div>
  </div>
 
@@ -1431,7 +1431,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  border: `1px solid ${form.gender === g ? 'rgba(243,239,230,.5)' : 'rgba(243,239,230,.2)'}`,
  background: form.gender === g ? 'rgba(243,239,230,.15)' : 'rgba(255,255,255,.04)',
  color: form.gender === g ? '#f3efe6' : '#c9c2b6',
- fontWeight: form.gender === g ? 700 : 500,
+ fontWeight: 500,
  fontSize: '15px', cursor: 'pointer', fontFamily: 'inherit',
  }}
  >{g === 'M' ? 'Male' : 'Female'}</button>
@@ -1583,7 +1583,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
 
  {isMinorGuest && (
  <div style={{ marginTop: '24px', background: 'rgba(251,191,36,.06)', border: '1px solid rgba(251,191,36,.3)', borderRadius: 0, padding: '20px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase', color: '#c9b48a', marginBottom: '16px' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c9b48a', marginBottom: '16px' }}>
  Parental / Guardian Consent
  </div>
  <p style={{ fontSize: '14px', color: c.muted, lineHeight: 1.6, marginBottom: '16px' }}>
@@ -1671,7 +1671,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  padding: '14px 16px',
  }}>
  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginBottom: '12px' }}>
- <span style={{ fontSize: '14px', color: c.sub, fontWeight: 800, flexShrink: 0, minWidth: '18px', paddingTop: '3px' }}>
+ <span style={{ fontSize: '14px', color: c.sub, fontWeight: 500, flexShrink: 0, minWidth: '18px', paddingTop: '3px' }}>
  {idx + 1}.
  </span>
  <span style={{ fontSize: '14px', color: c.text, lineHeight: 1.5 }}>{q.label}</span>
@@ -1689,7 +1689,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  border: `1px solid ${selected ? (isYesBtn ? 'rgba(212,160,122,.5)' : c.accentBorder) : 'rgba(255,255,255,.1)'}`,
  background: selected ? (isYesBtn ? 'rgba(212,160,122,.12)' : c.accentDim) : 'transparent',
  color: selected ? (isYesBtn ? c.warning : c.accent) : c.muted,
- fontWeight: selected ? 700 : 500, fontSize: '14px',
+ fontWeight: 500, fontSize: '14px',
  cursor: 'pointer', fontFamily: c.font,
  }}
  >{answer}</button>
@@ -1707,7 +1707,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  borderRadius: '0 0 10px 10px',
  padding: '14px 16px',
  }}>
- <div style={{ fontSize: '14px', fontWeight: 800, letterSpacing: '.13em', textTransform: 'uppercase', color: c.warning, marginBottom: '12px' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: c.warning, marginBottom: '12px' }}>
  Box {q.boxKey} — {box.intro}
  </div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -1736,7 +1736,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  border: `1px solid ${selected ? (isYesBtn ? 'rgba(201,146,140,.5)' : c.accentBorder) : 'rgba(255,255,255,.1)'}`,
  background: selected ? (isYesBtn ? 'rgba(201,146,140,.12)' : c.accentDim) : 'transparent',
  color: selected ? (isYesBtn ? c.error : c.accent) : c.muted,
- fontWeight: selected ? 700 : 500, fontSize: '14px',
+ fontWeight: 500, fontSize: '14px',
  cursor: 'pointer', fontFamily: c.font,
  }}
  >{answer}</button>
@@ -1811,7 +1811,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  }}>
  {WAIVER_SECTIONS.map(sec => (
  <div key={sec.title} style={{ marginBottom: '18px' }}>
- <div style={{ fontSize: '14px', fontWeight: 800, letterSpacing: '.12em', textTransform: 'uppercase', color: c.accent, marginBottom: '6px' }}>{sec.title}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: c.accent, marginBottom: '6px' }}>{sec.title}</div>
  <div style={{ whiteSpace: 'pre-line' }}>{sec.body}</div>
  </div>
  ))}
@@ -1837,7 +1837,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  </label>
 
  {/* ── SSI Responsible Diver Code ── */}
- <div style={{ fontSize: '14px', fontWeight: 800, letterSpacing: '.12em', textTransform: 'uppercase', color: c.accent, marginBottom: '10px', marginTop: '4px' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: c.accent, marginBottom: '10px', marginTop: '4px' }}>
  SSI Responsible Diver Code
  </div>
  <div style={{
@@ -1855,7 +1855,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <p style={{ marginTop: 0, marginBottom: '12px' }}>
  {DIVER_CODE_INTRO}
  </p>
- <p style={{ marginTop: 0, marginBottom: '10px', fontWeight: 600, color: c.text }}>{DIVER_CODE_PLEDGE}</p>
+ <p style={{ marginTop: 0, marginBottom: '10px', fontWeight: 500, color: c.text }}>{DIVER_CODE_PLEDGE}</p>
  <ol style={{ margin: 0, paddingLeft: '18px' }}>
  {DIVER_CODE_ITEMS.map((it, i) => (
  <li key={it.title} style={{ marginBottom: i === DIVER_CODE_ITEMS.length - 1 ? '0' : '8px' }}><strong>{it.title}</strong> — {it.body}</li>
@@ -1883,7 +1883,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  </span>
  </label>
 
- <div style={{ fontSize: '14px', fontWeight: 700, color: c.text, marginBottom: '10px' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: c.text, marginBottom: '10px' }}>
  Signature <span style={{ color: c.muted, fontWeight: 400 }}>(required)</span>
  </div>
  <SignaturePad onSignature={setSignatureDataUrl} />
@@ -1946,7 +1946,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  border: `1px solid ${form.experience_level === lv.value ? c.accentBorder : 'rgba(255,255,255,.08)'}`,
  background: form.experience_level === lv.value ? c.accentDim : 'transparent',
  color: form.experience_level === lv.value ? c.accent : c.text,
- fontWeight: form.experience_level === lv.value ? 700 : 400,
+ fontWeight: form.experience_level === lv.value ? 500 : 400,
  fontSize: '15px',
  cursor: 'pointer',
  fontFamily: c.font,
@@ -2008,7 +2008,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  Ankunft aufloest. Wer die Tagesversicherung bei uns gekauft hat,
  hat nichts vorzulegen. */}
  <div style={{ marginTop: '22px', borderTop: '1px solid rgba(255,255,255,.07)', paddingTop: '18px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: c.sub, marginBottom: '12px' }}>Dive Insurance</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: c.sub, marginBottom: '12px' }}>Dive Insurance</div>
 
  {dayInsuranceIncluded() ? (
  <div style={{ background: 'rgba(183,196,176,.08)', border: '1px solid rgba(183,196,176,.25)', borderRadius: 0, padding: '12px 14px', fontSize: '14px', color: '#b7c4b0', lineHeight: 1.55 }}>
@@ -2200,7 +2200,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  </Field>
 
  <div style={{ borderTop: '1px solid rgba(255,255,255,.07)', paddingTop: '18px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: c.sub, marginBottom: '14px' }}>Equipment Sizes (optional)</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: c.sub, marginBottom: '14px' }}>Equipment Sizes (optional)</div>
  <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'flex-end' }}>
  <div style={{ flex: '1 1 120px', minWidth: 0 }}>
  <Field label="Wetsuit size">
@@ -2317,14 +2317,14 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  border: '1px solid rgba(255,255,255,.1)', borderRadius: 0,
  padding: '16px 18px', marginBottom: '18px', background: 'rgba(255,255,255,.02)',
  }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: c.sub, marginBottom: '12px' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: c.sub, marginBottom: '12px' }}>
  Cancellation Policy
  </div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
  {CANCELLATION_SUMMARY.map(row => (
  <div key={row.window} style={{ display: 'flex', justifyContent: 'space-between', gap: '14px', fontSize: '14px', lineHeight: 1.5 }}>
  <span style={{ color: c.muted }}>{row.window}</span>
- <span style={{ color: c.text, fontWeight: 600, whiteSpace: 'nowrap' }}>{row.outcome}</span>
+ <span style={{ color: c.text, fontWeight: 500, whiteSpace: 'nowrap' }}>{row.outcome}</span>
  </div>
  ))}
  </div>
@@ -2366,7 +2366,7 @@ function CheckinFlow({ token, initialSlot }: { token: string; initialSlot: numbe
  <div style={{ background: 'rgba(201,146,140,.08)', border: '1px solid rgba(201,146,140,.2)', borderRadius: 0, padding: '12px 14px', marginBottom: '20px', fontSize: '14px', color: c.error }}>
  <div>{submitError}</div>
  {submitRef && (
- <div style={{ fontSize: '14px', color: c.muted, marginTop: '6px', fontFamily: 'monospace' }}>
+ <div style={{ fontSize: '14px', color: c.muted, marginTop: '6px', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace' }}>
  Reference: {submitRef}
  </div>
  )}
@@ -2446,10 +2446,10 @@ function MedicalAckDialog({ onConfirm, onCancel, medicalAnswers }: { onConfirm: 
  background: '#121210', border: '1px solid rgba(212,160,122,.35)',
  borderRadius: 0, padding: '26px 26px 22px',
  }}>
- <div style={{ fontSize: '14px', fontWeight: 800, letterSpacing: '.18em', textTransform: 'uppercase', color: c.warning, marginBottom: '10px' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: c.warning, marginBottom: '10px' }}>
  Medical clearance required
  </div>
- <h2 style={{ margin: '0 0 16px', fontSize: '21px', fontWeight: 900, color: c.text, lineHeight: 1.25 }}>
+ <h2 style={{ margin: '0 0 16px', fontSize: '21px', fontWeight: 500, color: c.text, lineHeight: 1.25 }}>
  You will need a doctor&apos;s sign-off before this dive.
  </h2>
 
@@ -2470,7 +2470,7 @@ function MedicalAckDialog({ onConfirm, onCancel, medicalAnswers }: { onConfirm: 
  </div>
 
  <div style={{ background: 'rgba(212,160,122,.08)', border: '1px solid rgba(212,160,122,.22)', borderRadius: 0, padding: '14px 16px', marginBottom: '18px' }}>
- <div style={{ fontSize: '14px', color: c.warning, fontWeight: 700, marginBottom: '8px' }}>What you need to bring</div>
+ <div style={{ fontSize: '14px', color: c.warning, fontWeight: 500, marginBottom: '8px' }}>What you need to bring</div>
  <div style={{ fontSize: '14px', color: '#f3efe6', lineHeight: 1.7 }}>
  A written statement from a physician confirming you are fit to dive, dated within the
  last 12 months. A diving medical (SSI, PADI or the standard European form) is ideal;
@@ -2503,7 +2503,7 @@ function MedicalAckDialog({ onConfirm, onCancel, medicalAnswers }: { onConfirm: 
  disabled={!checked}
  style={{
  width: '100%', padding: '14px', borderRadius: 0, border: 'none',
- fontSize: '15px', fontWeight: 800, fontFamily: c.font,
+ fontSize: '15px', fontWeight: 500, fontFamily: c.font,
  background: checked ? c.accent : 'rgba(255,255,255,.08)',
  color: checked ? '#090909' : c.muted,
  cursor: checked ? 'pointer' : 'not-allowed',
@@ -2660,7 +2660,7 @@ function DayCoverOption({ form, setForm, offer, c }: { form: { buy_day_cover: bo
  return (
  <button type="button" onClick={() => setForm((f: any) => ({ ...f, buy_day_cover: !f.buy_day_cover, insurance_mode: !f.buy_day_cover ? '' : f.insurance_mode }))}
  style={{ textAlign: 'left', padding: '11px 14px', borderRadius: 0, border: `1px solid ${on ? c.accentBorder : 'rgba(255,255,255,.08)'}`, background: on ? c.accentDim : 'transparent', color: c.text, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit', display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
- <span style={{ width: '18px', height: '18px', borderRadius: 0, border: `2px solid ${on ? c.accent : 'rgba(255,255,255,.3)'}`, background: on ? c.accent : 'transparent', flexShrink: 0, marginTop: '2px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#000', fontSize: '14px', fontWeight: 800 }}>{on ? '' : ''}</span>
+ <span style={{ width: '18px', height: '18px', borderRadius: 0, border: `2px solid ${on ? c.accent : 'rgba(255,255,255,.3)'}`, background: on ? c.accent : 'transparent', flexShrink: 0, marginTop: '2px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#000', fontSize: '14px', fontWeight: 500 }}>{on ? '' : ''}</span>
  <span>
  Buy DAN day cover from your dive centre{offer ? ` — €${(offer.cents / 100).toFixed(2)} for ${offer.days} dive day${offer.days === 1 ? '' : 's'}` : ''}
  <div style={{ fontSize: '14px', color: c.sub, marginTop: '3px' }}>Added to your booking, pay at the centre (cash, card or Revolut). Covers every dive day of this booking.</div>
@@ -2679,7 +2679,7 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 }
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
- return <div style={{ fontSize: '18px', fontWeight: 800, color: c.text, marginBottom: '20px' }}>{children}</div>
+ return <div style={{ fontSize: '18px', fontWeight: 500, color: c.text, marginBottom: '20px' }}>{children}</div>
 }
 
 function NavButtons({ onBack, onNext, nextDisabled = false, nextLabel = 'Continue ' }: {
@@ -2703,7 +2703,7 @@ function NavButtons({ onBack, onNext, nextDisabled = false, nextLabel = 'Continu
 function ReviewSection({ title, children }: { title: string; children: React.ReactNode }) {
  return (
  <div style={{ marginBottom: '8px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.13em', textTransform: 'uppercase', color: c.sub, marginBottom: '6px', marginTop: '12px' }}>{title}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: c.sub, marginBottom: '6px', marginTop: '12px' }}>{title}</div>
  <div style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.06)', borderRadius: 0, padding: '4px 0' }}>
  {children}
  </div>
@@ -2716,7 +2716,7 @@ function InfoRow({ label, value, highlight }: { label: string; value: string; hi
  return (
  <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 14px', borderBottom: '1px solid rgba(255,255,255,.04)', gap: '12px' }}>
  <span style={{ fontSize: '14px', color: c.muted, flexShrink: 0 }}>{label}</span>
- <span style={{ fontSize: '14px', color: valueColor, fontWeight: 600, textAlign: 'right', wordBreak: 'break-word' }}>{value || '—'}</span>
+ <span style={{ fontSize: '14px', color: valueColor, fontWeight: 500, textAlign: 'right', wordBreak: 'break-word' }}>{value || '—'}</span>
  </div>
  )
 }

@@ -49,7 +49,7 @@ export default function PaymentRequestRetry({ items, isDeposit, onAllSent }: { i
  }
  return (
  <div style={{ background: 'rgba(201,146,140,.08)', border: '1px solid rgba(201,146,140,.45)', borderRadius: 0, padding: '14px 16px', marginBottom: '16px', textAlign: 'left' }}>
- <div style={{ fontSize: '14px', fontWeight: 800, color: '#c9928c', marginBottom: '4px' }}>The payment request was not sent</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: '#c9928c', marginBottom: '4px' }}>The payment request was not sent</div>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '10px', lineHeight: 1.5 }}>The guest has no payment details yet. The payment status itself is saved. Send it again here; if it keeps failing, it stays listed under Finances Action needed.</div>
  {items.map(it => {
  const st = state[it.id] ?? {}
@@ -59,7 +59,7 @@ export default function PaymentRequestRetry({ items, isDeposit, onAllSent }: { i
  <b>{it.name}</b>
  <div style={{ color: st.ok ? '#b7c4b0' : '#c9928c', marginTop: '2px' }}>{st.text ?? it.error}</div>
  </div>
- {!st.ok && <button type="button" disabled={st.busy} onClick={() => again(it)} style={{ padding: '8px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.4)', background: 'rgba(243,239,230,.08)', color: s.accent, fontWeight: 700, fontSize: '14px', cursor: st.busy ? 'wait' : 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>{st.busy ? 'Sending…' : 'Send again'}</button>}
+ {!st.ok && <button type="button" disabled={st.busy} onClick={() => again(it)} style={{ padding: '8px 14px', borderRadius: 0, border: '1px solid rgba(243,239,230,.4)', background: 'rgba(243,239,230,.08)', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: st.busy ? 'wait' : 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>{st.busy ? 'Sending…' : 'Send again'}</button>}
  </div>
  )
  })}

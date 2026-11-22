@@ -11,7 +11,7 @@ import { CANCEL_REASONS, REFUND_REASONS, composeReason, payoutNeeded, reasonComp
  * Die Server-Routen prüfen dasselbe (lib/refundReasons.ts) — das UI soll nur früh und freundlich warnen.
  */
 
-const lbl: React.CSSProperties = { fontSize: '14px', fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: s.muted, display: 'block', marginBottom: '4px' }
+const lbl: React.CSSProperties = { fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, display: 'block', marginBottom: '4px' }
 const inp: React.CSSProperties = { width: '100%', boxSizing: 'border-box', background: '#000', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, color: s.text, fontSize: '14px', padding: '7px 10px', fontFamily: s.font, outline: 'none', colorScheme: 'dark' }
 
 export function ReasonField({ kind, choice, detail, onChoice, onDetail, placeholder }: {
@@ -98,7 +98,7 @@ export function CopyButton({ value, label = 'Copy' }: { value: string; label?: s
  }
  return (
  <button type="button" onClick={copy}
- style={{ padding: '3px 10px', borderRadius: 0, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font, minWidth: '74px',
+ style={{ padding: '3px 10px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, minWidth: '74px',
  border: `1px solid ${state === 'ok' ? 'rgba(183,196,176,.6)' : state === 'fail' ? 'rgba(201,146,140,.6)' : 'rgba(201,180,138,.5)'}`,
  background: state === 'ok' ? 'rgba(183,196,176,.15)' : 'transparent',
  color: state === 'ok' ? '#b7c4b0' : state === 'fail' ? '#c9928c' : '#c9b48a' }}>

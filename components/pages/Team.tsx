@@ -30,10 +30,10 @@ export function PageTeam({ nav, lang }: { nav: (p: string) => void; lang: Lang }
  return (
  <div style={{ padding: isMobile ? '32px 20px' : '60px 48px' }}>
  <Breadcrumb label={t('bc_team')} homeLabel={t('bc_home')} goHome={() => nav('home')} />
- <h1 style={{ fontSize: 'clamp(28px,4vw,48px)', fontWeight: 900, letterSpacing: '-.01em', marginBottom: '14px' }}>
+ <h1 style={{ fontSize: 'clamp(28px,4vw,48px)', fontWeight: 500, letterSpacing: '-0.02em', marginBottom: '14px' }}>
  {t('team_h1')}<span style={{ color: s.accent }}>.</span>
  </h1>
- <p style={{ color: s.accent, fontSize: 'clamp(16px,2vw,20px)', fontWeight: 600, lineHeight: 1.5, marginBottom: '20px' }}>
+ <p style={{ color: s.accent, fontSize: 'clamp(16px,2vw,20px)', fontWeight: 500, lineHeight: 1.5, marginBottom: '20px' }}>
  {t('team_intro')}
  </p>
  <p style={{ color: '#f3efe6', fontSize: '16px', lineHeight: 1.8, marginBottom: '16px' }}>
@@ -46,12 +46,12 @@ export function PageTeam({ nav, lang }: { nav: (p: string) => void; lang: Lang }
  {t('team_p3')}
  </p>
 
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase', color: s.muted, marginBottom: '12px' }}>{t('team_languages')}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '12px' }}>{t('team_languages')}</div>
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '40px' }}>
  {[['','English'],['','Português'],['','Deutsch'],['','Español'],['','Français'],['','Čeština']].map(([flag, spokenLang]) => (
  <div key={spokenLang} style={{ display: 'flex', alignItems: 'center', gap: '7px', background: 'rgba(243,239,230,.08)', border: '1px solid rgba(243,239,230,.18)', borderRadius: 0, padding: '6px 14px' }}>
  <span style={{ fontSize: '18px', lineHeight: 1 }}>{flag}</span>
- <span style={{ fontSize: '14px', fontWeight: 600, color: '#f3efe6' }}>{spokenLang}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: '#f3efe6' }}>{spokenLang}</span>
  </div>
  ))}
  </div>
@@ -87,7 +87,7 @@ export function PageTeam({ nav, lang }: { nav: (p: string) => void; lang: Lang }
  <p style={{ color: s.muted, fontSize: '14px', lineHeight: 1.6, margin: '0 0 12px' }}>
  {WORK_WITH_US.body[lang]}
  </p>
- <a href="/careers" style={{ color: s.accent, fontSize: '14px', fontWeight: 600, textDecoration: 'none', fontFamily: s.font }}>
+ <a href="/careers" style={{ color: s.accent, fontSize: '14px', fontWeight: 500, textDecoration: 'none', fontFamily: s.font }}>
  {WORK_WITH_US.link[lang]}
  </a>
  </div>

@@ -42,7 +42,7 @@ export default function DatePicker({ value, onChange, min, max }: {
  <div>
  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px', gap: '8px' }}>
  <button type="button" onClick={() => setCursor(new Date(cursor.getFullYear(), cursor.getMonth() - 1, 1))} style={navBtn}>‹</button>
- <button type="button" onClick={() => setYearOpen(o => !o)} style={{ background: 'transparent', border: 'none', color: s.text, fontSize: '14px', fontWeight: 800, cursor: 'pointer', fontFamily: 'inherit' }}>
+ <button type="button" onClick={() => setYearOpen(o => !o)} style={{ background: 'transparent', border: 'none', color: s.text, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit' }}>
  {MONTHS[cursor.getMonth()]} {cursor.getFullYear()} 
  </button>
  <button type="button" onClick={() => setCursor(new Date(cursor.getFullYear(), cursor.getMonth() + 1, 1))} style={navBtn}>›</button>
@@ -58,7 +58,7 @@ export default function DatePicker({ value, onChange, min, max }: {
  </div>
  )}
  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '4px', marginBottom: '4px' }}>
- {WEEKDAYS.map(w => <div key={w} style={{ textAlign: 'center', fontSize: '14px', color: s.muted, fontWeight: 700 }}>{w}</div>)}
+ {WEEKDAYS.map(w => <div key={w} style={{ textAlign: 'center', fontSize: '14px', color: s.muted, fontWeight: 500 }}>{w}</div>)}
  </div>
  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '4px' }}>
  {Array.from({ length: firstWeekday }).map((_, i) => <div key={`e${i}`} />)}
@@ -70,7 +70,7 @@ export default function DatePicker({ value, onChange, min, max }: {
  // Der gewählte Tag bleibt immer anklickbar (abwählen), auch wenn er inzwischen ausserhalb von min/max liegt
  <button key={d} type="button" disabled={disabled && !isSel} title={disabled && isSel ? 'Click to clear' : undefined} onClick={() => onChange(isSel ? null : d)}
  style={{
- padding: '9px 0', borderRadius: 0, fontFamily: 'inherit', fontSize: '14px', fontWeight: isSel ? 800 : 600,
+ padding: '9px 0', borderRadius: 0, fontFamily: 'inherit', fontSize: '14px', fontWeight: 500,
  border: `1px solid ${isSel ? 'rgba(243,239,230,.7)' : 'rgba(255,255,255,.08)'}`,
  background: isSel ? 'rgba(243,239,230,.25)' : 'transparent',
  color: disabled ? 'rgba(255,255,255,.18)' : s.text, cursor: disabled ? 'not-allowed' : 'pointer',

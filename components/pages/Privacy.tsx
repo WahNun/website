@@ -110,19 +110,19 @@ export function PagePrivacy({ nav, lang }: { nav: (p: string) => void; lang: Lan
  <div style={{ minHeight: '100vh', background: s.bg, color: s.text, fontFamily: s.font, paddingBottom: '80px' }}>
  <div style={{ maxWidth: '780px', margin: '0 auto', padding: '48px 24px' }}>
  <Breadcrumb label={c.title} homeLabel={T.nav_home[lang]} goHome={() => nav('home')} />
- <h1 style={{ fontSize: '28px', fontWeight: 900, color: '#f3efe6', marginBottom: '6px' }}>{c.title}</h1>
+ <h1 style={{ fontSize: '28px', fontWeight: 500, color: '#f3efe6', marginBottom: '6px' }}>{c.title}</h1>
  <p style={{ color: s.muted, fontSize: '14px', marginBottom: '36px' }}>{c.updated}</p>
 
  <p style={{ color: '#f3efe6', lineHeight: 1.8, marginBottom: '36px' }}>{c.intro}</p>
 
  <div style={{ background: 'rgba(243,239,230,.06)', border: '1px solid rgba(243,239,230,.18)', borderRadius: 0, padding: '20px 24px', marginBottom: '40px' }}>
- <div style={{ fontWeight: 700, color: s.accent, fontSize: '14px', letterSpacing: '.1em', textTransform: 'uppercase', marginBottom: '10px' }}>{c.controller_h}</div>
+ <div style={{ fontWeight: 500, color: s.accent, fontSize: '14px', letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '10px' }}>{c.controller_h}</div>
  <div style={{ color: '#f3efe6', fontSize: '14px', lineHeight: 1.9, whiteSpace: 'pre-line' }}>{c.controller_body}</div>
  </div>
 
  {c.sections.map((sec, i) => (
  <div key={i} style={{ marginBottom: '36px' }}>
- <h2 style={{ fontSize: '17px', fontWeight: 800, color: '#f3efe6', marginBottom: '12px', paddingBottom: '8px', borderBottom: '1px solid rgba(243,239,230,.1)' }}>{sec.h}</h2>
+ <h2 style={{ fontSize: '17px', fontWeight: 500, color: '#f3efe6', marginBottom: '12px', paddingBottom: '8px', borderBottom: '1px solid rgba(243,239,230,.1)' }}>{sec.h}</h2>
  <div style={{ color: '#f3efe6', fontSize: '14px', lineHeight: 1.85, whiteSpace: 'pre-line' }}>{sec.body}</div>
  </div>
  ))}

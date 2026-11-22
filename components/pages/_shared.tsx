@@ -414,7 +414,7 @@ export const s = {
  text: '#f3efe6',
  muted: '#c9c2b6',
  sub: '#c9c2b6',
- font: `Outfit, "Segoe UI", sans-serif`,
+ font: `var(--font-geist-sans), sans-serif`,
 }
 
 export const inputStyle: React.CSSProperties = {
@@ -432,7 +432,7 @@ export const bookBtnStyle: React.CSSProperties = {
  color: '#f3efe6',
  fontWeight: 500,
  fontSize: '14px',
- letterSpacing: '0.12em',
+ letterSpacing: '0.08em',
  textTransform: 'uppercase',
  padding: '12px 18px',
  borderRadius: 0,

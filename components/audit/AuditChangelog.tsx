@@ -214,7 +214,7 @@ export default function AuditChangelog({ isAdmin, userId }: { isAdmin: boolean; 
  <thead>
  <tr style={{ borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  {['Date', 'Staff', 'Ticket', 'Action', 'Details'].map(h => (
- <th key={h} style={{ textAlign: 'left', padding: '8px 10px', color: 'rgba(255,255,255,.4)', fontWeight: 700, fontSize: '14px', textTransform: 'uppercase', letterSpacing: '.06em', whiteSpace: 'nowrap' }}>{h}</th>
+ <th key={h} style={{ textAlign: 'left', padding: '8px 10px', color: 'rgba(255,255,255,.4)', fontWeight: 500, fontSize: '14px', textTransform: 'uppercase', letterSpacing: '.06em', whiteSpace: 'nowrap' }}>{h}</th>
  ))}
  </tr>
  </thead>
@@ -231,7 +231,7 @@ export default function AuditChangelog({ isAdmin, userId }: { isAdmin: boolean; 
  : r.entity_type === 'booking_customer'
  ? <span style={{ color: 'rgba(255,255,255,.3)', fontStyle: 'italic' }}>Diver log</span>
  : r.entity_type === 'booking' && r.entity_id
- ? <span style={{ fontFamily: 'monospace' }}>Booking {(r.entity_id as string).slice(0, 8).toUpperCase()}</span>
+ ? <span style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace' }}>Booking {(r.entity_id as string).slice(0, 8).toUpperCase()}</span>
  : r.entity_type && r.entity_type !== 'ticket'
  ? <span style={{ color: 'rgba(255,255,255,.3)', fontStyle: 'italic' }}>{r.entity_type as string}</span>
  : (r.ticket_id as string ?? '—').slice(0, 8) + '…'}

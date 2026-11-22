@@ -156,7 +156,7 @@ export function MonthlyRosterGrid({ year, month, company = 'azd' }: {
  <div style={{ fontFamily: 'sans-serif', fontSize: 12 }}>
  {/* Header */}
  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
- <h3 style={{ margin: 0, fontSize: 15, fontWeight: 600 }}>
+ <h3 style={{ margin: 0, fontSize: 15, fontWeight: 500 }}>
  Monatsplan — {MONTH_NAMES[month - 1]} {year}
  </h3>
  <button
@@ -168,7 +168,7 @@ export function MonthlyRosterGrid({ year, month, company = 'azd' }: {
  border: 'none',
  borderRadius: 6,
  padding: '5px 14px',
- fontWeight: 600,
+ fontWeight: 500,
  cursor: drafting ? 'not-allowed' : 'pointer',
  fontSize: 12,
  }}
@@ -213,7 +213,7 @@ export function MonthlyRosterGrid({ year, month, company = 'azd' }: {
  textAlign: 'center',
  padding: '4px 2px',
  color: isWeekend ? '#c9928c' : '#888',
- fontWeight: isWeekend ? 700 : 400,
+ fontWeight: isWeekend ? 500 : 400,
  fontSize: 11,
  }}
  >

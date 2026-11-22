@@ -141,14 +141,14 @@ export function FinanceHeadline({ simulationMode }: { simulationMode: boolean | 
  const open7 = sum(data.upcoming.filter(u => u.date <= w.in7), u => u.open)
  return (
  <>
- <span style={{ fontSize: '22px', fontWeight: 900, color: s.text }}>{eur0(today)}</span>
- <span style={{ fontSize: '14px', color: s.muted }}>received today{open7 > 0 && <> · <span style={{ color: '#d4a07a', fontWeight: 700 }}>{eur0(open7)} open next 7 days</span></>}{simulationMode ? ' (Test data)' : ''}</span>
+ <span style={{ fontSize: '22px', fontWeight: 500, color: s.text }}>{eur0(today)}</span>
+ <span style={{ fontSize: '14px', color: s.muted }}>received today{open7 > 0 && <> · <span style={{ color: '#d4a07a', fontWeight: 500 }}>{eur0(open7)} open next 7 days</span></>}{simulationMode ? ' (Test data)' : ''}</span>
  </>
  )
 }
 
 const tile = { background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '16px 16px' } as const
-const lbl = { fontSize: '14px', color: s.muted, textTransform: 'uppercase', letterSpacing: '.12em' } as const
+const lbl = { fontSize: '14px', color: s.muted, textTransform: 'uppercase', letterSpacing: '.08em' } as const
 const row = { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px', padding: '9px 0', borderBottom: '1px solid rgba(255,255,255,.07)' } as const
 const btn = { background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, borderRadius: 0, padding: '6px 12px', cursor: 'pointer', fontSize: '14px', fontFamily: 'inherit' } as const
 
@@ -158,7 +158,7 @@ function Kpis({ items, isMobile }: { items: Array<[string, string, string?, stri
  {items.map(([l, v, c, sub]) => (
  <div key={l} style={tile}>
  <div style={lbl}>{l}</div>
- <div style={{ fontSize: '20px', fontWeight: 900, color: c ?? s.text, marginTop: '6px', fontVariantNumeric: 'tabular-nums' }}>{v}</div>
+ <div style={{ fontSize: '20px', fontWeight: 500, color: c ?? s.text, marginTop: '6px', fontVariantNumeric: 'tabular-nums' }}>{v}</div>
  {sub && <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>{sub}</div>}
  </div>
  ))}
@@ -179,7 +179,7 @@ function Section({ title, children, action }: { title: string; children: ReactNo
 }
 
 function BookingNo({ id, onOpen }: { id: string; onOpen: (id: string) => void }) {
- return <button type="button" onClick={() => onOpen(id)} title="Open booking" style={{ fontFamily: 'monospace', color: '#f3efe6', fontWeight: 700, background: 'transparent', border: '1px solid rgba(243,239,230,.35)', borderRadius: 0, padding: '0 6px', cursor: 'pointer', fontSize: '14px' }}>{id.slice(0, 8).toUpperCase()}</button>
+ return <button type="button" onClick={() => onOpen(id)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: '#f3efe6', fontWeight: 500, background: 'transparent', border: '1px solid rgba(243,239,230,.35)', borderRadius: 0, padding: '0 6px', cursor: 'pointer', fontSize: '14px' }}>{id.slice(0, 8).toUpperCase()}</button>
 }
 
 function byMethod(pays: Pay[]) {
@@ -284,12 +284,12 @@ function Overview({ simulationMode, who, onOpenBooking, isMobile }: { simulation
  <label style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: s.muted }}>
  View
  <select value={mode} aria-label="View" onChange={e => pickMode(e.target.value as Mode)}
- style={{ background: '#000', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, color: s.text, fontSize: '14px', fontWeight: 700, fontFamily: 'inherit', padding: '7px 10px', cursor: 'pointer', colorScheme: 'dark' }}>
+ style={{ background: '#000', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, color: s.text, fontSize: '14px', fontWeight: 500, fontFamily: 'inherit', padding: '7px 10px', cursor: 'pointer', colorScheme: 'dark' }}>
  {MODES.map(([m, l]) => <option key={m} value={m}>{l}</option>)}
  </select>
  </label>
  <button type="button" onClick={() => setAnchor(a => shift(mode, a, -1))} title={`Previous ${mode}`} aria-label={`Previous ${mode}`} style={arrow(false)}>‹</button>
- <div style={{ fontSize: '15px', fontWeight: 800, color: s.text, minWidth: isMobile ? '0' : '150px', textAlign: 'center' }}>{p.label}</div>
+ <div style={{ fontSize: '15px', fontWeight: 500, color: s.text, minWidth: isMobile ? '0' : '150px', textAlign: 'center' }}>{p.label}</div>
  <button type="button" disabled={p.current || p.future} onClick={() => setAnchor(a => shift(mode, a, 1))} title={`Next ${mode}`} aria-label={`Next ${mode}`} style={arrow(p.current || p.future)}>›</button>
  <DateField label="Pick a date" value={ymd(anchor)} max={todayYmd} onChange={v => { const [yy, mm, dd] = v.split('-').map(Number); if (yy && mm && dd) setAnchor(new Date(yy, mm - 1, dd)) }} />
  {!isToday && <button type="button" onClick={() => setAnchor(midnight(new Date()))} style={btn}>Back to today</button>}
@@ -389,8 +389,8 @@ function Overview({ simulationMode, who, onOpenBooking, isMobile }: { simulation
  yoyBlock = (
  <>
  <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px', flexWrap: 'wrap', margin: '2px 0 4px' }}>
- <span style={{ fontSize: '24px', fontWeight: 900, color: s.text, fontVariantNumeric: 'tabular-nums' }}>{eur2(cur.totals.value)}</span>
- {compare && <span style={{ fontSize: '14px', fontWeight: 700, padding: '3px 9px', borderRadius: 0, color: change === null ? s.muted : change >= 0 ? '#b7c4b0' : '#c9928c', background: change === null ? 'rgba(255,255,255,.06)' : change >= 0 ? 'rgba(183,196,176,.12)' : 'rgba(201,146,140,.12)' }}>
+ <span style={{ fontSize: '24px', fontWeight: 500, color: s.text, fontVariantNumeric: 'tabular-nums' }}>{eur2(cur.totals.value)}</span>
+ {compare && <span style={{ fontSize: '14px', fontWeight: 500, padding: '3px 9px', borderRadius: 0, color: change === null ? s.muted : change >= 0 ? '#b7c4b0' : '#c9928c', background: change === null ? 'rgba(255,255,255,.06)' : change >= 0 ? 'rgba(183,196,176,.12)' : 'rgba(201,146,140,.12)' }}>
  {pctText(change)} vs {p.current ? 'same time last year' : String(y - 1)}
  </span>}
  </div>
@@ -426,7 +426,7 @@ function Overview({ simulationMode, who, onOpenBooking, isMobile }: { simulation
  {prodList.map(([name, v]) => (
  <div key={name} style={row}>
  <span style={{ fontSize: '14px', color: s.muted }}>{name} <span style={{ fontSize: '14px' }}>· {plural(v.bookings.size, 'booking')}</span></span>
- <span style={{ fontSize: '14px', color: s.text, fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>{eur2(v.amount)}</span>
+ <span style={{ fontSize: '14px', color: s.text, fontWeight: 500, fontVariantNumeric: 'tabular-nums' }}>{eur2(v.amount)}</span>
  </div>
  ))}
  </Section>
@@ -438,12 +438,12 @@ function Overview({ simulationMode, who, onOpenBooking, isMobile }: { simulation
  {moves.map(m => (
  <div key={m.key} style={row}>
  <div style={{ minWidth: 0 }}>
- <div style={{ fontSize: '14px', color: s.text, fontWeight: 700 }}>{m.kind === 'in' ? 'Payment received' : 'Refund'}<span style={{ fontWeight: 400, color: s.muted, marginLeft: '8px', fontSize: '14px' }}>{m.customer ?? '—'}{m.product ? ` · ${m.product}` : ''}</span></div>
+ <div style={{ fontSize: '14px', color: s.text, fontWeight: 500 }}>{m.kind === 'in' ? 'Payment received' : 'Refund'}<span style={{ fontWeight: 400, color: s.muted, marginLeft: '8px', fontSize: '14px' }}>{m.customer ?? '—'}{m.product ? ` · ${m.product}` : ''}</span></div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>
  {new Date(m.ts).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })} · Booking <BookingNo id={m.booking_id} onOpen={onOpenBooking} /> · {ML[m.method] ?? m.method} · {m.by ? ` ${m.by}` : ' by system'}
  </div>
  </div>
- <div style={{ fontSize: '14.5px', fontWeight: 700, color: m.kind === 'in' ? '#b7c4b0' : '#d4a07a', flexShrink: 0 }}>{m.kind === 'in' ? '+' : '−'}{eur2(m.amount)}</div>
+ <div style={{ fontSize: '14.5px', fontWeight: 500, color: m.kind === 'in' ? '#b7c4b0' : '#d4a07a', flexShrink: 0 }}>{m.kind === 'in' ? '+' : '−'}{eur2(m.amount)}</div>
  </div>
  ))}
  </Section>
@@ -482,18 +482,18 @@ function Upcoming({ simulationMode, onOpenBooking, isMobile }: { simulationMode:
  {data.upcoming.map(u => (
  <div key={u.id} style={row}>
  <div style={{ minWidth: 0 }}>
- <div style={{ fontSize: '14px', color: s.text, fontWeight: 700 }}>
+ <div style={{ fontSize: '14px', color: s.text, fontWeight: 500 }}>
  {new Date(`${u.date}T12:00:00`).toLocaleDateString('en-GB', { weekday: 'short', day: '2-digit', month: 'short' })}
  <span style={{ fontWeight: 400, color: s.muted, marginLeft: '8px', fontSize: '14px' }}>{u.customer ?? '—'}{u.product ? ` · ${u.product}` : ''} · {u.pax} pax</span>
  </div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
  <span>Booking <BookingNo id={u.id} onOpen={onOpenBooking} /></span>
- {u.state && <span style={{ color: PAYMENT_STATE_COLOR[u.state], fontWeight: 700 }}> {PAYMENT_STATE_LABEL[u.state]}</span>}
+ {u.state && <span style={{ color: PAYMENT_STATE_COLOR[u.state], fontWeight: 500 }}> {PAYMENT_STATE_LABEL[u.state]}</span>}
  <span>{u.status}</span>
  </div>
  </div>
  <div style={{ textAlign: 'right', flexShrink: 0 }}>
- <div style={{ fontSize: '14px', fontWeight: 700, color: u.open > 0 ? '#d4a07a' : s.text, fontVariantNumeric: 'tabular-nums' }}>{u.open > 0 ? `${eur2(u.open)} open` : eur2(u.amount)}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: u.open > 0 ? '#d4a07a' : s.text, fontVariantNumeric: 'tabular-nums' }}>{u.open > 0 ? `${eur2(u.open)} open` : eur2(u.amount)}</div>
  <div style={{ fontSize: '14px', color: s.muted }}>paid {eur2(u.paid)} of {eur2(u.amount)}</div>
  </div>
  </div>

@@ -82,7 +82,7 @@ export function PageCareers({ nav, lang }: { nav: (p: string) => void; lang: Lan
  }
 
  const BlockTitle = ({ children }: { children: React.ReactNode }) => (
- <h2 style={{ fontSize: 'clamp(16px,2vw,20px)', fontWeight: 800, color: '#f3efe6', margin: '0 0 12px' }}>
+ <h2 style={{ fontSize: 'clamp(16px,2vw,20px)', fontWeight: 500, color: '#f3efe6', margin: '0 0 12px' }}>
  {children}
  </h2>
  )
@@ -93,7 +93,7 @@ export function PageCareers({ nav, lang }: { nav: (p: string) => void; lang: Lan
  style={{
  display: 'inline-block', marginTop: '18px',
  background: 'linear-gradient(135deg,#f3efe6,#f3efe6)', color: '#000',
- fontWeight: 800, fontSize: '14px', padding: '11px 22px', borderRadius: 0,
+ fontWeight: 500, fontSize: '14px', padding: '11px 22px', borderRadius: 0,
  boxShadow: 'none', textDecoration: 'none', fontFamily: s.font,
  }}
  >
@@ -105,7 +105,7 @@ export function PageCareers({ nav, lang }: { nav: (p: string) => void; lang: Lan
  <div style={{ padding: isMobile ? '32px 20px 60px' : '60px 48px 80px', maxWidth: '820px' }}>
  <Breadcrumb label={t('bc')} homeLabel={t('bc_home')} goHome={() => nav('home')} />
 
- <h1 style={{ fontSize: 'clamp(28px,4vw,48px)', fontWeight: 900, letterSpacing: '-.01em', marginBottom: '14px' }}>
+ <h1 style={{ fontSize: 'clamp(28px,4vw,48px)', fontWeight: 500, letterSpacing: '-0.02em', marginBottom: '14px' }}>
  {t('h1')}<span style={{ color: s.accent }}>.</span>
  </h1>
  <p style={{ color: '#f3efe6', fontSize: '16px', lineHeight: 1.8, marginBottom: '40px' }}>
@@ -122,10 +122,10 @@ export function PageCareers({ nav, lang }: { nav: (p: string) => void; lang: Lan
  {t('blockA_body2')}
  </p>
  <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
- <a href="/courses/dive-guide" style={{ color: s.accent, fontSize: '14px', fontWeight: 600, textDecoration: 'none', fontFamily: s.font }}>
+ <a href="/courses/dive-guide" style={{ color: s.accent, fontSize: '14px', fontWeight: 500, textDecoration: 'none', fontFamily: s.font }}>
  {t('blockA_dg_link')}
  </a>
- <a href="/courses/divemaster" style={{ color: s.accent, fontSize: '14px', fontWeight: 600, textDecoration: 'none', fontFamily: s.font }}>
+ <a href="/courses/divemaster" style={{ color: s.accent, fontSize: '14px', fontWeight: 500, textDecoration: 'none', fontFamily: s.font }}>
  {t('blockA_dm_link')}
  </a>
  </div>
@@ -152,7 +152,7 @@ export function PageCareers({ nav, lang }: { nav: (p: string) => void; lang: Lan
 
  {/* What to include */}
  <div style={{ borderTop: '1px solid rgba(255,255,255,.07)', paddingTop: '28px', marginTop: '8px' }}>
- <h2 style={{ fontSize: '15px', fontWeight: 800, color: '#f3efe6', margin: '0 0 10px' }}>
+ <h2 style={{ fontSize: '15px', fontWeight: 500, color: '#f3efe6', margin: '0 0 10px' }}>
  {t('include_title')}
  </h2>
  <p style={{ color: '#c9c2b6', fontSize: '15px', lineHeight: 1.75, marginBottom: '10px' }}>

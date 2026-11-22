@@ -87,34 +87,34 @@ export default function OpenPayments({ rollDateStr, isToday, simulationMode, rel
  const line = (r: Row) => (
  <div key={r.bookingId} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '9px 12px', borderRadius: 0, background: 'rgba(201,146,140,.05)', border: '1px solid rgba(201,146,140,.22)', marginBottom: '6px', flexWrap: 'wrap' }}>
  <div style={{ flex: 1, minWidth: '180px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, color: s.text }}>{r.name}{r.groupSize > 1 ? <span style={{ color: s.muted, fontWeight: 500 }}> · {r.groupSize} guests</span> : null}</div>
- <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>{r.product} · {fmtDay(r.date)}{r.sessions ? ` ${r.sessions}` : ''} · <span style={{ fontFamily: 'monospace' }}>{r.bookingId.slice(0, 8).toUpperCase()}</span></div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{r.name}{r.groupSize > 1 ? <span style={{ color: s.muted, fontWeight: 500 }}> · {r.groupSize} guests</span> : null}</div>
+ <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>{r.product} · {fmtDay(r.date)}{r.sessions ? ` ${r.sessions}` : ''} · <span style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace' }}>{r.bookingId.slice(0, 8).toUpperCase()}</span></div>
  </div>
  <div style={{ fontSize: '14px', color: s.muted, textAlign: 'right' }}>
  <div>total {eur(r.total)}</div>
  <div>paid {eur(r.paid)}</div>
  </div>
  <div style={{ textAlign: 'right', minWidth: '88px' }}>
- <div style={{ fontSize: '14px', fontWeight: 800, letterSpacing: '.12em', color: '#c9928c' }}>{r.state === 'deposit' ? 'BALANCE DUE' : 'UNPAID'}</div>
- <div style={{ fontSize: '17px', fontWeight: 800, color: '#c9928c' }}>{eur(r.due)}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', color: '#c9928c' }}>{r.state === 'deposit' ? 'BALANCE DUE' : 'UNPAID'}</div>
+ <div style={{ fontSize: '17px', fontWeight: 500, color: '#c9928c' }}>{eur(r.due)}</div>
  </div>
- <button type="button" onClick={() => onOpen(r.bookingId)} style={{ background: 'rgba(243,239,230,.12)', border: '1px solid rgba(243,239,230,.4)', color: s.accent, borderRadius: 0, padding: '6px 12px', fontSize: '14px', fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap', fontFamily: s.font }}>Take payment </button>
+ <button type="button" onClick={() => onOpen(r.bookingId)} style={{ background: 'rgba(243,239,230,.12)', border: '1px solid rgba(243,239,230,.4)', color: s.accent, borderRadius: 0, padding: '6px 12px', fontSize: '14px', fontWeight: 500, cursor: 'pointer', whiteSpace: 'nowrap', fontFamily: s.font }}>Take payment </button>
  </div>
  )
 
  return (
  <div style={{ background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', border: `1px solid ${rows.length > 0 ? 'rgba(201,146,140,.4)' : 'rgba(243,239,230,.15)'}`, borderRadius: 0, padding: '20px', marginBottom: '20px' }}>
  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px', gap: '10px', flexWrap: 'wrap' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', color: s.accent }}>Open payments · {fmtDay(rollDateStr)}</div>
- {rows.length > 0 && <span style={{ fontSize: '14px', fontWeight: 700, color: '#c9928c', background: 'rgba(201,146,140,.12)', padding: '3px 9px', borderRadius: 0 }}>{rows.length} open · {eur(totalDue)}</span>}
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.accent }}>Open payments · {fmtDay(rollDateStr)}</div>
+ {rows.length > 0 && <span style={{ fontSize: '14px', fontWeight: 500, color: '#c9928c', background: 'rgba(201,146,140,.12)', padding: '3px 9px', borderRadius: 0 }}>{rows.length} open · {eur(totalDue)}</span>}
  </div>
  {loading ? <div style={{ fontSize: '14px', color: s.muted }}>Loading…</div>
  : err ? <div style={{ fontSize: '14px', color: '#c9928c' }}> Could not load open payments: {err}</div>
  : rows.length === 0 ? <div style={{ fontSize: '14px', color: s.muted }}> Everyone diving this day has paid</div>
  : (<>
- {todayRows.length > 0 && <div style={{ fontSize: '14px', fontWeight: 700, color: s.muted, marginBottom: '6px' }}>DIVING THIS DAY</div>}
+ {todayRows.length > 0 && <div style={{ fontSize: '14px', fontWeight: 500, color: s.muted, marginBottom: '6px' }}>DIVING THIS DAY</div>}
  {todayRows.map(line)}
- {earlier.length > 0 && <div style={{ fontSize: '14px', fontWeight: 700, color: '#d4a07a', margin: '12px 0 6px' }}>STILL OPEN FROM THE LAST 14 DAYS</div>}
+ {earlier.length > 0 && <div style={{ fontSize: '14px', fontWeight: 500, color: '#d4a07a', margin: '12px 0 6px' }}>STILL OPEN FROM THE LAST 14 DAYS</div>}
  {earlier.map(line)}
  </>)}
  </div>

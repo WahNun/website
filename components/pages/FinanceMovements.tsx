@@ -103,9 +103,9 @@ export default function FinanceMovements({ view, simulationMode, who, onOpenBook
  {view === 'all' ? 'All money movements: payments received, refunds paid out and moves between linked bookings.' : view === 'payments' ? 'Payments received (paid), newest first.' : 'Cash in and cash out (cash payments and cash refunds), newest first.'}{simulationMode ? ' (Test data)' : ''}
  </div>
  <div style={{ fontSize: '14px', color: s.muted }}>
- {filtered.length} item{filtered.length === 1 ? '' : 's'} · in <span style={{ color: '#b7c4b0', fontWeight: 700 }}>{eur(sumIn)}</span>
- {view !== 'payments' && <> · out <span style={{ color: '#d4a07a', fontWeight: 700 }}>{eur(sumOut)}</span></>}
- {view === 'cash' && <> · net <span style={{ color: s.text, fontWeight: 700 }}>{sumIn - sumOut < 0 ? '−' : ''}{eur(sumIn - sumOut)}</span></>}
+ {filtered.length} item{filtered.length === 1 ? '' : 's'} · in <span style={{ color: '#b7c4b0', fontWeight: 500 }}>{eur(sumIn)}</span>
+ {view !== 'payments' && <> · out <span style={{ color: '#d4a07a', fontWeight: 500 }}>{eur(sumOut)}</span></>}
+ {view === 'cash' && <> · net <span style={{ color: s.text, fontWeight: 500 }}>{sumIn - sumOut < 0 ? '−' : ''}{eur(sumIn - sumOut)}</span></>}
  </div>
  </div>
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '14px' }}>
@@ -126,19 +126,19 @@ export default function FinanceMovements({ view, simulationMode, who, onOpenBook
  return (
  <div key={r.key} style={{ background: 'rgba(255,255,255,.025)', border: r.kind === 'move' ? '1px dashed rgba(255,255,255,.14)' : '1px solid rgba(255,255,255,.07)', borderRadius: 0, padding: '10px 14px', display: 'flex', justifyContent: 'space-between', gap: '12px', alignItems: 'flex-start' }}>
  <div style={{ minWidth: 0 }}>
- <div style={{ fontSize: '14px', fontWeight: 700, color: s.text }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>
  {r.label}
  <span style={{ marginLeft: '8px', fontWeight: 400, color: s.muted, fontSize: '14px' }}>{r.customer ?? '—'}{r.product ? ` · ${r.product}` : ''}</span>
  {r.is_test && <span style={{ marginLeft: '8px', fontSize: '14px', color: '#c9b48a' }}>TEST</span>}
  </div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>
- Booking <button type="button" onClick={() => onOpenBooking(r.booking_id)} title="Open booking" style={{ fontFamily: 'monospace', color: '#f3efe6', fontWeight: 700, background: 'transparent', border: '1px solid rgba(243,239,230,.35)', borderRadius: 0, padding: '0 6px', cursor: 'pointer' }}>{r.booking_id.slice(0, 8).toUpperCase()}</button>
+ Booking <button type="button" onClick={() => onOpenBooking(r.booking_id)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: '#f3efe6', fontWeight: 500, background: 'transparent', border: '1px solid rgba(243,239,230,.35)', borderRadius: 0, padding: '0 6px', cursor: 'pointer' }}>{r.booking_id.slice(0, 8).toUpperCase()}</button>
  {' · '}{ML[r.method] ?? r.method}{' · '}{nm ? ` ${nm}` : ' by system (automatic)'}
  </div>
  {r.note && <div style={{ fontSize: '14px', color: s.muted, marginTop: '4px' }}>{r.note}</div>}
  </div>
  <div style={{ textAlign: 'right', flexShrink: 0 }}>
- <div style={{ fontSize: '15px', fontWeight: 700, color: col }}>{sign}{eur(r.amount)}</div>
+ <div style={{ fontSize: '15px', fontWeight: 500, color: col }}>{sign}{eur(r.amount)}</div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>{new Date(r.ts).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })} {new Date(r.ts).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}</div>
  </div>
  </div>

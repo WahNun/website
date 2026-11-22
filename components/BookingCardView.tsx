@@ -61,12 +61,12 @@ export default function BookingCardView({ card }: { card: BookingCardData }) {
  ]
  return (
  <div style={{ maxWidth: '88%', border: '1px solid rgba(243,239,230,.35)', background: 'rgba(243,239,230,.07)', borderRadius: 14, padding: '12px 14px', fontSize: 13 }}>
- <div style={{ fontWeight: 700, marginBottom: 8 }}>{card.title}</div>
+ <div style={{ fontWeight: 500, marginBottom: 8 }}>{card.title}</div>
  <div style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', columnGap: 12, rowGap: 3, marginBottom: 10 }}>
  {rows.map(([k, v]) => (<React.Fragment key={k}><span style={{ opacity: .65 }}>{k}</span><span>{v}</span></React.Fragment>))}
  </div>
  <a href={url} target="_blank" rel="noopener noreferrer"
- style={{ display: 'inline-block', background: '#f3efe6', color: '#000', fontWeight: 700, padding: '9px 14px', borderRadius: 10, textDecoration: 'none' }}>
+ style={{ display: 'inline-block', background: '#f3efe6', color: '#000', fontWeight: 500, padding: '9px 14px', borderRadius: 10, textDecoration: 'none' }}>
  {card.button} 
  </a>
  <div style={{ fontSize: 11.5, opacity: .65, marginTop: 8 }}>

@@ -55,7 +55,7 @@ export function CentreBrandForm() {
 
  return (
  <section style={{ marginBottom: "28px", borderTop: "1px solid rgba(243,239,230,.16)", paddingTop: "18px" }}>
- <h3 style={{ margin: "0 0 8px", fontSize: "13px", letterSpacing: ".14em", textTransform: "uppercase", fontWeight: 500, color: s.muted }}>
+ <h3 style={{ margin: "0 0 8px", fontSize: "13px", letterSpacing: ".08em", textTransform: "uppercase", fontWeight: 500, color: s.muted }}>
  Booking page
  </h3>
  <p style={{ margin: "0 0 14px", color: s.muted, fontSize: "14px", maxWidth: "40rem" }}>

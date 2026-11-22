@@ -90,7 +90,7 @@ export default function PendingPayments({ sandbox, onCount, onOpenBooking }: { s
  if (!loading && !err && rows.length === 0 && !msg) return null
  return (
  <div style={{ marginBottom: '28px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, color: '#d4a07a', marginBottom: '4px' }}>Payments to confirm on the account{rows.length ? ` (${rows.length})` : ''}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: '#d4a07a', marginBottom: '4px' }}>Payments to confirm on the account{rows.length ? ` (${rows.length})` : ''}</div>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '12px', lineHeight: 1.55 }}>
  Recorded by the team as <b style={{ color: s.text }}>pending</b> (transfer, Revolut, MB WAY). Check the bank statement, then confirm — the booking counts the money as paid and the guest gets the payment email.
  </div>
@@ -106,11 +106,11 @@ export default function PendingPayments({ sandbox, onCount, onOpenBooking }: { s
  <div key={r.id} style={{ background: 'rgba(212,160,122,.04)', border: '1px solid rgba(212,160,122,.3)', borderRadius: 0, padding: '14px 18px', marginBottom: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', flexWrap: 'wrap' }}>
  <div>
- <div style={{ fontSize: '14px', fontWeight: 700, color: s.text }}>{r.customer_name ?? '—'}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{r.customer_name ?? '—'}</div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>
  {r.product_name ?? '—'} · {onOpenBooking
- ? <button type="button" onClick={() => onOpenBooking(r.booking_id)} title="Open booking" style={{ background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'monospace', fontSize: '14px', fontWeight: 700, color: s.accent, textDecoration: 'underline' }}>{r.booking_id.slice(0, 8).toUpperCase()}</button>
- : <span style={{ fontFamily: 'monospace' }}>{r.booking_id.slice(0, 8).toUpperCase()}</span>}
+ ? <button type="button" onClick={() => onOpenBooking(r.booking_id)} title="Open booking" style={{ background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', fontSize: '14px', fontWeight: 500, color: s.accent, textDecoration: 'underline' }}>{r.booking_id.slice(0, 8).toUpperCase()}</button>
+ : <span style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace' }}>{r.booking_id.slice(0, 8).toUpperCase()}</span>}
  {r.booking_date ? ` · ${new Date(r.booking_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' })}` : ''}
  </div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>
@@ -118,11 +118,11 @@ export default function PendingPayments({ sandbox, onCount, onOpenBooking }: { s
  {r.due_at ? ` · due ${new Date(r.due_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' })}` : ''}
  </div>
  </div>
- <div style={{ fontSize: '20px', fontWeight: 800, color: '#d4a07a' }}>{eur(r.amount)}</div>
+ <div style={{ fontSize: '20px', fontWeight: 500, color: '#d4a07a' }}>{eur(r.amount)}</div>
  </div>
  {r.notes && <div style={{ fontSize: '14px', color: s.text, padding: '8px 10px', background: 'rgba(255,255,255,.03)', borderRadius: 0, borderLeft: '3px solid #d4a07a' }}>{r.notes}</div>}
  <button type="button" disabled={busy === r.id} onClick={() => received(r)}
- style={{ padding: '10px', borderRadius: 0, border: 'none', background: 'rgba(183,196,176,.85)', color: '#000', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: busy === r.id ? .6 : 1 }}>
+ style={{ padding: '10px', borderRadius: 0, border: 'none', background: 'rgba(183,196,176,.85)', color: '#000', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: busy === r.id ? .6 : 1 }}>
  {busy === r.id ? 'Saving…' : ` Received on account — ${eur(r.amount)}`}
  </button>
  </div>

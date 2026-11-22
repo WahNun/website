@@ -117,8 +117,8 @@ export default function TicketMessages({
  return (
  <div style={{ marginBottom: '14px' }}>
  <div style={{
- fontSize: '14px', fontWeight: 700, color: 'rgba(255,255,255,.35)',
- textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: '8px',
+ fontSize: '14px', fontWeight: 500, color: 'rgba(255,255,255,.35)',
+ textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '8px',
  }}>
  Email Thread ({messages.length})
  </div>
@@ -144,7 +144,7 @@ export default function TicketMessages({
  {/* Sender + time */}
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '7px', gap: '8px' }}>
  <span style={{
- fontSize: '14px', fontWeight: 700,
+ fontSize: '14px', fontWeight: 500,
  color: isOut ? 'rgba(243,239,230,.75)' : 'rgba(212,160,122,.75)',
  textTransform: 'uppercase', letterSpacing: '.06em',
  }}>

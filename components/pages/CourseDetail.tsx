@@ -1735,8 +1735,8 @@ export function PageCourseDetail({ nav, slug, lang }: { nav: (p: string) => void
 
  const StatPill = ({ label, value }: { label: string; value: string }) => (
  <div style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, padding: '12px 16px', minWidth: '120px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', color: s.muted, marginBottom: '5px' }}>{label}</div>
- <div style={{ fontSize: '14px', fontWeight: 800, color: s.text }}>{value}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '5px' }}>{label}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{value}</div>
  </div>
  )
 
@@ -1757,13 +1757,13 @@ export function PageCourseDetail({ nav, slug, lang }: { nav: (p: string) => void
  <button type="button" onClick={() => nav('courses')} style={{ color: s.accent, cursor: 'pointer', background: 'none', border: 'none', padding: 0, fontFamily: s.font }}>{t('bc_courses')}</button>
  {' / '}{d.name}
  </div>
- <div style={{ color: d.accentColor, fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase', fontSize: '14px', marginBottom: '10px' }}>
+ <div style={{ color: d.accentColor, fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', fontSize: '14px', marginBottom: '10px' }}>
  {t('cd_ssi_cert')}
  </div>
- <h1 style={{ fontSize: 'clamp(28px,5vw,52px)', fontWeight: 900, letterSpacing: '-.02em', marginBottom: '10px', lineHeight: 1.05 }}>
+ <h1 style={{ fontSize: 'clamp(28px,5vw,52px)', fontWeight: 500, letterSpacing: '-.02em', marginBottom: '10px', lineHeight: 1.05 }}>
  {d.name}<span style={{ color: d.accentColor }}>.</span>
  </h1>
- <p style={{ fontSize: '19px', fontWeight: 600, color: '#f3efe6', margin: '0 0 0', maxWidth: '540px', lineHeight: 1.4 }}>{d.tagline[lang]}</p>
+ <p style={{ fontSize: '19px', fontWeight: 500, color: '#f3efe6', margin: '0 0 0', maxWidth: '540px', lineHeight: 1.4 }}>{d.tagline[lang]}</p>
  </div>
 
  <div style={{ padding: isMobile ? '0 20px 48px' : '0 48px 60px' }}>
@@ -1785,11 +1785,11 @@ export function PageCourseDetail({ nav, slug, lang }: { nav: (p: string) => void
 
  {/* Highlights */}
  <div style={{ margin: '32px 0 0' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase', color: d.accentColor, marginBottom: '14px' }}>{t('cd_highlights')}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: d.accentColor, marginBottom: '14px' }}>{t('cd_highlights')}</div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
  {d.highlights.map((h, hi) => (
  <div key={hi} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
- <span style={{ color: d.accentColor, fontWeight: 900, fontSize: '16px', lineHeight: 1, flexShrink: 0, marginTop: '1px' }}></span>
+ <span style={{ color: d.accentColor, fontWeight: 500, fontSize: '16px', lineHeight: 1, flexShrink: 0, marginTop: '1px' }}></span>
  <span style={{ fontSize: '14.5px', color: '#f3efe6', lineHeight: 1.5 }}>{h[lang]}</span>
  </div>
  ))}
@@ -1804,7 +1804,7 @@ export function PageCourseDetail({ nav, slug, lang }: { nav: (p: string) => void
  </p>
  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
  <div>
- <div style={{ fontSize: '14px', fontWeight: 700, color: d.accentColor }}>{d.testimonial.author}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: d.accentColor }}>{d.testimonial.author}</div>
  <div style={{ fontSize: '14px', color: s.muted }}>{d.testimonial.source} </div>
  </div>
  </div>
@@ -1819,12 +1819,12 @@ export function PageCourseDetail({ nav, slug, lang }: { nav: (p: string) => void
  </b>
  <a
  href={`mailto:admin.azoresdiving@gmail.com?subject=Careers%20%E2%80%94%20Dive%20Guide%20%2F%20Divemaster%20internship`}
- style={{ display: 'inline-block', background: 'linear-gradient(135deg,#f3efe6,#f3efe6)', color: '#000', fontWeight: 800, fontSize: '14px', padding: '10px 20px', borderRadius: 0, boxShadow: 'none', textDecoration: 'none', fontFamily: s.font }}
+ style={{ display: 'inline-block', background: 'linear-gradient(135deg,#f3efe6,#f3efe6)', color: '#000', fontWeight: 500, fontSize: '14px', padding: '10px 20px', borderRadius: 0, boxShadow: 'none', textDecoration: 'none', fontFamily: s.font }}
  >
  {CAREERS_BOX.btn[lang]}
  </a>
  <div style={{ marginTop: '12px' }}>
- <a href="/careers" style={{ color: s.accent, fontSize: '14px', fontWeight: 600, textDecoration: 'none', fontFamily: s.font }}>
+ <a href="/careers" style={{ color: s.accent, fontSize: '14px', fontWeight: 500, textDecoration: 'none', fontFamily: s.font }}>
  {CAREERS_BOX.link[lang]}
  </a>
  </div>
@@ -1836,13 +1836,13 @@ export function PageCourseDetail({ nav, slug, lang }: { nav: (p: string) => void
  <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
  {/* Requirements */}
  <div style={{ background: 'rgba(255,200,80,.07)', border: '1px solid rgba(255,200,80,.2)', borderRadius: 0, padding: '20px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase', color: '#c9b48a', marginBottom: '12px' }}>{t('cd_requirements')}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c9b48a', marginBottom: '12px' }}>{t('cd_requirements')}</div>
  <p style={{ fontSize: '14px', color: '#c9b48a', lineHeight: 1.6, margin: 0 }}>{d.prereqs[lang]}</p>
  </div>
 
  {/* What's included */}
  <div style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.07)', borderRadius: 0, padding: '20px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase', color: s.muted, marginBottom: '12px' }}>{t('cd_whats_included')}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '12px' }}>{t('cd_whats_included')}</div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
  {d.includes.map((item, ii) => (
  <div key={ii} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
@@ -1855,8 +1855,8 @@ export function PageCourseDetail({ nav, slug, lang }: { nav: (p: string) => void
 
  {/* Certifies */}
  <div style={{ background: 'rgba(243,239,230,.06)', border: '1px solid rgba(243,239,230,.15)', borderRadius: 0, padding: '20px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase', color: s.accent, marginBottom: '8px' }}>{t('cd_youll_earn')}</div>
- <p style={{ fontSize: '14px', color: s.text, fontWeight: 700, margin: 0, lineHeight: 1.4 }}>{d.certifies[lang]}</p>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.accent, marginBottom: '8px' }}>{t('cd_youll_earn')}</div>
+ <p style={{ fontSize: '14px', color: s.text, fontWeight: 500, margin: 0, lineHeight: 1.4 }}>{d.certifies[lang]}</p>
  </div>
 
  {/* Book / Inquire CTA */}

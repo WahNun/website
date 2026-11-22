@@ -1,13 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Outfit } from "next/font/google";
+import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
 import { getSiteUrl, site } from "@/lib/site";
 import "./globals.css";
-
-const outfit = Outfit({
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500", "600"],
-});
 
 export const metadata: Metadata = {
   metadataBase: getSiteUrl(),
@@ -35,8 +30,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-GB">
-      <body className={outfit.className}>{children}</body>
+    <html lang="en-GB" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+      <body className={GeistSans.className}>{children}</body>
     </html>
   );
 }

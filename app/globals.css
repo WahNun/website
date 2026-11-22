@@ -20,8 +20,11 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
+  font-family: var(--font-geist-sans), sans-serif;
+  font-weight: 400;
   font-size: 1.05rem;
   line-height: 1.6;
+  letter-spacing: 0;
   text-rendering: optimizeLegibility;
 }
 body.nav-open { overflow: hidden; }
@@ -31,10 +34,11 @@ button { cursor: pointer; }
 a { color: inherit; }
 h1, h2, h3, p { margin: 0; }
 h1, h2, h3 {
-  font-weight: 450;
-  letter-spacing: -0.04em;
+  font-weight: 500;
+  letter-spacing: -0.02em;
   line-height: 0.98;
 }
+b, strong { font-weight: 500; }
 ::selection { background: var(--text); color: #14120f; }
 :focus-visible {
   outline: 2px solid var(--text);
@@ -78,7 +82,7 @@ h1, h2, h3 {
   padding: 0 0.2rem;
   background: transparent;
   border: 0;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 0.75rem;
 }
@@ -176,7 +180,7 @@ h1, h2, h3 {
   background: transparent;
   color: var(--text);
   text-decoration: none;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 0.74rem;
   font-weight: 500;
@@ -202,7 +206,7 @@ h1, h2, h3 {
 .kicker {
   margin: 0;
   color: var(--muted);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 0.74rem;
 }
@@ -236,7 +240,7 @@ h1, h2, h3 {
   width: fit-content;
   border: 1px solid var(--line-strong);
   padding: 0.28rem 0.5rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 0.68rem;
 }
@@ -274,7 +278,7 @@ textarea { min-height: 9rem; resize: vertical; }
 .frame__label, .demo-badge, .tag {
   display: inline-flex;
   width: fit-content;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 0.68rem;
   color: var(--muted);

@@ -106,13 +106,13 @@ function CourseCard({ course, color = '#b7c4b0', onClick, lang = 'EN' }: { cours
  ) : (
  <div style={{ width: '100%', height: '100%', background: course.bg }} />
  )}
- <span style={{ position: 'absolute', bottom: '11px', right: '11px', zIndex: 2, fontSize: '14px', fontWeight: 700, color, background: 'rgba(9,9,9,.72)', padding: '4px 9px', borderRadius: 0, backdropFilter: 'blur(6px)' }}>{course.price}</span>
+ <span style={{ position: 'absolute', bottom: '11px', right: '11px', zIndex: 2, fontSize: '14px', fontWeight: 500, color, background: 'rgba(9,9,9,.72)', padding: '4px 9px', borderRadius: 0, backdropFilter: 'blur(6px)' }}>{course.price}</span>
  {course.local && (
- <span style={{ position: 'absolute', bottom: '10px', left: '10px', zIndex: 2, fontSize: '14px', fontWeight: 700, color: '#c9b48a', background: 'rgba(255,200,80,.18)', padding: '2px 7px', borderRadius: 0, letterSpacing: '.08em', backdropFilter: 'blur(4px)' }}>{typeof course.local === 'string' ? course.local : T.badge_local_ssi[lang]}</span>
+ <span style={{ position: 'absolute', bottom: '10px', left: '10px', zIndex: 2, fontSize: '14px', fontWeight: 500, color: '#c9b48a', background: 'rgba(255,200,80,.18)', padding: '2px 7px', borderRadius: 0, letterSpacing: '.08em', backdropFilter: 'blur(4px)' }}>{typeof course.local === 'string' ? course.local : T.badge_local_ssi[lang]}</span>
  )}
  </div>
  <div style={{ padding: '14px 16px 16px', flex: 1 }}>
- <h4 style={{ fontSize: '15px', fontWeight: 800, color: '#f3efe6', marginBottom: '5px', lineHeight: 1.2, margin: '0 0 5px' }}>{course.name}</h4>
+ <h4 style={{ fontSize: '15px', fontWeight: 500, color: '#f3efe6', marginBottom: '5px', lineHeight: 1.2, margin: '0 0 5px' }}>{course.name}</h4>
  <p style={{ fontSize: '14px', color: '#c9c2b6', lineHeight: 1.5, margin: 0 }}>{course.desc}</p>
  </div>
  </div>
@@ -134,7 +134,7 @@ function CourseRow({ label, color, subtext, courses, cardColor, onCourseClick, l
  <div style={{ marginBottom: '34px' }}>
  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: subtext ? '6px' : '14px', gap: '16px' }}>
  <div>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color, marginBottom: subtext ? '5px' : '0' }}>{label}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color, marginBottom: subtext ? '5px' : '0' }}>{label}</div>
  {subtext && <div style={{ fontSize: '14px', color: '#c9c2b6', lineHeight: 1.55, maxWidth: '520px' }}>{subtext}</div>}
  </div>
  <div style={{ display: 'flex', gap: '8px', flexShrink: 0, marginTop: '2px' }}>
@@ -178,7 +178,7 @@ export function PageCourses({ lang, nav }: { lang: Lang; nav: (p: string) => voi
  return (
  <div style={{ padding: isMobile ? '32px 20px 40px' : '60px 48px 50px' }}>
  <Breadcrumb label={t('bc_courses')} homeLabel={t('bc_home')} goHome={() => nav('home')} />
- <h1 style={{ fontSize: 'clamp(28px,4vw,44px)', fontWeight: 900, letterSpacing: '-.01em', marginBottom: '8px' }}>
+ <h1 style={{ fontSize: 'clamp(28px,4vw,44px)', fontWeight: 500, letterSpacing: '-0.02em', marginBottom: '8px' }}>
  {t('courses_h1')}<span style={{ color: s.accent }}>.</span>
  </h1>
  <p style={{ color: '#f3efe6', fontSize: '17px', maxWidth: '600px', lineHeight: 1.65, marginBottom: '8px' }}>

@@ -64,10 +64,10 @@ function LoginForm() {
  <main style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", padding: "24px" }}>
  <div style={{ width: "100%", maxWidth: "400px" }}>
  <div style={{ textAlign: "center", marginBottom: "40px" }}>
- <div style={{ fontSize: "13px", fontWeight: 700, letterSpacing: ".2em", textTransform: "uppercase", color: "#f3efe6", marginBottom: "10px" }}>
+ <div style={{ fontSize: "13px", fontWeight: 500, letterSpacing: ".08em", textTransform: "uppercase", color: "#f3efe6", marginBottom: "10px" }}>
  Dive OS
  </div>
- <h1 style={{ fontSize: "28px", fontWeight: 900, margin: 0, letterSpacing: "-.02em" }}>Admin</h1>
+ <h1 style={{ fontSize: "28px", fontWeight: 500, margin: 0, letterSpacing: "-.02em" }}>Admin</h1>
  <p style={{ color: "rgba(243,239,230,0.55)", fontSize: "14px", marginTop: "8px" }}>
  Sign in with an admin account
  </p>
@@ -86,7 +86,7 @@ function LoginForm() {
  {error}
  </div>
  ) : null}
- <button type="submit" disabled={loading} style={{ width: "100%", padding: "14px", borderRadius: 0, border: "1px solid #f3efe6", background: loading ? "transparent" : "#f3efe6", color: "#000", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", fontSize: "13px", cursor: loading ? "default" : "pointer", fontFamily: "inherit", marginTop: "6px" }}>
+ <button type="submit" disabled={loading} style={{ width: "100%", padding: "14px", borderRadius: 0, border: "1px solid #f3efe6", background: loading ? "transparent" : "#f3efe6", color: "#000", fontWeight: 500, letterSpacing: ".08em", textTransform: "uppercase", fontSize: "13px", cursor: loading ? "default" : "pointer", fontFamily: "inherit", marginTop: "6px" }}>
  {loading ? "Signing in…" : "Sign in"}
  </button>
  </form>

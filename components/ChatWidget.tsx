@@ -11,7 +11,7 @@ const accent = '#f3efe6'
 const textColor = '#f3efe6'
 const mutedColor = '#c9c2b6'
 const bgMain = '#000'
-const font = `-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif`
+const font = `var(--font-geist-sans), sans-serif`
 
 type MessageRole = 'bot' | 'user' | 'team'
 
@@ -456,7 +456,7 @@ export default function ChatWidget() {
  fontSize: '17px', flexShrink: 0,
  }}></div>
  <div>
- <div style={{ fontSize: '14px', fontWeight: 700, color: textColor }}>Azores Diving Support Bot</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: textColor }}>Azores Diving Support Bot</div>
  <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#b7c4b0', display: 'inline-block', boxShadow: 'none' }} />
  <span style={{ fontSize: '14px', color: mutedColor }}>Online · AI Assistant</span>
@@ -516,7 +516,7 @@ export default function ChatWidget() {
  style={{
  padding: '11px 16px', borderRadius: 0, border: 'none',
  background: !leadPhone.trim() ? 'rgba(243,239,230,.3)' : accent,
- color: bgMain, fontSize: '14px', fontWeight: 800,
+ color: bgMain, fontSize: '14px', fontWeight: 500,
  cursor: !leadPhone.trim() ? 'default' : 'pointer',
  fontFamily: font,
  }}
@@ -539,7 +539,7 @@ export default function ChatWidget() {
  {msgs.map((msg, i) => (
  <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: msg.role === 'user' ? 'flex-end' : 'flex-start' }}>
  {msg.role === 'team' && (
- <div style={{ fontSize: '14px', fontWeight: 700, color: '#c9b48a', marginBottom: '3px', letterSpacing: '.05em' }}>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: '#c9b48a', marginBottom: '3px', letterSpacing: '.05em' }}>
  {msg.sender || 'AZD Team'}
  </div>
  )}
@@ -564,7 +564,7 @@ export default function ChatWidget() {
  borderRadius: '14px 14px 14px 3px',
  padding: '14px 16px',
  }}>
- <div style={{ fontSize: '14px', fontWeight: 800, color: accent, marginBottom: '10px' }}> Open Support Ticket</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: accent, marginBottom: '10px' }}> Open Support Ticket</div>
  {!leadName.trim() && (
  <input
  value={ticketName} onChange={e => setTicketName(e.target.value)}
@@ -587,7 +587,7 @@ export default function ChatWidget() {
  <span style={{
  position: 'absolute', right: '9px', top: '50%', transform: 'translateY(-50%)',
  fontSize: '14px', color: mutedColor, pointerEvents: 'none',
- background: 'rgba(255,255,255,.06)', padding: '1px 5px', borderRadius: 0, fontWeight: 600,
+ background: 'rgba(255,255,255,.06)', padding: '1px 5px', borderRadius: 0, fontWeight: 500,
  }}>optional</span>
  )}
  </div>
@@ -598,7 +598,7 @@ export default function ChatWidget() {
  </div>
  ) : (
  <div style={{ marginBottom: '7px' }}>
- <div style={{ fontSize: '14px', color: mutedColor, marginBottom: '5px', fontWeight: 600 }}>How should we reach you?</div>
+ <div style={{ fontSize: '14px', color: mutedColor, marginBottom: '5px', fontWeight: 500 }}>How should we reach you?</div>
  <div style={{ display: 'flex', gap: '6px', marginBottom: '6px' }}>
  {(['email', 'whatsapp'] as const).map(ch => (
  <button key={ch} onClick={() => setTicketChannel(ch)} style={{
@@ -606,7 +606,7 @@ export default function ChatWidget() {
  border: `1px solid ${ticketChannel === ch ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.15)'}`,
  background: ticketChannel === ch ? 'rgba(243,239,230,.15)' : 'transparent',
  color: ticketChannel === ch ? accent : mutedColor,
- fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: font,
+ fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: font,
  textTransform: 'capitalize',
  }}>
  {ch === 'whatsapp' ? ' WhatsApp' : ' Email'}
@@ -632,7 +632,7 @@ export default function ChatWidget() {
  <button onClick={submitTicket} disabled={!canSubmit} style={{
  flex: 1, padding: '8px 14px', borderRadius: 0, border: 'none',
  background: canSubmit ? accent : 'rgba(243,239,230,.3)',
- color: bgMain, fontSize: '14px', fontWeight: 700,
+ color: bgMain, fontSize: '14px', fontWeight: 500,
  cursor: canSubmit ? 'pointer' : 'default', fontFamily: font,
  }}>
  {submittingTicket ? ' Sending…' : 'Send ticket'}
@@ -701,7 +701,7 @@ export default function ChatWidget() {
  background: typing ? 'rgba(243,239,230,.3)' : accent,
  cursor: typing ? 'default' : 'pointer',
  fontSize: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center',
- color: bgMain, fontWeight: 900,
+ color: bgMain, fontWeight: 500,
  }}
  aria-label="Send message"
  >
@@ -720,7 +720,7 @@ export default function ChatWidget() {
  padding: '10px 14px', boxShadow: 'none',
  maxWidth: '200px', fontFamily: font,
  }}>
- <div style={{ fontSize: '14px', color: bgMain, fontWeight: 600, lineHeight: 1.4 }}>
+ <div style={{ fontSize: '14px', color: bgMain, fontWeight: 500, lineHeight: 1.4 }}>
  Questions about diving?<br />
  <span style={{ fontWeight: 400, color: '#a39e94', fontSize: '14px' }}>We&apos;re here to help!</span>
  </div>

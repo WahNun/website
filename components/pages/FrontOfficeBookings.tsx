@@ -254,8 +254,8 @@ function RequestPlanner({ showTest, onChanged, onOpen, selectedId }: { showTest:
  const maxDaysNeeded = (rows ?? []).filter(r => sel.has(r.id)).reduce((a, r) => Math.max(a, r.sessions.length), 0)
  const check: React.CSSProperties = { fontSize: '14px', color: s.muted, display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer', whiteSpace: 'nowrap' }
  // Ruhige Optik: Ghost-Buttons, nur die Hauptaktion (Approve) ist gefüllt
- const ghost = (disabled: boolean, active = false): React.CSSProperties => ({ padding: '7px 12px', borderRadius: 0, border: `1px solid ${active ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.14)'}`, background: 'transparent', color: disabled ? s.muted : s.text, fontSize: '14px', fontWeight: 700, fontFamily: s.font, cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? .5 : 1 })
- const primary = (disabled: boolean): React.CSSProperties => ({ padding: '7px 14px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontSize: '14px', fontWeight: 800, fontFamily: s.font, cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? .4 : 1 })
+ const ghost = (disabled: boolean, active = false): React.CSSProperties => ({ padding: '7px 12px', borderRadius: 0, border: `1px solid ${active ? 'rgba(243,239,230,.5)' : 'rgba(255,255,255,.14)'}`, background: 'transparent', color: disabled ? s.muted : s.text, fontSize: '14px', fontWeight: 500, fontFamily: s.font, cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? .5 : 1 })
+ const primary = (disabled: boolean): React.CSSProperties => ({ padding: '7px 14px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontSize: '14px', fontWeight: 500, fontFamily: s.font, cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? .4 : 1 })
 
  const selectedRows = (rows ?? []).filter(r => sel.has(r.id))
  const selectedTotal = selectedRows.reduce((a, r) => a + (r.amount ?? 0), 0)
@@ -355,7 +355,7 @@ function RequestPlanner({ showTest, onChanged, onOpen, selectedId }: { showTest:
  <div style={{ marginBottom: '16px', display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
  <div style={{ flex: 1, minWidth: 0 }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '10px', flexWrap: 'wrap', marginBottom: '14px' }}>
- <span style={{ fontSize: '15px', fontWeight: 800, color: s.text }}>Open requests <span style={{ fontWeight: 500, color: s.muted }}>{rows ? `· ${rows.filter(r => r.request_state !== 'approved').length} to plan · ${rows.filter(r => r.request_state === 'approved').length} awaiting guest · ${divers(rows)} diver${divers(rows) === 1 ? '' : 's'}` : ''}</span></span>
+ <span style={{ fontSize: '15px', fontWeight: 500, color: s.text }}>Open requests <span style={{ fontWeight: 500, color: s.muted }}>{rows ? `· ${rows.filter(r => r.request_state !== 'approved').length} to plan · ${rows.filter(r => r.request_state === 'approved').length} awaiting guest · ${divers(rows)} diver${divers(rows) === 1 ? '' : 's'}` : ''}</span></span>
  <span style={{ fontSize: '14px', color: s.muted }}>Click a row to select it · click the reference to open the booking</span>
  </div>
  {err && <div style={{ fontSize: '14px', color: '#c9928c', marginBottom: '8px' }}>Could not load requests: {err}</div>}
@@ -367,7 +367,7 @@ function RequestPlanner({ showTest, onChanged, onOpen, selectedId }: { showTest:
  return (
  <div key={wk} style={{ marginBottom: '18px' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '10px', flexWrap: 'wrap', padding: '0 4px 8px', fontSize: '14px' }}>
- <span style={{ fontWeight: 700, color: s.muted, letterSpacing: '.06em', textTransform: 'uppercase' }}>Week {wk.slice(6)} · {wk.slice(0, 4)} <span style={{ fontWeight: 500, textTransform: 'none', letterSpacing: 0 }}>· {divers(list)} diver{divers(list) === 1 ? '' : 's'} in {list.length} request{list.length === 1 ? '' : 's'}</span></span>
+ <span style={{ fontWeight: 500, color: s.muted, letterSpacing: '.06em', textTransform: 'uppercase' }}>Week {wk.slice(6)} · {wk.slice(0, 4)} <span style={{ fontWeight: 500, textTransform: 'none', letterSpacing: 0 }}>· {divers(list)} diver{divers(list) === 1 ? '' : 's'} in {list.length} request{list.length === 1 ? '' : 's'}</span></span>
  {perSlot.size > 1 && <span style={{ color: s.muted }}>{[...perSlot.entries()].sort().map(([k, n]) => `${fmtD(k.split(' ')[0])} ${k.split(' ')[1]}: ${n}`).join(' · ')}</span>}
  </div>
  <div style={{ border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, overflow: 'hidden' }}>
@@ -377,24 +377,24 @@ function RequestPlanner({ showTest, onChanged, onOpen, selectedId }: { showTest:
  const ordered = [...toPlan, ...awaiting]
  return ordered.map((r, i) => (<React.Fragment key={r.id}>
  {awaiting.length > 0 && i === toPlan.length && (
- <div style={{ padding: '6px 16px', fontSize: '14px', fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, background: 'rgba(255,255,255,.03)', borderTop: i === 0 ? 'none' : '1px solid rgba(255,255,255,.06)' }}>
+ <div style={{ padding: '6px 16px', fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, background: 'rgba(255,255,255,.03)', borderTop: i === 0 ? 'none' : '1px solid rgba(255,255,255,.06)' }}>
  Waiting for guest confirmation ({awaiting.length}) — not plannable
  </div>
  )}
  <div onClick={() => { if (r.movable) toggle(r.id) }} style={{ display: 'grid', gridTemplateColumns: '26px minmax(170px, 1fr) minmax(160px, 1.2fr) minmax(180px, 1.4fr) 70px', gap: '14px', alignItems: 'center', padding: '14px 16px', fontSize: '14px', borderTop: i === 0 ? 'none' : '1px solid rgba(255,255,255,.06)', cursor: r.movable ? 'pointer' : 'default', background: sel.has(r.id) ? 'rgba(243,239,230,.06)' : selectedId === r.id ? 'rgba(255,255,255,.03)' : 'transparent', userSelect: 'none', opacity: r.request_state === 'approved' ? .6 : 1 }}>
  <input type="checkbox" checked={sel.has(r.id)} disabled={!r.movable} readOnly onClick={e => { e.stopPropagation(); if (r.movable) toggle(r.id) }} title={r.movable ? 'Select for planning' : r.request_state === 'approved' ? 'Waiting for the guest — open the booking to resend, reopen or decline' : `${r.why} — move dates in the Sessions tab`} style={{ accentColor: s.accent, width: '16px', height: '16px', cursor: r.movable ? 'pointer' : 'not-allowed' }} />
  <div>
- <div style={{ color: s.text, fontWeight: 800, fontSize: '14px', fontVariantNumeric: 'tabular-nums' }}>{r.sessions.map(x => `${fmtD(x.date)} ${x.session.toUpperCase()}`).join(' · ') || 'no date'}</div>
+ <div style={{ color: s.text, fontWeight: 500, fontSize: '14px', fontVariantNumeric: 'tabular-nums' }}>{r.sessions.map(x => `${fmtD(x.date)} ${x.session.toUpperCase()}`).join(' · ') || 'no date'}</div>
  <div style={{ fontSize: '14px', marginTop: '3px' }}>
  {r.request_state === 'approved'
- ? <span style={{ display: 'inline-block', padding: '1px 7px', borderRadius: 0, border: '1px solid rgba(243,239,230,.35)', color: s.accent, fontWeight: 700, fontSize: '14px', letterSpacing: '.05em', textTransform: 'uppercase' }}>Awaiting guest{r.approved_until && new Date(r.approved_until).getTime() < Date.now() ? ' · overdue' : ''}</span>
+ ? <span style={{ display: 'inline-block', padding: '1px 7px', borderRadius: 0, border: '1px solid rgba(243,239,230,.35)', color: s.accent, fontWeight: 500, fontSize: '14px', letterSpacing: '.05em', textTransform: 'uppercase' }}>Awaiting guest{r.approved_until && new Date(r.approved_until).getTime() < Date.now() ? ' · overdue' : ''}</span>
  : <span style={{ color: s.muted }}>{`to plan${r.why ? ` · ${r.why}` : ''}${r.request_state === 'expired' ? ' · overdue' : ''}`}</span>}
  </div>
  </div>
  <div>
  <div style={{ color: s.text, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{r.product_name ?? '—'}{kidsOf.has(r.id) ? ' + linked guests' : ''}</div>
  <button type="button" onClick={e => { e.stopPropagation(); onOpen(r.id) }} title="Open this booking (details, approve, decline, sessions)"
- style={{ marginTop: '3px', fontSize: '14px', fontFamily: 'monospace', padding: '1px 6px', borderRadius: 0, border: '1px solid rgba(243,239,230,.18)', background: 'rgba(243,239,230,.05)', color: 'rgba(243,239,230,.7)', cursor: 'pointer', letterSpacing: '.03em' }}>
+ style={{ marginTop: '3px', fontSize: '14px', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', padding: '1px 6px', borderRadius: 0, border: '1px solid rgba(243,239,230,.18)', background: 'rgba(243,239,230,.05)', color: 'rgba(243,239,230,.7)', cursor: 'pointer', letterSpacing: '.03em' }}>
  {r.id.slice(0, 8)} 
  </button>
  </div>
@@ -413,7 +413,7 @@ function RequestPlanner({ showTest, onChanged, onOpen, selectedId }: { showTest:
  </div>
  {rows && rows.length > 0 && !selectedId && (
  <div style={{ width: '440px', flexShrink: 0, position: 'sticky', top: '100px', padding: '20px 22px', borderRadius: 0, border: '1px solid rgba(243,239,230,.2)', background: 'linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.052) 42%, rgba(255,255,255,.03) 100%)', display: 'flex', flexDirection: 'column', gap: '14px', boxSizing: 'border-box' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', color: s.muted }}>Selected requests</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted }}>Selected requests</div>
  {selectedRows.length === 0 ? (
  <div style={{ fontSize: '14px', color: s.muted, lineHeight: 1.6 }}>Tick requests on the left to plan a dive day and approve them together.</div>
  ) : (
@@ -426,7 +426,7 @@ function RequestPlanner({ showTest, onChanged, onOpen, selectedId }: { showTest:
  return (
  <div key={r.id} style={{ display: 'flex', justifyContent: 'space-between', gap: '10px', padding: '10px 0', borderBottom: '1px solid rgba(255,255,255,.06)', fontSize: '14px' }}>
  <div style={{ minWidth: 0 }}>
- <div style={{ color: s.text, fontWeight: 700 }}>{r.customer_name ?? r.customer_email ?? '—'} <span style={{ color: s.muted, fontWeight: 500 }}>· {r.group_size} diver{r.group_size === 1 ? '' : 's'}</span></div>
+ <div style={{ color: s.text, fontWeight: 500 }}>{r.customer_name ?? r.customer_email ?? '—'} <span style={{ color: s.muted, fontWeight: 500 }}>· {r.group_size} diver{r.group_size === 1 ? '' : 's'}</span></div>
  <div style={{ color: s.muted, fontSize: '14px', marginTop: '3px', fontVariantNumeric: 'tabular-nums' }}>asked: {r.product_name ?? '—'} · {r.sessions.map(x => `${fmtD(x.date)} ${x.session.toUpperCase()}`).join(' · ')}</div>
  {toDays && (
  <div style={{ fontSize: '14px', marginTop: '2px', fontVariantNumeric: 'tabular-nums', color: (pv && !pv.ok) || overCap ? '#c9928c' : pv?.shortened ? '#c9b48a' : s.accent }}>
@@ -438,7 +438,7 @@ function RequestPlanner({ showTest, onChanged, onOpen, selectedId }: { showTest:
  )}
  </div>
  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '2px', flexShrink: 0 }}>
- <span style={{ color: s.text, fontWeight: 600, fontVariantNumeric: 'tabular-nums' }}>€{((pv?.shortened ? pv.shortened.to_cents : (r.amount ?? 0)) / 100).toFixed(2)}</span>
+ <span style={{ color: s.text, fontWeight: 500, fontVariantNumeric: 'tabular-nums' }}>€{((pv?.shortened ? pv.shortened.to_cents : (r.amount ?? 0)) / 100).toFixed(2)}</span>
  {pv?.shortened && <span style={{ color: s.muted, fontSize: '14px', textDecoration: 'line-through' }}>€{((r.amount ?? 0) / 100).toFixed(2)}</span>}
  <button type="button" onClick={() => toggle(r.id)} style={{ background: 'none', border: 'none', padding: 0, color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>remove</button>
  </div>
@@ -446,14 +446,14 @@ function RequestPlanner({ showTest, onChanged, onOpen, selectedId }: { showTest:
  )
  })}
  <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0 0', fontSize: '14px' }}>
- <span style={{ color: s.text, fontWeight: 800 }}>{selectedRows.length} request{selectedRows.length === 1 ? '' : 's'} · {selectedDivers} diver{selectedDivers === 1 ? '' : 's'}</span>
- <span style={{ color: s.accent, fontWeight: 800, fontVariantNumeric: 'tabular-nums' }}>€{(selectedRows.reduce((a, r) => { const pv = movePreview?.find(x => x.booking_id === r.id); return a + (pv?.shortened ? pv.shortened.to_cents : (r.amount ?? 0)) }, 0) / 100).toFixed(2)}</span>
+ <span style={{ color: s.text, fontWeight: 500 }}>{selectedRows.length} request{selectedRows.length === 1 ? '' : 's'} · {selectedDivers} diver{selectedDivers === 1 ? '' : 's'}</span>
+ <span style={{ color: s.accent, fontWeight: 500, fontVariantNumeric: 'tabular-nums' }}>€{(selectedRows.reduce((a, r) => { const pv = movePreview?.find(x => x.booking_id === r.id); return a + (pv?.shortened ? pv.shortened.to_cents : (r.amount ?? 0)) }, 0) / 100).toFixed(2)}</span>
  </div>
  </div>
  )}
 
  <div style={{ borderTop: '1px solid rgba(255,255,255,.08)', paddingTop: '12px', display: 'flex', flexDirection: 'column', gap: '8px', position: 'relative' }}>
- <span style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted }}>1 · Dive day(s) you will run <span style={{ fontWeight: 500, textTransform: 'none', letterSpacing: 0 }}>— the selected requests are moved there</span></span>
+ <span style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted }}>1 · Dive day(s) you will run <span style={{ fontWeight: 500, textTransform: 'none', letterSpacing: 0 }}>— the selected requests are moved there</span></span>
  <button type="button" onClick={() => setPickerOpen(o => !o)} style={{ ...ghost(false, pickerOpen), padding: '10px 12px', fontSize: '14px' }}>
  {targetSlots.length === 0 ? 'Pick dive day(s)' : 'Change days'}
  </button>
@@ -467,8 +467,8 @@ function RequestPlanner({ showTest, onChanged, onOpen, selectedId }: { showTest:
  const tone = tooMany ? '#c9928c' : tooFew || n === 0 ? '#c9b48a' : '#b7c4b0'
  return (
  <div key={k} style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '2px 10px', padding: '8px 10px', borderRadius: 0, border: `1px solid ${tone}55`, background: `${tone}0d` }}>
- <span style={{ fontSize: '14px', fontWeight: 800, color: s.text, fontVariantNumeric: 'tabular-nums' }}>{fmtD(x.date)} {x.session.toUpperCase()}</span>
- <span style={{ fontSize: '14px', fontWeight: 700, color: tone, textAlign: 'right' }}>{tooMany ? `over by ${n - (free ?? 0)}` : n === 0 ? 'nobody — drop this day?' : tooFew ? `only ${n} — below ${MIN_DIVERS_PER_DAY}` : 'ok'}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: s.text, fontVariantNumeric: 'tabular-nums' }}>{fmtD(x.date)} {x.session.toUpperCase()}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: tone, textAlign: 'right' }}>{tooMany ? `over by ${n - (free ?? 0)}` : n === 0 ? 'nobody — drop this day?' : tooFew ? `only ${n} — below ${MIN_DIVERS_PER_DAY}` : 'ok'}</span>
  <span style={{ gridColumn: '1 / -1', fontSize: '14px', color: s.muted }}><b style={{ color: s.text }}>{n}</b> diver{n === 1 ? '' : 's'} · €{((slotRevenue.get(k) ?? 0) / 100).toFixed(0)}{cap ? ` · ${cap.booked} already booked of ${cap.capacity} seats` : ''}</span>
  </div>
  )
@@ -491,13 +491,13 @@ function RequestPlanner({ showTest, onChanged, onOpen, selectedId }: { showTest:
  const same = !revenueVaries || (bestDays.length === richestDays.length && bestDays.every((b, i) => key(b) === key(richestDays[i])))
  const fairChip = (b: typeof bestDays[number]) => (
  <button key={`f_${key(b)}`} type="button" onClick={() => setTargetSlots([{ date: b.date, session: b.session as SessionKey }])} title={`Fairness ${b.score}/100 · est. €${(b.revenue / 100).toFixed(0)}`}
- style={{ padding: '4px 10px', borderRadius: 0, border: `1px solid ${relColor(b.score)}`, background: `${relColor(b.score)}14`, color: relColor(b.score), fontSize: '14px', fontWeight: 700, fontFamily: s.font, cursor: 'pointer' }}>
+ style={{ padding: '4px 10px', borderRadius: 0, border: `1px solid ${relColor(b.score)}`, background: `${relColor(b.score)}14`, color: relColor(b.score), fontSize: '14px', fontWeight: 500, fontFamily: s.font, cursor: 'pointer' }}>
  {fmtD(b.date)} {b.session.toUpperCase()} <span style={{ fontWeight: 500, opacity: .8 }}>· {b.score}</span>
  </button>
  )
  const revChip = (b: typeof richestDays[number]) => (
  <button key={`r_${key(b)}`} type="button" onClick={() => setTargetSlots([{ date: b.date, session: b.session as SessionKey }])} title={`Est. €${(b.revenue / 100).toFixed(0)} · fairness ${b.score}/100`}
- style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid rgba(255,255,255,.18)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontWeight: 700, fontFamily: s.font, cursor: 'pointer', fontVariantNumeric: 'tabular-nums' }}>
+ style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid rgba(255,255,255,.18)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontWeight: 500, fontFamily: s.font, cursor: 'pointer', fontVariantNumeric: 'tabular-nums' }}>
  €{(b.revenue / 100).toFixed(0)} <span style={{ fontWeight: 500, color: s.muted }}>· {fmtD(b.date)} {b.session.toUpperCase()}</span>
  </button>
  )
@@ -533,14 +533,14 @@ function RequestPlanner({ showTest, onChanged, onOpen, selectedId }: { showTest:
  )}
  </div>
  <div style={{ borderTop: '1px solid rgba(255,255,255,.08)', paddingTop: '12px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
- <span style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted }}>2 · Approve</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted }}>2 · Approve</span>
  <label style={check}><input type="checkbox" checked={deposit} onChange={e => setDeposit(e.target.checked)} style={{ accentColor: s.accent }} /> 50 % deposit instead of full amount</label>
  <button type="button" disabled={!!busy || sel.size === 0 || targetSlots.length === 0} onClick={approveSelected} style={{ ...primary(!!busy || sel.size === 0 || targetSlots.length === 0), padding: '13px', fontSize: '14px', borderRadius: 0 }}>{busy === 'approve' ? 'Working…' : targetSlots.length > 0 ? `Approve ${sel.size || ''} on ${targetSlots.map(x => `${fmtD(x.date)} ${x.session.toUpperCase()}`).join(' + ')} & ask to confirm` : 'Pick the dive day(s) first'}</button>
  <span style={{ fontSize: '14px', color: s.muted, lineHeight: 1.5 }}>Moves each request to the day(s) above (shortens where shown), checks the boat and emails each guest a “Confirm &amp; pay” button — the email says so if dates or product were changed. Want to approve a single request exactly as asked? Open it via its reference chip.</span>
  </div>
  {log.length > 0 && (
  <div style={{ borderTop: '1px solid rgba(255,255,255,.08)', paddingTop: '10px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted }}>Result</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted }}>Result</div>
  {log.map((line, i) => {
  const bad = /not approved|not moved|could not|invalid/i.test(line)
  const [who, ...rest] = line.split(': ')
@@ -610,14 +610,14 @@ function RequestPanel({ booking, childBookings, onChanged }: { booking: Booking;
  }
  }
 
- const btn = (color: string, bg: string, border: string): React.CSSProperties => ({ padding: '8px 14px', borderRadius: 0, border: `1px solid ${border}`, background: bg, color, fontSize: '14px', fontWeight: 700, cursor: busy ? 'not-allowed' : 'pointer', fontFamily: s.font, opacity: busy ? .6 : 1 })
+ const btn = (color: string, bg: string, border: string): React.CSSProperties => ({ padding: '8px 14px', borderRadius: 0, border: `1px solid ${border}`, background: bg, color, fontSize: '14px', fontWeight: 500, cursor: busy ? 'not-allowed' : 'pointer', fontFamily: s.font, opacity: busy ? .6 : 1 })
  return (
  <div style={{ border: '1px solid rgba(243,239,230,.25)', borderRadius: 0, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
- <span style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: s.accent }}>
+ <span style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.accent }}>
  Booking request · {st === 'requested' ? 'waiting for approval' : st === 'approved' ? 'approved, waiting for the guest to confirm' : st === 'expired' ? 'approved, link expired' : st}
  </span>
- <span style={{ fontSize: '14px', color: s.text, fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>Total €{(total / 100).toFixed(2)}{childBookings.length ? ` · ${childBookings.length + 1} linked bookings` : ''}</span>
+ <span style={{ fontSize: '14px', color: s.text, fontWeight: 500, fontVariantNumeric: 'tabular-nums' }}>Total €{(total / 100).toFixed(2)}{childBookings.length ? ` · ${childBookings.length + 1} linked bookings` : ''}</span>
  </div>
  {(st === 'approved' || st === 'expired') && (
  <div style={{ fontSize: '14px', color: s.muted, lineHeight: 1.5 }}>
@@ -685,7 +685,7 @@ function RequestPanel({ booking, childBookings, onChanged }: { booking: Booking;
  </div>
  </div>
  )}
- {msg && <div style={{ fontSize: '14px', fontWeight: 600, color: msg.ok ? '#b7c4b0' : '#c9928c', lineHeight: 1.5, wordBreak: 'break-word' }}>{msg.text}</div>}
+ {msg && <div style={{ fontSize: '14px', fontWeight: 500, color: msg.ok ? '#b7c4b0' : '#c9928c', lineHeight: 1.5, wordBreak: 'break-word' }}>{msg.text}</div>}
  </div>
  )
 }
@@ -694,7 +694,7 @@ function PaymentBadge({ state, size = 11 }: { state?: PaymentState | null; size?
  if (!state) return null
  const c = PAYMENT_STATE_COLOR[state] ?? '#aaa'
  return (
- <span title="Payment state (from payments & refunds ledger)" style={{ padding: '2px 8px', borderRadius: 0, fontSize: `${size}px`, fontWeight: 700, border: `1px solid ${c}55`, background: `${c}1f`, color: c, whiteSpace: 'nowrap' }}>
+ <span title="Payment state (from payments & refunds ledger)" style={{ padding: '2px 8px', borderRadius: 0, fontSize: `${size}px`, fontWeight: 500, border: `1px solid ${c}55`, background: `${c}1f`, color: c, whiteSpace: 'nowrap' }}>
  {PAYMENT_STATE_LABEL[state] ?? state}
  </span>
  )
@@ -755,8 +755,8 @@ const inp: React.CSSProperties = {
 
 const lbl: React.CSSProperties = {
  fontSize: '14px',
- fontWeight: 700,
- letterSpacing: '.12em',
+ fontWeight: 500,
+ letterSpacing: '.08em',
  textTransform: 'uppercase',
  color: s.muted,
  marginBottom: '5px',
@@ -800,7 +800,7 @@ function LogText({ text, muted }: { text: string; muted?: boolean }) {
  const { title, lines, emoji } = splitLogText(text)
  return (
  <div style={{ minWidth: 0 }}>
- <div style={{ fontSize: '14px', color: muted ? s.muted : s.text, fontWeight: 700, lineHeight: 1.45 }}>{title}{emoji ? ` ${emoji}` : ''}</div>
+ <div style={{ fontSize: '14px', color: muted ? s.muted : s.text, fontWeight: 500, lineHeight: 1.45 }}>{title}{emoji ? ` ${emoji}` : ''}</div>
  {lines.map((l, i) => (
  <div key={i} style={{ fontSize: '14px', color: s.muted, lineHeight: 1.5, marginTop: '2px' }}>{l}</div>
  ))}
@@ -1275,14 +1275,14 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  if (!confirmPayOpen) {
  return (
  <button onClick={() => setConfirmPayOpen(true)} disabled={statusLoading}
- style={{ width: '100%', padding: '10px', borderRadius: 0, border: '1px solid rgba(183,196,176,.35)', background: 'rgba(183,196,176,.12)', color: '#b7c4b0', fontWeight: 800, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: statusLoading ? .6 : 1 }}>
+ style={{ width: '100%', padding: '10px', borderRadius: 0, border: '1px solid rgba(183,196,176,.35)', background: 'rgba(183,196,176,.12)', color: '#b7c4b0', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: statusLoading ? .6 : 1 }}>
  Mark as fully paid · {fmtAmount(ps.dueBalance, ps.currency)} open
  </button>
  )
  }
  return (
  <div style={{ padding: '10px 12px', borderRadius: 0, border: '1px solid rgba(183,196,176,.35)', background: 'rgba(183,196,176,.08)', display: 'flex', flexDirection: 'column', gap: '8px' }}>
- <div style={{ fontSize: '14px', color: s.text, fontWeight: 700 }}>Record {fmtAmount(ps.dueBalance, ps.currency)} as received?</div>
+ <div style={{ fontSize: '14px', color: s.text, fontWeight: 500 }}>Record {fmtAmount(ps.dueBalance, ps.currency)} as received?</div>
  <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
  {(['cash', 'card_terminal', 'bank_transfer', 'revolut'] as const).map(m => (
  <button key={m} type="button" onClick={() => setConfirmPayMethod(m)} disabled={m === 'card_terminal'}
@@ -1296,7 +1296,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  </div>
  <div style={{ display: 'flex', gap: '8px' }}>
  <button onClick={() => confirmPayment()} disabled={statusLoading}
- style={{ flex: 1, padding: '9px', borderRadius: 0, border: 'none', background: '#b7c4b0', color: '#032a12', fontWeight: 800, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: statusLoading ? .6 : 1 }}>
+ style={{ flex: 1, padding: '9px', borderRadius: 0, border: 'none', background: '#b7c4b0', color: '#032a12', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: statusLoading ? .6 : 1 }}>
  {statusLoading ? 'Saving…' : 'Confirm'}
  </button>
  <button onClick={() => setConfirmPayOpen(false)} disabled={statusLoading}
@@ -2137,7 +2137,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', gap: '20px', minHeight: embedded ? 0 : '500px', alignItems: 'flex-start' }}>
 
  {slotToast && (
- <div role="status" onClick={() => setSlotToast(null)} style={{ position: 'fixed', bottom: '24px', left: '50%', transform: 'translateX(-50%)', zIndex: 2000, maxWidth: 'min(560px, 92vw)', padding: '12px 18px', borderRadius: 0, background: slotToast.includes('email failed') ? 'rgba(201,180,138,.95)' : 'rgba(183,196,176,.95)', color: '#121210', fontSize: '14px', fontWeight: 700, boxShadow: 'none', cursor: 'pointer' }}>
+ <div role="status" onClick={() => setSlotToast(null)} style={{ position: 'fixed', bottom: '24px', left: '50%', transform: 'translateX(-50%)', zIndex: 2000, maxWidth: 'min(560px, 92vw)', padding: '12px 18px', borderRadius: 0, background: slotToast.includes('email failed') ? 'rgba(201,180,138,.95)' : 'rgba(183,196,176,.95)', color: '#121210', fontSize: '14px', fontWeight: 500, boxShadow: 'none', cursor: 'pointer' }}>
  {slotToast}
  </div>
  )}
@@ -2165,7 +2165,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <input type="text" placeholder="Search name / email / product / ref…" value={filterSearch}
  onChange={e => { setFilterSearch(e.target.value); setPage(0) }}
  style={{ ...inp, flex: 1, minWidth: '160px' }} />
- <span title="Switch at the top right (next to Sign out)" style={{ fontSize: '14px', whiteSpace: 'nowrap', fontWeight: 700, color: showTest ? '#c9b48a' : s.muted }}>
+ <span title="Switch at the top right (next to Sign out)" style={{ fontSize: '14px', whiteSpace: 'nowrap', fontWeight: 500, color: showTest ? '#c9b48a' : s.muted }}>
  {showTest ? ' Sandbox' : ' Production'}
  </span>
  <button onClick={fetchBookings}
@@ -2191,7 +2191,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <thead>
  <tr style={{ borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  {['Ref', 'Booked', 'Shift', 'Product', 'Customer', '#', 'Status', 'Payment', 'Method', 'Amount', 'Check-In'].map(h => (
- <th key={h} style={{ textAlign: 'left', padding: '6px 10px', color: s.muted, fontWeight: 700, fontSize: '14px', letterSpacing: '.12em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>{h}</th>
+ <th key={h} style={{ textAlign: 'left', padding: '6px 10px', color: s.muted, fontWeight: 500, fontSize: '14px', letterSpacing: '.08em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>{h}</th>
  ))}
  </tr>
  </thead>
@@ -2214,12 +2214,12 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  style={{ borderBottom: '1px solid rgba(255,255,255,.04)', cursor: 'pointer', background: selected?.id === b.id ? 'rgba(243,239,230,.07)' : 'transparent', transition: 'background .12s' }}
  onMouseEnter={e => { if (selected?.id !== b.id) (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,.03)' }}
  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = selected?.id === b.id ? 'rgba(243,239,230,.07)' : 'transparent' }}>
- <td style={{ padding: '8px 10px', color: s.muted, fontSize: '14px', fontFamily: 'monospace', whiteSpace: 'nowrap' }}>
+ <td style={{ padding: '8px 10px', color: s.muted, fontSize: '14px', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', whiteSpace: 'nowrap' }}>
  {b.parent_booking_id && <span style={{ color: '#d4a07a', marginRight: '4px' }}></span>}
  {b.id.slice(0, 8)}
  </td>
  <td style={{ padding: '8px 10px', color: s.text, whiteSpace: 'nowrap' }}>{fmtDate(b.created_at)}</td>
- <td style={{ padding: '8px 10px', color: s.muted, fontWeight: 700, fontSize: '14px', textTransform: 'uppercase' }}>{b.session?.toUpperCase() ?? '—'}</td>
+ <td style={{ padding: '8px 10px', color: s.muted, fontWeight: 500, fontSize: '14px', textTransform: 'uppercase' }}>{b.session?.toUpperCase() ?? '—'}</td>
  <td style={{ padding: '8px 10px', maxWidth: '180px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
  {b.parent_booking_id && <span style={{ fontSize: '14px', color: '#d4a07a', marginRight: '4px' }}> {bookings.find(x => x.id === b.parent_booking_id)?.id.slice(0, 8) ?? '…'}</span>}
  <span style={{ color: s.text }}>{b.product_name}</span>
@@ -2227,12 +2227,12 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <td style={{ padding: '8px 10px', color: s.text, maxWidth: '140px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={diverNames[b.id] && b.customer_name && diverNames[b.id] !== b.customer_name ? `Payer (Stripe): ${b.customer_name}` : undefined}>{diverNames[b.id] ?? b.customer_name ?? b.customer_email ?? '—'}</td>
  <td style={{ padding: '8px 10px', color: s.muted, textAlign: 'center' }}>{b.group_size}</td>
  <td style={{ padding: '8px 10px' }}>
- <span style={{ padding: '2px 8px', borderRadius: 0, fontSize: '14px', fontWeight: 700, background: STATUS_BG[b.status] ?? 'rgba(200,200,200,.12)', color: STATUS_CLR[b.status] ?? '#aaa' }}>
+ <span style={{ padding: '2px 8px', borderRadius: 0, fontSize: '14px', fontWeight: 500, background: STATUS_BG[b.status] ?? 'rgba(200,200,200,.12)', color: STATUS_CLR[b.status] ?? '#aaa' }}>
  {b.status}
  </span>
  {b.request_state && b.request_state !== 'converted' && (
  <span title={b.request_state === 'approved' ? `Approved${b.approved_by_email ? ` by ${b.approved_by_email}` : ''} — waiting for the guest to confirm & pay` : b.request_state === 'expired' ? 'Approved, guest has not confirmed in time' : b.request_state === 'declined' ? (b.declined_reason ?? 'Declined') : 'Booking request — waiting for approval'}
- style={{ marginLeft: '5px', padding: '2px 7px', borderRadius: 0, fontSize: '14px', fontWeight: 800, letterSpacing: '.06em', textTransform: 'uppercase', background: b.request_state === 'approved' ? 'rgba(243,239,230,.14)' : 'rgba(255,255,255,.08)', color: b.request_state === 'approved' ? s.accent : s.muted }}>
+ style={{ marginLeft: '5px', padding: '2px 7px', borderRadius: 0, fontSize: '14px', fontWeight: 500, letterSpacing: '.06em', textTransform: 'uppercase', background: b.request_state === 'approved' ? 'rgba(243,239,230,.14)' : 'rgba(255,255,255,.08)', color: b.request_state === 'approved' ? s.accent : s.muted }}>
  {b.request_state === 'requested' ? 'Request' : b.request_state === 'approved' ? 'Awaiting guest' : b.request_state === 'expired' ? 'Overdue' : 'Declined'}
  </span>
  )}
@@ -2243,7 +2243,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <td style={{ padding: '8px 10px', color: s.muted, fontSize: '14px', whiteSpace: 'nowrap' }}>{pmLabel(b)}</td>
  <td style={{ padding: '8px 10px', color: s.text, whiteSpace: 'nowrap', fontVariantNumeric: 'tabular-nums' }}>{fmtAmount(b.amount, b.currency)}</td>
  <td style={{ padding: '8px 10px' }}>
- <span style={{ padding: '2px 7px', borderRadius: 0, fontSize: '14px', fontWeight: 700, background: b.checkin_completed_at ? 'rgba(183,196,176,.12)' : 'rgba(255,255,255,.06)', color: b.checkin_completed_at ? '#b7c4b0' : '#888' }}>
+ <span style={{ padding: '2px 7px', borderRadius: 0, fontSize: '14px', fontWeight: 500, background: b.checkin_completed_at ? 'rgba(183,196,176,.12)' : 'rgba(255,255,255,.06)', color: b.checkin_completed_at ? '#b7c4b0' : '#888' }}>
  {b.checkin_completed_at ? ' Done' : 'Pending'}
  </span>
  </td>
@@ -2283,7 +2283,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {/* Title row */}
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
  <div style={{ flex: 1, minWidth: 0 }}>
- <div style={{ fontSize: '14px', fontWeight: 800, color: s.text, marginBottom: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{selected.product_name ?? '—'}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: s.text, marginBottom: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{selected.product_name ?? '—'}</div>
  <div style={{ fontSize: '14px', color: s.muted }}>
  {detailName ?? selected.customer_name ?? selected.customer_email ?? '—'} · {fmtDate(selected.booking_date)}{selected.session ? ` · ${selected.session.toUpperCase()}` : ''}
  </div>
@@ -2296,17 +2296,17 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {ps && (
  <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '10px', fontSize: '14px' }}>
  <span style={{ color: s.muted }}>Paid:</span>
- <span style={{ fontWeight: 700, color: '#b7c4b0', fontVariantNumeric: 'tabular-nums' }}>{fmtAmount(ps.grossPaid, ps.currency)}</span>
+ <span style={{ fontWeight: 500, color: '#b7c4b0', fontVariantNumeric: 'tabular-nums' }}>{fmtAmount(ps.grossPaid, ps.currency)}</span>
  {ps.dueBalance > 0 && (
  <>
  <span style={{ color: '#c9928c' }}>· Open:</span>
- <span style={{ fontWeight: 700, color: '#ff4444', fontVariantNumeric: 'tabular-nums' }}>{fmtAmount(ps.dueBalance, ps.currency)}</span>
+ <span style={{ fontWeight: 500, color: '#ff4444', fontVariantNumeric: 'tabular-nums' }}>{fmtAmount(ps.dueBalance, ps.currency)}</span>
  </>
  )}
  {ps.refunded > 0 && (
  <>
  <span style={{ color: '#d4a07a' }}>· Refunded:</span>
- <span style={{ fontWeight: 700, color: '#d4a07a', fontVariantNumeric: 'tabular-nums' }}>
+ <span style={{ fontWeight: 500, color: '#d4a07a', fontVariantNumeric: 'tabular-nums' }}>
  {ps.refundAuthorized > 0 && ps.refundAwaiting > 0
  ? `${fmtAmount(ps.refundAuthorized, ps.currency)} authorized + ${fmtAmount(ps.refundAwaiting, ps.currency)} awaiting authorization`
  : ps.refundAwaiting > 0
@@ -2318,13 +2318,13 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {ps.refunded > 0 && (
  <>
  <span style={{ color: s.muted }}>· Net kept:</span>
- <span style={{ fontWeight: 700, color: s.text, fontVariantNumeric: 'tabular-nums' }} title="Paid minus refunded — what we still hold">{fmtAmount(ps.total, ps.currency)}</span>
+ <span style={{ fontWeight: 500, color: s.text, fontVariantNumeric: 'tabular-nums' }} title="Paid minus refunded — what we still hold">{fmtAmount(ps.total, ps.currency)}</span>
  </>
  )}
  {ps.overpaid > 0 && (
  <>
  <span style={{ color: '#c9c2b6' }}>· Overpaid:</span>
- <span style={{ fontWeight: 700, color: '#c9c2b6', fontVariantNumeric: 'tabular-nums' }}>{fmtAmount(ps.overpaid, ps.currency)}</span>
+ <span style={{ fontWeight: 500, color: '#c9c2b6', fontVariantNumeric: 'tabular-nums' }}>{fmtAmount(ps.overpaid, ps.currency)}</span>
  </>
  )}
  {/* Erwartete Zahlungen sind ein Teil des offenen Betrags, keine zweite Summe (Lucas 06.11.2026) */}
@@ -2347,7 +2347,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  ` Log${changelog.length > 0 ? ` (${changelog.length})` : ''}`
  return (
  <button key={tab} onClick={() => { setDetailTab(tab); if (tab === 'add' && addProducts.length === 0) loadAddProducts() }}
- style={{ flex: 1, padding: '7px 3px', borderRadius: '8px 8px 0 0', border: 'none', background: detailTab === tab ? 'rgba(243,239,230,.1)' : 'transparent', color: detailTab === tab ? s.accent : s.muted, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font, borderBottom: `2px solid ${detailTab === tab ? s.accent : 'transparent'}`, whiteSpace: 'nowrap' }}>
+ style={{ flex: 1, padding: '7px 3px', borderRadius: '8px 8px 0 0', border: 'none', background: detailTab === tab ? 'rgba(243,239,230,.1)' : 'transparent', color: detailTab === tab ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, borderBottom: `2px solid ${detailTab === tab ? s.accent : 'transparent'}`, whiteSpace: 'nowrap' }}>
  {label}
  </button>
  )
@@ -2403,7 +2403,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '8px', fontSize: '14px', alignItems: 'center' }}>
  <span style={{ color: s.muted, flexShrink: 0, minWidth: '64px' }}>Part of</span>
  <button type="button" onClick={() => parent && openBooking(parent)} disabled={!parent}
- style={{ background: 'transparent', border: 'none', color: '#d4a07a', fontFamily: 'monospace', fontSize: '14px', cursor: parent ? 'pointer' : 'default', padding: 0 }}>
+ style={{ background: 'transparent', border: 'none', color: '#d4a07a', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', fontSize: '14px', cursor: parent ? 'pointer' : 'default', padding: 0 }}>
  {selected.parent_booking_id.slice(0, 8)}{parent?.customer_name ? ` · ${parent.customer_name}` : ''}
  </button>
  </div>
@@ -2416,7 +2416,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {childBookings.map(cb => (
  <button key={cb.id} type="button" onClick={() => openBooking(cb)}
  style={{ background: 'transparent', border: 'none', color: '#d4a07a', fontSize: '14px', cursor: 'pointer', padding: 0, textAlign: 'right' }}>
- <span style={{ fontFamily: 'monospace' }}>{cb.id.slice(0, 8)}</span> · {cb.customer_name ?? cb.product_name} · {fmtAmount(cb.amount, cb.currency)}
+ <span style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace' }}>{cb.id.slice(0, 8)}</span> · {cb.customer_name ?? cb.product_name} · {fmtAmount(cb.amount, cb.currency)}
  </button>
  ))}
  </div>
@@ -2425,7 +2425,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {/* Check-in status row */}
  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '8px', fontSize: '14px', alignItems: 'center' }}>
  <span style={{ color: s.muted, flexShrink: 0, minWidth: '64px' }}>Check-in</span>
- <span style={{ padding: '2px 8px', borderRadius: 0, fontSize: '14px', fontWeight: 700, background: selected.checkin_completed_at ? 'rgba(183,196,176,.12)' : 'rgba(255,255,255,.06)', color: selected.checkin_completed_at ? '#b7c4b0' : '#888' }}>
+ <span style={{ padding: '2px 8px', borderRadius: 0, fontSize: '14px', fontWeight: 500, background: selected.checkin_completed_at ? 'rgba(183,196,176,.12)' : 'rgba(255,255,255,.06)', color: selected.checkin_completed_at ? '#b7c4b0' : '#888' }}>
  {selected.checkin_completed_at ? ` ${fmtDateTime(selected.checkin_completed_at)}` : 'Pending'}
  </span>
  </div>
@@ -2470,7 +2470,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <span style={lbl}>Status</span>
  {/* Display-only badge */}
  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
- <span style={{ padding: '5px 14px', borderRadius: 0, border: `1px solid ${STATUS_CLR[selected.status as keyof typeof STATUS_CLR] ?? 'rgba(255,255,255,.2)'}`, background: STATUS_BG[selected.status as keyof typeof STATUS_BG] ?? 'rgba(255,255,255,.04)', color: STATUS_CLR[selected.status as keyof typeof STATUS_CLR] ?? s.muted, fontSize: '14px', fontWeight: 700, textTransform: 'capitalize', letterSpacing: '0.04em' }}>
+ <span style={{ padding: '5px 14px', borderRadius: 0, border: `1px solid ${STATUS_CLR[selected.status as keyof typeof STATUS_CLR] ?? 'rgba(255,255,255,.2)'}`, background: STATUS_BG[selected.status as keyof typeof STATUS_BG] ?? 'rgba(255,255,255,.04)', color: STATUS_CLR[selected.status as keyof typeof STATUS_CLR] ?? s.muted, fontSize: '14px', fontWeight: 500, textTransform: 'capitalize', letterSpacing: '0.04em' }}>
  {selected.status}
  </span>
  <PaymentBadge state={selected.payment_state} size={12} />
@@ -2541,8 +2541,8 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  ))}
  {totalCents > 0 && (
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '8px', fontSize: '14px', borderTop: '1px solid rgba(255,255,255,.1)', marginTop: '4px', paddingTop: '6px' }}>
- <span style={{ color: s.text, flex: 1, fontWeight: 700 }}>Total</span>
- <span style={{ color: s.accent, fontVariantNumeric: 'tabular-nums', flexShrink: 0, fontSize: '14px', fontWeight: 700 }}>€{(totalCents / 100).toFixed(2)}</span>
+ <span style={{ color: s.text, flex: 1, fontWeight: 500 }}>Total</span>
+ <span style={{ color: s.accent, fontVariantNumeric: 'tabular-nums', flexShrink: 0, fontSize: '14px', fontWeight: 500 }}>€{(totalCents / 100).toFixed(2)}</span>
  </div>
  )}
  </div>
@@ -2558,7 +2558,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  style={{ ...inp, resize: 'vertical' }} />
  {editNotes !== (selected.staff_notes ?? '') && (
  <button onClick={saveNotes} disabled={notesLoading}
- style={{ width: '100%', padding: '8px', borderRadius: 0, border: '1px solid rgba(243,239,230,.3)', background: 'rgba(243,239,230,.08)', color: s.accent, fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: notesLoading ? .6 : 1 }}>
+ style={{ width: '100%', padding: '8px', borderRadius: 0, border: '1px solid rgba(243,239,230,.3)', background: 'rgba(243,239,230,.08)', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: notesLoading ? .6 : 1 }}>
  {notesLoading ? 'Saving…' : 'Save notes'}
  </button>
  )}
@@ -2606,13 +2606,13 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  )}
  {!changePackageOpen ? (
  <button onClick={() => { setChangePackageOpen(true); setChangePackageMsg(null); setPkgSessions([]); setPkgPersonIds(new Set()); setPkgPersonMode('all'); if (addProducts.length === 0) loadAddProducts() }}
- style={{ width: '100%', padding: '9px', borderRadius: 0, border: '1px solid rgba(243,239,230,.3)', background: 'transparent', color: s.accent, fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ width: '100%', padding: '9px', borderRadius: 0, border: '1px solid rgba(243,239,230,.3)', background: 'transparent', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Change package
  </button>
  ) : (
  <div style={{ background: 'rgba(243,239,230,.04)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
- <span style={{ fontSize: '14px', fontWeight: 700, color: s.text }}>Change package</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>Change package</span>
  <button onClick={() => { setChangePackageOpen(false); setChangePackageId(null); setPkgSessions([]) }}
  style={{ background: 'transparent', border: 'none', color: s.muted, cursor: 'pointer', fontSize: '18px', padding: 0, lineHeight: 1, fontFamily: s.font }}>×</button>
  </div>
@@ -2643,11 +2643,11 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  </select>
  {(selected.group_size ?? 1) > 1 && selectedDivers.length === (selected.group_size ?? 1) && (
  <div style={{ padding: '8px 10px', borderRadius: 0, border: '1px solid rgba(255,255,255,.1)', display: 'flex', flexDirection: 'column', gap: '6px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted }}>Who changes package?</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted }}>Who changes package?</div>
  <div style={{ display: 'flex', gap: '6px' }}>
  {(['all', 'some'] as const).map(m => (
  <button key={m} type="button" onClick={() => { setPkgPersonMode(m); if (m === 'all') setPkgPersonIds(new Set()) }}
- style={{ flex: 1, padding: '7px 10px', borderRadius: 0, fontSize: '14px', fontWeight: 600, cursor: 'pointer', fontFamily: s.font,
+ style={{ flex: 1, padding: '7px 10px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font,
  border: `1px solid ${pkgPersonMode === m ? s.accent : 'rgba(255,255,255,.12)'}`, background: pkgPersonMode === m ? 'rgba(243,239,230,.12)' : 'transparent', color: pkgPersonMode === m ? s.accent : s.muted }}>
  {m === 'all' ? `Everyone (${selected.group_size})` : 'Only some people'}
  </button>
@@ -2695,14 +2695,14 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  </div>}
  {subset && (pkgPreview.loading || pkgPreview.data || pkgPreview.error) && (
  <div style={{ fontSize: '14px', padding: '8px 10px', borderRadius: 0, background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.09)', display: 'flex', flexDirection: 'column', gap: '3px' }}>
- <div style={{ fontWeight: 700, color: s.text }}>Effect on the balance</div>
+ <div style={{ fontWeight: 500, color: s.text }}>Effect on the balance</div>
  {pkgPreview.loading && <div style={{ color: s.muted }}>Calculating…</div>}
  {pkgPreview.error && <div style={{ color: '#c9928c' }}> {pkgPreview.error}</div>}
  {pkgPreview.data && (() => {
  const d = pkgPreview.data!
  const f = (c: number) => fmtAmount(c, selected.currency)
  const row = (l: string, v: string, c?: string) => (
- <div style={{ display: 'flex', justifyContent: 'space-between', gap: '10px' }}><span style={{ color: s.muted }}>{l}</span><span style={{ color: c ?? s.text, fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>{v}</span></div>)
+ <div style={{ display: 'flex', justifyContent: 'space-between', gap: '10px' }}><span style={{ color: s.muted }}>{l}</span><span style={{ color: c ?? s.text, fontWeight: 500, fontVariantNumeric: 'tabular-nums' }}>{v}</span></div>)
  return (<>
  {row('This booking (remaining guests)', `${f(d.old_amount_cents)} ${f(d.original_amount_cents)}`)}
  {row('New linked booking', f(d.new_booking_amount_cents))}
@@ -2745,7 +2745,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  })()}
  <div style={{ display: 'flex', gap: '8px' }}>
  <button onClick={() => { setChangePackageOpen(false); setChangePackageId(null); setPkgSessions([]) }}
- style={{ flex: 1, padding: '8px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'transparent', color: s.muted, fontWeight: 600, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '8px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'transparent', color: s.muted, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Cancel
  </button>
  {(() => {
@@ -2760,7 +2760,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none',
  background: canConfirm ? s.accent : 'rgba(255,255,255,.1)',
  color: canConfirm ? '#090909' : s.muted,
- fontWeight: 700, fontSize: '14px',
+ fontWeight: 500, fontSize: '14px',
  cursor: canConfirm ? 'pointer' : 'not-allowed',
  fontFamily: s.font, opacity: changePackageLoading ? .6 : 1 }}>
  {changePackageLoading ? 'Updating…' : ' Confirm change'}
@@ -2777,12 +2777,12 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
  {!cancelConfirm ? (
  <button onClick={() => setCancelConfirm(true)}
- style={{ width: '100%', padding: '9px', borderRadius: 0, border: '1px solid rgba(201,146,140,.3)', background: 'transparent', color: '#c9928c', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ width: '100%', padding: '9px', borderRadius: 0, border: '1px solid rgba(201,146,140,.3)', background: 'transparent', color: '#c9928c', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Cancel booking
  </button>
  ) : (
  <div style={{ background: 'rgba(201,146,140,.06)', border: '1px solid rgba(201,146,140,.25)', borderRadius: 0, padding: '12px' }}>
- <div style={{ fontSize: '14px', color: '#ff9494', fontWeight: 700, marginBottom: '6px' }}> Really cancel this booking?</div>
+ <div style={{ fontSize: '14px', color: '#ff9494', fontWeight: 500, marginBottom: '6px' }}> Really cancel this booking?</div>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '10px', lineHeight: '1.5' }}>
  Status will be set to <strong style={{ color: '#c9928c' }}>cancelled</strong>. A cancellation email will be sent automatically.
  </div>
@@ -2796,7 +2796,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  style={{ width: '14px', height: '14px', accentColor: s.accent, cursor: 'pointer' }}
  />
  <span>Full refund via Stripe</span>
- {cancelWithRefund && <span style={{ color: '#b7c4b0', fontSize: '14px', fontWeight: 700 }}> Refund email will be sent</span>}
+ {cancelWithRefund && <span style={{ color: '#b7c4b0', fontSize: '14px', fontWeight: 500 }}> Refund email will be sent</span>}
  </label>
  )}
  {cancelKids.length > 0 && (
@@ -2806,7 +2806,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  : <>Only <strong style={{ color: s.text }}>this booking</strong> is cancelled. Tick “Full refund” to cancel and refund the whole group, including:</>}
  {cancelKids.map(k => (
  <div key={k.id} style={{ color: s.text, paddingTop: '2px' }}>
- <span style={{ fontFamily: 'monospace', color: '#d4a07a' }}>{k.id.slice(0, 8)}</span> · {diverNames[k.id] ?? k.name ?? '—'} · {fmtAmount(k.amount, k.currency)}
+ <span style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: '#d4a07a' }}>{k.id.slice(0, 8)}</span> · {diverNames[k.id] ?? k.name ?? '—'} · {fmtAmount(k.amount, k.currency)}
  </div>
  ))}
  </div>
@@ -2816,11 +2816,11 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  </div>
  <div style={{ display: 'flex', gap: '8px' }}>
  <button onClick={() => { setCancelConfirm(false); setCancelWithRefund(false); setCancelError(null); setCancelKids([]); setCancelChoice(''); setCancelDetail('') }}
- style={{ flex: 1, padding: '8px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'transparent', color: s.muted, fontWeight: 600, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '8px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'transparent', color: s.muted, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Go back
  </button>
  <button onClick={cancelBooking} disabled={cancelLoading || !reasonComplete(cancelChoice, cancelDetail)}
- style={{ flex: 1, padding: '8px', borderRadius: 0, border: 'none', background: cancelWithRefund ? '#a39e94' : '#dc2626', color: '#f3efe6', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (cancelLoading || !reasonComplete(cancelChoice, cancelDetail)) ? .45 : 1 }}>
+ style={{ flex: 1, padding: '8px', borderRadius: 0, border: 'none', background: cancelWithRefund ? '#a39e94' : '#dc2626', color: '#f3efe6', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (cancelLoading || !reasonComplete(cancelChoice, cancelDetail)) ? .45 : 1 }}>
  {cancelLoading ? (cancelWithRefund ? 'Cancelling + Refunding…' : 'Cancelling…') : (cancelWithRefund ? 'Cancel + Refund' : 'Yes, cancel')}
  </button>
  </div>
@@ -2835,19 +2835,19 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {selected?.customer_email && (
  <>
  <button onClick={() => { setPayLinkOpen(o => !o); setPayLinkMsg(null) }}
- style={{ padding: '9px', borderRadius: 0, border: `1px solid ${payLinkOpen ? 'rgba(201,180,138,.4)' : 'rgba(201,180,138,.2)'}`, background: payLinkOpen ? 'rgba(201,180,138,.08)' : 'transparent', color: '#c9b48a', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font, width: '100%' }}>
+ style={{ padding: '9px', borderRadius: 0, border: `1px solid ${payLinkOpen ? 'rgba(201,180,138,.4)' : 'rgba(201,180,138,.2)'}`, background: payLinkOpen ? 'rgba(201,180,138,.08)' : 'transparent', color: '#c9b48a', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, width: '100%' }}>
  Request Payment
  </button>
  {payLinkOpen && (
  <div style={{ background: 'rgba(255,255,255,.03)', borderRadius: 0, padding: '14px', border: '1px solid rgba(201,180,138,.15)', display: 'flex', flexDirection: 'column', gap: '10px' }}>
- <span style={{ fontSize: '14px', fontWeight: 700, color: '#c9b48a' }}>Request Payment</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: '#c9b48a' }}>Request Payment</span>
  {/* Method selector */}
  <div>
  <label style={{ ...lbl, marginBottom: '7px', display: 'block' }}>Payment method</label>
  <div style={{ display: 'flex', gap: '6px' }}>
  {(['bank', 'revolut', 'link'] as const).map(m => (
  <button key={m} type="button" onClick={() => setPayLinkMethod(m)}
- style={{ flex: 1, padding: '7px 4px', borderRadius: 0, border: `1px solid ${payLinkMethod === m ? 'rgba(201,180,138,.4)' : 'rgba(255,255,255,.1)'}`, background: payLinkMethod === m ? 'rgba(201,180,138,.1)' : 'transparent', color: payLinkMethod === m ? '#c9b48a' : s.muted, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '7px 4px', borderRadius: 0, border: `1px solid ${payLinkMethod === m ? 'rgba(201,180,138,.4)' : 'rgba(255,255,255,.1)'}`, background: payLinkMethod === m ? 'rgba(201,180,138,.1)' : 'transparent', color: payLinkMethod === m ? '#c9b48a' : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  {m === 'link' ? ' Stripe' : m === 'bank' ? ' Bank' : ' Revolut'}
  </button>
  ))}
@@ -2859,7 +2859,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <label style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 10px', borderRadius: 0, background: payLinkAmountType === 'deposit' ? 'rgba(201,180,138,.07)' : 'rgba(255,255,255,.02)', border: `1px solid ${payLinkAmountType === 'deposit' ? 'rgba(201,180,138,.3)' : 'rgba(255,255,255,.07)'}`, cursor: 'pointer' }}>
  <input type="checkbox" checked={payLinkAmountType === 'deposit'} onChange={e => setPayLinkAmountType(e.target.checked ? 'deposit' : 'full')} style={{ accentColor: '#c9b48a', width: '14px', height: '14px' }} />
  <div>
- <div style={{ fontSize: '14px', fontWeight: 700, color: payLinkAmountType === 'deposit' ? '#c9b48a' : s.text }}>50% deposit only</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: payLinkAmountType === 'deposit' ? '#c9b48a' : s.text }}>50% deposit only</div>
  <div style={{ fontSize: '14px', color: s.muted }}>Guest pays half now, balance on arrival</div>
  </div>
  </label>
@@ -2867,7 +2867,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <label style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 10px', borderRadius: 0, background: payLinkAmountType === 'custom' ? 'rgba(201,180,138,.07)' : 'rgba(255,255,255,.02)', border: `1px solid ${payLinkAmountType === 'custom' ? 'rgba(201,180,138,.3)' : 'rgba(255,255,255,.07)'}`, cursor: 'pointer' }}>
  <input type="checkbox" checked={payLinkAmountType === 'custom'} onChange={e => setPayLinkAmountType(e.target.checked ? 'custom' : 'full')} style={{ accentColor: '#c9b48a', width: '14px', height: '14px' }} />
  <div style={{ flex: 1 }}>
- <div style={{ fontSize: '14px', fontWeight: 700, color: payLinkAmountType === 'custom' ? '#c9b48a' : s.text }}>Custom amount</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: payLinkAmountType === 'custom' ? '#c9b48a' : s.text }}>Custom amount</div>
  {payLinkAmountType === 'custom' && (
  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '6px' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>€</span>
@@ -2908,7 +2908,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  Cancel
  </button>
  <button onClick={sendPaymentLink} disabled={payLinkLoading}
- style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: '#c9b48a', color: '#000', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: payLinkLoading ? .6 : 1 }}>
+ style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: '#c9b48a', color: '#000', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: payLinkLoading ? .6 : 1 }}>
  {payLinkLoading ? 'Sending…' : 'Send Request'}
  </button>
  </div>
@@ -2926,10 +2926,10 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  </button>
  ) : (
  <div style={{ background: 'rgba(255,255,255,.03)', borderRadius: 0, padding: '14px', border: '1px solid rgba(255,255,255,.09)', display: 'flex', flexDirection: 'column', gap: '10px' }}>
- <span style={{ fontSize: '14px', fontWeight: 700, color: s.text }}>New Payment</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>New Payment</span>
  <div style={{ fontSize: '14px', color: s.muted }}>Only for money you have received. A payment the guest still has to make is not entered here.</div>
  <div>
- <label style={lbl}>Description <span style={{ color: '#c9928c', fontWeight: 700 }}>*</span></label>
+ <label style={lbl}>Description <span style={{ color: '#c9928c', fontWeight: 500 }}>*</span></label>
  <input type="text" placeholder="e.g. 4-Dive Pack, Discover Scuba, remaining balance…" value={payForm.notes} onChange={e => setPayForm(f => ({ ...f, notes: e.target.value }))} style={inp} />
  </div>
  <div>
@@ -2951,7 +2951,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  Cancel
  </button>
  <button onClick={addPayment} disabled={payLoading}
- style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: payLoading ? .6 : 1 }}>
+ style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: s.accent, color: '#000', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: payLoading ? .6 : 1 }}>
  {payLoading ? 'Saving…' : 'Save'}
  </button>
  </div>
@@ -2967,12 +2967,12 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <button
  onClick={() => { setFullRefundOpen(true); setFullReleaseIds(new Set(bkSessions.filter(x => x.status === 'booked').map(x => x.id))); setFullRefundMethod(selected.stripe_payment_intent ? 'stripe' : 'cash'); setRefundMsg(null) }}
  disabled={refundLoading}
- style={{ width: '100%', padding: '10px', borderRadius: 0, border: '1px solid rgba(201,146,140,.35)', background: 'rgba(201,146,140,.08)', color: '#c9928c', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ width: '100%', padding: '10px', borderRadius: 0, border: '1px solid rgba(201,146,140,.35)', background: 'rgba(201,146,140,.08)', color: '#c9928c', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Full Refund
  </button>
  ) : (
  <div style={{ background: 'rgba(201,146,140,.04)', border: '1px solid rgba(201,146,140,.25)', borderRadius: 0, padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
- <span style={{ fontSize: '14px', fontWeight: 700, color: '#c9928c' }}>Full Refund — {selected.product_name}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: '#c9928c' }}>Full Refund — {selected.product_name}</span>
  <div>
  <label style={lbl}>Payment method</label>
  <select value={fullRefundMethod} onChange={e => setFullRefundMethod(e.target.value)} style={inp}>
@@ -3011,8 +3011,8 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  )}
  {ps && (
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '8px 10px', borderRadius: 0, background: 'rgba(201,146,140,.12)', border: '1px solid rgba(201,146,140,.35)' }}>
- <span style={{ fontSize: '14px', fontWeight: 700, color: s.text }}>Total refund amount</span>
- <span style={{ fontSize: '18px', fontWeight: 800, color: '#c9928c' }}>{fmtAmount(Math.max(0, ps.grossPaid - ps.refunded), ps.currency)}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>Total refund amount</span>
+ <span style={{ fontSize: '18px', fontWeight: 500, color: '#c9928c' }}>{fmtAmount(Math.max(0, ps.grossPaid - ps.refunded), ps.currency)}</span>
  </div>
  )}
  {refundMsg && <div style={{ fontSize: '14px', color: refundMsg.startsWith('') ? '#b7c4b0' : '#c9928c' }}>{refundMsg}</div>}
@@ -3024,12 +3024,12 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <button onClick={() => initiateRefund()} disabled={refundLoading || !fullRefundMethod || !reasonComplete(fullRefundChoice, fullRefundDesc)}
  style={fullRefundMethod === 'cash'
  ? { flex: 1, padding: '8px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(fullRefundChoice, fullRefundDesc)) ? .45 : 1 }
- : { flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: '#c9928c', color: '#000', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !fullRefundMethod || !reasonComplete(fullRefundChoice, fullRefundDesc)) ? .45 : 1 }}>
+ : { flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: '#c9928c', color: '#000', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !fullRefundMethod || !reasonComplete(fullRefundChoice, fullRefundDesc)) ? .45 : 1 }}>
  {refundLoading ? 'Processing…' : (fullRefundMethod === 'cash' ? 'Request only (pay later)' : 'Confirm Refund')}
  </button>
  {fullRefundMethod === 'cash' && (
  <button onClick={() => initiateRefund(true)} disabled={refundLoading || !reasonComplete(fullRefundChoice, fullRefundDesc)}
- style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: '#b7c4b0', color: '#000', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(fullRefundChoice, fullRefundDesc)) ? .45 : 1 }}>
+ style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: '#b7c4b0', color: '#000', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(fullRefundChoice, fullRefundDesc)) ? .45 : 1 }}>
  Hand out cash now
  </button>
  )}
@@ -3040,12 +3040,12 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {/* Partial refund */}
  {!partialRefundOpen ? (
  <button onClick={() => { setPartialRefundOpen(true); setRefundItemKeys(new Set()); setRefundPaymentIds(new Set()); setPartialRefundAmount(''); setPartialRefundMethod(selected.stripe_payment_intent ? 'stripe' : 'cash'); setPartialRefundMsg(null) }}
- style={{ width: '100%', padding: '9px', borderRadius: 0, border: '1px solid rgba(201,180,138,.3)', background: 'transparent', color: '#d4a07a', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ width: '100%', padding: '9px', borderRadius: 0, border: '1px solid rgba(201,180,138,.3)', background: 'transparent', color: '#d4a07a', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Partial Refund…
  </button>
  ) : (
  <div style={{ background: 'rgba(201,180,138,.04)', border: '1px solid rgba(201,180,138,.2)', borderRadius: 0, padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
- <span style={{ fontSize: '14px', fontWeight: 700, color: '#d4a07a' }}>Partial Refund</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: '#d4a07a' }}>Partial Refund</span>
  {ps && (
  <div style={{ fontSize: '14px', color: ps.grossPaid - ps.refunded > 0 ? s.muted : '#c9928c' }}>
  Available to refund: <strong style={{ color: s.text }}>{fmtAmount(Math.max(0, ps.grossPaid - ps.refunded), ps.currency)}</strong>
@@ -3084,9 +3084,9 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  return (
  <button key={p.id} type="button"
  onClick={togglePayment}
- style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '7px 10px', borderRadius: 0, border: `1px solid ${isSelected ? 'rgba(201,180,138,.6)' : 'rgba(255,255,255,.08)'}`, background: isSelected ? 'rgba(201,180,138,.12)' : 'rgba(255,255,255,.02)', color: isSelected ? '#d4a07a' : s.text, fontSize: '14px', fontWeight: isSelected ? 700 : 400, cursor: 'pointer', fontFamily: s.font, textAlign: 'left', gap: '10px' }}>
- <span style={{ color: isSelected ? '#d4a07a' : s.text, fontWeight: 600, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{lineLabel}</span>
- <span style={{ fontWeight: 700, fontVariantNumeric: 'tabular-nums', flexShrink: 0 }}>{fmtAmount(p.amount, selected.currency ?? 'eur')}</span>
+ style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '7px 10px', borderRadius: 0, border: `1px solid ${isSelected ? 'rgba(201,180,138,.6)' : 'rgba(255,255,255,.08)'}`, background: isSelected ? 'rgba(201,180,138,.12)' : 'rgba(255,255,255,.02)', color: isSelected ? '#d4a07a' : s.text, fontSize: '14px', fontWeight: isSelected ? 500 : 400, cursor: 'pointer', fontFamily: s.font, textAlign: 'left', gap: '10px' }}>
+ <span style={{ color: isSelected ? '#d4a07a' : s.text, fontWeight: 500, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{lineLabel}</span>
+ <span style={{ fontWeight: 500, fontVariantNumeric: 'tabular-nums', flexShrink: 0 }}>{fmtAmount(p.amount, selected.currency ?? 'eur')}</span>
  </button>
  )
  })}
@@ -3153,16 +3153,16 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <button key={item.key} type="button" onClick={() => toggle(item.key)}
  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', padding: '7px 10px', borderRadius: 0, border: `1px solid ${on ? 'rgba(201,180,138,.5)' : 'rgba(255,255,255,.1)'}`, background: on ? 'rgba(201,180,138,.12)' : 'transparent', cursor: 'pointer', fontFamily: s.font, fontSize: '14px', textAlign: 'left' }}>
  <span style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0 }}>
- <span style={{ width: '14px', height: '14px', borderRadius: 0, border: `1px solid ${on ? '#d4a07a' : 'rgba(255,255,255,.3)'}`, background: on ? '#d4a07a' : 'transparent', color: '#1a0f00', fontSize: '14px', fontWeight: 900, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{on ? '' : ''}</span>
- <span style={{ color: on ? '#d4a07a' : s.text, fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.label}</span>
+ <span style={{ width: '14px', height: '14px', borderRadius: 0, border: `1px solid ${on ? '#d4a07a' : 'rgba(255,255,255,.3)'}`, background: on ? '#d4a07a' : 'transparent', color: '#1a0f00', fontSize: '14px', fontWeight: 500, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{on ? '' : ''}</span>
+ <span style={{ color: on ? '#d4a07a' : s.text, fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.label}</span>
  </span>
- <span style={{ fontWeight: 700, fontVariantNumeric: 'tabular-nums', flexShrink: 0, color: on ? '#d4a07a' : s.text }}>{fmtAmount(item.amountCents, selected.currency ?? 'eur')}</span>
+ <span style={{ fontWeight: 500, fontVariantNumeric: 'tabular-nums', flexShrink: 0, color: on ? '#d4a07a' : s.text }}>{fmtAmount(item.amountCents, selected.currency ?? 'eur')}</span>
  </button>
  )
  })}
  </div>
  {sum > 0 && (
- <div style={{ marginTop: '6px', fontSize: '14px', color: '#d4a07a', textAlign: 'right', fontWeight: 700 }}>
+ <div style={{ marginTop: '6px', fontSize: '14px', color: '#d4a07a', textAlign: 'right', fontWeight: 500 }}>
  Selected: {fmtAmount(sum, selected.currency ?? 'eur')}
  </div>
  )}
@@ -3213,8 +3213,8 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  const c = Math.round(parseFloat(partialRefundAmount.replace(',', '.')) * 100)
  return (
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '8px 10px', borderRadius: 0, background: 'rgba(201,180,138,.12)', border: '1px solid rgba(201,180,138,.35)' }}>
- <span style={{ fontSize: '14px', fontWeight: 700, color: s.text }}>Total refund amount</span>
- <span style={{ fontSize: '18px', fontWeight: 800, color: '#d4a07a' }}>{!isNaN(c) && c > 0 ? fmtAmount(c, ps?.currency ?? 'EUR') : '—'}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>Total refund amount</span>
+ <span style={{ fontSize: '18px', fontWeight: 500, color: '#d4a07a' }}>{!isNaN(c) && c > 0 ? fmtAmount(c, ps?.currency ?? 'EUR') : '—'}</span>
  </div>
  )
  })()}
@@ -3227,12 +3227,12 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <button onClick={() => doPartialRefund()} disabled={refundLoading || !reasonComplete(partialRefundChoice, partialRefundDesc)}
  style={partialRefundMethod === 'cash'
  ? { flex: 1, padding: '8px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(partialRefundChoice, partialRefundDesc)) ? .45 : 1 }
- : { flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: '#d4a07a', color: '#000', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(partialRefundChoice, partialRefundDesc)) ? .45 : 1 }}>
+ : { flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: '#d4a07a', color: '#000', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(partialRefundChoice, partialRefundDesc)) ? .45 : 1 }}>
  {refundLoading ? 'Processing…' : (partialRefundMethod === 'cash' ? 'Request only (pay later)' : 'Refund')}
  </button>
  {partialRefundMethod === 'cash' && (
  <button onClick={() => doPartialRefund(true)} disabled={refundLoading || !reasonComplete(partialRefundChoice, partialRefundDesc)}
- style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: '#b7c4b0', color: '#000', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(partialRefundChoice, partialRefundDesc)) ? .45 : 1 }}>
+ style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: '#b7c4b0', color: '#000', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(partialRefundChoice, partialRefundDesc)) ? .45 : 1 }}>
  Hand out cash now
  </button>
  )}
@@ -3249,7 +3249,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ background: 'rgba(255,255,255,.03)', borderRadius: 0, padding: '12px 14px', border: '1px solid rgba(255,255,255,.07)' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>{pmLabel(selected)}</span>
- <span style={{ fontSize: '14px', fontWeight: 700, color: ps.grossPaid > 0 && ps.refunded >= ps.grossPaid ? '#c9c2b6' : ps.dueBalance === 0 && ps.total > 0 ? '#b7c4b0' : ps.total > 0 ? '#c9b48a' : s.muted, fontVariantNumeric: 'tabular-nums' }}>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: ps.grossPaid > 0 && ps.refunded >= ps.grossPaid ? '#c9c2b6' : ps.dueBalance === 0 && ps.total > 0 ? '#b7c4b0' : ps.total > 0 ? '#c9b48a' : s.muted, fontVariantNumeric: 'tabular-nums' }}>
  {fmtAmount(ps.grossPaid, selected.currency)} / {fmtAmount(selected.amount, selected.currency)}
  </span>
  </div>
@@ -3266,7 +3266,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', flexDirection: 'column', gap: '7px' }}>
  <div style={{ background: 'rgba(255,255,255,.03)', borderRadius: 0, padding: '12px 14px', border: '1px solid rgba(255,255,255,.07)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>Payments are recorded below</span>
- <span style={{ fontSize: '14px', fontWeight: 700, color: s.text, fontVariantNumeric: 'tabular-nums' }}>{fmtAmount(selected.amount, selected.currency)}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: s.text, fontVariantNumeric: 'tabular-nums' }}>{fmtAmount(selected.amount, selected.currency)}</span>
  </div>
  </div>
  )}
@@ -3292,12 +3292,12 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  return (
  <div key={pmt.id} style={{ background: 'rgba(255,255,255,.02)', borderRadius: 0, padding: '12px 14px', border: '1px dashed rgba(255,255,255,.14)' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
- <span style={{ fontSize: '14px', color: s.text, fontWeight: 600 }}> {out ? 'Moved to linked booking' : 'Moved from linked booking'}{ref && (<> {' '}
+ <span style={{ fontSize: '14px', color: s.text, fontWeight: 500 }}> {out ? 'Moved to linked booking' : 'Moved from linked booking'}{ref && (<> {' '}
  <button type="button" onClick={() => openBookingByPrefix(ref)} title="Open that booking"
- style={{ background: 'transparent', border: 'none', padding: 0, color: s.accent, fontFamily: 'monospace', fontSize: '14px', cursor: 'pointer', textDecoration: 'underline' }}>{ref}</button></>)}</span>
+ style={{ background: 'transparent', border: 'none', padding: 0, color: s.accent, fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', fontSize: '14px', cursor: 'pointer', textDecoration: 'underline' }}>{ref}</button></>)}</span>
  <div style={{ display: 'flex', gap: '7px', alignItems: 'center' }}>
- <span style={{ padding: '2px 7px', borderRadius: 0, fontSize: '14px', fontWeight: 700, background: 'rgba(255,255,255,.08)', color: s.muted }}>moved</span>
- <span style={{ fontSize: '14px', fontWeight: 700, color: s.muted, fontVariantNumeric: 'tabular-nums' }}>{out ? '−' : '+'}{fmtAmount(Math.abs(pmt.amount), pmt.currency)}</span>
+ <span style={{ padding: '2px 7px', borderRadius: 0, fontSize: '14px', fontWeight: 500, background: 'rgba(255,255,255,.08)', color: s.muted }}>moved</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: s.muted, fontVariantNumeric: 'tabular-nums' }}>{out ? '−' : '+'}{fmtAmount(Math.abs(pmt.amount), pmt.currency)}</span>
  </div>
  </div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '4px', lineHeight: 1.5 }}>
@@ -3313,8 +3313,8 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>{PM_LABELS[pmt.method] ?? pmt.method}</span>
  <div style={{ display: 'flex', gap: '7px', alignItems: 'center' }}>
- <span style={{ padding: '2px 7px', borderRadius: 0, fontSize: '14px', fontWeight: 700, background: pmt.status === 'paid' ? 'rgba(183,196,176,.14)' : pmt.status === 'pending' ? 'rgba(201,180,138,.14)' : 'rgba(201,146,140,.14)', color: pmt.status === 'paid' ? '#b7c4b0' : pmt.status === 'pending' ? '#d4a07a' : '#c9928c' }}>{pmt.status === 'pending' ? 'expected' : pmt.status}</span>
- <span style={{ fontSize: '14px', fontWeight: 700, color: s.text, fontVariantNumeric: 'tabular-nums' }}>{fmtAmount(pmt.amount, pmt.currency)}</span>
+ <span style={{ padding: '2px 7px', borderRadius: 0, fontSize: '14px', fontWeight: 500, background: pmt.status === 'paid' ? 'rgba(183,196,176,.14)' : pmt.status === 'pending' ? 'rgba(201,180,138,.14)' : 'rgba(201,146,140,.14)', color: pmt.status === 'paid' ? '#b7c4b0' : pmt.status === 'pending' ? '#d4a07a' : '#c9928c' }}>{pmt.status === 'pending' ? 'expected' : pmt.status}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: s.text, fontVariantNumeric: 'tabular-nums' }}>{fmtAmount(pmt.amount, pmt.currency)}</span>
  </div>
  </div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '4px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
@@ -3325,7 +3325,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  </div>
  {pmt.status === 'pending' && (
  <button onClick={() => markPaid(pmt)}
- style={{ marginTop: '8px', padding: '5px 12px', borderRadius: 0, border: '1px solid rgba(183,196,176,.3)', background: 'rgba(183,196,176,.08)', color: '#b7c4b0', fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ marginTop: '8px', padding: '5px 12px', borderRadius: 0, border: '1px solid rgba(183,196,176,.3)', background: 'rgba(183,196,176,.08)', color: '#b7c4b0', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  Mark as received
  </button>
  )}
@@ -3338,13 +3338,13 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  return (
  <div key={r.id} style={{ background: 'rgba(201,180,138,.04)', border: `1px solid ${paid ? 'rgba(201,180,138,.2)' : 'rgba(201,180,138,.45)'}`, borderRadius: 0, padding: '10px 14px', display: 'flex', justifyContent: 'space-between', gap: '10px', alignItems: 'flex-start' }}>
  <div style={{ minWidth: 0 }}>
- <div style={{ fontSize: '14px', color: s.text, fontWeight: 600 }}>{r.description}</div>
+ <div style={{ fontSize: '14px', color: s.text, fontWeight: 500 }}>{r.description}</div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '3px' }}>
  {RM[r.method] ?? r.method} · requested {fmtDateTime(r.requested_at)}{` by ${r.requested_by_email ? who(r.requested_by_email) : ' system (automatic)'}`}
  {paid ? ` · authorized ${r.paid_at ? fmtDateTime(r.paid_at) : ''}${` by ${r.authorized_by_email ? who(r.authorized_by_email) : ' system (automatic)'}`}${r.stripe_refund_id ? ` · ${r.stripe_refund_id}` : ''}` : (r.method === 'cash' ? ' · waiting in Cash refunds' : ' · awaiting authorization in Finances')}
  </div>
  </div>
- <span style={{ fontSize: '14px', fontWeight: 700, color: '#d4a07a', fontVariantNumeric: 'tabular-nums', flexShrink: 0 }}>−{fmtAmount(r.amount, selected.currency ?? 'eur')}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: '#d4a07a', fontVariantNumeric: 'tabular-nums', flexShrink: 0 }}>−{fmtAmount(r.amount, selected.currency ?? 'eur')}</span>
  </div>
  )
  })}
@@ -3361,7 +3361,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  ].map(([label, val, clr]) => (
  <div key={label as string} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '14px' }}>
  <span style={{ color: s.muted }}>{label}</span>
- <span style={{ color: clr as string, fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>{val}</span>
+ <span style={{ color: clr as string, fontWeight: 500, fontVariantNumeric: 'tabular-nums' }}>{val}</span>
  </div>
  ))}
  </div>
@@ -3395,7 +3395,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {editingSessionId === sess.id ? (
  /* ── Inline edit ── */
  <div style={{ background: 'rgba(243,239,230,.04)', border: '1px solid rgba(243,239,230,.2)', borderRadius: 0, padding: '12px', display: 'flex', flexDirection: 'column', gap: '9px' }}>
- <span style={{ fontSize: '14px', fontWeight: 700, color: s.accent }}>Edit session</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: s.accent }}>Edit session</span>
  <div>
  <label style={lbl}>Date</label>
  <input type="date" value={editSessForm.date} onChange={e => setEditSessForm(f => ({ ...f, date: e.target.value }))} style={inp} />
@@ -3405,7 +3405,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', gap: '6px' }}>
  {((selected.product_name ?? '').trim().toLowerCase() === 'night dive' ? ['night'] as const : ['am', 'pm'] as const).map(t => (
  <button key={t} type="button" onClick={() => setEditSessForm(f => ({ ...f, time: t }))}
- style={{ flex: 1, padding: '7px', borderRadius: 0, border: `1px solid ${editSessForm.time === t ? 'rgba(243,239,230,.4)' : 'rgba(255,255,255,.1)'}`, background: editSessForm.time === t ? 'rgba(243,239,230,.1)' : 'transparent', color: editSessForm.time === t ? s.accent : s.muted, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '7px', borderRadius: 0, border: `1px solid ${editSessForm.time === t ? 'rgba(243,239,230,.4)' : 'rgba(255,255,255,.1)'}`, background: editSessForm.time === t ? 'rgba(243,239,230,.1)' : 'transparent', color: editSessForm.time === t ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  {t.toUpperCase()}
  </button>
  ))}
@@ -3416,7 +3416,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', gap: '6px' }}>
  {([true, false] as const).map(isBoat => (
  <button key={String(isBoat)} type="button" onClick={() => setEditSessForm(f => ({ ...f, isBoatDay: isBoat }))}
- style={{ flex: 1, padding: '7px', borderRadius: 0, border: `1px solid ${editSessForm.isBoatDay === isBoat ? (isBoat ? 'rgba(243,239,230,.4)' : 'rgba(201,180,138,.4)') : 'rgba(255,255,255,.1)'}`, background: editSessForm.isBoatDay === isBoat ? (isBoat ? 'rgba(243,239,230,.1)' : 'rgba(201,180,138,.08)') : 'transparent', color: editSessForm.isBoatDay === isBoat ? (isBoat ? s.accent : '#d4a07a') : s.muted, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '7px', borderRadius: 0, border: `1px solid ${editSessForm.isBoatDay === isBoat ? (isBoat ? 'rgba(243,239,230,.4)' : 'rgba(201,180,138,.4)') : 'rgba(255,255,255,.1)'}`, background: editSessForm.isBoatDay === isBoat ? (isBoat ? 'rgba(243,239,230,.1)' : 'rgba(201,180,138,.08)') : 'transparent', color: editSessForm.isBoatDay === isBoat ? (isBoat ? s.accent : '#d4a07a') : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  {isBoat ? ' Boat' : ' Pool'}
  </button>
  ))}
@@ -3433,7 +3433,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  Cancel
  </button>
  <button onClick={() => updateSession(sess.id)} disabled={sessEditLoading || editSessForm.isBoatDay === null}
- style={{ flex: 2, padding: '7px', borderRadius: 0, border: 'none', background: editSessForm.isBoatDay !== null ? s.accent : 'rgba(255,255,255,.1)', color: editSessForm.isBoatDay !== null ? '#090909' : s.muted, fontWeight: 700, fontSize: '14px', cursor: editSessForm.isBoatDay !== null ? 'pointer' : 'not-allowed', fontFamily: s.font }}>
+ style={{ flex: 2, padding: '7px', borderRadius: 0, border: 'none', background: editSessForm.isBoatDay !== null ? s.accent : 'rgba(255,255,255,.1)', color: editSessForm.isBoatDay !== null ? '#090909' : s.muted, fontWeight: 500, fontSize: '14px', cursor: editSessForm.isBoatDay !== null ? 'pointer' : 'not-allowed', fontFamily: s.font }}>
  {sessEditLoading ? 'Saving…' : 'Update'}
  </button>
  </div>
@@ -3441,7 +3441,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  ) : sessDeleteConfirm === sess.id ? (
  /* ── Delete confirm ── */
  <div style={{ background: 'rgba(201,146,140,.06)', border: '1px solid rgba(201,146,140,.25)', borderRadius: 0, padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
- <span style={{ fontSize: '14px', fontWeight: 700, color: '#c9928c' }}>Remove session?</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: '#c9928c' }}>Remove session?</span>
  <span style={{ fontSize: '14px', color: s.muted }}>{fmtDate(sess.session_date)} · {sess.session === 'tbd' ? ' time to be set' : sess.session === 'night' ? ' NIGHT' : sess.session.toUpperCase()} · {sess.is_boat_day ? ' Boat' : ' Pool'}</span>
  {sessMsg && <div style={{ fontSize: '14px', color: sessMsg.startsWith('') ? '#b7c4b0' : '#c9928c' }}>{sessMsg}</div>}
  <div style={{ display: 'flex', gap: '6px' }}>
@@ -3450,7 +3450,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  Keep
  </button>
  <button onClick={() => deleteSession(sess.id)} disabled={sessEditLoading}
- style={{ flex: 2, padding: '7px', borderRadius: 0, border: 'none', background: '#c9928c', color: '#f3efe6', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: sessEditLoading ? .6 : 1 }}>
+ style={{ flex: 2, padding: '7px', borderRadius: 0, border: 'none', background: '#c9928c', color: '#f3efe6', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: sessEditLoading ? .6 : 1 }}>
  {sessEditLoading ? 'Removing…' : 'Remove'}
  </button>
  </div>
@@ -3461,16 +3461,16 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
  <span style={{ color: s.text }}>
  {fmtDate(sess.session_date)} · {sess.session === 'tbd'
- ? <span style={{ fontWeight: 700, color: '#c9b48a' }}> Time to be set</span>
+ ? <span style={{ fontWeight: 500, color: '#c9b48a' }}> Time to be set</span>
  : sess.session === 'night'
- ? <span style={{ fontWeight: 700, color: '#f3efe6' }}> NIGHT · evening, no boat slot</span>
- : <span style={{ fontWeight: 700, color: s.accent }}>{sess.session.toUpperCase()}</span>}
+ ? <span style={{ fontWeight: 500, color: '#f3efe6' }}> NIGHT · evening, no boat slot</span>
+ : <span style={{ fontWeight: 500, color: s.accent }}>{sess.session.toUpperCase()}</span>}
  </span>
  {sess.notes && <span style={{ fontSize: '14px', color: s.muted }}>{sess.notes}</span>}
  </div>
  <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>{sess.is_boat_day ? '' : ''}</span>
- <span style={{ fontSize: '14px', padding: '2px 7px', borderRadius: 0, background: sess.status === 'confirmed' ? 'rgba(183,196,176,.12)' : 'rgba(201,180,138,.12)', color: sess.status === 'confirmed' ? '#b7c4b0' : '#d4a07a', fontWeight: 700 }}>
+ <span style={{ fontSize: '14px', padding: '2px 7px', borderRadius: 0, background: sess.status === 'confirmed' ? 'rgba(183,196,176,.12)' : 'rgba(201,180,138,.12)', color: sess.status === 'confirmed' ? '#b7c4b0' : '#d4a07a', fontWeight: 500 }}>
  {sess.status}
  </span>
  <span style={{ color: s.muted }}>×{sess.seats}</span>
@@ -3504,7 +3504,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <span style={{ color: s.muted }}> Not yet scheduled</span>
  <span style={{ fontSize: '14px', color: s.muted, opacity: 0.7 }}>Dive #{bkSessions.length + i + 1}</span>
  </div>
- <span style={{ fontSize: '14px', padding: '2px 7px', borderRadius: 0, background: 'rgba(255,255,255,.06)', color: s.muted, fontWeight: 700 }}>unscheduled</span>
+ <span style={{ fontSize: '14px', padding: '2px 7px', borderRadius: 0, background: 'rgba(255,255,255,.06)', color: s.muted, fontWeight: 500 }}>unscheduled</span>
  </div>
  ))
  })()}
@@ -3519,10 +3519,10 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  return (
  <div key={`pre-${i}`} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', background: 'rgba(243,239,230,.03)', borderRadius: 0, border: '1px solid rgba(243,239,230,.12)', fontSize: '14px' }}>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
- <span style={{ color: s.text, fontWeight: 600 }}> {fmtDate(date)}</span>
+ <span style={{ color: s.text, fontWeight: 500 }}> {fmtDate(date)}</span>
  <span style={{ fontSize: '14px', color: s.muted }}>Dive #{i + 1} · {(time ?? 'am').toUpperCase()}</span>
  </div>
- <span style={{ fontSize: '14px', padding: '2px 7px', borderRadius: 0, background: 'rgba(243,239,230,.1)', color: s.accent, fontWeight: 700 }}>pre-booked</span>
+ <span style={{ fontSize: '14px', padding: '2px 7px', borderRadius: 0, background: 'rgba(243,239,230,.1)', color: s.accent, fontWeight: 500 }}>pre-booked</span>
  </div>
  )
  })
@@ -3541,7 +3541,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  </button>
  ) : (
  <div style={{ background: 'rgba(255,255,255,.03)', borderRadius: 0, padding: '14px', border: '1px solid rgba(255,255,255,.09)', display: 'flex', flexDirection: 'column', gap: '10px' }}>
- <span style={{ fontSize: '14px', fontWeight: 700, color: s.text }}>Add session</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>Add session</span>
  <div>
  <label style={lbl}>Date</label>
  <input type="date" value={sessForm.date} onChange={e => setSessForm(f => ({ ...f, date: e.target.value }))} style={inp} />
@@ -3551,7 +3551,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', gap: '6px' }}>
  {((selected.product_name ?? '').trim().toLowerCase() === 'night dive' ? ['night'] as const : ['am', 'pm'] as const).map(t => (
  <button key={t} type="button" onClick={() => setSessForm(f => ({ ...f, time: t }))}
- style={{ flex: 1, padding: '7px', borderRadius: 0, border: `1px solid ${sessForm.time === t ? 'rgba(243,239,230,.4)' : 'rgba(255,255,255,.1)'}`, background: sessForm.time === t ? 'rgba(243,239,230,.1)' : 'transparent', color: sessForm.time === t ? s.accent : s.muted, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '7px', borderRadius: 0, border: `1px solid ${sessForm.time === t ? 'rgba(243,239,230,.4)' : 'rgba(255,255,255,.1)'}`, background: sessForm.time === t ? 'rgba(243,239,230,.1)' : 'transparent', color: sessForm.time === t ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  {t.toUpperCase()}
  </button>
  ))}
@@ -3562,7 +3562,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', gap: '6px' }}>
  {([true, false] as const).map(isBoat => (
  <button key={String(isBoat)} type="button" onClick={() => setSessForm(f => ({ ...f, isBoatDay: isBoat }))}
- style={{ flex: 1, padding: '7px', borderRadius: 0, border: `1px solid ${sessForm.isBoatDay === isBoat ? (isBoat ? 'rgba(243,239,230,.4)' : 'rgba(201,180,138,.4)') : 'rgba(255,255,255,.1)'}`, background: sessForm.isBoatDay === isBoat ? (isBoat ? 'rgba(243,239,230,.1)' : 'rgba(201,180,138,.08)') : 'transparent', color: sessForm.isBoatDay === isBoat ? (isBoat ? s.accent : '#d4a07a') : s.muted, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '7px', borderRadius: 0, border: `1px solid ${sessForm.isBoatDay === isBoat ? (isBoat ? 'rgba(243,239,230,.4)' : 'rgba(201,180,138,.4)') : 'rgba(255,255,255,.1)'}`, background: sessForm.isBoatDay === isBoat ? (isBoat ? 'rgba(243,239,230,.1)' : 'rgba(201,180,138,.08)') : 'transparent', color: sessForm.isBoatDay === isBoat ? (isBoat ? s.accent : '#d4a07a') : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  {isBoat ? ' Boat' : ' Pool'}
  </button>
  ))}
@@ -3578,7 +3578,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  Cancel
  </button>
  <button onClick={addSession} disabled={sessAddLoading || sessForm.isBoatDay === null}
- style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: sessForm.isBoatDay !== null ? s.accent : 'rgba(255,255,255,.15)', color: sessForm.isBoatDay !== null ? '#090909' : s.muted, fontWeight: 700, fontSize: '14px', cursor: sessForm.isBoatDay !== null ? 'pointer' : 'not-allowed', fontFamily: s.font, opacity: sessAddLoading ? .6 : 1 }}>
+ style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: sessForm.isBoatDay !== null ? s.accent : 'rgba(255,255,255,.15)', color: sessForm.isBoatDay !== null ? '#090909' : s.muted, fontWeight: 500, fontSize: '14px', cursor: sessForm.isBoatDay !== null ? 'pointer' : 'not-allowed', fontFamily: s.font, opacity: sessAddLoading ? .6 : 1 }}>
  {sessAddLoading ? 'Saving…' : 'Save'}
  </button>
  </div>
@@ -3591,16 +3591,16 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {/* Existing child bookings */}
  {childBookings.length > 0 && (
  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '4px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: s.muted }}>Linked Add-ons</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted }}>Linked Add-ons</div>
  {childBookings.map(cb => (
  <div key={cb.id} onClick={() => openBooking(cb)}
  style={{ padding: '8px 12px', background: 'rgba(255,255,255,.03)', borderRadius: 0, border: '1px solid rgba(255,255,255,.06)', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
  <div>
- <div style={{ fontSize: '14px', color: s.text, fontWeight: 600 }}>{cb.product_name}</div>
- <div style={{ fontSize: '14px', color: s.muted, fontFamily: 'monospace' }}>{cb.id.slice(0, 8)}</div>
+ <div style={{ fontSize: '14px', color: s.text, fontWeight: 500 }}>{cb.product_name}</div>
+ <div style={{ fontSize: '14px', color: s.muted, fontFamily: 'var(--font-geist-mono), ui-monospace, monospace' }}>{cb.id.slice(0, 8)}</div>
  </div>
  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
- <span style={{ padding: '2px 8px', borderRadius: 0, fontSize: '14px', fontWeight: 700, background: STATUS_BG[cb.status] ?? 'rgba(200,200,200,.12)', color: STATUS_CLR[cb.status] ?? '#aaa' }}>{cb.status}</span>
+ <span style={{ padding: '2px 8px', borderRadius: 0, fontSize: '14px', fontWeight: 500, background: STATUS_BG[cb.status] ?? 'rgba(200,200,200,.12)', color: STATUS_CLR[cb.status] ?? '#aaa' }}>{cb.status}</span>
  <span style={{ fontSize: '14px', color: '#b7c4b0', fontVariantNumeric: 'tabular-nums' }}>{fmtAmount(cb.amount, cb.currency)}</span>
  </div>
  </div>
@@ -3610,7 +3610,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
 
  {/* Add new items */}
  <div style={{ padding: '14px', background: 'rgba(255,255,255,.02)', borderRadius: 0, border: '1px solid rgba(255,255,255,.07)', display: 'flex', flexDirection: 'column', gap: '12px' }}>
- <div style={{ fontSize: '14px', fontWeight: 700, color: s.text }}>New Add-on</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>New Add-on</div>
 
  {/* Product selector */}
  {(() => {
@@ -3649,7 +3649,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  setAddSelectedId('')
  setAddItemDate('')
  }}
- style={{ padding: '8px 14px', borderRadius: 0, border: 'none', background: canAdd ? s.accent : 'rgba(255,255,255,.1)', color: canAdd ? '#090909' : s.muted, fontWeight: 700, fontSize: '14px', cursor: canAdd ? 'pointer' : 'not-allowed', fontFamily: s.font, whiteSpace: 'nowrap' }}>
+ style={{ padding: '8px 14px', borderRadius: 0, border: 'none', background: canAdd ? s.accent : 'rgba(255,255,255,.1)', color: canAdd ? '#090909' : s.muted, fontWeight: 500, fontSize: '14px', cursor: canAdd ? 'pointer' : 'not-allowed', fontFamily: s.font, whiteSpace: 'nowrap' }}>
  + Add
  </button>
  </div>
@@ -3687,7 +3687,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  </div>
  </div>
  ))}
- <div style={{ display: 'flex', justifyContent: 'flex-end', fontSize: '14px', fontWeight: 700, color: s.text, padding: '4px 10px 0' }}>
+ <div style={{ display: 'flex', justifyContent: 'flex-end', fontSize: '14px', fontWeight: 500, color: s.text, padding: '4px 10px 0' }}>
  Per person: <span style={{ color: '#b7c4b0', marginLeft: '6px' }}>€{(addCart.reduce((s, i) => s + i.price_cents, 0) / 100).toFixed(2)}</span>
  </div>
  </div>
@@ -3700,7 +3700,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', gap: '6px' }}>
  {(['all', 'some'] as const).map(m => (
  <button key={m} type="button" onClick={() => setAddPersonMode(m)}
- style={{ flex: 1, padding: '7px', borderRadius: 0, border: `1px solid ${addPersonMode === m ? s.accent : 'rgba(255,255,255,.1)'}`, background: addPersonMode === m ? 'rgba(243,239,230,.1)' : 'transparent', color: addPersonMode === m ? s.accent : s.muted, fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '7px', borderRadius: 0, border: `1px solid ${addPersonMode === m ? s.accent : 'rgba(255,255,255,.1)'}`, background: addPersonMode === m ? 'rgba(243,239,230,.1)' : 'transparent', color: addPersonMode === m ? s.accent : s.muted, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  {m === 'all' ? `Everyone (${selected.group_size})` : 'Only some people'}
  </button>
  ))}
@@ -3728,7 +3728,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', gap: '6px' }}>
  {(['paid', 'pending'] as const).map(s2 => (
  <button key={s2} onClick={() => setAddPayStatus(s2)}
- style={{ flex: 1, padding: '7px', borderRadius: 0, border: `1px solid ${addPayStatus === s2 ? s.accent : 'rgba(255,255,255,.1)'}`, background: addPayStatus === s2 ? 'rgba(243,239,230,.1)' : 'transparent', color: addPayStatus === s2 ? s.accent : s.muted, fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '7px', borderRadius: 0, border: `1px solid ${addPayStatus === s2 ? s.accent : 'rgba(255,255,255,.1)'}`, background: addPayStatus === s2 ? 'rgba(243,239,230,.1)' : 'transparent', color: addPayStatus === s2 ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  {s2 === 'paid' ? ' Received now' : ' Pending'}
  </button>
  ))}
@@ -3750,7 +3750,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {addMsg && <div style={{ fontSize: '14px', color: addMsg.startsWith('') ? '#b7c4b0' : '#c9928c' }}>{addMsg}</div>}
 
  <button onClick={saveAddItems} disabled={addLoading || addCart.length === 0}
- style={{ padding: '10px', borderRadius: 0, border: 'none', background: addCart.length > 0 ? s.accent : 'rgba(255,255,255,.1)', color: addCart.length > 0 ? '#090909' : s.muted, fontWeight: 700, fontSize: '14px', cursor: addCart.length > 0 ? 'pointer' : 'not-allowed', fontFamily: s.font, opacity: addLoading ? .6 : 1 }}>
+ style={{ padding: '10px', borderRadius: 0, border: 'none', background: addCart.length > 0 ? s.accent : 'rgba(255,255,255,.1)', color: addCart.length > 0 ? '#090909' : s.muted, fontWeight: 500, fontSize: '14px', cursor: addCart.length > 0 ? 'pointer' : 'not-allowed', fontFamily: s.font, opacity: addLoading ? .6 : 1 }}>
  {addLoading ? 'Creating…' : `Save & Create Booking${addCart.length > 0 ? ` (€${((addCart.reduce((s, i) => s + i.price_cents, 0) * ((selected.group_size ?? 1) > 1 && selectedDivers.length > 0 ? (addPersonMode === 'some' ? addPersonIds.size : selected.group_size) : 1)) / 100).toFixed(2)})` : ''}`}
  </button>
  </div>
@@ -3827,8 +3827,8 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  })}
  style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 13px', background: 'transparent', border: 'none', cursor: 'pointer', fontFamily: s.font, gap: '8px' }}>
  <span style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
- <span style={{ fontSize: '14px', fontWeight: 700, color: s.text }}>{name}</span>
- <span style={{ flexShrink: 0, padding: '3px 9px', borderRadius: 0, fontSize: '14px', fontWeight: 700,
+ <span style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{name}</span>
+ <span style={{ flexShrink: 0, padding: '3px 9px', borderRadius: 0, fontSize: '14px', fontWeight: 500,
  background: ciDone ? 'rgba(183,196,176,.12)' : ciStarted ? 'rgba(201,180,138,.1)' : 'rgba(255,255,255,.05)',
  color: ciDone ? '#b7c4b0' : ciStarted ? '#c9b48a' : '#888',
  border: `1px solid ${ciDone ? 'rgba(183,196,176,.25)' : ciStarted ? 'rgba(201,180,138,.2)' : 'rgba(255,255,255,.1)'}` }}>

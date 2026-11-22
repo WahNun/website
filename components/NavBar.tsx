@@ -20,13 +20,13 @@ const T = {
 
 const accent = '#f3efe6'
 const mutedColor = '#c9c2b6'
-const font = `-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif`
+const font = `var(--font-geist-sans), sans-serif`
 
 const bookBtnStyle: React.CSSProperties = {
  display: 'inline-block',
  background: 'linear-gradient(135deg,#f3efe6,#f3efe6)',
  color: '#000',
- fontWeight: 800,
+ fontWeight: 500,
  fontSize: '14px',
  padding: '12px 24px',
  borderRadius: 0,
@@ -95,7 +95,7 @@ export default function NavBar({ lang: initialLang }: NavBarProps) {
  style={{
  position: 'absolute', top: '-120px', left: 0, zIndex: 9999,
  background: accent, color: '#000', padding: '8px 16px',
- fontWeight: 700, fontFamily: font, textDecoration: 'none',
+ fontWeight: 500, fontFamily: font, textDecoration: 'none',
  transition: 'top .15s',
  }}
  onFocus={e => (e.currentTarget.style.top = '0')}
@@ -132,8 +132,8 @@ export default function NavBar({ lang: initialLang }: NavBarProps) {
  />
  {!isMobile && (
  <small style={{
- display: 'block', fontSize: '14px', fontWeight: 600,
- letterSpacing: '.28em', color: mutedColor, textTransform: 'uppercase',
+ display: 'block', fontSize: '14px', fontWeight: 500,
+ letterSpacing: '.08em', color: mutedColor, textTransform: 'uppercase',
  }}>
  SSI · Mares Dive Center · Ponta Delgada
  </small>
@@ -172,7 +172,7 @@ export default function NavBar({ lang: initialLang }: NavBarProps) {
  style={{
  color: isActive(href) ? accent : '#f3efe6',
  fontSize: '14px',
- fontWeight: isActive(href) ? 700 : 500,
+ fontWeight: 500,
  cursor: 'pointer',
  whiteSpace: 'nowrap',
  textDecoration: 'none',
@@ -193,7 +193,7 @@ export default function NavBar({ lang: initialLang }: NavBarProps) {
  background: '#121210', color: accent,
  border: '1px solid rgba(243,239,230,.25)',
  borderRadius: 0, padding: '6px 10px',
- fontSize: '14px', fontWeight: 700,
+ fontSize: '14px', fontWeight: 500,
  cursor: 'pointer', fontFamily: font, outline: 'none',
  }}
  >
@@ -213,7 +213,7 @@ export default function NavBar({ lang: initialLang }: NavBarProps) {
  <a
  href="/members"
  style={{
- fontSize: '14px', fontWeight: 700, padding: '8px 14px',
+ fontSize: '14px', fontWeight: 500, padding: '8px 14px',
  borderRadius: 0, cursor: 'pointer',
  color: isMembersActive ? accent : mutedColor,
  background: isMembersActive ? 'rgba(243,239,230,.1)' : 'rgba(255,255,255,.04)',
@@ -259,7 +259,7 @@ export default function NavBar({ lang: initialLang }: NavBarProps) {
  href={href}
  onClick={() => setMenuOpen(false)}
  style={{
- fontSize: '26px', fontWeight: 800, letterSpacing: '-.01em',
+ fontSize: '26px', fontWeight: 500, letterSpacing: '-0.02em',
  padding: '16px 0', color: isActive(href) ? accent : '#f3efe6',
  textDecoration: 'none', borderBottom: '1px solid rgba(255,255,255,.06)',
  width: '100%', display: 'block', fontFamily: font,
@@ -280,7 +280,7 @@ export default function NavBar({ lang: initialLang }: NavBarProps) {
  border: `1px solid ${lang === l ? accent : 'rgba(255,255,255,.15)'}`,
  background: lang === l ? 'rgba(243,239,230,.15)' : 'transparent',
  color: lang === l ? accent : '#f3efe6',
- fontSize: '14px', fontWeight: 700, cursor: 'pointer', fontFamily: font,
+ fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: font,
  }}
  >
  {l}

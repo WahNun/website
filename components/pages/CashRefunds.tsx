@@ -79,16 +79,16 @@ export default function CashRefunds({ sandbox, onChanged }: { sandbox: boolean |
  <div key={r.id} style={{ background: 'rgba(201,146,140,.04)', border: '1px solid rgba(201,146,140,.18)', borderRadius: 0, padding: '14px 18px', marginBottom: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', flexWrap: 'wrap' }}>
  <div>
- <div style={{ fontSize: '14px', fontWeight: 700, color: s.text }}>{r.customer_name ?? '—'}{r.is_test ? <span style={{ marginLeft: '8px', fontSize: '14px', color: '#c9b48a', border: '1px solid rgba(201,180,138,.4)', borderRadius: 0, padding: '1px 5px' }}>TEST</span> : null}</div>
- <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>{r.product_name ?? '—'} · <span style={{ fontFamily: 'monospace' }}>{r.booking_id.slice(0, 8).toUpperCase()}</span> · requested {new Date(r.requested_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' })}{r.requested_by_email ? ` by ${who(r.requested_by_email)}` : ''}</div>
+ <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{r.customer_name ?? '—'}{r.is_test ? <span style={{ marginLeft: '8px', fontSize: '14px', color: '#c9b48a', border: '1px solid rgba(201,180,138,.4)', borderRadius: 0, padding: '1px 5px' }}>TEST</span> : null}</div>
+ <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>{r.product_name ?? '—'} · <span style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace' }}>{r.booking_id.slice(0, 8).toUpperCase()}</span> · requested {new Date(r.requested_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' })}{r.requested_by_email ? ` by ${who(r.requested_by_email)}` : ''}</div>
  </div>
- <div style={{ fontSize: '20px', fontWeight: 800, color: '#c9928c' }}>{eur(r.amount)}</div>
+ <div style={{ fontSize: '20px', fontWeight: 500, color: '#c9928c' }}>{eur(r.amount)}</div>
  </div>
  <div style={{ fontSize: '14px', color: s.text, padding: '8px 10px', background: 'rgba(255,255,255,.03)', borderRadius: 0, borderLeft: '3px solid #d4a07a' }}>{r.description}</div>
  <input type="text" placeholder="Note (optional) — e.g. handed over to guest at the centre" value={note[r.id] ?? ''} onChange={e => setNote(prev => ({ ...prev, [r.id]: e.target.value }))}
  style={{ width: '100%', boxSizing: 'border-box', background: '#000', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, color: s.text, fontSize: '14px', padding: '7px 10px', fontFamily: s.font, outline: 'none' }} />
  <button type="button" disabled={busy === r.id} onClick={() => confirm(r)}
- style={{ padding: '10px', borderRadius: 0, border: 'none', background: 'rgba(183,196,176,.85)', color: '#000', fontWeight: 700, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: busy === r.id ? .6 : 1 }}>
+ style={{ padding: '10px', borderRadius: 0, border: 'none', background: 'rgba(183,196,176,.85)', color: '#000', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: busy === r.id ? .6 : 1 }}>
  {busy === r.id ? 'Confirming…' : ` Cash handed over — ${eur(r.amount)}`}
  </button>
  </div>
