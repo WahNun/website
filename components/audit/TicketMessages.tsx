@@ -138,8 +138,8 @@ export default function TicketMessages({
  width: '92%',
  padding: '10px 14px 8px',
  borderRadius: isOut ? '12px 12px 3px 12px' : '12px 12px 12px 3px',
- background: isOut ? 'color-mix(in srgb, var(--text) 7%, transparent)' : 'var(--text)',
- border: `1px solid ${isOut ? 'color-mix(in srgb, var(--text) 18%, transparent)' : 'var(--text)'}`,
+ background: isOut ? 'color-mix(in srgb, var(--text) 7%, transparent)' : 'var(--surface)',
+ border: '1px solid var(--line)',
  }}>
  {/* Sender + time */}
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '7px', gap: '8px' }}>

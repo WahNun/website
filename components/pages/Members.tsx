@@ -3642,9 +3642,8 @@ function TriageLogTab({ supabase, session }: { supabase: any; session: any }) {
  : rows
 
  const resultColor = (r: string) =>
- r === 'ticket' ? 'var(--text)' : r === 'internal' ? 'var(--text)' : r === 'ignore' ? 'rgba(255,255,255,.3)' : 'var(--text)'
- const resultBg = (r: string) =>
- r === 'ticket' ? 'var(--text)' : r === 'internal' ? 'var(--text)' : r === 'ignore' ? 'rgba(255,255,255,.03)' : 'var(--text)'
+ r === 'ignore' ? 'var(--muted)' : 'var(--text)'
+ const resultBg = (r: string) => r === 'ignore' ? 'transparent' : 'var(--chip)'
 
  const counts = {
  ticket: rows.filter(r => r.final_result === 'ticket').length,
@@ -3741,7 +3740,7 @@ function TriageLogTab({ supabase, session }: { supabase: any; session: any }) {
  return (
  <tr key={`${r.final_result}-${r.pre_filter_blocked}`} style={{ borderTop: '1px solid rgba(255,255,255,.06)' }}>
  <td style={{ padding: '7px 10px 7px 0' }}>
- <span style={{ fontSize: '14px', fontWeight: 500, color: resultColor(r.final_result), background: resultBg(r.final_result), padding: '2px 8px', borderRadius: 'var(--radius-control)' }}>{r.final_result}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: resultColor(r.final_result), background: 'var(--chip)', border: '1px solid var(--line)', padding: '2px 8px', borderRadius: 'var(--radius-control)' }}>{r.final_result}</span>
  </td>
  <td style={{ padding: '7px 10px 7px 0', color: 'rgba(255,255,255,.5)' }}>{r.pre_filter_blocked ? 'Pre-filter (removed 22.09.)' : 'Mistral'}</td>
  <td style={{ padding: '7px 10px 7px 0', color: 'rgba(255,255,255,.5)' }}>{r.total}</td>
@@ -3802,7 +3801,7 @@ function TriageLogTab({ supabase, session }: { supabase: any; session: any }) {
  ) : filtered.length === 0 ? (
  <div style={{ fontSize: '14px', color: 'rgba(255,255,255,.3)', padding: '24px 0', textAlign: 'center' }}>No entries yet.</div>
  ) : (
- <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+ <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-stack)' }}>
  {filtered.map(row => {
  const isExpanded = expandedId === row.id
  const fb = localFeedback[row.id]
@@ -3810,12 +3809,12 @@ function TriageLogTab({ supabase, session }: { supabase: any; session: any }) {
  const displayCorrect = fb !== undefined ? fb.correct : existingCorrect
 
  return (
- <div key={row.id} style={{ border: `1px solid ${isExpanded ? 'color-mix(in srgb, var(--text) 22%, transparent)' : resultColor(row.final_result) + '44'}`, borderRadius: 'var(--radius-card)', overflow: 'hidden' }}>
+ <div key={row.id} style={{ border: `1px solid ${isExpanded ? 'var(--line-strong)' : 'var(--line)'}`, borderRadius: 'var(--radius-card)', overflow: 'hidden', background: 'var(--surface)' }}>
  {/* Row header */}
  <button type="button" onClick={() => setExpandedId(isExpanded ? null : row.id)}
- style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 16px', background: isExpanded ? 'color-mix(in srgb, var(--text) 4%, transparent)' : resultBg(row.final_result), cursor: 'pointer', width: '100%', border: 'none', fontFamily: 'inherit', textAlign: 'left' }}
+ style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 16px', background: isExpanded ? 'color-mix(in srgb, var(--text) 4%, transparent)' : 'transparent', cursor: 'pointer', width: '100%', border: 'none', fontFamily: 'inherit', textAlign: 'left' }}
  onMouseEnter={e => { if (!isExpanded) e.currentTarget.style.background = 'rgba(255,255,255,.05)' }}
- onMouseLeave={e => { if (!isExpanded) e.currentTarget.style.background = resultBg(row.final_result) }}>
+ onMouseLeave={e => { if (!isExpanded) e.currentTarget.style.background = 'transparent' }}>
  {/* Time */}
  <div style={{ flexShrink: 0, textAlign: 'right', minWidth: '40px' }}>
  <div style={{ fontSize: '14px', color: 'rgba(255,255,255,.5)', fontWeight: 500 }}>
@@ -3826,9 +3825,6 @@ function TriageLogTab({ supabase, session }: { supabase: any; session: any }) {
  </div>
  </div>
  {/* Icon */}
- <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: resultBg(row.final_result), border: `1px solid ${resultColor(row.final_result)}44`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', flexShrink: 0 }}>
- {row.final_result === 'ticket' ? '' : row.final_result === 'ignore' ? '' : ''}
- </div>
  {/* Sender + Subject */}
  <div style={{ flex: 1, minWidth: 0 }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '7px', marginBottom: '2px', flexWrap: 'wrap' }}>
@@ -3862,12 +3858,12 @@ function TriageLogTab({ supabase, session }: { supabase: any; session: any }) {
  <div style={{ fontSize: '14px', fontWeight: 500, color: row.pre_filter_blocked ? 'var(--text)' : 'rgba(255,255,255,.45)' }}>{row.pre_filter_blocked ? ' BLOCKED' : ' passed'}</div>
  </div>
  {row.mistral_result && (
- <div style={{ padding: '7px 12px', borderRadius: 'var(--radius-card)', background: resultBg(row.mistral_result), border: `1px solid ${resultColor(row.mistral_result)}40` }}>
+ <div style={{ padding: '7px 12px', borderRadius: 'var(--radius-card)', background: 'var(--chip)', border: '1px solid var(--line)' }}>
  <div style={{ fontSize: '14px', color: 'rgba(255,255,255,.32)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '3px' }}>Mistral</div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: resultColor(row.mistral_result) }}>{row.mistral_result}</div>
  </div>
  )}
- <div style={{ padding: '7px 12px', borderRadius: 'var(--radius-card)', background: resultBg(row.final_result), border: `1px solid ${resultColor(row.final_result)}55` }}>
+ <div style={{ padding: '7px 12px', borderRadius: 'var(--radius-card)', background: 'var(--chip)', border: '1px solid var(--line)' }}>
  <div style={{ fontSize: '14px', color: 'rgba(255,255,255,.32)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '3px' }}>Final</div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: resultColor(row.final_result) }}>{row.final_result.toUpperCase()}</div>
  </div>
@@ -4721,7 +4717,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  {msgs.length === 0 && <div style={{ color: s.muted, fontSize: '14px', textAlign: 'center' }}>No messages recorded.</div>}
  {msgs.map((m, i) => (
  <div key={i} style={{ display: 'flex', justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start', marginBottom: '10px' }}>
- <div style={{ maxWidth: '80%', padding: '9px 13px', borderRadius: m.role === 'user' ? '14px 14px 4px 14px' : '14px 14px 14px 4px', background: m.role === 'user' ? 'color-mix(in srgb, var(--text) 15%, transparent)' : m.role === 'team' ? 'var(--text)' : 'rgba(255,255,255,.06)', border: m.role === 'user' ? '1px solid color-mix(in srgb, var(--text) 20%, transparent)' : m.role === 'team' ? '1px solid var(--text)' : '1px solid rgba(255,255,255,.08)', fontSize: '14px', color: s.text, lineHeight: 1.5 }}>
+ <div style={{ maxWidth: '80%', padding: '9px 13px', borderRadius: m.role === 'user' ? '14px 14px 4px 14px' : '14px 14px 14px 4px', background: m.role === 'user' ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'rgba(255,255,255,.06)', border: '1px solid var(--line)', fontSize: '14px', color: s.text, lineHeight: 1.5 }}>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '4px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '.08em' }}>{m.role === 'user' ? 'Visitor' : m.role === 'team' ? 'Team' : 'Bot'}</div>
  {m.text}
  </div>
@@ -4762,7 +4758,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  <div style={{ display: 'flex', background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 'var(--radius-control)', overflow: 'hidden' }}>
  {(['all', 'mine'] as const).map(f => (
  <button key={f} onClick={() => { setTicketOwnerFilter(f); localStorage.setItem('azd_ticketOwnerFilter', f) }}
- style={{ padding: '6px 14px', border: 'none', background: ticketOwnerFilter === f ? 'transparent' : 'transparent', color: ticketOwnerFilter === f ? 'var(--text)' : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, transition: 'background .15s' }}>
+ style={{ padding: '6px 14px', border: 'none', background: ticketOwnerFilter === f ? 'var(--chip)' : 'transparent', color: ticketOwnerFilter === f ? 'var(--text)' : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, transition: 'background .15s' }}>
  {f === 'all' ? 'All' : `Mine${staffName ? ' (' + staffName + ')' : ''}`}
  </button>
  ))}
@@ -4781,16 +4777,21 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  {ticketSubTab === 'archived' ? 'No archived tickets.' : 'No tickets yet — they appear here when the bot escalates a conversation.'}
  </div>
  )
- return filtered.map(ticket => {
+ return (
+ <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-stack)' }}>
+ {filtered.map(ticket => {
  const isExpanded = expandedTicketId === ticket.id
  const reply = ticketReply[ticket.id] || ''
- const statusColor = ticket.status === 'open' ? 'var(--text)' : ticket.status === 'in_progress' ? 'var(--text)' : 'var(--text)'
- const statusBg = ticket.status === 'open' ? 'var(--text)' : ticket.status === 'in_progress' ? 'var(--text)' : 'var(--text)'
  const ageHours = ticket.status === 'open' && !ticket.claimedBy ? (Date.now() - new Date(ticket.unclaimedSince ?? ticket.timestamp.replace(' · ', 'T').replace(/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2})/, '$1T$2:00')).getTime()) / 36e5 : 0
- const ageColor = ageHours > 72 ? 'var(--text)' : ageHours > 24 ? 'var(--text)' : ageHours > 2 ? 'var(--text)' : ''
- const ageBorderColor = ageHours > 72 ? 'var(--text)' : ageHours > 24 ? 'var(--text)' : ageHours > 2 ? 'var(--text)' : ''
- const ageLabel = ageHours > 72 ? ` ${Math.floor(ageHours / 24)}d unclaimed` : ageHours > 24 ? `${Math.floor(ageHours / 24)}d unclaimed` : ageHours > 2 ? `${Math.floor(ageHours)}h unclaimed` : ''
- const ageLabelColor = ageHours > 72 ? 'var(--text)' : ageHours > 24 ? 'var(--text)' : 'var(--text)'
+ const ageLabel = ageHours > 72 ? `${Math.floor(ageHours / 24)}d unclaimed` : ageHours > 24 ? `${Math.floor(ageHours / 24)}d unclaimed` : ageHours > 2 ? `${Math.floor(ageHours)}h unclaimed` : ''
+ const displayName = (ticket.name || '').trim() || ticket.email || 'Visitor'
+ const preview = (ticket.message || '').replace(/\s+/g, ' ').trim()
+ const sourceParts = ticket.preferredChannel === 'internal' ? ['Internal'] : ticket.preferredChannel === 'form_submission' ? ['Form'] : ticket.preferredChannel === 'whatsapp' ? ['Bot', 'WhatsApp'] : ['Bot', 'Email']
+ const statusLabel = ticket.status === 'open' ? 'Open' : ticket.status === 'in_progress' ? 'In progress' : 'Resolved'
+ const unread = (newMsgCount ?? {})[ticket.id] ?? 0
+ const chipStyle: React.CSSProperties = { fontSize: '12px', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text)', background: 'var(--chip)', border: '1px solid var(--line)', borderRadius: 'var(--radius-control)', padding: '3px 8px', lineHeight: 1.3 }
+ const actionBtn: React.CSSProperties = { padding: '6px 12px', borderRadius: 'var(--radius-control)', border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }
+ const toggleTicket = () => { const nextId = isExpanded ? null : ticket.id; setExpandedTicketId(nextId); if (nextId && (ticket.note ?? '').startsWith('booking:') && ticket.status !== 'resolved') void loadSlots(ticket); if (nextId) loadTicketNotes(nextId) }
  // Shared send-in-chat logic (used by button click AND Enter key)
  const sendChatReply = async () => {
  if (!reply.trim() || !ticket.sessionId) return
@@ -4866,84 +4867,65 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  }
  }
  return (
- <div key={ticket.id} style={{ marginBottom: '10px', border: `1px solid ${isExpanded ? 'color-mix(in srgb, var(--text) 25%, transparent)' : ageBorderColor || (ticket.status === 'open' ? 'var(--text)' : ticket.status === 'in_progress' ? 'var(--text)' : 'rgba(255,255,255,.07)')}`, borderRadius: 'var(--radius-card)', overflow: 'hidden', background: ageColor || undefined }}>
- {/* Header row — click to expand */}
- <button type="button" onClick={() => { const nextId = isExpanded ? null : ticket.id; setExpandedTicketId(nextId); if (nextId && (ticket.note ?? '').startsWith('booking:') && ticket.status !== 'resolved') void loadSlots(ticket); if (nextId) loadTicketNotes(nextId) }}
- style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', padding: '14px 18px', background: isExpanded ? 'color-mix(in srgb, var(--text) 4%, transparent)' : 'rgba(255,255,255,.025)', cursor: 'pointer', width: '100%', border: 'none', fontFamily: s.font, textAlign: 'left' }}
- onMouseEnter={e => { if (!isExpanded) e.currentTarget.style.background = 'rgba(255,255,255,.05)' }}
- onMouseLeave={e => { if (!isExpanded) e.currentTarget.style.background = 'rgba(255,255,255,.025)' }}>
- <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0 }}>
- <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', flexShrink: 0 }}></div>
- <div style={{ minWidth: 0 }}>
- <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '3px', flexWrap: 'wrap' }}>
- <span style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{ticket.name}</span>
- <span style={{ fontSize: '14px', fontWeight: 500, color: statusColor, background: statusBg, padding: '2px 7px', borderRadius: 'var(--radius-control)' }}>{ticket.status === 'open' ? ' Open' : ticket.status === 'in_progress' ? (ticket.claimedBy ? ` ${ticket.claimedBy}` : ' In Progress') : ' Resolved'}</span>
- {ticket.status === 'open' && ageLabel && <span style={{ fontSize: '14px', fontWeight: 500, color: ageLabelColor }}>{ageLabel}</span>}
- <span style={{ fontSize: '14px', fontWeight: 500, padding: '2px 7px', borderRadius: 'var(--radius-control)',
- background: ticket.preferredChannel === 'internal' ? 'transparent' : ticket.preferredChannel === 'form_submission' ? 'transparent' : ticket.preferredChannel === 'whatsapp' ? 'transparent' : 'color-mix(in srgb, var(--text) 10%, transparent)',
- color: ticket.preferredChannel === 'internal' ? 'var(--text)' : ticket.preferredChannel === 'form_submission' ? 'var(--text)' : ticket.preferredChannel === 'whatsapp' ? 'var(--text)' : s.accent,
- border: `1px solid ${ticket.preferredChannel === 'internal' ? 'var(--line)' : ticket.preferredChannel === 'form_submission' ? 'var(--line)' : ticket.preferredChannel === 'whatsapp' ? 'var(--line)' : 'color-mix(in srgb, var(--text) 20%, transparent)'}` }}>
- {ticket.preferredChannel === 'internal' ? ' Internal · Instructor' : ticket.preferredChannel === 'form_submission' ? ' Contact Form' : ticket.preferredChannel === 'whatsapp' ? ' Bot · WhatsApp' : ' Bot · Email'}
- </span>
- {((newMsgCount ?? {})[ticket.id] ?? 0) > 0 && (
- <span style={{
- fontSize: '14px', fontWeight: 500, color: 'var(--text)',
- background: '#e53e3e', borderRadius: 'var(--radius-control)',
- padding: '1px 6px', minWidth: '18px', textAlign: 'center',
- lineHeight: '16px', display: 'inline-block',
- }}>
- {(newMsgCount ?? {})[ticket.id]}
- </span>
- )}
+ <div key={ticket.id} style={{ border: `1px solid ${isExpanded ? 'var(--line-strong)' : 'var(--line)'}`, borderRadius: 'var(--radius-card)', overflow: 'hidden', background: 'var(--surface)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,.06)' }}>
+ <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '18px', padding: '16px 18px' }}>
+ <div role="button" tabIndex={0} onClick={toggleTicket} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleTicket() } }}
+ style={{ flex: 1, minWidth: 0, cursor: 'pointer', fontFamily: s.font, textAlign: 'left', color: 'inherit' }}>
+ <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', flexWrap: 'wrap' }}>
+ <span style={{ fontSize: '15px', fontWeight: 500, color: 'var(--text)', letterSpacing: '-0.01em' }}>{displayName}</span>
+ {sourceParts.map(label => <span key={label} style={chipStyle}>{label}</span>)}
+ <span style={chipStyle}>{statusLabel}</span>
+ {ticket.claimedBy && <span style={{ fontSize: '14px', color: 'var(--muted)' }}>{ticket.claimedBy}</span>}
+ {ageLabel && <span style={{ fontSize: '14px', color: 'var(--muted)' }}>{ageLabel}</span>}
+ {unread > 0 && <span style={chipStyle}>{unread} new</span>}
  </div>
- <div style={{ fontSize: '14px', color: s.muted, display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
- <button onClick={e => { e.stopPropagation(); navigator.clipboard.writeText(ticket.id).then(() => showGlobalToast('Ticket ID copied')).catch(() => showGlobalToast('Could not copy')) }} title="Copy ticket ID" style={{ fontSize: '14px', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', padding: '1px 6px', borderRadius: 'var(--radius-control)', border: '1px solid color-mix(in srgb, var(--text) 18%, transparent)', background: 'color-mix(in srgb, var(--text) 5%, transparent)', color: 'color-mix(in srgb, var(--text) 60%, transparent)', cursor: 'pointer', letterSpacing: '.03em' }}>#{ticket.id.slice(0, 8)}</button>
- <span>{ticket.email}</span>
- <button onClick={e => { e.stopPropagation(); navigator.clipboard.writeText(ticket.email).then(() => showGlobalToast('Email copied')).catch(() => showGlobalToast('Could not copy')) }} title="Copy email" style={{ fontSize: '14px', padding: '1px 5px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.12)', background: 'rgba(255,255,255,.05)', color: s.muted, cursor: 'pointer', fontFamily: s.font }}></button>
- {ticket.phone && (<><span>· {ticket.phone}</span><button onClick={e => { e.stopPropagation(); navigator.clipboard.writeText(ticket.phone || '').then(() => showGlobalToast('Phone copied')).catch(() => showGlobalToast('Could not copy')) }} title="Copy phone" style={{ fontSize: '14px', padding: '1px 5px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.12)', background: 'rgba(255,255,255,.05)', color: s.muted, cursor: 'pointer', fontFamily: s.font }}></button></>)}
+ <div style={{ fontSize: '14px', color: 'var(--text)', lineHeight: 1.45, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', marginBottom: '6px' }}>{preview || 'No message yet'}</div>
+ <div style={{ fontSize: '14px', color: 'var(--muted)', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+ <span style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace' }}>#{ticket.id.slice(0, 8)}</span>
+ <button type="button" onClick={e => { e.stopPropagation(); navigator.clipboard.writeText(ticket.id).then(() => showGlobalToast('Ticket ID copied')).catch(() => showGlobalToast('Could not copy')) }} title="Copy ticket ID" style={{ background: 'none', border: 'none', padding: 0, color: 'var(--muted)', fontSize: '14px', cursor: 'pointer', fontFamily: s.font, textDecoration: 'underline' }}>Copy</button>
+ {displayName !== ticket.email && ticket.email && <span>· {ticket.email}</span>}
+ {ticket.email && <button type="button" onClick={e => { e.stopPropagation(); navigator.clipboard.writeText(ticket.email).then(() => showGlobalToast('Email copied')).catch(() => showGlobalToast('Could not copy')) }} title="Copy email" style={{ background: 'none', border: 'none', padding: 0, color: 'var(--muted)', fontSize: '14px', cursor: 'pointer', fontFamily: s.font, textDecoration: 'underline' }}>Copy email</button>}
+ {ticket.phone && <span>· {ticket.phone}</span>}
+ {ticket.phone && <button type="button" onClick={e => { e.stopPropagation(); navigator.clipboard.writeText(ticket.phone || '').then(() => showGlobalToast('Phone copied')).catch(() => showGlobalToast('Could not copy')) }} title="Copy phone" style={{ background: 'none', border: 'none', padding: 0, color: 'var(--muted)', fontSize: '14px', cursor: 'pointer', fontFamily: s.font, textDecoration: 'underline' }}>Copy phone</button>}
  <span>· {ticket.timestamp}</span>
  </div>
  {!isExpanded && ticketLastNote[ticket.id] && (
- <div style={{ marginTop: '5px', display: 'flex', alignItems: 'center', gap: '5px', overflow: 'hidden' }}>
- <span style={{ fontSize: '14px', fontWeight: 500, color: s.accent, flexShrink: 0 }}> {ticketLastNote[ticket.id].author_name}:</span>
- <span style={{ fontSize: '14px', color: s.muted, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{ticketLastNote[ticket.id].content}</span>
- </div>
+ <div style={{ marginTop: '6px', fontSize: '14px', color: 'var(--muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{ticketLastNote[ticket.id].author_name}: {ticketLastNote[ticket.id].content}</div>
  )}
  </div>
- </div>
- <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
+ <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '6px', flexShrink: 0, flexWrap: 'wrap', maxWidth: '340px' }}>
+ <button type="button" onClick={toggleTicket} style={actionBtn}>{isExpanded ? 'Reply' : 'Open'}</button>
  {!ticket.archived && ticket.status !== 'resolved' && (ticket.note ?? '').startsWith('attendance:') && (
  <>
- <button disabled={attendanceBusy === ticket.id} onClick={e => { e.stopPropagation(); void decideAttendance(ticket, 'present') }} title="Guest was on the boat — mark completed, send thank-you mail" style={{ padding: '4px 10px', borderRadius: 'var(--radius-control)', border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}> Was there</button>
- <button disabled={attendanceBusy === ticket.id} onClick={e => { e.stopPropagation(); void decideAttendance(ticket, 'trip_cancelled') }} title="We cancelled the trip (weather, no boat) — day is cancelled, booking stays, no no-show" style={{ padding: '4px 10px', borderRadius: 'var(--radius-control)', border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}> Trip cancelled</button>
- <button disabled={attendanceBusy === ticket.id} onClick={e => { e.stopPropagation(); if (confirm('Mark as NO-SHOW? Seats are released, no refund.')) void decideAttendance(ticket, 'no_show') }} title="Guest did not show up — status no_show, seats released, no refund" style={{ padding: '4px 10px', borderRadius: 'var(--radius-control)', border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}> No-show</button>
+ <button type="button" disabled={attendanceBusy === ticket.id} onClick={() => void decideAttendance(ticket, 'present')} title="Guest was on the boat — mark completed, send thank-you mail" style={actionBtn}>Was there</button>
+ <button type="button" disabled={attendanceBusy === ticket.id} onClick={() => void decideAttendance(ticket, 'trip_cancelled')} title="We cancelled the trip (weather, no boat) — day is cancelled, booking stays, no no-show" style={actionBtn}>Trip cancelled</button>
+ <button type="button" disabled={attendanceBusy === ticket.id} onClick={() => { if (confirm('Mark as NO-SHOW? Seats are released, no refund.')) void decideAttendance(ticket, 'no_show') }} title="Guest did not show up — status no_show, seats released, no refund" style={actionBtn}>No-show</button>
  </>
  )}
- {attendanceMsg[ticket.id] && <span style={{ fontSize: '14px', color: attendanceMsg[ticket.id].startsWith('') ? 'var(--text)' : 'var(--text)', whiteSpace: 'nowrap' }}>{attendanceMsg[ticket.id]}</span>}
  {!ticket.archived && (ticket.status === 'open' || (ticket.status === 'in_progress' && !ticket.claimedBy)) && (
- <button onClick={e => { e.stopPropagation(); onClaim(ticket.id, staffName || session?.user?.email || 'Staff') }} style={{ padding: '4px 10px', borderRadius: 'var(--radius-control)', border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}>Claim</button>
+ <button type="button" onClick={() => onClaim(ticket.id, staffName || session?.user?.email || 'Staff')} style={actionBtn}>Assign</button>
  )}
  {!ticket.archived && ticket.status === 'in_progress' && ticket.claimedBy === staffName && (
- <button onClick={e => { e.stopPropagation(); onUnclaim(ticket.id) }} style={{ padding: '4px 10px', borderRadius: 'var(--radius-control)', border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}>Unclaim</button>
+ <button type="button" onClick={() => onUnclaim(ticket.id)} style={actionBtn}>Unassign</button>
  )}
  {!ticket.archived && ticket.status === 'in_progress' && ticket.claimedBy && ticket.claimedBy !== staffName && (
- <button onClick={e => { e.stopPropagation(); onTakeover(ticket.id, staffName || session?.user?.email || 'Staff') }} style={{ padding: '4px 10px', borderRadius: 'var(--radius-control)', border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}>Take Over</button>
+ <button type="button" onClick={() => onTakeover(ticket.id, staffName || session?.user?.email || 'Staff')} style={actionBtn}>Take over</button>
  )}
  {!ticket.archived && (ticket.status === 'open' || ticket.status === 'in_progress') && (
- <button onClick={e => { e.stopPropagation(); onResolve(ticket.id) }} style={{ padding: '4px 10px', borderRadius: 'var(--radius-control)', border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}>Mark as Resolved</button>
+ <button type="button" onClick={() => onResolve(ticket.id)} style={actionBtn}>Resolve</button>
  )}
  {!ticket.archived && ticket.status === 'resolved' && (
- <button onClick={e => { e.stopPropagation(); onUnresolve(ticket.id) }} style={{ padding: '4px 10px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, whiteSpace: 'nowrap' }}>Mark as Unresolved</button>
+ <button type="button" onClick={() => onUnresolve(ticket.id)} style={actionBtn}>Reopen</button>
  )}
  {!ticket.archived && (
- <button onClick={e => { e.stopPropagation(); onArchive(ticket.id); setExpandedTicketId(null) }} style={{ padding: '4px 10px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.12)', background: 'transparent', color: s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>Archive</button>
+ <button type="button" onClick={() => { onArchive(ticket.id); setExpandedTicketId(null) }} style={actionBtn}>Archive</button>
  )}
  {ticket.archived && (
- <button onClick={e => { e.stopPropagation(); onUnarchive(ticket.id) }} style={{ padding: '4px 10px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.12)', background: 'transparent', color: s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>Unarchive</button>
+ <button type="button" onClick={() => onUnarchive(ticket.id)} style={actionBtn}>Unarchive</button>
  )}
- <span style={{ fontSize: '14px', color: s.muted, transition: 'transform .2s', display: 'inline-block', transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)' }}></span>
  </div>
- </button>
+ </div>
+ {attendanceMsg[ticket.id] && <div style={{ padding: '0 18px 12px', fontSize: '14px', color: 'var(--text)' }}>{attendanceMsg[ticket.id]}</div>}
  {/* Expanded body */}
  {isExpanded && (
  <div style={{ borderTop: '1px solid rgba(255,255,255,.07)', background: 'rgba(0,0,0,.2)', display: 'flex', alignItems: 'flex-start' }}>
@@ -5070,7 +5052,7 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  .filter((m: any) => m.role === 'user' || m.role === 'bot' || m.role === 'team')
  .map((m: any, i: number) => (
  <div key={i} style={{ display: 'flex', justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start' }}>
- <div style={{ maxWidth: '80%', padding: '7px 12px', borderRadius: m.role === 'user' ? '12px 12px 3px 12px' : '12px 12px 12px 3px', background: m.role === 'user' ? 'color-mix(in srgb, var(--text) 12%, transparent)' : m.role === 'team' ? 'var(--text)' : 'rgba(255,255,255,.06)', border: `1px solid ${m.role === 'user' ? 'color-mix(in srgb, var(--text) 22%, transparent)' : m.role === 'team' ? 'var(--text)' : 'rgba(255,255,255,.08)'}`, fontSize: '14px', color: s.text, lineHeight: 1.5 }}>
+ <div style={{ maxWidth: '80%', padding: '7px 12px', borderRadius: m.role === 'user' ? '12px 12px 3px 12px' : '12px 12px 12px 3px', background: m.role === 'user' ? 'color-mix(in srgb, var(--text) 12%, transparent)' : 'rgba(255,255,255,.06)', border: '1px solid var(--line)', fontSize: '14px', color: 'var(--text)', lineHeight: 1.5 }}>
  {m.role === 'team' && <span style={{ display: 'block', fontSize: '14px', color: 'var(--text)', fontWeight: 500, marginBottom: '3px' }}>{m.sender || 'AZD Team'}</span>}
  {m.role === 'bot' && <span style={{ display: 'block', fontSize: '14px', color: s.muted, fontWeight: 500, marginBottom: '3px' }}>Bot</span>}
  {m.text}
@@ -5203,7 +5185,9 @@ function PageAISupport({ nav, tickets, onRefresh, onResolve, onUnresolve, onInPr
  )}
  </div>
  )
- })
+ })}
+ </div>
+ )
  })()}
  </div>
  )}
