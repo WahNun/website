@@ -78,7 +78,7 @@ function StartInner() {
  </p>
  <div style={{ width: '100%', maxWidth: '420px', display: 'flex', flexDirection: 'column', gap: '10px', textAlign: 'left' }}>
  {guests.map(g => (
- <div key={g.token} style={{ background: 'color-mix(in srgb, var(--text) 5%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 0, padding: '14px 16px' }}>
+ <div key={g.token} style={{ background: 'color-mix(in srgb, var(--text) 5%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 'var(--radius-card)', padding: '14px 16px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)' }}>{g.label}</div>
  <div style={{ fontSize: '14px', color: 'var(--text)', marginTop: '2px' }}>{g.product_name ?? 'Booking'}</div>
  <div style={{ fontSize: '14px', color: 'rgba(255,255,255,.55)', marginTop: '2px' }}>
@@ -89,9 +89,9 @@ function StartInner() {
  ? <div style={{ marginTop: '10px', fontSize: '14px', fontWeight: 500, color: 'var(--text)' }}> Checked in</div>
  : (
  <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginTop: '10px', flexWrap: 'wrap' }}>
- <a href={`/dive-os/checkin?token=${g.token}`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', padding: '9px 16px', borderRadius: 0, background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', textDecoration: 'none' }}>Check in {g.label.replace(/ — .*/, '')} </a>
+ <a href={`/dive-os/checkin?token=${g.token}`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', padding: '9px 16px', borderRadius: 'var(--radius-control)', background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', textDecoration: 'none' }}>Check in {g.label.replace(/ — .*/, '')} </a>
  <button type="button" onClick={() => void copyLink(g.token, g.label.replace(/ — .*/, ''))} title="Copy this guest's check-in link"
- style={{ padding: '9px 14px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', background: 'transparent', color: 'var(--text)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>
+ style={{ padding: '9px 14px', borderRadius: 'var(--radius-control)', border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', background: 'transparent', color: 'var(--text)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>
  Copy check-in link
  </button>
  </div>
@@ -133,7 +133,7 @@ function StartInner() {
  </>
  )}
  {toast && (
- <div role="status" style={{ position: 'fixed', left: '50%', bottom: '28px', transform: 'translateX(-50%)', padding: '11px 18px', borderRadius: 0, background: 'var(--surface)', border: '1px solid var(--line)', color: 'var(--text)', fontSize: '14px', fontWeight: 500, maxWidth: '90vw', boxShadow: 'none', zIndex: 50 }}>
+ <div role="status" style={{ position: 'fixed', left: '50%', bottom: '28px', transform: 'translateX(-50%)', padding: '11px 18px', borderRadius: 'var(--radius-card)', background: 'var(--surface)', border: '1px solid var(--line)', color: 'var(--text)', fontSize: '14px', fontWeight: 500, maxWidth: '90vw', boxShadow: 'none', zIndex: 50 }}>
  {toast.error ? ' ' : ' '}{toast.text}
  </div>
  )}

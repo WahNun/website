@@ -587,7 +587,7 @@ function BookInner() {
 
  const field: React.CSSProperties = {
  width: '100%', background: 'var(--bg)', border: '1px solid rgba(255,255,255,.12)',
- borderRadius: 0, padding: '12px 14px', fontSize: '16px', color: s.text,
+ borderRadius: 'var(--radius-card)', padding: '12px 14px', fontSize: '16px', color: s.text,
  fontFamily: s.font, outline: 'none', boxSizing: 'border-box', colorScheme: 'dark',
  }
  const label: React.CSSProperties = {
@@ -597,14 +597,14 @@ function BookInner() {
  const cartLine = (open: boolean, done: boolean): React.CSSProperties => ({
  border: `1px solid ${open ? 'color-mix(in srgb, var(--text) 50%, transparent)' : done ? 'var(--text)' : 'var(--text)'}`,
  background: open ? 'color-mix(in srgb, var(--text) 6%, transparent)' : 'rgba(255,255,255,.03)',
- borderRadius: 0, padding: '12px 14px', marginBottom: '10px',
+ borderRadius: 'var(--radius-card)', padding: '12px 14px', marginBottom: '10px',
  })
  const pickBtn = (done: boolean): React.CSSProperties => ({
- padding: '8px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 500, fontFamily: 'inherit', cursor: 'pointer',
+ padding: '8px 14px', borderRadius: 'var(--radius-control)', fontSize: '14px', fontWeight: 500, fontFamily: 'inherit', cursor: 'pointer',
  border: `1px solid ${done ? 'rgba(255,255,255,.15)' : 'color-mix(in srgb, var(--text) 50%, transparent)'}`,
  background: done ? 'transparent' : 'color-mix(in srgb, var(--text) 15%, transparent)', color: done ? s.sub : 'var(--accent)', whiteSpace: 'nowrap',
  })
- const warnBox: React.CSSProperties = { marginTop: '8px', padding: '10px 12px', borderRadius: 0, background: 'transparent', border: '1px solid var(--line)', fontSize: '14px', color: 'var(--text)', lineHeight: 1.5 }
+ const warnBox: React.CSSProperties = { marginTop: '8px', padding: '10px 12px', borderRadius: 'var(--radius-card)', background: 'transparent', border: '1px solid var(--line)', fontSize: '14px', color: 'var(--text)', lineHeight: 1.5 }
  const fmtDay = (d: string) => new Date(d + 'T12:00:00').toLocaleDateString('en-GB', { weekday: 'short', day: '2-digit', month: 'short' })
 
  /** Produkt-Dropdown — oben, oder in der Produktzeile, sobald der Scuba Skills Update die erste Zeile belegt */
@@ -649,7 +649,7 @@ function BookInner() {
  <div style={{ maxWidth: '620px', margin: '0 auto', padding: '48px 20px 80px' }}>
 
  {sandboxUi && (
- <div style={{ marginBottom: '20px', padding: '12px 16px', borderRadius: 0, background: 'transparent', border: '1px solid var(--line)', color: 'var(--text)', fontSize: '14px', lineHeight: 1.5 }}>
+ <div style={{ marginBottom: '20px', padding: '12px 16px', borderRadius: 'var(--radius-card)', background: 'transparent', border: '1px solid var(--line)', color: 'var(--text)', fontSize: '14px', lineHeight: 1.5 }}>
  <strong> SANDBOX</strong> — staff test booking. Pays with the Stripe test card <code>4242 4242 4242 4242</code> (any future expiry, any CVC). No real money, the booking is flagged as test data and never invoiced.
  </div>
  )}
@@ -665,7 +665,7 @@ function BookInner() {
 
  {showRequestModal && (
  <div role="dialog" aria-modal="true" style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'color-mix(in srgb, var(--bg) 78%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
- <div style={{ maxWidth: '560px', width: '100%', maxHeight: 'calc(100vh - 40px)', overflowY: 'auto', background: 'var(--surface)', border: '1px solid var(--line)', borderRadius: 0, padding: '26px 24px', boxShadow: 'none' }}>
+ <div style={{ maxWidth: '560px', width: '100%', maxHeight: 'calc(100vh - 40px)', overflowY: 'auto', background: 'var(--surface)', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '26px 24px', boxShadow: 'none' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '8px' }}>{capacityRequest && windowDecision.mode !== 'request' ? 'Popular day · booking on request' : productRequest ? `${product?.name} · on request` : `Low season${requestSpan ? ` (${requestSpan})` : ''} · booking on request`}</div>
  <div style={{ fontSize: '20px', fontWeight: 500, color: s.text, marginBottom: '12px', lineHeight: 1.25 }}>{capacityRequest && windowDecision.mode !== 'request' ? 'This day is currently fully booked — you can send it as a request.' : productRequest ? `${product?.name} runs on request — your date is a request, not a confirmed booking.` : 'Your dates are a request — we build dive days around the requests we get.'}</div>
  <p style={{ color: s.sub, fontSize: '14.5px', lineHeight: 1.7, margin: '0 0 10px' }}>
@@ -687,7 +687,7 @@ function BookInner() {
  </ul>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '10px' }}>Who is diving?</div>
  <div style={{ marginBottom: '18px' }}>{requestFields(true)}</div>
- <button type="button" disabled={!mainNameReady || !otherNamesReady} onClick={ackRequest} style={{ width: '100%', padding: '14px', borderRadius: 0, border: 'none', background: mainNameReady && otherNamesReady ? s.accent : 'rgba(255,255,255,.08)', color: mainNameReady && otherNamesReady ? 'var(--bg)' : s.muted, fontSize: '15px', fontWeight: 500, fontFamily: s.font, cursor: mainNameReady && otherNamesReady ? 'pointer' : 'default' }}>
+ <button type="button" disabled={!mainNameReady || !otherNamesReady} onClick={ackRequest} style={{ width: '100%', padding: '14px', borderRadius: 'var(--radius-control)', border: 'none', background: mainNameReady && otherNamesReady ? s.accent : 'rgba(255,255,255,.08)', color: mainNameReady && otherNamesReady ? 'var(--bg)' : s.muted, fontSize: '15px', fontWeight: 500, fontFamily: s.font, cursor: mainNameReady && otherNamesReady ? 'pointer' : 'default' }}>
  {mainNameReady && otherNamesReady ? 'Continue as a request' : guests > 1 && mainNameReady ? 'Enter the names of all guests' : 'Enter your name to continue'}
  </button>
  <button type="button" onClick={() => { setPicked([]); setCourseStart(null); if (productRequest) { setProductId('daily-double-dive'); setRequestAck(false) } }} style={{ width: '100%', marginTop: '8px', background: 'none', border: 'none', color: s.muted, fontSize: '14px', fontFamily: s.font, cursor: 'pointer', textDecoration: 'underline' }}>
@@ -698,15 +698,14 @@ function BookInner() {
  )}
 
  {requestDone ? (
- <div style={{ background: 'var(--glass)', border: '1px solid var(--line)', borderRadius: 0, padding: '30px 26px', textAlign: 'center' }}>
- <div style={{ fontSize: '40px', marginBottom: '10px' }}></div>
+ <div style={{ background: 'var(--glass)', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '30px 26px', textAlign: 'center' }}>
  <div style={{ fontSize: '20px', fontWeight: 500, color: 'var(--text)', marginBottom: '10px' }}>Request received</div>
  <p style={{ color: s.sub, fontSize: '14.5px', lineHeight: 1.7, margin: '0 0 14px' }}>
  No payment has been taken. Your dates are noted as a preference. We organise dive days once enough divers have requested the same week and conditions allow, and get back to you at <strong style={{ color: s.text }}>{email.trim()}</strong> — with a payment link for your date or a nearby one, or with alternatives. A spot is only held once you pay.
  </p>
- <div style={{ display: 'inline-block', padding: '6px 14px', borderRadius: 0, background: 'rgba(255,255,255,.06)', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', fontSize: '14px', color: s.text, marginBottom: '14px' }}>Reference {requestDone.reference}</div>
+ <div style={{ display: 'inline-block', padding: '6px 14px', borderRadius: 'var(--radius-card)', background: 'rgba(255,255,255,.06)', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', fontSize: '14px', color: s.text, marginBottom: '14px' }}>Reference {requestDone.reference}</div>
  {requestDone.mailError && (
- <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '10px 12px', fontSize: '14px', color: 'var(--text)', lineHeight: 1.5 }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '10px 12px', fontSize: '14px', color: 'var(--text)', lineHeight: 1.5 }}>
  Your request is saved, but the confirmation email could not be sent ({requestDone.mailError}). Keep the reference above — the team will still get back to you.
  </div>
  )}
@@ -715,10 +714,10 @@ function BookInner() {
  </p>
  </div>
  ) : (
- <div style={{ background: 'var(--glass)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 0, padding: '26px' }}>
+ <div style={{ background: 'var(--glass)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 'var(--radius-card)', padding: '26px' }}>
 
  {(requestMode || todayRequest) && (
- <div style={{ marginBottom: '20px', padding: '12px 16px', borderRadius: 0, background: 'transparent', border: '1px solid var(--line)', color: 'var(--text)', fontSize: '14px', lineHeight: 1.55 }}>
+ <div style={{ marginBottom: '20px', padding: '12px 16px', borderRadius: 'var(--radius-control)', background: 'transparent', border: '1px solid var(--line)', color: 'var(--text)', fontSize: '14px', lineHeight: 1.55 }}>
  {productRequest ? (
  <>
  <strong>{product?.name} runs on request — your dates are a request, not a confirmed booking.</strong>{' '}
@@ -823,7 +822,7 @@ function BookInner() {
  const old = !isSsuProduct && Boolean(d) && needsRefresher(d, refresherRef)
  const open = openLastDive === i
  return (
- <div key={i} style={{ border: `1px solid ${open ? 'color-mix(in srgb, var(--text) 50%, transparent)' : !d ? 'var(--text)' : old ? 'var(--text)' : 'rgba(255,255,255,.12)'}`, borderRadius: 0, padding: '10px 12px', background: open ? 'color-mix(in srgb, var(--text) 6%, transparent)' : 'rgba(255,255,255,.02)' }}>
+ <div key={i} style={{ border: `1px solid ${open ? 'color-mix(in srgb, var(--text) 50%, transparent)' : !d ? 'var(--text)' : old ? 'var(--text)' : 'rgba(255,255,255,.12)'}`, borderRadius: 'var(--radius-card)', padding: '10px 12px', background: open ? 'color-mix(in srgb, var(--text) 6%, transparent)' : 'rgba(255,255,255,.02)' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
  {guests > 1 && <span style={{ fontSize: '14px', color: s.muted, minWidth: '58px', flexShrink: 0 }}>Diver {i + 1}</span>}
  <span style={{ flex: 1, fontSize: '14px', color: d ? s.text : s.muted, fontWeight: d ? 500 : 400 }}>
@@ -873,7 +872,7 @@ function BookInner() {
  onClick={() => setFavouriteSpot(prev => prev === slug ? '' : slug)}
  style={{
  padding: '7px 14px',
- borderRadius: 0,
+ borderRadius: 'var(--radius-control)',
  border: favouriteSpot === slug
  ? `2px solid ${s.accent}`
  : '2px solid color-mix(in srgb, var(--text) 25%, transparent)',
@@ -905,7 +904,7 @@ function BookInner() {
  {splitForced && !cardsClear && (() => {
  const who = lastDiveList.map((d, i) => (d && needsRefresher(d, refresherRef) ? i + 1 : 0)).filter(Boolean)
  return (
- <div style={{ fontSize: '14px', color: s.sub, lineHeight: 1.55, marginBottom: '12px', padding: '10px 12px', borderRadius: 0, background: 'color-mix(in srgb, var(--text) 7%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 28%, transparent)' }}>
+ <div style={{ fontSize: '14px', color: s.sub, lineHeight: 1.55, marginBottom: '12px', padding: '10px 12px', borderRadius: 'var(--radius-card)', background: 'color-mix(in srgb, var(--text) 7%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 28%, transparent)' }}>
  <b style={{ color: s.text }}>Why each guest has their own booking:</b> {who.length > 0 ? `guest ${who.join(' and ')} ${who.length === 1 ? 'needs' : 'need'}` : 'a guest needs'} a Scuba Skills Update (last dive over 12 months ago), and that comes before the first dive. So nobody else has to wait, everyone picks their own dates — you still pay once.
  </div>
  )
@@ -928,7 +927,7 @@ function BookInner() {
  />
  {positions[positions.findLastIndex(x => x.person === ps.person)].key === ps.key && positions.length < 20 && (
  <button type="button" data-addproduct onClick={() => { setExtras(prev => [...prev, { id: extraSeq, person: ps.person }]); setExtraSeq(n => n + 1) }}
- style={{ scrollMarginTop: '88px', display: 'block', width: '100%', margin: '-4px 0 14px', padding: '10px', borderRadius: 0, border: '1px dashed color-mix(in srgb, var(--text) 45%, transparent)', background: 'transparent', color: s.accent, fontSize: '14px', fontWeight: 500, fontFamily: 'inherit', cursor: 'pointer' }}>
+ style={{ scrollMarginTop: '88px', display: 'block', width: '100%', margin: '-4px 0 14px', padding: '10px', borderRadius: 'var(--radius-control)', border: '1px dashed color-mix(in srgb, var(--text) 45%, transparent)', background: 'transparent', color: s.accent, fontSize: '14px', fontWeight: 500, fontFamily: 'inherit', cursor: 'pointer' }}>
  + Add another product for guest {ps.person}
  </button>
  )}
@@ -937,7 +936,7 @@ function BookInner() {
  </div>
  ) : requestOnly && refresherCount === 0 ? (
  <div style={{
- marginBottom: '22px', padding: '20px 22px', borderRadius: 0,
+ marginBottom: '22px', padding: '20px 22px', borderRadius: 'var(--radius-card)',
  background: 'color-mix(in srgb, var(--text) 7%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 28%, transparent)',
  }}>
  <div style={{ fontSize: '15px', fontWeight: 500, color: s.text, marginBottom: '8px' }}>
@@ -951,7 +950,7 @@ function BookInner() {
  : 'This one depends on weather, sea state and a minimum group size, so we confirm dates with you personally rather than selling a fixed slot. Tell us roughly when you are on the island and we will come back with what is possible.'}
  </div>
  <a href="/contact" style={{
- display: 'inline-block', padding: '12px 26px', borderRadius: 0,
+ display: 'inline-block', padding: '12px 26px', borderRadius: 'var(--radius-control)',
  background: s.accent, color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px',
  textDecoration: 'none',
  }}>Send an enquiry</a>
@@ -999,7 +998,7 @@ function BookInner() {
  onChange={d => setRefresherDate(d ?? '')}
  />
  <button type="button" onClick={e => closePicker(e, () => setOpenPicker(null))}
- style={{ width: '100%', marginTop: '12px', padding: '12px', borderRadius: 0, border: 'none', background: refresherDate ? s.accent : 'rgba(255,255,255,.08)', color: refresherDate ? 'var(--bg)' : s.muted, fontWeight: 500, fontSize: '14px', fontFamily: 'inherit', cursor: 'pointer' }}>
+ style={{ width: '100%', marginTop: '12px', padding: '12px', borderRadius: 'var(--radius-control)', border: 'none', background: refresherDate ? s.accent : 'rgba(255,255,255,.08)', color: refresherDate ? 'var(--bg)' : s.muted, fontWeight: 500, fontSize: '14px', fontFamily: 'inherit', cursor: 'pointer' }}>
  {refresherDate ? 'Confirm' : 'Pick a date'}
  </button>
  </div>
@@ -1093,7 +1092,7 @@ function BookInner() {
  />
  )}
  <button type="button" onClick={e => closePicker(e, () => setOpenPicker(null))}
- style={{ width: '100%', marginTop: '12px', padding: '12px', borderRadius: 0, border: 'none', background: picked.length === required ? s.accent : 'rgba(255,255,255,.08)', color: picked.length === required ? 'var(--bg)' : s.muted, fontWeight: 500, fontSize: '14px', fontFamily: 'inherit', cursor: 'pointer' }}>
+ style={{ width: '100%', marginTop: '12px', padding: '12px', borderRadius: 'var(--radius-control)', border: 'none', background: picked.length === required ? s.accent : 'rgba(255,255,255,.08)', color: picked.length === required ? 'var(--bg)' : s.muted, fontWeight: 500, fontSize: '14px', fontFamily: 'inherit', cursor: 'pointer' }}>
  {picked.length === required ? (lastDayMissing ? 'Confirm — then pick your last day above' : 'Confirm') : isCourse ? 'Pick a start date' : `Pick ${required - picked.length} more day${required - picked.length === 1 ? '' : 's'}`}
  </button>
  </div>
@@ -1112,7 +1111,7 @@ function BookInner() {
  <div data-step style={{ marginBottom: '22px', scrollMarginTop: '88px' }}>
  <div style={label}>Equipment</div>
  {equipmentIncluded ? (
- <div style={{ border: '1px solid var(--line)', borderRadius: 0, padding: '12px 16px', background: 'transparent', fontSize: '14px', color: 'var(--text)', fontWeight: 500, marginBottom: '10px' }}>
+ <div style={{ border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '12px 16px', background: 'transparent', fontSize: '14px', color: 'var(--text)', fontWeight: 500, marginBottom: '10px' }}>
  Full equipment is included in {product?.name ?? 'this course'}.
  </div>
  ) : (
@@ -1139,7 +1138,7 @@ function BookInner() {
  const fullOn = Boolean(!equipmentIncluded && fullEquipAddon && selectedAddonIds.has(fullEquipAddon.id))
  if (singlesMain.length === 0 || fullOn) return null
  return (
- <details open={singlesMain.some(a => selectedAddonIds.has(a.id))} style={{ border: '1px solid rgba(255,255,255,.1)', borderRadius: 0, padding: '2px 12px' }}>
+ <details open={singlesMain.some(a => selectedAddonIds.has(a.id))} style={{ border: '1px solid rgba(255,255,255,.1)', borderRadius: 'var(--radius-card)', padding: '2px 12px' }}>
  <summary style={{ fontSize: '14px', color: s.accent, cursor: 'pointer', padding: '10px 0' }}>Rent single pieces instead</summary>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', paddingBottom: '10px' }}>
  {singlesMain.map(addon => {
@@ -1159,7 +1158,7 @@ function BookInner() {
 
  {/* Einsteigerkurse (entry): keine Extras — Torch/15L/Gloves ergeben für Schüler keinen Sinn (Lucas 24.10.) */}
  {!isEntryCourse && (torchAddon || tankAddon || glovesAddon) && (
- <div style={{ border: '1px solid var(--line)', borderRadius: 0, padding: '12px 14px', marginBottom: '10px', background: 'transparent' }}>
+ <div style={{ border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '12px 14px', marginBottom: '10px', background: 'transparent' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '8px' }}>Popular extras</div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
  {torchAddon && (
@@ -1167,7 +1166,7 @@ function BookInner() {
  <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', textAlign: 'left' }}>
  <span style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
  <span> Torch</span>
- {isNightDive && <span style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', padding: '2px 7px', borderRadius: 0, background: 'color-mix(in srgb, var(--text) 20%, transparent)', color: s.accent, border: '1px solid color-mix(in srgb, var(--text) 40%, transparent)' }}>Recommended for night dives</span>}
+ {isNightDive && <span style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', padding: '2px 7px', borderRadius: 'var(--radius-control)', background: 'color-mix(in srgb, var(--text) 20%, transparent)', color: s.accent, border: '1px solid color-mix(in srgb, var(--text) 40%, transparent)' }}>Recommended for night dives</span>}
  </span>
  <span style={{ fontSize: '14px', color: s.muted, fontWeight: 400 }}>See what others miss in cracks and caves</span>
  </div>
@@ -1201,16 +1200,16 @@ function BookInner() {
 
  {/* Versicherung gleich unter Produkt/Equipment — die Entscheidung gehört zum Tauchprodukt, nicht hinter die Summe */}
  {splitActive || requestOnly ? null : programProduct ? (
- <div style={{ border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', borderRadius: 0, padding: '12px 16px', marginBottom: '18px', background: 'color-mix(in srgb, var(--text) 6%, transparent)', fontSize: '14px', color: s.sub, lineHeight: 1.55 }}>
+ <div style={{ border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', borderRadius: 'var(--radius-card)', padding: '12px 16px', marginBottom: '18px', background: 'color-mix(in srgb, var(--text) 6%, transparent)', fontSize: '14px', color: s.sub, lineHeight: 1.55 }}>
  Dive insurance for {product?.name ?? 'the programme'} is arranged with you when we plan it — nothing to choose now.
  </div>
  ) : insuranceIncluded ? (
- <div style={{ border: '1px solid var(--line)', borderRadius: 0, padding: '12px 16px', marginBottom: '18px', background: 'transparent', fontSize: '14px', color: 'var(--text)', fontWeight: 500 }}>
+ <div style={{ border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '12px 16px', marginBottom: '18px', background: 'transparent', fontSize: '14px', color: 'var(--text)', fontWeight: 500 }}>
  Dive insurance is included in {product?.name ?? 'this course'} — nothing to add.
  </div>
  ) : (
  /* Versicherung — 2 Optionen: eigene Police oder wir wählen automatisch. */
- <div data-step style={{ scrollMarginTop: '88px', border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', borderRadius: 0, padding: '14px 16px', marginBottom: '16px', background: 'color-mix(in srgb, var(--text) 6%, transparent)' }}>
+ <div data-step style={{ scrollMarginTop: '88px', border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', borderRadius: 'var(--radius-card)', padding: '14px 16px', marginBottom: '16px', background: 'color-mix(in srgb, var(--text) 6%, transparent)' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.accent, marginBottom: '6px' }}>
  Dive Insurance
  </div>
@@ -1252,14 +1251,14 @@ function BookInner() {
  {/* Pro-Programme (Divemaster/Dive Guide) bleiben eine eigene Anfrage — kein Kombinieren mit weiteren Produkten */}
  {guests === 1 && !splitActive && !requestOnly && !programProduct && (
  <button type="button" onClick={() => { setSplit(true); setOpenPicker(null); setExtras([{ id: extraSeq, person: 1 }]); setExtraSeq(n => n + 1) }}
- style={{ display: 'block', width: '100%', margin: '0 0 20px', padding: '11px', borderRadius: 0, border: '1px dashed color-mix(in srgb, var(--text) 45%, transparent)', background: 'transparent', color: s.accent, fontSize: '14px', fontWeight: 500, fontFamily: 'inherit', cursor: 'pointer' }}>
+ style={{ display: 'block', width: '100%', margin: '0 0 20px', padding: '11px', borderRadius: 'var(--radius-control)', border: '1px dashed color-mix(in srgb, var(--text) 45%, transparent)', background: 'transparent', color: s.accent, fontSize: '14px', fontWeight: 500, fontFamily: 'inherit', cursor: 'pointer' }}>
  + Add product <span style={{ fontWeight: 400, color: s.muted }}>{refresherCount > 0 ? '— e.g. a dive pack after your Skills Update' : '— e.g. an extra course or dive pack'}</span>
  </button>
  )}
 
  {(!requestOnly || splitActive) && (
  <>
- <div style={{ background: 'rgba(0,0,0,.3)', borderRadius: 0, padding: '16px 18px', marginBottom: '20px' }}>
+ <div style={{ background: 'rgba(0,0,0,.3)', borderRadius: 'var(--radius-control)', padding: '16px 18px', marginBottom: '20px' }}>
  {splitActive ? splitList.map((g, i) => (
  <div key={i} style={{ marginBottom: '10px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.accent, marginBottom: '4px' }}>{posLabel(i)}</div>
@@ -1312,7 +1311,7 @@ function BookInner() {
  </div>
  {/* 50 %-Deposit (Lucas 30.10.): ab 350 € Warenkorb, Versicherung immer voll. Server prüft verbindlich. */}
  {depositAvailable && (
- <div style={{ marginTop: '12px', padding: '12px 14px', borderRadius: 0, border: `1px solid ${payingDeposit ? 'color-mix(in srgb, var(--text) 40%, transparent)' : 'rgba(255,255,255,.12)'}`, background: payingDeposit ? 'color-mix(in srgb, var(--text) 6%, transparent)' : 'rgba(255,255,255,.02)' }}>
+ <div style={{ marginTop: '12px', padding: '12px 14px', borderRadius: 'var(--radius-control)', border: `1px solid ${payingDeposit ? 'color-mix(in srgb, var(--text) 40%, transparent)' : 'rgba(255,255,255,.12)'}`, background: payingDeposit ? 'color-mix(in srgb, var(--text) 6%, transparent)' : 'rgba(255,255,255,.02)' }}>
  <label style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', cursor: 'pointer', fontSize: '14px', fontWeight: 500, color: s.text }}>
  <input type="checkbox" checked={depositWanted} onChange={e => setDepositWanted(e.target.checked)} style={{ accentColor: s.accent, width: '16px', height: '16px', marginTop: '2px', flexShrink: 0 }} />
  <span>{requestMode ? 'Request a 50% deposit, the rest on arrival' : 'Pay a 50% deposit now, the rest on arrival'}</span>
@@ -1331,7 +1330,7 @@ function BookInner() {
 
  </div>
 
- <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '14px 16px', marginBottom: '20px', fontSize: '14px', color: 'var(--text)', lineHeight: 1.6 }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '14px 16px', marginBottom: '20px', fontSize: '14px', color: 'var(--text)', lineHeight: 1.6 }}>
  <b style={{ display: 'block', marginBottom: '6px', color: 'var(--text)' }}>After payment</b>
  {(splitActive ? splitList.some(g => g && prices.find(x => x.id === g.product_id)?.category === 'entry') && splitList.every(g => !g || prices.find(x => x.id === g.product_id)?.category === 'entry') : isEntryCourse) ? (
  <>You go straight to the online check-in: a short medical form, your sizes and the e-signed
@@ -1344,7 +1343,7 @@ function BookInner() {
 
 
  {/* Der Vertrag entsteht hier, nicht beim Check-in. */}
- <div style={{ border: '1px solid var(--line)', borderRadius: 0, padding: '14px 16px', marginBottom: '16px', background: 'transparent' }}>
+ <div style={{ border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '14px 16px', marginBottom: '16px', background: 'transparent' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '10px' }}>
  Cancellation Policy
  </div>
@@ -1385,7 +1384,7 @@ function BookInner() {
  </label>
 
  {error && (
- <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '12px 14px', marginBottom: '16px', fontSize: '14px', color: 'var(--text)' }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '12px 14px', marginBottom: '16px', fontSize: '14px', color: 'var(--text)' }}>
  {error.split(/(send us an inquiry|please get in touch)/).map((part, i) =>
  /^(send us an inquiry|please get in touch)$/.test(part)
  ? <a key={i} href="/contact" style={{ color: 'var(--text)', textDecoration: 'underline', fontWeight: 500 }}>{part}</a>
@@ -1394,7 +1393,7 @@ function BookInner() {
  )}
 
  <button type="button" onClick={startCheckout} disabled={!canBook} style={{
- width: '100%', padding: '15px', borderRadius: 0, border: 'none',
+ width: '100%', padding: '15px', borderRadius: 'var(--radius-control)', border: 'none',
  fontSize: '16px', fontWeight: 500, fontFamily: s.font,
  cursor: canBook ? 'pointer' : 'default',
  background: canBook ? s.accent : 'rgba(255,255,255,.08)',
@@ -1426,7 +1425,7 @@ export default function BookPage() {
 function insuranceOpt(active: boolean): React.CSSProperties {
  return {
  display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px',
- width: '100%', textAlign: 'left', padding: '11px 13px', borderRadius: 0,
+ width: '100%', textAlign: 'left', padding: '11px 13px', borderRadius: 'var(--radius-control)',
  border: `1px solid ${active ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.1)'}`,
  background: active ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'transparent',
  color: active ? 'var(--text)' : 'var(--accent)',
@@ -1438,7 +1437,7 @@ function insuranceOpt(active: boolean): React.CSSProperties {
 function addonOpt(active: boolean): React.CSSProperties {
  return {
  display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px',
- width: '100%', textAlign: 'left', padding: '11px 13px', borderRadius: 0,
+ width: '100%', textAlign: 'left', padding: '11px 13px', borderRadius: 'var(--radius-control)',
  border: `1px solid ${active ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.1)'}`,
  background: active ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'transparent',
  color: active ? 'var(--text)' : 'var(--accent)',
@@ -1449,7 +1448,7 @@ function addonOpt(active: boolean): React.CSSProperties {
 
 function stepBtn(enabled: boolean): React.CSSProperties {
  return {
- width: '44px', height: '46px', borderRadius: 0,
+ width: '44px', height: '46px', borderRadius: 'var(--radius-control)',
  cursor: enabled ? 'pointer' : 'default', fontSize: '20px',
  background: enabled ? 'rgba(255,255,255,.05)' : 'rgba(255,255,255,.02)',
  color: enabled ? 'var(--text)' : 'rgba(255,255,255,.2)',
