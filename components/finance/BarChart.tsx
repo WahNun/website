@@ -37,7 +37,7 @@ export default function BarChart({ series, height = 88, empty, hint, legend, ton
  <div style={{ position: 'relative', marginBottom: '14px' }} onMouseLeave={() => setHover(null)}>
  <div style={{ position: 'relative', display: 'flex', alignItems: 'flex-end', gap: n > 62 ? '1px' : '3px', height: `${height + (labels ? 22 : 4)}px` }}>
  {at && (
- <div role="status" style={{ position: 'absolute', bottom: `${top + (labels ? 18 : 0) + 8}px`, left: `${cx}px`, transform: 'translateX(-50%)', zIndex: 20, minWidth: '178px', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', borderRadius: 0, padding: '9px 12px', boxShadow: 'none', pointerEvents: 'none' }}>
+ <div role="status" style={{ position: 'absolute', bottom: `${top + (labels ? 18 : 0) + 8}px`, left: `${cx}px`, transform: 'translateX(-50%)', zIndex: 20, minWidth: '178px', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', borderRadius: 'var(--radius-card)', padding: '9px 12px', boxShadow: 'none', pointerEvents: 'none' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text, marginBottom: '6px', whiteSpace: 'nowrap' }}>{at.label}</div>
  {at.tip.map(([l, v]) => (
  <div key={l} style={{ display: 'flex', justifyContent: 'space-between', gap: '18px', fontSize: '14px', lineHeight: '19px', whiteSpace: 'nowrap' }}>
@@ -69,8 +69,8 @@ export default function BarChart({ series, height = 88, empty, hint, legend, ton
  </div>
  {pair && legend && (
  <div style={{ display: 'flex', gap: '16px', fontSize: '14px', color: s.muted, marginTop: '8px' }}>
- <span><span style={{ display: 'inline-block', width: '10px', height: '10px', borderRadius: 0, background: PREV, marginRight: '6px' }} />{legend[0]}</span>
- <span><span style={{ display: 'inline-block', width: '10px', height: '10px', borderRadius: 0, background: col.full, marginRight: '6px' }} />{legend[1]}</span>
+ <span><span style={{ display: 'inline-block', width: '10px', height: '10px', borderRadius: 'var(--radius-control)', background: PREV, marginRight: '6px' }} />{legend[0]}</span>
+ <span><span style={{ display: 'inline-block', width: '10px', height: '10px', borderRadius: 'var(--radius-control)', background: col.full, marginRight: '6px' }} />{legend[1]}</span>
  </div>
  )}
  {hint && <div style={{ fontSize: '14px', color: s.muted, marginTop: '8px' }}>{hint}</div>}

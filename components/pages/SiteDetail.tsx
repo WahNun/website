@@ -27,7 +27,7 @@ export function PageSiteDetail({ slug, lang, nav: _nav }: { slug: string; lang: 
  const fd = FISH_DB[fishPopup]
  return (
  <div onClick={() => setFishPopup(null)} role="button" tabIndex={0} onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && setFishPopup(null)} aria-label="Close dialog" style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'rgba(0,0,0,.72)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
- <div onClick={e => e.stopPropagation()} style={{ background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 0, maxWidth: '360px', width: '100%', overflow: 'hidden', boxShadow: 'none' }}>
+ <div onClick={e => e.stopPropagation()} style={{ background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 'var(--radius-card)', maxWidth: '360px', width: '100%', overflow: 'hidden', boxShadow: 'none' }}>
  {fd?.img && <img
  src={fd.img}
  alt={fishPopup}
@@ -46,7 +46,7 @@ export function PageSiteDetail({ slug, lang, nav: _nav }: { slug: string; lang: 
  ) : (
  <p style={{ fontSize: '14px', color: 'var(--text)', margin: 0 }}>{t('sites_fish_no_details')}</p>
  )}
- <button onClick={() => setFishPopup(null)} style={{ marginTop: '20px', width: '100%', padding: '10px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', background: 'color-mix(in srgb, var(--text) 7%, transparent)', color: 'var(--muted)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>{t('sites_fish_close')}</button>
+ <button onClick={() => setFishPopup(null)} style={{ marginTop: '20px', width: '100%', padding: '10px', borderRadius: 'var(--radius-control)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', background: 'color-mix(in srgb, var(--text) 7%, transparent)', color: 'var(--muted)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>{t('sites_fish_close')}</button>
  </div>
  </div>
  </div>
@@ -85,11 +85,11 @@ export function PageSiteDetail({ slug, lang, nav: _nav }: { slug: string; lang: 
  )}
 
  <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '24px' }}>
- <span style={{ fontSize: '14px', fontWeight: 500, color: s.accent, background: 'color-mix(in srgb, var(--text) 10%, transparent)', padding: '4px 12px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)' }}>{spot.depth}</span>
- <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--muted)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', padding: '4px 12px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)' }}>{spot.type}</span>
- <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: 'transparent', padding: '4px 12px', borderRadius: 0, border: '1px solid var(--line)' }}>{spot.level} {t('sites_level_req')}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: s.accent, background: 'color-mix(in srgb, var(--text) 10%, transparent)', padding: '4px 12px', borderRadius: 'var(--radius-control)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)' }}>{spot.depth}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--muted)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', padding: '4px 12px', borderRadius: 'var(--radius-control)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)' }}>{spot.type}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: 'transparent', padding: '4px 12px', borderRadius: 'var(--radius-control)', border: '1px solid var(--line)' }}>{spot.level} {t('sites_level_req')}</span>
  {(spot as any).beginner && (
- <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: 'transparent', padding: '4px 12px', borderRadius: 0, border: '1px solid var(--line)' }}>{t('sites_beginner_friendly')}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: 'transparent', padding: '4px 12px', borderRadius: 'var(--radius-control)', border: '1px solid var(--line)' }}>{t('sites_beginner_friendly')}</span>
  )}
  <span style={{ fontSize: '14px', color: s.muted, padding: '4px 12px' }}> {(spot.loc as any)[lang]}</span>
  </div>
@@ -103,7 +103,7 @@ export function PageSiteDetail({ slug, lang, nav: _nav }: { slug: string; lang: 
  { label: t('sites_water_temp'), value: (spot as any).tempRange ?? '—' },
  { label: t('sites_visibility'), value: '7–30 m *' },
  ].map(({ label, value }) => (
- <div key={label} style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, padding: isMobile ? '12px 8px' : '14px 12px', textAlign: 'center' }}>
+ <div key={label} style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 'var(--radius-card)', padding: isMobile ? '12px 8px' : '14px 12px', textAlign: 'center' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '8px' }}>{label}</div>
  <div style={{ fontSize: isMobile ? '15px' : '17px', fontWeight: 500, color: s.text }}>{value}</div>
  </div>
@@ -114,21 +114,21 @@ export function PageSiteDetail({ slug, lang, nav: _nav }: { slug: string; lang: 
  </p>
  <p style={{ color: 'var(--text)', fontSize: '16.5px', lineHeight: 1.75, maxWidth: '680px', marginBottom: '32px' }}>{(spot.long as any)[lang]}</p>
 
- <div style={{ background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 0, padding: '22px 26px', maxWidth: '480px', marginBottom: '32px' }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 'var(--radius-card)', padding: '22px 26px', maxWidth: '480px', marginBottom: '32px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '14px' }}>{t('sites_species')}</div>
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
  {spot.fish.map(f => {
  const fishKey = typeof f === 'string' ? f : (f as any).EN
  const fishLabel = typeof f === 'string' ? f : (f as any)[lang]
  return (
- <button key={fishKey} onClick={() => setFishPopup(fishKey)} style={{ fontSize: '14px', color: 'var(--muted)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', padding: '5px 12px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', cursor: 'pointer', fontFamily: s.font }}>{fishLabel}</button>
+ <button key={fishKey} onClick={() => setFishPopup(fishKey)} style={{ fontSize: '14px', color: 'var(--muted)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', padding: '5px 12px', borderRadius: 'var(--radius-control)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', cursor: 'pointer', fontFamily: s.font }}>{fishLabel}</button>
  )
  })}
  </div>
  </div>
 
  {(spot as any).review && (
- <div style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, padding: '22px 26px', maxWidth: '620px', marginBottom: '32px' }}>
+ <div style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 'var(--radius-card)', padding: '22px 26px', maxWidth: '620px', marginBottom: '32px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '12px' }}>{(spot as any).review.source}</div>
  <p style={{ fontSize: '15px', color: 'var(--text)', lineHeight: 1.7, fontStyle: 'italic', margin: '0 0 12px' }}>&ldquo;{typeof (spot as any).review.quote === 'string' ? (spot as any).review.quote : (spot as any).review.quote[lang]}&rdquo;</p>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.muted }}>— {(spot as any).review.author}</div>
@@ -155,8 +155,8 @@ export function PageSiteDetail({ slug, lang, nav: _nav }: { slug: string; lang: 
  <div style={isMobile ? { display: 'flex', gap: '8px', overflowX: 'auto', margin: '24px 0 0', paddingBottom: '4px' } : { display: 'flex', flexDirection: 'column', gap: '10px', position: 'sticky', top: '20px' }}>
  {(spot as any).images.map((src: string, i: number) => (
  <div key={i} style={isMobile
- ? { flex: '0 0 72vw', height: '180px', borderRadius: 0, overflow: 'hidden', border: '1px solid rgba(255,255,255,.08)' }
- : { borderRadius: 0, overflow: 'hidden', border: '1px solid rgba(255,255,255,.08)', aspectRatio: '4/3' }}>
+ ? { flex: '0 0 72vw', height: '180px', borderRadius: 'var(--radius-card)', overflow: 'hidden', border: '1px solid rgba(255,255,255,.08)' }
+ : { borderRadius: 'var(--radius-card)', overflow: 'hidden', border: '1px solid rgba(255,255,255,.08)', aspectRatio: '4/3' }}>
  <img src={src} alt={(spot as any).imagesAlt?.[i] ?? `${spot.name} ${i + 2}`} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
  </div>
  ))}

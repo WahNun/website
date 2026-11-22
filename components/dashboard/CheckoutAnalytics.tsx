@@ -29,12 +29,12 @@ const pct = (a: number, b: number) => b > 0 ? `${((a / b) * 100).toFixed(1)}%` :
 const fmtMs = (ms: number | null) => ms == null ? '–' : ms < 60_000 ? `${(ms / 1000).toFixed(1)}s` : `${Math.floor(ms / 60_000)}m ${Math.round((ms % 60_000) / 1000)}s`
 const fmtTs = (iso: string) => new Date(iso).toLocaleString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })
 
-const card: React.CSSProperties = { background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, padding: '16px', marginBottom: '16px', minWidth: 0, overflowX: 'auto' }
+const card: React.CSSProperties = { background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 'var(--radius-card)', padding: '16px', marginBottom: '16px', minWidth: 0, overflowX: 'auto' }
 const h: React.CSSProperties = { fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, margin: '0 0 12px' }
 const th: React.CSSProperties = { textAlign: 'left', fontSize: '14px', color: s.muted, fontWeight: 500, padding: '6px 8px', borderBottom: '1px solid rgba(255,255,255,.08)', whiteSpace: 'nowrap' }
 const td: React.CSSProperties = { fontSize: '14px', color: s.text, padding: '6px 8px', borderBottom: '1px solid rgba(255,255,255,.04)', verticalAlign: 'top' }
-const sel: React.CSSProperties = { background: 'var(--surface)', color: 'var(--text)', border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', borderRadius: 0, padding: '7px 10px', fontSize: '14px', fontFamily: s.font }
-const btn = (active: boolean): React.CSSProperties => ({ padding: '6px 12px', borderRadius: 0, fontSize: '14px', fontWeight: 500, fontFamily: s.font, cursor: 'pointer', border: `1px solid ${active ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.12)'}`, background: active ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'transparent', color: active ? s.accent : s.sub })
+const sel: React.CSSProperties = { background: 'var(--surface)', color: 'var(--text)', border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', borderRadius: 'var(--radius-card)', padding: '7px 10px', fontSize: '14px', fontFamily: s.font }
+const btn = (active: boolean): React.CSSProperties => ({ padding: '6px 12px', borderRadius: 'var(--radius-control)', fontSize: '14px', fontWeight: 500, fontFamily: s.font, cursor: 'pointer', border: `1px solid ${active ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.12)'}`, background: active ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'transparent', color: active ? s.accent : s.sub })
 
 export default function CheckoutAnalytics() {
  const [days, setDays] = useState(30)
@@ -153,9 +153,9 @@ export default function CheckoutAnalytics() {
  const w = started > 0 ? Math.max(2, (f.sessions / started) * 100) : 0
  const active = selectedStep === f.step
  return (
- <div key={f.step} onClick={() => setSelectedStep(active ? null : f.step)} style={{ display: 'grid', gridTemplateColumns: '180px 1fr 170px', gap: '10px', alignItems: 'center', padding: '6px 8px', borderRadius: 0, cursor: 'pointer', background: active ? 'color-mix(in srgb, var(--text) 8%, transparent)' : 'transparent' }}>
+ <div key={f.step} onClick={() => setSelectedStep(active ? null : f.step)} style={{ display: 'grid', gridTemplateColumns: '180px 1fr 170px', gap: '10px', alignItems: 'center', padding: '6px 8px', borderRadius: 'var(--radius-control)', cursor: 'pointer', background: active ? 'color-mix(in srgb, var(--text) 8%, transparent)' : 'transparent' }}>
  <div style={{ fontSize: '14px', color: active ? s.accent : s.text, fontWeight: 500 }}>{f.step_index}. {f.label}</div>
- <div style={{ background: 'rgba(255,255,255,.05)', borderRadius: 0, height: '18px', overflow: 'hidden' }}>
+ <div style={{ background: 'rgba(255,255,255,.05)', borderRadius: 'var(--radius-card)', height: '18px', overflow: 'hidden' }}>
  <div style={{ width: `${w}%`, height: '100%', background: f.step === 'payment_succeeded' ? 'var(--text)' : s.accent, opacity: .85 }} />
  </div>
  <div style={{ fontSize: '14px', color: s.sub, textAlign: 'right' }}>

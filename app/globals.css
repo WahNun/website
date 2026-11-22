@@ -10,6 +10,9 @@
   --on-accent: #000000;
   --bg-raise: var(--surface);
   --bg-panel: #161618;
+  --radius-card: 18px;
+  --radius-inner: 12px;
+  --radius-control: 8px;
   --header: 4.25rem;
   --max: 72rem;
   --warn: var(--muted);

@@ -55,23 +55,41 @@
   font-weight: 500;
 }
 
+.dive-os-root [style*="var(--radius-card)"],
 .dive-os-root [style*="var(--glass)"],
 .dive-os-root [style*="1px solid var(--line)"] {
-  border-radius: 20px !important;
+  border-radius: var(--radius-card);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.dive-os-root [style*="var(--radius-card)"] [style*="var(--radius-card)"] {
+  border-radius: var(--radius-inner) !important;
+}
+
+.dive-os-root button[style*="var(--radius"],
+.dive-os-root input[style*="var(--radius"],
+.dive-os-root select[style*="var(--radius"],
+.dive-os-root textarea[style*="var(--radius"],
+.dive-os-root span[style*="var(--radius"],
+.dive-os-root a[style*="var(--radius"],
+.dive-os-root [style*="var(--radius-card)"] button[style*="var(--radius"],
+.dive-os-root [style*="var(--radius-card)"] input[style*="var(--radius"],
+.dive-os-root [style*="var(--radius-card)"] select[style*="var(--radius"],
+.dive-os-root [style*="var(--radius-card)"] textarea[style*="var(--radius"],
+.dive-os-root [style*="var(--radius-card)"] span[style*="var(--radius"],
+.dive-os-root [style*="var(--radius-card)"] a[style*="var(--radius"] {
+  border-radius: var(--radius-control) !important;
+  box-shadow: none;
+}
+
+.dive-os-root [data-edge="straight"] {
+  border-radius: 0 !important;
+  box-shadow: none;
 }
 
 .dive-os-root [style*="var(--glass)"] {
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
-}
-
-.dive-os-root button[style],
-.dive-os-root input[style],
-.dive-os-root select[style],
-.dive-os-root textarea[style],
-.dive-os-root a[style*="padding"] {
-  border-radius: 4px !important;
 }
 
 .dive-os-root :not(button):not(a)[style*="letterSpacing: '.08em'"],

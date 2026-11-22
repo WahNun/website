@@ -172,7 +172,7 @@ export default function CourseStartPicker({ productId, days, guests, boatDays, v
  {WEEKDAYS.map(w => <div key={w} style={{ textAlign: 'center', fontSize: '14px', color: s.muted, fontWeight: 500 }}>{w}</div>)}
  </div>
  {loadError && (
- <div style={{ fontSize: '14px', color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '8px 10px', marginBottom: '8px' }}>
+ <div style={{ fontSize: '14px', color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '8px 10px', marginBottom: '8px' }}>
  Could not load availability: {loadError}
  </div>
  )}
@@ -202,7 +202,7 @@ export default function CourseStartPicker({ productId, days, guests, boatDays, v
  title={wrongYear ? `All bookings of one guest must be in the same calendar year (${onlyYear})` : tooLate ? (afterDate && d <= afterDate ? 'Must be after your Scuba Skills Update' : 'Must be before your first dive day') : ev && !ev.ok ? ev.why : undefined}
  onClick={() => { if (selectable) { setHintDate(null); onChange(isSel ? null : d) } else setHintDate(isHint ? null : d) }}
  style={{
- padding: '9px 0', borderRadius: 0, fontFamily: 'inherit', fontSize: '14px', fontWeight: 500,
+ padding: '9px 0', borderRadius: 'var(--radius-control)', fontFamily: 'inherit', fontSize: '14px', fontWeight: 500,
  border: `1px solid ${isSel ? 'color-mix(in srgb, var(--text) 70%, transparent)' : inRange ? 'color-mix(in srgb, var(--text) 35%, transparent)' : isHint ? 'var(--text)' : ev?.requestOnly ? 'var(--text)' : 'rgba(255,255,255,.08)'}`,
  background: isSel ? 'color-mix(in srgb, var(--text) 25%, transparent)' : inRange ? 'color-mix(in srgb, var(--text) 10%, transparent)' : isHint ? 'var(--text)' : ev?.requestOnly ? 'var(--text)' : 'transparent',
  color: past || tooLate || wrongYear ? 'rgba(255,255,255,.18)' : selectable ? s.text : ev?.requestOnly ? 'var(--text)' : 'rgba(255,255,255,.3)',
@@ -214,14 +214,14 @@ export default function CourseStartPicker({ productId, days, guests, boatDays, v
  })}
  </div>
  <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '8px', fontSize: '14px', color: s.muted }}>
- <span><span style={{ display: 'inline-block', width: '10px', height: '10px', borderRadius: 0, background: 'transparent', marginRight: '5px', verticalAlign: 'middle' }} />On request — tap the date for details</span>
- <span><span style={{ display: 'inline-block', width: '10px', height: '10px', borderRadius: 0, background: 'rgba(255,255,255,.12)', marginRight: '5px', verticalAlign: 'middle' }} />Not available</span>
+ <span><span style={{ display: 'inline-block', width: '10px', height: '10px', borderRadius: 'var(--radius-control)', background: 'transparent', marginRight: '5px', verticalAlign: 'middle' }} />On request — tap the date for details</span>
+ <span><span style={{ display: 'inline-block', width: '10px', height: '10px', borderRadius: 'var(--radius-control)', background: 'rgba(255,255,255,.12)', marginRight: '5px', verticalAlign: 'middle' }} />Not available</span>
  </div>
  {hintDate && (() => {
  const hEv = courseDays && !loading ? evaluate(hintDate) : null
  if (!hEv || hEv.ok || !hEv.requestOnly) return null
  return (
- <div style={{ marginTop: '10px', padding: '10px 12px', borderRadius: 0, background: 'transparent', border: '1px solid var(--line)', fontSize: '14px', color: 'var(--text)', lineHeight: 1.55 }}>
+ <div style={{ marginTop: '10px', padding: '10px 12px', borderRadius: 'var(--radius-card)', background: 'transparent', border: '1px solid var(--line)', fontSize: '14px', color: 'var(--text)', lineHeight: 1.55 }}>
  <b style={{ color: 'var(--text)' }}>A start on {fmtDay(hintDate)} can&apos;t be booked online</b> — {hEv.guestWhy ?? hEv.why}.
  {' '}Still want to do your course that week? Reach out to us directly and we&apos;ll see what&apos;s possible.{' '}
  <a href={`/contact?product=${encodeURIComponent(productId)}&date=${hintDate}`} style={{ color: 'var(--text)', fontWeight: 500 }}>Contact us </a>
@@ -229,7 +229,7 @@ export default function CourseStartPicker({ productId, days, guests, boatDays, v
  )
  })()}
  {value && selectedEval && !selectedEval.ok && (
- <div style={{ marginTop: '10px', padding: '10px 12px', borderRadius: 0, background: 'transparent', border: '1px solid var(--line)', fontSize: '14px', color: 'var(--text)', lineHeight: 1.5 }}>
+ <div style={{ marginTop: '10px', padding: '10px 12px', borderRadius: 'var(--radius-control)', background: 'transparent', border: '1px solid var(--line)', fontSize: '14px', color: 'var(--text)', lineHeight: 1.5 }}>
  {selectedEval.why}. {selectedEval.requestOnly && <>We need to plan capacity for this date — <a href={`/contact?product=${encodeURIComponent(productId)}&date=${value}`} style={{ color: 'var(--text)', fontWeight: 500 }}>send us a request</a>.</>}
  </div>
  )}
@@ -244,6 +244,6 @@ export default function CourseStartPicker({ productId, days, guests, boatDays, v
 }
 
 const navBtn: React.CSSProperties = {
- width: '32px', height: '32px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'transparent',
+ width: '32px', height: '32px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.12)', background: 'transparent',
  color: 'var(--text)', fontSize: '18px', cursor: 'pointer', fontFamily: 'inherit',
 }

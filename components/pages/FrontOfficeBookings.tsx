@@ -254,8 +254,8 @@ function RequestPlanner({ showTest, onChanged, onOpen, selectedId }: { showTest:
  const maxDaysNeeded = (rows ?? []).filter(r => sel.has(r.id)).reduce((a, r) => Math.max(a, r.sessions.length), 0)
  const check: React.CSSProperties = { fontSize: '14px', color: s.muted, display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer', whiteSpace: 'nowrap' }
  // Ruhige Optik: Ghost-Buttons, nur die Hauptaktion (Approve) ist gefüllt
- const ghost = (disabled: boolean, active = false): React.CSSProperties => ({ padding: '7px 12px', borderRadius: 0, border: `1px solid ${active ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.14)'}`, background: 'transparent', color: disabled ? s.muted : s.text, fontSize: '14px', fontWeight: 500, fontFamily: s.font, cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? .5 : 1 })
- const primary = (disabled: boolean): React.CSSProperties => ({ padding: '7px 14px', borderRadius: 0, border: 'none', background: s.accent, color: 'var(--on-accent)', fontSize: '14px', fontWeight: 500, fontFamily: s.font, cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? .4 : 1 })
+ const ghost = (disabled: boolean, active = false): React.CSSProperties => ({ padding: '7px 12px', borderRadius: 'var(--radius-control)', border: `1px solid ${active ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.14)'}`, background: 'transparent', color: disabled ? s.muted : s.text, fontSize: '14px', fontWeight: 500, fontFamily: s.font, cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? .5 : 1 })
+ const primary = (disabled: boolean): React.CSSProperties => ({ padding: '7px 14px', borderRadius: 'var(--radius-control)', border: 'none', background: s.accent, color: 'var(--on-accent)', fontSize: '14px', fontWeight: 500, fontFamily: s.font, cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? .4 : 1 })
 
  const selectedRows = (rows ?? []).filter(r => sel.has(r.id))
  const selectedTotal = selectedRows.reduce((a, r) => a + (r.amount ?? 0), 0)
@@ -370,7 +370,7 @@ function RequestPlanner({ showTest, onChanged, onOpen, selectedId }: { showTest:
  <span style={{ fontWeight: 500, color: s.muted, letterSpacing: '.06em', textTransform: 'uppercase' }}>Week {wk.slice(6)} · {wk.slice(0, 4)} <span style={{ fontWeight: 500, textTransform: 'none', letterSpacing: 0 }}>· {divers(list)} diver{divers(list) === 1 ? '' : 's'} in {list.length} request{list.length === 1 ? '' : 's'}</span></span>
  {perSlot.size > 1 && <span style={{ color: s.muted }}>{[...perSlot.entries()].sort().map(([k, n]) => `${fmtD(k.split(' ')[0])} ${k.split(' ')[1]}: ${n}`).join(' · ')}</span>}
  </div>
- <div style={{ border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, overflow: 'hidden' }}>
+ <div style={{ border: '1px solid rgba(255,255,255,.08)', borderRadius: 'var(--radius-control)', overflow: 'hidden' }}>
  {(() => {
  const toPlan = list.filter(r => r.request_state !== 'approved')
  const awaiting = list.filter(r => r.request_state === 'approved')
@@ -387,14 +387,14 @@ function RequestPlanner({ showTest, onChanged, onOpen, selectedId }: { showTest:
  <div style={{ color: s.text, fontWeight: 500, fontSize: '14px', fontVariantNumeric: 'tabular-nums' }}>{r.sessions.map(x => `${fmtD(x.date)} ${x.session.toUpperCase()}`).join(' · ') || 'no date'}</div>
  <div style={{ fontSize: '14px', marginTop: '3px' }}>
  {r.request_state === 'approved'
- ? <span style={{ display: 'inline-block', padding: '1px 7px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', color: s.accent, fontWeight: 500, fontSize: '14px', letterSpacing: '.05em', textTransform: 'uppercase' }}>Awaiting guest{r.approved_until && new Date(r.approved_until).getTime() < Date.now() ? ' · overdue' : ''}</span>
+ ? <span style={{ display: 'inline-block', padding: '1px 7px', borderRadius: 'var(--radius-control)', border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', color: s.accent, fontWeight: 500, fontSize: '14px', letterSpacing: '.05em', textTransform: 'uppercase' }}>Awaiting guest{r.approved_until && new Date(r.approved_until).getTime() < Date.now() ? ' · overdue' : ''}</span>
  : <span style={{ color: s.muted }}>{`to plan${r.why ? ` · ${r.why}` : ''}${r.request_state === 'expired' ? ' · overdue' : ''}`}</span>}
  </div>
  </div>
  <div>
  <div style={{ color: s.text, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{r.product_name ?? '—'}{kidsOf.has(r.id) ? ' + linked guests' : ''}</div>
  <button type="button" onClick={e => { e.stopPropagation(); onOpen(r.id) }} title="Open this booking (details, approve, decline, sessions)"
- style={{ marginTop: '3px', fontSize: '14px', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', padding: '1px 6px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 18%, transparent)', background: 'color-mix(in srgb, var(--text) 5%, transparent)', color: 'color-mix(in srgb, var(--text) 70%, transparent)', cursor: 'pointer', letterSpacing: '.03em' }}>
+ style={{ marginTop: '3px', fontSize: '14px', fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', padding: '1px 6px', borderRadius: 'var(--radius-control)', border: '1px solid color-mix(in srgb, var(--text) 18%, transparent)', background: 'color-mix(in srgb, var(--text) 5%, transparent)', color: 'color-mix(in srgb, var(--text) 70%, transparent)', cursor: 'pointer', letterSpacing: '.03em' }}>
  {r.id.slice(0, 8)} 
  </button>
  </div>
@@ -412,7 +412,7 @@ function RequestPlanner({ showTest, onChanged, onOpen, selectedId }: { showTest:
  })}
  </div>
  {rows && rows.length > 0 && !selectedId && (
- <div style={{ width: '440px', flexShrink: 0, position: 'sticky', top: '100px', padding: '20px 22px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', background: 'var(--glass)', display: 'flex', flexDirection: 'column', gap: '14px', boxSizing: 'border-box' }}>
+ <div style={{ width: '440px', flexShrink: 0, position: 'sticky', top: '100px', padding: '20px 22px', borderRadius: 'var(--radius-control)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', background: 'var(--glass)', display: 'flex', flexDirection: 'column', gap: '14px', boxSizing: 'border-box' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted }}>Selected requests</div>
  {selectedRows.length === 0 ? (
  <div style={{ fontSize: '14px', color: s.muted, lineHeight: 1.6 }}>Tick requests on the left to plan a dive day and approve them together.</div>
@@ -466,7 +466,7 @@ function RequestPlanner({ showTest, onChanged, onOpen, selectedId }: { showTest:
  const tooFew = n > 0 && n < MIN_DIVERS_PER_DAY
  const tone = tooMany ? 'var(--text)' : tooFew || n === 0 ? 'var(--text)' : 'var(--text)'
  return (
- <div key={k} style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '2px 10px', padding: '8px 10px', borderRadius: 0, border: `1px solid ${tone}55`, background: `${tone}0d` }}>
+ <div key={k} style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '2px 10px', padding: '8px 10px', borderRadius: 'var(--radius-card)', border: `1px solid ${tone}55`, background: `${tone}0d` }}>
  <span style={{ fontSize: '14px', fontWeight: 500, color: s.text, fontVariantNumeric: 'tabular-nums' }}>{fmtD(x.date)} {x.session.toUpperCase()}</span>
  <span style={{ fontSize: '14px', fontWeight: 500, color: tone, textAlign: 'right' }}>{tooMany ? `over by ${n - (free ?? 0)}` : n === 0 ? 'nobody — drop this day?' : tooFew ? `only ${n} — below ${MIN_DIVERS_PER_DAY}` : 'ok'}</span>
  <span style={{ gridColumn: '1 / -1', fontSize: '14px', color: s.muted }}><b style={{ color: s.text }}>{n}</b> diver{n === 1 ? '' : 's'} · €{((slotRevenue.get(k) ?? 0) / 100).toFixed(0)}{cap ? ` · ${cap.booked} already booked of ${cap.capacity} seats` : ''}</span>
@@ -483,7 +483,7 @@ function RequestPlanner({ showTest, onChanged, onOpen, selectedId }: { showTest:
  {targetSlots.length > 0 && <button type="button" onClick={() => { setTargetSlots([]); setMovePreview(null) }} style={{ background: 'none', border: 'none', padding: 0, color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, textAlign: 'left', textDecoration: 'underline' }}>Clear days</button>}
  {pickerOpen && typeof document !== 'undefined' && createPortal(
  <div onClick={() => setPickerOpen(false)} style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 10000, background: 'color-mix(in srgb, var(--bg) 72%, transparent)', overflowY: 'auto', padding: '24px 20px', boxSizing: 'border-box' }}>
- <div onClick={e => e.stopPropagation()} style={{ margin: '0 auto', background: 'var(--bg)', border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', borderRadius: 0, padding: '20px 22px', width: 'min(960px, 100%)', boxSizing: 'border-box', boxShadow: 'none' }}>
+ <div onClick={e => e.stopPropagation()} style={{ margin: '0 auto', background: 'var(--bg)', border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', borderRadius: 'var(--radius-card)', padding: '20px 22px', width: 'min(960px, 100%)', boxSizing: 'border-box', boxShadow: 'none' }}>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '10px', lineHeight: 1.5 }}>Pick the day(s) you will run. Each request goes to the picked day closest to its wish (packs to the closest consecutive days); packs with more days than picked are shortened — the summary shows exactly what each guest gets before you approve.{maxDaysNeeded > 1 ? ` Longest selected request: ${maxDaysNeeded} days.` : ''}</div>
  {bestDays.length > 0 && (() => {
  const key = (b: { date: string; session: string }) => `${b.date}_${b.session}`
@@ -491,13 +491,13 @@ function RequestPlanner({ showTest, onChanged, onOpen, selectedId }: { showTest:
  const same = !revenueVaries || (bestDays.length === richestDays.length && bestDays.every((b, i) => key(b) === key(richestDays[i])))
  const fairChip = (b: typeof bestDays[number]) => (
  <button key={`f_${key(b)}`} type="button" onClick={() => setTargetSlots([{ date: b.date, session: b.session as SessionKey }])} title={`Fairness ${b.score}/100 · est. €${(b.revenue / 100).toFixed(0)}`}
- style={{ padding: '4px 10px', borderRadius: 0, border: `1px solid ${relColor(b.score)}`, background: `${relColor(b.score)}14`, color: relColor(b.score), fontSize: '14px', fontWeight: 500, fontFamily: s.font, cursor: 'pointer' }}>
+ style={{ padding: '4px 10px', borderRadius: 'var(--radius-control)', border: `1px solid ${relColor(b.score)}`, background: `${relColor(b.score)}14`, color: relColor(b.score), fontSize: '14px', fontWeight: 500, fontFamily: s.font, cursor: 'pointer' }}>
  {fmtD(b.date)} {b.session.toUpperCase()} <span style={{ fontWeight: 500, opacity: .8 }}>· {b.score}</span>
  </button>
  )
  const revChip = (b: typeof richestDays[number]) => (
  <button key={`r_${key(b)}`} type="button" onClick={() => setTargetSlots([{ date: b.date, session: b.session as SessionKey }])} title={`Est. €${(b.revenue / 100).toFixed(0)} · fairness ${b.score}/100`}
- style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid rgba(255,255,255,.18)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontWeight: 500, fontFamily: s.font, cursor: 'pointer', fontVariantNumeric: 'tabular-nums' }}>
+ style={{ padding: '4px 10px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.18)', background: 'rgba(255,255,255,.04)', color: s.text, fontSize: '14px', fontWeight: 500, fontFamily: s.font, cursor: 'pointer', fontVariantNumeric: 'tabular-nums' }}>
  €{(b.revenue / 100).toFixed(0)} <span style={{ fontWeight: 500, color: s.muted }}>· {fmtD(b.date)} {b.session.toUpperCase()}</span>
  </button>
  )
@@ -535,7 +535,7 @@ function RequestPlanner({ showTest, onChanged, onOpen, selectedId }: { showTest:
  <div style={{ borderTop: '1px solid rgba(255,255,255,.08)', paddingTop: '12px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
  <span style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted }}>2 · Approve</span>
  <label style={check}><input type="checkbox" checked={deposit} onChange={e => setDeposit(e.target.checked)} style={{ accentColor: s.accent }} /> 50 % deposit instead of full amount</label>
- <button type="button" disabled={!!busy || sel.size === 0 || targetSlots.length === 0} onClick={approveSelected} style={{ ...primary(!!busy || sel.size === 0 || targetSlots.length === 0), padding: '13px', fontSize: '14px', borderRadius: 0 }}>{busy === 'approve' ? 'Working…' : targetSlots.length > 0 ? `Approve ${sel.size || ''} on ${targetSlots.map(x => `${fmtD(x.date)} ${x.session.toUpperCase()}`).join(' + ')} & ask to confirm` : 'Pick the dive day(s) first'}</button>
+ <button type="button" disabled={!!busy || sel.size === 0 || targetSlots.length === 0} onClick={approveSelected} style={{ ...primary(!!busy || sel.size === 0 || targetSlots.length === 0), padding: '13px', fontSize: '14px', borderRadius: 'var(--radius-control)' }}>{busy === 'approve' ? 'Working…' : targetSlots.length > 0 ? `Approve ${sel.size || ''} on ${targetSlots.map(x => `${fmtD(x.date)} ${x.session.toUpperCase()}`).join(' + ')} & ask to confirm` : 'Pick the dive day(s) first'}</button>
  <span style={{ fontSize: '14px', color: s.muted, lineHeight: 1.5 }}>Moves each request to the day(s) above (shortens where shown), checks the boat and emails each guest a “Confirm &amp; pay” button — the email says so if dates or product were changed. Want to approve a single request exactly as asked? Open it via its reference chip.</span>
  </div>
  {log.length > 0 && (
@@ -610,9 +610,9 @@ function RequestPanel({ booking, childBookings, onChanged }: { booking: Booking;
  }
  }
 
- const btn = (color: string, bg: string, border: string): React.CSSProperties => ({ padding: '8px 14px', borderRadius: 0, border: `1px solid ${border}`, background: bg, color, fontSize: '14px', fontWeight: 500, cursor: busy ? 'not-allowed' : 'pointer', fontFamily: s.font, opacity: busy ? .6 : 1 })
+ const btn = (color: string, bg: string, border: string): React.CSSProperties => ({ padding: '8px 14px', borderRadius: 'var(--radius-control)', border: `1px solid ${border}`, background: bg, color, fontSize: '14px', fontWeight: 500, cursor: busy ? 'not-allowed' : 'pointer', fontFamily: s.font, opacity: busy ? .6 : 1 })
  return (
- <div style={{ border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 0, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+ <div style={{ border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 'var(--radius-card)', padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
  <span style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.accent }}>
  Booking request · {st === 'requested' ? 'waiting for approval' : st === 'approved' ? 'approved, waiting for the guest to confirm' : st === 'expired' ? 'approved, link expired' : st}
@@ -640,12 +640,12 @@ function RequestPanel({ booking, childBookings, onChanged }: { booking: Booking;
  ))}
  </div>
  {guestWantsDeposit && (
- <div style={{ fontSize: '14px', color: s.text, lineHeight: 1.5, padding: '6px 10px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', background: 'color-mix(in srgb, var(--text) 6%, transparent)' }}>
+ <div style={{ fontSize: '14px', color: s.text, lineHeight: 1.5, padding: '6px 10px', borderRadius: 'var(--radius-control)', border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', background: 'color-mix(in srgb, var(--text) 6%, transparent)' }}>
  The guest asked for a 50% deposit when sending the request — pre-selected here; switch to full amount if you prefer.
  </div>
  )}
  {overSlots && (
- <div style={{ border: '1px solid var(--line)', borderRadius: 0, padding: '8px 10px', fontSize: '14px', color: 'var(--text)', lineHeight: 1.5 }}>
+ <div style={{ border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '8px 10px', fontSize: '14px', color: 'var(--text)', lineHeight: 1.5 }}>
  {overSlots}
  </div>
  )}
@@ -676,7 +676,7 @@ function RequestPanel({ booking, childBookings, onChanged }: { booking: Booking;
  {declineOpen && (
  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
  <textarea value={reason} onChange={e => setReason(e.target.value)} placeholder="Reason / alternatives for the guest (goes into the email) — e.g. no boat on 12 Nov, free on 13 or 14 Nov" rows={3}
- style={{ width: '100%', boxSizing: 'border-box', padding: '8px 10px', borderRadius: 0, border: '1px solid var(--line)', background: 'rgba(0,0,0,.25)', color: s.text, fontSize: '14px', fontFamily: s.font, resize: 'vertical' }} />
+ style={{ width: '100%', boxSizing: 'border-box', padding: '8px 10px', borderRadius: 'var(--radius-control)', border: '1px solid var(--line)', background: 'rgba(0,0,0,.25)', color: s.text, fontSize: '14px', fontFamily: s.font, resize: 'vertical' }} />
  <div style={{ display: 'flex', gap: '8px' }}>
  <button disabled={!!busy || reason.trim().length < 5} onClick={() => call('/api/booking-request/decline', { booking_id: booking.id, reason: reason.trim() }, 'decline')} style={{ ...btn('#fff', 'var(--text)', 'transparent'), opacity: busy || reason.trim().length < 5 ? .5 : 1 }}>
  {busy === 'decline' ? 'Declining…' : 'Send decline & cancel request'}
@@ -694,7 +694,7 @@ function PaymentBadge({ state, size = 11 }: { state?: PaymentState | null; size?
  if (!state) return null
  const c = PAYMENT_STATE_COLOR[state] ?? '#aaa'
  return (
- <span title="Payment state (from payments & refunds ledger)" style={{ padding: '2px 8px', borderRadius: 0, fontSize: `${size}px`, fontWeight: 500, border: `1px solid ${c}55`, background: `${c}1f`, color: c, whiteSpace: 'nowrap' }}>
+ <span title="Payment state (from payments & refunds ledger)" style={{ padding: '2px 8px', borderRadius: 'var(--radius-control)', fontSize: `${size}px`, fontWeight: 500, border: `1px solid ${c}55`, background: `${c}1f`, color: c, whiteSpace: 'nowrap' }}>
  {PAYMENT_STATE_LABEL[state] ?? state}
  </span>
  )
@@ -743,7 +743,7 @@ function pmLabel(b: Booking): string {
 const inp: React.CSSProperties = {
  background: 'var(--bg)',
  border: '1px solid rgba(255,255,255,.12)',
- borderRadius: 0,
+ borderRadius: 'var(--radius-card)',
  padding: '8px 12px',
  fontSize: '14px',
  color: 'var(--text)',
@@ -1275,19 +1275,19 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  if (!confirmPayOpen) {
  return (
  <button onClick={() => setConfirmPayOpen(true)} disabled={statusLoading}
- style={{ width: '100%', padding: '10px', borderRadius: 0, border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: statusLoading ? .6 : 1 }}>
+ style={{ width: '100%', padding: '10px', borderRadius: 'var(--radius-control)', border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: statusLoading ? .6 : 1 }}>
  Mark as fully paid · {fmtAmount(ps.dueBalance, ps.currency)} open
  </button>
  )
  }
  return (
- <div style={{ padding: '10px 12px', borderRadius: 0, border: '1px solid var(--line)', background: 'transparent', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+ <div style={{ padding: '10px 12px', borderRadius: 'var(--radius-card)', border: '1px solid var(--line)', background: 'transparent', display: 'flex', flexDirection: 'column', gap: '8px' }}>
  <div style={{ fontSize: '14px', color: s.text, fontWeight: 500 }}>Record {fmtAmount(ps.dueBalance, ps.currency)} as received?</div>
  <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
  {(['cash', 'card_terminal', 'bank_transfer', 'revolut'] as const).map(m => (
  <button key={m} type="button" onClick={() => setConfirmPayMethod(m)} disabled={m === 'card_terminal'}
  title={m === 'card_terminal' ? 'No card terminal yet — card payments go through a Stripe link' : undefined}
- style={{ padding: '5px 10px', borderRadius: 0, fontSize: '14px', fontFamily: s.font, cursor: m === 'card_terminal' ? 'not-allowed' : 'pointer', opacity: m === 'card_terminal' ? .35 : 1,
+ style={{ padding: '5px 10px', borderRadius: 'var(--radius-control)', fontSize: '14px', fontFamily: s.font, cursor: m === 'card_terminal' ? 'not-allowed' : 'pointer', opacity: m === 'card_terminal' ? .35 : 1,
  border: `1px solid ${confirmPayMethod === m ? 'var(--line)' : 'rgba(255,255,255,.12)'}`,
  background: confirmPayMethod === m ? 'transparent' : 'transparent', color: confirmPayMethod === m ? 'var(--text)' : s.muted }}>
  {PM_LABELS[m]}
@@ -1296,11 +1296,11 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  </div>
  <div style={{ display: 'flex', gap: '8px' }}>
  <button onClick={() => confirmPayment()} disabled={statusLoading}
- style={{ flex: 1, padding: '9px', borderRadius: 0, border: 'none', background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: statusLoading ? .6 : 1 }}>
+ style={{ flex: 1, padding: '9px', borderRadius: 'var(--radius-control)', border: 'none', background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: statusLoading ? .6 : 1 }}>
  {statusLoading ? 'Saving…' : 'Confirm'}
  </button>
  <button onClick={() => setConfirmPayOpen(false)} disabled={statusLoading}
- style={{ padding: '9px 14px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ padding: '9px 14px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.12)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Cancel
  </button>
  </div>
@@ -2137,7 +2137,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', gap: '20px', minHeight: embedded ? 0 : '500px', alignItems: 'flex-start' }}>
 
  {slotToast && (
- <div role="status" onClick={() => setSlotToast(null)} style={{ position: 'fixed', bottom: '24px', left: '50%', transform: 'translateX(-50%)', zIndex: 2000, maxWidth: 'min(560px, 92vw)', padding: '12px 18px', borderRadius: 0, background: 'var(--surface)', border: '1px solid var(--line)', color: 'var(--text)', fontSize: '14px', fontWeight: 500, boxShadow: 'none', cursor: 'pointer' }}>
+ <div role="status" onClick={() => setSlotToast(null)} style={{ position: 'fixed', bottom: '24px', left: '50%', transform: 'translateX(-50%)', zIndex: 2000, maxWidth: 'min(560px, 92vw)', padding: '12px 18px', borderRadius: 'var(--radius-control)', background: 'var(--surface)', border: '1px solid var(--line)', color: 'var(--text)', fontSize: '14px', fontWeight: 500, boxShadow: 'none', cursor: 'pointer' }}>
  {slotToast}
  </div>
  )}
@@ -2169,7 +2169,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {showTest ? ' Sandbox' : ' Production'}
  </span>
  <button onClick={fetchBookings}
- style={{ padding: '7px 12px', borderRadius: 0, border: '1px solid rgba(255,255,255,.1)', background: 'transparent', color: s.muted, cursor: 'pointer', fontFamily: s.font, fontSize: '14px' }}>
+ style={{ padding: '7px 12px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.1)', background: 'transparent', color: s.muted, cursor: 'pointer', fontFamily: s.font, fontSize: '14px' }}>
  
  </button>
  </div>}
@@ -2227,12 +2227,12 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <td style={{ padding: '8px 10px', color: s.text, maxWidth: '140px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={diverNames[b.id] && b.customer_name && diverNames[b.id] !== b.customer_name ? `Payer (Stripe): ${b.customer_name}` : undefined}>{diverNames[b.id] ?? b.customer_name ?? b.customer_email ?? '—'}</td>
  <td style={{ padding: '8px 10px', color: s.muted, textAlign: 'center' }}>{b.group_size}</td>
  <td style={{ padding: '8px 10px' }}>
- <span style={{ padding: '2px 8px', borderRadius: 0, fontSize: '14px', fontWeight: 500, background: STATUS_BG[b.status] ?? 'rgba(200,200,200,.12)', color: STATUS_CLR[b.status] ?? '#aaa' }}>
+ <span style={{ padding: '2px 8px', borderRadius: 'var(--radius-control)', fontSize: '14px', fontWeight: 500, background: STATUS_BG[b.status] ?? 'rgba(200,200,200,.12)', color: STATUS_CLR[b.status] ?? '#aaa' }}>
  {b.status}
  </span>
  {b.request_state && b.request_state !== 'converted' && (
  <span title={b.request_state === 'approved' ? `Approved${b.approved_by_email ? ` by ${b.approved_by_email}` : ''} — waiting for the guest to confirm & pay` : b.request_state === 'expired' ? 'Approved, guest has not confirmed in time' : b.request_state === 'declined' ? (b.declined_reason ?? 'Declined') : 'Booking request — waiting for approval'}
- style={{ marginLeft: '5px', padding: '2px 7px', borderRadius: 0, fontSize: '14px', fontWeight: 500, letterSpacing: '.06em', textTransform: 'uppercase', background: b.request_state === 'approved' ? 'color-mix(in srgb, var(--text) 14%, transparent)' : 'rgba(255,255,255,.08)', color: b.request_state === 'approved' ? s.accent : s.muted }}>
+ style={{ marginLeft: '5px', padding: '2px 7px', borderRadius: 'var(--radius-control)', fontSize: '14px', fontWeight: 500, letterSpacing: '.06em', textTransform: 'uppercase', background: b.request_state === 'approved' ? 'color-mix(in srgb, var(--text) 14%, transparent)' : 'rgba(255,255,255,.08)', color: b.request_state === 'approved' ? s.accent : s.muted }}>
  {b.request_state === 'requested' ? 'Request' : b.request_state === 'approved' ? 'Awaiting guest' : b.request_state === 'expired' ? 'Overdue' : 'Declined'}
  </span>
  )}
@@ -2243,7 +2243,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <td style={{ padding: '8px 10px', color: s.muted, fontSize: '14px', whiteSpace: 'nowrap' }}>{pmLabel(b)}</td>
  <td style={{ padding: '8px 10px', color: s.text, whiteSpace: 'nowrap', fontVariantNumeric: 'tabular-nums' }}>{fmtAmount(b.amount, b.currency)}</td>
  <td style={{ padding: '8px 10px' }}>
- <span style={{ padding: '2px 7px', borderRadius: 0, fontSize: '14px', fontWeight: 500, background: b.checkin_completed_at ? 'transparent' : 'rgba(255,255,255,.06)', color: b.checkin_completed_at ? 'var(--text)' : '#888' }}>
+ <span style={{ padding: '2px 7px', borderRadius: 'var(--radius-control)', fontSize: '14px', fontWeight: 500, background: b.checkin_completed_at ? 'transparent' : 'rgba(255,255,255,.06)', color: b.checkin_completed_at ? 'var(--text)' : '#888' }}>
  {b.checkin_completed_at ? ' Done' : 'Pending'}
  </span>
  </td>
@@ -2258,13 +2258,13 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {!requestsOnly && <div style={{ display: 'flex', gap: '8px', marginTop: '14px', alignItems: 'center' }}>
  {page > 0 && (
  <button onClick={() => setPage(p => p - 1)}
- style={{ padding: '6px 14px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'transparent', color: s.accent, cursor: 'pointer', fontFamily: s.font, fontSize: '14px' }}>
+ style={{ padding: '6px 14px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.12)', background: 'transparent', color: s.accent, cursor: 'pointer', fontFamily: s.font, fontSize: '14px' }}>
  Prev
  </button>
  )}
  {bookings.length === PAGE_SIZE && (
  <button onClick={() => setPage(p => p + 1)}
- style={{ padding: '6px 14px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'transparent', color: s.accent, cursor: 'pointer', fontFamily: s.font, fontSize: '14px' }}>
+ style={{ padding: '6px 14px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.12)', background: 'transparent', color: s.accent, cursor: 'pointer', fontFamily: s.font, fontSize: '14px' }}>
  Next 
  </button>
  )}
@@ -2276,7 +2276,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {embedded && loading && <div style={{ color: s.muted, fontSize: '14px', padding: '20px' }}>Loading booking…</div>}
  {embedded && !loading && !selected && <div style={{ color: 'var(--text)', fontSize: '14px', padding: '20px' }}>Booking not found.</div>}
  {selected && (
- <div style={{ width: embedded ? '100%' : '860px', flexShrink: 0, background: 'rgba(255,255,255,.025)', borderRadius: 0, border: '1px solid rgba(255,255,255,.09)', display: 'flex', flexDirection: 'column', alignSelf: 'flex-start', position: embedded ? 'static' : 'sticky', top: '20px', maxHeight: embedded ? 'none' : '96vh', overflow: 'hidden' }}>
+ <div style={{ width: embedded ? '100%' : '860px', flexShrink: 0, background: 'rgba(255,255,255,.025)', borderRadius: 'var(--radius-card)', border: '1px solid rgba(255,255,255,.09)', display: 'flex', flexDirection: 'column', alignSelf: 'flex-start', position: embedded ? 'static' : 'sticky', top: '20px', maxHeight: embedded ? 'none' : '96vh', overflow: 'hidden' }}>
 
  {/* Panel header */}
  <div style={{ padding: '16px 20px 0', borderBottom: '1px solid rgba(255,255,255,.07)', flexShrink: 0 }}>
@@ -2370,7 +2370,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  }} />
  )}
  {selected.request_state && selected.parent_booking_id && (
- <div style={{ fontSize: '14px', color: s.muted, background: 'rgba(255,255,255,.03)', borderRadius: 0, padding: '8px 10px' }}> Part of a booking request — approve or decline on the main booking.</div>
+ <div style={{ fontSize: '14px', color: s.muted, background: 'rgba(255,255,255,.03)', borderRadius: 'var(--radius-card)', padding: '8px 10px' }}> Part of a booking request — approve or decline on the main booking.</div>
  )}
 
  {/* Info rows */}
@@ -2425,7 +2425,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {/* Check-in status row */}
  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '8px', fontSize: '14px', alignItems: 'center' }}>
  <span style={{ color: s.muted, flexShrink: 0, minWidth: '64px' }}>Check-in</span>
- <span style={{ padding: '2px 8px', borderRadius: 0, fontSize: '14px', fontWeight: 500, background: selected.checkin_completed_at ? 'transparent' : 'rgba(255,255,255,.06)', color: selected.checkin_completed_at ? 'var(--text)' : '#888' }}>
+ <span style={{ padding: '2px 8px', borderRadius: 'var(--radius-control)', fontSize: '14px', fontWeight: 500, background: selected.checkin_completed_at ? 'transparent' : 'rgba(255,255,255,.06)', color: selected.checkin_completed_at ? 'var(--text)' : '#888' }}>
  {selected.checkin_completed_at ? ` ${fmtDateTime(selected.checkin_completed_at)}` : 'Pending'}
  </span>
  </div>
@@ -2470,7 +2470,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <span style={lbl}>Status</span>
  {/* Display-only badge */}
  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
- <span style={{ padding: '5px 14px', borderRadius: 0, border: `1px solid ${STATUS_CLR[selected.status as keyof typeof STATUS_CLR] ?? 'rgba(255,255,255,.2)'}`, background: STATUS_BG[selected.status as keyof typeof STATUS_BG] ?? 'rgba(255,255,255,.04)', color: STATUS_CLR[selected.status as keyof typeof STATUS_CLR] ?? s.muted, fontSize: '14px', fontWeight: 500, textTransform: 'capitalize', letterSpacing: '0.04em' }}>
+ <span style={{ padding: '5px 14px', borderRadius: 'var(--radius-control)', border: `1px solid ${STATUS_CLR[selected.status as keyof typeof STATUS_CLR] ?? 'rgba(255,255,255,.2)'}`, background: STATUS_BG[selected.status as keyof typeof STATUS_BG] ?? 'rgba(255,255,255,.04)', color: STATUS_CLR[selected.status as keyof typeof STATUS_CLR] ?? s.muted, fontSize: '14px', fontWeight: 500, textTransform: 'capitalize', letterSpacing: '0.04em' }}>
  {selected.status}
  </span>
  <PaymentBadge state={selected.payment_state} size={12} />
@@ -2532,7 +2532,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  return (
  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
  <span style={lbl}>Booking Details</span>
- <div style={{ background: 'rgba(255,255,255,.025)', borderRadius: 0, padding: '10px 13px', border: '1px solid rgba(255,255,255,.07)', display: 'flex', flexDirection: 'column', gap: '5px' }}>
+ <div style={{ background: 'rgba(255,255,255,.025)', borderRadius: 'var(--radius-control)', padding: '10px 13px', border: '1px solid rgba(255,255,255,.07)', display: 'flex', flexDirection: 'column', gap: '5px' }}>
  {rows.map((row, i) => (
  <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '8px', fontSize: '14px' }}>
  <span style={{ color: s.text, flex: 1 }}>{row.label}</span>
@@ -2558,7 +2558,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  style={{ ...inp, resize: 'vertical' }} />
  {editNotes !== (selected.staff_notes ?? '') && (
  <button onClick={saveNotes} disabled={notesLoading}
- style={{ width: '100%', padding: '8px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: notesLoading ? .6 : 1 }}>
+ style={{ width: '100%', padding: '8px', borderRadius: 'var(--radius-control)', border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: notesLoading ? .6 : 1 }}>
  {notesLoading ? 'Saving…' : 'Save notes'}
  </button>
  )}
@@ -2582,7 +2582,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <button
  onClick={() => { const url = `${window.location.origin}/checkin?token=${selected.checkin_token}`; navigator.clipboard.writeText(url).catch(() => {}) }}
  title="Copy link"
- style={{ background: 'rgba(255,255,255,.07)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, color: s.muted, cursor: 'pointer', fontSize: '14px', padding: '1px 6px', fontFamily: s.font, lineHeight: '18px' }}>
+ style={{ background: 'rgba(255,255,255,.07)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 'var(--radius-control)', color: s.muted, cursor: 'pointer', fontSize: '14px', padding: '1px 6px', fontFamily: s.font, lineHeight: '18px' }}>
  
  </button>
  </div>
@@ -2600,17 +2600,17 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {selected.status !== 'cancelled' && (
  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
  {changePackageMsg && (
- <div style={{ fontSize: '14px', padding: '6px 10px', borderRadius: 0, background: 'rgba(255,255,255,.04)', color: changePackageMsg.startsWith('') ? 'var(--text)' : changePackageMsg.startsWith('') ? 'var(--text)' : 'var(--text)' }}>
+ <div style={{ fontSize: '14px', padding: '6px 10px', borderRadius: 'var(--radius-card)', background: 'rgba(255,255,255,.04)', color: changePackageMsg.startsWith('') ? 'var(--text)' : changePackageMsg.startsWith('') ? 'var(--text)' : 'var(--text)' }}>
  {changePackageMsg}
  </div>
  )}
  {!changePackageOpen ? (
  <button onClick={() => { setChangePackageOpen(true); setChangePackageMsg(null); setPkgSessions([]); setPkgPersonIds(new Set()); setPkgPersonMode('all'); if (addProducts.length === 0) loadAddProducts() }}
- style={{ width: '100%', padding: '9px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', background: 'transparent', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ width: '100%', padding: '9px', borderRadius: 'var(--radius-control)', border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', background: 'transparent', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Change package
  </button>
  ) : (
- <div style={{ background: 'color-mix(in srgb, var(--text) 4%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 0, padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 4%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 'var(--radius-card)', padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
  <span style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>Change package</span>
  <button onClick={() => { setChangePackageOpen(false); setChangePackageId(null); setPkgSessions([]) }}
@@ -2642,12 +2642,12 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  })}
  </select>
  {(selected.group_size ?? 1) > 1 && selectedDivers.length === (selected.group_size ?? 1) && (
- <div style={{ padding: '8px 10px', borderRadius: 0, border: '1px solid rgba(255,255,255,.1)', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+ <div style={{ padding: '8px 10px', borderRadius: 'var(--radius-card)', border: '1px solid rgba(255,255,255,.1)', display: 'flex', flexDirection: 'column', gap: '6px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted }}>Who changes package?</div>
  <div style={{ display: 'flex', gap: '6px' }}>
  {(['all', 'some'] as const).map(m => (
  <button key={m} type="button" onClick={() => { setPkgPersonMode(m); if (m === 'all') setPkgPersonIds(new Set()) }}
- style={{ flex: 1, padding: '7px 10px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font,
+ style={{ flex: 1, padding: '7px 10px', borderRadius: 'var(--radius-control)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font,
  border: `1px solid ${pkgPersonMode === m ? s.accent : 'rgba(255,255,255,.12)'}`, background: pkgPersonMode === m ? 'color-mix(in srgb, var(--text) 12%, transparent)' : 'transparent', color: pkgPersonMode === m ? s.accent : s.muted }}>
  {m === 'all' ? `Everyone (${selected.group_size})` : 'Only some people'}
  </button>
@@ -2680,7 +2680,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  const diff = np.price_cents - (selected.amount ?? 0)
  return (
  <>
- {!subset && <div style={{ fontSize: '14px', padding: '6px 10px', borderRadius: 0,
+ {!subset && <div style={{ fontSize: '14px', padding: '6px 10px', borderRadius: 'var(--radius-card)',
  background: diff < 0 ? 'transparent' : diff > 0 ? 'transparent' : 'rgba(255,255,255,.04)',
  color: diff < 0 ? 'var(--text)' : diff > 0 ? 'var(--text)' : s.muted,
  border: `1px solid ${diff < 0 ? 'var(--line)' : diff > 0 ? 'var(--line)' : 'rgba(255,255,255,.08)'}` }}>
@@ -2690,11 +2690,11 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  ? `Charge €${(diff / 100).toFixed(2)} additionally from guest`
  : 'No price change — product name update only'}
  </div>}
- {subset && <div style={{ fontSize: '14px', padding: '6px 10px', borderRadius: 0, background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', color: s.text }}>
+ {subset && <div style={{ fontSize: '14px', padding: '6px 10px', borderRadius: 'var(--radius-card)', background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', color: s.text }}>
  {pkgPersonIds.size} guest(s) × {np.name} = {fmtAmount(np.price_cents * pkgPersonIds.size, selected.currency)} (plus insurance for the new days if they had ours). Money already paid for their old share moves over automatically; the rest is collected on the new booking.
  </div>}
  {subset && (pkgPreview.loading || pkgPreview.data || pkgPreview.error) && (
- <div style={{ fontSize: '14px', padding: '8px 10px', borderRadius: 0, background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.09)', display: 'flex', flexDirection: 'column', gap: '3px' }}>
+ <div style={{ fontSize: '14px', padding: '8px 10px', borderRadius: 'var(--radius-card)', background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.09)', display: 'flex', flexDirection: 'column', gap: '3px' }}>
  <div style={{ fontWeight: 500, color: s.text }}>Effect on the balance</div>
  {pkgPreview.loading && <div style={{ color: s.muted }}>Calculating…</div>}
  {pkgPreview.error && <div style={{ color: 'var(--text)' }}> {pkgPreview.error}</div>}
@@ -2745,7 +2745,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  })()}
  <div style={{ display: 'flex', gap: '8px' }}>
  <button onClick={() => { setChangePackageOpen(false); setChangePackageId(null); setPkgSessions([]) }}
- style={{ flex: 1, padding: '8px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'transparent', color: s.muted, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '8px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.12)', background: 'transparent', color: s.muted, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Cancel
  </button>
  {(() => {
@@ -2757,7 +2757,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  const canConfirm = !!changePackageId && sessionsReady && !changePackageLoading && subsetOk
  return (
  <button onClick={pkgPersonMode === 'some' ? changePackageSplit : changePackage} disabled={!canConfirm}
- style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none',
+ style={{ flex: 2, padding: '8px', borderRadius: 'var(--radius-control)', border: 'none',
  background: canConfirm ? s.accent : 'rgba(255,255,255,.1)',
  color: canConfirm ? 'var(--on-accent)' : s.muted,
  fontWeight: 500, fontSize: '14px',
@@ -2777,11 +2777,11 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
  {!cancelConfirm ? (
  <button onClick={() => setCancelConfirm(true)}
- style={{ width: '100%', padding: '9px', borderRadius: 0, border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ width: '100%', padding: '9px', borderRadius: 'var(--radius-control)', border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Cancel booking
  </button>
  ) : (
- <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '12px' }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-control)', padding: '12px' }}>
  <div style={{ fontSize: '14px', color: 'var(--text)', fontWeight: 500, marginBottom: '6px' }}> Really cancel this booking?</div>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '10px', lineHeight: '1.5' }}>
  Status will be set to <strong style={{ color: 'var(--text)' }}>cancelled</strong>. A cancellation email will be sent automatically.
@@ -2800,7 +2800,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  </label>
  )}
  {cancelKids.length > 0 && (
- <div style={{ marginBottom: '10px', padding: '8px 10px', borderRadius: 0, background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.1)', fontSize: '14px', lineHeight: '1.5', color: s.muted }}>
+ <div style={{ marginBottom: '10px', padding: '8px 10px', borderRadius: 'var(--radius-control)', background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.1)', fontSize: '14px', lineHeight: '1.5', color: s.muted }}>
  {cancelWithRefund
  ? <><strong style={{ color: s.text }}>Full refund = whole group.</strong> These linked bookings are cancelled and refunded too (one email to the payer, one refund request each):</>
  : <>Only <strong style={{ color: s.text }}>this booking</strong> is cancelled. Tick “Full refund” to cancel and refund the whole group, including:</>}
@@ -2816,11 +2816,11 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  </div>
  <div style={{ display: 'flex', gap: '8px' }}>
  <button onClick={() => { setCancelConfirm(false); setCancelWithRefund(false); setCancelError(null); setCancelKids([]); setCancelChoice(''); setCancelDetail('') }}
- style={{ flex: 1, padding: '8px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'transparent', color: s.muted, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '8px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.12)', background: 'transparent', color: s.muted, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Go back
  </button>
  <button onClick={cancelBooking} disabled={cancelLoading || !reasonComplete(cancelChoice, cancelDetail)}
- style={{ flex: 1, padding: '8px', borderRadius: 0, border: 'none', background: cancelWithRefund ? '#a39e94' : '#dc2626', color: 'var(--text)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (cancelLoading || !reasonComplete(cancelChoice, cancelDetail)) ? .45 : 1 }}>
+ style={{ flex: 1, padding: '8px', borderRadius: 'var(--radius-control)', border: 'none', background: cancelWithRefund ? '#a39e94' : '#dc2626', color: 'var(--text)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (cancelLoading || !reasonComplete(cancelChoice, cancelDetail)) ? .45 : 1 }}>
  {cancelLoading ? (cancelWithRefund ? 'Cancelling + Refunding…' : 'Cancelling…') : (cancelWithRefund ? 'Cancel + Refund' : 'Yes, cancel')}
  </button>
  </div>
@@ -2835,11 +2835,11 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {selected?.customer_email && (
  <>
  <button onClick={() => { setPayLinkOpen(o => !o); setPayLinkMsg(null) }}
- style={{ padding: '9px', borderRadius: 0, border: `1px solid ${payLinkOpen ? 'var(--line)' : 'var(--line)'}`, background: payLinkOpen ? 'transparent' : 'transparent', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, width: '100%' }}>
+ style={{ padding: '9px', borderRadius: 'var(--radius-control)', border: `1px solid ${payLinkOpen ? 'var(--line)' : 'var(--line)'}`, background: payLinkOpen ? 'transparent' : 'transparent', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, width: '100%' }}>
  Request Payment
  </button>
  {payLinkOpen && (
- <div style={{ background: 'rgba(255,255,255,.03)', borderRadius: 0, padding: '14px', border: '1px solid var(--line)', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+ <div style={{ background: 'rgba(255,255,255,.03)', borderRadius: 'var(--radius-card)', padding: '14px', border: '1px solid var(--line)', display: 'flex', flexDirection: 'column', gap: '10px' }}>
  <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)' }}>Request Payment</span>
  {/* Method selector */}
  <div>
@@ -2847,7 +2847,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', gap: '6px' }}>
  {(['bank', 'revolut', 'link'] as const).map(m => (
  <button key={m} type="button" onClick={() => setPayLinkMethod(m)}
- style={{ flex: 1, padding: '7px 4px', borderRadius: 0, border: `1px solid ${payLinkMethod === m ? 'var(--line)' : 'rgba(255,255,255,.1)'}`, background: payLinkMethod === m ? 'transparent' : 'transparent', color: payLinkMethod === m ? 'var(--text)' : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '7px 4px', borderRadius: 'var(--radius-control)', border: `1px solid ${payLinkMethod === m ? 'var(--line)' : 'rgba(255,255,255,.1)'}`, background: payLinkMethod === m ? 'transparent' : 'transparent', color: payLinkMethod === m ? 'var(--text)' : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  {m === 'link' ? ' Stripe' : m === 'bank' ? ' Bank' : ' Revolut'}
  </button>
  ))}
@@ -2856,7 +2856,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {/* Amount type options */}
  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
  {/* 50% deposit toggle */}
- <label style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 10px', borderRadius: 0, background: payLinkAmountType === 'deposit' ? 'transparent' : 'rgba(255,255,255,.02)', border: `1px solid ${payLinkAmountType === 'deposit' ? 'var(--line)' : 'rgba(255,255,255,.07)'}`, cursor: 'pointer' }}>
+ <label style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 10px', borderRadius: 'var(--radius-control)', background: payLinkAmountType === 'deposit' ? 'transparent' : 'rgba(255,255,255,.02)', border: `1px solid ${payLinkAmountType === 'deposit' ? 'var(--line)' : 'rgba(255,255,255,.07)'}`, cursor: 'pointer' }}>
  <input type="checkbox" checked={payLinkAmountType === 'deposit'} onChange={e => setPayLinkAmountType(e.target.checked ? 'deposit' : 'full')} style={{ accentColor: 'var(--text)', width: '14px', height: '14px' }} />
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: payLinkAmountType === 'deposit' ? 'var(--text)' : s.text }}>50% deposit only</div>
@@ -2864,7 +2864,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  </div>
  </label>
  {/* Custom amount */}
- <label style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 10px', borderRadius: 0, background: payLinkAmountType === 'custom' ? 'transparent' : 'rgba(255,255,255,.02)', border: `1px solid ${payLinkAmountType === 'custom' ? 'var(--line)' : 'rgba(255,255,255,.07)'}`, cursor: 'pointer' }}>
+ <label style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 10px', borderRadius: 'var(--radius-control)', background: payLinkAmountType === 'custom' ? 'transparent' : 'rgba(255,255,255,.02)', border: `1px solid ${payLinkAmountType === 'custom' ? 'var(--line)' : 'rgba(255,255,255,.07)'}`, cursor: 'pointer' }}>
  <input type="checkbox" checked={payLinkAmountType === 'custom'} onChange={e => setPayLinkAmountType(e.target.checked ? 'custom' : 'full')} style={{ accentColor: 'var(--text)', width: '14px', height: '14px' }} />
  <div style={{ flex: 1 }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: payLinkAmountType === 'custom' ? 'var(--text)' : s.text }}>Custom amount</div>
@@ -2879,7 +2879,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  value={payLinkCustomAmount}
  onChange={e => setPayLinkCustomAmount(e.target.value)}
  onClick={e => e.stopPropagation()}
- style={{ width: '100px', padding: '4px 8px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'rgba(255,255,255,.05)', color: s.text, fontSize: '14px', fontFamily: s.font }}
+ style={{ width: '100px', padding: '4px 8px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.15)', background: 'rgba(255,255,255,.05)', color: s.text, fontSize: '14px', fontFamily: s.font }}
  />
  </div>
  )}
@@ -2904,11 +2904,11 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {payLinkMsg && <div style={{ fontSize: '14px', color: payLinkMsg.startsWith('') ? 'var(--text)' : 'var(--text)' }}>{payLinkMsg}</div>}
  <div style={{ display: 'flex', gap: '6px' }}>
  <button onClick={() => { setPayLinkOpen(false); setPayLinkMsg(null) }}
- style={{ flex: 1, padding: '8px', borderRadius: 0, border: '1px solid rgba(255,255,255,.1)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '8px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.1)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Cancel
  </button>
  <button onClick={sendPaymentLink} disabled={payLinkLoading}
- style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: payLinkLoading ? .6 : 1 }}>
+ style={{ flex: 2, padding: '8px', borderRadius: 'var(--radius-control)', border: 'none', background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: payLinkLoading ? .6 : 1 }}>
  {payLinkLoading ? 'Sending…' : 'Send Request'}
  </button>
  </div>
@@ -2921,11 +2921,11 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {payMsg && <div style={{ fontSize: '14px', color: payMsg.startsWith('') ? 'var(--text)' : 'var(--text)', textAlign: 'center' }}>{payMsg}</div>}
  {!payFormOpen ? (
  <button onClick={() => { setPayFormOpen(true); setPayMsg(null) }}
- style={{ padding: '9px', borderRadius: 0, border: '1px dashed rgba(255,255,255,.18)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, width: '100%' }}>
+ style={{ padding: '9px', borderRadius: 'var(--radius-control)', border: '1px dashed rgba(255,255,255,.18)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, width: '100%' }}>
  + Add payment
  </button>
  ) : (
- <div style={{ background: 'rgba(255,255,255,.03)', borderRadius: 0, padding: '14px', border: '1px solid rgba(255,255,255,.09)', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+ <div style={{ background: 'rgba(255,255,255,.03)', borderRadius: 'var(--radius-control)', padding: '14px', border: '1px solid rgba(255,255,255,.09)', display: 'flex', flexDirection: 'column', gap: '10px' }}>
  <span style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>New Payment</span>
  <div style={{ fontSize: '14px', color: s.muted }}>Only for money you have received. A payment the guest still has to make is not entered here.</div>
  <div>
@@ -2947,11 +2947,11 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  </div>
  <div style={{ display: 'flex', gap: '6px' }}>
  <button onClick={() => { setPayFormOpen(false); setPayMsg(null) }}
- style={{ flex: 1, padding: '8px', borderRadius: 0, border: '1px solid rgba(255,255,255,.1)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '8px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.1)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Cancel
  </button>
  <button onClick={addPayment} disabled={payLoading}
- style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: s.accent, color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: payLoading ? .6 : 1 }}>
+ style={{ flex: 2, padding: '8px', borderRadius: 'var(--radius-control)', border: 'none', background: s.accent, color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: payLoading ? .6 : 1 }}>
  {payLoading ? 'Saving…' : 'Save'}
  </button>
  </div>
@@ -2967,11 +2967,11 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <button
  onClick={() => { setFullRefundOpen(true); setFullReleaseIds(new Set(bkSessions.filter(x => x.status === 'booked').map(x => x.id))); setFullRefundMethod(selected.stripe_payment_intent ? 'stripe' : 'cash'); setRefundMsg(null) }}
  disabled={refundLoading}
- style={{ width: '100%', padding: '10px', borderRadius: 0, border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ width: '100%', padding: '10px', borderRadius: 'var(--radius-control)', border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Full Refund
  </button>
  ) : (
- <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
  <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)' }}>Full Refund — {selected.product_name}</span>
  <div>
  <label style={lbl}>Payment method</label>
@@ -2996,7 +2996,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  const on = fullReleaseIds.has(x.id)
  return (
  <button key={x.id} type="button" onClick={() => { const n = new Set(fullReleaseIds); if (n.has(x.id)) n.delete(x.id); else n.add(x.id); setFullReleaseIds(n) }}
- style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: 0, border: `1px solid ${on ? 'var(--line)' : 'rgba(255,255,255,.1)'}`, background: on ? 'transparent' : 'transparent', cursor: 'pointer', fontFamily: s.font, fontSize: '14px', color: s.text }}>
+ style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: 'var(--radius-control)', border: `1px solid ${on ? 'var(--line)' : 'rgba(255,255,255,.1)'}`, background: on ? 'transparent' : 'transparent', cursor: 'pointer', fontFamily: s.font, fontSize: '14px', color: s.text }}>
  <span>{on ? '' : ''} {fmtDate(x.session_date)} · {(x.session ?? '').toUpperCase()}{x.notes ? ` · ${x.notes}` : ''}</span>
  <span style={{ fontSize: '14px', color: s.muted }}>{x.seats ?? 1} seat(s){x.is_boat_day === false ? ' · no boat' : ''}</span>
  </button>
@@ -3010,7 +3010,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ fontSize: '14px', color: 'var(--text)' }}> Refund will appear as pending in Finances for manual processing.</div>
  )}
  {ps && (
- <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '8px 10px', borderRadius: 0, background: 'transparent', border: '1px solid var(--line)' }}>
+ <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '8px 10px', borderRadius: 'var(--radius-card)', background: 'transparent', border: '1px solid var(--line)' }}>
  <span style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>Total refund amount</span>
  <span style={{ fontSize: '18px', fontWeight: 500, color: 'var(--text)' }}>{fmtAmount(Math.max(0, ps.grossPaid - ps.refunded), ps.currency)}</span>
  </div>
@@ -3018,18 +3018,18 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {refundMsg && <div style={{ fontSize: '14px', color: refundMsg.startsWith('') ? 'var(--text)' : 'var(--text)' }}>{refundMsg}</div>}
  <div style={{ display: 'flex', gap: '6px' }}>
  <button onClick={() => { setFullRefundOpen(false); setRefundMsg(null) }}
- style={{ flex: 1, padding: '8px', borderRadius: 0, border: '1px solid rgba(255,255,255,.1)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '8px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.1)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Cancel
  </button>
  <button onClick={() => initiateRefund()} disabled={refundLoading || !fullRefundMethod || !reasonComplete(fullRefundChoice, fullRefundDesc)}
  style={fullRefundMethod === 'cash'
- ? { flex: 1, padding: '8px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(fullRefundChoice, fullRefundDesc)) ? .45 : 1 }
- : { flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !fullRefundMethod || !reasonComplete(fullRefundChoice, fullRefundDesc)) ? .45 : 1 }}>
+ ? { flex: 1, padding: '8px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(fullRefundChoice, fullRefundDesc)) ? .45 : 1 }
+ : { flex: 2, padding: '8px', borderRadius: 'var(--radius-control)', border: 'none', background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !fullRefundMethod || !reasonComplete(fullRefundChoice, fullRefundDesc)) ? .45 : 1 }}>
  {refundLoading ? 'Processing…' : (fullRefundMethod === 'cash' ? 'Request only (pay later)' : 'Confirm Refund')}
  </button>
  {fullRefundMethod === 'cash' && (
  <button onClick={() => initiateRefund(true)} disabled={refundLoading || !reasonComplete(fullRefundChoice, fullRefundDesc)}
- style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(fullRefundChoice, fullRefundDesc)) ? .45 : 1 }}>
+ style={{ flex: 2, padding: '8px', borderRadius: 'var(--radius-control)', border: 'none', background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(fullRefundChoice, fullRefundDesc)) ? .45 : 1 }}>
  Hand out cash now
  </button>
  )}
@@ -3040,11 +3040,11 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {/* Partial refund */}
  {!partialRefundOpen ? (
  <button onClick={() => { setPartialRefundOpen(true); setRefundItemKeys(new Set()); setRefundPaymentIds(new Set()); setPartialRefundAmount(''); setPartialRefundMethod(selected.stripe_payment_intent ? 'stripe' : 'cash'); setPartialRefundMsg(null) }}
- style={{ width: '100%', padding: '9px', borderRadius: 0, border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ width: '100%', padding: '9px', borderRadius: 'var(--radius-control)', border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Partial Refund…
  </button>
  ) : (
- <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
  <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)' }}>Partial Refund</span>
  {ps && (
  <div style={{ fontSize: '14px', color: ps.grossPaid - ps.refunded > 0 ? s.muted : 'var(--text)' }}>
@@ -3084,7 +3084,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  return (
  <button key={p.id} type="button"
  onClick={togglePayment}
- style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '7px 10px', borderRadius: 0, border: `1px solid ${isSelected ? 'var(--line)' : 'rgba(255,255,255,.08)'}`, background: isSelected ? 'transparent' : 'rgba(255,255,255,.02)', color: isSelected ? 'var(--text)' : s.text, fontSize: '14px', fontWeight: isSelected ? 500 : 400, cursor: 'pointer', fontFamily: s.font, textAlign: 'left', gap: '10px' }}>
+ style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '7px 10px', borderRadius: 'var(--radius-control)', border: `1px solid ${isSelected ? 'var(--line)' : 'rgba(255,255,255,.08)'}`, background: isSelected ? 'transparent' : 'rgba(255,255,255,.02)', color: isSelected ? 'var(--text)' : s.text, fontSize: '14px', fontWeight: isSelected ? 500 : 400, cursor: 'pointer', fontFamily: s.font, textAlign: 'left', gap: '10px' }}>
  <span style={{ color: isSelected ? 'var(--text)' : s.text, fontWeight: 500, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{lineLabel}</span>
  <span style={{ fontWeight: 500, fontVariantNumeric: 'tabular-nums', flexShrink: 0 }}>{fmtAmount(p.amount, selected.currency ?? 'eur')}</span>
  </button>
@@ -3151,9 +3151,9 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  const on = refundItemKeys.has(item.key)
  return (
  <button key={item.key} type="button" onClick={() => toggle(item.key)}
- style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', padding: '7px 10px', borderRadius: 0, border: `1px solid ${on ? 'var(--line)' : 'rgba(255,255,255,.1)'}`, background: on ? 'transparent' : 'transparent', cursor: 'pointer', fontFamily: s.font, fontSize: '14px', textAlign: 'left' }}>
+ style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', padding: '7px 10px', borderRadius: 'var(--radius-control)', border: `1px solid ${on ? 'var(--line)' : 'rgba(255,255,255,.1)'}`, background: on ? 'transparent' : 'transparent', cursor: 'pointer', fontFamily: s.font, fontSize: '14px', textAlign: 'left' }}>
  <span style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0 }}>
- <span style={{ width: '14px', height: '14px', borderRadius: 0, border: `1px solid ${on ? 'var(--line)' : 'rgba(255,255,255,.3)'}`, background: on ? 'var(--muted)' : 'transparent', color: 'var(--on-accent)', fontSize: '14px', fontWeight: 500, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{on ? '' : ''}</span>
+ <span style={{ width: '14px', height: '14px', borderRadius: 'var(--radius-control)', border: `1px solid ${on ? 'var(--line)' : 'rgba(255,255,255,.3)'}`, background: on ? 'var(--muted)' : 'transparent', color: 'var(--on-accent)', fontSize: '14px', fontWeight: 500, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{on ? '' : ''}</span>
  <span style={{ color: on ? 'var(--text)' : s.text, fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.label}</span>
  </span>
  <span style={{ fontWeight: 500, fontVariantNumeric: 'tabular-nums', flexShrink: 0, color: on ? 'var(--text)' : s.text }}>{fmtAmount(item.amountCents, selected.currency ?? 'eur')}</span>
@@ -3179,7 +3179,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  const on = refundReleaseSessionIds.has(x.id)
  return (
  <button key={x.id} type="button" onClick={() => { const n = new Set(refundReleaseSessionIds); if (n.has(x.id)) n.delete(x.id); else n.add(x.id); setRefundReleaseSessionIds(n); suggestDayRefund(n) }}
- style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: 0, border: `1px solid ${on ? 'var(--line)' : 'rgba(255,255,255,.1)'}`, background: on ? 'transparent' : 'transparent', cursor: 'pointer', fontFamily: s.font, fontSize: '14px', textAlign: 'left', color: on ? 'var(--text)' : s.text }}>
+ style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', padding: '6px 10px', borderRadius: 'var(--radius-control)', border: `1px solid ${on ? 'var(--line)' : 'rgba(255,255,255,.1)'}`, background: on ? 'transparent' : 'transparent', cursor: 'pointer', fontFamily: s.font, fontSize: '14px', textAlign: 'left', color: on ? 'var(--text)' : s.text }}>
  <span>{on ? '' : ''} {fmtDate(x.session_date)} · {(x.session ?? '').toUpperCase()}{x.notes ? ` · ${x.notes}` : ''}</span>
  <span style={{ fontSize: '14px', color: s.muted }}>{x.seats ?? 1} seat(s){x.is_boat_day === false ? ' · no boat' : ''}</span>
  </button>
@@ -3212,7 +3212,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {(() => {
  const c = Math.round(parseFloat(partialRefundAmount.replace(',', '.')) * 100)
  return (
- <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '8px 10px', borderRadius: 0, background: 'transparent', border: '1px solid var(--line)' }}>
+ <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '8px 10px', borderRadius: 'var(--radius-card)', background: 'transparent', border: '1px solid var(--line)' }}>
  <span style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>Total refund amount</span>
  <span style={{ fontSize: '18px', fontWeight: 500, color: 'var(--text)' }}>{!isNaN(c) && c > 0 ? fmtAmount(c, ps?.currency ?? 'EUR') : '—'}</span>
  </div>
@@ -3221,18 +3221,18 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {partialRefundMsg && <div style={{ fontSize: '14px', color: partialRefundMsg.startsWith('') ? 'var(--text)' : 'var(--text)' }}>{partialRefundMsg}</div>}
  <div style={{ display: 'flex', gap: '6px' }}>
  <button onClick={() => { setPartialRefundOpen(false); setPartialRefundAmount(''); setPartialRefundMsg(null); setPartialRefundMethod('') }}
- style={{ flex: 1, padding: '8px', borderRadius: 0, border: '1px solid rgba(255,255,255,.1)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '8px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.1)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Cancel
  </button>
  <button onClick={() => doPartialRefund()} disabled={refundLoading || !reasonComplete(partialRefundChoice, partialRefundDesc)}
  style={partialRefundMethod === 'cash'
- ? { flex: 1, padding: '8px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(partialRefundChoice, partialRefundDesc)) ? .45 : 1 }
- : { flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(partialRefundChoice, partialRefundDesc)) ? .45 : 1 }}>
+ ? { flex: 1, padding: '8px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(partialRefundChoice, partialRefundDesc)) ? .45 : 1 }
+ : { flex: 2, padding: '8px', borderRadius: 'var(--radius-control)', border: 'none', background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(partialRefundChoice, partialRefundDesc)) ? .45 : 1 }}>
  {refundLoading ? 'Processing…' : (partialRefundMethod === 'cash' ? 'Request only (pay later)' : 'Refund')}
  </button>
  {partialRefundMethod === 'cash' && (
  <button onClick={() => doPartialRefund(true)} disabled={refundLoading || !reasonComplete(partialRefundChoice, partialRefundDesc)}
- style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(partialRefundChoice, partialRefundDesc)) ? .45 : 1 }}>
+ style={{ flex: 2, padding: '8px', borderRadius: 'var(--radius-control)', border: 'none', background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: (refundLoading || !reasonComplete(partialRefundChoice, partialRefundDesc)) ? .45 : 1 }}>
  Hand out cash now
  </button>
  )}
@@ -3246,7 +3246,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {/* Online-Stripe-Zahlung (nur bei Checkout-Buchungen — Walk-ins haben nur booking_payments) */}
  {ps?.isOnlineStripe ? (
  <div style={{ display: 'flex', flexDirection: 'column', gap: '7px' }}>
- <div style={{ background: 'rgba(255,255,255,.03)', borderRadius: 0, padding: '12px 14px', border: '1px solid rgba(255,255,255,.07)' }}>
+ <div style={{ background: 'rgba(255,255,255,.03)', borderRadius: 'var(--radius-control)', padding: '12px 14px', border: '1px solid rgba(255,255,255,.07)' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>{pmLabel(selected)}</span>
  <span style={{ fontSize: '14px', fontWeight: 500, color: ps.grossPaid > 0 && ps.refunded >= ps.grossPaid ? 'var(--muted)' : ps.dueBalance === 0 && ps.total > 0 ? 'var(--text)' : ps.total > 0 ? 'var(--text)' : s.muted, fontVariantNumeric: 'tabular-nums' }}>
@@ -3264,7 +3264,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  </div>
  ) : (
  <div style={{ display: 'flex', flexDirection: 'column', gap: '7px' }}>
- <div style={{ background: 'rgba(255,255,255,.03)', borderRadius: 0, padding: '12px 14px', border: '1px solid rgba(255,255,255,.07)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+ <div style={{ background: 'rgba(255,255,255,.03)', borderRadius: 'var(--radius-control)', padding: '12px 14px', border: '1px solid rgba(255,255,255,.07)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>Payments are recorded below</span>
  <span style={{ fontSize: '14px', fontWeight: 500, color: s.text, fontVariantNumeric: 'tabular-nums' }}>{fmtAmount(selected.amount, selected.currency)}</span>
  </div>
@@ -3290,13 +3290,13 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  const ref = (pmt.notes ?? '').match(/booking ([0-9a-f]{8})/i)?.[1] ?? null
  const note = (pmt.notes ?? '').replace(/^(Moved (to|from) (linked )?booking [0-9a-f]{8})\s*/i, '').replace(/^\(|\)$/g, '')
  return (
- <div key={pmt.id} style={{ background: 'rgba(255,255,255,.02)', borderRadius: 0, padding: '12px 14px', border: '1px dashed rgba(255,255,255,.14)' }}>
+ <div key={pmt.id} style={{ background: 'rgba(255,255,255,.02)', borderRadius: 'var(--radius-card)', padding: '12px 14px', border: '1px dashed rgba(255,255,255,.14)' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
  <span style={{ fontSize: '14px', color: s.text, fontWeight: 500 }}> {out ? 'Moved to linked booking' : 'Moved from linked booking'}{ref && (<> {' '}
  <button type="button" onClick={() => openBookingByPrefix(ref)} title="Open that booking"
  style={{ background: 'transparent', border: 'none', padding: 0, color: s.accent, fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', fontSize: '14px', cursor: 'pointer', textDecoration: 'underline' }}>{ref}</button></>)}</span>
  <div style={{ display: 'flex', gap: '7px', alignItems: 'center' }}>
- <span style={{ padding: '2px 7px', borderRadius: 0, fontSize: '14px', fontWeight: 500, background: 'rgba(255,255,255,.08)', color: s.muted }}>moved</span>
+ <span style={{ padding: '2px 7px', borderRadius: 'var(--radius-control)', fontSize: '14px', fontWeight: 500, background: 'rgba(255,255,255,.08)', color: s.muted }}>moved</span>
  <span style={{ fontSize: '14px', fontWeight: 500, color: s.muted, fontVariantNumeric: 'tabular-nums' }}>{out ? '−' : '+'}{fmtAmount(Math.abs(pmt.amount), pmt.currency)}</span>
  </div>
  </div>
@@ -3309,11 +3309,11 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  )
  }
  return (
- <div key={pmt.id} style={{ background: 'rgba(255,255,255,.03)', borderRadius: 0, padding: '12px 14px', border: `1px solid ${pmt.status === 'pending' ? 'var(--line)' : 'rgba(255,255,255,.07)'}` }}>
+ <div key={pmt.id} style={{ background: 'rgba(255,255,255,.03)', borderRadius: 'var(--radius-card)', padding: '12px 14px', border: `1px solid ${pmt.status === 'pending' ? 'var(--line)' : 'rgba(255,255,255,.07)'}` }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>{PM_LABELS[pmt.method] ?? pmt.method}</span>
  <div style={{ display: 'flex', gap: '7px', alignItems: 'center' }}>
- <span style={{ padding: '2px 7px', borderRadius: 0, fontSize: '14px', fontWeight: 500, background: pmt.status === 'paid' ? 'transparent' : pmt.status === 'pending' ? 'transparent' : 'transparent', color: pmt.status === 'paid' ? 'var(--text)' : pmt.status === 'pending' ? 'var(--text)' : 'var(--text)' }}>{pmt.status === 'pending' ? 'expected' : pmt.status}</span>
+ <span style={{ padding: '2px 7px', borderRadius: 'var(--radius-control)', fontSize: '14px', fontWeight: 500, background: pmt.status === 'paid' ? 'transparent' : pmt.status === 'pending' ? 'transparent' : 'transparent', color: pmt.status === 'paid' ? 'var(--text)' : pmt.status === 'pending' ? 'var(--text)' : 'var(--text)' }}>{pmt.status === 'pending' ? 'expected' : pmt.status}</span>
  <span style={{ fontSize: '14px', fontWeight: 500, color: s.text, fontVariantNumeric: 'tabular-nums' }}>{fmtAmount(pmt.amount, pmt.currency)}</span>
  </div>
  </div>
@@ -3325,7 +3325,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  </div>
  {pmt.status === 'pending' && (
  <button onClick={() => markPaid(pmt)}
- style={{ marginTop: '8px', padding: '5px 12px', borderRadius: 0, border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ marginTop: '8px', padding: '5px 12px', borderRadius: 'var(--radius-control)', border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  Mark as received
  </button>
  )}
@@ -3336,7 +3336,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  const paid = r.status === 'paid'
  const RM: Record<string, string> = { stripe: 'Stripe', cash: 'Cash', bank: 'Bank Transfer', revolut: 'Revolut', mb_way: 'MB WAY', other: 'Other' }
  return (
- <div key={r.id} style={{ background: 'transparent', border: `1px solid ${paid ? 'var(--line)' : 'var(--line)'}`, borderRadius: 0, padding: '10px 14px', display: 'flex', justifyContent: 'space-between', gap: '10px', alignItems: 'flex-start' }}>
+ <div key={r.id} style={{ background: 'transparent', border: `1px solid ${paid ? 'var(--line)' : 'var(--line)'}`, borderRadius: 'var(--radius-card)', padding: '10px 14px', display: 'flex', justifyContent: 'space-between', gap: '10px', alignItems: 'flex-start' }}>
  <div style={{ minWidth: 0 }}>
  <div style={{ fontSize: '14px', color: s.text, fontWeight: 500 }}>{r.description}</div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '3px' }}>
@@ -3353,7 +3353,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
 
  {/* Payment summary */}
  {ps && (ps.extraPaid > 0 || ps.pending > 0 || ps.dueBalance > 0) && (
- <div style={{ background: 'color-mix(in srgb, var(--text) 4%, transparent)', borderRadius: 0, padding: '12px 14px', border: '1px solid color-mix(in srgb, var(--text) 10%, transparent)', display: 'flex', flexDirection: 'column', gap: '5px' }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 4%, transparent)', borderRadius: 'var(--radius-control)', padding: '12px 14px', border: '1px solid color-mix(in srgb, var(--text) 10%, transparent)', display: 'flex', flexDirection: 'column', gap: '5px' }}>
  {[
  ['Total paid', fmtAmount(ps.total, ps.currency), 'var(--text)'],
  ...(ps.dueBalance > 0 ? [['Open', fmtAmount(ps.dueBalance, ps.currency), 'var(--text)']] : []),
@@ -3394,7 +3394,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div key={sess.id}>
  {editingSessionId === sess.id ? (
  /* ── Inline edit ── */
- <div style={{ background: 'color-mix(in srgb, var(--text) 4%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 0, padding: '12px', display: 'flex', flexDirection: 'column', gap: '9px' }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 4%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 'var(--radius-card)', padding: '12px', display: 'flex', flexDirection: 'column', gap: '9px' }}>
  <span style={{ fontSize: '14px', fontWeight: 500, color: s.accent }}>Edit session</span>
  <div>
  <label style={lbl}>Date</label>
@@ -3405,7 +3405,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', gap: '6px' }}>
  {((selected.product_name ?? '').trim().toLowerCase() === 'night dive' ? ['night'] as const : ['am', 'pm'] as const).map(t => (
  <button key={t} type="button" onClick={() => setEditSessForm(f => ({ ...f, time: t }))}
- style={{ flex: 1, padding: '7px', borderRadius: 0, border: `1px solid ${editSessForm.time === t ? 'color-mix(in srgb, var(--text) 40%, transparent)' : 'rgba(255,255,255,.1)'}`, background: editSessForm.time === t ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'transparent', color: editSessForm.time === t ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '7px', borderRadius: 'var(--radius-control)', border: `1px solid ${editSessForm.time === t ? 'color-mix(in srgb, var(--text) 40%, transparent)' : 'rgba(255,255,255,.1)'}`, background: editSessForm.time === t ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'transparent', color: editSessForm.time === t ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  {t.toUpperCase()}
  </button>
  ))}
@@ -3416,7 +3416,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', gap: '6px' }}>
  {([true, false] as const).map(isBoat => (
  <button key={String(isBoat)} type="button" onClick={() => setEditSessForm(f => ({ ...f, isBoatDay: isBoat }))}
- style={{ flex: 1, padding: '7px', borderRadius: 0, border: `1px solid ${editSessForm.isBoatDay === isBoat ? (isBoat ? 'color-mix(in srgb, var(--text) 40%, transparent)' : 'var(--text)') : 'rgba(255,255,255,.1)'}`, background: editSessForm.isBoatDay === isBoat ? (isBoat ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'var(--text)') : 'transparent', color: editSessForm.isBoatDay === isBoat ? (isBoat ? s.accent : 'var(--text)') : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '7px', borderRadius: 'var(--radius-control)', border: `1px solid ${editSessForm.isBoatDay === isBoat ? (isBoat ? 'color-mix(in srgb, var(--text) 40%, transparent)' : 'var(--text)') : 'rgba(255,255,255,.1)'}`, background: editSessForm.isBoatDay === isBoat ? (isBoat ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'var(--text)') : 'transparent', color: editSessForm.isBoatDay === isBoat ? (isBoat ? s.accent : 'var(--text)') : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  {isBoat ? ' Boat' : ' Pool'}
  </button>
  ))}
@@ -3429,35 +3429,35 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {sessMsg && <div style={{ fontSize: '14px', color: sessMsg.startsWith('') ? 'var(--text)' : 'var(--text)' }}>{sessMsg}</div>}
  <div style={{ display: 'flex', gap: '6px' }}>
  <button onClick={() => { setEditingSessionId(null); setSessMsg(null) }}
- style={{ flex: 1, padding: '7px', borderRadius: 0, border: '1px solid rgba(255,255,255,.1)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '7px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.1)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Cancel
  </button>
  <button onClick={() => updateSession(sess.id)} disabled={sessEditLoading || editSessForm.isBoatDay === null}
- style={{ flex: 2, padding: '7px', borderRadius: 0, border: 'none', background: editSessForm.isBoatDay !== null ? s.accent : 'rgba(255,255,255,.1)', color: editSessForm.isBoatDay !== null ? 'var(--bg)' : s.muted, fontWeight: 500, fontSize: '14px', cursor: editSessForm.isBoatDay !== null ? 'pointer' : 'not-allowed', fontFamily: s.font }}>
+ style={{ flex: 2, padding: '7px', borderRadius: 'var(--radius-control)', border: 'none', background: editSessForm.isBoatDay !== null ? s.accent : 'rgba(255,255,255,.1)', color: editSessForm.isBoatDay !== null ? 'var(--bg)' : s.muted, fontWeight: 500, fontSize: '14px', cursor: editSessForm.isBoatDay !== null ? 'pointer' : 'not-allowed', fontFamily: s.font }}>
  {sessEditLoading ? 'Saving…' : 'Update'}
  </button>
  </div>
  </div>
  ) : sessDeleteConfirm === sess.id ? (
  /* ── Delete confirm ── */
- <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
  <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)' }}>Remove session?</span>
  <span style={{ fontSize: '14px', color: s.muted }}>{fmtDate(sess.session_date)} · {sess.session === 'tbd' ? ' time to be set' : sess.session === 'night' ? ' NIGHT' : sess.session.toUpperCase()} · {sess.is_boat_day ? ' Boat' : ' Pool'}</span>
  {sessMsg && <div style={{ fontSize: '14px', color: sessMsg.startsWith('') ? 'var(--text)' : 'var(--text)' }}>{sessMsg}</div>}
  <div style={{ display: 'flex', gap: '6px' }}>
  <button onClick={() => { setSessDeleteConfirm(null); setSessMsg(null) }}
- style={{ flex: 1, padding: '7px', borderRadius: 0, border: '1px solid rgba(255,255,255,.1)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '7px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.1)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Keep
  </button>
  <button onClick={() => deleteSession(sess.id)} disabled={sessEditLoading}
- style={{ flex: 2, padding: '7px', borderRadius: 0, border: 'none', background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: sessEditLoading ? .6 : 1 }}>
+ style={{ flex: 2, padding: '7px', borderRadius: 'var(--radius-control)', border: 'none', background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: sessEditLoading ? .6 : 1 }}>
  {sessEditLoading ? 'Removing…' : 'Remove'}
  </button>
  </div>
  </div>
  ) : (
  /* ── View mode ── */
- <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', background: 'rgba(255,255,255,.03)', borderRadius: 0, border: '1px solid rgba(255,255,255,.07)', fontSize: '14px' }}>
+ <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', background: 'rgba(255,255,255,.03)', borderRadius: 'var(--radius-card)', border: '1px solid rgba(255,255,255,.07)', fontSize: '14px' }}>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
  <span style={{ color: s.text }}>
  {fmtDate(sess.session_date)} · {sess.session === 'tbd'
@@ -3470,7 +3470,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  </div>
  <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>{sess.is_boat_day ? '' : ''}</span>
- <span style={{ fontSize: '14px', padding: '2px 7px', borderRadius: 0, background: sess.status === 'confirmed' ? 'transparent' : 'transparent', color: sess.status === 'confirmed' ? 'var(--text)' : 'var(--text)', fontWeight: 500 }}>
+ <span style={{ fontSize: '14px', padding: '2px 7px', borderRadius: 'var(--radius-control)', background: sess.status === 'confirmed' ? 'transparent' : 'transparent', color: sess.status === 'confirmed' ? 'var(--text)' : 'var(--text)', fontWeight: 500 }}>
  {sess.status}
  </span>
  <span style={{ color: s.muted }}>×{sess.seats}</span>
@@ -3481,11 +3481,11 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  setSessFormOpen(false)
  setSessDeleteConfirm(null)
  }}
- style={{ padding: '3px 8px', borderRadius: 0, border: '1px solid rgba(255,255,255,.1)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ padding: '3px 8px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.1)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Edit
  </button>
  <button onClick={() => { setSessDeleteConfirm(sess.id); setEditingSessionId(null); setSessMsg(null) }}
- style={{ padding: '3px 8px', borderRadius: 0, border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ padding: '3px 8px', borderRadius: 'var(--radius-control)', border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  
  </button>
  </div>
@@ -3499,12 +3499,12 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  const unscheduled = Math.max(0, expected - bkSessions.length)
  if (unscheduled === 0) return null
  return Array.from({ length: unscheduled }, (_, i) => (
- <div key={`unscheduled-${i}`} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', background: 'rgba(255,255,255,.01)', borderRadius: 0, border: '1px dashed rgba(255,255,255,.12)', fontSize: '14px', opacity: 0.6 }}>
+ <div key={`unscheduled-${i}`} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', background: 'rgba(255,255,255,.01)', borderRadius: 'var(--radius-card)', border: '1px dashed rgba(255,255,255,.12)', fontSize: '14px', opacity: 0.6 }}>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
  <span style={{ color: s.muted }}> Not yet scheduled</span>
  <span style={{ fontSize: '14px', color: s.muted, opacity: 0.7 }}>Dive #{bkSessions.length + i + 1}</span>
  </div>
- <span style={{ fontSize: '14px', padding: '2px 7px', borderRadius: 0, background: 'rgba(255,255,255,.06)', color: s.muted, fontWeight: 500 }}>unscheduled</span>
+ <span style={{ fontSize: '14px', padding: '2px 7px', borderRadius: 'var(--radius-control)', background: 'rgba(255,255,255,.06)', color: s.muted, fontWeight: 500 }}>unscheduled</span>
  </div>
  ))
  })()}
@@ -3517,12 +3517,12 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  return rawSessions.map((entry, i) => {
  const [date, time] = entry.split(':')
  return (
- <div key={`pre-${i}`} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', background: 'color-mix(in srgb, var(--text) 3%, transparent)', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 12%, transparent)', fontSize: '14px' }}>
+ <div key={`pre-${i}`} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', background: 'color-mix(in srgb, var(--text) 3%, transparent)', borderRadius: 'var(--radius-card)', border: '1px solid color-mix(in srgb, var(--text) 12%, transparent)', fontSize: '14px' }}>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
  <span style={{ color: s.text, fontWeight: 500 }}> {fmtDate(date)}</span>
  <span style={{ fontSize: '14px', color: s.muted }}>Dive #{i + 1} · {(time ?? 'am').toUpperCase()}</span>
  </div>
- <span style={{ fontSize: '14px', padding: '2px 7px', borderRadius: 0, background: 'color-mix(in srgb, var(--text) 10%, transparent)', color: s.accent, fontWeight: 500 }}>pre-booked</span>
+ <span style={{ fontSize: '14px', padding: '2px 7px', borderRadius: 'var(--radius-control)', background: 'color-mix(in srgb, var(--text) 10%, transparent)', color: s.accent, fontWeight: 500 }}>pre-booked</span>
  </div>
  )
  })
@@ -3536,11 +3536,11 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
 
  {!sessFormOpen ? (
  <button onClick={() => { setSessFormOpen(true); setSessMsg(null); setEditingSessionId(null); setSessDeleteConfirm(null) }}
- style={{ padding: '9px', borderRadius: 0, border: '1px dashed rgba(255,255,255,.18)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, width: '100%' }}>
+ style={{ padding: '9px', borderRadius: 'var(--radius-control)', border: '1px dashed rgba(255,255,255,.18)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, width: '100%' }}>
  + Add session
  </button>
  ) : (
- <div style={{ background: 'rgba(255,255,255,.03)', borderRadius: 0, padding: '14px', border: '1px solid rgba(255,255,255,.09)', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+ <div style={{ background: 'rgba(255,255,255,.03)', borderRadius: 'var(--radius-card)', padding: '14px', border: '1px solid rgba(255,255,255,.09)', display: 'flex', flexDirection: 'column', gap: '10px' }}>
  <span style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>Add session</span>
  <div>
  <label style={lbl}>Date</label>
@@ -3551,7 +3551,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', gap: '6px' }}>
  {((selected.product_name ?? '').trim().toLowerCase() === 'night dive' ? ['night'] as const : ['am', 'pm'] as const).map(t => (
  <button key={t} type="button" onClick={() => setSessForm(f => ({ ...f, time: t }))}
- style={{ flex: 1, padding: '7px', borderRadius: 0, border: `1px solid ${sessForm.time === t ? 'color-mix(in srgb, var(--text) 40%, transparent)' : 'rgba(255,255,255,.1)'}`, background: sessForm.time === t ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'transparent', color: sessForm.time === t ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '7px', borderRadius: 'var(--radius-control)', border: `1px solid ${sessForm.time === t ? 'color-mix(in srgb, var(--text) 40%, transparent)' : 'rgba(255,255,255,.1)'}`, background: sessForm.time === t ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'transparent', color: sessForm.time === t ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  {t.toUpperCase()}
  </button>
  ))}
@@ -3562,7 +3562,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', gap: '6px' }}>
  {([true, false] as const).map(isBoat => (
  <button key={String(isBoat)} type="button" onClick={() => setSessForm(f => ({ ...f, isBoatDay: isBoat }))}
- style={{ flex: 1, padding: '7px', borderRadius: 0, border: `1px solid ${sessForm.isBoatDay === isBoat ? (isBoat ? 'color-mix(in srgb, var(--text) 40%, transparent)' : 'var(--text)') : 'rgba(255,255,255,.1)'}`, background: sessForm.isBoatDay === isBoat ? (isBoat ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'var(--text)') : 'transparent', color: sessForm.isBoatDay === isBoat ? (isBoat ? s.accent : 'var(--text)') : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '7px', borderRadius: 'var(--radius-control)', border: `1px solid ${sessForm.isBoatDay === isBoat ? (isBoat ? 'color-mix(in srgb, var(--text) 40%, transparent)' : 'var(--text)') : 'rgba(255,255,255,.1)'}`, background: sessForm.isBoatDay === isBoat ? (isBoat ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'var(--text)') : 'transparent', color: sessForm.isBoatDay === isBoat ? (isBoat ? s.accent : 'var(--text)') : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  {isBoat ? ' Boat' : ' Pool'}
  </button>
  ))}
@@ -3574,11 +3574,11 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  </div>
  <div style={{ display: 'flex', gap: '6px' }}>
  <button onClick={() => { setSessFormOpen(false); setSessMsg(null) }}
- style={{ flex: 1, padding: '8px', borderRadius: 0, border: '1px solid rgba(255,255,255,.1)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '8px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.1)', background: 'transparent', color: s.muted, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  Cancel
  </button>
  <button onClick={addSession} disabled={sessAddLoading || sessForm.isBoatDay === null}
- style={{ flex: 2, padding: '8px', borderRadius: 0, border: 'none', background: sessForm.isBoatDay !== null ? s.accent : 'rgba(255,255,255,.15)', color: sessForm.isBoatDay !== null ? 'var(--bg)' : s.muted, fontWeight: 500, fontSize: '14px', cursor: sessForm.isBoatDay !== null ? 'pointer' : 'not-allowed', fontFamily: s.font, opacity: sessAddLoading ? .6 : 1 }}>
+ style={{ flex: 2, padding: '8px', borderRadius: 'var(--radius-control)', border: 'none', background: sessForm.isBoatDay !== null ? s.accent : 'rgba(255,255,255,.15)', color: sessForm.isBoatDay !== null ? 'var(--bg)' : s.muted, fontWeight: 500, fontSize: '14px', cursor: sessForm.isBoatDay !== null ? 'pointer' : 'not-allowed', fontFamily: s.font, opacity: sessAddLoading ? .6 : 1 }}>
  {sessAddLoading ? 'Saving…' : 'Save'}
  </button>
  </div>
@@ -3594,13 +3594,13 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted }}>Linked Add-ons</div>
  {childBookings.map(cb => (
  <div key={cb.id} onClick={() => openBooking(cb)}
- style={{ padding: '8px 12px', background: 'rgba(255,255,255,.03)', borderRadius: 0, border: '1px solid rgba(255,255,255,.06)', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
+ style={{ padding: '8px 12px', background: 'rgba(255,255,255,.03)', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.06)', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
  <div>
  <div style={{ fontSize: '14px', color: s.text, fontWeight: 500 }}>{cb.product_name}</div>
  <div style={{ fontSize: '14px', color: s.muted, fontFamily: 'var(--font-geist-mono), ui-monospace, monospace' }}>{cb.id.slice(0, 8)}</div>
  </div>
  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
- <span style={{ padding: '2px 8px', borderRadius: 0, fontSize: '14px', fontWeight: 500, background: STATUS_BG[cb.status] ?? 'rgba(200,200,200,.12)', color: STATUS_CLR[cb.status] ?? '#aaa' }}>{cb.status}</span>
+ <span style={{ padding: '2px 8px', borderRadius: 'var(--radius-control)', fontSize: '14px', fontWeight: 500, background: STATUS_BG[cb.status] ?? 'rgba(200,200,200,.12)', color: STATUS_CLR[cb.status] ?? '#aaa' }}>{cb.status}</span>
  <span style={{ fontSize: '14px', color: 'var(--text)', fontVariantNumeric: 'tabular-nums' }}>{fmtAmount(cb.amount, cb.currency)}</span>
  </div>
  </div>
@@ -3609,7 +3609,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  )}
 
  {/* Add new items */}
- <div style={{ padding: '14px', background: 'rgba(255,255,255,.02)', borderRadius: 0, border: '1px solid rgba(255,255,255,.07)', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+ <div style={{ padding: '14px', background: 'rgba(255,255,255,.02)', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.07)', display: 'flex', flexDirection: 'column', gap: '12px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>New Add-on</div>
 
  {/* Product selector */}
@@ -3649,7 +3649,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  setAddSelectedId('')
  setAddItemDate('')
  }}
- style={{ padding: '8px 14px', borderRadius: 0, border: 'none', background: canAdd ? s.accent : 'rgba(255,255,255,.1)', color: canAdd ? 'var(--bg)' : s.muted, fontWeight: 500, fontSize: '14px', cursor: canAdd ? 'pointer' : 'not-allowed', fontFamily: s.font, whiteSpace: 'nowrap' }}>
+ style={{ padding: '8px 14px', borderRadius: 'var(--radius-control)', border: 'none', background: canAdd ? s.accent : 'rgba(255,255,255,.1)', color: canAdd ? 'var(--bg)' : s.muted, fontWeight: 500, fontSize: '14px', cursor: canAdd ? 'pointer' : 'not-allowed', fontFamily: s.font, whiteSpace: 'nowrap' }}>
  + Add
  </button>
  </div>
@@ -3675,7 +3675,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
  <label style={lbl}>Cart</label>
  {addCart.map((item, i) => (
- <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 10px', background: 'rgba(255,255,255,.04)', borderRadius: 0, fontSize: '14px' }}>
+ <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 10px', background: 'rgba(255,255,255,.04)', borderRadius: 'var(--radius-card)', fontSize: '14px' }}>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '1px' }}>
  <span style={{ color: s.text }}>{item.name}</span>
  {item.booking_date && <span style={{ fontSize: '14px', color: s.muted }}> {item.booking_date}</span>}
@@ -3700,7 +3700,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', gap: '6px' }}>
  {(['all', 'some'] as const).map(m => (
  <button key={m} type="button" onClick={() => setAddPersonMode(m)}
- style={{ flex: 1, padding: '7px', borderRadius: 0, border: `1px solid ${addPersonMode === m ? s.accent : 'rgba(255,255,255,.1)'}`, background: addPersonMode === m ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'transparent', color: addPersonMode === m ? s.accent : s.muted, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '7px', borderRadius: 'var(--radius-control)', border: `1px solid ${addPersonMode === m ? s.accent : 'rgba(255,255,255,.1)'}`, background: addPersonMode === m ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'transparent', color: addPersonMode === m ? s.accent : s.muted, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font }}>
  {m === 'all' ? `Everyone (${selected.group_size})` : 'Only some people'}
  </button>
  ))}
@@ -3728,7 +3728,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  <div style={{ display: 'flex', gap: '6px' }}>
  {(['paid', 'pending'] as const).map(s2 => (
  <button key={s2} onClick={() => setAddPayStatus(s2)}
- style={{ flex: 1, padding: '7px', borderRadius: 0, border: `1px solid ${addPayStatus === s2 ? s.accent : 'rgba(255,255,255,.1)'}`, background: addPayStatus === s2 ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'transparent', color: addPayStatus === s2 ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ flex: 1, padding: '7px', borderRadius: 'var(--radius-control)', border: `1px solid ${addPayStatus === s2 ? s.accent : 'rgba(255,255,255,.1)'}`, background: addPayStatus === s2 ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'transparent', color: addPayStatus === s2 ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  {s2 === 'paid' ? ' Received now' : ' Pending'}
  </button>
  ))}
@@ -3750,7 +3750,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {addMsg && <div style={{ fontSize: '14px', color: addMsg.startsWith('') ? 'var(--text)' : 'var(--text)' }}>{addMsg}</div>}
 
  <button onClick={saveAddItems} disabled={addLoading || addCart.length === 0}
- style={{ padding: '10px', borderRadius: 0, border: 'none', background: addCart.length > 0 ? s.accent : 'rgba(255,255,255,.1)', color: addCart.length > 0 ? 'var(--bg)' : s.muted, fontWeight: 500, fontSize: '14px', cursor: addCart.length > 0 ? 'pointer' : 'not-allowed', fontFamily: s.font, opacity: addLoading ? .6 : 1 }}>
+ style={{ padding: '10px', borderRadius: 'var(--radius-control)', border: 'none', background: addCart.length > 0 ? s.accent : 'rgba(255,255,255,.1)', color: addCart.length > 0 ? 'var(--bg)' : s.muted, fontWeight: 500, fontSize: '14px', cursor: addCart.length > 0 ? 'pointer' : 'not-allowed', fontFamily: s.font, opacity: addLoading ? .6 : 1 }}>
  {addLoading ? 'Creating…' : `Save & Create Booking${addCart.length > 0 ? ` (€${((addCart.reduce((s, i) => s + i.price_cents, 0) * ((selected.group_size ?? 1) > 1 && selectedDivers.length > 0 ? (addPersonMode === 'some' ? addPersonIds.size : selected.group_size) : 1)) / 100).toFixed(2)})` : ''}`}
  </button>
  </div>
@@ -3773,13 +3773,13 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  const all = ([...changelog, ...synth] as LogRow[]).sort((a, b) => new Date(b.changed_at).getTime() - new Date(a.changed_at).getTime())
  if (all.length === 0) return <div style={{ color: s.muted, fontSize: '14px', textAlign: 'center', padding: '16px 0' }}>No changes recorded yet</div>
  return all.map(entry => (
- <div key={String(entry.id)} style={{ padding: '10px 14px', background: entry.synthetic ? 'rgba(255,255,255,.015)' : 'rgba(255,255,255,.03)', borderRadius: 0, border: `1px solid ${entry.synthetic ? 'rgba(255,255,255,.04)' : 'rgba(255,255,255,.06)'}` }}>
+ <div key={String(entry.id)} style={{ padding: '10px 14px', background: entry.synthetic ? 'rgba(255,255,255,.015)' : 'rgba(255,255,255,.03)', borderRadius: 'var(--radius-card)', border: `1px solid ${entry.synthetic ? 'rgba(255,255,255,.04)' : 'rgba(255,255,255,.06)'}` }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '8px', marginBottom: '3px' }}>
  <LogText text={entry.description ?? entry.action} muted={!!entry.synthetic} />
  <span style={{ fontSize: '14px', color: s.muted, whiteSpace: 'nowrap', flexShrink: 0 }}>{fmtDateTime(entry.changed_at)}</span>
  </div>
  {entry.action === 'notes_update' && entry.new_value && (
- <div style={{ fontSize: '14px', color: s.muted, fontStyle: 'italic', marginTop: '3px', lineHeight: '1.5', padding: '5px 8px', background: 'rgba(255,255,255,.03)', borderRadius: 0, borderLeft: '2px solid rgba(255,255,255,.12)' }}>{entry.new_value}</div>
+ <div style={{ fontSize: '14px', color: s.muted, fontStyle: 'italic', marginTop: '3px', lineHeight: '1.5', padding: '5px 8px', background: 'rgba(255,255,255,.03)', borderRadius: 'var(--radius-control)', borderLeft: '2px solid rgba(255,255,255,.12)' }}>{entry.new_value}</div>
  )}
  {entry.action !== 'notes_update' && entry.old_value && entry.new_value && (
  <div style={{ fontSize: '14px', color: s.muted }}>
@@ -3804,7 +3804,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  {detailTab === 'divers' && (
  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
  {diversLoadError && (
- <div style={{ fontSize: '14px', color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '8px 12px' }}>
+ <div style={{ fontSize: '14px', color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '8px 12px' }}>
  {diversLoadError}
  </div>
  )}
@@ -3818,7 +3818,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  const ciDone = !!d.checkin_completed_at
  const ciStarted = !!d.checkin_started_at && !ciDone
  return (
- <div key={d.id} style={{ background: 'rgba(255,255,255,.025)', borderRadius: 0, border: '1px solid rgba(255,255,255,.07)' }}>
+ <div key={d.id} style={{ background: 'rgba(255,255,255,.025)', borderRadius: 'var(--radius-card)', border: '1px solid rgba(255,255,255,.07)' }}>
  <button
  onClick={() => setExpandedDiverIds(prev => {
  const next = new Set(prev)
@@ -3828,7 +3828,7 @@ export default function FrontOfficeBookings({ focusBookingId, embedded = false, 
  style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 13px', background: 'transparent', border: 'none', cursor: 'pointer', fontFamily: s.font, gap: '8px' }}>
  <span style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
  <span style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{name}</span>
- <span style={{ flexShrink: 0, padding: '3px 9px', borderRadius: 0, fontSize: '14px', fontWeight: 500,
+ <span style={{ flexShrink: 0, padding: '3px 9px', borderRadius: 'var(--radius-control)', fontSize: '14px', fontWeight: 500,
  background: ciDone ? 'transparent' : ciStarted ? 'transparent' : 'rgba(255,255,255,.05)',
  color: ciDone ? 'var(--text)' : ciStarted ? 'var(--text)' : '#888',
  border: `1px solid ${ciDone ? 'var(--line)' : ciStarted ? 'var(--line)' : 'rgba(255,255,255,.1)'}` }}>

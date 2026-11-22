@@ -347,7 +347,7 @@ export function PageSites({ nav, lang }: { nav: (p: string) => void; lang: Lang 
  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(230px,1fr))', gap: '14px', marginBottom: '36px' }}>
  {FULL_SPOTS.map(spot => (
  <div key={spot.name} onClick={() => { window.location.href = '/sites/' + spot.id }} style={{
- position: 'relative', borderRadius: 0, minHeight: '210px',
+ position: 'relative', borderRadius: 'var(--radius-control)', minHeight: '210px',
  display: 'flex', flexDirection: 'column', overflow: 'hidden',
  border: '1px solid rgba(255,255,255,.06)',
  cursor: 'pointer', transition: 'transform .15s, box-shadow .15s',
@@ -366,10 +366,10 @@ export function PageSites({ nav, lang }: { nav: (p: string) => void; lang: Lang 
  <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', flex: 1, padding: '16px 18px 18px' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
  <div style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
- <span style={{ fontSize: '14px', fontWeight: 500, color: 'rgba(255,255,255,.55)', background: 'rgba(0,0,0,.35)', padding: '3px 8px', borderRadius: 0 }}>{spot.type}</span>
- {(spot as any).offshore && <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: 'transparent', padding: '3px 8px', borderRadius: 0, border: '1px solid var(--line)' }}>{t('sites_filter_offshore')}</span>}
+ <span style={{ fontSize: '14px', fontWeight: 500, color: 'rgba(255,255,255,.55)', background: 'rgba(0,0,0,.35)', padding: '3px 8px', borderRadius: 'var(--radius-control)' }}>{spot.type}</span>
+ {(spot as any).offshore && <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: 'transparent', padding: '3px 8px', borderRadius: 'var(--radius-control)', border: '1px solid var(--line)' }}>{t('sites_filter_offshore')}</span>}
  </div>
- <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--muted)', background: 'rgba(0,0,0,.35)', padding: '4px 9px', borderRadius: 0 }}>{spot.depth}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--muted)', background: 'rgba(0,0,0,.35)', padding: '4px 9px', borderRadius: 'var(--radius-control)' }}>{spot.depth}</span>
  </div>
  <div style={{ flex: 1 }} />
  <h4 style={{ fontSize: '17px', margin: '0 0 5px', textShadow: '0 1px 8px rgba(0,0,0,.7)' }}>{spot.name}</h4>

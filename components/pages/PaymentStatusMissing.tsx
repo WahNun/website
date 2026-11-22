@@ -63,7 +63,7 @@ export default function PaymentStatusMissing({ sandbox, onCount, onOpenBooking, 
  {loading ? <div style={{ fontSize: '14px', color: s.muted }}>Loading…</div>
  : err ? <div style={{ fontSize: '14px', color: 'var(--text)' }}>Could not load this list: {err}</div>
  : rows.map(r => (
- <div key={r.id} style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '14px 18px', marginBottom: '10px' }}>
+ <div key={r.id} style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '14px 18px', marginBottom: '10px' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', flexWrap: 'wrap' }}>
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{r.customer_name ?? '—'}</div>
@@ -79,7 +79,7 @@ export default function PaymentStatusMissing({ sandbox, onCount, onOpenBooking, 
  </div>
  {open === r.id
  ? <div style={{ marginTop: '12px' }}><PaymentDecision compact bookingIds={[r.id]} onDone={note => { setOpen(null); setMsg(note); void load() }} /></div>
- : <button type="button" onClick={() => { setMsg(null); setOpen(r.id) }} style={{ marginTop: '10px', width: '100%', padding: '10px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 40%, transparent)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>Set payment status</button>}
+ : <button type="button" onClick={() => { setMsg(null); setOpen(r.id) }} style={{ marginTop: '10px', width: '100%', padding: '10px', borderRadius: 'var(--radius-control)', border: '1px solid color-mix(in srgb, var(--text) 40%, transparent)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', color: s.accent, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit' }}>Set payment status</button>}
  </div>
  ))}
  </div>

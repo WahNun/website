@@ -1734,7 +1734,7 @@ export function PageCourseDetail({ nav, slug, lang }: { nav: (p: string) => void
  )
 
  const StatPill = ({ label, value }: { label: string; value: string }) => (
- <div style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, padding: '12px 16px', minWidth: '120px' }}>
+ <div style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 'var(--radius-card)', padding: '12px 16px', minWidth: '120px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '5px' }}>{label}</div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{value}</div>
  </div>
@@ -1798,7 +1798,7 @@ export function PageCourseDetail({ nav, slug, lang }: { nav: (p: string) => void
 
  {/* Testimonial */}
  {d.testimonial && (
- <div style={{ marginTop: '36px', background: 'color-mix(in srgb, var(--text) 7%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 16%, transparent)', borderLeft: `3px solid ${d.accentColor}`, borderRadius: 0, padding: '20px 22px' }}>
+ <div style={{ marginTop: '36px', background: 'color-mix(in srgb, var(--text) 7%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 16%, transparent)', borderLeft: `3px solid ${d.accentColor}`, borderRadius: 'var(--radius-control)', padding: '20px 22px' }}>
  <p style={{ fontSize: '15px', color: 'var(--text)', lineHeight: 1.7, margin: '0 0 10px', fontStyle: 'italic' }}>
  &ldquo;{d.testimonial.quote}&rdquo;
  </p>
@@ -1813,13 +1813,13 @@ export function PageCourseDetail({ nav, slug, lang }: { nav: (p: string) => void
 
  {/* Careers box — only for dive-guide and divemaster */}
  {(slug === 'dive-guide' || slug === 'divemaster') && (
- <div style={{ marginTop: '36px', background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 0, padding: '20px 22px' }}>
+ <div style={{ marginTop: '36px', background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 'var(--radius-card)', padding: '20px 22px' }}>
  <b style={{ color: 'var(--text)', fontSize: '15px', display: 'block', marginBottom: '14px' }}>
  {CAREERS_BOX.title[lang]}
  </b>
  <a
  href={`mailto:admin.azoresdiving@gmail.com?subject=Careers%20%E2%80%94%20Dive%20Guide%20%2F%20Divemaster%20internship`}
- style={{ display: 'inline-block', background: 'linear-gradient(135deg,var(--text),var(--text))', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', padding: '10px 20px', borderRadius: 0, boxShadow: 'none', textDecoration: 'none', fontFamily: s.font }}
+ style={{ display: 'inline-block', background: 'linear-gradient(135deg,var(--text),var(--text))', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', padding: '10px 20px', borderRadius: 'var(--radius-control)', boxShadow: 'none', textDecoration: 'none', fontFamily: s.font }}
  >
  {CAREERS_BOX.btn[lang]}
  </a>
@@ -1835,13 +1835,13 @@ export function PageCourseDetail({ nav, slug, lang }: { nav: (p: string) => void
  {/* Right: sidebar */}
  <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
  {/* Requirements */}
- <div style={{ background: 'color-mix(in srgb, var(--text) 8%, transparent)', border: '1px solid var(--line)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 8%, transparent)', border: '1px solid var(--line)', borderRadius: 'var(--radius-control)', padding: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '12px' }}>{t('cd_requirements')}</div>
  <p style={{ fontSize: '14px', color: 'var(--text)', lineHeight: 1.6, margin: 0 }}>{d.prereqs[lang]}</p>
  </div>
 
  {/* What's included */}
- <div style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.07)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.07)', borderRadius: 'var(--radius-card)', padding: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '12px' }}>{t('cd_whats_included')}</div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
  {d.includes.map((item, ii) => (
@@ -1854,7 +1854,7 @@ export function PageCourseDetail({ nav, slug, lang }: { nav: (p: string) => void
  </div>
 
  {/* Certifies */}
- <div style={{ background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 'var(--radius-control)', padding: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.accent, marginBottom: '8px' }}>{t('cd_youll_earn')}</div>
  <p style={{ fontSize: '14px', color: s.text, fontWeight: 500, margin: 0, lineHeight: 1.4 }}>{d.certifies[lang]}</p>
  </div>

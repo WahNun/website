@@ -29,7 +29,7 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
  </p>
 
  {/* Photo grid */}
- <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr 1fr', gap: '5px', borderRadius: 0, overflow: 'hidden', margin: '0 0 28px', height: isMobile ? 'auto' : '240px' }}>
+ <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr 1fr', gap: '5px', borderRadius: 'var(--radius-control)', overflow: 'hidden', margin: '0 0 28px', height: isMobile ? 'auto' : '240px' }}>
  {[
  { url: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/fish/Mobula.webp', latin: 'Mobula birostris', name: 'Giant Devil Ray' },
  { url: 'https://mgsmoutwqgczajumzpoy.supabase.co/storage/v1/object/public/fish/Dusky_Grouper.webp', latin: 'Epinephelus marginatus', name: 'Dusky Grouper' },
@@ -54,7 +54,7 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
  { label: t('formigas_stat_season'), value: t('formigas_stat_season_val'), sub: t('formigas_stat_season_sub') },
  { label: t('formigas_stat_level'), value: t('formigas_stat_level_val'), sub: t('formigas_stat_level_sub') },
  ].map(({ label, value, sub }) => (
- <div key={label} style={{ background: 'var(--glass)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 0, padding: '16px 14px', textAlign: 'center' }}>
+ <div key={label} style={{ background: 'var(--glass)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 'var(--radius-card)', padding: '16px 14px', textAlign: 'center' }}>
  <div style={{ fontSize: '14px', color: s.muted, textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '6px', fontWeight: 500 }}>{label}</div>
  <div style={{ fontSize: '20px', fontWeight: 500, color: 'var(--text)', lineHeight: 1 }}>{value}</div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '5px' }}>{sub}</div>
@@ -84,7 +84,7 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
  </p>
  </div>
 
- <div style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 0, padding: '22px' }}>
+ <div style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 'var(--radius-control)', padding: '22px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '16px' }}>{t('formigas_path_title')}</div>
  <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '16px' : '0', alignItems: isMobile ? 'stretch' : 'center' }}>
  {[
@@ -124,7 +124,7 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
 
  {/* Right: sidebar */}
  <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
- <div style={{ background: 'color-mix(in srgb, var(--text) 8%, transparent)', border: '1px solid var(--line)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 8%, transparent)', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '14px' }}>{t('formigas_requirements_title')}</div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
  <div>
@@ -138,7 +138,7 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
  </div>
  </div>
 
- <div style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.07)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.07)', borderRadius: 'var(--radius-card)', padding: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '12px' }}>{t('formigas_incl_title')}</div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
  {(['formigas_incl1', 'formigas_incl2', 'formigas_incl3', 'formigas_incl4'] as const).map(key => (
@@ -150,7 +150,7 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
  </div>
  </div>
 
- <div style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.07)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.07)', borderRadius: 'var(--radius-control)', padding: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '12px' }}>{t('formigas_notincl_title')}</div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
  {(['formigas_notincl1', 'formigas_notincl2'] as const).map(key => (
@@ -162,11 +162,11 @@ export function PageFormigas({ nav, lang }: { nav: (p: string) => void; lang: La
  </div>
  </div>
 
- <div style={{ background: 'color-mix(in srgb, var(--text) 4%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 4%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 'var(--radius-control)', padding: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', marginBottom: '6px' }}>{t('formigas_join')}</div>
  <p style={{ color: s.muted, fontSize: '14px', lineHeight: 1.6, marginBottom: '14px' }}>{t('formigas_waitlist_sub')}</p>
  {waitDone ? (
- <div style={{ background: 'rgba(45,212,160,.08)', border: '1px solid rgba(45,212,160,.3)', borderRadius: 0, padding: '12px 14px', color: 'var(--text)', fontSize: '14px', fontWeight: 500 }}>
+ <div style={{ background: 'rgba(45,212,160,.08)', border: '1px solid rgba(45,212,160,.3)', borderRadius: 'var(--radius-card)', padding: '12px 14px', color: 'var(--text)', fontSize: '14px', fontWeight: 500 }}>
  You&rsquo;re on the list — we&rsquo;ll notify you when a window opens.
  </div>
  ) : (

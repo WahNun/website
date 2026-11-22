@@ -340,7 +340,7 @@ export default function LiveBoats({
  <>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '14px' }}>The Boats</div>
  <div style={{
- position: 'relative', marginBottom: '28px', minHeight: '180px', borderRadius: 0,
+ position: 'relative', marginBottom: '28px', minHeight: '180px', borderRadius: 'var(--radius-card)',
  background: 'var(--glass)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)',
  display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '6px',
  }}>
@@ -453,7 +453,7 @@ export default function LiveBoats({
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted }}>The Boats</div>
  <button type="button" disabled={refreshing} title="Reload the dashboard" aria-label="Reload the dashboard"
  onClick={async () => { setRefreshing(true); try { if (onRefresh) onRefresh(); await load() } finally { setTimeout(() => setRefreshing(false), 600) } }}
- style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '4px 12px', borderRadius: 0, cursor: refreshing ? 'default' : 'pointer', fontFamily: s.font, fontSize: '14px', fontWeight: 500, letterSpacing: '.04em', background: 'color-mix(in srgb, var(--text) 10%, transparent)', color: s.accent, border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', opacity: refreshing ? .6 : 1 }}>
+ style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '4px 12px', borderRadius: 'var(--radius-control)', cursor: refreshing ? 'default' : 'pointer', fontFamily: s.font, fontSize: '14px', fontWeight: 500, letterSpacing: '.04em', background: 'color-mix(in srgb, var(--text) 10%, transparent)', color: s.accent, border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', opacity: refreshing ? .6 : 1 }}>
  <span aria-hidden="true" style={{ display: 'inline-block', transition: 'transform .6s', transform: refreshing ? 'rotate(360deg)' : 'none' }}></span>{refreshing ? 'Refreshing…' : 'Refresh'}
  </button>
  <div style={{ display: 'flex', gap: '10px', marginLeft: 'auto', fontSize: '14px', color: s.muted, flexWrap: 'wrap' }}>
@@ -470,9 +470,9 @@ export default function LiveBoats({
  </div>
  </div>
  {!loaded ? (
- <div style={{ marginBottom: '28px', padding: '40px', textAlign: 'center', color: s.muted, fontSize: '14px', background: 'var(--glass)', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 10%, transparent)' }}>Loading boats…</div>
+ <div style={{ marginBottom: '28px', padding: '40px', textAlign: 'center', color: s.muted, fontSize: '14px', background: 'var(--glass)', borderRadius: 'var(--radius-card)', border: '1px solid color-mix(in srgb, var(--text) 10%, transparent)' }}>Loading boats…</div>
  ) : boats.length === 0 ? (
- <div style={{ marginBottom: '28px', padding: '40px', textAlign: 'center', color: s.muted, fontSize: '14px', background: 'var(--glass)', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 10%, transparent)' }}>No boats configured.</div>
+ <div style={{ marginBottom: '28px', padding: '40px', textAlign: 'center', color: s.muted, fontSize: '14px', background: 'var(--glass)', borderRadius: 'var(--radius-card)', border: '1px solid color-mix(in srgb, var(--text) 10%, transparent)' }}>No boats configured.</div>
  ) : (
  <>
  <div style={{ display: 'flex', gap: '6px', marginBottom: '14px' }}>
@@ -482,7 +482,7 @@ export default function LiveBoats({
  const waiting = boats.reduce((n, b) => n + seatsFor(b.id, sess, true).length, 0)
  return (
  <button key={sess} type="button" onClick={() => { manualView.current = rollDateStr; setView(sess) }} style={{
- padding: '8px 18px', borderRadius: 0, cursor: 'pointer', fontFamily: s.font,
+ padding: '8px 18px', borderRadius: 'var(--radius-control)', cursor: 'pointer', fontFamily: s.font,
  fontSize: '14px', fontWeight: 500, letterSpacing: '.06em',
  background: on ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'rgba(255,255,255,.04)',
  color: on ? s.accent : s.muted,
@@ -516,7 +516,7 @@ export default function LiveBoats({
  const waitlist = boats.flatMap(b => seatsFor(b.id, view, true))
  if (waitlist.length === 0) return null
  return (
- <div style={{ border: '1px solid var(--line)', background: 'var(--glass)', borderRadius: 0, padding: '16px 18px', alignSelf: 'start', gridColumn: '1 / -1' }}>
+ <div style={{ border: '1px solid var(--line)', background: 'var(--glass)', borderRadius: 'var(--radius-card)', padding: '16px 18px', alignSelf: 'start', gridColumn: '1 / -1' }}>
  <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '8px', marginBottom: '4px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)' }}>Waiting list · {view === 'night' ? ' NIGHT' : view.toUpperCase()}</div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)' }}>{waitlist.length} unpaid</div>
@@ -525,10 +525,10 @@ export default function LiveBoats({
  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
  {waitlist.map(w => (
  <button key={`${w.bookingId}-${w.slotIndex}`} type="button" onClick={() => setOpenSeat(w)}
- style={{ display: 'flex', alignItems: 'center', gap: '8px', textAlign: 'left', width: '100%', padding: '8px 10px', borderRadius: 0, cursor: 'pointer', fontFamily: s.font, background: 'rgba(255,255,255,.03)', border: '1px solid var(--line)', color: s.text }}>
+ style={{ display: 'flex', alignItems: 'center', gap: '8px', textAlign: 'left', width: '100%', padding: '8px 10px', borderRadius: 'var(--radius-control)', cursor: 'pointer', fontFamily: s.font, background: 'rgba(255,255,255,.03)', border: '1px solid var(--line)', color: s.text }}>
  <span style={{ fontSize: '14px', fontWeight: 500, flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{w.name}</span>
  <span style={{ fontSize: '14px', color: s.muted, whiteSpace: 'nowrap' }}>{w.productName ?? 'Booking'}</span>
- <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '0 4px' }}>UNPAID</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-control)', padding: '0 4px' }}>UNPAID</span>
  {w.isTest && <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)' }}>TEST</span>}
  </button>
  ))}
@@ -754,7 +754,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  style={{ position: 'fixed', inset: 0, zIndex: 10000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', background: 'color-mix(in srgb, var(--bg) 82%, transparent)' }}>
  <div onClick={e => e.stopPropagation()} style={{
  maxWidth: '560px', width: '100%', maxHeight: '88vh', overflowY: 'auto',
- background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 22%, transparent)', borderRadius: 0, padding: '24px',
+ background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 22%, transparent)', borderRadius: 'var(--radius-card)', padding: '24px',
  }}>
  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px', marginBottom: '4px' }}>
  <div>
@@ -765,7 +765,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  {seat.bookingId && (
  <>
  {' · '}
- <button type="button" onClick={() => setBookingPopup(true)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: 'var(--text)', fontWeight: 500, background: 'transparent', border: '1px solid color-mix(in srgb, var(--text) 40%, transparent)', borderRadius: 0, padding: '0 6px', cursor: 'pointer', fontSize: '14px' }}>{seat.bookingId.slice(0, 8).toUpperCase()}</button>
+ <button type="button" onClick={() => setBookingPopup(true)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: 'var(--text)', fontWeight: 500, background: 'transparent', border: '1px solid color-mix(in srgb, var(--text) 40%, transparent)', borderRadius: 'var(--radius-control)', padding: '0 6px', cursor: 'pointer', fontSize: '14px' }}>{seat.bookingId.slice(0, 8).toUpperCase()}</button>
  </>
  )}
  </div>
@@ -774,11 +774,11 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  </div>
 
  {/* ── Tab bar ── */}
- <div style={{ display: 'flex', gap: '2px', margin: '14px 0 4px', background: 'rgba(0,0,0,.25)', borderRadius: 0, padding: '3px' }}>
+ <div style={{ display: 'flex', gap: '2px', margin: '14px 0 4px', background: 'rgba(0,0,0,.25)', borderRadius: 'var(--radius-control)', padding: '3px' }}>
  {([['status','Profile'],['akte','Details'],['history','History']] as const).map(([id,label]) => (
  <button key={id} onClick={() => setActiveTab(id)} style={{
  flex: 1, padding: '5px 0', fontSize: '14px', fontWeight: 500, fontFamily: 'inherit',
- borderRadius: 0, border: 'none', cursor: 'pointer',
+ borderRadius: 'var(--radius-control)', border: 'none', cursor: 'pointer',
  background: activeTab === id ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'transparent',
  color: activeTab === id ? 'var(--text)' : 'var(--muted)',
  }}>{label}</button>
@@ -788,20 +788,20 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  {medModal && (
  <div role="dialog" aria-modal="true" onClick={() => { if (!medUp.loading) setMedModal(false) }}
  style={{ position: 'fixed', inset: 0, zIndex: 10001, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', background: 'color-mix(in srgb, var(--bg) 70%, transparent)' }}>
- <div onClick={e => e.stopPropagation()} style={{ maxWidth: '440px', width: '100%', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', borderRadius: 0, padding: '20px' }}>
+ <div onClick={e => e.stopPropagation()} style={{ maxWidth: '440px', width: '100%', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 30%, transparent)', borderRadius: 'var(--radius-card)', padding: '20px' }}>
  <div style={{ fontSize: '15px', fontWeight: 500, color: s.text, marginBottom: '6px' }}>Medical clearance — proof required</div>
  <div style={{ fontSize: '14px', color: s.muted, lineHeight: 1.6, marginBottom: '12px' }}>
  Upload the doctor’s clearance for {seat.name}: photo, PDF or document (max 15 MB). The file is stored privately and linked to this diver. Afterwards you confirm with “Mark as seen”.
  </div>
  <input type="file" accept="image/*,.heic,.heif,.pdf,.doc,.docx,.odt,.rtf,.txt" onChange={e => { setMedFile(e.target.files?.[0] ?? null); setMedUp({ loading: false, error: null }) }}
- style={{ width: '100%', boxSizing: 'border-box', fontSize: '14px', color: s.text, background: 'rgba(0,0,0,.3)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 0, padding: '8px' }} />
+ style={{ width: '100%', boxSizing: 'border-box', fontSize: '14px', color: s.text, background: 'rgba(0,0,0,.3)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 'var(--radius-control)', padding: '8px' }} />
  {medFile && <div style={{ fontSize: '14px', color: s.muted, marginTop: '6px' }}>{medFile.name} · {(medFile.size / 1024 / 1024).toFixed(2)} MB</div>}
- {medUp.error && <div style={{ marginTop: '8px', fontSize: '14px', color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '5px 9px' }}>{medUp.error}</div>}
+ {medUp.error && <div style={{ marginTop: '8px', fontSize: '14px', color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '5px 9px' }}>{medUp.error}</div>}
  {medState.error && <div style={{ marginTop: '8px', fontSize: '14px', color: 'var(--text)' }}>{medState.error}</div>}
  <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end', marginTop: '14px' }}>
- <button type="button" disabled={medUp.loading} onClick={() => setMedModal(false)} style={{ fontSize: '14px', fontWeight: 500, padding: '6px 14px', borderRadius: 0, background: 'transparent', border: '1px solid rgba(255,255,255,.2)', color: s.muted, cursor: 'pointer', fontFamily: 'inherit' }}>Cancel</button>
+ <button type="button" disabled={medUp.loading} onClick={() => setMedModal(false)} style={{ fontSize: '14px', fontWeight: 500, padding: '6px 14px', borderRadius: 'var(--radius-control)', background: 'transparent', border: '1px solid rgba(255,255,255,.2)', color: s.muted, cursor: 'pointer', fontFamily: 'inherit' }}>Cancel</button>
  <button type="button" disabled={medUp.loading || !medFile} onClick={uploadMedicalProof}
- style={{ fontSize: '14px', fontWeight: 500, padding: '6px 14px', borderRadius: 0, background: 'transparent', border: '1px solid var(--line)', color: 'var(--text)', cursor: medFile && !medUp.loading ? 'pointer' : 'not-allowed', fontFamily: 'inherit', opacity: medFile && !medUp.loading ? 1 : .4, filter: medFile ? 'none' : 'grayscale(1)' }}>
+ style={{ fontSize: '14px', fontWeight: 500, padding: '6px 14px', borderRadius: 'var(--radius-control)', background: 'transparent', border: '1px solid var(--line)', color: 'var(--text)', cursor: medFile && !medUp.loading ? 'pointer' : 'not-allowed', fontFamily: 'inherit', opacity: medFile && !medUp.loading ? 1 : .4, filter: medFile ? 'none' : 'grayscale(1)' }}>
  {medUp.loading ? 'Uploading…' : 'Upload'}
  </button>
  </div>
@@ -817,7 +817,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  <div key={f.label} style={{
  background: f.tone === 'bad' ? 'transparent' : f.tone === 'soft' ? 'rgba(201,194,182,.07)' : 'transparent',
  border: `1px solid ${f.tone === 'bad' ? 'var(--line)' : f.tone === 'soft' ? 'rgba(201,194,182,.3)' : 'var(--line)'}`,
- borderRadius: 0, padding: '10px 13px',
+ borderRadius: 'var(--radius-card)', padding: '10px 13px',
  }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: tone[f.tone], display: 'flex', alignItems: 'baseline', gap: '7px' }}>
  <span aria-hidden="true" style={{ fontSize: '14px', minWidth: '13px', textAlign: 'center' }}>{f.glyph}</span>
@@ -827,7 +827,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  {f.linkBooking && (
  <div style={{ fontSize: '14px', color: 'var(--text)', lineHeight: 1.6, marginTop: '3px' }}>
  Payment is still open (booking is pending). Check the Payments tab of the booking{' '}
- <button type="button" onClick={() => setBookingPopup(true)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: 'var(--text)', fontWeight: 500, background: 'transparent', border: '1px solid color-mix(in srgb, var(--text) 40%, transparent)', borderRadius: 0, padding: '0 6px', cursor: 'pointer' }}>{seat.bookingId.slice(0, 8).toUpperCase()}</button>
+ <button type="button" onClick={() => setBookingPopup(true)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: 'var(--text)', fontWeight: 500, background: 'transparent', border: '1px solid color-mix(in srgb, var(--text) 40%, transparent)', borderRadius: 'var(--radius-control)', padding: '0 6px', cursor: 'pointer' }}>{seat.bookingId.slice(0, 8).toUpperCase()}</button>
  {' '}before the dive.
  </div>
  )}
@@ -835,19 +835,19 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  <div style={{ marginTop: '8px', display: 'flex', flexWrap: 'wrap', gap: '5px', alignItems: 'center' }}>
  <span style={{ fontSize: '14px', color: 'var(--text)' }}>Paid by:</span>
  {([['cash', ' Cash'], ['card', ' Card (n/a)'], ['revolut', ' Revolut'], ['later', ' Pay later']] as const).map(([m, l]) => (
- <button key={m} type="button" disabled={m === 'card'} title={m === 'card' ? 'Not available yet — no card terminal' : undefined} onClick={() => setOnsiteMethod(m)} style={{ opacity: m === 'card' ? 0.4 : 1, fontSize: '14px', fontWeight: 500, padding: '3px 9px', borderRadius: 0, border: `1px solid ${onsiteMethod === m ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.12)'}`, background: onsiteMethod === m ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'transparent', color: onsiteMethod === m ? 'var(--text)' : 'var(--muted)', cursor: 'pointer', fontFamily: 'inherit' , ...(m === 'card' ? { cursor: 'not-allowed' } : {})}}>{l}</button>
+ <button key={m} type="button" disabled={m === 'card'} title={m === 'card' ? 'Not available yet — no card terminal' : undefined} onClick={() => setOnsiteMethod(m)} style={{ opacity: m === 'card' ? 0.4 : 1, fontSize: '14px', fontWeight: 500, padding: '3px 9px', borderRadius: 'var(--radius-control)', border: `1px solid ${onsiteMethod === m ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.12)'}`, background: onsiteMethod === m ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'transparent', color: onsiteMethod === m ? 'var(--text)' : 'var(--muted)', cursor: 'pointer', fontFamily: 'inherit' , ...(m === 'card' ? { cursor: 'not-allowed' } : {})}}>{l}</button>
  ))}
  </div>
  )}
  {f.actionKey === 'dan_policy' && (
  <div style={{ marginTop: '8px' }}>
- <input value={danPolicy} onChange={e => setDanPolicy(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && danPolicy.trim()) resolveFlag('dan_policy', true) }} placeholder="DAN policy number" style={{ width: '100%', boxSizing: 'border-box', background: 'var(--bg)', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, padding: '5px 8px', fontSize: '14px', color: 'var(--text)', fontFamily: 'inherit', outline: 'none' }} />
+ <input value={danPolicy} onChange={e => setDanPolicy(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && danPolicy.trim()) resolveFlag('dan_policy', true) }} placeholder="DAN policy number" style={{ width: '100%', boxSizing: 'border-box', background: 'var(--bg)', border: '1px solid rgba(255,255,255,.14)', borderRadius: 'var(--radius-control)', padding: '5px 8px', fontSize: '14px', color: 'var(--text)', fontFamily: 'inherit', outline: 'none' }} />
  </div>
  )}
  {f.actionKey === 'insurance' && (
  <div style={{ marginTop: '8px', display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
- <input value={proofProvider} onChange={e => setProofProvider(e.target.value)} placeholder="Provider (e.g. DAN)" style={{ flex: '1 1 120px', minWidth: 0, background: 'var(--bg)', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, padding: '5px 8px', fontSize: '14px', color: 'var(--text)', fontFamily: 'inherit', outline: 'none' }} />
- <input value={proofPolicy} onChange={e => setProofPolicy(e.target.value)} placeholder="Policy number" style={{ flex: '1 1 140px', minWidth: 0, background: 'var(--bg)', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, padding: '5px 8px', fontSize: '14px', color: 'var(--text)', fontFamily: 'inherit', outline: 'none' }} />
+ <input value={proofProvider} onChange={e => setProofProvider(e.target.value)} placeholder="Provider (e.g. DAN)" style={{ flex: '1 1 120px', minWidth: 0, background: 'var(--bg)', border: '1px solid rgba(255,255,255,.14)', borderRadius: 'var(--radius-control)', padding: '5px 8px', fontSize: '14px', color: 'var(--text)', fontFamily: 'inherit', outline: 'none' }} />
+ <input value={proofPolicy} onChange={e => setProofPolicy(e.target.value)} placeholder="Policy number" style={{ flex: '1 1 140px', minWidth: 0, background: 'var(--bg)', border: '1px solid rgba(255,255,255,.14)', borderRadius: 'var(--radius-control)', padding: '5px 8px', fontSize: '14px', color: 'var(--text)', fontFamily: 'inherit', outline: 'none' }} />
  </div>
  )}
  {f.actionKey === 'medical' && slot?.medical_proof_path && (
@@ -855,18 +855,18 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  <button type="button" disabled={proofView.loading} onClick={openMedicalProof} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: 'var(--text)', fontWeight: 500, fontFamily: 'inherit', fontSize: '14px', textDecoration: 'underline' }}>
  {proofView.loading ? '…' : ` ${slot.medical_proof_name ?? 'View proof'}`}
  </button>
- <button type="button" onClick={() => { setMedUp({ loading: false, error: null }); setMedFile(null); setMedModal(true) }} style={{ background: 'none', border: '1px solid rgba(255,255,255,.2)', borderRadius: 0, padding: '1px 8px', cursor: 'pointer', color: s.muted, fontFamily: 'inherit', fontSize: '14px' }}>Replace file</button>
+ <button type="button" onClick={() => { setMedUp({ loading: false, error: null }); setMedFile(null); setMedModal(true) }} style={{ background: 'none', border: '1px solid rgba(255,255,255,.2)', borderRadius: 'var(--radius-control)', padding: '1px 8px', cursor: 'pointer', color: s.muted, fontFamily: 'inherit', fontSize: '14px' }}>Replace file</button>
  {proofView.error && <span style={{ color: 'var(--text)' }}>{proofView.error}</span>}
  </div>
  )}
  {f.actionKey && st && (
  <div style={{ marginTop: '8px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px' }}>
  <button type="button" disabled={st.loading || (f.actionKey === 'insurance_onsite' && !onsiteMethod) || (f.actionKey === 'insurance' && !(proofProvider.trim() && proofPolicy.trim())) || (f.actionKey === 'dan_policy' && !danPolicy.trim())} onClick={() => f.actionKey === 'medical' && !slot?.medical_proof_path ? (setMedUp({ loading: false, error: null }), setMedFile(null), setMedModal(true)) : resolveFlag(f.actionKey!, true)}
- style={{ fontSize: '14px', fontWeight: 500, padding: '4px 12px', borderRadius: 0, background: 'transparent', border: '1px solid var(--line)', color: 'var(--text)', cursor: st.loading ? 'wait' : ((f.actionKey === 'insurance_onsite' && !onsiteMethod) || (f.actionKey === 'insurance' && !(proofProvider.trim() && proofPolicy.trim())) || (f.actionKey === 'dan_policy' && !danPolicy.trim()) ? 'not-allowed' : 'pointer'), fontFamily: 'inherit', ...(((f.actionKey === 'insurance_onsite' && !onsiteMethod) || (f.actionKey === 'insurance' && !(proofProvider.trim() && proofPolicy.trim())) || (f.actionKey === 'dan_policy' && !danPolicy.trim())) ? { opacity: 0.4, filter: 'grayscale(1)' } : {}) }}>
+ style={{ fontSize: '14px', fontWeight: 500, padding: '4px 12px', borderRadius: 'var(--radius-control)', background: 'transparent', border: '1px solid var(--line)', color: 'var(--text)', cursor: st.loading ? 'wait' : ((f.actionKey === 'insurance_onsite' && !onsiteMethod) || (f.actionKey === 'insurance' && !(proofProvider.trim() && proofPolicy.trim())) || (f.actionKey === 'dan_policy' && !danPolicy.trim()) ? 'not-allowed' : 'pointer'), fontFamily: 'inherit', ...(((f.actionKey === 'insurance_onsite' && !onsiteMethod) || (f.actionKey === 'insurance' && !(proofProvider.trim() && proofPolicy.trim())) || (f.actionKey === 'dan_policy' && !danPolicy.trim())) ? { opacity: 0.4, filter: 'grayscale(1)' } : {}) }}>
  {st.loading ? '…' : f.actionKey === 'medical' && slot?.medical_proof_path ? 'Mark as seen' : flagBtnLabel[f.actionKey]}
  </button>
  {st.error && (
- <div style={{ width: '100%', fontSize: '14px', color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '5px 9px' }}>
+ <div style={{ width: '100%', fontSize: '14px', color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '5px 9px' }}>
  {st.error}
  </div>
  )}
@@ -879,7 +879,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  )}
 
  {activeTab === 'status' && !slot?.checkin_completed_at && (
- <div style={{ marginTop: '14px', padding: '12px 14px', background: 'color-mix(in srgb, var(--text) 5%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 0 }}>
+ <div style={{ marginTop: '14px', padding: '12px 14px', background: 'color-mix(in srgb, var(--text) 5%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', borderRadius: 'var(--radius-card)' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.accent, marginBottom: '10px' }}>Staff actions</div>
  {/* E-Mail-Eingabe: zeigen wenn keine E-Mail in der Akte */}
  {!slot?.customers?.email && !resendState.sent && (
@@ -894,7 +894,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  placeholder="guest@example.com"
  style={{
  width: '100%', boxSizing: 'border-box',
- fontSize: '14px', padding: '6px 10px', borderRadius: 0,
+ fontSize: '14px', padding: '6px 10px', borderRadius: 'var(--radius-control)',
  background: 'rgba(0,0,0,.3)', color: s.text,
  border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', fontFamily: 'inherit',
  }}
@@ -911,7 +911,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  disabled={!canSend}
  onClick={resendCheckinLink}
  style={{
- fontSize: '14px', fontWeight: 500, padding: '6px 14px', borderRadius: 0,
+ fontSize: '14px', fontWeight: 500, padding: '6px 14px', borderRadius: 'var(--radius-control)',
  background: resendState.sent ? 'transparent' : 'color-mix(in srgb, var(--text) 12%, transparent)',
  border: `1px solid ${resendState.sent ? 'var(--line)' : 'color-mix(in srgb, var(--text) 35%, transparent)'}`,
  color: resendState.sent ? 'var(--text)' : s.accent,
@@ -926,7 +926,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  })()}
  </div>
  {resendState.error && (
- <div style={{ marginTop: '7px', fontSize: '14px', color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '5px 9px' }}>
+ <div style={{ marginTop: '7px', fontSize: '14px', color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '5px 9px' }}>
  {resendState.error}
  </div>
  )}
@@ -971,7 +971,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  {slot?.medical_flag && slot.medical_flag_resolved && (
  <div style={{ marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
  <button type="button" disabled={medState.loading} onClick={() => resolveFlag('medical', false)}
- style={{ fontSize: '14px', fontWeight: 500, padding: '3px 8px', borderRadius: 0, background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, cursor: medState.loading ? 'wait' : 'pointer', fontFamily: 'inherit' }}>
+ style={{ fontSize: '14px', fontWeight: 500, padding: '3px 8px', borderRadius: 'var(--radius-control)', background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, cursor: medState.loading ? 'wait' : 'pointer', fontFamily: 'inherit' }}>
  {medState.loading ? '…' : 'Undo'}
  </button>
  {medState.error && <span style={{ fontSize: '14px', color: 'var(--text)' }}>{medState.error}</span>}
@@ -981,7 +981,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  {slot?.is_minor && slot.minor_ack_at && (
  <div style={{ marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
  <button type="button" disabled={minorState.loading} onClick={() => resolveFlag('minor', false)}
- style={{ fontSize: '14px', fontWeight: 500, padding: '3px 8px', borderRadius: 0, background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, cursor: minorState.loading ? 'wait' : 'pointer', fontFamily: 'inherit' }}>
+ style={{ fontSize: '14px', fontWeight: 500, padding: '3px 8px', borderRadius: 'var(--radius-control)', background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, cursor: minorState.loading ? 'wait' : 'pointer', fontFamily: 'inherit' }}>
  {minorState.loading ? '…' : 'Undo'}
  </button>
  {minorState.error && <span style={{ fontSize: '14px', color: 'var(--text)' }}>{minorState.error}</span>}
@@ -1017,11 +1017,11 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  {activeTab === 'akte' && cu && (
  <>
  {/* ── Akte sub-tab bar ── */}
- <div style={{ display: 'flex', gap: '2px', margin: '14px 0 4px', background: 'rgba(0,0,0,.2)', borderRadius: 0, padding: '3px' }}>
+ <div style={{ display: 'flex', gap: '2px', margin: '14px 0 4px', background: 'rgba(0,0,0,.2)', borderRadius: 'var(--radius-card)', padding: '3px' }}>
  {([['contact','Contact'],['health','Clearances']] as const).map(([id,label]) => (
  <button key={id} onClick={() => setActiveAkteTab(id)} style={{
  flex: 1, padding: '5px 0', fontSize: '14px', fontWeight: 500, fontFamily: 'inherit',
- borderRadius: 0, border: 'none', cursor: 'pointer',
+ borderRadius: 'var(--radius-control)', border: 'none', cursor: 'pointer',
  background: activeAkteTab === id ? 'color-mix(in srgb, var(--text) 12%, transparent)' : 'transparent',
  color: activeAkteTab === id ? 'var(--text)' : 'var(--muted)',
  }}>{label}</button>
@@ -1069,11 +1069,11 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  <div style={{ marginTop: '6px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px' }}>
  <button type="button" disabled={danState.loading} onClick={async () => { await resolveFlag('dan_policy', false); setDanPolicy('') }}
  title="Clear the number (typo?) — the diver goes back to “DAN policy number to enter”"
- style={{ fontSize: '14px', fontWeight: 500, padding: '3px 8px', borderRadius: 0, background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, cursor: danState.loading ? 'wait' : 'pointer', fontFamily: 'inherit' }}>
+ style={{ fontSize: '14px', fontWeight: 500, padding: '3px 8px', borderRadius: 'var(--radius-control)', background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, cursor: danState.loading ? 'wait' : 'pointer', fontFamily: 'inherit' }}>
  {danState.loading ? '…' : 'Undo'}
  </button>
  {danState.error && (
- <div style={{ width: '100%', fontSize: '14px', color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '5px 9px' }}>
+ <div style={{ width: '100%', fontSize: '14px', color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '5px 9px' }}>
  {danState.error}
  </div>
  )}
@@ -1082,11 +1082,11 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  {slot?.insurance_flag && slot.insurance_verified_at && (
  <div style={{ marginTop: '6px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px' }}>
  <button type="button" disabled={insState.loading} onClick={() => resolveFlag('insurance', false)}
- style={{ fontSize: '14px', fontWeight: 500, padding: '3px 8px', borderRadius: 0, background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, cursor: insState.loading ? 'wait' : 'pointer', fontFamily: 'inherit' }}>
+ style={{ fontSize: '14px', fontWeight: 500, padding: '3px 8px', borderRadius: 'var(--radius-control)', background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, cursor: insState.loading ? 'wait' : 'pointer', fontFamily: 'inherit' }}>
  {insState.loading ? '…' : 'Undo'}
  </button>
  {insState.error && (
- <div style={{ width: '100%', fontSize: '14px', color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '5px 9px' }}>
+ <div style={{ width: '100%', fontSize: '14px', color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '5px 9px' }}>
  {insState.error}
  </div>
  )}
@@ -1102,12 +1102,12 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  <div style={{ marginTop: '6px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
  {slot?.refresher_completed_at ? (
  <button type="button" disabled={refresherState.loading} onClick={() => resolveFlag('refresher', false)}
- style={{ fontSize: '14px', fontWeight: 500, padding: '3px 8px', borderRadius: 0, background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, cursor: refresherState.loading ? 'wait' : 'pointer', fontFamily: 'inherit' }}>
+ style={{ fontSize: '14px', fontWeight: 500, padding: '3px 8px', borderRadius: 'var(--radius-control)', background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, cursor: refresherState.loading ? 'wait' : 'pointer', fontFamily: 'inherit' }}>
  {refresherState.loading ? '…' : 'Undo'}
  </button>
  ) : (
  <button type="button" disabled={refresherState.loading} onClick={() => resolveFlag('refresher', true)}
- style={{ padding: '5px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', background: 'transparent', color: 'var(--text)', border: '1px solid var(--line)', opacity: refresherState.loading ? .6 : 1 }}>
+ style={{ padding: '5px 14px', borderRadius: 'var(--radius-control)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', background: 'transparent', color: 'var(--text)', border: '1px solid var(--line)', opacity: refresherState.loading ? .6 : 1 }}>
  {refresherState.loading ? 'Saving…' : 'Refresher completed '}
  </button>
  )}
@@ -1123,12 +1123,12 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  <div style={{ marginTop: '6px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
  {slot.minor_ack_at ? (
  <button type="button" disabled={minorState.loading} onClick={() => resolveFlag('minor', false)}
- style={{ fontSize: '14px', fontWeight: 500, padding: '3px 8px', borderRadius: 0, background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, cursor: minorState.loading ? 'wait' : 'pointer', fontFamily: 'inherit' }}>
+ style={{ fontSize: '14px', fontWeight: 500, padding: '3px 8px', borderRadius: 'var(--radius-control)', background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, cursor: minorState.loading ? 'wait' : 'pointer', fontFamily: 'inherit' }}>
  {minorState.loading ? '…' : 'Undo'}
  </button>
  ) : (
  <button type="button" disabled={minorState.loading} onClick={() => resolveFlag('minor', true)}
- style={{ padding: '5px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', background: 'transparent', color: 'var(--text)', border: '1px solid var(--line)', opacity: minorState.loading ? .6 : 1 }}>
+ style={{ padding: '5px 14px', borderRadius: 'var(--radius-control)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', background: 'transparent', color: 'var(--text)', border: '1px solid var(--line)', opacity: minorState.loading ? .6 : 1 }}>
  {minorState.loading ? 'Saving…' : 'Acknowledge — consent & depth limit checked'}
  </button>
  )}
@@ -1166,11 +1166,11 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  {slot.medical_flag_resolved && (
  <div style={{ marginTop: '6px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px' }}>
  <button type="button" disabled={medState.loading} onClick={() => resolveFlag('medical', false)}
- style={{ fontSize: '14px', fontWeight: 500, padding: '3px 8px', borderRadius: 0, background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, cursor: medState.loading ? 'wait' : 'pointer', fontFamily: 'inherit' }}>
+ style={{ fontSize: '14px', fontWeight: 500, padding: '3px 8px', borderRadius: 'var(--radius-control)', background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, cursor: medState.loading ? 'wait' : 'pointer', fontFamily: 'inherit' }}>
  {medState.loading ? '…' : 'Undo'}
  </button>
  {medState.error && (
- <div style={{ width: '100%', fontSize: '14px', color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '5px 9px' }}>
+ <div style={{ width: '100%', fontSize: '14px', color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '5px 9px' }}>
  {medState.error}
  </div>
  )}
@@ -1192,7 +1192,7 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  <div style={{ marginTop: '14px' }}>
  {/* Check-in record */}
  {slot?.checkin_completed_at && cu && (
- <div style={{ marginBottom: '16px', padding: '10px 13px', background: 'transparent', border: '1px solid var(--line)', borderRadius: 0 }}>
+ <div style={{ marginBottom: '16px', padding: '10px 13px', background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '8px' }}>Check-in record</div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
  {[
@@ -1236,10 +1236,10 @@ function DiverFile({ seat, onClose, onReload }: { seat: Seat; onClose: () => voi
  </div>
  {bookingPopup && (
  <div onClick={e => { e.stopPropagation(); setBookingPopup(false) }} style={{ position: 'fixed', inset: 0, zIndex: 10010, background: 'rgba(0,0,0,0.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '32px 16px', overflowY: 'auto' }}>
- <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 0, boxShadow: 'none', overflow: 'hidden' }}>
+ <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 'var(--radius-card)', boxShadow: 'none', overflow: 'hidden' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>Booking <span style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: s.text, fontWeight: 500 }}>{seat.bookingId.slice(0, 8).toUpperCase()}</span> · changes here are live</span>
- <button type="button" onClick={() => setBookingPopup(false)} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.text, borderRadius: 0, padding: '4px 10px', cursor: 'pointer', fontSize: '14px' }}>Close</button>
+ <button type="button" onClick={() => setBookingPopup(false)} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.text, borderRadius: 'var(--radius-control)', padding: '4px 10px', cursor: 'pointer', fontSize: '14px' }}>Close</button>
  </div>
  <div style={{ padding: '14px' }}>
  <FrontOfficeBookings focusBookingId={seat.bookingId} embedded initialTab="payments" />
@@ -1331,7 +1331,7 @@ function InsuranceCasesCard({ label, seats, onOpen, onSaved }: {
  finally { setBusyId(null) }
  }
  return (
- <div style={{ border: '1px solid var(--line)', background: 'var(--glass)', borderRadius: 0, padding: '16px 18px', alignSelf: 'start', gridColumn: '1 / -1' }}>
+ <div style={{ border: '1px solid var(--line)', background: 'var(--glass)', borderRadius: 'var(--radius-card)', padding: '16px 18px', alignSelf: 'start', gridColumn: '1 / -1' }}>
  <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '8px', marginBottom: '4px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)' }}>Alerts · {label}</div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)' }}>{seats.length} open</div>
@@ -1342,17 +1342,17 @@ function InsuranceCasesCard({ label, seats, onOpen, onSaved }: {
  const id = w.slot?.id as string | undefined
  const alerts = seatAlerts(w)
  return (
- <div key={`${w.bookingId}-${w.slotIndex}`} style={{ padding: '8px 10px', borderRadius: 0, background: 'rgba(18,18,16,.78)', border: '1px solid var(--line)' }}>
+ <div key={`${w.bookingId}-${w.slotIndex}`} style={{ padding: '8px 10px', borderRadius: 'var(--radius-card)', background: 'rgba(18,18,16,.78)', border: '1px solid var(--line)' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
  <button type="button" onClick={() => onOpen(w)} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: s.font, fontSize: '14px', fontWeight: 500, color: s.text, textAlign: 'left' }}>{w.name}</button>
- {alerts.map(a => <span key={a.label} style={{ fontSize: '14px', fontWeight: 500, padding: '2px 9px', borderRadius: 0, background: a.tone === 'bad' ? 'transparent' : a.tone === 'med' ? 'transparent' : 'transparent', color: a.tone === 'bad' ? 'var(--text)' : a.tone === 'med' ? 'var(--text)' : 'var(--text)', border: `1px solid ${a.tone === 'bad' ? 'var(--line)' : a.tone === 'med' ? 'var(--line)' : 'var(--line)'}` }}><span aria-hidden="true" style={{ marginRight: '5px', color: a.color, fontWeight: 500 }}>{a.glyph}</span>{a.label}</span>)}
+ {alerts.map(a => <span key={a.label} style={{ fontSize: '14px', fontWeight: 500, padding: '2px 9px', borderRadius: 'var(--radius-control)', background: a.tone === 'bad' ? 'transparent' : a.tone === 'med' ? 'transparent' : 'transparent', color: a.tone === 'bad' ? 'var(--text)' : a.tone === 'med' ? 'var(--text)' : 'var(--text)', border: `1px solid ${a.tone === 'bad' ? 'var(--line)' : a.tone === 'med' ? 'var(--line)' : 'var(--line)'}` }}><span aria-hidden="true" style={{ marginRight: '5px', color: a.color, fontWeight: 500 }}>{a.glyph}</span>{a.label}</span>)}
  <span style={{ fontSize: '14px', color: s.muted, marginLeft: 'auto' }}>{boat} · <span style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace' }}>{w.bookingId.slice(0, 8).toUpperCase()}{w.isTest ? ' · TEST' : ''}</span></span>
  </div>
  {w.minorOpen && id && (
  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '6px', flexWrap: 'wrap' }}>
  <span style={{ fontSize: '14px', color: s.muted, flex: 1, minWidth: '180px' }}>{minorDepthLimit(ageOn(w.slot?.customers?.dob, w.diveDate), w.slot?.customers?.experience_level).text}</span>
  <button type="button" disabled={busyId === id} onClick={() => ackMinor(id)}
- style={{ padding: '5px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', background: 'transparent', color: 'var(--text)', border: '1px solid var(--line)', opacity: busyId === id ? .6 : 1 }}>
+ style={{ padding: '5px 14px', borderRadius: 'var(--radius-control)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', background: 'transparent', color: 'var(--text)', border: '1px solid var(--line)', opacity: busyId === id ? .6 : 1 }}>
  {busyId === id ? 'Saving…' : 'Acknowledge'}
  </button>
  </div>
@@ -1360,9 +1360,9 @@ function InsuranceCasesCard({ label, seats, onOpen, onSaved }: {
  {w.danPolicyOpen && id && (
  <div style={{ display: 'flex', gap: '6px', marginTop: '6px' }}>
  <input value={vals[id] ?? ''} onChange={e => setVals(v => ({ ...v, [id]: e.target.value }))} onKeyDown={e => { if (e.key === 'Enter') save(id) }} placeholder="DAN policy no."
- style={{ flex: 1, minWidth: 0, padding: '5px 9px', borderRadius: 0, fontSize: '14px', fontFamily: 'inherit', background: 'rgba(0,0,0,.25)', color: 'var(--text)', border: '1px solid rgba(255,255,255,.2)' }} />
+ style={{ flex: 1, minWidth: 0, padding: '5px 9px', borderRadius: 'var(--radius-control)', fontSize: '14px', fontFamily: 'inherit', background: 'rgba(0,0,0,.25)', color: 'var(--text)', border: '1px solid rgba(255,255,255,.2)' }} />
  <button type="button" disabled={busyId === id} onClick={() => save(id)}
- style={{ padding: '5px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', background: 'transparent', color: 'var(--text)', border: '1px solid var(--line)', opacity: busyId === id ? .6 : 1 }}>
+ style={{ padding: '5px 14px', borderRadius: 'var(--radius-control)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', background: 'transparent', color: 'var(--text)', border: '1px solid var(--line)', opacity: busyId === id ? .6 : 1 }}>
  {busyId === id ? 'Saving…' : 'Save'}
  </button>
  </div>
@@ -1374,9 +1374,9 @@ function InsuranceCasesCard({ label, seats, onOpen, onSaved }: {
  <div style={{ marginTop: '6px' }}>
  <div style={{ display: 'flex', gap: '6px' }}>
  <input type="email" value={mails[k] ?? w.slot?.customers?.email ?? w.bookingEmail ?? ''} onChange={e => { setMails(v => ({ ...v, [k]: e.target.value })); setSendSt(x => ({ ...x, [k]: {} })) }} onKeyDown={e => { if (e.key === 'Enter') sendLink(w) }} placeholder="guest@example.com"
- style={{ flex: 1, minWidth: 0, padding: '5px 9px', borderRadius: 0, fontSize: '14px', fontFamily: 'inherit', background: 'rgba(0,0,0,.25)', color: 'var(--text)', border: '1px solid rgba(255,255,255,.2)' }} />
+ style={{ flex: 1, minWidth: 0, padding: '5px 9px', borderRadius: 'var(--radius-control)', fontSize: '14px', fontFamily: 'inherit', background: 'rgba(0,0,0,.25)', color: 'var(--text)', border: '1px solid rgba(255,255,255,.2)' }} />
  <button type="button" disabled={st.loading} onClick={() => sendLink(w)}
- style={{ padding: '5px 14px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap', background: st.sent ? 'transparent' : 'color-mix(in srgb, var(--text) 12%, transparent)', color: st.sent ? 'var(--text)' : 'var(--accent)', border: `1px solid ${st.sent ? 'var(--line)' : 'color-mix(in srgb, var(--text) 35%, transparent)'}`, opacity: st.loading ? .6 : 1 }}>
+ style={{ padding: '5px 14px', borderRadius: 'var(--radius-control)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap', background: st.sent ? 'transparent' : 'color-mix(in srgb, var(--text) 12%, transparent)', color: st.sent ? 'var(--text)' : 'var(--accent)', border: `1px solid ${st.sent ? 'var(--line)' : 'color-mix(in srgb, var(--text) 35%, transparent)'}`, opacity: st.loading ? .6 : 1 }}>
  {st.loading ? '…' : st.sent ? ' Link sent' : ' Send check-in link'}
  </button>
  </div>
@@ -1437,10 +1437,10 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  <div style={{
  background: 'rgba(18,18,16,.94)',
  border: hasTestSeat ? '1px solid var(--line)' : '1px solid color-mix(in srgb, var(--text) 15%, transparent)',
- borderRadius: 0, overflow: 'hidden',
+ borderRadius: 'var(--radius-card)', overflow: 'hidden',
  }}>
  <div style={{ padding: '16px 20px', borderBottom: '1px solid rgba(255,255,255,.07)', display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
- <span style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: meta.color, background: meta.bg, padding: '4px 10px', borderRadius: 0, whiteSpace: 'nowrap' }}>{meta.label}</span>
+ <span style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: meta.color, background: meta.bg, padding: '4px 10px', borderRadius: 'var(--radius-control)', whiteSpace: 'nowrap' }}>{meta.label}</span>
  <div>
  <div style={{ fontSize: '15px', fontWeight: 500, color: s.text }}>
  {boat.name} <span style={{ fontSize: '14px', fontWeight: 500, color: s.muted }}>· {session === 'night' ? ' NIGHT' : session.toUpperCase()}</span>
@@ -1525,7 +1525,7 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  <select
  value={status?.status ?? 'scheduled'} disabled={busy}
  onChange={e => onStatus({ status: e.target.value })}
- style={{ fontSize: '14px', fontWeight: 500, padding: '5px 9px', borderRadius: 0, background: 'rgba(0,0,0,.3)', color: s.text, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', fontFamily: 'inherit', cursor: busy ? 'wait' : 'pointer' }}>
+ style={{ fontSize: '14px', fontWeight: 500, padding: '5px 9px', borderRadius: 'var(--radius-control)', background: 'rgba(0,0,0,.3)', color: s.text, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', fontFamily: 'inherit', cursor: busy ? 'wait' : 'pointer' }}>
  {['scheduled', 'boarding', 'out', 'returned', 'cancelled'].map(v => <option key={v} value={v}>{v}</option>)}
  </select>
  <TimeField label="Dep" value={status?.departure_time ?? ''} disabled={busy} onCommit={v => onStatus({ departure_time: v || null })} />
@@ -1533,7 +1533,7 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  <input
  defaultValue={status?.dive_site ?? ''} placeholder="dive site" disabled={busy}
  onBlur={e => { if (e.target.value !== (status?.dive_site ?? '')) onStatus({ dive_site: e.target.value || null }) }}
- style={{ fontSize: '14px', padding: '5px 9px', borderRadius: 0, background: 'rgba(0,0,0,.3)', color: s.text, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', fontFamily: 'inherit', width: '130px' }} />
+ style={{ fontSize: '14px', padding: '5px 9px', borderRadius: 'var(--radius-control)', background: 'rgba(0,0,0,.3)', color: s.text, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', fontFamily: 'inherit', width: '130px' }} />
  </div>
 
  {/* ── Crew aus dem Schedule dieses Tages ── */}
@@ -1547,7 +1547,7 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  <button key={a.name} type="button" disabled={busy} onClick={() => onToggleCrew(a.name, a.role)}
  title={`${a.role} — click to ${on ? 'remove from' : 'assign to'} ${boat.name} ${session.toUpperCase()}`}
  style={{
- fontSize: '14px', fontWeight: 500, padding: '3px 10px', borderRadius: 0,
+ fontSize: '14px', fontWeight: 500, padding: '3px 10px', borderRadius: 'var(--radius-control)',
  cursor: busy ? 'wait' : 'pointer', fontFamily: 'inherit',
  color: on ? 'var(--on-accent)' : s.muted,
  background: on ? 'transparent' : 'rgba(255,255,255,.05)',
@@ -1562,12 +1562,12 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  <div style={{ padding: '8px 20px 16px', display: 'flex', gap: '6px', flexWrap: 'wrap', alignItems: 'center' }}>
  <ChipLabel>Skipper</ChipLabel>
  {skipper
- ? <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', padding: '3px 11px', borderRadius: 0, background: 'color-mix(in srgb, var(--text) 13%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 40%, transparent)' }}> {skipper.crew_name}</span>
+ ? <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', padding: '3px 11px', borderRadius: 'var(--radius-control)', background: 'color-mix(in srgb, var(--text) 13%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 40%, transparent)' }}> {skipper.crew_name}</span>
  : <span style={{ fontSize: '14px', color: s.muted, opacity: .5, fontStyle: 'italic' }}>none assigned</span>}
  <ChipLabel>Crew</ChipLabel>
  {guides.length > 0
  ? guides.map(g => (
- <span key={g.crew_name} style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', padding: '3px 11px', borderRadius: 0, background: 'transparent', border: '1px solid var(--line)' }}> {g.crew_name}</span>
+ <span key={g.crew_name} style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)', padding: '3px 11px', borderRadius: 'var(--radius-control)', background: 'transparent', border: '1px solid var(--line)' }}> {g.crew_name}</span>
  ))
  : <span style={{ fontSize: '14px', color: s.muted, opacity: .5, fontStyle: 'italic' }}>none assigned</span>}
  <ChipLabel>Divers</ChipLabel>
@@ -1581,13 +1581,13 @@ function BoatCard({ boat, session, status, crew, seats, available, busy, onStatu
  cursor: 'pointer', fontFamily: 'inherit',
  fontSize: '14px',
  color: seat.medicalFlag ? 'var(--text)' : ((seat.insuranceFlag && !seat.insurancePolicyOnFile) || seat.insuranceSource === 'none' || seat.danPolicyOpen || seat.refresherOpen || seat.minorOpen) ? 'var(--text)' : seat.insuranceFlag ? 'var(--muted)' : seat.checkedIn ? 'var(--text)' : 'var(--text)',
- padding: '3px 10px', borderRadius: 0,
+ padding: '3px 10px', borderRadius: 'var(--radius-control)',
  background: 'color-mix(in srgb, var(--text) 6%, transparent)',
  border: `1px solid ${seat.medicalFlag ? 'var(--line)' : ((seat.insuranceFlag && !seat.insurancePolicyOnFile) || seat.insuranceSource === 'none' || seat.danPolicyOpen || seat.refresherOpen || seat.minorOpen) ? 'var(--line)' : seat.insuranceFlag ? 'rgba(201,194,182,.35)' : seat.checkedIn ? 'var(--text)' : 'var(--text)'}`,
  }}>
  {seat.checkedIn ? 'In' : 'Due'} {shortName(seat.name)}
- {seat.bookingStatus === 'pending' && <span title="Booking not paid yet (pending)" style={{ marginLeft: '5px', fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '0 4px' }}>UNPAID</span>}
- {seat.bookingStatus === 'no_show' && <span title="Marked as no-show" style={{ marginLeft: '5px', fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: '#8a8f99', borderRadius: 0, padding: '0 4px' }}>NO-SHOW</span>}
+ {seat.bookingStatus === 'pending' && <span title="Booking not paid yet (pending)" style={{ marginLeft: '5px', fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-control)', padding: '0 4px' }}>UNPAID</span>}
+ {seat.bookingStatus === 'no_show' && <span title="Marked as no-show" style={{ marginLeft: '5px', fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: '#8a8f99', borderRadius: 'var(--radius-control)', padding: '0 4px' }}>NO-SHOW</span>}
  {seat.placeholder && <span title="Seat reserved, guest details not entered yet" style={{ marginLeft: '5px', fontSize: '14px', color: 'var(--muted)' }}>(reserved)</span>}
  {/* Versicherung: = Nachweis noch zu sichten, = gar keine.
  Beides muss der Empfang sehen, bevor der Gast an Bord geht. */}
@@ -1620,7 +1620,7 @@ function TimeField({ label, value, disabled, onCommit }: {
  <input
  type="time" defaultValue={value ? value.slice(0, 5) : ''} disabled={disabled}
  onBlur={e => { if (e.target.value !== value.slice(0, 5)) onCommit(e.target.value) }}
- style={{ fontSize: '14px', padding: '4px 7px', borderRadius: 0, background: 'rgba(0,0,0,.3)', color: s.text, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', fontFamily: 'inherit', colorScheme: 'dark' }} />
+ style={{ fontSize: '14px', padding: '4px 7px', borderRadius: 'var(--radius-control)', background: 'rgba(0,0,0,.3)', color: s.text, border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)', fontFamily: 'inherit', colorScheme: 'dark' }} />
  </label>
  )
 }

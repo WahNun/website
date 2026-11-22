@@ -100,7 +100,7 @@ export function GuestFile({ diver, bookingId, onSaved, booked }: { diver: GuestF
  } catch (e) { setMsg(` ${e instanceof Error ? e.message : String(e)}`) }
  finally { setSaving(false) }
  }
- const inp: React.CSSProperties = { background: 'var(--bg)', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, padding: '5px 8px', fontSize: '14px', color: 'var(--text)', fontFamily: s.font, outline: 'none', width: '100%', boxSizing: 'border-box', colorScheme: 'dark' }
+ const inp: React.CSSProperties = { background: 'var(--bg)', border: '1px solid rgba(255,255,255,.14)', borderRadius: 'var(--radius-card)', padding: '5px 8px', fontSize: '14px', color: 'var(--text)', fontFamily: s.font, outline: 'none', width: '100%', boxSizing: 'border-box', colorScheme: 'dark' }
  const F = ({ k, name, type = 'text', placeholder }: { k: string; name: keyof typeof form; type?: string; placeholder?: string }) => (
  <label style={{ display: 'grid', gridTemplateColumns: '110px 1fr', alignItems: 'center', gap: '10px', fontSize: '14px', color: s.muted, padding: '2px 0' }}>{k}
  {name === 'gender'
@@ -135,8 +135,8 @@ export function GuestFile({ diver, bookingId, onSaved, booked }: { diver: GuestF
  <F k="Date of birth" name="dob" type="date" /><F k="Nationality" name="nationality" /><F k="Country" name="country_of_residence" placeholder="country of residence" />
  <F k="Phone prefix" name="phone_prefix" placeholder="+351" /><F k="Phone" name="phone_number" />
  <div style={{ display: 'flex', gap: '8px', marginTop: '6px', alignItems: 'center', flexWrap: 'wrap' }}>
- <button type="button" disabled={saving} onClick={() => void save()} style={{ padding: '5px 12px', borderRadius: 0, border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>{saving ? 'Saving…' : 'Save'}</button>
- <button type="button" disabled={saving} onClick={() => { setEdit(false); setMsg(null) }} style={{ padding: '5px 12px', borderRadius: 0, border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>Cancel</button>
+ <button type="button" disabled={saving} onClick={() => void save()} style={{ padding: '5px 12px', borderRadius: 'var(--radius-control)', border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>{saving ? 'Saving…' : 'Save'}</button>
+ <button type="button" disabled={saving} onClick={() => { setEdit(false); setMsg(null) }} style={{ padding: '5px 12px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.15)', background: 'transparent', color: s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>Cancel</button>
  {msg && <span style={{ fontSize: '14px', color: msg.startsWith('') ? 'var(--text)' : 'var(--text)' }}>{msg}</span>}
  </div>
  </div>
@@ -151,7 +151,7 @@ export function GuestFile({ diver, bookingId, onSaved, booked }: { diver: GuestF
  {!cu.dob && <div style={{ fontSize: '14px', color: 'var(--text)', marginTop: '2px' }}> No date of birth — guest stays out of the DAN export until it is filled in.</div>}
  {customerId && (
  <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginTop: '6px', flexWrap: 'wrap' }}>
- <button type="button" onClick={() => { setMsg(null); setEdit(true) }} style={{ padding: '4px 10px', borderRadius: 0, border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', color: s.accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}> Edit personal details</button>
+ <button type="button" onClick={() => { setMsg(null); setEdit(true) }} style={{ padding: '4px 10px', borderRadius: 'var(--radius-control)', border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', color: s.accent, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}> Edit personal details</button>
  {msg && <span style={{ fontSize: '14px', color: msg.startsWith('') ? 'var(--text)' : 'var(--text)' }}>{msg}</span>}
  </div>
  )}

@@ -51,7 +51,7 @@ export default function DatePicker({ value, onChange, min, max }: {
  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px', marginBottom: '10px', maxHeight: '150px', overflowY: 'auto' }}>
  {years.map(y => (
  <button key={y} type="button" onClick={() => { setCursor(new Date(y, cursor.getMonth(), 1)); setYearOpen(false) }}
- style={{ padding: '6px 0', borderRadius: 0, fontSize: '14px', fontFamily: 'inherit', cursor: 'pointer',
+ style={{ padding: '6px 0', borderRadius: 'var(--radius-control)', fontSize: '14px', fontFamily: 'inherit', cursor: 'pointer',
  border: `1px solid ${y === cursor.getFullYear() ? 'color-mix(in srgb, var(--text) 60%, transparent)' : 'rgba(255,255,255,.08)'}`,
  background: y === cursor.getFullYear() ? 'color-mix(in srgb, var(--text) 20%, transparent)' : 'transparent', color: s.text }}>{y}</button>
  ))}
@@ -70,7 +70,7 @@ export default function DatePicker({ value, onChange, min, max }: {
  // Der gewählte Tag bleibt immer anklickbar (abwählen), auch wenn er inzwischen ausserhalb von min/max liegt
  <button key={d} type="button" disabled={disabled && !isSel} title={disabled && isSel ? 'Click to clear' : undefined} onClick={() => onChange(isSel ? null : d)}
  style={{
- padding: '9px 0', borderRadius: 0, fontFamily: 'inherit', fontSize: '14px', fontWeight: 500,
+ padding: '9px 0', borderRadius: 'var(--radius-control)', fontFamily: 'inherit', fontSize: '14px', fontWeight: 500,
  border: `1px solid ${isSel ? 'color-mix(in srgb, var(--text) 70%, transparent)' : 'rgba(255,255,255,.08)'}`,
  background: isSel ? 'color-mix(in srgb, var(--text) 25%, transparent)' : 'transparent',
  color: disabled ? 'rgba(255,255,255,.18)' : s.text, cursor: disabled ? 'not-allowed' : 'pointer',
@@ -83,6 +83,6 @@ export default function DatePicker({ value, onChange, min, max }: {
 }
 
 const navBtn: React.CSSProperties = {
- width: '32px', height: '32px', borderRadius: 0, border: '1px solid rgba(255,255,255,.12)', background: 'transparent',
+ width: '32px', height: '32px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.12)', background: 'transparent',
  color: 'var(--text)', fontSize: '18px', cursor: 'pointer', fontFamily: 'inherit',
 }

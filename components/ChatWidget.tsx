@@ -415,7 +415,7 @@ export default function ChatWidget() {
  width: '100%', boxSizing: 'border-box',
  background: 'rgba(255,255,255,.07)',
  border: '1px solid rgba(255,255,255,.12)',
- borderRadius: 0, padding: '9px 12px',
+ borderRadius: 'var(--radius-card)', padding: '9px 12px',
  fontSize: '14px', color: textColor,
  fontFamily: font, outline: 'none',
  }
@@ -470,7 +470,7 @@ export default function ChatWidget() {
  border: 'none', color: mutedColor, fontSize: '22px',
  cursor: 'pointer', lineHeight: 1,
  padding: isMobile ? '6px 10px' : '0',
- borderRadius: 0, fontFamily: font,
+ borderRadius: 'var(--radius-control)', fontFamily: font,
  }}
  aria-label="Close chat"
  >
@@ -514,7 +514,7 @@ export default function ChatWidget() {
  onClick={submitLead}
  disabled={!leadPhone.trim()}
  style={{
- padding: '11px 16px', borderRadius: 0, border: 'none',
+ padding: '11px 16px', borderRadius: 'var(--radius-control)', border: 'none',
  background: !leadPhone.trim() ? 'color-mix(in srgb, var(--text) 30%, transparent)' : accent,
  color: bgMain, fontSize: '14px', fontWeight: 500,
  cursor: !leadPhone.trim() ? 'default' : 'pointer',
@@ -587,7 +587,7 @@ export default function ChatWidget() {
  <span style={{
  position: 'absolute', right: '9px', top: '50%', transform: 'translateY(-50%)',
  fontSize: '14px', color: mutedColor, pointerEvents: 'none',
- background: 'rgba(255,255,255,.06)', padding: '1px 5px', borderRadius: 0, fontWeight: 500,
+ background: 'rgba(255,255,255,.06)', padding: '1px 5px', borderRadius: 'var(--radius-control)', fontWeight: 500,
  }}>optional</span>
  )}
  </div>
@@ -602,7 +602,7 @@ export default function ChatWidget() {
  <div style={{ display: 'flex', gap: '6px', marginBottom: '6px' }}>
  {(['email', 'whatsapp'] as const).map(ch => (
  <button key={ch} onClick={() => setTicketChannel(ch)} style={{
- flex: 1, padding: '6px 10px', borderRadius: 0,
+ flex: 1, padding: '6px 10px', borderRadius: 'var(--radius-control)',
  border: `1px solid ${ticketChannel === ch ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.15)'}`,
  background: ticketChannel === ch ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'transparent',
  color: ticketChannel === ch ? accent : mutedColor,
@@ -630,7 +630,7 @@ export default function ChatWidget() {
  return (
  <div style={{ display: 'flex', gap: '7px' }}>
  <button onClick={submitTicket} disabled={!canSubmit} style={{
- flex: 1, padding: '8px 14px', borderRadius: 0, border: 'none',
+ flex: 1, padding: '8px 14px', borderRadius: 'var(--radius-control)', border: 'none',
  background: canSubmit ? accent : 'color-mix(in srgb, var(--text) 30%, transparent)',
  color: bgMain, fontSize: '14px', fontWeight: 500,
  cursor: canSubmit ? 'pointer' : 'default', fontFamily: font,
@@ -638,7 +638,7 @@ export default function ChatWidget() {
  {submittingTicket ? ' Sending…' : 'Send ticket'}
  </button>
  <button onClick={() => setShowTicketForm(false)} style={{
- padding: '8px 12px', borderRadius: 0,
+ padding: '8px 12px', borderRadius: 'var(--radius-control)',
  border: '1px solid rgba(255,255,255,.15)',
  background: 'transparent', color: mutedColor,
  fontSize: '14px', cursor: 'pointer', fontFamily: font,
@@ -688,7 +688,7 @@ export default function ChatWidget() {
  style={{
  flex: 1, background: 'rgba(255,255,255,.07)',
  border: '1px solid rgba(255,255,255,.1)',
- borderRadius: 0, padding: '9px 15px',
+ borderRadius: 'var(--radius-control)', padding: '9px 15px',
  fontSize: '16px', color: textColor,
  outline: 'none', fontFamily: font, touchAction: 'manipulation',
  }}

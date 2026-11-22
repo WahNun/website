@@ -128,11 +128,11 @@ export default function ConsentBanner() {
       </div>
       <div style={{ display: 'flex', gap: '10px', flexShrink: 0 }}>
         <button type="button" onClick={() => choose('rejected')} style={{
-          padding: '10px 18px', borderRadius: 0, border: '1px solid rgba(255,255,255,.2)',
+          padding: '10px 18px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(255,255,255,.2)',
           background: 'transparent', color: 'var(--muted)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: FONT,
         }}>{t.reject}</button>
         <button type="button" onClick={() => choose('accepted')} style={{
-          padding: '10px 20px', borderRadius: 0, border: '1px solid var(--accent)',
+          padding: '10px 20px', borderRadius: 'var(--radius-control)', border: '1px solid var(--accent)',
           background: 'var(--accent)', color: 'var(--on-accent)',
           fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: FONT,
         }}>{t.accept}</button>

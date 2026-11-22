@@ -12,7 +12,7 @@ import { CANCEL_REASONS, REFUND_REASONS, composeReason, payoutNeeded, reasonComp
  */
 
 const lbl: React.CSSProperties = { fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, display: 'block', marginBottom: '4px' }
-const inp: React.CSSProperties = { width: '100%', boxSizing: 'border-box', background: 'var(--bg)', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, color: s.text, fontSize: '14px', padding: '7px 10px', fontFamily: s.font, outline: 'none', colorScheme: 'dark' }
+const inp: React.CSSProperties = { width: '100%', boxSizing: 'border-box', background: 'var(--bg)', border: '1px solid rgba(255,255,255,.14)', borderRadius: 'var(--radius-card)', color: s.text, fontSize: '14px', padding: '7px 10px', fontFamily: s.font, outline: 'none', colorScheme: 'dark' }
 
 export function ReasonField({ kind, choice, detail, onChoice, onDetail, placeholder }: {
  kind: 'cancel' | 'refund'
@@ -56,7 +56,7 @@ export function PayoutFields({ method, value, onChange }: { method: string; valu
  if (!payoutNeeded(method)) return null
  const set = (patch: Partial<PayoutValue>) => onChange({ ...value, ...patch })
  return (
- <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', padding: '9px 10px', borderRadius: 0, background: 'transparent', border: '1px solid var(--line)' }}>
+ <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', padding: '9px 10px', borderRadius: 'var(--radius-card)', background: 'transparent', border: '1px solid var(--line)' }}>
  <label style={{ ...lbl, color: 'var(--text)', marginBottom: 0 }}>Where should the money go? (required)</label>
  {method === 'bank' && (<>
  <input type="text" value={value.iban} onChange={e => set({ iban: e.target.value })} placeholder="IBAN, e.g. PT50 0000 0000 0000 0000 0000 0" style={inp} />
@@ -98,7 +98,7 @@ export function CopyButton({ value, label = 'Copy' }: { value: string; label?: s
  }
  return (
  <button type="button" onClick={copy}
- style={{ padding: '3px 10px', borderRadius: 0, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, minWidth: '74px',
+ style={{ padding: '3px 10px', borderRadius: 'var(--radius-control)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, minWidth: '74px',
  border: `1px solid ${state === 'ok' ? 'var(--line)' : state === 'fail' ? 'var(--line)' : 'var(--line)'}`,
  background: state === 'ok' ? 'transparent' : 'transparent',
  color: state === 'ok' ? 'var(--text)' : state === 'fail' ? 'var(--text)' : 'var(--text)' }}>

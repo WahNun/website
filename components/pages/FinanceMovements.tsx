@@ -94,7 +94,7 @@ export default function FinanceMovements({ view, simulationMode, who, onOpenBook
  }),
  }
  const csvName = csvFileName(`history-${view === 'all' ? 'all-movements' : view === 'payments' ? 'payments-in' : 'cash'}${month ? `-${month}` : ''}`, null, Boolean(simulationMode))
- const inp = { background: 'var(--bg)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, color: s.text, fontSize: '14px', fontFamily: 'inherit' } as const
+ const inp = { background: 'var(--bg)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 'var(--radius-card)', color: s.text, fontSize: '14px', fontFamily: 'inherit' } as const
 
  return (
  <div>
@@ -111,8 +111,8 @@ export default function FinanceMovements({ view, simulationMode, who, onOpenBook
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '14px' }}>
  <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search name, product, booking no. or note…" style={{ ...inp, flex: '1 1 240px', minWidth: 0, padding: '8px 12px' }} />
  <input type="month" value={month} onChange={e => setMonth(e.target.value)} title="Month" style={{ ...inp, padding: '7px 10px', colorScheme: 'dark' }} />
- {(search || month) && <button type="button" onClick={() => { setSearch(''); setMonth('') }} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, borderRadius: 0, padding: '7px 12px', cursor: 'pointer', fontSize: '14px', fontFamily: 'inherit' }}>Clear filters</button>}
- <button type="button" onClick={() => setTick(n => n + 1)} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, borderRadius: 0, padding: '7px 12px', cursor: 'pointer', fontSize: '14px', fontFamily: 'inherit' }}> Refresh</button>
+ {(search || month) && <button type="button" onClick={() => { setSearch(''); setMonth('') }} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, borderRadius: 'var(--radius-control)', padding: '7px 12px', cursor: 'pointer', fontSize: '14px', fontFamily: 'inherit' }}>Clear filters</button>}
+ <button type="button" onClick={() => setTick(n => n + 1)} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, borderRadius: 'var(--radius-control)', padding: '7px 12px', cursor: 'pointer', fontSize: '14px', fontFamily: 'inherit' }}> Refresh</button>
  <CsvButton fileName={csvName} table={csv} />
  </div>
  {loading && <div style={{ color: s.muted, fontSize: '14px', padding: '10px 0' }}>Loading...</div>}
@@ -124,7 +124,7 @@ export default function FinanceMovements({ view, simulationMode, who, onOpenBook
  const sign = r.kind === 'in' ? '+' : r.kind === 'out' ? '−' : (r.amount < 0 ? '−' : '+')
  const nm = r.by ? (r.byIsEmail ? who(r.by) : who.id(r.by)) : null
  return (
- <div key={r.key} style={{ background: 'rgba(255,255,255,.025)', border: r.kind === 'move' ? '1px dashed rgba(255,255,255,.14)' : '1px solid rgba(255,255,255,.07)', borderRadius: 0, padding: '10px 14px', display: 'flex', justifyContent: 'space-between', gap: '12px', alignItems: 'flex-start' }}>
+ <div key={r.key} style={{ background: 'rgba(255,255,255,.025)', border: r.kind === 'move' ? '1px dashed rgba(255,255,255,.14)' : '1px solid rgba(255,255,255,.07)', borderRadius: 'var(--radius-card)', padding: '10px 14px', display: 'flex', justifyContent: 'space-between', gap: '12px', alignItems: 'flex-start' }}>
  <div style={{ minWidth: 0 }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>
  {r.label}
@@ -132,7 +132,7 @@ export default function FinanceMovements({ view, simulationMode, who, onOpenBook
  {r.is_test && <span style={{ marginLeft: '8px', fontSize: '14px', color: 'var(--text)' }}>TEST</span>}
  </div>
  <div style={{ fontSize: '14px', color: s.muted, marginTop: '2px' }}>
- Booking <button type="button" onClick={() => onOpenBooking(r.booking_id)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: 'var(--text)', fontWeight: 500, background: 'transparent', border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', borderRadius: 0, padding: '0 6px', cursor: 'pointer' }}>{r.booking_id.slice(0, 8).toUpperCase()}</button>
+ Booking <button type="button" onClick={() => onOpenBooking(r.booking_id)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: 'var(--text)', fontWeight: 500, background: 'transparent', border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', borderRadius: 'var(--radius-control)', padding: '0 6px', cursor: 'pointer' }}>{r.booking_id.slice(0, 8).toUpperCase()}</button>
  {' · '}{ML[r.method] ?? r.method}{' · '}{nm ? ` ${nm}` : ' by system (automatic)'}
  </div>
  {r.note && <div style={{ fontSize: '14px', color: s.muted, marginTop: '4px' }}>{r.note}</div>}
@@ -147,9 +147,9 @@ export default function FinanceMovements({ view, simulationMode, who, onOpenBook
  </div>
  {filtered.length > PAGE && (
  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px', marginTop: '14px', fontSize: '14px', color: s.muted }}>
- <button type="button" disabled={page === 0} onClick={() => setPage(p => Math.max(0, p - 1))} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: page === 0 ? s.muted : s.text, borderRadius: 0, padding: '6px 14px', cursor: page === 0 ? 'default' : 'pointer', fontFamily: 'inherit' }}> Previous</button>
+ <button type="button" disabled={page === 0} onClick={() => setPage(p => Math.max(0, p - 1))} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: page === 0 ? s.muted : s.text, borderRadius: 'var(--radius-control)', padding: '6px 14px', cursor: page === 0 ? 'default' : 'pointer', fontFamily: 'inherit' }}> Previous</button>
  <span>Page {page + 1} of {Math.max(1, Math.ceil(filtered.length / PAGE))}</span>
- <button type="button" disabled={(page + 1) * PAGE >= filtered.length} onClick={() => setPage(p => p + 1)} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: (page + 1) * PAGE >= filtered.length ? s.muted : s.text, borderRadius: 0, padding: '6px 14px', cursor: (page + 1) * PAGE >= filtered.length ? 'default' : 'pointer', fontFamily: 'inherit' }}>Next </button>
+ <button type="button" disabled={(page + 1) * PAGE >= filtered.length} onClick={() => setPage(p => p + 1)} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: (page + 1) * PAGE >= filtered.length ? s.muted : s.text, borderRadius: 'var(--radius-control)', padding: '6px 14px', cursor: (page + 1) * PAGE >= filtered.length ? 'default' : 'pointer', fontFamily: 'inherit' }}>Next </button>
  </div>
  )}
  </div>

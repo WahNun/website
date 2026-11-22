@@ -144,7 +144,7 @@ export default function AuditChangelog({ isAdmin, userId }: { isAdmin: boolean; 
  const inputStyle: CSSProperties = {
  background: 'rgba(255,255,255,.05)',
  border: '1px solid rgba(255,255,255,.1)',
- borderRadius: 0,
+ borderRadius: 'var(--radius-card)',
  color: 'rgba(255,255,255,.8)',
  fontSize: '14px',
  padding: '6px 10px',

@@ -91,7 +91,7 @@ function CourseCard({ course, color = 'var(--text)', onClick, lang = 'EN' }: { c
  onMouseEnter={() => setHovered(true)}
  onMouseLeave={() => setHovered(false)}
  style={{
- minWidth: '220px', maxWidth: '240px', borderRadius: 0,
+ minWidth: '220px', maxWidth: '240px', borderRadius: 'var(--radius-control)',
  display: 'flex', flexDirection: 'column',
  border: hovered ? '1px solid color-mix(in srgb, var(--text) 45%, transparent)' : '1px solid rgba(255,255,255,.07)',
  flexShrink: 0, scrollSnapAlign: 'start', cursor: 'pointer',
@@ -106,9 +106,9 @@ function CourseCard({ course, color = 'var(--text)', onClick, lang = 'EN' }: { c
  ) : (
  <div style={{ width: '100%', height: '100%', background: course.bg }} />
  )}
- <span style={{ position: 'absolute', bottom: '11px', right: '11px', zIndex: 2, fontSize: '14px', fontWeight: 500, color, background: 'color-mix(in srgb, var(--bg) 72%, transparent)', padding: '4px 9px', borderRadius: 0, backdropFilter: 'blur(6px)' }}>{course.price}</span>
+ <span style={{ position: 'absolute', bottom: '11px', right: '11px', zIndex: 2, fontSize: '14px', fontWeight: 500, color, background: 'color-mix(in srgb, var(--bg) 72%, transparent)', padding: '4px 9px', borderRadius: 'var(--radius-control)', backdropFilter: 'blur(6px)' }}>{course.price}</span>
  {course.local && (
- <span style={{ position: 'absolute', bottom: '10px', left: '10px', zIndex: 2, fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', padding: '2px 7px', borderRadius: 0, letterSpacing: '.08em', backdropFilter: 'blur(4px)' }}>{typeof course.local === 'string' ? course.local : T.badge_local_ssi[lang]}</span>
+ <span style={{ position: 'absolute', bottom: '10px', left: '10px', zIndex: 2, fontSize: '14px', fontWeight: 500, color: 'var(--text)', background: 'color-mix(in srgb, var(--text) 8%, transparent)', padding: '2px 7px', borderRadius: 'var(--radius-control)', letterSpacing: '.08em', backdropFilter: 'blur(4px)' }}>{typeof course.local === 'string' ? course.local : T.badge_local_ssi[lang]}</span>
  )}
  </div>
  <div style={{ padding: '14px 16px 16px', flex: 1 }}>

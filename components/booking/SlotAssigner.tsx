@@ -68,7 +68,7 @@ export default function SlotAssigner({ bookingId, onChanged }: { bookingId: stri
  const open = rows.filter(x => x.session === 'tbd').length
  const fieldBg = 'var(--bg)'
  return (
- <div style={{ marginBottom: '14px', padding: '14px', borderRadius: 0, border: '1px solid var(--line)', background: 'transparent' }}>
+ <div style={{ marginBottom: '14px', padding: '14px', borderRadius: 'var(--radius-card)', border: '1px solid var(--line)', background: 'transparent' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '6px' }}> Set time slots (same as instructor ticket)</div>
  {loading && <div style={{ fontSize: '14px', color: s.muted }}>Loading sessions…</div>}
  {error && <div style={{ fontSize: '14px', color: 'var(--text)' }}> {error}</div>}
@@ -82,11 +82,11 @@ export default function SlotAssigner({ bookingId, onChanged }: { bookingId: stri
  return (
  <div key={x.id} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 0', flexWrap: 'wrap' }}>
  <input type="date" value={dateVal} min={new Date().toISOString().slice(0, 10)} title="Move this day" onChange={e => setDates(p => ({ ...p, [x.id]: e.target.value }))}
- style={{ background: fieldBg, border: `1px solid ${dateVal !== x.session_date ? 'var(--line)' : 'rgba(255,255,255,.12)'}`, borderRadius: 0, padding: '4px 8px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none', colorScheme: 'dark' }} />
+ style={{ background: fieldBg, border: `1px solid ${dateVal !== x.session_date ? 'var(--line)' : 'rgba(255,255,255,.12)'}`, borderRadius: 'var(--radius-control)', padding: '4px 8px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none', colorScheme: 'dark' }} />
  <span style={{ fontSize: '14px', color: x.session === 'tbd' ? 'var(--text)' : s.muted, minWidth: '70px' }}>{x.session === 'tbd' ? 'open' : `set: ${x.session.toUpperCase()}`}{x.notes ? ` · ${x.notes}` : ''}</span>
  {x.session !== 'night' && ([[true, ' Boat'], [false, ' Pool']] as const).map(([bv, bl]) => (
  <button key={bl} type="button" title="Boat seat or pool/harbour day" onClick={() => setBoat(p => ({ ...p, [x.id]: bv }))}
- style={{ padding: '5px 10px', borderRadius: 0, border: `1px solid ${boatVal === bv ? 'var(--line)' : 'rgba(255,255,255,.12)'}`, background: boatVal === bv ? 'transparent' : 'transparent', color: boatVal === bv ? 'var(--text)' : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ padding: '5px 10px', borderRadius: 'var(--radius-control)', border: `1px solid ${boatVal === bv ? 'var(--line)' : 'rgba(255,255,255,.12)'}`, background: boatVal === bv ? 'transparent' : 'transparent', color: boatVal === bv ? 'var(--text)' : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  {bl}
  </button>
  ))}
@@ -94,14 +94,14 @@ export default function SlotAssigner({ bookingId, onChanged }: { bookingId: stri
  const on = curPick === tt
  return (
  <button key={tt} type="button" title={tt === 'full' ? 'Course takes the whole day — AM and PM session' : undefined} onClick={() => setPicks(p => ({ ...p, [x.id]: tt }))}
- style={{ padding: '5px 14px', borderRadius: 0, border: `1px solid ${on ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.12)'}`, background: on ? 'color-mix(in srgb, var(--text) 16%, transparent)' : 'transparent', color: on ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ padding: '5px 14px', borderRadius: 'var(--radius-control)', border: `1px solid ${on ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.12)'}`, background: on ? 'color-mix(in srgb, var(--text) 16%, transparent)' : 'transparent', color: on ? s.accent : s.muted, fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  {label}
  </button>
  )
  })}
  <label style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px', color: s.muted }}>Start
  <input type="time" value={timeVal} onChange={e => setTimes(p => ({ ...p, [x.id]: e.target.value }))} title="Optional start time"
- style={{ background: fieldBg, border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '4px 8px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none', colorScheme: 'dark' }} />
+ style={{ background: fieldBg, border: '1px solid rgba(255,255,255,.12)', borderRadius: 'var(--radius-control)', padding: '4px 8px', fontSize: '14px', color: s.text, fontFamily: s.font, outline: 'none', colorScheme: 'dark' }} />
  </label>
  {dirty && <span style={{ fontSize: '14px', color: 'var(--text)' }}> changed</span>}
  </div>
@@ -110,7 +110,7 @@ export default function SlotAssigner({ bookingId, onChanged }: { bookingId: stri
  {rows.length > 0 && (
  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '10px', flexWrap: 'wrap' }}>
  <button type="button" disabled={saving} onClick={() => void save()}
- style={{ padding: '7px 16px', borderRadius: 0, border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, opacity: saving ? .6 : 1 }}>
+ style={{ padding: '7px 16px', borderRadius: 'var(--radius-control)', border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font, opacity: saving ? .6 : 1 }}>
  {saving ? 'Saving…' : 'Save changes & email guest'}
  </button>
  <span style={{ fontSize: '14px', color: s.muted }}>Every save emails the guest the full schedule (open days as “to be confirmed”). The instructor ticket resolves automatically once every day has a slot.</span>
@@ -119,7 +119,7 @@ export default function SlotAssigner({ bookingId, onChanged }: { bookingId: stri
  {msg && <div style={{ fontSize: '14px', marginTop: '8px', color: msg.startsWith('') ? 'var(--text)' : msg.startsWith('') ? 'var(--text)' : 'var(--text)' }}>{msg}</div>}
  {capacityWarning && !saving && (
  <button type="button" onClick={() => void save(true)}
- style={{ marginTop: '6px', padding: '6px 14px', borderRadius: 0, border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
+ style={{ marginTop: '6px', padding: '6px 14px', borderRadius: 'var(--radius-control)', border: '1px solid var(--line)', background: 'transparent', color: 'var(--text)', fontSize: '14px', fontWeight: 500, cursor: 'pointer', fontFamily: s.font }}>
  Save anyway (overbook — staff decision)
  </button>
  )}

@@ -28,7 +28,7 @@ export function ToastHost() {
  return (
  <div style={{
  position: 'fixed', bottom: '28px', left: '50%', transform: 'translateX(-50%)',
- background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', borderRadius: 0,
+ background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', borderRadius: 'var(--radius-card)',
  padding: '13px 22px', fontSize: '14px', fontWeight: 500, color: 'var(--text)',
  boxShadow: 'none', zIndex: 10000, whiteSpace: 'nowrap',
  animation: 'fadeInUp .2s ease',

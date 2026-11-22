@@ -253,20 +253,20 @@ export default function SplitGuestCard(p: {
  })
  }
 
- const field: React.CSSProperties = { width: '100%', background: 'var(--bg)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '10px 12px', fontSize: '15px', color: s.text, fontFamily: s.font, outline: 'none', boxSizing: 'border-box', colorScheme: 'dark' }
+ const field: React.CSSProperties = { width: '100%', background: 'var(--bg)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 'var(--radius-card)', padding: '10px 12px', fontSize: '15px', color: s.text, fontFamily: s.font, outline: 'none', boxSizing: 'border-box', colorScheme: 'dark' }
  const small: React.CSSProperties = { fontSize: '14px', color: s.muted, marginTop: '2px', lineHeight: 1.5 }
- const pickBtn = (done: boolean): React.CSSProperties => ({ padding: '7px 12px', borderRadius: 0, fontSize: '14px', fontWeight: 500, fontFamily: 'inherit', cursor: 'pointer', border: `1px solid ${done ? 'rgba(255,255,255,.15)' : 'color-mix(in srgb, var(--text) 50%, transparent)'}`, background: done ? 'transparent' : 'color-mix(in srgb, var(--text) 15%, transparent)', color: done ? s.sub : 'var(--accent)', whiteSpace: 'nowrap' })
- const row = (open: boolean, done: boolean): React.CSSProperties => ({ border: `1px solid ${open ? 'color-mix(in srgb, var(--text) 50%, transparent)' : done ? 'var(--text)' : 'var(--text)'}`, background: open ? 'color-mix(in srgb, var(--text) 6%, transparent)' : 'rgba(255,255,255,.03)', borderRadius: 0, padding: '10px 12px', marginTop: '8px' })
- const opt = (active: boolean, disabled = false): React.CSSProperties => ({ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', width: '100%', textAlign: 'left', padding: '9px 11px', borderRadius: 0, border: `1px solid ${active ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.1)'}`, background: active ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'transparent', color: active ? 'var(--text)' : 'var(--accent)', fontWeight: active ? 500 : 400, fontSize: '14px', cursor: disabled ? 'default' : 'pointer', fontFamily: 'inherit', opacity: disabled ? .45 : 1 })
+ const pickBtn = (done: boolean): React.CSSProperties => ({ padding: '7px 12px', borderRadius: 'var(--radius-control)', fontSize: '14px', fontWeight: 500, fontFamily: 'inherit', cursor: 'pointer', border: `1px solid ${done ? 'rgba(255,255,255,.15)' : 'color-mix(in srgb, var(--text) 50%, transparent)'}`, background: done ? 'transparent' : 'color-mix(in srgb, var(--text) 15%, transparent)', color: done ? s.sub : 'var(--accent)', whiteSpace: 'nowrap' })
+ const row = (open: boolean, done: boolean): React.CSSProperties => ({ border: `1px solid ${open ? 'color-mix(in srgb, var(--text) 50%, transparent)' : done ? 'var(--text)' : 'var(--text)'}`, background: open ? 'color-mix(in srgb, var(--text) 6%, transparent)' : 'rgba(255,255,255,.03)', borderRadius: 'var(--radius-card)', padding: '10px 12px', marginTop: '8px' })
+ const opt = (active: boolean, disabled = false): React.CSSProperties => ({ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', width: '100%', textAlign: 'left', padding: '9px 11px', borderRadius: 'var(--radius-control)', border: `1px solid ${active ? 'color-mix(in srgb, var(--text) 50%, transparent)' : 'rgba(255,255,255,.1)'}`, background: active ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'transparent', color: active ? 'var(--text)' : 'var(--accent)', fontWeight: active ? 500 : 400, fontSize: '14px', cursor: disabled ? 'default' : 'pointer', fontFamily: 'inherit', opacity: disabled ? .45 : 1 })
  const doneBtn = (ok: boolean, txt: string, next?: () => void) => (
- <button type="button" onClick={e => (ok && next) ? next() : closePicker(e, () => setOpenPicker(null))} style={{ width: '100%', marginTop: '10px', padding: '10px', borderRadius: 0, border: 'none', background: ok ? s.accent : 'rgba(255,255,255,.08)', color: ok ? 'var(--bg)' : s.muted, fontWeight: 500, fontSize: '14px', fontFamily: 'inherit', cursor: 'pointer' }}>{txt}</button>
+ <button type="button" onClick={e => (ok && next) ? next() : closePicker(e, () => setOpenPicker(null))} style={{ width: '100%', marginTop: '10px', padding: '10px', borderRadius: 'var(--radius-control)', border: 'none', background: ok ? s.accent : 'rgba(255,255,255,.08)', color: ok ? 'var(--bg)' : s.muted, fontWeight: 500, fontSize: '14px', fontFamily: 'inherit', cursor: 'pointer' }}>{txt}</button>
  )
 
  const titleLabel = p.extraOf ? (p.total === 1 ? 'Additional product' : `Guest ${p.extraOf} — additional product`) : (p.total === 1 ? 'Your first product' : `Guest ${index + 1} of ${p.total}`)
  if (collapsed && product) {
  const dates = [refresherDate ? ` ${fmtDay(refresherDate)}` : '', ...picked.map(x => `${fmtDay(x.date)}${x.session !== 'tbd' ? ` ${x.session.toUpperCase()}` : ''}`)].filter(Boolean).join(' · ')
  return (
- <div data-guestcard data-done style={{ scrollMarginTop: '88px', border: `1px solid ${missing ? 'var(--line)' : 'var(--line)'}`, borderRadius: 0, padding: '12px 16px', marginBottom: '14px', background: 'var(--glass)' }}>
+ <div data-guestcard data-done style={{ scrollMarginTop: '88px', border: `1px solid ${missing ? 'var(--line)' : 'var(--line)'}`, borderRadius: 'var(--radius-card)', padding: '12px 16px', marginBottom: '14px', background: 'var(--glass)' }}>
  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px' }}>
  <div style={{ minWidth: 0 }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.accent }}>{titleLabel}</div>
@@ -311,7 +311,7 @@ export default function SplitGuestCard(p: {
  )
 
  return (
- <div data-guestcard style={{ scrollMarginTop: '88px', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 0, padding: '14px 16px', marginBottom: '14px', background: 'var(--glass)' }}>
+ <div data-guestcard style={{ scrollMarginTop: '88px', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 'var(--radius-card)', padding: '14px 16px', marginBottom: '14px', background: 'var(--glass)' }}>
  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.accent }}>{titleLabel}</div>
  {p.onRemove && <button type="button" onClick={p.onRemove} style={{ background: 'none', border: 'none', color: s.muted, fontSize: '14px', fontFamily: 'inherit', cursor: 'pointer', textDecoration: 'underline', marginLeft: 'auto', marginRight: '12px' }}>Remove</button>}
@@ -442,7 +442,7 @@ export default function SplitGuestCard(p: {
  )}
  {/* Popular extras = Upsell sichtbar; Einzelteile eingeklappt (und weg, sobald Full Set gewählt) */}
  {popular.length > 0 && (
- <div style={{ marginTop: '10px', border: '1px solid var(--line)', borderRadius: 0, padding: '10px 12px', background: 'transparent' }}>
+ <div style={{ marginTop: '10px', border: '1px solid var(--line)', borderRadius: 'var(--radius-control)', padding: '10px 12px', background: 'transparent' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '8px' }}>Popular extras</div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
  {popular.map(a => (
@@ -517,7 +517,7 @@ export default function SplitGuestCard(p: {
  } catch (err) { console.warn('[card] scroll to next guest failed', err) }
  }, 80)
  }}
- style={{ width: '100%', marginTop: '14px', padding: '11px', borderRadius: 0, border: 'none', background: missing ? 'rgba(255,255,255,.08)' : s.accent, color: missing ? s.muted : 'var(--bg)', fontWeight: 500, fontSize: '14px', fontFamily: 'inherit', cursor: missing ? 'default' : 'pointer' }}>
+ style={{ width: '100%', marginTop: '14px', padding: '11px', borderRadius: 'var(--radius-control)', border: 'none', background: missing ? 'rgba(255,255,255,.08)' : s.accent, color: missing ? s.muted : 'var(--bg)', fontWeight: 500, fontSize: '14px', fontFamily: 'inherit', cursor: missing ? 'default' : 'pointer' }}>
  {missing ? `Still needed: ${missing}` : 'Done'}
  </button>
  </>

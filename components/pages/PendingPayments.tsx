@@ -103,7 +103,7 @@ export default function PendingPayments({ sandbox, onCount, onOpenBooking }: { s
  {loading ? <div style={{ fontSize: '14px', color: s.muted }}>Loading…</div>
  : err ? <div style={{ fontSize: '14px', color: 'var(--text)' }}> Could not load pending payments: {err}</div>
  : rows.map(r => (
- <div key={r.id} style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: '14px 18px', marginBottom: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+ <div key={r.id} style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '14px 18px', marginBottom: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', flexWrap: 'wrap' }}>
  <div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{r.customer_name ?? '—'}</div>
@@ -120,9 +120,9 @@ export default function PendingPayments({ sandbox, onCount, onOpenBooking }: { s
  </div>
  <div style={{ fontSize: '20px', fontWeight: 500, color: 'var(--text)' }}>{eur(r.amount)}</div>
  </div>
- {r.notes && <div style={{ fontSize: '14px', color: s.text, padding: '8px 10px', background: 'rgba(255,255,255,.03)', borderRadius: 0, borderLeft: '3px solid var(--line)' }}>{r.notes}</div>}
+ {r.notes && <div style={{ fontSize: '14px', color: s.text, padding: '8px 10px', background: 'rgba(255,255,255,.03)', borderRadius: 'var(--radius-card)', borderLeft: '3px solid var(--line)' }}>{r.notes}</div>}
  <button type="button" disabled={busy === r.id} onClick={() => received(r)}
- style={{ padding: '10px', borderRadius: 0, border: 'none', background: 'transparent', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: busy === r.id ? .6 : 1 }}>
+ style={{ padding: '10px', borderRadius: 'var(--radius-control)', border: 'none', background: 'transparent', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: s.font, opacity: busy === r.id ? .6 : 1 }}>
  {busy === r.id ? 'Saving…' : ` Received on account — ${eur(r.amount)}`}
  </button>
  </div>

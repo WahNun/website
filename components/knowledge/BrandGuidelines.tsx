@@ -79,7 +79,7 @@ function Swatches({ list }: { list: Sw[] }) {
  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(190px, 1fr))', gap: '12px' }}>
  {list.map(c => (
  <button key={c.hex} type="button" onClick={() => copy(c.hex)} title="Click to copy the hex code"
- style={{ textAlign: 'left', cursor: 'pointer', fontFamily: FONT, background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: 0, padding: 0, overflow: 'hidden', color: TEXT }}>
+ style={{ textAlign: 'left', cursor: 'pointer', fontFamily: FONT, background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: 'var(--radius-control)', padding: 0, overflow: 'hidden', color: TEXT }}>
  <div style={{ height: '64px', background: c.hex, borderBottom: `1px solid ${BORDER}` }} />
  <div style={{ padding: '10px 12px 12px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)' }}>{c.name}</div>
@@ -94,7 +94,7 @@ function Swatches({ list }: { list: Sw[] }) {
 
 function DoDont({ doList, dontList, doTitle = 'Use', dontTitle = 'Avoid' }: { doList: string[]; dontList: string[]; doTitle?: string; dontTitle?: string }) {
  const col = (title: string, items: string[], color: string, mark: string) => (
- <div style={{ flex: '1 1 280px', background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: 0, padding: '16px 18px' }}>
+ <div style={{ flex: '1 1 280px', background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: 'var(--radius-card)', padding: '16px 18px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color, marginBottom: '10px' }}>{title}</div>
  {items.map(i => <div key={i} style={{ display: 'flex', gap: '10px', fontSize: '14px', color: TEXT, lineHeight: 1.6, padding: '3px 0' }}><span style={{ color, fontWeight: 500 }}>{mark}</span><span>{i}</span></div>)}
  </div>
@@ -102,7 +102,7 @@ function DoDont({ doList, dontList, doTitle = 'Use', dontTitle = 'Avoid' }: { do
  return <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>{col(doTitle, doList, 'var(--text)', '')}{col(dontTitle, dontList, 'var(--muted)', '')}</div>
 }
 
-const tag: React.CSSProperties = { display: 'inline-block', fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', padding: '5px 12px', borderRadius: 0, border: '1px solid rgba(243,239,230,.35)', color: ACCENT, background: 'rgba(243,239,230,.08)' }
+const tag: React.CSSProperties = { display: 'inline-block', fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', padding: '5px 12px', borderRadius: 'var(--radius-control)', border: '1px solid rgba(243,239,230,.35)', color: ACCENT, background: 'rgba(243,239,230,.08)' }
 const mono: React.CSSProperties = { fontSize: '14px', color: MUTED, fontFamily: 'var(--font-geist-mono), ui-monospace, monospace' }
 
 export default function BrandGuidelines() {
@@ -132,7 +132,7 @@ export default function BrandGuidelines() {
 
  return (
  <div style={{ maxWidth: '960px', fontFamily: FONT, color: TEXT }}>
- <div style={{ background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: 0, padding: '28px 32px', display: 'flex', gap: '20px', alignItems: 'center', flexWrap: 'wrap' }}>
+ <div style={{ background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: 'var(--radius-card)', padding: '28px 32px', display: 'flex', gap: '20px', alignItems: 'center', flexWrap: 'wrap' }}>
  <div style={{ flex: '1 1 360px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', color: ACCENT, textTransform: 'uppercase', marginBottom: '8px' }}>Azores Diving · Visual Identity System · 2026</div>
  <h2 style={{ fontSize: '34px', fontWeight: 500, color: 'var(--text)', margin: 0, letterSpacing: '-.02em' }}>Brand Guide<span style={{ color: ACCENT }}>.</span></h2>
@@ -140,13 +140,13 @@ export default function BrandGuidelines() {
  </div>
  <div style={{ flex: '0 0 auto', textAlign: 'right' }}>
  <button type="button" onClick={download} disabled={busy}
- style={{ padding: '12px 26px', borderRadius: 0, border: 'none', cursor: busy ? 'wait' : 'pointer', background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', fontFamily: FONT, opacity: busy ? 0.7 : 1 }}>
+ style={{ padding: '12px 26px', borderRadius: 'var(--radius-control)', border: 'none', cursor: busy ? 'wait' : 'pointer', background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px', fontFamily: FONT, opacity: busy ? 0.7 : 1 }}>
  {busy ? 'Preparing…' : ' Download PDF'}
  </button>
  <div style={{ fontSize: '14px', color: MUTED, marginTop: '6px' }}>AZD_Brand_Guide_2026.pdf · 8 pages · 0.8 MB</div>
  </div>
  </div>
- {err && <div style={{ marginTop: '12px', padding: '10px 14px', borderRadius: 0, background: 'transparent', border: '1px solid var(--line)', color: 'var(--text)', fontSize: '14px' }}> {err}</div>}
+ {err && <div style={{ marginTop: '12px', padding: '10px 14px', borderRadius: 'var(--radius-card)', background: 'transparent', border: '1px solid var(--line)', color: 'var(--text)', fontSize: '14px' }}> {err}</div>}
 
  <H n="02 — Colors" title="Color System." intro="Our palette is built on deep Atlantic blues and a single electric accent — the colour of sunlight hitting clear water at depth. Click a swatch to copy its hex code." />
  <Sub>Core — background &amp; accent</Sub><Swatches list={CORE} />
@@ -156,17 +156,17 @@ export default function BrandGuidelines() {
  <Sub>Gradients</Sub>
  <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
  <div style={{ flex: '1 1 300px' }}>
- <div style={{ height: '56px', borderRadius: 0, background: 'var(--accent)' }} />
+ <div style={{ height: '56px', borderRadius: 'var(--radius-card)', background: 'var(--accent)' }} />
  <div style={{ fontSize: '14px', color: MUTED, marginTop: '6px' }}>CTA button gradient — linear-gradient(135deg, #f3efe6 #f3efe6)</div>
  </div>
  <div style={{ flex: '1 1 300px' }}>
- <div style={{ height: '56px', borderRadius: 0, background: 'radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--text) 45%, transparent), transparent 70%), var(--bg)', border: `1px solid ${BORDER}` }} />
+ <div style={{ height: '56px', borderRadius: 'var(--radius-card)', background: 'radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--text) 45%, transparent), transparent 70%), var(--bg)', border: `1px solid ${BORDER}` }} />
  <div style={{ fontSize: '14px', color: MUTED, marginTop: '6px' }}>Hero glow — radial accent from top, dissolves to transparent</div>
  </div>
  </div>
 
  <H n="03 — Typography" title="Type System." intro="The site is set in Geist. Headings stay at weight 500 and body copy at 400." />
- <div style={{ background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: 0, padding: '24px 28px' }}>
+ <div style={{ background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: 'var(--radius-card)', padding: '24px 28px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', color: MUTED, textTransform: 'uppercase' }}>Primary font — Geist</div>
  <div style={{ fontFamily: STACK, fontSize: '56px', fontWeight: 500, color: 'var(--text)', margin: '6px 0 4px' }}>AaBbCc</div>
  <div style={{ fontFamily: STACK, fontSize: '15px', color: TEXT, lineHeight: 1.7 }}>The ocean covers 71% of the earth&apos;s surface.<br />ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />abcdefghijklmnopqrstuvwxyz<br />0123456789.,–€%</div>
@@ -175,7 +175,7 @@ export default function BrandGuidelines() {
  <Sub>Weights in use</Sub>
  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '10px' }}>
  {WEIGHTS.map(([n, w, u]) => (
- <div key={n} style={{ background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: 0, padding: '12px 14px' }}>
+ <div key={n} style={{ background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: 'var(--radius-card)', padding: '12px 14px' }}>
  <div style={{ fontFamily: STACK, fontSize: '28px', fontWeight: w, color: 'var(--text)' }}>Aa</div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: TEXT }}>{w} · {n}</div>
  <div style={{ fontSize: '14px', color: MUTED }}>{u}</div>
@@ -183,7 +183,7 @@ export default function BrandGuidelines() {
  ))}
  </div>
  <Sub>Type scale</Sub>
- <div style={{ background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: 0, padding: '8px 24px' }}>
+ <div style={{ background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: 'var(--radius-card)', padding: '8px 24px' }}>
  {SCALE.map(([label, size, w, sample]) => (
  <div key={label} style={{ display: 'flex', gap: '20px', alignItems: 'baseline', padding: '12px 0', borderBottom: '1px solid rgba(255,255,255,.05)', flexWrap: 'wrap' }}>
  <div style={{ flex: '0 0 150px', ...mono }}>{label}</div>
@@ -202,12 +202,12 @@ export default function BrandGuidelines() {
 
  <H n="04 — Identity" title="Logo & Identity." intro="The AZD logo combines the brand wordmark with a diving flag and wave motif. The same full-colour version (red flag, blue waves) is used on both light and dark backgrounds — no colour inversion is applied. The SSI Dive Center badge confirms our official partner status." />
  <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
- <div style={{ flex: '1 1 300px', background: '#ffffff', borderRadius: 0, padding: '28px', textAlign: 'center' }}>
+ <div style={{ flex: '1 1 300px', background: '#ffffff', borderRadius: 'var(--radius-card)', padding: '28px', textAlign: 'center' }}>
  {/* eslint-disable-next-line @next/next/no-img-element */}
  <img src="/logo.png" alt="AZD logo on white" style={{ maxWidth: '180px', maxHeight: '90px', objectFit: 'contain' }} />
  <div style={{ fontSize: '14px', color: '#a39e94', marginTop: '10px', letterSpacing: '.08em', textTransform: 'uppercase', fontWeight: 500 }}>On white / light backgrounds</div>
  </div>
- <div style={{ flex: '1 1 300px', background: 'var(--bg)', border: `1px solid ${BORDER}`, borderRadius: 0, padding: '28px', textAlign: 'center' }}>
+ <div style={{ flex: '1 1 300px', background: 'var(--bg)', border: `1px solid ${BORDER}`, borderRadius: 'var(--radius-card)', padding: '28px', textAlign: 'center' }}>
  {/* eslint-disable-next-line @next/next/no-img-element */}
  <img src="/logo.png" alt="AZD logo on dark" style={{ maxWidth: '180px', maxHeight: '90px', objectFit: 'contain' }} />
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', color: 'var(--muted)', marginTop: '10px' }}>SSI · MARES DIVE CENTER · PONTA DELGADA</div>
@@ -221,7 +221,7 @@ export default function BrandGuidelines() {
  { file: '/brand/AZD_Logo_dark-background.png', name: 'AZD_Logo_dark-background.png', title: 'Logo on dark background', meta: 'PNG · 525 × 525 px · navy #121210 background', bg: 'var(--bg)' },
  { file: '/brand/AZD_Logo_white-lettering.png', name: 'AZD_Logo_white-lettering.png', title: 'Logo with white lettering', meta: 'PNG · 300 × 300 px · for use on dark backgrounds', bg: 'var(--bg)' },
  ].map(l => (
- <div key={l.file} style={{ flex: '1 1 260px', background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: 0, overflow: 'hidden' }}>
+ <div key={l.file} style={{ flex: '1 1 260px', background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: 'var(--radius-card)', overflow: 'hidden' }}>
  <div style={{ background: l.bg, padding: '16px', textAlign: 'center' }}>
  {/* eslint-disable-next-line @next/next/no-img-element */}
  <img src={l.file} alt={l.title} style={{ height: '130px', objectFit: 'contain', background: l.bg }} />
@@ -229,13 +229,13 @@ export default function BrandGuidelines() {
  <div style={{ padding: '12px 16px 14px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--text)' }}>{l.title}</div>
  <div style={{ fontSize: '14px', color: MUTED, margin: '2px 0 10px' }}>{l.meta}</div>
- <a href={l.file} download={l.name} style={{ display: 'inline-block', padding: '8px 18px', borderRadius: 0, background: 'rgba(243,239,230,.08)', border: '1px solid rgba(243,239,230,.35)', color: ACCENT, fontWeight: 500, fontSize: '14px', textDecoration: 'none' }}> Download PNG</a>
+ <a href={l.file} download={l.name} style={{ display: 'inline-block', padding: '8px 18px', borderRadius: 'var(--radius-control)', background: 'rgba(243,239,230,.08)', border: '1px solid rgba(243,239,230,.35)', color: ACCENT, fontWeight: 500, fontSize: '14px', textDecoration: 'none' }}> Download PNG</a>
  </div>
  </div>
  ))}
  </div>
  <Sub>Partner badges</Sub>
- <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', background: 'var(--bg)', border: `1px solid ${BORDER}`, borderRadius: 0, padding: '18px 22px' }}>
+ <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', background: 'var(--bg)', border: `1px solid ${BORDER}`, borderRadius: 'var(--radius-control)', padding: '18px 22px' }}>
  {/* eslint-disable-next-line @next/next/no-img-element */}
  <img src="/badges/ssi.png" alt="SSI Dive Center" style={{ height: '56px', objectFit: 'contain' }} />
  {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -246,17 +246,17 @@ export default function BrandGuidelines() {
 
  <H n="05 — Components" title="UI Elements." intro="Buttons, tags, and cards form the visual vocabulary of the interface. Each element follows the same logic: dark surfaces, electric accent, generous whitespace, and rounded corners." />
  <Sub>Buttons</Sub>
- <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', background: 'var(--bg)', border: `1px solid ${BORDER}`, borderRadius: 0, padding: '22px' }}>
+ <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', background: 'var(--bg)', border: `1px solid ${BORDER}`, borderRadius: 'var(--radius-card)', padding: '22px' }}>
  <div style={{ flex: '1 1 220px' }}>
- <span style={{ display: 'inline-block', padding: '11px 26px', borderRadius: 0, background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px' }}>Book now</span>
+ <span style={{ display: 'inline-block', padding: '11px 26px', borderRadius: 'var(--radius-control)', background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 500, fontSize: '14px' }}>Book now</span>
  <div style={{ fontSize: '14px', color: MUTED, lineHeight: 1.6, marginTop: '10px' }}><b style={{ color: TEXT }}>Primary</b><br />Gradient: #f3efe6 #f3efe6<br />Text: #090909 (dark)<br />Weight: 800 · Radius: 999px</div>
  </div>
  <div style={{ flex: '1 1 220px' }}>
- <span style={{ display: 'inline-block', padding: '10px 26px', borderRadius: 0, background: 'transparent', border: '1px solid rgba(243,239,230,.35)', color: ACCENT, fontWeight: 500, fontSize: '14px' }}>Learn more</span>
+ <span style={{ display: 'inline-block', padding: '10px 26px', borderRadius: 'var(--radius-control)', background: 'transparent', border: '1px solid rgba(243,239,230,.35)', color: ACCENT, fontWeight: 500, fontSize: '14px' }}>Learn more</span>
  <div style={{ fontSize: '14px', color: MUTED, lineHeight: 1.6, marginTop: '10px' }}><b style={{ color: TEXT }}>Secondary</b><br />Background: transparent<br />Border: rgba(#f3efe6, 35%)<br />Text: #f3efe6</div>
  </div>
  <div style={{ flex: '1 1 220px' }}>
- <span style={{ display: 'inline-block', padding: '10px 26px', borderRadius: 0, background: 'rgba(243,239,230,.08)', border: '1px solid rgba(255,255,255,.08)', color: 'var(--text)', fontWeight: 500, fontSize: '14px' }}>View all sites</span>
+ <span style={{ display: 'inline-block', padding: '10px 26px', borderRadius: 'var(--radius-control)', background: 'rgba(243,239,230,.08)', border: '1px solid rgba(255,255,255,.08)', color: 'var(--text)', fontWeight: 500, fontSize: '14px' }}>View all sites</span>
  <div style={{ fontSize: '14px', color: MUTED, lineHeight: 1.6, marginTop: '10px' }}><b style={{ color: TEXT }}>Ghost</b><br />Background: rgba(accent, 8%)<br />Border: rgba(white, 8%)<br />Text: #f3efe6</div>
  </div>
  </div>
@@ -268,7 +268,7 @@ export default function BrandGuidelines() {
  <Sub>Cards</Sub>
  <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
  {[{ t: 'Most popular', h: 'Daily Double Dive', d: 'Two guided boat dives · morning or afternoon · refreshments included', p: '€96 / 2 dives' }, { t: 'Expedition', h: 'Formigas & Dollabarat', d: '42 nm offshore · mantas · devil rays · Advanced only', p: '€255 / 2 dives' }].map(c => (
- <div key={c.h} style={{ flex: '1 1 300px', background: '#121210', border: `1px solid ${BORDER}`, borderRadius: 0, padding: '20px 22px' }}>
+ <div key={c.h} style={{ flex: '1 1 300px', background: '#121210', border: `1px solid ${BORDER}`, borderRadius: 'var(--radius-card)', padding: '20px 22px' }}>
  <span style={tag}>{c.t}</span>
  <div style={{ fontSize: '19px', fontWeight: 500, color: 'var(--text)', margin: '12px 0 6px' }}>{c.h}</div>
  <div style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.6 }}>{c.d}</div>
@@ -283,7 +283,7 @@ export default function BrandGuidelines() {
  <H n="07 — Principles" title="Design Language." intro={'"Atlantic Deep" — our visual language is named after the feeling of descending into clear, dark water. Everything references that experience: depth, clarity, and the rare electric light that breaks through.'} />
  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '14px' }}>
  {PRINCIPLES.map(([n, t, d]) => (
- <div key={n} style={{ background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: 0, padding: '18px 20px' }}>
+ <div key={n} style={{ background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: 'var(--radius-card)', padding: '18px 20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: ACCENT, letterSpacing: '.08em' }}>{n}</div>
  <div style={{ fontSize: '16px', fontWeight: 500, color: 'var(--text)', margin: '6px 0' }}>{t}</div>
  <div style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.65 }}>{d}</div>
@@ -293,7 +293,7 @@ export default function BrandGuidelines() {
  <Sub>Brand voice — quick reference</Sub>
  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '14px' }}>
  {VOICE.map(([t, d]) => (
- <div key={t} style={{ background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: 0, padding: '16px 18px' }}>
+ <div key={t} style={{ background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: 'var(--radius-card)', padding: '16px 18px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: ACCENT, marginBottom: '6px' }}>{t}</div>
  <div style={{ fontSize: '14px', color: TEXT, lineHeight: 1.65 }}>{d}</div>
  </div>

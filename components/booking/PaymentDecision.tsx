@@ -146,9 +146,9 @@ export default function PaymentDecision({ bookingIds, onDone, compact, sendReque
  setBusy(false)
  }
 
- const chip = (on: boolean) => ({ padding: '8px 13px', borderRadius: 0, border: `1px solid ${on ? s.accent : 'rgba(255,255,255,.14)'}`, background: on ? 'color-mix(in srgb, var(--text) 12%, transparent)' : 'transparent', color: on ? s.accent : s.muted, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' as const })
+ const chip = (on: boolean) => ({ padding: '8px 13px', borderRadius: 'var(--radius-control)', border: `1px solid ${on ? s.accent : 'rgba(255,255,255,.14)'}`, background: on ? 'color-mix(in srgb, var(--text) 12%, transparent)' : 'transparent', color: on ? s.accent : s.muted, fontWeight: 500, fontSize: '14px', cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' as const })
  return (
- <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 0, padding: compact ? '14px' : '18px', textAlign: 'left' }}>
+ <div style={{ background: 'transparent', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: compact ? '14px' : '18px', textAlign: 'left' }}>
  <div style={{ fontSize: '15px', fontWeight: 500, color: s.text, marginBottom: '4px' }}>What happened with the payment?</div>
  <div style={{ fontSize: '14px', color: s.muted, marginBottom: '14px', lineHeight: 1.5 }}>
  Please answer now. Money you received is recorded as paid and the guest gets the payment email. What is still open is recorded as expected, so it can be marked as received later.
@@ -179,7 +179,7 @@ export default function PaymentDecision({ bookingIds, onDone, compact, sendReque
  <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap', marginTop: '10px', fontSize: '14px', color: s.muted }}>
  <label htmlFor={`pd-${r.id}`}>Received now (€)</label>
  <input id={`pd-${r.id}`} type="text" inputMode="decimal" value={p.part} placeholder="e.g. 50" onChange={e => set(r.id, { part: e.target.value })}
- style={{ width: '110px', background: 'var(--bg)', border: '1px solid rgba(255,255,255,.14)', borderRadius: 0, color: s.text, fontSize: '14px', fontFamily: 'inherit', padding: '7px 10px' }} />
+ style={{ width: '110px', background: 'var(--bg)', border: '1px solid rgba(255,255,255,.14)', borderRadius: 'var(--radius-control)', color: s.text, fontSize: '14px', fontFamily: 'inherit', padding: '7px 10px' }} />
  {!Number.isNaN(c) && c > 0 && c < open && <span>still open: <b style={{ color: 'var(--text)' }}>{eur(open - c)}</b></span>}
  </div>
  )}
@@ -197,7 +197,7 @@ export default function PaymentDecision({ bookingIds, onDone, compact, sendReque
  )}
  {err && <div style={{ fontSize: '14px', color: 'var(--text)', margin: '6px 0 10px' }}>Not saved: {err}. What was saved before stays saved. Please try again.</div>}
  <button type="button" disabled={!ready || busy} onClick={save}
- style={{ width: '100%', marginTop: '8px', padding: '12px', borderRadius: 0, border: 'none', background: ready && !busy ? s.accent : 'rgba(255,255,255,.08)', color: ready && !busy ? 'var(--bg)' : s.muted, fontWeight: 500, fontSize: '14px', cursor: ready && !busy ? 'pointer' : 'default', fontFamily: 'inherit' }}>
+ style={{ width: '100%', marginTop: '8px', padding: '12px', borderRadius: 'var(--radius-control)', border: 'none', background: ready && !busy ? s.accent : 'rgba(255,255,255,.08)', color: ready && !busy ? 'var(--bg)' : s.muted, fontWeight: 500, fontSize: '14px', cursor: ready && !busy ? 'pointer' : 'default', fontFamily: 'inherit' }}>
  {busy ? 'Saving…' : ready ? 'Save payment status' : `Missing: ${missing.join(' · ')}`}
  </button>
  </div>

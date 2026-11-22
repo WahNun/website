@@ -29,7 +29,7 @@ const bookBtnStyle: React.CSSProperties = {
  fontWeight: 500,
  fontSize: '14px',
  padding: '12px 24px',
- borderRadius: 0,
+ borderRadius: 'var(--radius-control)',
  boxShadow: 'none',
  textDecoration: 'none',
  cursor: 'pointer',
@@ -153,7 +153,7 @@ export default function NavBar({ lang: initialLang }: NavBarProps) {
  onClick={() => setMenuOpen(o => !o)}
  style={{
  background: 'transparent', border: '1px solid rgba(255,255,255,.15)',
- borderRadius: 0, color: 'var(--text)', fontSize: '20px',
+ borderRadius: 'var(--radius-control)', color: 'var(--text)', fontSize: '20px',
  cursor: 'pointer', padding: '6px 10px', lineHeight: 1, flexShrink: 0,
  }}
  aria-label={menuOpen ? 'Close menu' : 'Open menu'}
@@ -192,7 +192,7 @@ export default function NavBar({ lang: initialLang }: NavBarProps) {
  style={{
  background: 'var(--surface)', color: accent,
  border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)',
- borderRadius: 0, padding: '6px 10px',
+ borderRadius: 'var(--radius-control)', padding: '6px 10px',
  fontSize: '14px', fontWeight: 500,
  cursor: 'pointer', fontFamily: font, outline: 'none',
  }}
@@ -214,7 +214,7 @@ export default function NavBar({ lang: initialLang }: NavBarProps) {
  href="/members"
  style={{
  fontSize: '14px', fontWeight: 500, padding: '8px 14px',
- borderRadius: 0, cursor: 'pointer',
+ borderRadius: 'var(--radius-control)', cursor: 'pointer',
  color: isMembersActive ? accent : mutedColor,
  background: isMembersActive ? 'color-mix(in srgb, var(--text) 10%, transparent)' : 'rgba(255,255,255,.04)',
  border: `1px solid ${isMembersActive ? 'color-mix(in srgb, var(--text) 35%, transparent)' : 'rgba(255,255,255,.08)'}`,
@@ -276,7 +276,7 @@ export default function NavBar({ lang: initialLang }: NavBarProps) {
  key={l}
  onClick={() => handleLangChange(l)}
  style={{
- padding: '8px 18px', borderRadius: 0,
+ padding: '8px 18px', borderRadius: 'var(--radius-control)',
  border: `1px solid ${lang === l ? accent : 'rgba(255,255,255,.15)'}`,
  background: lang === l ? 'color-mix(in srgb, var(--text) 15%, transparent)' : 'transparent',
  color: lang === l ? accent : 'var(--accent)',

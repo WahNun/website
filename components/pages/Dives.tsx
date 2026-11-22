@@ -32,7 +32,7 @@ export function PageDives({ nav, lang }: { nav: (p: string) => void; lang: Lang 
  {/* Stats */}
  <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', margin: '28px 0 36px' }}>
  {([['dives_stat_session', 'dives_stat_session_val'], ['dives_stat_group', 'dives_stat_group_val'], ['dives_stat_dives', 'dives_stat_dives_val'], ['dives_stat_incl', 'dives_stat_incl_val']] as const).map(([labelKey, valueKey]) => (
- <div key={labelKey} style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, padding: '12px 16px' }}>
+ <div key={labelKey} style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 'var(--radius-card)', padding: '12px 16px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '5px' }}>{t(labelKey)}</div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{t(valueKey)}</div>
  </div>
@@ -66,14 +66,14 @@ export function PageDives({ nav, lang }: { nav: (p: string) => void; lang: Lang 
 
  {/* Pricing sidebar */}
  <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
- <div style={{ background: 'color-mix(in srgb, var(--text) 8%, transparent)', border: '1px solid var(--line)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 8%, transparent)', border: '1px solid var(--line)', borderRadius: 'var(--radius-control)', padding: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '12px' }}>{t('dives_requirements')}</div>
  <p style={{ fontSize: '14px', color: 'var(--text)', lineHeight: 1.6, margin: 0 }}>
  {t('dives_req_text')}
  </p>
  </div>
 
- <div style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.07)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.07)', borderRadius: 'var(--radius-card)', padding: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '16px' }}>{t('dives_pricing')}</div>
  {([
  [t('dives_pkg_double'), '€99'],

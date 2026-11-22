@@ -115,7 +115,7 @@ export function PagePrivacy({ nav, lang }: { nav: (p: string) => void; lang: Lan
 
  <p style={{ color: 'var(--text)', lineHeight: 1.8, marginBottom: '36px' }}>{c.intro}</p>
 
- <div style={{ background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 18%, transparent)', borderRadius: 0, padding: '20px 24px', marginBottom: '40px' }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 18%, transparent)', borderRadius: 'var(--radius-card)', padding: '20px 24px', marginBottom: '40px' }}>
  <div style={{ fontWeight: 500, color: s.accent, fontSize: '14px', letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: '10px' }}>{c.controller_h}</div>
  <div style={{ color: 'var(--text)', fontSize: '14px', lineHeight: 1.9, whiteSpace: 'pre-line' }}>{c.controller_body}</div>
  </div>
@@ -127,7 +127,7 @@ export function PagePrivacy({ nav, lang }: { nav: (p: string) => void; lang: Lan
  </div>
  ))}
 
- <div style={{ marginTop: '40px', padding: '16px', background: 'rgba(255,255,255,.03)', borderRadius: 0, textAlign: 'center' }}>
+ <div style={{ marginTop: '40px', padding: '16px', background: 'rgba(255,255,255,.03)', borderRadius: 'var(--radius-card)', textAlign: 'center' }}>
  <span style={{ color: s.muted, fontSize: '14px' }}>© 2026 Emanuel Cabral Sociedade Unipessoal, Lda · Azores Diving</span>
  </div>
  </div>

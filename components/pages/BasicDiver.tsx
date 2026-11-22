@@ -32,7 +32,7 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
  {/* Stats */}
  <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', margin: '28px 0 36px' }}>
  {[[t('bd_duration'), t('bd_duration_val')], [t('bd_setup'), t('bd_setup_val')], [t('bd_depth'), t('bd_depth_val')], [t('bd_price_label'), '€139']].map(([label, value]) => (
- <div key={label} style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 0, padding: '12px 16px' }}>
+ <div key={label} style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.08)', borderRadius: 'var(--radius-card)', padding: '12px 16px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '5px' }}>{label}</div>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>{value}</div>
  </div>
@@ -75,14 +75,14 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
 
  {/* Sidebar */}
  <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
- <div style={{ background: 'color-mix(in srgb, var(--text) 8%, transparent)', border: '1px solid var(--line)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 8%, transparent)', border: '1px solid var(--line)', borderRadius: 'var(--radius-card)', padding: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '12px' }}>{t('bd_requirements_title')}</div>
  <p style={{ fontSize: '14px', color: 'var(--text)', lineHeight: 1.6, margin: 0 }}>
  {t('bd_requirements_body')}
  </p>
  </div>
 
- <div style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.07)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.07)', borderRadius: 'var(--radius-card)', padding: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '12px' }}>{t('bd_included_title')}</div>
  {(['bd_incl1', 'bd_incl2', 'bd_incl3', 'bd_incl4', 'bd_incl5', 'bd_incl6'] as const).map(key => (
  <div key={key} style={{ display: 'flex', gap: '10px', marginBottom: '8px', alignItems: 'flex-start' }}>
@@ -92,7 +92,7 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
  ))}
  </div>
 
- <div style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.07)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.07)', borderRadius: 'var(--radius-control)', padding: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.muted, marginBottom: '16px' }}>{t('bd_pricing_title')}</div>
  {([
  [t('bd_price_pool'), '€95', null],
@@ -109,7 +109,7 @@ export function PageBasicDiver({ nav, lang, onBookClick }: { nav: (p: string) =>
  ))}
  </div>
 
- <div style={{ background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 0, padding: '20px' }}>
+ <div style={{ background: 'color-mix(in srgb, var(--text) 6%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 15%, transparent)', borderRadius: 'var(--radius-card)', padding: '20px' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, letterSpacing: '.08em', textTransform: 'uppercase', color: s.accent, marginBottom: '8px' }}>{t('bd_go_further_title')}</div>
  <p style={{ fontSize: '14px', color: s.text, margin: '0 0 12px', lineHeight: 1.5 }}>{t('bd_go_further_body')}</p>
  <button type="button" onClick={() => nav('courses')} style={{ fontSize: '14px', color: s.accent, cursor: 'pointer', fontWeight: 500, background: 'none', border: 'none', padding: 0, fontFamily: s.font }}>{t('bd_see_courses')}</button>

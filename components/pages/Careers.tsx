@@ -76,7 +76,7 @@ export function PageCareers({ nav, lang }: { nav: (p: string) => void; lang: Lan
  const blockStyle: React.CSSProperties = {
  background: 'rgba(255,255,255,.03)',
  border: '1px solid rgba(255,255,255,.08)',
- borderRadius: 0,
+ borderRadius: 'var(--radius-card)',
  padding: isMobile ? '24px 20px' : '28px 32px',
  marginBottom: '20px',
  }
@@ -93,7 +93,7 @@ export function PageCareers({ nav, lang }: { nav: (p: string) => void; lang: Lan
  style={{
  display: 'inline-block', marginTop: '18px',
  background: 'linear-gradient(135deg,var(--text),var(--text))', color: 'var(--on-accent)',
- fontWeight: 500, fontSize: '14px', padding: '11px 22px', borderRadius: 0,
+ fontWeight: 500, fontSize: '14px', padding: '11px 22px', borderRadius: 'var(--radius-control)',
  boxShadow: 'none', textDecoration: 'none', fontFamily: s.font,
  }}
  >

@@ -147,10 +147,10 @@ export function FinanceHeadline({ simulationMode }: { simulationMode: boolean | 
  )
 }
 
-const tile = { background: 'var(--glass)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, padding: '16px 16px' } as const
+const tile = { background: 'var(--glass)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 'var(--radius-control)', padding: '16px 16px' } as const
 const lbl = { fontSize: '14px', color: s.muted, textTransform: 'uppercase', letterSpacing: '.08em' } as const
 const row = { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px', padding: '9px 0', borderBottom: '1px solid rgba(255,255,255,.07)' } as const
-const btn = { background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, borderRadius: 0, padding: '6px 12px', cursor: 'pointer', fontSize: '14px', fontFamily: 'inherit' } as const
+const btn = { background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.muted, borderRadius: 'var(--radius-control)', padding: '6px 12px', cursor: 'pointer', fontSize: '14px', fontFamily: 'inherit' } as const
 
 function Kpis({ items, isMobile }: { items: Array<[string, string, string?, string?]>; isMobile: boolean }) {
  return (
@@ -179,7 +179,7 @@ function Section({ title, children, action }: { title: string; children: ReactNo
 }
 
 function BookingNo({ id, onOpen }: { id: string; onOpen: (id: string) => void }) {
- return <button type="button" onClick={() => onOpen(id)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: 'var(--text)', fontWeight: 500, background: 'transparent', border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', borderRadius: 0, padding: '0 6px', cursor: 'pointer', fontSize: '14px' }}>{id.slice(0, 8).toUpperCase()}</button>
+ return <button type="button" onClick={() => onOpen(id)} title="Open booking" style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: 'var(--text)', fontWeight: 500, background: 'transparent', border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', borderRadius: 'var(--radius-control)', padding: '0 6px', cursor: 'pointer', fontSize: '14px' }}>{id.slice(0, 8).toUpperCase()}</button>
 }
 
 function byMethod(pays: Pay[]) {
@@ -194,7 +194,7 @@ function MethodChips({ pays }: { pays: Pay[] }) {
  return (
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
  {list.map(([m, v]) => (
- <span key={m} style={{ fontSize: '14px', color: s.text, background: 'rgba(255,255,255,.05)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 0, padding: '5px 12px' }}>
+ <span key={m} style={{ fontSize: '14px', color: s.text, background: 'rgba(255,255,255,.05)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 'var(--radius-control)', padding: '5px 12px' }}>
  {ML[m] ?? m} · <b>{eur2(v.amount)}</b> <span style={{ color: s.muted }}>({v.n})</span>
  </span>
  ))}
@@ -284,7 +284,7 @@ function Overview({ simulationMode, who, onOpenBooking, isMobile }: { simulation
  <label style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: s.muted }}>
  View
  <select value={mode} aria-label="View" onChange={e => pickMode(e.target.value as Mode)}
- style={{ background: 'var(--bg)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 0, color: s.text, fontSize: '14px', fontWeight: 500, fontFamily: 'inherit', padding: '7px 10px', cursor: 'pointer', colorScheme: 'dark' }}>
+ style={{ background: 'var(--bg)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 'var(--radius-control)', color: s.text, fontSize: '14px', fontWeight: 500, fontFamily: 'inherit', padding: '7px 10px', cursor: 'pointer', colorScheme: 'dark' }}>
  {MODES.map(([m, l]) => <option key={m} value={m}>{l}</option>)}
  </select>
  </label>
@@ -390,7 +390,7 @@ function Overview({ simulationMode, who, onOpenBooking, isMobile }: { simulation
  <>
  <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px', flexWrap: 'wrap', margin: '2px 0 4px' }}>
  <span style={{ fontSize: '24px', fontWeight: 500, color: s.text, fontVariantNumeric: 'tabular-nums' }}>{eur2(cur.totals.value)}</span>
- {compare && <span style={{ fontSize: '14px', fontWeight: 500, padding: '3px 9px', borderRadius: 0, color: change === null ? s.muted : change >= 0 ? 'var(--text)' : 'var(--text)', background: change === null ? 'rgba(255,255,255,.06)' : change >= 0 ? 'transparent' : 'transparent' }}>
+ {compare && <span style={{ fontSize: '14px', fontWeight: 500, padding: '3px 9px', borderRadius: 'var(--radius-control)', color: change === null ? s.muted : change >= 0 ? 'var(--text)' : 'var(--text)', background: change === null ? 'rgba(255,255,255,.06)' : change >= 0 ? 'transparent' : 'transparent' }}>
  {pctText(change)} vs {p.current ? 'same time last year' : String(y - 1)}
  </span>}
  </div>

@@ -419,7 +419,7 @@ export const s = {
 
 export const inputStyle: React.CSSProperties = {
  width: '100%', background: 'transparent', color: 'var(--text)',
- border: '1px solid color-mix(in srgb, var(--text) 45%, transparent)', borderRadius: 0,
+ border: '1px solid color-mix(in srgb, var(--text) 45%, transparent)', borderRadius: 'var(--radius-card)',
  padding: '12px', fontSize: '14px', fontFamily: s.font,
  outline: 'none', boxSizing: 'border-box',
 }
@@ -435,7 +435,7 @@ export const bookBtnStyle: React.CSSProperties = {
  letterSpacing: '0.08em',
  textTransform: 'uppercase',
  padding: '12px 18px',
- borderRadius: 0,
+ borderRadius: 'var(--radius-control)',
  boxShadow: 'none',
  textDecoration: 'none',
  cursor: 'pointer',

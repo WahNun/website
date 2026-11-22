@@ -206,7 +206,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
  <div style={{
  background: 'var(--glass)',
  border: `1px solid ${warningDays.length > 0 ? 'var(--line)' : 'color-mix(in srgb, var(--text) 15%, transparent)'}`,
- borderRadius: 0,
+ borderRadius: 'var(--radius-card)',
  padding: '20px',
  overflow: 'hidden',
  }}>
@@ -226,7 +226,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
  </div>
 
  {error && (
- <div style={{ fontSize: '14px', color: 'var(--text)', padding: '10px', background: 'transparent', borderRadius: 0 }}>{error}</div>
+ <div style={{ fontSize: '14px', color: 'var(--text)', padding: '10px', background: 'transparent', borderRadius: 'var(--radius-control)' }}>{error}</div>
  )}
 
  {!loading && !error && days.length > 0 && (
@@ -245,7 +245,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
  title={hasStudents ? 'Show courses, guests and sessions' : undefined}
  style={{
  display: 'flex', alignItems: 'center', gap: '10px',
- padding: '8px 10px', borderRadius: 0,
+ padding: '8px 10px', borderRadius: 'var(--radius-control)',
  cursor: hasStudents ? 'pointer' : 'default',
  background: bgBase,
  border: isToday ? '1px solid color-mix(in srgb, var(--text) 30%, transparent)' : '1px solid transparent',
@@ -257,9 +257,9 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
  }}>
  {fmt(day.date)}
  </div>
- <div style={{ flex: 1, height: '6px', background: 'rgba(255,255,255,.07)', borderRadius: 0, overflow: 'hidden' }}>
+ <div style={{ flex: 1, height: '6px', background: 'rgba(255,255,255,.07)', borderRadius: 'var(--radius-card)', overflow: 'hidden' }}>
  {hasStudents && (
- <div style={{ height: '100%', width: `${Math.min(100, pct * 100)}%`, background: barColor, borderRadius: 0 }} />
+ <div style={{ height: '100%', width: `${Math.min(100, pct * 100)}%`, background: barColor, borderRadius: 'var(--radius-card)' }} />
  )}
  </div>
  <div style={{
@@ -280,7 +280,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
  <div key={day.date} style={{ display: 'flex', flexWrap: 'wrap', gap: '5px', alignItems: 'center' }}>
  <span style={{ fontSize: '14px', color: s.muted, minWidth: '72px', flexShrink: 0 }}>{fmt(day.date)}</span>
  {day.courses.map(c => (
- <span key={c.name} style={{ fontSize: '14px', padding: '2px 8px', borderRadius: 0, background: 'color-mix(in srgb, var(--text) 10%, transparent)', color: 'var(--text)', fontWeight: 500, whiteSpace: 'nowrap' }}>
+ <span key={c.name} style={{ fontSize: '14px', padding: '2px 8px', borderRadius: 'var(--radius-control)', background: 'color-mix(in srgb, var(--text) 10%, transparent)', color: 'var(--text)', fontWeight: 500, whiteSpace: 'nowrap' }}>
  {c.name} · {c.students}
  </span>
  ))}
@@ -293,7 +293,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
  )}
 
  {!loading && warningDays.length > 0 && (
- <div style={{ marginTop: '12px', padding: '10px 12px', borderRadius: 0, background: 'transparent', border: '1px solid var(--line)', fontSize: '14px', color: 'var(--text)', lineHeight: 1.5 }}>
+ <div style={{ marginTop: '12px', padding: '10px 12px', borderRadius: 'var(--radius-card)', background: 'transparent', border: '1px solid var(--line)', fontSize: '14px', color: 'var(--text)', lineHeight: 1.5 }}>
  {warningDays.length} day{warningDays.length === 1 ? '' : 's'} near or at quota:
  {' '}{warningDays.map(d => fmt(d.date)).join(', ')}
  {warningDays.some(d => d.students >= d.quota) && ' — next booking triggers request-only.'}
@@ -308,25 +308,25 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
 
  {openDate && (
  <div onClick={() => setOpenDate(null)} style={{ position: 'fixed', inset: 0, zIndex: 1000, background: 'rgba(0,0,0,0.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '40px 16px', overflowY: 'auto' }}>
- <div onClick={e => e.stopPropagation()} style={{ width: 'min(760px, 100%)', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 0, boxShadow: 'none' }}>
+ <div onClick={e => e.stopPropagation()} style={{ width: 'min(760px, 100%)', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 'var(--radius-card)', boxShadow: 'none' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  <span style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>Courses · {fmt(openDate)}</span>
- <button type="button" onClick={() => setOpenDate(null)} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.text, borderRadius: 0, padding: '6px 12px', fontSize: '14px', cursor: 'pointer' }}>Close </button>
+ <button type="button" onClick={() => setOpenDate(null)} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.text, borderRadius: 'var(--radius-control)', padding: '6px 12px', fontSize: '14px', cursor: 'pointer' }}>Close </button>
  </div>
  <div style={{ padding: '14px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
  {detailLoading && <div style={{ fontSize: '14px', color: s.muted }}>Loading…</div>}
- {detailErr && <div style={{ fontSize: '14px', color: 'var(--text)', padding: '10px', background: 'transparent', borderRadius: 0 }}>{detailErr}</div>}
+ {detailErr && <div style={{ fontSize: '14px', color: 'var(--text)', padding: '10px', background: 'transparent', borderRadius: 'var(--radius-card)' }}>{detailErr}</div>}
  {!detailLoading && !detailErr && detail.length === 0 && <div style={{ fontSize: '14px', color: s.muted }}>No course sessions found for this day.</div>}
  {detail.map(r => {
  const tbd = r.session === 'tbd'
  const where = r.isBoatDay === false ? 'Pool / harbour' : r.boatName ? `Boat: ${r.boatName}` : tbd ? 'Not planned yet' : 'Boat (not assigned)'
  return (
- <div key={r.key} style={{ padding: '12px 14px', borderRadius: 0, background: 'color-mix(in srgb, var(--text) 5%, transparent)', border: `1px solid ${tbd ? 'var(--line)' : 'color-mix(in srgb, var(--text) 15%, transparent)'}` }}>
+ <div key={r.key} style={{ padding: '12px 14px', borderRadius: 'var(--radius-card)', background: 'color-mix(in srgb, var(--text) 5%, transparent)', border: `1px solid ${tbd ? 'var(--line)' : 'color-mix(in srgb, var(--text) 15%, transparent)'}` }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
  <div style={{ fontSize: '14px', fontWeight: 500, color: s.text }}>
  {r.product}{r.isTest && <span style={{ marginLeft: '8px', fontSize: '14px', color: 'var(--text)', fontWeight: 500 }}>TEST</span>}
  </div>
- <span style={{ fontSize: '14px', fontWeight: 500, padding: '2px 9px', borderRadius: 0, background: tbd ? 'transparent' : 'color-mix(in srgb, var(--text) 12%, transparent)', color: tbd ? 'var(--text)' : 'var(--accent)' }}>
+ <span style={{ fontSize: '14px', fontWeight: 500, padding: '2px 9px', borderRadius: 'var(--radius-control)', background: tbd ? 'transparent' : 'color-mix(in srgb, var(--text) 12%, transparent)', color: tbd ? 'var(--text)' : 'var(--accent)' }}>
  {tbd ? 'Time to be set' : r.session.toUpperCase()}{r.startTime ? ` · ${String(r.startTime).slice(0, 5)}` : ''}
  </span>
  </div>
@@ -338,7 +338,7 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
  {r.notes && <div> {r.notes}</div>}
  </div>
  <div style={{ marginTop: '8px' }}>
- <button type="button" onClick={() => setBookingPopup(r.bookingId)} style={{ background: 'color-mix(in srgb, var(--text) 12%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', color: 'var(--text)', borderRadius: 0, padding: '5px 12px', fontSize: '14px', fontWeight: 500, cursor: 'pointer' }}>
+ <button type="button" onClick={() => setBookingPopup(r.bookingId)} style={{ background: 'color-mix(in srgb, var(--text) 12%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 35%, transparent)', color: 'var(--text)', borderRadius: 'var(--radius-control)', padding: '5px 12px', fontSize: '14px', fontWeight: 500, cursor: 'pointer' }}>
  Open booking {r.bookingId.slice(0, 8).toUpperCase()} 
  </button>
  </div>
@@ -352,10 +352,10 @@ export default function CourseLoad({ rollDateStr, isAdmin, simulationMode = fals
 
  {bookingPopup && (
  <div onClick={() => setBookingPopup(null)} style={{ position: 'fixed', inset: 0, zIndex: 1100, background: 'rgba(0,0,0,0.78)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '40px 16px', overflowY: 'auto' }}>
- <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 0, boxShadow: 'none' }}>
+ <div onClick={e => e.stopPropagation()} style={{ width: 'min(920px, 100%)', background: 'var(--surface)', border: '1px solid color-mix(in srgb, var(--text) 25%, transparent)', borderRadius: 'var(--radius-card)', boxShadow: 'none' }}>
  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
  <span style={{ fontSize: '14px', color: s.muted }}>Booking <span style={{ fontFamily: 'var(--font-geist-mono), ui-monospace, monospace', color: s.text, fontWeight: 500 }}>{bookingPopup.slice(0, 8).toUpperCase()}</span></span>
- <button type="button" onClick={() => setBookingPopup(null)} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.text, borderRadius: 0, padding: '6px 12px', fontSize: '14px', cursor: 'pointer' }}>Close </button>
+ <button type="button" onClick={() => setBookingPopup(null)} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,.15)', color: s.text, borderRadius: 'var(--radius-control)', padding: '6px 12px', fontSize: '14px', cursor: 'pointer' }}>Close </button>
  </div>
  <div style={{ padding: '14px' }}>
  <FrontOfficeBookings focusBookingId={bookingPopup} embedded initialTab="sessions" />

@@ -186,7 +186,7 @@ export default function TicketMessages({
  {msg.attachments.map((a, i) => (
  <a key={i} href={a.url} target="_blank" rel="noreferrer" style={{
  fontSize: '14px', color: 'var(--text)', textDecoration: 'none',
- padding: '3px 8px', borderRadius: 0,
+ padding: '3px 8px', borderRadius: 'var(--radius-control)',
  background: 'color-mix(in srgb, var(--text) 8%, transparent)', border: '1px solid color-mix(in srgb, var(--text) 20%, transparent)',
  }}>
  {a.name}
